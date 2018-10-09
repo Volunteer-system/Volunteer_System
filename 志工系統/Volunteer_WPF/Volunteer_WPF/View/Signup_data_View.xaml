@@ -1,0 +1,100 @@
+﻿<Window x:Class="Volunteer_WPF.View.Signup_data_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Signup_data_View" Height="660.53" Width="800">
+    <Grid Margin="0,0,-0.4,0.2" Height="631" VerticalAlignment="Bottom">
+        <Label Content="中文姓名:" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.451,0.922" FontSize="16"/>
+        <Label x:Name="Chinese_name_Label" Content="{Binding Chinese_name}" HorizontalAlignment="Left" Margin="119,9,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="英文姓名:" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="English_name_Label" Content="{Binding English_name}" HorizontalAlignment="Left" Margin="119,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="性別:" HorizontalAlignment="Left" Margin="11,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.695,0.578" FontSize="16"/>
+        <Label x:Name="Sex_Label" Content="{Binding Sex}" HorizontalAlignment="Left" Margin="118,71,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="生日:" HorizontalAlignment="Left" Margin="11,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.235,-0.242" FontSize="16"/>
+        <Label x:Name="Birthday_Label" Content="{Binding Birthday}" HorizontalAlignment="Left" Margin="119,102,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="申請日期:" HorizontalAlignment="Left" Margin="11,133,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Sign_up_date_Label" Content="{Binding Sign_up_date}" HorizontalAlignment="Left" Margin="119,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.664" FontSize="16"/>
+        <Label Content="電話號碼:" HorizontalAlignment="Left" Margin="11,164,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Phone_Label" Content="{Binding Phone}" HorizontalAlignment="Left" Margin="119,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.915,0.664" FontSize="16"/>
+        <Label Content="手機號碼:" HorizontalAlignment="Left" Margin="11,195,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Mobile_Label" Content="{Binding Mobile}" HorizontalAlignment="Left" Margin="119,195,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="電子郵件:" HorizontalAlignment="Left" Margin="11,226,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Email_Label" Content="{Binding Email}" HorizontalAlignment="Left" Margin="118,226,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="聯絡地址:" HorizontalAlignment="Left" Margin="11,257,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Address_Label" Content="{Binding Address}" HorizontalAlignment="Left" Margin="119,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.005,0.016" FontSize="16"/>
+        <Label Content="教育程度:" HorizontalAlignment="Left" Margin="11,287,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Education_Label" Content="{Binding Education}" HorizontalAlignment="Left" Margin="119,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.195,0.516" FontSize="16"/>
+        <Label Content="目前職業:" HorizontalAlignment="Left" Margin="11,318,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Job_Label" Content="{Binding Job}" HorizontalAlignment="Left" Margin="118,318,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="人格量表結果:" HorizontalAlignment="Left" Margin="11,349,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="118,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,-0.023" FontSize="16"/>
+        <Label Content="服務意願時間:" HorizontalAlignment="Left" Margin="11,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,0.188" FontSize="16"/>
+        <Label Content="面試意願時間:" HorizontalAlignment="Left" Margin="18,552,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="133,552,0,0" VerticalAlignment="Top" Width="83" FontSize="16"/>
+        <Border CornerRadius="6" BorderBrush="#FFA7E6DA" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="50,419,0,0" VerticalAlignment="Top" Width="550" Background="White">
+            <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle HorizontalAlignment="Left" Height="29"  Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68" Fill="#FFA7E6DA"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Label Content="週一" Grid.Column="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週二" Grid.Column="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週三" Grid.Column="3" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週四" Grid.Column="4" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週五" Grid.Column="5" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週六" Grid.Column="6" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="上午" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="下午" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+            </Grid>
+        </Border>
+    </Grid>
+
+</Window>

@@ -13,5 +13,12 @@ namespace Volunteer_WPF
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            this.ShutdownMode = ShutdownMode.OnLastWindowClose;
+            Window window = new View.Signup_data_View();
+            window.Show();
+
+        }
     }
 }
