@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities">
+  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities2">
     <EntitySetMapping Name="Abnormal_event">
       <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
         <MappingFragment StoreEntitySet="Abnormal_event">
@@ -214,6 +214,7 @@
           <ScalarProperty Name="Stage" ColumnName="Stage" />
           <ScalarProperty Name="Approval_date" ColumnName="Approval_date" />
           <ScalarProperty Name="supervision_ID" ColumnName="supervision_ID" />
+          <ScalarProperty Name="Interview_date" ColumnName="Interview_date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -337,7 +338,15 @@
       <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
         <MappingFragment StoreEntitySet="Service_period2">
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
+          <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_Service_period">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_Service_period">
+        <MappingFragment StoreEntitySet="Sign_up_Service_period">
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
           <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
         </MappingFragment>

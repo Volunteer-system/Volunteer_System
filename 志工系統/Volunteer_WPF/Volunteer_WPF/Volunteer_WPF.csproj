@@ -69,6 +69,7 @@
     <Compile Include="Model\account.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Account_Model.cs" />
     <Compile Include="Model\Activity.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -136,6 +137,10 @@
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up_Model.cs" />
+    <Compile Include="Model\Sign_up_Service_period.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Sign_up_Service_period_Model.cs" />
     <Compile Include="Model\Stage.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -242,7 +247,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Resource Include="image\abnormal.png" />
     <Resource Include="image\add.png" />
@@ -258,19 +262,21 @@
     <Resource Include="image\report.png" />
     <Resource Include="image\setting.png" />
     <Resource Include="image\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Volunteer_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Volunteer_Entity.Context.cs</LastGenOutput>
       <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
+      <LastGenOutput>Volunteer_Entity.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model\Volunteer_Entity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
       <LastGenOutput>Volunteer_Entity.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

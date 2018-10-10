@@ -14,6 +14,12 @@ namespace Volunteer_WPF.Model
     
     public partial class Sign_up
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Sign_up()
+        {
+            this.Sign_up_Service_period = new HashSet<Sign_up_Service_period>();
+        }
+    
         public int Sign_up_no { get; set; }
         public string Chinese_name { get; set; }
         public string English_name { get; set; }
@@ -30,7 +36,10 @@ namespace Volunteer_WPF.Model
         public Nullable<int> Stage { get; set; }
         public Nullable<System.DateTime> Approval_date { get; set; }
         public Nullable<int> supervision_ID { get; set; }
+        public string Interview_date { get; set; }
     
         public virtual Volunteer_supervision Volunteer_supervision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sign_up_Service_period> Sign_up_Service_period { get; set; }
     }
 }

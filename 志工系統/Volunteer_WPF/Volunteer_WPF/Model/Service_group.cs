@@ -24,7 +24,7 @@ namespace Volunteer_WPF.Model
     
         public int Group_no { get; set; }
         public string Group_name { get; set; }
-        public int Group_leader { get; set; }
+        public Nullable<int> Group_leader { get; set; }
         public Nullable<int> Group_viceleader { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

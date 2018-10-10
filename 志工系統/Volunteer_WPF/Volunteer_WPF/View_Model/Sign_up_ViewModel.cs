@@ -10,6 +10,7 @@ namespace Volunteer_WPF.View_Model
     class Sign_up_ViewModel
     {       
         private Sign_up_Model sign_Up_Model = new Sign_up_Model();
+        private Sign_up_Service_period_Model sign_Up_Service_Period_Model = new Sign_up_Service_period_Model();
 
         //中文姓名
         public string Chinese_name
@@ -101,15 +102,21 @@ namespace Volunteer_WPF.View_Model
             get { return sign_Up_Model.supervision_Name; }
             set { sign_Up_Model.supervision_Name = value; }
         }
+        //面試意願時間
+        public string Interview_date
+        {
+            get { return sign_Up_Model.Interview_date; }
+            set { sign_Up_Model.Interview_date = value; }
+        }
 
         public Sign_up_ViewModel()
         {
             //Sign_up_Model sign_Up_Model = new Sign_up_Model();
         }
 
-        public void SelectSign_up_bySignup_no(int Signup_no)
-        {       
-            //呼叫Model
+        public List<string> SelectSign_up_bySignup_no(int Signup_no)
+        {
+            //呼叫Sign_up Model
             sign_Up_Model.SelectSign_up_bySignup_no(Signup_no);
 
             Chinese_name = sign_Up_Model.Chinese_name;
@@ -127,6 +134,11 @@ namespace Volunteer_WPF.View_Model
             Stage = sign_Up_Model.Stage;
             Approval_date = sign_Up_Model.Approval_date;
             supervision_Name = sign_Up_Model.supervision_Name;
+            Interview_date = sign_Up_Model.Interview_date;
+
+            //呼叫Sign_up_Service_Period Model
+            List<string> List_Service_period = sign_Up_Service_Period_Model.SelectSign_up_Service_periodbySignup_no(Signup_no);
+            return List_Service_period;
         }
     }
 }

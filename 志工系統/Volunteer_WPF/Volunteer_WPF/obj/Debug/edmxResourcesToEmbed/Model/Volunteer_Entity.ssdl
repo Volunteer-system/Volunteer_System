@@ -220,7 +220,7 @@
     </Key>
     <Property Name="Group_no" Type="int" Nullable="false" />
     <Property Name="Group_name" Type="nvarchar" MaxLength="20" />
-    <Property Name="Group_leader" Type="int" Nullable="false" />
+    <Property Name="Group_leader" Type="int" />
     <Property Name="Group_viceleader" Type="int" />
   </EntityType>
   <EntityType Name="Service_period1">
@@ -344,7 +344,6 @@
       <PropertyRef Name="Service_period_no" />
     </Key>
     <Property Name="Volunteer_no" Type="int" Nullable="false" />
-    <Property Name="Type" Type="int" />
     <Property Name="Wish_order" Type="int" Nullable="false" />
     <Property Name="Service_period_no" Type="int" Nullable="false" />
   </EntityType>
@@ -368,6 +367,19 @@
     <Property Name="Stage" Type="int" />
     <Property Name="Approval_date" Type="datetime" />
     <Property Name="supervision_ID" Type="int" />
+    <Property Name="Interview_date" Type="nvarchar(max)" />
+  </EntityType>
+  <!--產生期間發現錯誤:
+警告 6002: 資料表/檢視 'Volunteer.Volunteer.Sign_up_Service_period' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
+  <EntityType Name="Sign_up_Service_period">
+    <Key>
+      <PropertyRef Name="Sign_up_no" />
+      <PropertyRef Name="Wish_order" />
+      <PropertyRef Name="Service_period_no" />
+    </Key>
+    <Property Name="Sign_up_no" Type="int" Nullable="false" />
+    <Property Name="Wish_order" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Volunteer">
     <Key>
@@ -840,7 +852,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Sign_up_Volunteer_supervision">
+  <Association Name="FK_Sign_up_Service_period_Sign_up">
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+    <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_Service_period">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_Volunteer_supervision2">
     <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
     <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="*" />
     <ReferentialConstraint>
@@ -849,6 +873,18 @@
       </Principal>
       <Dependent Role="Sign_up">
         <PropertyRef Name="supervision_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Signup_Serviceperiod_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Sign_up_Service_period">
+        <PropertyRef Name="Service_period_no" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1023,10 +1059,16 @@
     <EntitySet Name="Service_period2" EntityType="Self.Service_period2" store:Type="Tables" store:Schema="Volunteer" store:Name="Service_period">
       <DefiningQuery>SELECT 
     [Service_period2].[Volunteer_no] AS [Volunteer_no], 
-    [Service_period2].[Type] AS [Type], 
     [Service_period2].[Wish_order] AS [Wish_order], 
     [Service_period2].[Service_period_no] AS [Service_period_no]
     FROM [Volunteer].[Service_period] AS [Service_period2]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" store:Type="Tables" store:Schema="Volunteer">
+      <DefiningQuery>SELECT 
+    [Sign_up_Service_period].[Sign_up_no] AS [Sign_up_no], 
+    [Sign_up_Service_period].[Wish_order] AS [Wish_order], 
+    [Sign_up_Service_period].[Service_period_no] AS [Service_period_no]
+    FROM [Volunteer].[Sign_up_Service_period] AS [Sign_up_Service_period]</DefiningQuery>
     </EntitySet>
     <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
       <End Role="Application_unit" EntitySet="Application_unit" />
@@ -1176,9 +1218,17 @@
       <End Role="Volunteer" EntitySet="Volunteer" />
       <End Role="Shift_schedule" EntitySet="Shift_schedule" />
     </AssociationSet>
-    <AssociationSet Name="FK_Sign_up_Volunteer_supervision" Association="Self.FK_Sign_up_Volunteer_supervision">
+    <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_Volunteer_supervision2" Association="Self.FK_Sign_up_Volunteer_supervision2">
       <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
       <End Role="Sign_up" EntitySet="Sign_up" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Signup_Serviceperiod_Service_period" Association="Self.FK_Signup_Serviceperiod_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
     </AssociationSet>
     <AssociationSet Name="FK_Volunteer_Identity_type" Association="Self.FK_Volunteer_Identity_type">
       <End Role="Identity_type" EntitySet="Identity_type" />

@@ -12,13 +12,13 @@ namespace Volunteer_WPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Service_period2
+    public partial class Sign_up_Service_period
     {
-        public int Volunteer_no { get; set; }
+        public int Sign_up_no { get; set; }
         public int Wish_order { get; set; }
         public int Service_period_no { get; set; }
     
         public virtual Service_period1 Service_period1 { get; set; }
-        public virtual Volunteer Volunteer { get; set; }
+        public virtual Sign_up Sign_up { get; set; }
     }
 }

@@ -16,7 +16,7 @@ namespace Volunteer_WPF.Model
     public partial class VolunteerEntities : DbContext
     {
         public VolunteerEntities()
-            : base("name=VolunteerEntities")
+            : base("name=VolunteerEntities2")
         {
         }
     
@@ -54,5 +54,6 @@ namespace Volunteer_WPF.Model
         public virtual DbSet<Education> Educations { get; set; }
         public virtual DbSet<Leaders1> Leaders1 { get; set; }
         public virtual DbSet<Service_period2> Service_period2 { get; set; }
+        public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
     }
 }

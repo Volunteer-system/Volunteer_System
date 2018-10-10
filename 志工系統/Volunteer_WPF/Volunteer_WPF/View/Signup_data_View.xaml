@@ -33,7 +33,7 @@
         <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="118,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,-0.023" FontSize="16"/>
         <Label Content="服務意願時間:" HorizontalAlignment="Left" Margin="11,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,0.188" FontSize="16"/>
         <Label Content="面試意願時間:" HorizontalAlignment="Left" Margin="18,552,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label Content="Label" HorizontalAlignment="Left" Height="30" Margin="133,552,0,0" VerticalAlignment="Top" Width="83" FontSize="16"/>
+        <Label x:Name="Interview_date_Label" Content="{Binding Interview_date}" HorizontalAlignment="Left" Margin="133,552,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Border CornerRadius="6" BorderBrush="#FFA7E6DA" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="50,419,0,0" VerticalAlignment="Top" Width="550" Background="White">
             <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
                 <Grid.RowDefinitions>
@@ -93,6 +93,28 @@
                 <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="上午" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="下午" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="夜間" HorizontalAlignment="Left" Margin="13,28.4,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label x:Name="Mon_am"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/> 
+                <Label x:Name="Tue_am"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_am"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Mon_pm"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Tue_pm"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_pm"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Mon_night"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Tue_night"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_night"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
             </Grid>
         </Border>
     </Grid>

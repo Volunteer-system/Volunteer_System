@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Volunteer_WPF.Model
 {
     class Sign_up_Model
@@ -40,6 +41,8 @@ namespace Volunteer_WPF.Model
         public string Approval_date { get; set; }
         //志工督導        
         public string supervision_Name { get; set; }
+        //面試意願時間
+        public string Interview_date { get; set; }
 
         public void SelectSign_up_bySignup_no(int Signup_no)
         {
@@ -48,7 +51,7 @@ namespace Volunteer_WPF.Model
                     join n2 in dbContext.Stages
                     on n1.Stage equals n2.Stage_ID
                     join n3 in dbContext.Volunteer_supervision
-                    on n1.supervision_ID equals n3.supervision_ID
+                    on n1.supervision_ID equals n3.supervision_ID                    
                     where n1.Sign_up_no == Signup_no &&  n2.Stage_type == "申請階段"
                     select new
                     {
@@ -66,7 +69,8 @@ namespace Volunteer_WPF.Model
                         Personality_scale = n1.Personality_scale.ToString(),
                         Stage = n2.Stage1.ToString(),
                         Approval_date = n1.Approval_date.ToString(),
-                        supervision_Name = n3.supervision_Name.ToString()
+                        supervision_Name = n3.supervision_Name.ToString(),
+                        Interview_date = n1.Interview_date.ToString()
                     };
 
             foreach (var row in q)
@@ -86,6 +90,7 @@ namespace Volunteer_WPF.Model
                 Stage = row.Stage;
                 Approval_date = row.Approval_date;
                 supervision_Name = row.supervision_Name;
+                Interview_date = row.Interview_date;
             }            
         }
 
