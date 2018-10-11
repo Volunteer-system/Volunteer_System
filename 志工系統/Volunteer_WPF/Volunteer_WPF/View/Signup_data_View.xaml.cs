@@ -20,12 +20,12 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Signup_data_View : Window
     {
-        public Signup_data_View()
+        public Signup_data_View(int Signup_no)
         {
             InitializeComponent();
 
             Sign_up_ViewModel sign_Up_ViewModel = new Sign_up_ViewModel();
-            List<string> Service_period = sign_Up_ViewModel.SelectSign_up_bySignup_no(1);
+            List<string> Service_period = sign_Up_ViewModel.SelectSign_up_bySignup_no(Signup_no);
 
             this.Chinese_name_Label.Content = sign_Up_ViewModel.Chinese_name;
             this.English_name_Label.Content = sign_Up_ViewModel.English_name;

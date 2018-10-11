@@ -9,7 +9,6 @@ C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\V
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF.csprojAssemblyReference.cache
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\MainWindow.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Signup_data_View.g.cs
-C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Signup_Inquire_View.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Volunteer_Inquire_View.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\App.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF_Content.g.cs
@@ -17,7 +16,6 @@ C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\V
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF_MarkupCompile.lref
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\MainWindow.baml
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Signup_data_View.baml
-C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Signup_Inquire_View.baml
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Volunteer_Inquire_View.baml
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF.g.resources
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF.Properties.Resources.resources
@@ -28,3 +26,8 @@ C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\V
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF.pdb
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Login.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Login.baml
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\User_Control\MyUserControl.g.cs
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Sign_up_View.g.cs
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\User_Control\MyUserControl.baml
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Sign_up_View.baml

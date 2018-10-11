@@ -45,6 +45,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -171,18 +172,22 @@
     <Compile Include="Model\Volunteer_supervision.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\MyUserControl.xaml.cs">
+      <DependentUpon>MyUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Signup_data_View.xaml.cs">
       <DependentUpon>Signup_data_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Signup_Inquire_View.xaml.cs">
-      <DependentUpon>Signup_Inquire_View.xaml</DependentUpon>
+    <Compile Include="View\Sign_up_View.xaml.cs">
+      <DependentUpon>Sign_up_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Volunteer_Inquire_View.xaml.cs">
       <DependentUpon>Volunteer_Inquire_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -196,6 +201,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="User_Control\MyUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -204,9 +213,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Signup_Inquire_View.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="View\Sign_up_View.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Volunteer_Inquire_View.xaml">
       <SubType>Designer</SubType>
@@ -267,6 +276,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="image\Ncancel.jpg" />
+    <Resource Include="image\Nok.jpg" />
+    <Resource Include="image\ok.jpg" />
+    <Resource Include="image\cancel.jpg" />
     <Content Include="Model\Volunteer_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Volunteer_Entity.edmx</DependentUpon>

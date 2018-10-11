@@ -16,7 +16,7 @@ namespace Volunteer_WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             this.ShutdownMode = ShutdownMode.OnLastWindowClose;
-            Window window = new View.Signup_data_View();
+            Window window = new MainWindow();
             window.Show();
 
         }

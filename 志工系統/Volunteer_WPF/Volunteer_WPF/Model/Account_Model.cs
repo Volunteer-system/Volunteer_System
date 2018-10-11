@@ -8,6 +8,7 @@ namespace Volunteer_WPF.Model
 {
     class Account_Model
     {
+        public int    User_ID { get; set; }
         public string User { get; set; }
         public string Permission { get; set; }
 
@@ -23,18 +24,19 @@ namespace Volunteer_WPF.Model
                           n1.Password == Password
                     select new
                     {
+                        User_ID = n1.User_ID,
                         User = n2.supervision_Name,
                         Permission = "Volunteer_supervision"
                     };
 
             foreach (var row in q)
             {
+                User_ID = (int)row.User_ID;
                 User = row.User;
                 Permission = row.Permission;
                 return true;
             }
-
-
+            
             //確認登入者是否為志工
             //確認登入者是否為運用單位
 

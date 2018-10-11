@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Signup_data_View" Height="660.53" Width="800">
-    <Grid Margin="0,0,-0.4,0.2" Height="631" VerticalAlignment="Bottom">
+        Title="Signup_data_View" Height="660.53" Width="800" WindowStyle="None">
+    <Grid Margin="0,0,0.4,0.2" Height="660" VerticalAlignment="Bottom">
+        
         <Label Content="中文姓名:" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.451,0.922" FontSize="16"/>
         <Label x:Name="Chinese_name_Label" Content="{Binding Chinese_name}" HorizontalAlignment="Left" Margin="119,9,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="英文姓名:" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" FontSize="16"/>
@@ -34,7 +35,7 @@
         <Label Content="服務意願時間:" HorizontalAlignment="Left" Margin="11,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,0.188" FontSize="16"/>
         <Label Content="面試意願時間:" HorizontalAlignment="Left" Margin="18,552,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label x:Name="Interview_date_Label" Content="{Binding Interview_date}" HorizontalAlignment="Left" Margin="133,552,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Border CornerRadius="6" BorderBrush="#FFA7E6DA" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="50,419,0,0" VerticalAlignment="Top" Width="550" Background="White">
+        <Border CornerRadius="6" BorderBrush="#FFA7E6DA" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="50,419,0,0" VerticalAlignment="Top" Width="550" Background="White" Grid.ColumnSpan="2">
             <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -94,7 +95,7 @@
                 <Label Content="上午" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="下午" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="夜間" HorizontalAlignment="Left" Margin="13,28.4,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
-                <Label x:Name="Mon_am"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/> 
+                <Label x:Name="Mon_am"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
                 <Label x:Name="Tue_am"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
                 <Label x:Name="Wed_am"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
                 <Label x:Name="Thu_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>

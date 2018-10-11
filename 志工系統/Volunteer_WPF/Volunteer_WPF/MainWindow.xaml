@@ -5,8 +5,182 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="768" Width="1024">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="768" Width="1400"    
+        ContentRendered="Window_ContentRendered"
+        >
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="ButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="#FFA7E6DA" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="Orange"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="#FFA7E6DA"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!--<Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>-->
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Viewbox Stretch="Fill">
+        <Grid Height="737" Width="1016">
+            <Grid HorizontalAlignment="Left" Height="60" Margin="0,30,0,0" VerticalAlignment="Top" Width="1016" Background="#FFA7E6DA">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="977*"/>
+                    <ColumnDefinition Width="39*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="NewVolunteerButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="79,0,0,0" VerticalAlignment="Top" Width="113" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="NewVolunteerButton_Click">
+                    <WrapPanel Height="56" Width="116">
+                        <Image Height="55" Width="25" Source="image/add.png"/>
+                        <Label Name="NewVolunteerLabel" Content="新志工申請" Foreground="White" FontSize="16" Height="29" Width="89"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="ActivityButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="233,0,0,0" VerticalAlignment="Top" Width="97" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ActivityButton_Click">
+                    <WrapPanel Height="56" Width="100">
+                        <Image Height="55" Width="25" Source="image/maintain.png"/>
+                        <Label Name="ActivityLabel" Content="活動維護" Foreground="White" FontSize="16" Height="29" Width="73"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="EventButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="372,0,0,0" VerticalAlignment="Top" Width="129" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="EventButton_Click">
+                    <WrapPanel Height="56" Width="132">
+                        <Image Height="55" Width="25" Source="image/abnormal.png"/>
+                        <Label Name="EventLabel" Content="異常事件通報" Foreground="White" FontSize="16" Height="29" Width="105"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="ManpowerButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="542,0,0,0" VerticalAlignment="Top" Width="129" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ManpowerButton_Click">
+                    <WrapPanel Height="56" Width="132">
+                        <Image Height="55" Width="25" Source="image/application.png"/>
+                        <Label Name="ManpowerLabel" Content="人力資源申請" Foreground="White" FontSize="16" Height="29" Width="105"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="AssessmentButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="714,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="AssessmentButton_Click">
+                    <WrapPanel Height="56" Width="69">
+                        <Image Height="55" Width="25" Source="image/Assessment.png"/>
+                        <Label Name="AssessmentLabel" Content="考核" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="ReportButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="824,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ReportButton_Click">
+                    <Button.ContextMenu>
+                        <ContextMenu Name="ReportMenu" Background="#7FA7E6DA" BorderBrush="{x:Null}">
+                            <MenuItem Name="ClassItem" Header="班表" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="Class_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                    <WrapPanel Height="56" Width="69">
+                        <Image Height="55" Width="25" Source="image/report.png"/>
+                        <Label Content="報表" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                    </WrapPanel>
+                </Button>
+                <Button Name="SetButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="929,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="SetButton_Click" MouseLeave="MenuItem_MouseLeave" Grid.ColumnSpan="2">
+                    <Button.ContextMenu>
+                        <ContextMenu Name="SetMenu"  PreviewMouseMove="SetMenu_PreviewMouseMove" Background="#7FA7E6DA" BorderBrush="{x:Null}">
+                            <MenuItem Name="VolDataItem" Header="志工基本資料維護" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="VolDataItem_Click"/>
+                            <MenuItem Name="AplDataItem" Header="運用單位資料維護" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="AplDataItem_Click"/>
+                            <MenuItem Name="VolPowerItem" Header="志工人力評估設定" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="VolPowerItem_Click"/>
+                            <MenuItem Name="BasicItem" Header="基本設定檔維護" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="BasicItem_Click"/>
+                            <MenuItem Name="VolSuperItem" Header="志工督導維護" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="VolSuperItem_Click"/>
+                        </ContextMenu>
+                    </Button.ContextMenu>
+                    <WrapPanel Height="56" Width="69">
+                        <Image Height="55" Width="25" Source="image/setting.png"/>
+                        <Label Content="設定" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                    </WrapPanel>
+                </Button>
+            </Grid>
+            <Grid HorizontalAlignment="Left" Height="647" Margin="0,90,0,0" VerticalAlignment="Top" Width="1016">
+                <TabControl Name="TabControl1" HorizontalAlignment="Left" Height="650" VerticalAlignment="Top" Width="1020" Margin="0,0,-4,0">
+                    <TabItem Header="首頁" Foreground="Gray" FontSize="9" Width="84.4" Height="30">
+                        <Grid Background="White"/>
+                    </TabItem>
+                </TabControl>
+            </Grid>
+            <Button HorizontalAlignment="Left" Margin="922,6,0,0" VerticalAlignment="Top" Width="84" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
+                <WrapPanel Height="23" Width="84">
+                    <Image Source="image/user.png" Width="18"/>
+                    <Label x:Name="username" Content="username" Width="66" Foreground="DarkGray"/>
+                </WrapPanel>
+            </Button>
+            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Style="{DynamicResource ButtonStyle1}" Height="8"/>
+
+        </Grid>
+    </Viewbox>
 </Window>
