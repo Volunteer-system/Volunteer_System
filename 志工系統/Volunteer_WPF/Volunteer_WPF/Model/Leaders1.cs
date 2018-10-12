@@ -14,6 +14,7 @@ namespace Volunteer_WPF.Model
     
     public partial class Leaders1
     {
+        public int Primary_key { get; set; }
         public int Volunteer_no { get; set; }
         public int Position_no { get; set; }
         public Nullable<System.DateTime> Takeoffice_date { get; set; }

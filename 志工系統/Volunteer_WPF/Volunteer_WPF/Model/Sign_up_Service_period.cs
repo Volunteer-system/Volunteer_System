@@ -14,6 +14,7 @@ namespace Volunteer_WPF.Model
     
     public partial class Sign_up_Service_period
     {
+        public int Primary_key { get; set; }
         public int Sign_up_no { get; set; }
         public int Wish_order { get; set; }
         public int Service_period_no { get; set; }

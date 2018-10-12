@@ -14,6 +14,7 @@ namespace Volunteer_WPF.Model
     
     public partial class Service_period
     {
+        public int Primary_key { get; set; }
         public int Application_unit_no { get; set; }
         public int Service_period_no { get; set; }
         public Nullable<int> Volunteer_number { get; set; }

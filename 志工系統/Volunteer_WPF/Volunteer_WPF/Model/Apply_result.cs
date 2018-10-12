@@ -14,11 +14,12 @@ namespace Volunteer_WPF.Model
     
     public partial class Apply_result
     {
+        public int Primary_key { get; set; }
         public int Apply_ID { get; set; }
         public string Type { get; set; }
         public Nullable<int> result_ID { get; set; }
     
-        public virtual Manpower_apply Manpower_apply { get; set; }
         public virtual Human_assessment_result Human_assessment_result { get; set; }
+        public virtual Manpower_apply Manpower_apply { get; set; }
     }
 }

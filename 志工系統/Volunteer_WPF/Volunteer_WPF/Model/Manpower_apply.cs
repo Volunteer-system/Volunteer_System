@@ -17,7 +17,8 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Manpower_apply()
         {
-            this.Human_assessment = new HashSet<Human_assessment>();
+            this.Apply_Assessment = new HashSet<Apply_Assessment>();
+            this.Apply_result = new HashSet<Apply_result>();
         }
     
         public int Apply_ID { get; set; }
@@ -38,9 +39,10 @@ namespace Volunteer_WPF.Model
         public Nullable<int> Reply_number { get; set; }
     
         public virtual Application_unit Application_unit { get; set; }
-        public virtual Apply_result Apply_result { get; set; }
-        public virtual Volunteer_supervision Volunteer_supervision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Human_assessment> Human_assessment { get; set; }
+        public virtual ICollection<Apply_Assessment> Apply_Assessment { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Apply_result> Apply_result { get; set; }
+        public virtual Volunteer_supervision Volunteer_supervision { get; set; }
     }
 }

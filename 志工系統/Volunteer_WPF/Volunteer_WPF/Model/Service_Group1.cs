@@ -12,14 +12,13 @@ namespace Volunteer_WPF.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Volunteer_list
+    public partial class Service_Group1
     {
         public int Primary_key { get; set; }
-        public int Application_unit_no { get; set; }
         public int Volunteer_no { get; set; }
-        public Nullable<bool> blacklist_yn { get; set; }
+        public int Group_no { get; set; }
     
-        public virtual Application_unit Application_unit { get; set; }
+        public virtual Service_group Service_group { get; set; }
         public virtual Volunteer Volunteer { get; set; }
     }
 }

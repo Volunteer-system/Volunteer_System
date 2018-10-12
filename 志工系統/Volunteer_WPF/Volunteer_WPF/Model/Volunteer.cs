@@ -19,15 +19,15 @@ namespace Volunteer_WPF.Model
         {
             this.Abnormal_event = new HashSet<Abnormal_event>();
             this.Abnormal_event1 = new HashSet<Abnormal_event>();
+            this.Volunteer_list = new HashSet<Volunteer_list>();
+            this.Activity_Schedule = new HashSet<Activity_Schedule>();
+            this.Shift_schedule = new HashSet<Shift_schedule>();
             this.Activity1 = new HashSet<Activity1>();
             this.Educations = new HashSet<Education>();
+            this.Expertise2 = new HashSet<Expertise2>();
             this.Leaders1 = new HashSet<Leaders1>();
+            this.Service_Group1 = new HashSet<Service_Group1>();
             this.Service_period2 = new HashSet<Service_period2>();
-            this.Shift_schedule = new HashSet<Shift_schedule>();
-            this.Volunteer_list = new HashSet<Volunteer_list>();
-            this.Activities = new HashSet<Activity>();
-            this.Expertise1 = new HashSet<Expertise1>();
-            this.Service_group = new HashSet<Service_group>();
         }
     
         public int Volunteer_no { get; set; }
@@ -57,25 +57,25 @@ namespace Volunteer_WPF.Model
         public virtual ICollection<Abnormal_event> Abnormal_event { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abnormal_event> Abnormal_event1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Volunteer_list> Volunteer_list { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activity_Schedule> Activity_Schedule { get; set; }
         public virtual Identity_type Identity_type1 { get; set; }
         public virtual Lssuing_unit Lssuing_unit { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Shift_schedule> Shift_schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity1> Activity1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Expertise2> Expertise2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Leaders1> Leaders1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Service_Group1> Service_Group1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service_period2> Service_period2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shift_schedule> Shift_schedule { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Volunteer_list> Volunteer_list { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Activity> Activities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Expertise1> Expertise1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Service_group> Service_group { get; set; }
     }
 }

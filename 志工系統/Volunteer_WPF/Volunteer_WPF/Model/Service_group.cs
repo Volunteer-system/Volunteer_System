@@ -19,7 +19,7 @@ namespace Volunteer_WPF.Model
         {
             this.Application_unit = new HashSet<Application_unit>();
             this.Activities = new HashSet<Activity>();
-            this.Volunteers = new HashSet<Volunteer>();
+            this.Service_Group1 = new HashSet<Service_Group1>();
         }
     
         public int Group_no { get; set; }
@@ -32,6 +32,6 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity> Activities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Volunteer> Volunteers { get; set; }
+        public virtual ICollection<Service_Group1> Service_Group1 { get; set; }
     }
 }

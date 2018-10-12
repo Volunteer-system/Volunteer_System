@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
-          <Property Name="Abnormal_event_no" Type="int" Nullable="false" />
+          <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
           <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
@@ -30,7 +30,7 @@
           <Key>
             <PropertyRef Name="Application_unit_no" />
           </Key>
-          <Property Name="Application_unit_no" Type="int" Nullable="false" />
+          <Property Name="Application_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Group_no" Type="int" />
           <Property Name="Application_phone_no" Type="nchar" MaxLength="10" />
@@ -40,33 +40,28 @@
           <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
           <Property Name="Total_volunteers" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Application_unit.Apply_Assessment' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Apply_Assessment">
           <Key>
-            <PropertyRef Name="Apply_ID" />
-            <PropertyRef Name="Assessment_ID" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Apply_ID" Type="int" Nullable="false" />
           <Property Name="Assessment_ID" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Application_unit.Apply_result' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Apply_result">
           <Key>
-            <PropertyRef Name="Apply_ID" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Apply_ID" Type="int" Nullable="false" />
           <Property Name="Type" Type="nchar" MaxLength="10" />
           <Property Name="result_ID" Type="int" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Application_unit.Expertise' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Expertise">
           <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Expertise_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
           <Property Name="Expertise_no" Type="int" Nullable="false" />
         </EntityType>
@@ -74,7 +69,7 @@
           <Key>
             <PropertyRef Name="Apply_ID" />
           </Key>
-          <Property Name="Apply_ID" Type="int" Nullable="false" />
+          <Property Name="Apply_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
           <Property Name="Applicant" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Apply_date" Type="datetime" Nullable="false" />
@@ -91,45 +86,39 @@
           <Property Name="Application_number" Type="int" />
           <Property Name="Reply_number" Type="int" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Application_unit.Service_period' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Service_period">
           <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Service_period_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
           <Property Name="Volunteer_number" Type="int" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Application_unit.Volunteer_list' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Volunteer_list">
           <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Volunteer_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="blacklist_yn" Type="bit" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Basic.account' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="account">
           <Key>
-            <PropertyRef Name="Account_number" />
-            <PropertyRef Name="Password" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Account_number" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="User_ID" Type="int" />
-          <Property Name="Permission" Type="nchar" MaxLength="10" />
+          <Property Name="Permission" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Activity_no" />
           </Key>
-          <Property Name="Activity_no" Type="int" Nullable="false" />
+          <Property Name="Activity_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Activity_name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Activity_type_ID" Type="int" Nullable="false" />
           <Property Name="Group_no" Type="int" />
@@ -147,17 +136,15 @@
           <Key>
             <PropertyRef Name="Activity_photo_id" />
           </Key>
-          <Property Name="Activity_photo_id" Type="int" Nullable="false" />
+          <Property Name="Activity_photo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Activity_id" Type="int" Nullable="false" />
           <Property Name="Activity_photo" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Basic.Activity_Schedule' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Activity_Schedule">
           <Key>
-            <PropertyRef Name="Activity_no" />
-            <PropertyRef Name="Volunteer_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Activity_no" Type="int" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
         </EntityType>
@@ -165,49 +152,49 @@
           <Key>
             <PropertyRef Name="Activity_type_ID" />
           </Key>
-          <Property Name="Activity_type_ID" Type="int" Nullable="false" />
+          <Property Name="Activity_type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Activity_type" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="event_category">
           <Key>
             <PropertyRef Name="event_category_ID" />
           </Key>
-          <Property Name="event_category_ID" Type="int" Nullable="false" />
+          <Property Name="event_category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="event_category" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Expertise1">
           <Key>
             <PropertyRef Name="Expertise_no" />
           </Key>
-          <Property Name="Expertise_no" Type="int" Nullable="false" />
+          <Property Name="Expertise_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Expertise" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="Human_assessment">
           <Key>
             <PropertyRef Name="Assessment_ID" />
           </Key>
-          <Property Name="Assessment_ID" Type="int" Nullable="false" />
+          <Property Name="Assessment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Assessment_name" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Human_assessment_result">
           <Key>
             <PropertyRef Name="Assessment_result_ID" />
           </Key>
-          <Property Name="Assessment_result_ID" Type="int" Nullable="false" />
+          <Property Name="Assessment_result_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Assessment_result" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Identity_type">
           <Key>
             <PropertyRef Name="Identity_type" />
           </Key>
-          <Property Name="Identity_type" Type="int" Nullable="false" />
+          <Property Name="Identity_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Identity_type_name" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Leaders">
           <Key>
             <PropertyRef Name="Position_no" />
           </Key>
-          <Property Name="Position_no" Type="int" Nullable="false" />
+          <Property Name="Position_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Position_chinese" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Position_english" Type="nchar" MaxLength="50" />
           <Property Name="Duties" Type="nvarchar" MaxLength="50" />
@@ -216,14 +203,14 @@
           <Key>
             <PropertyRef Name="Lssuing_unit_no" />
           </Key>
-          <Property Name="Lssuing_unit_no" Type="int" Nullable="false" />
+          <Property Name="Lssuing_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lssuing_unit" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Service_group">
           <Key>
             <PropertyRef Name="Group_no" />
           </Key>
-          <Property Name="Group_no" Type="int" Nullable="false" />
+          <Property Name="Group_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Group_name" Type="nvarchar" MaxLength="20" />
           <Property Name="Group_leader" Type="int" />
           <Property Name="Group_viceleader" Type="int" />
@@ -232,34 +219,25 @@
           <Key>
             <PropertyRef Name="Service_period_no" />
           </Key>
-          <Property Name="Service_period_no" Type="int" Nullable="false" />
+          <Property Name="Service_period_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Service_period" Type="nvarchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Basic.Shift_schedule' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Shift_schedule">
           <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Service_period_no" />
-            <PropertyRef Name="year" />
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Wish_order" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
           <Property Name="year" Type="int" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Wish_order" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Basic.Stage' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Stage">
           <Key>
             <PropertyRef Name="Stage_ID" />
-            <PropertyRef Name="Stage" />
-            <PropertyRef Name="Stage_type" />
           </Key>
-          <Property Name="Stage_ID" Type="int" Nullable="false" />
+          <Property Name="Stage_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Stage" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Stage_type" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
@@ -277,77 +255,65 @@
           <Key>
             <PropertyRef Name="supervision_ID" />
           </Key>
-          <Property Name="supervision_ID" Type="int" Nullable="false" />
+          <Property Name="supervision_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="supervision_Name" Type="nvarchar" MaxLength="20" />
           <Property Name="supervision_phone" Type="int" />
           <Property Name="supervision_address" Type="nvarchar" MaxLength="50" />
           <Property Name="supervision_email" Type="nvarchar" MaxLength="50" />
           <Property Name="supervision_photo" Type="varbinary(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Activity' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Activity1">
           <Key>
-            <PropertyRef Name="Activity_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
-          <Property Name="Volunteer_no" Type="int" />
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Activity_no" Type="int" Nullable="false" />
           <Property Name="Registration_date" Type="datetime" />
           <Property Name="Stage" Type="money" />
           <Property Name="Confirm_time" Type="datetime" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Education' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Education">
           <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Activity_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Activity_no" Type="int" Nullable="false" />
           <Property Name="Training_date" Type="datetime" />
           <Property Name="Proof" Type="nchar" MaxLength="10" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Expertise' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Expertise2">
           <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Expertise_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Expertise_no" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Leaders' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Leaders1">
           <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Position_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Position_no" Type="int" Nullable="false" />
           <Property Name="Takeoffice_date" Type="date" />
           <Property Name="Resignation_date" Type="date" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Service_Group' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Service_Group1">
           <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Group_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Group_no" Type="int" Nullable="false" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Service_period' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Service_period2">
           <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Wish_order" />
-            <PropertyRef Name="Service_period_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Wish_order" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
@@ -356,7 +322,7 @@
           <Key>
             <PropertyRef Name="Sign_up_no" />
           </Key>
-          <Property Name="Sign_up_no" Type="int" Nullable="false" />
+          <Property Name="Sign_up_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Chinese_name" Type="nvarchar" MaxLength="50" />
           <Property Name="English_name" Type="nvarchar" MaxLength="50" />
           <Property Name="Sex" Type="nchar" MaxLength="10" />
@@ -374,14 +340,11 @@
           <Property Name="supervision_ID" Type="int" />
           <Property Name="Interview_date" Type="nvarchar(max)" />
         </EntityType>
-        <!--產生期間發現錯誤:
-警告 6002: 資料表/檢視 'Volunteer.Volunteer.Sign_up_Service_period' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。-->
         <EntityType Name="Sign_up_Service_period">
           <Key>
-            <PropertyRef Name="Sign_up_no" />
-            <PropertyRef Name="Wish_order" />
-            <PropertyRef Name="Service_period_no" />
+            <PropertyRef Name="Primary_key" />
           </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sign_up_no" Type="int" Nullable="false" />
           <Property Name="Wish_order" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
@@ -390,7 +353,7 @@
           <Key>
             <PropertyRef Name="Volunteer_no" />
           </Key>
-          <Property Name="Volunteer_no" Type="int" Nullable="false" />
+          <Property Name="Volunteer_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Chinese_name" Type="nvarchar" MaxLength="50" />
           <Property Name="English_name" Type="nvarchar" MaxLength="50" />
           <Property Name="sex" Type="nchar" MaxLength="10" Nullable="false" />
@@ -475,7 +438,7 @@
         </Association>
         <Association Name="FK_Activity_Activity">
           <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
-          <End Role="Activity1" Type="Self.Activity1" Multiplicity="0..1" />
+          <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Activity">
               <PropertyRef Name="Activity_no" />
@@ -546,7 +509,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Activity_Volunteer">
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
           <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Volunteer">
@@ -619,7 +582,7 @@
         </Association>
         <Association Name="FK_Apply_result_Manpower_apply">
           <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
-          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="0..1" />
+          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Manpower_apply">
               <PropertyRef Name="Apply_ID" />
@@ -944,9 +907,16 @@
         <EntityContainer Name="VolunteerModelStoreContainer">
           <EntitySet Name="Abnormal_event" EntityType="Self.Abnormal_event" Schema="Application_unit" store:Type="Tables" />
           <EntitySet Name="Application_unit" EntityType="Self.Application_unit" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="Apply_result" EntityType="Self.Apply_result" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="Expertise" EntityType="Self.Expertise" Schema="Application_unit" store:Type="Tables" />
           <EntitySet Name="Manpower_apply" EntityType="Self.Manpower_apply" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="Service_period" EntityType="Self.Service_period" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="Volunteer_list" EntityType="Self.Volunteer_list" Schema="Application_unit" store:Type="Tables" />
+          <EntitySet Name="account" EntityType="Self.account" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Activity" EntityType="Self.Activity" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Activity_photo" EntityType="Self.Activity_photo" Schema="Basic" store:Type="Tables" />
+          <EntitySet Name="Activity_Schedule" EntityType="Self.Activity_Schedule" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Activity_type" EntityType="Self.Activity_type" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="event_category" EntityType="Self.event_category" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Expertise1" EntityType="Self.Expertise1" Schema="Basic" Table="Expertise" store:Type="Tables" />
@@ -957,124 +927,19 @@
           <EntitySet Name="Lssuing_unit" EntityType="Self.Lssuing_unit" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Service_group" EntityType="Self.Service_group" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Service_period1" EntityType="Self.Service_period1" Schema="Basic" Table="Service_period" store:Type="Tables" />
+          <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
+          <EntitySet Name="Stage" EntityType="Self.Stage" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
+          <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
+          <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />
+          <EntitySet Name="Expertise2" EntityType="Self.Expertise2" Schema="Volunteer" Table="Expertise" store:Type="Tables" />
+          <EntitySet Name="Leaders1" EntityType="Self.Leaders1" Schema="Volunteer" Table="Leaders" store:Type="Tables" />
+          <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" Schema="Volunteer" Table="Service_Group" store:Type="Tables" />
+          <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
           <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
+          <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="Volunteer" store:Type="Tables" />
-          <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" store:Type="Tables" store:Schema="Application_unit">
-            <DefiningQuery>SELECT 
-    [Apply_Assessment].[Apply_ID] AS [Apply_ID], 
-    [Apply_Assessment].[Assessment_ID] AS [Assessment_ID]
-    FROM [Application_unit].[Apply_Assessment] AS [Apply_Assessment]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Apply_result" EntityType="Self.Apply_result" store:Type="Tables" store:Schema="Application_unit">
-            <DefiningQuery>SELECT 
-    [Apply_result].[Apply_ID] AS [Apply_ID], 
-    [Apply_result].[Type] AS [Type], 
-    [Apply_result].[result_ID] AS [result_ID]
-    FROM [Application_unit].[Apply_result] AS [Apply_result]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Expertise" EntityType="Self.Expertise" store:Type="Tables" store:Schema="Application_unit">
-            <DefiningQuery>SELECT 
-    [Expertise].[Application_unit_no] AS [Application_unit_no], 
-    [Expertise].[Expertise_no] AS [Expertise_no]
-    FROM [Application_unit].[Expertise] AS [Expertise]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Service_period" EntityType="Self.Service_period" store:Type="Tables" store:Schema="Application_unit">
-            <DefiningQuery>SELECT 
-    [Service_period].[Application_unit_no] AS [Application_unit_no], 
-    [Service_period].[Service_period_no] AS [Service_period_no], 
-    [Service_period].[Volunteer_number] AS [Volunteer_number]
-    FROM [Application_unit].[Service_period] AS [Service_period]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Volunteer_list" EntityType="Self.Volunteer_list" store:Type="Tables" store:Schema="Application_unit">
-            <DefiningQuery>SELECT 
-    [Volunteer_list].[Application_unit_no] AS [Application_unit_no], 
-    [Volunteer_list].[Volunteer_no] AS [Volunteer_no], 
-    [Volunteer_list].[blacklist_yn] AS [blacklist_yn]
-    FROM [Application_unit].[Volunteer_list] AS [Volunteer_list]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="account" EntityType="Self.account" store:Type="Tables" store:Schema="Basic">
-            <DefiningQuery>SELECT 
-    [account].[Account_number] AS [Account_number], 
-    [account].[Password] AS [Password], 
-    [account].[User_ID] AS [User_ID], 
-    [account].[Permission] AS [Permission]
-    FROM [Basic].[account] AS [account]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Activity_Schedule" EntityType="Self.Activity_Schedule" store:Type="Tables" store:Schema="Basic">
-            <DefiningQuery>SELECT 
-    [Activity_Schedule].[Activity_no] AS [Activity_no], 
-    [Activity_Schedule].[Volunteer_no] AS [Volunteer_no]
-    FROM [Basic].[Activity_Schedule] AS [Activity_Schedule]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" store:Type="Tables" store:Schema="Basic">
-            <DefiningQuery>SELECT 
-    [Shift_schedule].[Application_unit_no] AS [Application_unit_no], 
-    [Shift_schedule].[Service_period_no] AS [Service_period_no], 
-    [Shift_schedule].[year] AS [year], 
-    [Shift_schedule].[Volunteer_no] AS [Volunteer_no], 
-    [Shift_schedule].[Wish_order] AS [Wish_order]
-    FROM [Basic].[Shift_schedule] AS [Shift_schedule]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Stage" EntityType="Self.Stage" store:Type="Tables" store:Schema="Basic">
-            <DefiningQuery>SELECT 
-    [Stage].[Stage_ID] AS [Stage_ID], 
-    [Stage].[Stage] AS [Stage], 
-    [Stage].[Stage_type] AS [Stage_type]
-    FROM [Basic].[Stage] AS [Stage]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Activity1" EntityType="Self.Activity1" store:Type="Tables" store:Schema="Volunteer" store:Name="Activity">
-            <DefiningQuery>SELECT 
-    [Activity1].[Volunteer_no] AS [Volunteer_no], 
-    [Activity1].[Activity_no] AS [Activity_no], 
-    [Activity1].[Registration_date] AS [Registration_date], 
-    [Activity1].[Stage] AS [Stage], 
-    [Activity1].[Confirm_time] AS [Confirm_time]
-    FROM [Volunteer].[Activity] AS [Activity1]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Education" EntityType="Self.Education" store:Type="Tables" store:Schema="Volunteer">
-            <DefiningQuery>SELECT 
-    [Education].[Volunteer_no] AS [Volunteer_no], 
-    [Education].[Activity_no] AS [Activity_no], 
-    [Education].[Training_date] AS [Training_date], 
-    [Education].[Proof] AS [Proof]
-    FROM [Volunteer].[Education] AS [Education]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Expertise2" EntityType="Self.Expertise2" store:Type="Tables" store:Schema="Volunteer" store:Name="Expertise">
-            <DefiningQuery>SELECT 
-    [Expertise2].[Volunteer_no] AS [Volunteer_no], 
-    [Expertise2].[Expertise_no] AS [Expertise_no]
-    FROM [Volunteer].[Expertise] AS [Expertise2]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Leaders1" EntityType="Self.Leaders1" store:Type="Tables" store:Schema="Volunteer" store:Name="Leaders">
-            <DefiningQuery>SELECT 
-    [Leaders1].[Volunteer_no] AS [Volunteer_no], 
-    [Leaders1].[Position_no] AS [Position_no], 
-    [Leaders1].[Takeoffice_date] AS [Takeoffice_date], 
-    [Leaders1].[Resignation_date] AS [Resignation_date]
-    FROM [Volunteer].[Leaders] AS [Leaders1]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" store:Type="Tables" store:Schema="Volunteer" store:Name="Service_Group">
-            <DefiningQuery>SELECT 
-    [Service_Group1].[Volunteer_no] AS [Volunteer_no], 
-    [Service_Group1].[Group_no] AS [Group_no]
-    FROM [Volunteer].[Service_Group] AS [Service_Group1]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Service_period2" EntityType="Self.Service_period2" store:Type="Tables" store:Schema="Volunteer" store:Name="Service_period">
-            <DefiningQuery>SELECT 
-    [Service_period2].[Volunteer_no] AS [Volunteer_no], 
-    [Service_period2].[Wish_order] AS [Wish_order], 
-    [Service_period2].[Service_period_no] AS [Service_period_no]
-    FROM [Volunteer].[Service_period] AS [Service_period2]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" store:Type="Tables" store:Schema="Volunteer">
-            <DefiningQuery>SELECT 
-    [Sign_up_Service_period].[Sign_up_no] AS [Sign_up_no], 
-    [Sign_up_Service_period].[Wish_order] AS [Wish_order], 
-    [Sign_up_Service_period].[Service_period_no] AS [Service_period_no]
-    FROM [Volunteer].[Sign_up_Service_period] AS [Sign_up_Service_period]</DefiningQuery>
-          </EntitySet>
           <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
             <End Role="Application_unit" EntitySet="Application_unit" />
             <End Role="Abnormal_event" EntitySet="Abnormal_event" />
@@ -1261,7 +1126,7 @@
           <Key>
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
-          <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" />
+          <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Abnormal_event_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Abnormal_event1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
@@ -1287,7 +1152,7 @@
           <Key>
             <PropertyRef Name="Application_unit_no" />
           </Key>
-          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Application_unit_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Application_unit1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Group_no" Type="Int32" />
           <Property Name="Application_phone_no" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -1298,17 +1163,48 @@
           <Property Name="Total_volunteers" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Application_unit" FromRole="Application_unit" ToRole="Abnormal_event" />
           <NavigationProperty Name="Service_group" Relationship="Self.FK_Application_unit_Service_group" FromRole="Application_unit" ToRole="Service_group" />
+          <NavigationProperty Name="Expertises" Relationship="Self.FK_Expertise_Application_unit" FromRole="Application_unit" ToRole="Expertise" />
           <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Manpower_apply_Application_unit" FromRole="Application_unit" ToRole="Manpower_apply" />
           <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
           <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
-          <NavigationProperty Name="Expertise1" Relationship="Self.Expertise" FromRole="Application_unit" ToRole="Expertise1" />
+        </EntityType>
+        <EntityType Name="Apply_Assessment">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Apply_ID" Type="Int32" Nullable="false" />
+          <Property Name="Assessment_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Human_assessment" Relationship="Self.FK_Apply_Assessment_Human_assessment" FromRole="Apply_Assessment" ToRole="Human_assessment" />
+          <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_Assessment_Manpower_apply" FromRole="Apply_Assessment" ToRole="Manpower_apply" />
+        </EntityType>
+        <EntityType Name="Apply_result">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Apply_ID" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="result_ID" Type="Int32" />
+          <NavigationProperty Name="Human_assessment_result" Relationship="Self.FK_Apply_result_Human_assessment_result" FromRole="Apply_result" ToRole="Human_assessment_result" />
+          <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Apply_result" ToRole="Manpower_apply" />
+        </EntityType>
+        <EntityType Name="Expertise">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Expertise_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Expertise_Application_unit" FromRole="Expertise" ToRole="Application_unit" />
+          <NavigationProperty Name="Expertise1" Relationship="Self.FK_Expertise_Expertise" FromRole="Expertise" ToRole="Expertise1" />
         </EntityType>
         <EntityType Name="Manpower_apply">
           <Key>
             <PropertyRef Name="Apply_ID" />
           </Key>
-          <Property Name="Apply_ID" Type="Int32" Nullable="false" />
+          <Property Name="Apply_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
           <Property Name="Applicant" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Apply_date" Type="DateTime" Nullable="false" Precision="3" />
@@ -1325,15 +1221,47 @@
           <Property Name="Application_number" Type="Int32" />
           <Property Name="Reply_number" Type="Int32" />
           <NavigationProperty Name="Application_unit" Relationship="Self.FK_Manpower_apply_Application_unit" FromRole="Manpower_apply" ToRole="Application_unit" />
+          <NavigationProperty Name="Apply_Assessment" Relationship="Self.FK_Apply_Assessment_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Assessment" />
           <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_result" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Manpower_apply_Volunteer_supervision" FromRole="Manpower_apply" ToRole="Volunteer_supervision" />
-          <NavigationProperty Name="Human_assessment" Relationship="Self.Apply_Assessment" FromRole="Manpower_apply" ToRole="Human_assessment" />
+        </EntityType>
+        <EntityType Name="Service_period">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_number" Type="Int32" />
+          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Service_period_Application_unit" FromRole="Service_period" ToRole="Application_unit" />
+          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period" FromRole="Service_period" ToRole="Service_period1" />
+        </EntityType>
+        <EntityType Name="Volunteer_list">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="blacklist_yn" Type="Boolean" />
+          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Volunteer_list" ToRole="Application_unit" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Volunteer_list_Volunteer" FromRole="Volunteer_list" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" />
+          <Property Name="Permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Activity_no" />
           </Key>
-          <Property Name="Activity_no" Type="Int32" Nullable="false" />
+          <Property Name="Activity_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Activity_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Activity_type_ID" Type="Int32" Nullable="false" />
           <Property Name="Group_no" Type="Int32" />
@@ -1349,25 +1277,35 @@
           <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Activity" FromRole="Activity" ToRole="Activity1" />
           <NavigationProperty Name="Activity_photo" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity" ToRole="Activity_photo" />
           <NavigationProperty Name="Activity_type" Relationship="Self.FK_Activity_Activity_type" FromRole="Activity" ToRole="Activity_type" />
+          <NavigationProperty Name="Activity_Schedule" Relationship="Self.FK_Activity_Schedule_Activity" FromRole="Activity" ToRole="Activity_Schedule" />
           <NavigationProperty Name="Service_group" Relationship="Self.FK_Activity_Service_group" FromRole="Activity" ToRole="Service_group" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Activity" ToRole="Volunteer_supervision" />
           <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Activity" FromRole="Activity" ToRole="Education" />
-          <NavigationProperty Name="Volunteers" Relationship="Self.Activity_Schedule" FromRole="Activity" ToRole="Volunteer" />
         </EntityType>
         <EntityType Name="Activity_photo">
           <Key>
             <PropertyRef Name="Activity_photo_id" />
           </Key>
-          <Property Name="Activity_photo_id" Type="Int32" Nullable="false" />
+          <Property Name="Activity_photo_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Activity_id" Type="Int32" Nullable="false" />
           <Property Name="Activity_photo1" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity_photo" ToRole="Activity" />
+        </EntityType>
+        <EntityType Name="Activity_Schedule">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Activity_no" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Schedule_Activity" FromRole="Activity_Schedule" ToRole="Activity" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Activity_Schedule_Volunteer" FromRole="Activity_Schedule" ToRole="Volunteer" />
         </EntityType>
         <EntityType Name="Activity_type">
           <Key>
             <PropertyRef Name="Activity_type_ID" />
           </Key>
-          <Property Name="Activity_type_ID" Type="Int32" Nullable="false" />
+          <Property Name="Activity_type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Activity_type1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Activity_type" FromRole="Activity_type" ToRole="Activity" />
         </EntityType>
@@ -1375,7 +1313,7 @@
           <Key>
             <PropertyRef Name="event_category_ID" />
           </Key>
-          <Property Name="event_category_ID" Type="Int32" Nullable="false" />
+          <Property Name="event_category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="event_category1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_event_category" FromRole="event_category" ToRole="Abnormal_event" />
         </EntityType>
@@ -1383,24 +1321,24 @@
           <Key>
             <PropertyRef Name="Expertise_no" />
           </Key>
-          <Property Name="Expertise_no" Type="Int32" Nullable="false" />
+          <Property Name="Expertise_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Expertise" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Application_unit" Relationship="Self.Expertise" FromRole="Expertise1" ToRole="Application_unit" />
-          <NavigationProperty Name="Volunteers" Relationship="Self.Expertise2" FromRole="Expertise1" ToRole="Volunteer" />
+          <NavigationProperty Name="Expertises" Relationship="Self.FK_Expertise_Expertise" FromRole="Expertise1" ToRole="Expertise" />
+          <NavigationProperty Name="Expertise2" Relationship="Self.FK_Expertise_Expertise1" FromRole="Expertise1" ToRole="Expertise2" />
         </EntityType>
         <EntityType Name="Human_assessment">
           <Key>
             <PropertyRef Name="Assessment_ID" />
           </Key>
-          <Property Name="Assessment_ID" Type="Int32" Nullable="false" />
+          <Property Name="Assessment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Assessment_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Manpower_apply" Relationship="Self.Apply_Assessment" FromRole="Human_assessment" ToRole="Manpower_apply" />
+          <NavigationProperty Name="Apply_Assessment" Relationship="Self.FK_Apply_Assessment_Human_assessment" FromRole="Human_assessment" ToRole="Apply_Assessment" />
         </EntityType>
         <EntityType Name="Human_assessment_result">
           <Key>
             <PropertyRef Name="Assessment_result_ID" />
           </Key>
-          <Property Name="Assessment_result_ID" Type="Int32" Nullable="false" />
+          <Property Name="Assessment_result_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Assessment_result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Human_assessment_result" FromRole="Human_assessment_result" ToRole="Apply_result" />
         </EntityType>
@@ -1408,7 +1346,7 @@
           <Key>
             <PropertyRef Name="Identity_type1" />
           </Key>
-          <Property Name="Identity_type1" Type="Int32" Nullable="false" />
+          <Property Name="Identity_type1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Identity_type_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Volunteers" Relationship="Self.FK_Volunteer_Identity_type" FromRole="Identity_type" ToRole="Volunteer" />
         </EntityType>
@@ -1416,7 +1354,7 @@
           <Key>
             <PropertyRef Name="Position_no" />
           </Key>
-          <Property Name="Position_no" Type="Int32" Nullable="false" />
+          <Property Name="Position_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Position_chinese" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Position_english" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="Duties" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1426,7 +1364,7 @@
           <Key>
             <PropertyRef Name="Lssuing_unit_no" />
           </Key>
-          <Property Name="Lssuing_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Lssuing_unit_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Lssuing_unit1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Volunteers" Relationship="Self.FK_Volunteer_Lssuing_unit" FromRole="Lssuing_unit" ToRole="Volunteer" />
         </EntityType>
@@ -1434,24 +1372,46 @@
           <Key>
             <PropertyRef Name="Group_no" />
           </Key>
-          <Property Name="Group_no" Type="Int32" Nullable="false" />
+          <Property Name="Group_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Group_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Group_leader" Type="Int32" />
           <Property Name="Group_viceleader" Type="Int32" />
           <NavigationProperty Name="Application_unit" Relationship="Self.FK_Application_unit_Service_group" FromRole="Service_group" ToRole="Application_unit" />
           <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Service_group" FromRole="Service_group" ToRole="Activity" />
-          <NavigationProperty Name="Volunteers" Relationship="Self.Service_Group1" FromRole="Service_group" ToRole="Volunteer" />
+          <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Service_group" FromRole="Service_group" ToRole="Service_Group1" />
         </EntityType>
         <EntityType Name="Service_period1">
           <Key>
             <PropertyRef Name="Service_period_no" />
           </Key>
-          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <Property Name="Service_period_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Service_period" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Service_period" FromRole="Service_period1" ToRole="Service_period" />
           <NavigationProperty Name="Service_period21" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period1" ToRole="Service_period2" />
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Service_period1" ToRole="Shift_schedule" />
           <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Service_period1" ToRole="Sign_up_Service_period" />
+        </EntityType>
+        <EntityType Name="Shift_schedule">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
+          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <Property Name="year" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Wish_order" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Shift_schedule" ToRole="Application_unit" />
+          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Shift_schedule" ToRole="Service_period1" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Shift_schedule_Volunteer" FromRole="Shift_schedule" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Stage">
+          <Key>
+            <PropertyRef Name="Stage_ID" />
+          </Key>
+          <Property Name="Stage_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Stage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Stage_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -1467,7 +1427,7 @@
           <Key>
             <PropertyRef Name="supervision_ID" />
           </Key>
-          <Property Name="supervision_ID" Type="Int32" Nullable="false" />
+          <Property Name="supervision_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="supervision_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="supervision_phone" Type="Int32" />
           <Property Name="supervision_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1478,11 +1438,79 @@
           <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Volunteer_supervision" ToRole="Activity" />
           <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_Volunteer_supervision2" FromRole="Volunteer_supervision" ToRole="Sign_up" />
         </EntityType>
+        <EntityType Name="Activity1">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Activity_no" Type="Int32" Nullable="false" />
+          <Property Name="Registration_date" Type="DateTime" Precision="3" />
+          <Property Name="Stage" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Confirm_time" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Activity" FromRole="Activity1" ToRole="Activity" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Activity_Volunteer" FromRole="Activity1" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Education">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Activity_no" Type="Int32" Nullable="false" />
+          <Property Name="Training_date" Type="DateTime" Precision="3" />
+          <Property Name="Proof" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Activity" Relationship="Self.FK_Education_Activity" FromRole="Education" ToRole="Activity" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Education_Volunteer" FromRole="Education" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Expertise2">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Expertise_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expertise1" Relationship="Self.FK_Expertise_Expertise1" FromRole="Expertise2" ToRole="Expertise1" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Expertise_Volunteer" FromRole="Expertise2" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Leaders1">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Position_no" Type="Int32" Nullable="false" />
+          <Property Name="Takeoffice_date" Type="DateTime" Precision="0" />
+          <Property Name="Resignation_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Leader" Relationship="Self.FK_Leaders_Leaders" FromRole="Leaders1" ToRole="Leaders" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Leaders_Volunteer" FromRole="Leaders1" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Service_Group1">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Group_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service_group" Relationship="Self.FK_Service_Group_Service_group" FromRole="Service_Group1" ToRole="Service_group" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_Group_Volunteer" FromRole="Service_Group1" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Service_period2">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Wish_order" Type="Int32" Nullable="false" />
+          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
+        </EntityType>
         <EntityType Name="Sign_up">
           <Key>
             <PropertyRef Name="Sign_up_no" />
           </Key>
-          <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
+          <Property Name="Sign_up_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Chinese_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="English_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
@@ -1502,11 +1530,22 @@
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Sign_up_Volunteer_supervision2" FromRole="Sign_up" ToRole="Volunteer_supervision" />
           <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
         </EntityType>
+        <EntityType Name="Sign_up_Service_period">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
+          <Property Name="Wish_order" Type="Int32" Nullable="false" />
+          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Sign_up_Service_period" ToRole="Service_period1" />
+          <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up_Service_period" ToRole="Sign_up" />
+        </EntityType>
         <EntityType Name="Volunteer">
           <Key>
             <PropertyRef Name="Volunteer_no" />
           </Key>
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Chinese_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="English_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="sex" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
@@ -1530,146 +1569,17 @@
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Volunteer" FromRole="Volunteer" ToRole="Abnormal_event" />
           <NavigationProperty Name="Abnormal_event1" Relationship="Self.FK_Abnormal_event_Volunteer1" FromRole="Volunteer" ToRole="Abnormal_event" />
+          <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Volunteer" FromRole="Volunteer" ToRole="Volunteer_list" />
+          <NavigationProperty Name="Activity_Schedule" Relationship="Self.FK_Activity_Schedule_Volunteer" FromRole="Volunteer" ToRole="Activity_Schedule" />
           <NavigationProperty Name="Identity_type1" Relationship="Self.FK_Volunteer_Identity_type" FromRole="Volunteer" ToRole="Identity_type" />
           <NavigationProperty Name="Lssuing_unit" Relationship="Self.FK_Volunteer_Lssuing_unit" FromRole="Volunteer" ToRole="Lssuing_unit" />
+          <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Volunteer" FromRole="Volunteer" ToRole="Shift_schedule" />
           <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Volunteer" FromRole="Volunteer" ToRole="Activity1" />
           <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Volunteer" FromRole="Volunteer" ToRole="Education" />
+          <NavigationProperty Name="Expertise2" Relationship="Self.FK_Expertise_Volunteer" FromRole="Volunteer" ToRole="Expertise2" />
           <NavigationProperty Name="Leaders1" Relationship="Self.FK_Leaders_Volunteer" FromRole="Volunteer" ToRole="Leaders1" />
+          <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Volunteer" FromRole="Volunteer" ToRole="Service_Group1" />
           <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Volunteer" FromRole="Volunteer" ToRole="Service_period2" />
-          <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Volunteer" FromRole="Volunteer" ToRole="Shift_schedule" />
-          <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Volunteer" FromRole="Volunteer" ToRole="Volunteer_list" />
-          <NavigationProperty Name="Activities" Relationship="Self.Activity_Schedule" FromRole="Volunteer" ToRole="Activity" />
-          <NavigationProperty Name="Expertise1" Relationship="Self.Expertise2" FromRole="Volunteer" ToRole="Expertise1" />
-          <NavigationProperty Name="Service_group" Relationship="Self.Service_Group1" FromRole="Volunteer" ToRole="Service_group" />
-        </EntityType>
-        <EntityType Name="Apply_result">
-          <Key>
-            <PropertyRef Name="Apply_ID" />
-          </Key>
-          <Property Name="Apply_ID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="result_ID" Type="Int32" />
-          <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Apply_result" ToRole="Manpower_apply" />
-          <NavigationProperty Name="Human_assessment_result" Relationship="Self.FK_Apply_result_Human_assessment_result" FromRole="Apply_result" ToRole="Human_assessment_result" />
-        </EntityType>
-        <EntityType Name="Service_period">
-          <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Service_period_no" />
-          </Key>
-          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
-          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
-          <Property Name="Volunteer_number" Type="Int32" />
-          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Service_period_Application_unit" FromRole="Service_period" ToRole="Application_unit" />
-          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period" FromRole="Service_period" ToRole="Service_period1" />
-        </EntityType>
-        <EntityType Name="Volunteer_list">
-          <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Volunteer_no" />
-          </Key>
-          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="blacklist_yn" Type="Boolean" />
-          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Volunteer_list" ToRole="Application_unit" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Volunteer_list_Volunteer" FromRole="Volunteer_list" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="account">
-          <Key>
-            <PropertyRef Name="Account_number" />
-            <PropertyRef Name="Password" />
-          </Key>
-          <Property Name="Account_number" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="User_ID" Type="Int32" />
-          <Property Name="Permission" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Shift_schedule">
-          <Key>
-            <PropertyRef Name="Application_unit_no" />
-            <PropertyRef Name="Service_period_no" />
-            <PropertyRef Name="year" />
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Wish_order" />
-          </Key>
-          <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
-          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
-          <Property Name="year" Type="Int32" Nullable="false" />
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="Wish_order" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Application_unit" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Shift_schedule" ToRole="Application_unit" />
-          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Shift_schedule" ToRole="Service_period1" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Shift_schedule_Volunteer" FromRole="Shift_schedule" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="Stage">
-          <Key>
-            <PropertyRef Name="Stage_ID" />
-            <PropertyRef Name="Stage1" />
-            <PropertyRef Name="Stage_type" />
-          </Key>
-          <Property Name="Stage_ID" Type="Int32" Nullable="false" />
-          <Property Name="Stage1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Stage_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Activity1">
-          <Key>
-            <PropertyRef Name="Activity_no" />
-          </Key>
-          <Property Name="Volunteer_no" Type="Int32" />
-          <Property Name="Activity_no" Type="Int32" Nullable="false" />
-          <Property Name="Registration_date" Type="DateTime" Precision="3" />
-          <Property Name="Stage" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="Confirm_time" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Activity" FromRole="Activity1" ToRole="Activity" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Activity_Volunteer" FromRole="Activity1" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="Education">
-          <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Activity_no" />
-          </Key>
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="Activity_no" Type="Int32" Nullable="false" />
-          <Property Name="Training_date" Type="DateTime" Precision="3" />
-          <Property Name="Proof" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Activity" Relationship="Self.FK_Education_Activity" FromRole="Education" ToRole="Activity" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Education_Volunteer" FromRole="Education" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="Leaders1">
-          <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Position_no" />
-          </Key>
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="Position_no" Type="Int32" Nullable="false" />
-          <Property Name="Takeoffice_date" Type="DateTime" Precision="0" />
-          <Property Name="Resignation_date" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Leader" Relationship="Self.FK_Leaders_Leaders" FromRole="Leaders1" ToRole="Leaders" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Leaders_Volunteer" FromRole="Leaders1" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="Service_period2">
-          <Key>
-            <PropertyRef Name="Volunteer_no" />
-            <PropertyRef Name="Wish_order" />
-            <PropertyRef Name="Service_period_no" />
-          </Key>
-          <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="Wish_order" Type="Int32" Nullable="false" />
-          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
-        </EntityType>
-        <EntityType Name="Sign_up_Service_period">
-          <Key>
-            <PropertyRef Name="Sign_up_no" />
-            <PropertyRef Name="Wish_order" />
-            <PropertyRef Name="Service_period_no" />
-          </Key>
-          <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
-          <Property Name="Wish_order" Type="Int32" Nullable="false" />
-          <Property Name="Service_period_no" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Service_period1" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Sign_up_Service_period" ToRole="Service_period1" />
-          <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up_Service_period" ToRole="Sign_up" />
         </EntityType>
         <Association Name="FK_Abnormal_event_Application_unit">
           <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
@@ -1743,6 +1653,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Expertise_Application_unit">
+          <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Application_unit">
+              <PropertyRef Name="Application_unit_no" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="Application_unit_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Manpower_apply_Application_unit">
           <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
           <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="*" />
@@ -1791,15 +1713,63 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Apply_Assessment_Human_assessment">
+          <End Role="Human_assessment" Type="Self.Human_assessment" Multiplicity="1" />
+          <End Role="Apply_Assessment" Type="Self.Apply_Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human_assessment">
+              <PropertyRef Name="Assessment_ID" />
+            </Principal>
+            <Dependent Role="Apply_Assessment">
+              <PropertyRef Name="Assessment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apply_Assessment_Manpower_apply">
+          <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
+          <End Role="Apply_Assessment" Type="Self.Apply_Assessment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Manpower_apply">
+              <PropertyRef Name="Apply_ID" />
+            </Principal>
+            <Dependent Role="Apply_Assessment">
+              <PropertyRef Name="Apply_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Apply_result_Human_assessment_result">
+          <End Role="Human_assessment_result" Type="Self.Human_assessment_result" Multiplicity="0..1" />
+          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Human_assessment_result">
+              <PropertyRef Name="Assessment_result_ID" />
+            </Principal>
+            <Dependent Role="Apply_result">
+              <PropertyRef Name="result_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Apply_result_Manpower_apply">
           <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
-          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="0..1" />
+          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Manpower_apply">
               <PropertyRef Name="Apply_ID" />
             </Principal>
             <Dependent Role="Apply_result">
               <PropertyRef Name="Apply_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expertise_Expertise">
+          <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise1">
+              <PropertyRef Name="Expertise_no" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="Expertise_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1815,9 +1785,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Service_period_Service_period">
+          <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+          <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service_period1">
+              <PropertyRef Name="Service_period_no" />
+            </Principal>
+            <Dependent Role="Service_period">
+              <PropertyRef Name="Service_period_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Volunteer_list_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="Volunteer_list" Type="Self.Volunteer_list" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Volunteer_list">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Activity_Activity">
           <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
-          <End Role="Activity1" Type="Self.Activity1" Multiplicity="0..1" />
+          <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Activity">
               <PropertyRef Name="Activity_no" />
@@ -1848,6 +1842,18 @@
             </Principal>
             <Dependent Role="Activity">
               <PropertyRef Name="Activity_type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Activity_Schedule_Activity">
+          <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+          <End Role="Activity_Schedule" Type="Self.Activity_Schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Activity">
+              <PropertyRef Name="Activity_no" />
+            </Principal>
+            <Dependent Role="Activity_Schedule">
+              <PropertyRef Name="Activity_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1887,15 +1893,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Apply_result_Human_assessment_result">
-          <End Role="Human_assessment_result" Type="Self.Human_assessment_result" Multiplicity="0..1" />
-          <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
+        <Association Name="FK_Activity_Schedule_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="Activity_Schedule" Type="Self.Activity_Schedule" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Human_assessment_result">
-              <PropertyRef Name="Assessment_result_ID" />
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
             </Principal>
-            <Dependent Role="Apply_result">
-              <PropertyRef Name="result_ID" />
+            <Dependent Role="Activity_Schedule">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expertise_Expertise1">
+          <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="1" />
+          <End Role="Expertise2" Type="Self.Expertise2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise1">
+              <PropertyRef Name="Expertise_no" />
+            </Principal>
+            <Dependent Role="Expertise2">
+              <PropertyRef Name="Expertise_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1935,15 +1953,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Service_period_Service_period">
-          <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
-          <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
+        <Association Name="FK_Service_Group_Service_group">
+          <End Role="Service_group" Type="Self.Service_group" Multiplicity="1" />
+          <End Role="Service_Group1" Type="Self.Service_Group1" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Service_period1">
-              <PropertyRef Name="Service_period_no" />
+            <Principal Role="Service_group">
+              <PropertyRef Name="Group_no" />
             </Principal>
-            <Dependent Role="Service_period">
-              <PropertyRef Name="Service_period_no" />
+            <Dependent Role="Service_Group1">
+              <PropertyRef Name="Group_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1983,6 +2001,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Shift_schedule_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="Shift_schedule" Type="Self.Shift_schedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Shift_schedule">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sign_up_Volunteer_supervision2">
           <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
           <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="*" />
@@ -1995,20 +2025,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sign_up_Service_period_Sign_up">
-          <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
-          <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sign_up">
-              <PropertyRef Name="Sign_up_no" />
-            </Principal>
-            <Dependent Role="Sign_up_Service_period">
-              <PropertyRef Name="Sign_up_no" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Activity_Volunteer">
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
           <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Volunteer">
@@ -2031,6 +2049,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Expertise_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="Expertise2" Type="Self.Expertise2" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Expertise2">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Leaders_Volunteer">
           <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
           <End Role="Leaders1" Type="Self.Leaders1" Multiplicity="*" />
@@ -2039,6 +2069,18 @@
               <PropertyRef Name="Volunteer_no" />
             </Principal>
             <Dependent Role="Leaders1">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Service_Group_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+          <End Role="Service_Group1" Type="Self.Service_Group1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Service_Group1">
               <PropertyRef Name="Volunteer_no" />
             </Dependent>
           </ReferentialConstraint>
@@ -2055,56 +2097,31 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Shift_schedule_Volunteer">
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
-          <End Role="Shift_schedule" Type="Self.Shift_schedule" Multiplicity="*" />
+        <Association Name="FK_Sign_up_Service_period_Sign_up">
+          <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+          <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Volunteer">
-              <PropertyRef Name="Volunteer_no" />
+            <Principal Role="Sign_up">
+              <PropertyRef Name="Sign_up_no" />
             </Principal>
-            <Dependent Role="Shift_schedule">
-              <PropertyRef Name="Volunteer_no" />
+            <Dependent Role="Sign_up_Service_period">
+              <PropertyRef Name="Sign_up_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Volunteer_list_Volunteer">
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
-          <End Role="Volunteer_list" Type="Self.Volunteer_list" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Volunteer">
-              <PropertyRef Name="Volunteer_no" />
-            </Principal>
-            <Dependent Role="Volunteer_list">
-              <PropertyRef Name="Volunteer_no" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Apply_Assessment">
-          <End Role="Human_assessment" Type="Self.Human_assessment" Multiplicity="*" />
-          <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="*" />
-        </Association>
-        <Association Name="Expertise">
-          <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="*" />
-          <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="*" />
-        </Association>
-        <Association Name="Activity_Schedule">
-          <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
-        </Association>
-        <Association Name="Expertise2">
-          <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="*" />
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
-        </Association>
-        <Association Name="Service_Group1">
-          <End Role="Service_group" Type="Self.Service_group" Multiplicity="*" />
-          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
-        </Association>
-        <EntityContainer Name="VolunteerEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VolunteerEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Abnormal_event" EntityType="Self.Abnormal_event" />
           <EntitySet Name="Application_unit" EntityType="Self.Application_unit" />
+          <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" />
+          <EntitySet Name="Apply_result" EntityType="Self.Apply_result" />
+          <EntitySet Name="Expertises" EntityType="Self.Expertise" />
           <EntitySet Name="Manpower_apply" EntityType="Self.Manpower_apply" />
+          <EntitySet Name="Service_period" EntityType="Self.Service_period" />
+          <EntitySet Name="Volunteer_list" EntityType="Self.Volunteer_list" />
+          <EntitySet Name="accounts" EntityType="Self.account" />
           <EntitySet Name="Activities" EntityType="Self.Activity" />
           <EntitySet Name="Activity_photo" EntityType="Self.Activity_photo" />
+          <EntitySet Name="Activity_Schedule" EntityType="Self.Activity_Schedule" />
           <EntitySet Name="Activity_type" EntityType="Self.Activity_type" />
           <EntitySet Name="event_category" EntityType="Self.event_category" />
           <EntitySet Name="Expertise1" EntityType="Self.Expertise1" />
@@ -2115,21 +2132,19 @@
           <EntitySet Name="Lssuing_unit" EntityType="Self.Lssuing_unit" />
           <EntitySet Name="Service_group" EntityType="Self.Service_group" />
           <EntitySet Name="Service_period1" EntityType="Self.Service_period1" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" />
-          <EntitySet Name="Sign_up" EntityType="Self.Sign_up" />
-          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
-          <EntitySet Name="Apply_result" EntityType="Self.Apply_result" />
-          <EntitySet Name="Service_period" EntityType="Self.Service_period" />
-          <EntitySet Name="Volunteer_list" EntityType="Self.Volunteer_list" />
-          <EntitySet Name="accounts" EntityType="Self.account" />
           <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" />
           <EntitySet Name="Stages" EntityType="Self.Stage" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" />
           <EntitySet Name="Activity1" EntityType="Self.Activity1" />
           <EntitySet Name="Educations" EntityType="Self.Education" />
+          <EntitySet Name="Expertise2" EntityType="Self.Expertise2" />
           <EntitySet Name="Leaders1" EntityType="Self.Leaders1" />
+          <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" />
           <EntitySet Name="Service_period2" EntityType="Self.Service_period2" />
+          <EntitySet Name="Sign_up" EntityType="Self.Sign_up" />
           <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" />
+          <EntitySet Name="Volunteers" EntityType="Self.Volunteer" />
           <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
             <End Role="Application_unit" EntitySet="Application_unit" />
             <End Role="Abnormal_event" EntitySet="Abnormal_event" />
@@ -2154,6 +2169,10 @@
             <End Role="Service_group" EntitySet="Service_group" />
             <End Role="Application_unit" EntitySet="Application_unit" />
           </AssociationSet>
+          <AssociationSet Name="FK_Expertise_Application_unit" Association="Self.FK_Expertise_Application_unit">
+            <End Role="Application_unit" EntitySet="Application_unit" />
+            <End Role="Expertise" EntitySet="Expertises" />
+          </AssociationSet>
           <AssociationSet Name="FK_Manpower_apply_Application_unit" Association="Self.FK_Manpower_apply_Application_unit">
             <End Role="Application_unit" EntitySet="Application_unit" />
             <End Role="Manpower_apply" EntitySet="Manpower_apply" />
@@ -2170,13 +2189,37 @@
             <End Role="Application_unit" EntitySet="Application_unit" />
             <End Role="Volunteer_list" EntitySet="Volunteer_list" />
           </AssociationSet>
+          <AssociationSet Name="FK_Apply_Assessment_Human_assessment" Association="Self.FK_Apply_Assessment_Human_assessment">
+            <End Role="Human_assessment" EntitySet="Human_assessment" />
+            <End Role="Apply_Assessment" EntitySet="Apply_Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apply_Assessment_Manpower_apply" Association="Self.FK_Apply_Assessment_Manpower_apply">
+            <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+            <End Role="Apply_Assessment" EntitySet="Apply_Assessment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Apply_result_Human_assessment_result" Association="Self.FK_Apply_result_Human_assessment_result">
+            <End Role="Human_assessment_result" EntitySet="Human_assessment_result" />
+            <End Role="Apply_result" EntitySet="Apply_result" />
+          </AssociationSet>
           <AssociationSet Name="FK_Apply_result_Manpower_apply" Association="Self.FK_Apply_result_Manpower_apply">
             <End Role="Manpower_apply" EntitySet="Manpower_apply" />
             <End Role="Apply_result" EntitySet="Apply_result" />
           </AssociationSet>
+          <AssociationSet Name="FK_Expertise_Expertise" Association="Self.FK_Expertise_Expertise">
+            <End Role="Expertise1" EntitySet="Expertise1" />
+            <End Role="Expertise" EntitySet="Expertises" />
+          </AssociationSet>
           <AssociationSet Name="FK_Manpower_apply_Volunteer_supervision" Association="Self.FK_Manpower_apply_Volunteer_supervision">
             <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
             <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_period_Service_period" Association="Self.FK_Service_period_Service_period">
+            <End Role="Service_period1" EntitySet="Service_period1" />
+            <End Role="Service_period" EntitySet="Service_period" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Volunteer_list_Volunteer" Association="Self.FK_Volunteer_list_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Volunteer_list" EntitySet="Volunteer_list" />
           </AssociationSet>
           <AssociationSet Name="FK_Activity_Activity" Association="Self.FK_Activity_Activity">
             <End Role="Activity" EntitySet="Activities" />
@@ -2190,6 +2233,10 @@
             <End Role="Activity_type" EntitySet="Activity_type" />
             <End Role="Activity" EntitySet="Activities" />
           </AssociationSet>
+          <AssociationSet Name="FK_Activity_Schedule_Activity" Association="Self.FK_Activity_Schedule_Activity">
+            <End Role="Activity" EntitySet="Activities" />
+            <End Role="Activity_Schedule" EntitySet="Activity_Schedule" />
+          </AssociationSet>
           <AssociationSet Name="FK_Activity_Service_group" Association="Self.FK_Activity_Service_group">
             <End Role="Service_group" EntitySet="Service_group" />
             <End Role="Activity" EntitySet="Activities" />
@@ -2202,9 +2249,13 @@
             <End Role="Activity" EntitySet="Activities" />
             <End Role="Education" EntitySet="Educations" />
           </AssociationSet>
-          <AssociationSet Name="FK_Apply_result_Human_assessment_result" Association="Self.FK_Apply_result_Human_assessment_result">
-            <End Role="Human_assessment_result" EntitySet="Human_assessment_result" />
-            <End Role="Apply_result" EntitySet="Apply_result" />
+          <AssociationSet Name="FK_Activity_Schedule_Volunteer" Association="Self.FK_Activity_Schedule_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Activity_Schedule" EntitySet="Activity_Schedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expertise_Expertise1" Association="Self.FK_Expertise_Expertise1">
+            <End Role="Expertise1" EntitySet="Expertise1" />
+            <End Role="Expertise2" EntitySet="Expertise2" />
           </AssociationSet>
           <AssociationSet Name="FK_Volunteer_Identity_type" Association="Self.FK_Volunteer_Identity_type">
             <End Role="Identity_type" EntitySet="Identity_type" />
@@ -2218,9 +2269,9 @@
             <End Role="Lssuing_unit" EntitySet="Lssuing_unit" />
             <End Role="Volunteer" EntitySet="Volunteers" />
           </AssociationSet>
-          <AssociationSet Name="FK_Service_period_Service_period" Association="Self.FK_Service_period_Service_period">
-            <End Role="Service_period1" EntitySet="Service_period1" />
-            <End Role="Service_period" EntitySet="Service_period" />
+          <AssociationSet Name="FK_Service_Group_Service_group" Association="Self.FK_Service_Group_Service_group">
+            <End Role="Service_group" EntitySet="Service_group" />
+            <End Role="Service_Group1" EntitySet="Service_Group1" />
           </AssociationSet>
           <AssociationSet Name="FK_Service_period_Service_period1" Association="Self.FK_Service_period_Service_period1">
             <End Role="Service_period1" EntitySet="Service_period1" />
@@ -2234,13 +2285,13 @@
             <End Role="Service_period1" EntitySet="Service_period1" />
             <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
           </AssociationSet>
+          <AssociationSet Name="FK_Shift_schedule_Volunteer" Association="Self.FK_Shift_schedule_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Shift_schedule" EntitySet="Shift_schedule" />
+          </AssociationSet>
           <AssociationSet Name="FK_Sign_up_Volunteer_supervision2" Association="Self.FK_Sign_up_Volunteer_supervision2">
             <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
             <End Role="Sign_up" EntitySet="Sign_up" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
-            <End Role="Sign_up" EntitySet="Sign_up" />
-            <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
           </AssociationSet>
           <AssociationSet Name="FK_Activity_Volunteer" Association="Self.FK_Activity_Volunteer">
             <End Role="Volunteer" EntitySet="Volunteers" />
@@ -2250,41 +2301,25 @@
             <End Role="Volunteer" EntitySet="Volunteers" />
             <End Role="Education" EntitySet="Educations" />
           </AssociationSet>
+          <AssociationSet Name="FK_Expertise_Volunteer" Association="Self.FK_Expertise_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Expertise2" EntitySet="Expertise2" />
+          </AssociationSet>
           <AssociationSet Name="FK_Leaders_Volunteer" Association="Self.FK_Leaders_Volunteer">
             <End Role="Volunteer" EntitySet="Volunteers" />
             <End Role="Leaders1" EntitySet="Leaders1" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Service_Group_Volunteer" Association="Self.FK_Service_Group_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Service_Group1" EntitySet="Service_Group1" />
           </AssociationSet>
           <AssociationSet Name="FK_Service_period_Volunteer" Association="Self.FK_Service_period_Volunteer">
             <End Role="Volunteer" EntitySet="Volunteers" />
             <End Role="Service_period2" EntitySet="Service_period2" />
           </AssociationSet>
-          <AssociationSet Name="FK_Shift_schedule_Volunteer" Association="Self.FK_Shift_schedule_Volunteer">
-            <End Role="Volunteer" EntitySet="Volunteers" />
-            <End Role="Shift_schedule" EntitySet="Shift_schedule" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Volunteer_list_Volunteer" Association="Self.FK_Volunteer_list_Volunteer">
-            <End Role="Volunteer" EntitySet="Volunteers" />
-            <End Role="Volunteer_list" EntitySet="Volunteer_list" />
-          </AssociationSet>
-          <AssociationSet Name="Apply_Assessment" Association="Self.Apply_Assessment">
-            <End Role="Human_assessment" EntitySet="Human_assessment" />
-            <End Role="Manpower_apply" EntitySet="Manpower_apply" />
-          </AssociationSet>
-          <AssociationSet Name="Expertise" Association="Self.Expertise">
-            <End Role="Application_unit" EntitySet="Application_unit" />
-            <End Role="Expertise1" EntitySet="Expertise1" />
-          </AssociationSet>
-          <AssociationSet Name="Activity_Schedule" Association="Self.Activity_Schedule">
-            <End Role="Activity" EntitySet="Activities" />
-            <End Role="Volunteer" EntitySet="Volunteers" />
-          </AssociationSet>
-          <AssociationSet Name="Expertise2" Association="Self.Expertise2">
-            <End Role="Expertise1" EntitySet="Expertise1" />
-            <End Role="Volunteer" EntitySet="Volunteers" />
-          </AssociationSet>
-          <AssociationSet Name="Service_Group1" Association="Self.Service_Group1">
-            <End Role="Service_group" EntitySet="Service_group" />
-            <End Role="Volunteer" EntitySet="Volunteers" />
+          <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
+            <End Role="Sign_up" EntitySet="Sign_up" />
+            <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -2292,7 +2327,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities2">
+        <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities3">
           <EntitySetMapping Name="Abnormal_event">
             <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
               <MappingFragment StoreEntitySet="Abnormal_event">
@@ -2330,6 +2365,34 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Apply_Assessment">
+            <EntityTypeMapping TypeName="VolunteerModel.Apply_Assessment">
+              <MappingFragment StoreEntitySet="Apply_Assessment">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
+                <ScalarProperty Name="Assessment_ID" ColumnName="Assessment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Apply_result">
+            <EntityTypeMapping TypeName="VolunteerModel.Apply_result">
+              <MappingFragment StoreEntitySet="Apply_result">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="result_ID" ColumnName="result_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expertises">
+            <EntityTypeMapping TypeName="VolunteerModel.Expertise">
+              <MappingFragment StoreEntitySet="Expertise">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
+                <ScalarProperty Name="Expertise_no" ColumnName="Expertise_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Manpower_apply">
             <EntityTypeMapping TypeName="VolunteerModel.Manpower_apply">
               <MappingFragment StoreEntitySet="Manpower_apply">
@@ -2349,6 +2412,37 @@
                 <ScalarProperty Name="Supervision_heads" ColumnName="Supervision_heads" />
                 <ScalarProperty Name="Application_number" ColumnName="Application_number" />
                 <ScalarProperty Name="Reply_number" ColumnName="Reply_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_period">
+            <EntityTypeMapping TypeName="VolunteerModel.Service_period">
+              <MappingFragment StoreEntitySet="Service_period">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
+                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+                <ScalarProperty Name="Volunteer_number" ColumnName="Volunteer_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteer_list">
+            <EntityTypeMapping TypeName="VolunteerModel.Volunteer_list">
+              <MappingFragment StoreEntitySet="Volunteer_list">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="blacklist_yn" ColumnName="blacklist_yn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="VolunteerModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Permission" ColumnName="Permission" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2377,6 +2471,15 @@
                 <ScalarProperty Name="Activity_photo_id" ColumnName="Activity_photo_id" />
                 <ScalarProperty Name="Activity_id" ColumnName="Activity_id" />
                 <ScalarProperty Name="Activity_photo1" ColumnName="Activity_photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Activity_Schedule">
+            <EntityTypeMapping TypeName="VolunteerModel.Activity_Schedule">
+              <MappingFragment StoreEntitySet="Activity_Schedule">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2464,6 +2567,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Shift_schedule">
+            <EntityTypeMapping TypeName="VolunteerModel.Shift_schedule">
+              <MappingFragment StoreEntitySet="Shift_schedule">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
+                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+                <ScalarProperty Name="year" ColumnName="year" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stages">
+            <EntityTypeMapping TypeName="VolunteerModel.Stage">
+              <MappingFragment StoreEntitySet="Stage">
+                <ScalarProperty Name="Stage_ID" ColumnName="Stage_ID" />
+                <ScalarProperty Name="Stage1" ColumnName="Stage" />
+                <ScalarProperty Name="Stage_type" ColumnName="Stage_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="VolunteerModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -2487,6 +2611,68 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Activity1">
+            <EntityTypeMapping TypeName="VolunteerModel.Activity1">
+              <MappingFragment StoreEntitySet="Activity1">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
+                <ScalarProperty Name="Registration_date" ColumnName="Registration_date" />
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
+                <ScalarProperty Name="Confirm_time" ColumnName="Confirm_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Educations">
+            <EntityTypeMapping TypeName="VolunteerModel.Education">
+              <MappingFragment StoreEntitySet="Education">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
+                <ScalarProperty Name="Training_date" ColumnName="Training_date" />
+                <ScalarProperty Name="Proof" ColumnName="Proof" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expertise2">
+            <EntityTypeMapping TypeName="VolunteerModel.Expertise2">
+              <MappingFragment StoreEntitySet="Expertise2">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Expertise_no" ColumnName="Expertise_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaders1">
+            <EntityTypeMapping TypeName="VolunteerModel.Leaders1">
+              <MappingFragment StoreEntitySet="Leaders1">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Position_no" ColumnName="Position_no" />
+                <ScalarProperty Name="Takeoffice_date" ColumnName="Takeoffice_date" />
+                <ScalarProperty Name="Resignation_date" ColumnName="Resignation_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_Group1">
+            <EntityTypeMapping TypeName="VolunteerModel.Service_Group1">
+              <MappingFragment StoreEntitySet="Service_Group1">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Group_no" ColumnName="Group_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_period2">
+            <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
+              <MappingFragment StoreEntitySet="Service_period2">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
+                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Sign_up">
             <EntityTypeMapping TypeName="VolunteerModel.Sign_up">
               <MappingFragment StoreEntitySet="Sign_up">
@@ -2507,6 +2693,16 @@
                 <ScalarProperty Name="Approval_date" ColumnName="Approval_date" />
                 <ScalarProperty Name="supervision_ID" ColumnName="supervision_ID" />
                 <ScalarProperty Name="Interview_date" ColumnName="Interview_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sign_up_Service_period">
+            <EntityTypeMapping TypeName="VolunteerModel.Sign_up_Service_period">
+              <MappingFragment StoreEntitySet="Sign_up_Service_period">
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+                <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
+                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2538,152 +2734,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Apply_result">
-            <EntityTypeMapping TypeName="VolunteerModel.Apply_result">
-              <MappingFragment StoreEntitySet="Apply_result">
-                <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="result_ID" ColumnName="result_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Service_period">
-            <EntityTypeMapping TypeName="VolunteerModel.Service_period">
-              <MappingFragment StoreEntitySet="Service_period">
-                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
-                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
-                <ScalarProperty Name="Volunteer_number" ColumnName="Volunteer_number" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Volunteer_list">
-            <EntityTypeMapping TypeName="VolunteerModel.Volunteer_list">
-              <MappingFragment StoreEntitySet="Volunteer_list">
-                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="blacklist_yn" ColumnName="blacklist_yn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="accounts">
-            <EntityTypeMapping TypeName="VolunteerModel.account">
-              <MappingFragment StoreEntitySet="account">
-                <ScalarProperty Name="Account_number" ColumnName="Account_number" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
-                <ScalarProperty Name="Permission" ColumnName="Permission" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Shift_schedule">
-            <EntityTypeMapping TypeName="VolunteerModel.Shift_schedule">
-              <MappingFragment StoreEntitySet="Shift_schedule">
-                <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
-                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
-                <ScalarProperty Name="year" ColumnName="year" />
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Stages">
-            <EntityTypeMapping TypeName="VolunteerModel.Stage">
-              <MappingFragment StoreEntitySet="Stage">
-                <ScalarProperty Name="Stage_ID" ColumnName="Stage_ID" />
-                <ScalarProperty Name="Stage1" ColumnName="Stage" />
-                <ScalarProperty Name="Stage_type" ColumnName="Stage_type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Activity1">
-            <EntityTypeMapping TypeName="VolunteerModel.Activity1">
-              <MappingFragment StoreEntitySet="Activity1">
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
-                <ScalarProperty Name="Registration_date" ColumnName="Registration_date" />
-                <ScalarProperty Name="Stage" ColumnName="Stage" />
-                <ScalarProperty Name="Confirm_time" ColumnName="Confirm_time" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Educations">
-            <EntityTypeMapping TypeName="VolunteerModel.Education">
-              <MappingFragment StoreEntitySet="Education">
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
-                <ScalarProperty Name="Training_date" ColumnName="Training_date" />
-                <ScalarProperty Name="Proof" ColumnName="Proof" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Leaders1">
-            <EntityTypeMapping TypeName="VolunteerModel.Leaders1">
-              <MappingFragment StoreEntitySet="Leaders1">
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="Position_no" ColumnName="Position_no" />
-                <ScalarProperty Name="Takeoffice_date" ColumnName="Takeoffice_date" />
-                <ScalarProperty Name="Resignation_date" ColumnName="Resignation_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Service_period2">
-            <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
-              <MappingFragment StoreEntitySet="Service_period2">
-                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
-                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sign_up_Service_period">
-            <EntityTypeMapping TypeName="VolunteerModel.Sign_up_Service_period">
-              <MappingFragment StoreEntitySet="Sign_up_Service_period">
-                <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
-                <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
-                <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="Apply_Assessment" TypeName="VolunteerModel.Apply_Assessment" StoreEntitySet="Apply_Assessment">
-            <EndProperty Name="Human_assessment">
-              <ScalarProperty Name="Assessment_ID" ColumnName="Assessment_ID" />
-            </EndProperty>
-            <EndProperty Name="Manpower_apply">
-              <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Expertise" TypeName="VolunteerModel.Expertise" StoreEntitySet="Expertise">
-            <EndProperty Name="Application_unit">
-              <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
-            </EndProperty>
-            <EndProperty Name="Expertise1">
-              <ScalarProperty Name="Expertise_no" ColumnName="Expertise_no" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Activity_Schedule" TypeName="VolunteerModel.Activity_Schedule" StoreEntitySet="Activity_Schedule">
-            <EndProperty Name="Activity">
-              <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
-            </EndProperty>
-            <EndProperty Name="Volunteer">
-              <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Expertise2" TypeName="VolunteerModel.Expertise2" StoreEntitySet="Expertise2">
-            <EndProperty Name="Expertise1">
-              <ScalarProperty Name="Expertise_no" ColumnName="Expertise_no" />
-            </EndProperty>
-            <EndProperty Name="Volunteer">
-              <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="Service_Group1" TypeName="VolunteerModel.Service_Group1" StoreEntitySet="Service_Group1">
-            <EndProperty Name="Service_group">
-              <ScalarProperty Name="Group_no" ColumnName="Group_no" />
-            </EndProperty>
-            <EndProperty Name="Volunteer">
-              <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-            </EndProperty>
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

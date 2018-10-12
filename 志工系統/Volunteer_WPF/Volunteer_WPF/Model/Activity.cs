@@ -17,8 +17,9 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Activity()
         {
+            this.Activity1 = new HashSet<Activity1>();
+            this.Activity_Schedule = new HashSet<Activity_Schedule>();
             this.Educations = new HashSet<Education>();
-            this.Volunteers = new HashSet<Volunteer>();
         }
     
         public int Activity_no { get; set; }
@@ -35,14 +36,15 @@ namespace Volunteer_WPF.Model
         public string Summary { get; set; }
         public Nullable<int> Activity_Photo_id { get; set; }
     
-        public virtual Activity1 Activity1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activity1> Activity1 { get; set; }
         public virtual Activity_photo Activity_photo { get; set; }
         public virtual Activity_type Activity_type { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Activity_Schedule> Activity_Schedule { get; set; }
         public virtual Service_group Service_group { get; set; }
         public virtual Volunteer_supervision Volunteer_supervision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Volunteer> Volunteers { get; set; }
     }
 }

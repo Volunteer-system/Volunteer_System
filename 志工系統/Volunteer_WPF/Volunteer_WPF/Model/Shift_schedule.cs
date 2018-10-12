@@ -14,6 +14,7 @@ namespace Volunteer_WPF.Model
     
     public partial class Shift_schedule
     {
+        public int Primary_key { get; set; }
         public int Application_unit_no { get; set; }
         public int Service_period_no { get; set; }
         public int year { get; set; }

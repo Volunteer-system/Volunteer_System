@@ -14,6 +14,7 @@ namespace Volunteer_WPF.Model
     
     public partial class account
     {
+        public int Primary_key { get; set; }
         public string Account_number { get; set; }
         public string Password { get; set; }
         public Nullable<int> User_ID { get; set; }

@@ -4,76 +4,86 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b92bd816eb194f5aa3ffe6ad8dc3e9c4" Name="Diagram1">
-        <EntityTypeShape EntityType="VolunteerModel.Abnormal_event" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Application_unit" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Manpower_apply" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Activity" Width="1.5" PointX="3" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Activity_photo" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Activity_type" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.event_category" Width="1.5" PointX="0.75" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Expertise1" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Human_assessment" Width="1.5" PointX="3.75" PointY="25.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Human_assessment_result" Width="1.5" PointX="6" PointY="22.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Identity_type" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Leader" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Lssuing_unit" Width="1.5" PointX="3" PointY="22.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Service_group" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Service_period1" Width="1.5" PointX="8.25" PointY="1.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.sysdiagram" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Volunteer_supervision" Width="1.5" PointX="0.75" PointY="17.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Sign_up" Width="1.5" PointX="3" PointY="33.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Volunteer" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Apply_result" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Service_period" Width="1.5" PointX="10.5" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Volunteer_list" Width="1.5" PointX="8.5" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Shift_schedule" Width="1.5" PointX="10.5" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Stage" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Activity1" Width="1.5" PointX="7.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Education" Width="1.5" PointX="7.5" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Leaders1" Width="1.5" PointX="10.5" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Service_period2" Width="1.5" PointX="11.5" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolunteerModel.Sign_up_Service_period" Width="1.5" PointX="5.25" PointY="34.5" IsExpanded="true" />
+      <Diagram DiagramId="80032e5c2fe740eaa33f718f306f9104" Name="Diagram1">
+        <EntityTypeShape EntityType="VolunteerModel.Abnormal_event" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Application_unit" Width="1.5" PointX="3" PointY="22.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Apply_Assessment" Width="1.5" PointX="13.5" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Apply_result" Width="1.5" PointX="13.5" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Expertise" Width="1.5" PointX="14.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Manpower_apply" Width="1.5" PointX="11.25" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Service_period" Width="1.5" PointX="14.25" PointY="28" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Volunteer_list" Width="1.5" PointX="8.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.account" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Activity" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Activity_photo" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Activity_Schedule" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Activity_type" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.event_category" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Expertise1" Width="1.5" PointX="9" PointY="24.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Human_assessment" Width="1.5" PointX="11.25" PointY="34.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Human_assessment_result" Width="1.5" PointX="11.25" PointY="31.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Identity_type" Width="1.5" PointX="0.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Leader" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Lssuing_unit" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Service_group" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Service_period1" Width="1.5" PointX="9" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Shift_schedule" Width="1.5" PointX="8.25" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Stage" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.sysdiagram" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Volunteer_supervision" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Activity1" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Education" Width="1.5" PointX="5.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Expertise2" Width="1.5" PointX="11.25" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Leaders1" Width="1.5" PointX="8.25" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Service_Group1" Width="1.5" PointX="11.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Service_period2" Width="1.5" PointX="11.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Sign_up" Width="1.5" PointX="3" PointY="28.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Sign_up_Service_period" Width="1.5" PointX="11.25" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolunteerModel.Volunteer" Width="1.5" PointX="3" PointY="14.375" IsExpanded="true" />
         <AssociationConnector Association="VolunteerModel.FK_Abnormal_event_Application_unit" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Abnormal_event_event_category" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Abnormal_event_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Abnormal_event_Volunteer_supervision" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Abnormal_event_Volunteer1" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Application_unit_Service_group" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Expertise_Application_unit" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Manpower_apply_Application_unit" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Service_period_Application_unit" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Shift_schedule_Application_unit" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Volunteer_list_Application_unit" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Apply_Assessment_Human_assessment" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Apply_Assessment_Manpower_apply" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Apply_result_Human_assessment_result" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Apply_result_Manpower_apply" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Expertise_Expertise" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Manpower_apply_Volunteer_supervision" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Service_period_Service_period" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Volunteer_list_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Activity" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Activity_photo" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Activity_type" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Activity_Schedule_Activity" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Service_group" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Volunteer_supervision" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Education_Activity" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.FK_Apply_result_Human_assessment_result" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Activity_Schedule_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Expertise_Expertise1" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Volunteer_Identity_type" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Leaders_Leaders" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Volunteer_Lssuing_unit" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.FK_Service_period_Service_period" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Service_Group_Service_group" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Service_period_Service_period1" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Shift_schedule_Service_period" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Signup_Serviceperiod_Service_period" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Shift_schedule_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Sign_up_Volunteer_supervision2" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.FK_Sign_up_Service_period_Sign_up" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Activity_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Education_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Expertise_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Leaders_Volunteer" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Service_Group_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Service_period_Volunteer" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.FK_Shift_schedule_Volunteer" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.FK_Volunteer_list_Volunteer" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.Apply_Assessment" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.Expertise" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.Activity_Schedule" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.Expertise2" ManuallyRouted="false" />
-        <AssociationConnector Association="VolunteerModel.Service_Group1" ManuallyRouted="false" />
+        <AssociationConnector Association="VolunteerModel.FK_Sign_up_Service_period_Sign_up" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

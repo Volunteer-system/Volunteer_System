@@ -57,13 +57,8 @@ namespace Volunteer_WPF.View
             first = false;                                  //判斷點選的是哪個功能
             interview = true;
             pass_applicant = false;
-            this.DataGrid_1.ItemsSource = get_volunteer(1); //呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)        
-
-            Signup_data_View signup_Data_View = new Signup_data_View(1);
-            wondow_show.Children.Clear();
-            object content = signup_Data_View.Content;
-            signup_Data_View.Content = null;
-            wondow_show.Children.Add(content as UIElement);
+            this.DataGrid_1.ItemsSource = get_volunteer(1); //呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)      
+            
         }
         //查看所有通過審核的人▼
         private void btn_Allpass_Click(object sender, RoutedEventArgs e)
@@ -383,6 +378,15 @@ namespace Volunteer_WPF.View
                 volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no,申請階段 = Convert.ToInt32(v.Stage) == 0 ? "初次申請" : Convert.ToInt32(v.Stage) ==1? "已要求面試":"審核已通過", 申請人姓名 = v.Chinese_name + " " + v.English_name, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期= Convert.ToDateTime(v.Sign_up_date), 審核日期 = Convert.ToDateTime(v.Approval_date) });
             }
             return volunteer;
-        }        
+        }
+
+        public void getsignup_Data(int signup_no)
+        {
+            Signup_data_View signup_Data_View = new Signup_data_View(signup_no);
+            wondow_show.Children.Clear();
+            object content = signup_Data_View.Content;
+            signup_Data_View.Content = null;
+            wondow_show.Children.Add(content as UIElement);
+        }
     }
 }

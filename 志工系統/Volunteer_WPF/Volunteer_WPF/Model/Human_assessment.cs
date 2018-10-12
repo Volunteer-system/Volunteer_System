@@ -17,13 +17,13 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Human_assessment()
         {
-            this.Manpower_apply = new HashSet<Manpower_apply>();
+            this.Apply_Assessment = new HashSet<Apply_Assessment>();
         }
     
         public int Assessment_ID { get; set; }
         public string Assessment_name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Manpower_apply> Manpower_apply { get; set; }
+        public virtual ICollection<Apply_Assessment> Apply_Assessment { get; set; }
     }
 }

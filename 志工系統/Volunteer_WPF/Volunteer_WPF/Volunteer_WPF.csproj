@@ -80,10 +80,16 @@
     <Compile Include="Model\Activity_photo.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Activity_Schedule.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Activity_type.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Application_unit.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Apply_Assessment.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Apply_result.cs">
@@ -95,7 +101,13 @@
     <Compile Include="Model\event_category.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Expertise.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Expertise1.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Expertise2.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Human_assessment.cs">
@@ -120,6 +132,9 @@
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_group.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Service_Group1.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_period.cs">
@@ -280,6 +295,8 @@
     <Resource Include="image\Nok.jpg" />
     <Resource Include="image\ok.jpg" />
     <Resource Include="image\cancel.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model\Volunteer_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Volunteer_Entity.edmx</DependentUpon>

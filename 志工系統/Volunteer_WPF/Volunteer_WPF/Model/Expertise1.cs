@@ -17,16 +17,16 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Expertise1()
         {
-            this.Application_unit = new HashSet<Application_unit>();
-            this.Volunteers = new HashSet<Volunteer>();
+            this.Expertises = new HashSet<Expertise>();
+            this.Expertise2 = new HashSet<Expertise2>();
         }
     
         public int Expertise_no { get; set; }
         public string Expertise { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Application_unit> Application_unit { get; set; }
+        public virtual ICollection<Expertise> Expertises { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Volunteer> Volunteers { get; set; }
+        public virtual ICollection<Expertise2> Expertise2 { get; set; }
     }
 }
