@@ -5,57 +5,55 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Volunteer_detail" Height="588.069" Width="800">
+        Title="Volunteer_detail" Height="713.489" Width="800">
     <ScrollViewer Margin="0,0,0,-6">
-        <Grid Background="White" Height="563" Width="792">
+        <Grid Background="White" Height="684" Width="792">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label Content="志工編號" HorizontalAlignment="Left" Margin="56,30,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="中文姓名" HorizontalAlignment="Left" Margin="56,50,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="英文姓名" HorizontalAlignment="Left" Margin="56,70,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="性別" HorizontalAlignment="Left" Margin="56,90,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="生日" HorizontalAlignment="Left" Margin="56,110,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="身分證字號" HorizontalAlignment="Left" Margin="56,130,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="病歷號" HorizontalAlignment="Left" Margin="56,150,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="身分類別" HorizontalAlignment="Left" Margin="56,170,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="服務年資" HorizontalAlignment="Left" Margin="56,190,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="加入日期" HorizontalAlignment="Left" Margin="56,210,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="離開日期" HorizontalAlignment="Left" Margin="56,230,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="離開原因" HorizontalAlignment="Left" Margin="56,250,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="電話號碼" HorizontalAlignment="Left" Margin="56,270,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="手機號碼" HorizontalAlignment="Left" Margin="56,290,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="志工背心號碼" HorizontalAlignment="Left" Margin="56,310,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="郵遞區號" HorizontalAlignment="Left" Margin="56,330,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="地址" HorizontalAlignment="Left" Margin="56,350,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="學歷" HorizontalAlignment="Left" Margin="56,370,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="發證單位" HorizontalAlignment="Left" Margin="56,390,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="志工手冊編號" HorizontalAlignment="Left" Margin="56,410,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="人格量表結果" HorizontalAlignment="Left" Margin="56,430,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Content="個人照片" HorizontalAlignment="Left" Margin="56,450,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="中文姓名:" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Chinese_name_Label" Content="{Binding Chinese_name}" HorizontalAlignment="Left" Margin="119,9,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="英文姓名:" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="English_name_Label" Content="{Binding English_name}" HorizontalAlignment="Left" Margin="119,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="性別:" HorizontalAlignment="Left" Margin="11,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="-0.51,0.108"/>
+            <Label x:Name="Sex_Label" Content="{Binding Sex}" HorizontalAlignment="Left" Margin="118,71,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="生日:" HorizontalAlignment="Left" Margin="11,102,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Birthday_Label" Content="{Binding Birthday}" HorizontalAlignment="Left" Margin="119,102,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="身分證字號:" HorizontalAlignment="Left" Margin="11,135,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.129,0.553"/>
+            <Label x:Name="IDcrad_Label" Content="{Binding IDcrad}" HorizontalAlignment="Left" Margin="119,135,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="病歷號:" HorizontalAlignment="Left" Margin="11,166,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Medical_record_no_Label" Content="{Binding Medical_record_no}" HorizontalAlignment="Left" Margin="119,166,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="身分類別:" HorizontalAlignment="Left" Margin="11,198,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Identity_type_Label" Content="{Binding Identity_type}" HorizontalAlignment="Left" Margin="119,198,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="服務年資:" HorizontalAlignment="Left" Margin="11,231,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Seniority_Label" Content="{Binding Seniority}" HorizontalAlignment="Left" Margin="119,231,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="加入日期:" HorizontalAlignment="Left" Margin="11,263,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Join_date_Label" Content="{Binding Join_date}" HorizontalAlignment="Left" Margin="119,263,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="離開日期:" HorizontalAlignment="Left" Margin="280,263,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Leave_date_Label" Content="{Binding Leave_date}" HorizontalAlignment="Left" Margin="365,263,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="離開原因:" HorizontalAlignment="Left" Margin="11,295,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Leave_reason_Label" Content="{Binding Leave_reason}" HorizontalAlignment="Left" Margin="119,295,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="電話號碼:" HorizontalAlignment="Left" Margin="11,327,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Phone_no_Label" Content="{Binding Phone_no}" HorizontalAlignment="Left" Margin="119,327,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="手機號碼:" HorizontalAlignment="Left" Margin="11,358,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="-5.071,1.316"/>
+            <Label x:Name="Mobile_no_Label" Content="{Binding Mobile_no}" HorizontalAlignment="Left" Margin="119,327,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="志工背心號碼:" HorizontalAlignment="Left" Margin="11,389,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Vest_no_Label" Content="{Binding Vest_no}" HorizontalAlignment="Left" Margin="119,389,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="郵遞區號:" HorizontalAlignment="Left" Margin="11,420,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Postal_code_Label" Content="{Binding Postal_code}" HorizontalAlignment="Left" Margin="119,420,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="地址:" HorizontalAlignment="Left" Margin="11,450,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Address_Label" Content="{Binding Address}" HorizontalAlignment="Left" Margin="119,450,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="學歷:" HorizontalAlignment="Left" Margin="11,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Education_Label" Content="{Binding Education}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="發證單位:" HorizontalAlignment="Left" Margin="11,513,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Lssuing_unit_Label" Content="{Binding Lssuing_unit}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="志工手冊編號:" HorizontalAlignment="Left" Margin="11,548,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Service_manual_no_Label" Content="{Binding Service_manual_no}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="人格量表結果:" HorizontalAlignment="Left" Margin="11,583,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="個人照片:" HorizontalAlignment="Left" Margin="280,9,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="3.179,0.941"/>
+            <Image x:Name="Photo" HorizontalAlignment="Left" Height="157" Margin="290,40,0,0" VerticalAlignment="Top" Width="155"/>
 
-            <Label Name="志工編號" HorizontalAlignment="Left" Margin="165,32,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="中文姓名" HorizontalAlignment="Left" Margin="165,50,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="英文姓名" HorizontalAlignment="Left" Margin="165,70,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="性別" HorizontalAlignment="Left" Margin="165,90,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="生日" HorizontalAlignment="Left" Margin="165,110,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="身分證字號" HorizontalAlignment="Left" Margin="165,130,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="病歷號" HorizontalAlignment="Left" Margin="165,150,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="身分類別" HorizontalAlignment="Left" Margin="165,170,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="服務年資" HorizontalAlignment="Left" Margin="165,190,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="加入日期" HorizontalAlignment="Left" Margin="165,210,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="離開日期" HorizontalAlignment="Left" Margin="165,230,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="離開原因" HorizontalAlignment="Left" Margin="165,250,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="電話號碼" HorizontalAlignment="Left" Margin="165,270,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="手機號碼" HorizontalAlignment="Left" Margin="165,290,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="志工背心號碼" HorizontalAlignment="Left" Margin="165,310,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="郵遞區號" HorizontalAlignment="Left" Margin="165,330,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="地址" HorizontalAlignment="Left" Margin="165,350,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="學歷" HorizontalAlignment="Left" Margin="165,370,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="發證單位" HorizontalAlignment="Left" Margin="165,390,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="志工服務手冊編號" HorizontalAlignment="Left" Margin="165,410,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="人格量表結果" HorizontalAlignment="Left" Margin="165,430,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label Name="個人照片" HorizontalAlignment="Left" Margin="165,450,0,0" VerticalAlignment="Top" FontSize="16"/>
         </Grid>
     </ScrollViewer>
 </Window>

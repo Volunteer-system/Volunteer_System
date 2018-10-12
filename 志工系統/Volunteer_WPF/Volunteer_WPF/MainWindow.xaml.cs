@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TabControlWithClose;
 using Volunteer_WPF.View;
 using Volunteer_WPF.View_Model;
 
@@ -23,7 +24,7 @@ namespace Volunteer_WPF
     {
         public MainWindow()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)
@@ -40,16 +41,18 @@ namespace Volunteer_WPF
                 this.Close();
             }
         }
-                
-        List<string> CheckList = new List<string>();
+
+        List<string> CheckList = new List<string> { "0" };
+        
         bool Repeat = false;
 
         private void AddTabItem(string s)  //按Button時，新增一個同名的TabItem
         {
-            TabItem NewTab = new TabItem() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9 };
-
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9};
+            NewTab.CheckClose += NewTab_CheckClose;         
             for (int i = 0; i < CheckList.Count(); i++)  //判斷有沒有重複的TabItem
             {
+
                 if (NewTab.Name == CheckList[i])
                 {
                     Repeat = true;
@@ -58,6 +61,7 @@ namespace Volunteer_WPF
                 else
                 {
                     Repeat = false;
+                    
                 }
             }
 
@@ -66,14 +70,36 @@ namespace Volunteer_WPF
                 TabControl1.Items.Add(NewTab);
                 TabControl1.SelectedItem = NewTab;
             }
+                       
         }
 
-        private void AddTabItem(string s,object content)  //按Button時，新增一個同名的TabItem
+        private void NewTab_CheckClose(object sender, EventArgs e)
         {
-            TabItem NewTab = new TabItem() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9 };
+            UCTabItemWithClose SelectedTab = sender as UCTabItemWithClose;
 
+            //刪除List裡面重複的
+            for (int i = 0; i < CheckList.Count; i++)  //循環的次數
+            {
+                for (int j = CheckList.Count - 1; j > i; j--)  //比較的次數
+                {
+                    if (CheckList[i] == CheckList[j])
+                    {
+                        CheckList.RemoveAt(j);
+                    }
+                }
+            }
+
+            CheckList.Remove(SelectedTab.Name);
+                     
+        }
+
+        private void AddTabItem(string s, object content)  //按Button時，新增一個同名的TabItem
+        {
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9 };
+            NewTab.CheckClose += NewTab_CheckClose;
             for (int i = 0; i < CheckList.Count(); i++)  //判斷有沒有重複的TabItem
             {
+
                 if (NewTab.Name == CheckList[i])
                 {
                     Repeat = true;
@@ -82,6 +108,7 @@ namespace Volunteer_WPF
                 else
                 {
                     Repeat = false;
+
                 }
             }
 
@@ -202,7 +229,5 @@ namespace Volunteer_WPF
             AddTabItem(VolSuperItem.Header.ToString());
             CheckList.Add(VolSuperItem.Header.ToString());
         }
-
-        
     }
 }

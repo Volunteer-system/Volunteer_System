@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Volunteer_WPF
+namespace Volunteer_WPF.User_Control
 {
     /// <summary>
     /// MyUserControl.xaml 的互動邏輯

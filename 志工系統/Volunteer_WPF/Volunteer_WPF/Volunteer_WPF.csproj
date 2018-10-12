@@ -43,6 +43,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
@@ -184,11 +185,18 @@
     <Compile Include="Model\Volunteer_list.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Volunteer_Model.cs" />
     <Compile Include="Model\Volunteer_supervision.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\CloseableHeader.xaml.cs">
+      <DependentUpon>CloseableHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="User_Control\MyUserControl.xaml.cs">
       <DependentUpon>MyUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="User_Control\UCTabItemWithClose.xaml.cs">
+      <DependentUpon>UCTabItemWithClose.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -207,6 +215,7 @@
     </Compile>
     <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
+    <Compile Include="View_Model\Volunteer_ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -219,7 +228,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="User_Control\CloseableHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="User_Control\MyUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User_Control\UCTabItemWithClose.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

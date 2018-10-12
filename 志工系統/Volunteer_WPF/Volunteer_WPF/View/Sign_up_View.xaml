@@ -4,7 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
-        xmlns:Volunteer_WPF="clr-namespace:Volunteer_WPF" x:Class="Volunteer_WPF.View.Sign_up_View"
+        xmlns:Volunteer_WPF="clr-namespace:Volunteer_WPF"
+        xmlns:User_Control="clr-namespace:Volunteer_WPF.User_Control"
+        x:Class="Volunteer_WPF.View.Sign_up_View"
         mc:Ignorable="d"
         Title="Sign_up_View" Height="615" Width="1020">
     <Grid>
@@ -53,7 +55,7 @@
                                 </DataGridTemplateColumn.HeaderTemplate>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Volunteer_WPF:MyUserControl Width="90" Height="50" x:Name="Check_interview" MU_Click_OK="Check_interview_Click" MU_Click_Delete="Check_interview_MU_Click_Delete"/>
+                                        <User_Control:MyUserControl Width="90" Height="50" x:Name="Check_interview" MU_Click_OK="Check_interview_Click" MU_Click_Delete="Check_interview_MU_Click_Delete"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
