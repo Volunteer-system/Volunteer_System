@@ -1,0 +1,72 @@
+﻿<Window x:Class="Volunteer_WPF.View.Volunteer_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="536.802" Width="835.406">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition MinHeight="100" Height="150*"/>
+            <RowDefinition Height="320*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <GridSplitter Background="Black" Grid.Column="1" HorizontalAlignment="Stretch" Height="3"  VerticalAlignment="Top" Grid.Row="1"/>
+        <Grid Background="#FFA7E6DA" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btn1" FontSize="30" Grid.Row="0" Content="查詢" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Height="50" Margin="10" Click="Button_Click"/>
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <TextBlock Grid.Row="1" Text=" 姓名" FontSize="20" Margin="10,0,0,0"/>
+                <TextBox Name="textbox1" Height="30" Margin="5,0,5,10"/>
+            </StackPanel>
+            <StackPanel Grid.Column="0" Grid.Row="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch">
+                <Label Content="志工專長" FontSize="20" Margin="10,0,0,0"/>
+                <ComboBox Name="專長CB" Grid.Row="3" Height="35" Margin="3" />
+                <Label Content="志工組別" FontSize="20" Margin="10,0,0,0" />
+                <ComboBox Name="組別CB" Grid.Row="3"  Height="35" Margin="3"  />
+            </StackPanel>
+            <Expander Grid.Row="3" Header="服務年資" Margin="0,2,0,-2" Grid.RowSpan="1" FontSize="15"  >
+
+                <StackPanel>
+                    <CheckBox Content="0~1年"/>
+                    <CheckBox Content="1年~3年"/>
+                    <CheckBox Content="3年~5年"/>
+                    <CheckBox Content="5年~10年"/>
+                    <CheckBox Content="10年以上"/>
+                </StackPanel>
+            </Expander>
+
+
+        </Grid>
+        <DataGrid  MouseDown="grid4detail_MouseDown" SelectedCellsChanged="datagrid1_SelectedCellsChanged" FontSize="20" Name="datagrid1"  Grid.Column="1" >
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.HeaderTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="             " Background="Transparent"></TextBlock>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.HeaderTemplate>
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="修改" Width="50" Click="Button_Click_1"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Name="grid4detail" Grid.Column="1" Grid.Row="1"/>
+
+
+    </Grid>
+</Window>

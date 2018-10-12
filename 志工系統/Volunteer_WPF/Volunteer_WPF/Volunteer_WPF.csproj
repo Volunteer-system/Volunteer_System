@@ -199,8 +199,11 @@
     <Compile Include="View\Sign_up_View.xaml.cs">
       <DependentUpon>Sign_up_View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Volunteer_Inquire_View.xaml.cs">
-      <DependentUpon>Volunteer_Inquire_View.xaml</DependentUpon>
+    <Compile Include="View\Volunteer_detail.xaml.cs">
+      <DependentUpon>Volunteer_detail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Volunteer_View.xaml.cs">
+      <DependentUpon>Volunteer_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
@@ -232,7 +235,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\Volunteer_Inquire_View.xaml">
+    <Page Include="View\Volunteer_detail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Volunteer_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

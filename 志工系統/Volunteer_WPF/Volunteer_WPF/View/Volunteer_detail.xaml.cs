@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 namespace Volunteer_WPF.View
 {
     /// <summary>
-    /// Volunteer_View.xaml 的互動邏輯
+    /// Volunteer_detail.xaml 的互動邏輯
     /// </summary>
-    public partial class Volunteer_View : Window
+    public partial class Volunteer_detail : Window
     {
-        public Volunteer_View()
+        public Volunteer_detail()
         {
             InitializeComponent();
+            
         }
     }
 }

@@ -171,7 +171,11 @@ namespace Volunteer_WPF
 
         private void VolDataItem_Click(object sender, RoutedEventArgs e)  //志工基本資料維護按鈕
         {
-            AddTabItem(VolDataItem.Header.ToString());
+            Volunteer_View volunteer_View = new Volunteer_View();
+            object content = volunteer_View.Content;
+            volunteer_View.Content = null;
+
+            AddTabItem(VolDataItem.Header.ToString(), content);
             CheckList.Add(VolDataItem.Header.ToString());
         }
 

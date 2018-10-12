@@ -59,6 +59,6 @@ namespace Volunteer_WPF.Model
         public virtual DbSet<Service_period2> Service_period2 { get; set; }
         public virtual DbSet<Sign_up> Sign_up { get; set; }
         public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
-        public virtual DbSet<Volunteer> Volunteers { get; set; }
+        public virtual DbSet<Volunteer> Volunteer { get; set; }
     }
 }
