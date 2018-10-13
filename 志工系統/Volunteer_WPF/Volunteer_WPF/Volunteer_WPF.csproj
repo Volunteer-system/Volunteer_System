@@ -213,6 +213,9 @@
     <Compile Include="View\Volunteer_View.xaml.cs">
       <DependentUpon>Volunteer_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Volunteer_data_View.xaml.cs">
+      <DependentUpon>Volunteer_data_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
     <Compile Include="View_Model\Volunteer_ViewModel.cs" />
@@ -259,6 +262,10 @@
     <Page Include="View\Volunteer_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Volunteer_data_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>

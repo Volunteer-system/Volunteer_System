@@ -76,6 +76,9 @@ namespace Volunteer_WPF.View
         {
             //跳頁面
             MessageBox.Show("驚不驚喜，意不意外");
+
+            Window window = new Volunteer_data_View();
+            window.ShowDialog();
         }
 
         private void grid4detail_MouseDown(object sender, MouseButtonEventArgs e)
