@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,15 @@ namespace Volunteer_WPF.View
     {
         public Volunteer_detail()
         {
+
+        }
+
+        public Volunteer_detail(int Volunteer_no)
+        {
             InitializeComponent();
 
             Volunteer_ViewModel volunteer_ViewModel = new Volunteer_ViewModel();
-            volunteer_ViewModel.SelectVolunteer_byVolunteerno(1);
+            volunteer_ViewModel.SelectVolunteer_byVolunteerno(Volunteer_no);
 
             this.Chinese_name_Label.Content = volunteer_ViewModel.Chinese_name;
             this.English_name_Label.Content = volunteer_ViewModel.English_name;
@@ -48,6 +54,25 @@ namespace Volunteer_WPF.View
             this.Service_manual_no_Label.Content = volunteer_ViewModel.Service_manual_no;
             this.Personality_scale_Label.Content = volunteer_ViewModel.Personality_scale;            
             this.Photo.Source = volunteer_ViewModel.Photo;
+            this.Leader_list_Label.Content = volunteer_ViewModel.Leader_list;
+            this.Experise_list_Label.Content = volunteer_ViewModel.Experise_list;
+
+            ObservableCollection<Activity_list> activity_list = new ObservableCollection<Activity_list>();
+            Activity_ViewModel activity_ViewModel = new Activity_ViewModel();
+            List< Activity_ViewModel> activity_ViewModel_list = activity_ViewModel.SelectVolunteer_ActivitybyVolunteerno(Volunteer_no);
+            foreach (var row in activity_ViewModel_list)
+            {
+                activity_list.Add(new Activity_list() { 活動編號 = row.Activity_no, 活動名稱 = row.Activity_name, 活動承辦人 = row.Undertaker});
+            }
+
+            Activity_datagrid.ItemsSource = activity_list;
+        }
+
+        public class Activity_list
+        {
+            public string 活動編號 { get; set; }
+            public string 活動名稱 { get; set; }
+            public string 活動承辦人 { get; set; }
         }
     }
 }

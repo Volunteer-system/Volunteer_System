@@ -37,10 +37,10 @@ namespace Volunteer_WPF.View
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             
-            System.Windows.Data.CollectionViewSource volunteerViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("volunteerViewSource")));
+            //System.Windows.Data.CollectionViewSource volunteerViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("volunteerViewSource")));
             
             dbContext.Volunteer.ToList();
-            volunteerViewSource.Source = dbContext.Volunteer.Local;
+            //volunteerViewSource.Source = dbContext.Volunteer.Local;
             // 透過設定 CollectionViewSource.Source 屬性載入資料: 
             // volunteerViewSource.Source = [泛用資料來源]
 

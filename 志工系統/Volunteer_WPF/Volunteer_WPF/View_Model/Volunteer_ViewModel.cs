@@ -110,8 +110,8 @@ namespace Volunteer_WPF.View_Model
         }
         public string Lssuing_unit
         {
-            get { return volunteer_Model.Education; }
-            set { volunteer_Model.Education = value; }
+            get { return volunteer_Model.Lssuing_unit; }
+            set { volunteer_Model.Lssuing_unit = value; }
         }
         public string Service_manual_no
         {
@@ -143,6 +143,10 @@ namespace Volunteer_WPF.View_Model
             get { return volunteer_Model.Experise; }
             set { volunteer_Model.Experise = value; }
         }
+        //過往幹部經歷
+        public string Leader_list { get; set; }
+        //專長清單
+        public string Experise_list { get; set; }
 
         public List<Volunteer_ViewModel> Search_Volunteer(string Name1, string Group1, string Expertise1)
         {
@@ -207,8 +211,27 @@ namespace Volunteer_WPF.View_Model
             Service_manual_no = volunteer_Model.Service_manual_no;
             Personality_scale = volunteer_Model.Personality_scale;
             Photo = volunteer_Model.Photo;
-        }
 
-        
+            List<string> list_Position = volunteer_Model.SelectVolunteer_LeaderbyVolunteerno(Volunteer_no);
+            Leader_list = null;
+            if (list_Position.Count > 0)
+            {
+                foreach (var row in list_Position)
+                {
+                    Leader_list += row + "->";
+                }
+            }
+            
+            List<string> list_Expertise = volunteer_Model.SelectVolunteer_ExpertisebyVolunteerno(Volunteer_no);
+            Experise_list = null;
+            if (list_Expertise.Count > 0)
+            {
+                foreach (var row in list_Expertise)
+                {
+                    Experise_list += row + ", ";
+                }
+            }           
+
+        }        
     }
 }

@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.Collections;
 using System.Net.Mail;
 using Volunteer_WPF.Model;
+using System.Threading;
 
 namespace Volunteer_WPF.View
 {
@@ -34,14 +35,19 @@ namespace Volunteer_WPF.View
         bool first;                                    //判斷是否點選初次審核
         bool interview;                                //判斷是否點選面試審核
         bool pass_applicant;                           //判斷是否點選查詢通過審核者
+        bool Issend_pass = true;                       //判斷信件類形是審核通過的
+        bool Issend_delete = false;                    //判斷信件類型是刪除的
+             
+        Thread send_mail;                                        //發mail用的背景執行緒
+        int stage_first = 0;                           //審核階段的代表值變數
+        int stage_interview = 1;
+        int stage_pass_applicant = 2;
+        int stage_NotUse = 9;                          //非審核階段的代表值
 
-        SmtpClient SC = new SmtpClient("smtp.gmail.com", 587);   //設定伺服器主機
-        
-
-         ObservableCollection<Volunteer_Applicant> volunteer = new ObservableCollection<Volunteer_Applicant>();  //存資料庫資料類別用
+        ObservableCollection<Volunteer_Applicant> volunteer = new ObservableCollection<Volunteer_Applicant>();  //存資料庫資料類別用
 
         VolunteerEntities Myentity = new VolunteerEntities();       //學校用
-        //global::Volunteer_WPF.VolunteerEntities1 Myentity = new VolunteerEntities1();  //家用
+
         //審核初次申請的人▼
         private void btn_firstcheck_Click(object sender, RoutedEventArgs e)
         {//審核初次申請的人
@@ -49,7 +55,7 @@ namespace Volunteer_WPF.View
             interview = false;
             pass_applicant = false;
 
-            this.DataGrid_1.ItemsSource = get_volunteer(0); //呼叫要顯示的資料(0:申請狀態為0的，初申請狀態)       
+            this.DataGrid_1.ItemsSource = get_volunteer(stage_first); //呼叫要顯示的資料(0:申請狀態為0的，初申請狀態)       
         }
         //審核面試階段的人▼
         private void btn_interview_Click(object sender, RoutedEventArgs e)
@@ -57,7 +63,7 @@ namespace Volunteer_WPF.View
             first = false;                                  //判斷點選的是哪個功能
             interview = true;
             pass_applicant = false;
-            this.DataGrid_1.ItemsSource = get_volunteer(1); //呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)      
+            this.DataGrid_1.ItemsSource = get_volunteer(stage_interview); //呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)      
             
         }
         //查看所有通過審核的人▼
@@ -67,7 +73,7 @@ namespace Volunteer_WPF.View
             interview = false;
             pass_applicant = true;
 
-            this.DataGrid_1.ItemsSource = get_volunteer(2);              //呼叫要顯示的資料(2:申請狀態為2的，通過審核狀態) 
+            this.DataGrid_1.ItemsSource = get_volunteer(stage_pass_applicant);              //呼叫要顯示的資料(2:申請狀態為2的，通過審核狀態) 
 
             this.DataGrid_1.Columns[0].Visibility = Visibility.Visible;  //顯示原本隱藏的刪除欄位
             this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;   //隱藏審核設定的欄位
@@ -77,19 +83,19 @@ namespace Volunteer_WPF.View
         {//按下查詢時
             if (first)                                          //判斷現在頁面做的查詢是哪種
             {
-                this.DataGrid_1.ItemsSource = get_volunteer(0); //呼叫要顯示的資料(0:申請狀態為0的，初申請狀態)
+                this.DataGrid_1.ItemsSource = get_volunteer(stage_first); //呼叫要顯示的資料(0:申請狀態為0的，初申請狀態)
             }
             else if (interview)
             {
-                this.DataGrid_1.ItemsSource = get_volunteer(1);//呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)
+                this.DataGrid_1.ItemsSource = get_volunteer(stage_interview);//呼叫要顯示的資料(1:申請狀態為1的，要求面試狀態)
             }
             else if (pass_applicant)
             {
-                this.DataGrid_1.ItemsSource = get_volunteer(2);//呼叫要顯示的資料(2:申請狀態為2的，通過審核狀態)
+                this.DataGrid_1.ItemsSource = get_volunteer(stage_pass_applicant);//呼叫要顯示的資料(2:申請狀態為2的，通過審核狀態)
             }
             else                                               //非以設定的查詢
             {
-                this.DataGrid_1.ItemsSource = get_volunteer(9);//呼叫要顯示的資料(9:非任何狀態使用)
+                this.DataGrid_1.ItemsSource = get_volunteer(stage_NotUse);//呼叫要顯示的資料(9:非任何狀態使用)
             }
         }
         //存取資料的類別▼
@@ -211,21 +217,13 @@ namespace Volunteer_WPF.View
         //按下確認▼
         private void btn_check_Click(object sender, RoutedEventArgs e)
         {
-            SC.Credentials = new System.Net.NetworkCredential("yhkcjo@gmail.com", "y hk4cjo4");  //設定帳密
-            SC.EnableSsl = true;                 //Google要使用加密連線
-            MailMessage MM = new MailMessage();  //寫信的內容用
-            MM.Subject = "志工審核面試通知";     //信件主旨
-            MM.Body = "面試";                    //信件內容
-            MM.IsBodyHtml = false;               //內容是否使用Html
-            MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");//寄件地址，顯示名稱
-
             if (l_click_ok.Count != 0 || l_click_delete.Count != 0)  //如果勾勾或XX集合內有值的話進入
             {
                 if (first)                                           //如果是在初次審核的頁面
                 {
                     if (l_click_ok.Count != 0)                       //如果勾勾集合內有值的話進入
                     {                                                //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?", "初次審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "初次審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                         {
                             var q = (from v in Myentity.Sign_up
                                      select v).ToList();
@@ -237,24 +235,15 @@ namespace Volunteer_WPF.View
                                     {
                                         q[j].Stage = 1;                    //將狀態改成1，代表為要求面試
                                         q[j].Approval_date = DateTime.Now; //新增審核日期為今天
-                                        int n = q[j].Email == null ? 1 : 0;//判斷郵件地址是否為null
-                                        if ( n != 1) 
-                                        {
-                                            if (q[j].Email.Contains("@"))
+                                        ThreadStart TS = new ThreadStart(
+                                            delegate ()
                                             {
-                                                MM.To.Add(q[j].Email);             //設定收件地址
-                                                SC.Send(MM);                       //寄出信件
-                                                MessageBox.Show("OK");
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show("NO");
-                                            }
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show("NO");
-                                        }
+                                                sending_email(q[j].Email, q[j].Sign_up_no, Issend_pass);//寄送郵件
+                                                System.Windows.Forms.Application.DoEvents();
+                                            });
+                                        send_mail = new Thread(TS);
+                                        send_mail.IsBackground = true;
+                                        send_mail.Start();
                                         break;                             //判斷完一筆後離開
                                     }
                                 }
@@ -263,7 +252,7 @@ namespace Volunteer_WPF.View
                     }
                     if (l_click_delete.Count != 0)                         //如果XX集合內有值的話進入
                     {                                                      //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認刪除" + l_click_delete.Count + "筆審核?", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                        if (System.Windows.Forms.MessageBox.Show("確認刪除" + l_click_delete.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                         {
                             var q = (from v in Myentity.Sign_up
                                      select v).ToList();
@@ -272,8 +261,18 @@ namespace Volunteer_WPF.View
                                 for (int j = 0; j < q.Count; j += 1)
                                 {
                                     if (l_click_delete[i] == q[j].Sign_up_no)   //判斷集合內的值跟資料庫內的值是否相同
-                                    {          
-                                        this.Myentity.Sign_up.Remove(q[j]);  //執行刪除的動作
+                                    {
+                                        this.Myentity.Sign_up.Remove(q[j]);  //執行刪除的動作                              
+                                        ThreadStart TS = new ThreadStart(
+                                            delegate ()
+                                            {
+                                                sending_email(q[j].Email, q[j].Sign_up_no, Issend_delete);//寄送郵件
+                                                System.Windows.Forms.Application.DoEvents();
+                                            });
+                                        send_mail = new Thread(TS);
+                                        send_mail.IsBackground = true;
+                                        send_mail.Start();
+                                        break;
                                     }
                                 }
                             }
@@ -281,13 +280,13 @@ namespace Volunteer_WPF.View
                     }
                     this.Myentity.SaveChanges();                               //將修改存回資料庫
                     this.DataGrid_1.ItemsSource = null;                        //更新該頁面
-                    this.DataGrid_1.ItemsSource = get_volunteer(0);            //重新呼叫資料
-                } 
+                    this.DataGrid_1.ItemsSource = get_volunteer(stage_first);            //重新呼叫資料
+                }
                 else if (interview)                                            //如果是在面試審核的頁面
                 {
                     if (l_click_ok.Count != 0)                                 //如果勾勾集合內有值的話進入
                     {                                                          //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?", "面試審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "面試審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                         {
                             var q = (from v in Myentity.Sign_up
                                      select v).ToList();
@@ -295,19 +294,29 @@ namespace Volunteer_WPF.View
                             {
                                 for (int j = 0; j < q.Count; j += 1)
                                 {
-                                    if (l_click_ok[i] == q[j].Sign_up_no) 
+                                    if (l_click_ok[i] == q[j].Sign_up_no)
                                     {
                                         q[j].Stage = 2;                        //將狀態改成2，代表為審核通過 
                                         q[j].Approval_date = DateTime.Now;     //新增審核日期為今天
-                                        break;                                 //判斷完一筆後離開
+                                        ThreadStart TS = new ThreadStart(
+                                            delegate ()
+                                            {
+                                                sending_email(q[j].Email, q[j].Sign_up_no, Issend_pass);//寄送郵件
+                                                System.Windows.Forms.Application.DoEvents();
+                                            });
+                                        send_mail = new Thread(TS);
+                                        send_mail.IsBackground = true;
+                                        send_mail.Start();                                        
+                                        break;
                                     }
                                 }
                             }
+
                         }
                     }
                     if (l_click_delete.Count != 0)                             //如果XX集合內有值的話進入
                     {                                                          //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認刪除" + l_click_delete.Count + "筆審核?", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                        if (System.Windows.Forms.MessageBox.Show("確認刪除" + l_click_delete.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                         {
                             var q = (from v in Myentity.Sign_up
                                      select v).ToList();
@@ -316,8 +325,18 @@ namespace Volunteer_WPF.View
                                 for (int j = 0; j < q.Count; j += 1)
                                 {
                                     if (l_click_delete[i] == q[j].Sign_up_no)
-                                    {                               
+                                    {
                                         this.Myentity.Sign_up.Remove(q[j]); //執行刪除的動作
+                                        ThreadStart TS = new ThreadStart(
+                                            delegate ()
+                                            {
+                                                sending_email(q[j].Email, q[j].Sign_up_no, Issend_delete);//寄送郵件
+                                                System.Windows.Forms.Application.DoEvents();
+                                            });
+                                        send_mail = new Thread(TS);
+                                        send_mail.IsBackground = true;
+                                        send_mail.Start();                                        
+                                        break;
                                     }
                                 }
                             }
@@ -325,13 +344,15 @@ namespace Volunteer_WPF.View
                     }
                     this.Myentity.SaveChanges();                              //將修改存回資料庫
                     this.DataGrid_1.ItemsSource = null;                       //更新該頁面
-                    this.DataGrid_1.ItemsSource = get_volunteer(1);           //重新呼叫資料
+                    this.DataGrid_1.ItemsSource = get_volunteer(stage_interview); //重新呼叫資料
+
                 }
             }
             else
-            {   if (((Button)e.Source).Content.ToString() != "確認")          //如果是審核通過頁面按下刪除鍵
+            {
+                if (((Button)e.Source).Content.ToString() == "刪除")          //如果是審核通過頁面按下刪除鍵
                 {                                                             //秀出一個確認視窗
-                    if (System.Windows.Forms.MessageBox.Show("確認刪除這筆資料?", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                    if (System.Windows.Forms.MessageBox.Show("確認刪除這筆資料?\n如果電子郵件欄位為空，就不會發送信件", "刪除確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
                     {
                         Volunteer_Applicant VA = this.DataGrid_1.SelectedItem as Volunteer_Applicant;
                         var q = (from v in Myentity.Sign_up
@@ -340,7 +361,16 @@ namespace Volunteer_WPF.View
                         {
                             if (VA.申請編號 == q[i].Sign_up_no)
                             {                                                //TODO刪除功能
-                                this.Myentity.Sign_up.Remove(q[i]);        //執行刪除的動作                       
+                                this.Myentity.Sign_up.Remove(q[i]);        //執行刪除的動作
+                                ThreadStart TS = new ThreadStart(
+                                            delegate ()
+                                            {
+                                                sending_email(q[i].Email, q[i].Sign_up_no, Issend_delete);//寄送郵件
+                                                System.Windows.Forms.Application.DoEvents();
+                                            });
+                                send_mail = new Thread(TS);
+                                send_mail.IsBackground = true;
+                                send_mail.Start();                            
                                 break;
                             }
                         }
@@ -348,19 +378,21 @@ namespace Volunteer_WPF.View
                 }
                 this.Myentity.SaveChanges();                                 //將修改存回資料庫
                 this.DataGrid_1.ItemsSource = null;                          //更新該頁面
-                this.DataGrid_1.ItemsSource = get_volunteer(2);              //重新呼叫資料
+                this.DataGrid_1.ItemsSource = get_volunteer(stage_pass_applicant); //重新呼叫資料
             }
+            
         }
+      
         //呼叫顯示資料的方法▼
         private IEnumerable get_volunteer(int n)
         {                                                                    //呼叫顯示資料的方法
             volunteer.Clear();                                               //清空資料集
             this.l_click_ok.Clear();                                         //清空這項功能以外的選擇項目
             this.l_click_delete.Clear();                                     //清空這項功能以外的選擇項目
-            if (n == 2)
+            if (n == stage_pass_applicant)
             {
-                this.DataGrid_1.Columns[0].Visibility = Visibility.Visible;       //將刪除欄隱藏
-                this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;      //顯示審核設定欄
+                this.DataGrid_1.Columns[0].Visibility = Visibility.Visible;     //將刪除欄顯示
+                this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;      //隱藏審核設定欄
             }
             else
             {
@@ -368,7 +400,7 @@ namespace Volunteer_WPF.View
                 this.DataGrid_1.Columns[1].Visibility = Visibility.Visible;      //顯示審核設定欄
             }
             List<Sign_up> q = new List<Sign_up>();                           //資料庫的集合存下面查詢結果用
-            if ((D_Start_date.Text != "" || D_End_date.Text != "") || n!=9)  //判斷點查詢鈕時的查詢條件
+            if ((D_Start_date.Text != "" || D_End_date.Text != "") || n!=stage_NotUse)  //判斷點查詢鈕時的查詢條件
             {  
                 q = (from v in Myentity.Sign_up
                         where v.Stage == n && (D_Start_date.Text == "" ? true : v.Sign_up_date >= D_Start_date.SelectedDate) &&( D_End_date.Text == "" ? true : v.Sign_up_date <= D_End_date.SelectedDate)
@@ -388,7 +420,67 @@ namespace Volunteer_WPF.View
             }
             return volunteer;
         }
-
+        //寄送電子郵件的方法1▼
+        private void sending_email(string email,int no, bool whattype)
+        {
+            int n = email == null ? 1 : 0;  //判斷郵件地址是否為null
+            if (n != 1)
+            {
+                if (email.Contains("@"))
+                {
+                    sending(email,no,whattype);
+                }
+                else
+                {
+                    System.Windows.Forms.MessageBox.Show("申請編號:" + no + "郵件發送失敗\n可能原因為無效地址!!", "發送失敗提醒!!", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+                }
+            }
+        }
+        //寄送電子郵件的方法2▼
+        private void sending(string email,int no,bool whattype)
+        {
+            SmtpClient SC = new SmtpClient("smtp.gmail.com", 587);   //設定伺服器主機
+            SC.Credentials = new System.Net.NetworkCredential("yhkcjo@gmail.com", "y hk4cjo4");  //設定帳密
+            SC.EnableSsl = true;                                                                 //Google要使用加密連線   
+            MailMessage MM = new MailMessage();                      //寫信的內容用
+            if (whattype)
+            {
+                if (first)//初次審核階段
+                {
+                    MM.Subject ="申請編號: "+no+" 志工審核面試通知";             //信件主旨
+                    MM.Body = "面試";                                            //信件內容
+                    MM.IsBodyHtml = false;                                       //內容是否使用Html
+                    MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");   //寄件地址，顯示名稱
+                    MM.To.Add(email);                                            //設定收件地址
+                }
+                else if (interview)//面試階段
+                {
+                    MM.Subject = "申請編號: " + no + "志工審核通過通知";         //信件主旨
+                    MM.Body = "審核通過";                                        //信件內容
+                    MM.IsBodyHtml = false;                                       //內容是否使用Html
+                    MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");   //寄件地址，顯示名稱
+                    MM.To.Add(email);                                            //設定收件地址
+                }
+                else
+                {
+                    MM.Subject = "申請編號: "+ no + "志工審核通過通知";          //信件主旨
+                    MM.Body = "審核通過";                                        //信件內容
+                    MM.IsBodyHtml = false;                                       //內容是否使用Html
+                    MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");   //寄件地址，顯示名稱
+                    MM.To.Add(email);
+                }
+            }
+            else
+            {
+                MM.Subject = "申請編號: " + no + "志工資料刪除通知";              //信件主旨
+                MM.Body = "志工資料刪除";                                         //信件內容
+                MM.IsBodyHtml = false;                                            //內容是否使用Html
+                MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");        //寄件地址，顯示名稱
+                MM.To.Add(email);                                                 //設定收件地址
+            }
+                SC.Send(MM);                                           //寄出信件                       
+        }
+        //顯示下方詳細資訊的方法▼
         public void getsignup_Data(int signup_no)
         {
             Signup_data_View signup_Data_View = new Signup_data_View(signup_no);

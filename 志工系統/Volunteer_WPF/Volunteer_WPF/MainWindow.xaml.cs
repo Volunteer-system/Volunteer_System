@@ -48,7 +48,7 @@ namespace Volunteer_WPF
 
         private void AddTabItem(string s)  //按Button時，新增一個同名的TabItem
         {
-            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9};
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 12};
             NewTab.CheckClose += NewTab_CheckClose;         
             for (int i = 0; i < CheckList.Count(); i++)  //判斷有沒有重複的TabItem
             {
@@ -93,9 +93,21 @@ namespace Volunteer_WPF
                      
         }
 
+        private void Selected(string s)  //Tabitem已經產生後再次點擊自動跳轉之方法
+        {
+            foreach (TabItem item in TabControl1.Items)
+            {
+                if (item.Header.ToString() == s)
+                {
+                    TabControl1.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
         private void AddTabItem(string s, object content)  //按Button時，新增一個同名的TabItem
         {
-            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Width = 84.4, Height = 30, FontSize = 9 };
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Height = 30, FontSize = 12 };
             NewTab.CheckClose += NewTab_CheckClose;
             for (int i = 0; i < CheckList.Count(); i++)  //判斷有沒有重複的TabItem
             {
@@ -129,30 +141,35 @@ namespace Volunteer_WPF
 
             AddTabItem(NewVolunteerLabel.Content.ToString(), content);
             CheckList.Add(NewVolunteerLabel.Content.ToString());
+            Selected(NewVolunteerLabel.Content.ToString());
         }
 
         private void ActivityButton_Click(object sender, RoutedEventArgs e)  //活動維護按鈕
         {
             AddTabItem(ActivityLabel.Content.ToString());
             CheckList.Add(ActivityLabel.Content.ToString());
+            Selected(ActivityLabel.Content.ToString());
         }
 
         private void EventButton_Click(object sender, RoutedEventArgs e)  //異常通報事件按鈕
         {
             AddTabItem(EventLabel.Content.ToString());
             CheckList.Add(EventLabel.Content.ToString());
+            Selected(EventLabel.Content.ToString());
         }
 
         private void ManpowerButton_Click(object sender, RoutedEventArgs e)  //人力資源申請按鈕
         {
             AddTabItem(ManpowerLabel.Content.ToString());
             CheckList.Add(ManpowerLabel.Content.ToString());
+            Selected(ManpowerLabel.Content.ToString());
         }
 
         private void AssessmentButton_Click(object sender, RoutedEventArgs e)  //考核按鈕
         {
             AddTabItem(AssessmentLabel.Content.ToString());
             CheckList.Add(AssessmentLabel.Content.ToString());
+            Selected(AssessmentLabel.Content.ToString());
         }
 
         private void ReportButton_Click(object sender, RoutedEventArgs e)  //報表按鈕細項展開功能
@@ -194,6 +211,7 @@ namespace Volunteer_WPF
         {
             AddTabItem(ClassItem.Header.ToString());
             CheckList.Add(ClassItem.Header.ToString());
+            Selected(ClassItem.Header.ToString());
         }
 
         private void VolDataItem_Click(object sender, RoutedEventArgs e)  //志工基本資料維護按鈕
@@ -204,30 +222,35 @@ namespace Volunteer_WPF
 
             AddTabItem(VolDataItem.Header.ToString(), content);
             CheckList.Add(VolDataItem.Header.ToString());
+            Selected(VolDataItem.Header.ToString());
         }
 
         private void AplDataItem_Click(object sender, RoutedEventArgs e)  //運用單位基本資料維護按鈕
         {
             AddTabItem(AplDataItem.Header.ToString());
             CheckList.Add(AplDataItem.Header.ToString());
+            Selected(AplDataItem.Header.ToString());
         }
 
         private void VolPowerItem_Click(object sender, RoutedEventArgs e)  //志工人力評估項目設定按鈕
         {
             AddTabItem(VolPowerItem.Header.ToString());
             CheckList.Add(VolPowerItem.Header.ToString());
+            Selected(VolPowerItem.Header.ToString());
         }
 
         private void BasicItem_Click(object sender, RoutedEventArgs e)  //基本設定檔維護按鈕
         {
             AddTabItem(BasicItem.Header.ToString());
             CheckList.Add(BasicItem.Header.ToString());
+            Selected(BasicItem.Header.ToString());
         }
 
         private void VolSuperItem_Click(object sender, RoutedEventArgs e)  //志工督導維護按鈕
         {
             AddTabItem(VolSuperItem.Header.ToString());
             CheckList.Add(VolSuperItem.Header.ToString());
+            Selected(VolSuperItem.Header.ToString());
         }
     }
 }

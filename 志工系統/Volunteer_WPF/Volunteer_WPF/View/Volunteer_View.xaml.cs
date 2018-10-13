@@ -65,12 +65,7 @@ namespace Volunteer_WPF.View
 
         }
 
-        private void datagrid1_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-
-
-           
-        }
+        
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -83,12 +78,12 @@ namespace Volunteer_WPF.View
 
         private void grid4detail_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Volunteer_detail v = new Volunteer_detail();
+            Volunteer_detail v = new Volunteer_detail(9);
             grid4detail.Children.Clear();
             object content = v.Content;
             v.Content = null;
             grid4detail.Children.Add(content as UIElement);
         }
-
+        
     }
 }

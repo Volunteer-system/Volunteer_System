@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Volunteer_detail" Height="713.489" Width="800">
+        Title="Volunteer_detail" Height="876.689" Width="800">
     <ScrollViewer Margin="0,0,0,-6">
-        <Grid Background="White" Height="684" Width="792">
+        <Grid Background="White" Margin="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -44,15 +44,23 @@
             <Label Content="地址:" HorizontalAlignment="Left" Margin="11,450,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label x:Name="Address_Label" Content="{Binding Address}" HorizontalAlignment="Left" Margin="119,450,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="學歷:" HorizontalAlignment="Left" Margin="11,482,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="Education_Label" Content="{Binding Education}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Education_Label" Content="{Binding Education}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>            
             <Label Content="發證單位:" HorizontalAlignment="Left" Margin="11,513,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="Lssuing_unit_Label" Content="{Binding Lssuing_unit}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Lssuing_unit_Label" Content="{Binding Lssuing_unit}" HorizontalAlignment="Left" Margin="119,513,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="志工手冊編號:" HorizontalAlignment="Left" Margin="11,548,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="Service_manual_no_Label" Content="{Binding Service_manual_no}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Service_manual_no_Label" Content="{Binding Service_manual_no}" HorizontalAlignment="Left" Margin="119,548,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="人格量表結果:" HorizontalAlignment="Left" Margin="11,583,0,0" VerticalAlignment="Top" FontSize="16"/>
-            <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="119,482,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="119,583,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="個人照片:" HorizontalAlignment="Left" Margin="280,9,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="3.179,0.941"/>
             <Image x:Name="Photo" HorizontalAlignment="Left" Height="157" Margin="290,40,0,0" VerticalAlignment="Top" Width="155"/>
+            <Label Content="幹部經歷:" HorizontalAlignment="Left" Margin="11,616,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Leader_list_Label" Content="{Binding Leader_list}" HorizontalAlignment="Left" Margin="119,616,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="專長:" HorizontalAlignment="Left" Margin="11,648,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label x:Name="Experise_list_Label" Content="{Binding Experise_list}" HorizontalAlignment="Left" Margin="119,648,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <Label Content="參與過的活動:" HorizontalAlignment="Left" Margin="11,683,0,0" VerticalAlignment="Top" FontSize="16"/>
+            <DataGrid x:Name="Activity_datagrid" HorizontalAlignment="Left" Height="125" Margin="11,718,0,0" VerticalAlignment="Top" Width="459" FontSize="14">   
+                
+            </DataGrid>
 
         </Grid>
     </ScrollViewer>

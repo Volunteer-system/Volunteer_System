@@ -52,7 +52,7 @@ namespace Volunteer_WPF.Model
                     on n1.Stage equals n2.Stage_ID
                     join n3 in dbContext.Volunteer_supervision
                     on n1.supervision_ID equals n3.supervision_ID                    
-                    where n1.Sign_up_no == Signup_no &&  n2.Stage_type == "申請階段"
+                    where n1.Sign_up_no == Signup_no 
                     select new
                     {
                         Chinese_name = n1.Chinese_name.ToString(),

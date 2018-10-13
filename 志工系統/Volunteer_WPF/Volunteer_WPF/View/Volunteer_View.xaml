@@ -48,7 +48,7 @@
 
 
         </Grid>
-        <DataGrid  MouseDown="grid4detail_MouseDown" SelectedCellsChanged="datagrid1_SelectedCellsChanged" FontSize="20" Name="datagrid1"  Grid.Column="1" >
+        <DataGrid  MouseDown="grid4detail_MouseDown" FontSize="20" Name="datagrid1"  Grid.Column="1"  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.HeaderTemplate>

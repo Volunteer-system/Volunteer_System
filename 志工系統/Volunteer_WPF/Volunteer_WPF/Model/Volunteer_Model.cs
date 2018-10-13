@@ -209,18 +209,61 @@ namespace Volunteer_WPF.Model
                 Personality_scale = row.Personality_scale;
 
                 BitmapImage image = new BitmapImage();
-                System.IO.MemoryStream ms = new System.IO.MemoryStream(row.Photo);
-                image.BeginInit();
-                image.StreamSource = ms;
-                image.CacheOption = BitmapCacheOption.OnLoad;
-                image.EndInit();
-                Photo = image;
+                if (row.Photo != null && row.Photo.Length > 0)
+                {
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream(row.Photo);
+                    image.BeginInit();
+                    image.StreamSource = ms;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+                    Photo = image;
+                }
+                
             }
         }
 
-        //public void SelectVolunteer_LeaderbyVolunteerno(int Volunteer_no)
-        //{
+        public List<string> SelectVolunteer_LeaderbyVolunteerno(int Volunteer_no)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Leaders1
+                    join n2 in dbContext.Leaders
+                    on n1.Position_no equals n2.Position_no
+                    where n1.Volunteer_no == Volunteer_no
+                    select new
+                    {
+                        Position_chinese = n2.Position_chinese.ToString()                        
+                    };
 
-        //}
+            List<string> list_Position = new List<string>();
+            foreach (var row in q)
+            {
+                list_Position.Add(row.Position_chinese);
+            }
+
+            return list_Position;
+        }
+
+        public List<string> SelectVolunteer_ExpertisebyVolunteerno(int Volunteer_no)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Expertise2
+                    join n2 in dbContext.Expertise1
+                    on n1.Expertise_no equals n2.Expertise_no
+                    where n1.Volunteer_no == Volunteer_no
+                    select new
+                    {
+                        Expertise = n2.Expertise
+                    };
+
+            List<string> list_Expertise = new List<string>();
+            foreach (var row in q)
+            {
+                list_Expertise.Add(row.Expertise);
+            }
+
+            return list_Expertise;
+        }
+
+        
     }
 }
