@@ -159,6 +159,8 @@
     <NavigationProperty Name="Service_group" Relationship="Self.FK_Activity_Service_group" FromRole="Activity" ToRole="Service_group" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Activity" ToRole="Volunteer_supervision" />
     <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Activity" FromRole="Activity" ToRole="Education" />
+    <Property Name="Activity_startdate" Type="DateTime" Precision="3" />
+    <Property Name="Activity_enddate" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="Activity_photo">
     <Key>
@@ -442,7 +444,7 @@
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Education" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Lssuing_unit_no" Type="Int32" Nullable="false" />
-    <Property Name="Service_manual_no" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="Service_manual_no" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="Personality_scale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
     <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Volunteer" FromRole="Volunteer" ToRole="Abnormal_event" />

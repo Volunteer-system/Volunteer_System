@@ -117,6 +117,8 @@
     <Property Name="Activity_name" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Activity_type_ID" Type="int" Nullable="false" />
     <Property Name="Group_no" Type="int" />
+    <Property Name="Activity_startdate" Type="datetime" />
+    <Property Name="Activity_enddate" Type="datetime" />
     <Property Name="Undertake_unit" Type="nvarchar" MaxLength="10" />
     <Property Name="Undertaker" Type="int" />
     <Property Name="Undertake_phone" Type="nvarchar" MaxLength="15" />
@@ -367,7 +369,7 @@
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Education" Type="nvarchar" MaxLength="10" />
     <Property Name="Lssuing_unit_no" Type="int" Nullable="false" />
-    <Property Name="Service_manual_no" Type="nchar" MaxLength="20" Nullable="false" />
+    <Property Name="Service_manual_no" Type="nchar" MaxLength="20" />
     <Property Name="Personality_scale" Type="nvarchar" MaxLength="50" />
     <Property Name="Photo" Type="varbinary(max)" />
   </EntityType>

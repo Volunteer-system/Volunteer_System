@@ -1,0 +1,18 @@
+﻿<Window x:Class="Volunteer_WPF.View.Activity_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Activity_View" Height="615" Width="1020">
+    <Grid>
+        <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1" >
+            <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
+                <Button x:Name="btn_firstcheck" Content="初次申請審核" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA"/>
+            </StackPanel>
+
+
+        </DockPanel>
+    </Grid>
+</Window>

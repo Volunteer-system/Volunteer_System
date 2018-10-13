@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abnormal_event">
           <Key>
             <PropertyRef Name="Abnormal_event_no" />
@@ -122,6 +122,8 @@
           <Property Name="Activity_name" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="Activity_type_ID" Type="int" Nullable="false" />
           <Property Name="Group_no" Type="int" />
+          <Property Name="Activity_startdate" Type="datetime" />
+          <Property Name="Activity_enddate" Type="datetime" />
           <Property Name="Undertake_unit" Type="nvarchar" MaxLength="10" />
           <Property Name="Undertaker" Type="int" />
           <Property Name="Undertake_phone" Type="nvarchar" MaxLength="15" />
@@ -372,7 +374,7 @@
           <Property Name="Address" Type="nvarchar" MaxLength="50" />
           <Property Name="Education" Type="nvarchar" MaxLength="10" />
           <Property Name="Lssuing_unit_no" Type="int" Nullable="false" />
-          <Property Name="Service_manual_no" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Service_manual_no" Type="nchar" MaxLength="20" />
           <Property Name="Personality_scale" Type="nvarchar" MaxLength="50" />
           <Property Name="Photo" Type="varbinary(max)" />
         </EntityType>
@@ -1117,8 +1119,7 @@
             <End Role="Volunteer" EntitySet="Volunteer" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VolunteerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1281,6 +1282,8 @@
           <NavigationProperty Name="Service_group" Relationship="Self.FK_Activity_Service_group" FromRole="Activity" ToRole="Service_group" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Activity" ToRole="Volunteer_supervision" />
           <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Activity" FromRole="Activity" ToRole="Education" />
+          <Property Name="Activity_startdate" Type="DateTime" Precision="3" />
+          <Property Name="Activity_enddate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Activity_photo">
           <Key>
@@ -1564,7 +1567,7 @@
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Education" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Lssuing_unit_no" Type="Int32" Nullable="false" />
-          <Property Name="Service_manual_no" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Service_manual_no" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Personality_scale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
           <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Volunteer" FromRole="Volunteer" ToRole="Abnormal_event" />
@@ -2449,6 +2452,8 @@
           <EntitySetMapping Name="Activities">
             <EntityTypeMapping TypeName="VolunteerModel.Activity">
               <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Activity_enddate" ColumnName="Activity_enddate" />
+                <ScalarProperty Name="Activity_startdate" ColumnName="Activity_startdate" />
                 <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
                 <ScalarProperty Name="Activity_name" ColumnName="Activity_name" />
                 <ScalarProperty Name="Activity_type_ID" ColumnName="Activity_type_ID" />
