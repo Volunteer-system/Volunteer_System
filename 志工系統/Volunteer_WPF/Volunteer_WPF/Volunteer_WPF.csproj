@@ -88,6 +88,7 @@
     <Compile Include="Model\Activity_type.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Activity_type_Model.cs" />
     <Compile Include="Model\Application_unit.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -221,6 +222,7 @@
       <DependentUpon>Volunteer_data_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View_Model\Account_ViewModel.cs" />
+    <Compile Include="View_Model\Activity_type_ViewModel.cs" />
     <Compile Include="View_Model\Activity_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
     <Compile Include="View_Model\Volunteer_ViewModel.cs" />
