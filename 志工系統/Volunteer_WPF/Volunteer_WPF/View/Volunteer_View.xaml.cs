@@ -30,20 +30,24 @@ namespace Volunteer_WPF.View
             datagrid1.IsReadOnly = true;
             var q = from p in dbcontext.Expertise1
                     select p.Expertise;
-            foreach (var p in q)
+            專長CB.Items.Add("(無)");
+            foreach (var items in q)
             {
-                專長CB.ItemsSource = q.ToList();
+                專長CB.Items.Add(items);
             }
+            專長CB.SelectedIndex = 0;
 
             var q1 = from p in dbcontext.Service_group
                     select p.Group_name;
-            foreach (var p in q)
-            {
-                組別CB.ItemsSource = q1.ToList();
-            }
+            組別CB.Items.Add("(無)");
 
-            
-            
+            foreach (var items in q1)
+            {
+                組別CB.Items.Add(items);
+            }
+            組別CB.SelectedIndex = 0;
+
+
 
         }
 
@@ -53,13 +57,13 @@ namespace Volunteer_WPF.View
         string expertise;
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             Volunteer_ViewModel model = new Volunteer_ViewModel();
 
              name = nametext.Text;
              group = 組別CB.Text;
              expertise = 專長CB.Text;
             var q =model.Search_Volunteer(name,group,expertise);
-
 
             this.datagrid1.ItemsSource = q.ToList();
 
@@ -69,21 +73,37 @@ namespace Volunteer_WPF.View
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            //跳頁面
-            MessageBox.Show("驚不驚喜，意不意外");
+            string a = (this.datagrid1.SelectedItem as Volunteer_ViewModel).Volunteer_no;
+            int volunteernum = Convert.ToInt32(a);
 
+
+
+            Window window = new Volunteer_data_View(volunteernum);
+            window.ShowDialog();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
             Window window = new Volunteer_data_View();
             window.ShowDialog();
         }
 
-        private void grid4detail_MouseDown(object sender, MouseButtonEventArgs e)
+        private void datagrid1_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            Volunteer_detail v = new Volunteer_detail(9);
+            if (this.datagrid1.SelectedItem != null)
+            {            string a = (this.datagrid1.SelectedItem as Volunteer_ViewModel).Volunteer_no;
+            int volunteernum = Convert.ToInt32(a);
+            Volunteer_detail v = new Volunteer_detail(volunteernum);
             grid4detail.Children.Clear();
             object content = v.Content;
             v.Content = null;
             grid4detail.Children.Add(content as UIElement);
+            }
+
+
+
+
+
         }
-        
     }
 }

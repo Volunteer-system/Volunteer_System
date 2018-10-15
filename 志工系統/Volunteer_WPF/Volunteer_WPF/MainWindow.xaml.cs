@@ -146,7 +146,11 @@ namespace Volunteer_WPF
 
         private void ActivityButton_Click(object sender, RoutedEventArgs e)  //活動維護按鈕
         {
-            AddTabItem(ActivityLabel.Content.ToString());
+            Activity_View activity_View = new Activity_View();
+            object content = activity_View.Content;
+            activity_View.Content = null;
+
+            AddTabItem(ActivityLabel.Content.ToString(), content);
             CheckList.Add(ActivityLabel.Content.ToString());
             Selected(ActivityLabel.Content.ToString());
         }

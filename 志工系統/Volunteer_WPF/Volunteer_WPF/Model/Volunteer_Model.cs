@@ -53,24 +53,41 @@ namespace Volunteer_WPF.Model
         //發證單位
         public string Lssuing_unit { get; set; }
         //志工服務手冊編號
-         public string Service_manual_no { get; set; }
+        public string Service_manual_no { get; set; }
         //人格量表結果
         public string Personality_scale { get; set; }
         //個人照片
         public BitmapImage Photo { get; set; }
 
-        //============================================================================================================
-        //合併項目
-
+        //合併項目==================================================
         //組別
-        public string Group { get; set; }
+        //  public string _Group;
+        public string Group
+        { get; set; }
+        
         //專長
-        public string Experise { get; set; }
-        //============================================================================================================
+        public string Experise
+        { get; set; }
+
+        //自訂項目==================================================
+
+        //建兩個list把同人的專長組別合併
+        //List<string> Allexpertise = new List<string>();
+        //List<string> Allgroup = new List<string>();
+
+        //專長集合
+        public List<string> VLT_experise;
+        //組別集合
+        public List<string> VLT_group;
+        //=========================================================
+
+
+
 
         public List<Volunteer_Model> Search_Volunteer(string Name, string Group, string Expertise)
         {
             VolunteerEntities dbcontext = new VolunteerEntities();
+
             var q = from p1 in dbcontext.Volunteer
 
                     join p2 in dbcontext.Expertise2 on p1.Volunteer_no equals p2.Volunteer_no
@@ -83,8 +100,8 @@ namespace Volunteer_WPF.Model
 
 
                     where
-                    (!(Experise == "") ? p2.Expertise1.Expertise == Expertise : true) &&
-                    (!(Group == "") ? p3_5.Group_name == Group : true) &&
+                    (!(Expertise == "(無)") ? p2.Expertise1.Expertise == Expertise : true) &&
+                    (!(Group == "(無)") ? p3_5.Group_name == Group : true) &&
                     (!(Name == "") ? p1.Chinese_name.Contains(Name) : true)
                     select new
                     {
@@ -111,15 +128,17 @@ namespace Volunteer_WPF.Model
                         Personality_scale = p1.Personality_scale.ToString(),
 
                         //合併項
-                        Experise = p2_5.Expertise.ToString(),
-                        Group = p3_5.Group_name.ToString()
+                        Expertise = p2_5.Expertise.ToString(),
+                        Group = p3_5.Group_name.ToString(),
+
+
+
 
                         //Photo = p1.Photo.ToString()
                     };
 
-
             List<Volunteer_Model> volunteer_Models = new List<Volunteer_Model>();
-
+            List<Volunteer_Model> volunteer_Models2 = new List<Volunteer_Model>();
             foreach (var row in q)
             {
                 Volunteer_Model model = new Volunteer_Model();
@@ -144,10 +163,44 @@ namespace Volunteer_WPF.Model
                 model.Lssuing_unit_no = row.Lssuing_unit_no;
                 model.Service_manual_no = row.Service_manual_no;
                 model.Personality_scale = row.Personality_scale;
-                volunteer_Models.Add(model);
+                model.Group =row.Group;
+                model.Experise =row.Expertise;
+                model.VLT_group = new List<string>();
+                model.VLT_experise = new List<string>();
+
+                var q2 = from p2 in q
+                         where p2.Volunteer_no == row.Volunteer_no
+                         select p2;
+
+
+               
+                foreach (var group in q2)
+                {
+
+                    //將各種組別、專長合併成一個欄位
+                    if (!model.VLT_group.Contains(group.Group))
+                    {
+                     model.VLT_group.Add(group.Group);
+                    }
+                    if (!model.VLT_experise.Contains(group.Expertise))
+                    {
+                    model.VLT_experise.Add(group.Expertise);
+                    }
+
+                }
+                volunteer_Models.Add(model);          
             }
 
-            return volunteer_Models;
+            List<string> 存在的volunteer_no = new List<string>();
+            foreach (Volunteer_Model q3 in volunteer_Models)
+            {
+                if (!存在的volunteer_no.Contains(q3.Volunteer_no))
+                {
+                存在的volunteer_no.Add(q3.Volunteer_no);
+                volunteer_Models2.Add(q3);
+                }
+            }
+          return volunteer_Models2;
         }
 
         public void SelectVolunteer_byVolunteerno(int Volunteer_no)
@@ -218,7 +271,7 @@ namespace Volunteer_WPF.Model
                     image.EndInit();
                     Photo = image;
                 }
-                
+
             }
         }
 
@@ -231,7 +284,7 @@ namespace Volunteer_WPF.Model
                     where n1.Volunteer_no == Volunteer_no
                     select new
                     {
-                        Position_chinese = n2.Position_chinese.ToString()                        
+                        Position_chinese = n2.Position_chinese.ToString()
                     };
 
             List<string> list_Position = new List<string>();
@@ -264,6 +317,6 @@ namespace Volunteer_WPF.Model
             return list_Expertise;
         }
 
-        
+
     }
 }

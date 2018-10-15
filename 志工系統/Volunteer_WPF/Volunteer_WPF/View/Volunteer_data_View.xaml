@@ -89,7 +89,7 @@
         <Button x:Name="btnOpen" Click="btnOpen_Click" Content="Open..." HorizontalAlignment="Left" Margin="890,143,0,0" VerticalAlignment="Top" Width="68" Height="31"/>
         
 
-        <Button Content="確定" HorizontalAlignment="Left" Margin="58,369,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click"/>
+        <Button Name="btn_confirm" Content="確定" HorizontalAlignment="Left" Margin="58,369,0,0" VerticalAlignment="Top" Width="75" />
         <Button Content="取消" HorizontalAlignment="Left" Margin="138,369,0,0" VerticalAlignment="Top" Width="75"/>
         <Button Name="btnDEMO" Content="demo" HorizontalAlignment="Left" Margin="58,448,0,0" VerticalAlignment="Top" Width="75" Click="btnDEMO_Click"/>
     </Grid>

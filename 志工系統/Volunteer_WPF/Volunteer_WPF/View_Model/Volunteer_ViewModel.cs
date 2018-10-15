@@ -134,15 +134,29 @@ namespace Volunteer_WPF.View_Model
         //組別
         public string Group
         {
-            get { return volunteer_Model.Group; }
+            //get { return volunteer_Model.Group; }
             set { volunteer_Model.Group = value; }
         }
         //專長
         public string Experise
         {
-            get { return volunteer_Model.Experise; }
+           // get { return volunteer_Model.Experise; }
             set { volunteer_Model.Experise = value; }
         }
+
+        //===================
+        public List<string> VLT_experise
+        {
+            get { return volunteer_Model.VLT_experise; }
+            set { volunteer_Model.VLT_experise = value; }
+        }
+        public List<string> VLT_group
+        {
+            get { return volunteer_Model.VLT_group; }
+            set { volunteer_Model.VLT_group = value; }
+        }
+
+        //=====================
         //過往幹部經歷
         public string Leader_list { get; set; }
         //專長清單

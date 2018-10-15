@@ -34,7 +34,14 @@ namespace Volunteer_WPF.View
             //    this.cbb_activitytype.Items.Add(row);
             //}
 
+            Service_group_ViewModel service_Group_ViewModel = new Service_group_ViewModel();
+            List<string> service_Groups = service_Group_ViewModel.SelectService_group();
+            this.cbb_activitygroup.ItemsSource = service_Groups;
 
+            //foreach (var row in service_Groups)
+            //{
+            //    this.cbb_activitygroup.Items.Add(row);
+            //}
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
