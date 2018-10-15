@@ -13,60 +13,64 @@
     </Window.Resources>-->
     <!--<Grid DataContext="{StaticResource volunteerViewSource}" Background="#FFA7E6DA">-->
     <Grid  Background="#FFA7E6DA">
-        <Label Content="中文姓名" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtChineseName" HorizontalAlignment="Left" Height="23" Margin="137,12,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtEnglishName_KeyDown"/>
-        <Label Content="英文性名" HorizontalAlignment="Left" Margin="11,36,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtEnglishName" HorizontalAlignment="Left" Height="23" Margin="137,43,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtEnglishName_KeyDown"/>
-        <Label Content="姓別" HorizontalAlignment="Left" Margin="11,64,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cbsex" HorizontalAlignment="Left" Margin="137,71,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbsex_KeyDown"/>
+        <Label Content="中文姓名" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtChineseName" HorizontalAlignment="Left" Height="23" Margin="150,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtEnglishName_KeyDown"/>
+        <Label Content="英文性名" HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtEnglishName" HorizontalAlignment="Left" Height="23" Margin="150,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtEnglishName_KeyDown"/>
+        <Label Content="姓別" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="cbsex" HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbsex_KeyDown">
+            <!--<Label Content="男" />
+            <Label Content="女" />-->
+        </ComboBox>
 
-        <Label Content="生日" HorizontalAlignment="Left" Margin="14,98,0,0" VerticalAlignment="Top"/>
-        <ComboBox  Name="cbBirthDayYear" HorizontalAlignment="Left" Margin="138,100,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox Name="cbBirthDayMonth" HorizontalAlignment="Left" Margin="203,100,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox Name="cbBirthDayDay" HorizontalAlignment="Left" Margin="268,100,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="生日" HorizontalAlignment="Left" Margin="20,110,0,0" VerticalAlignment="Top"/>
+        <ComboBox  Name="cbBirthDayYear" HorizontalAlignment="Left" Margin="150,110,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox Name="cbBirthDayMonth" HorizontalAlignment="Left" Margin="210,110,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox Name="cbBirthDayDay" HorizontalAlignment="Left" Margin="270,110,0,0" VerticalAlignment="Top" Width="60"/>
 
-        <Label Content="身分證字號(護照編號)" HorizontalAlignment="Left" Margin="11,128,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtIDcrad_no" HorizontalAlignment="Left" Height="23" Margin="137,128,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <Label Content="身分證字號(護照編號)" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtIDcrad_no" HorizontalAlignment="Left" Height="23" Margin="150,140,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="病歷號" HorizontalAlignment="Left" Margin="11,156,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtMedical_record_no" HorizontalAlignment="Left" Height="23" Margin="137,156,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <Label Content="病歷號" HorizontalAlignment="Left" Margin="20,170,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtMedical_record_no" HorizontalAlignment="Left" Height="23" Margin="150,170,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="身份類別" HorizontalAlignment="Left" Margin="11,177,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbIdentity_type" HorizontalAlignment="Left" Margin="137,184,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="身份類別" HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbIdentity_type" HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" Width="120"/>
 
-        <Label Content="服務年資" HorizontalAlignment="Left" Margin="11,205,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtSeniority" HorizontalAlignment="Left" Height="23" Margin="137,212,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
+        <Label Content="服務年資" HorizontalAlignment="Left" Margin="20,230,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtSeniority" HorizontalAlignment="Left" Height="23" Margin="150,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" />
 
-        <Label Content="加入日期" HorizontalAlignment="Left" Margin="11,232,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbJoin_dateYear" HorizontalAlignment="Left" Margin="138,241,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox x:Name="cbJoin_dateMonth" HorizontalAlignment="Left" Margin="203,241,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox x:Name="cbJoin_dateDay" HorizontalAlignment="Left" Margin="268,241,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="加入日期" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbJoin_dateYear" HorizontalAlignment="Left" Margin="150,260,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox x:Name="cbJoin_dateMonth" HorizontalAlignment="Left" Margin="210,260,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox x:Name="cbJoin_dateDay" HorizontalAlignment="Left" Margin="270,260,0,0" VerticalAlignment="Top" Width="60"/>
 
-        <Label Content="離開日期" HorizontalAlignment="Left" Margin="11,261,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbLeave_dateYear" HorizontalAlignment="Left" Margin="138,269,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox x:Name="cbLeave_dateMonth" HorizontalAlignment="Left" Margin="203,269,0,0" VerticalAlignment="Top" Width="60" />
-        <ComboBox x:Name="cbLeave_dateDay" HorizontalAlignment="Left" Margin="268,269,0,0" VerticalAlignment="Top" Width="60"/>
+        <Label Content="離開日期" HorizontalAlignment="Left" Margin="20,290,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbLeave_dateYear" HorizontalAlignment="Left" Margin="150,290,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox x:Name="cbLeave_dateMonth" HorizontalAlignment="Left" Margin="210,290,0,0" VerticalAlignment="Top" Width="60" />
+        <ComboBox x:Name="cbLeave_dateDay" HorizontalAlignment="Left" Margin="270,290,0,0" VerticalAlignment="Top" Width="60"/>
 
-        <Label Content="離開原因" HorizontalAlignment="Left" Margin="11,292,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cbLeaveReason" HorizontalAlignment="Left" Margin="137,297,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbLeaveReason_KeyDown">
+        <Label Content="離開原因" HorizontalAlignment="Left" Margin="20,320,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="cbLeaveReason" HorizontalAlignment="Left" Margin="150,320,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbLeaveReason_KeyDown">
             <Label Content="因病" />
             <Label Content="工作因素" />
             <Label Content="個人因素" />
             <Label Content="不適任" />
             <Label Content="家庭因素" />
         </ComboBox>
-        <Label Content="電話號碼" HorizontalAlignment="Left" Margin="351,42,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,0.153"/>
-        <TextBox Name="txtPhone_no" HorizontalAlignment="Left" Height="23" Margin="498,47,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtPhone_no_KeyDown"/>
-        <Label Content="手機號碼" HorizontalAlignment="Left" Margin="351,70,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtMobile_no" HorizontalAlignment="Left" Height="23" Margin="498,76,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtMobile_no_KeyDown"/>
-        <Label Content="志工背心號碼" HorizontalAlignment="Left" Margin="351,98,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtVest_no" HorizontalAlignment="Left" Height="23" Margin="498,103,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtVest_no_KeyDown"/>
-        <Label Content="郵遞區號" HorizontalAlignment="Left" Margin="351,125,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtPostal_code" HorizontalAlignment="Left" Height="23" Margin="498,132,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtPostal_code_KeyDown"/>
-        <Label Content="地址" HorizontalAlignment="Left" Margin="14,317,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtAddress" HorizontalAlignment="Left" Height="23" Margin="137,323,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="481" KeyDown="txtAddress_KeyDown"/>
-        <Label Content="學歷" HorizontalAlignment="Left" Margin="351,149,0,0" VerticalAlignment="Top"/>
-        <ComboBox Name="cbEducation" HorizontalAlignment="Left" Margin="497,155,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbEducation_KeyDown">
+        <Label Content="地址" HorizontalAlignment="Left" Margin="20,350,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtAddress" HorizontalAlignment="Left" Height="23" Margin="150,350,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="460" KeyDown="txtAddress_KeyDown"/>
+        <Label Content="電話號碼" HorizontalAlignment="Left" Margin="380,20,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.41,0.153"/>
+        <TextBox Name="txtPhone_no" HorizontalAlignment="Left" Height="23" Margin="490,20,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtPhone_no_KeyDown"/>
+        <Label Content="手機號碼" HorizontalAlignment="Left" Margin="380,50,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtMobile_no" HorizontalAlignment="Left" Height="23" Margin="490,50,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtMobile_no_KeyDown"/>
+        <Label Content="志工背心號碼" HorizontalAlignment="Left" Margin="380,80,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtVest_no" HorizontalAlignment="Left" Height="23" Margin="490,80,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtVest_no_KeyDown"/>
+        <Label Content="郵遞區號" HorizontalAlignment="Left" Margin="380,110,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtPostal_code" HorizontalAlignment="Left" Height="23" Margin="490,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" KeyDown="txtPostal_code_KeyDown"/>
+        
+        <Label Content="學歷" HorizontalAlignment="Left" Margin="380,140,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="cbEducation" HorizontalAlignment="Left" Margin="490,140,0,0" VerticalAlignment="Top" Width="120" KeyDown="cbEducation_KeyDown">
             <Label Content="小學" />
             <Label Content="國中" />
             <Label Content="高中職" />
@@ -74,23 +78,48 @@
             <Label Content="大學" />
             <Label Content="研究所" />
         </ComboBox>
-        <Label Content="發證單位" HorizontalAlignment="Left" Margin="351,177,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtLssuing_unit_no" HorizontalAlignment="Left" Height="23" Margin="498,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="txtLssuing_unit_no_KeyDown"/>
-        <Label Content="志工服務手冊編號" HorizontalAlignment="Left" Margin="351,204,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtService_manual_no" HorizontalAlignment="Left" Height="23" Margin="498,211,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  KeyDown="txtService_manual_no_KeyDown"/>
-        <Label Content="人格量表結果" HorizontalAlignment="Left" Margin="351,233,0,0" VerticalAlignment="Top"/>
-        <TextBox Name="txtPersonality_scale" HorizontalAlignment="Left" Height="23" Margin="498,239,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Label Content="發證單位" HorizontalAlignment="Left" Margin="380,170,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtLssuing_unit_no" HorizontalAlignment="Left" Height="23" Margin="490,170,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" KeyDown="txtLssuing_unit_no_KeyDown"/>
+        <Label Content="志工服務手冊編號" HorizontalAlignment="Left" Margin="380,200,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtService_manual_no" HorizontalAlignment="Left" Height="23" Margin="490,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  KeyDown="txtService_manual_no_KeyDown"/>
+        <Label Content="人格量表結果" HorizontalAlignment="Left" Margin="380,230,0,0" VerticalAlignment="Top"/>
+        <TextBox Name="txtPersonality_scale" HorizontalAlignment="Left" Height="23" Margin="490,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button Name="btnSelectExpert" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White"  Content="選專長" HorizontalAlignment="Left" Margin="490,260,0,0" VerticalAlignment="Top" Height="23" Width="120" Click="btnSelectExpert_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
+        
+        
+        <Label Content="志工專長" HorizontalAlignment="Left" Margin="380,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.681,-0.039"/>
+        <Label Content="志工組別" HorizontalAlignment="Left" Margin="380,290,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbIdentity_type_Copy1" HorizontalAlignment="Left" Margin="490,290,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" IsReadOnly="True"/>
+        <Label Content="照片" HorizontalAlignment="Left" Margin="670,20,0,0" VerticalAlignment="Top"/>
 
-        <Label Content="照片" HorizontalAlignment="Left" Margin="629,9,0,0" VerticalAlignment="Top"/>
-
-        <Grid Margin="668,10,137.6,411.6" Background="#FFCAFCED">
+        <Grid Margin="711,20,31.6,364.6" Background="#FFCAFCED">
             <Image Name="myImage" />
         </Grid>
-        <Button x:Name="btnOpen" Click="btnOpen_Click" Content="Open..." HorizontalAlignment="Left" Margin="890,143,0,0" VerticalAlignment="Top" Width="68" Height="31"/>
-        
+        <Button x:Name="btnOpen" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Click="btnOpenFile_Click" Content="Open..." HorizontalAlignment="Left" Margin="711,227,0,0" VerticalAlignment="Top" Width="90" Height="50">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
 
-        <Button Name="btn_confirm" Content="確定" HorizontalAlignment="Left" Margin="58,369,0,0" VerticalAlignment="Top" Width="75" />
-        <Button Content="取消" HorizontalAlignment="Left" Margin="138,369,0,0" VerticalAlignment="Top" Width="75"/>
-        <Button Name="btnDEMO" Content="demo" HorizontalAlignment="Left" Margin="58,448,0,0" VerticalAlignment="Top" Width="75" Click="btnDEMO_Click"/>
+        <Button  Name="btn_confirm" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="20,400,0,0" VerticalAlignment="Top" Width="90" Height="50" >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
+       
+        <Button Name="BtnCancel"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="120,400,0,0" VerticalAlignment="Top" Width="90" Height="50" Click="BtnCancel_Click"  >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
+        <Button Name="btnDEMO" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Content="demo" HorizontalAlignment="Left" Margin="20,470,0,0" VerticalAlignment="Top" Width="90" Height="25" Click="btnDEMO_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
     </Grid>
 </Window>

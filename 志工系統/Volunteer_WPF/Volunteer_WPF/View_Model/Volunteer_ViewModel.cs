@@ -12,6 +12,20 @@ namespace Volunteer_WPF.View_Model
     {
         Volunteer_Model volunteer_Model = new Volunteer_Model();
 
+        //讓view可以將集合轉回文字
+        public string getallgroup()
+        {
+            string result = string.Join(",", this.VLT_group);
+            return result;
+        }
+
+        public string getallexpetise()
+        {
+            string result = string.Join(",", this.VLT_experise);
+            return result;
+        }
+
+
         //志工編號
         public string Volunteer_no
         {
@@ -162,12 +176,16 @@ namespace Volunteer_WPF.View_Model
         //專長清單
         public string Experise_list { get; set; }
 
-        public List<Volunteer_ViewModel> Search_Volunteer(string Name1, string Group1, string Expertise1)
+
+
+        //方法，從model取資料==================================================================================================
+
+        public List<Volunteer_ViewModel> Search_Volunteer(string Name1, string Group1, string Expertise1,List<int> years)
         {
             //建立等等回傳
             List<Volunteer_ViewModel> the_get = new List<Volunteer_ViewModel>();
             Volunteer_Model volunteer = new Volunteer_Model();
-            List<Volunteer_Model> volunteer_Models = volunteer.Search_Volunteer(Name1, Group1, Expertise1);
+            List<Volunteer_Model> volunteer_Models = volunteer.Search_Volunteer(Name1, Group1, Expertise1,years);
 
             foreach (var item in volunteer_Models)
             {
@@ -193,7 +211,10 @@ namespace Volunteer_WPF.View_Model
                 _ViewModel.Lssuing_unit_no = item.Lssuing_unit_no;
                 _ViewModel.Service_manual_no = item.Service_manual_no;
                 _ViewModel.Personality_scale = item.Personality_scale;
+                _ViewModel.VLT_experise = item.VLT_experise;
+                _ViewModel.VLT_group = item.VLT_group;
                 the_get.Add(_ViewModel);
+                
             }
 
             return the_get;

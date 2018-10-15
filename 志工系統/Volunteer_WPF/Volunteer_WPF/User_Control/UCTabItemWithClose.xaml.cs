@@ -18,6 +18,9 @@ namespace TabControlWithClose
 
     public partial class UCTabItemWithClose : TabItem
     {
+        //public bool Visibility { get; set; }
+        
+
         public UCTabItemWithClose()
         {
             InitializeComponent();

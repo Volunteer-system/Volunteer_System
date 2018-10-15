@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF"
-        xmlns:TabControlWithClose="clr-namespace:TabControlWithClose" x:Class="Volunteer_WPF.MainWindow"
+        xmlns:TabControlWithClose="clr-namespace:TabControlWithClose" xmlns:User_Control="clr-namespace:Volunteer_WPF.User_Control" x:Class="Volunteer_WPF.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1400"
         ContentRendered="Window_ContentRendered"
@@ -272,32 +272,32 @@
             <Grid HorizontalAlignment="Left" Height="60" Margin="0,30,0,0" VerticalAlignment="Top" Width="1016" Background="#FFA7E6DA">
                 <Button x:Name="NewVolunteerButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="79,0,0,0" VerticalAlignment="Top" Width="113" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="NewVolunteerButton_Click">
                     <WrapPanel Height="56" Width="116">
-                        <Image Height="55" Width="25" Source="image/add.png"/>
-                        <Label x:Name="NewVolunteerLabel" Content="新志工申請" Foreground="White" FontSize="16" Height="29" Width="89"/>
+                        <Image Height="55" Width="25" Source="image/add-user.png"/>
+                        <Label x:Name="NewVolunteerLabel" Content="新志工申請" Foreground="Gray" FontSize="16" Height="29" Width="89"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="ActivityButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="233,0,0,0" VerticalAlignment="Top" Width="97" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ActivityButton_Click">
                     <WrapPanel Height="56" Width="100">
-                        <Image Height="55" Width="25" Source="image/maintain.png"/>
-                        <Label x:Name="ActivityLabel" Content="活動維護" Foreground="White" FontSize="16" Height="29" Width="73"/>
+                        <Image Height="55" Width="25" Source="image/maintenance.png"/>
+                        <Label x:Name="ActivityLabel" Content="活動維護" Foreground="Gray" FontSize="16" Height="29" Width="73"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="EventButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="372,0,0,0" VerticalAlignment="Top" Width="129" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="EventButton_Click">
                     <WrapPanel Height="56" Width="132">
-                        <Image Height="55" Width="25" Source="image/abnormal.png"/>
-                        <Label x:Name="EventLabel" Content="異常事件通報" Foreground="White" FontSize="16" Height="29" Width="105"/>
+                        <Image Height="55" Width="25" Source="image/urgent-message.png"/>
+                        <Label x:Name="EventLabel" Content="異常事件通報" Foreground="Gray" FontSize="16" Height="29" Width="105"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="ManpowerButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="542,0,0,0" VerticalAlignment="Top" Width="129" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ManpowerButton_Click">
                     <WrapPanel Height="56" Width="132">
-                        <Image Height="55" Width="25" Source="image/application.png"/>
-                        <Label x:Name="ManpowerLabel" Content="人力資源申請" Foreground="White" FontSize="16" Height="29" Width="105"/>
+                        <Image Height="55" Width="25" Source="image/applicant.png"/>
+                        <Label x:Name="ManpowerLabel" Content="人力資源申請" Foreground="Gray" FontSize="16" Height="29" Width="105"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="AssessmentButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="714,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="AssessmentButton_Click">
                     <WrapPanel Height="56" Width="69">
-                        <Image Height="55" Width="25" Source="image/Assessment.png"/>
-                        <Label x:Name="AssessmentLabel" Content="考核" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                        <Image Height="55" Width="25" Source="image/task-completed-.png"/>
+                        <Label x:Name="AssessmentLabel" Content="考核" Foreground="Gray" FontSize="16" Height="29" Width="42"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="ReportButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="824,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="ReportButton_Click">
@@ -307,8 +307,8 @@
                         </ContextMenu>
                     </Button.ContextMenu>
                     <WrapPanel Height="56" Width="69">
-                        <Image Height="55" Width="25" Source="image/report.png"/>
-                        <Label Content="報表" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                        <Image Height="55" Width="25" Source="image/igraph-report.png"/>
+                        <Label Content="報表" Foreground="Gray" FontSize="16" Height="29" Width="42"/>
                     </WrapPanel>
                 </Button>
                 <Button x:Name="SetButton" Background="#FFA7E6DA" HorizontalAlignment="Left" Margin="929,0,0,0" VerticalAlignment="Top" Width="67" Height="60" BorderBrush="{x:Null}" Cursor="Hand" Click="SetButton_Click" MouseLeave="MenuItem_MouseLeave">
@@ -323,13 +323,14 @@
                     </Button.ContextMenu>
                     <WrapPanel Height="56" Width="69">
                         <Image Height="55" Width="25" Source="image/setting.png"/>
-                        <Label Content="設定" Foreground="White" FontSize="16" Height="29" Width="42"/>
+                        <Label Content="設定" Foreground="Gray" FontSize="16" Height="29" Width="42"/>
                     </WrapPanel>
                 </Button>
             </Grid>
             <Grid HorizontalAlignment="Left" Height="647" Margin="0,90,0,0" VerticalAlignment="Top" Width="1016">
                 <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="650" VerticalAlignment="Top" Width="1020" Margin="0,0,-4,0">
-                    <TabControlWithClose:UCTabItemWithClose Content="" Header="首頁" Background="White" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Style="{DynamicResource TabItemStyle1}"/>
+                    <!--<TabControlWithClose:UCTabItemWithClose x:Name="UCTabItem" Header="首頁" Background="White" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Style="{DynamicResource TabItemStyle1}" Margin="-3,0,0,0">
+                    </TabControlWithClose:UCTabItemWithClose>-->                    
                 </TabControl>
             </Grid>
             <Button HorizontalAlignment="Left" Margin="922,6,0,0" VerticalAlignment="Top" Width="84" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
@@ -338,7 +339,7 @@
                     <Label x:Name="username" Content="username" Width="66" Foreground="DarkGray"/>
                 </WrapPanel>
             </Button>
-            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Style="{DynamicResource ButtonStyle1}" Height="8"/>
+            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Height="8"/>
         </Grid>
     </Viewbox>
 </Window>

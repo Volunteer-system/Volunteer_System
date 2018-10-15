@@ -24,6 +24,8 @@ namespace Volunteer_WPF.View
     {
 
         int Volunteer_no;
+
+        //按下新增鍵後，到空白的表單
         public Volunteer_data_View()
         {
             InitializeComponent();
@@ -35,6 +37,7 @@ namespace Volunteer_WPF.View
 
         }
 
+        //按下修改表單後, 表單從volunteer資料讀取資料
         public Volunteer_data_View(int a)
         {
             InitializeComponent();
@@ -53,7 +56,7 @@ namespace Volunteer_WPF.View
                 txtChineseName.Text = v.Chinese_name;
                 txtEnglishName.Text = v.English_name;
                 //??
-                cbsex.Text = v.sex;
+                cbsex.SelectedValue= v.sex.Trim();
 
                 //將birthday 拆開year, month, day
                 if (v.birthday != null)
@@ -68,14 +71,22 @@ namespace Volunteer_WPF.View
                     //cbBirthDayYear.Text = yy;
                     //cbBirthDayMonth.Text = mn;
                     //cbBirthDayDay.Text = dy;
-                    cbBirthDayYear.SelectedValue = yy;                    
-                    cbBirthDayMonth.SelectedValue = mn;                    
-                    cbBirthDayDay.SelectedValue = dy;
+                    //可以把ComboBox的資料顯示出來
+                    cbBirthDayYear.SelectedValue = yy.Trim();                    
+                    cbBirthDayMonth.SelectedValue = mn.Trim();                    
+                    cbBirthDayDay.SelectedValue = dy.Trim();
                 }
-                //
+                //身份證字號
                 txtIDcrad_no.Text = v.IDcrad_no;
+                
+                //病歷號
                 txtMedical_record_no.Text = v.Medical_record_no;
-                cbIdentity_type.Text = v.Identity_type1.Identity_type_name;
+                
+                //身份類別
+                cbIdentity_type.SelectedValue = (Convert.ToString(v.Identity_type)).Trim();
+                //cbIdentity_type.Text = v.Identity_type.ToString();
+                
+                //服務年資
                 txtSeniority.Text = Convert.ToString(v.Seniority);
 
                 //加入日期 
@@ -84,12 +95,12 @@ namespace Volunteer_WPF.View
                     string sJoin_date = Convert.ToString(v.Join_date);
                     DateTime Join_dateValue = (Convert.ToDateTime(sJoin_date));
                     string yyJoin_date = Convert.ToString(Join_dateValue.Year);
-                    string mnJoin_date = Convert.ToString(Join_dateValue.Date);
+                    string mnJoin_date = Convert.ToString(Join_dateValue.Month);
                     string dyJoin_date = Convert.ToString(Join_dateValue.Day);
 
-                    cbJoin_dateYear.Text = yyJoin_date;
-                    cbJoin_dateMonth.Text = mnJoin_date;
-                    cbJoin_dateDay.Text = dyJoin_date;
+                    cbJoin_dateYear.SelectedValue = yyJoin_date.Trim();
+                    cbJoin_dateMonth.SelectedValue = mnJoin_date.Trim();
+                    cbJoin_dateDay.SelectedValue = dyJoin_date.Trim();
                 }
                 //離開日期
                 if (v.Leave_date != null)
@@ -98,14 +109,14 @@ namespace Volunteer_WPF.View
                     DateTime Leave_dateValue = (Convert.ToDateTime(sLeave_date));
                     string yyLeave_date = Convert.ToString(Leave_dateValue.Year);
                     string mnLeave_date = Convert.ToString(Leave_dateValue.Month);
-                    string dyLeave_date = Convert.ToString(Leave_dateValue.Date);
+                    string dyLeave_date = Convert.ToString(Leave_dateValue.Day);
 
-                    cbLeave_dateYear.Text = yyLeave_date;
-                    cbLeave_dateMonth.Text = mnLeave_date;
-                    cbLeave_dateDay.Text = dyLeave_date;
+                    cbLeave_dateYear.SelectedValue = yyLeave_date.Trim();
+                    cbLeave_dateMonth.SelectedValue = mnLeave_date.Trim();
+                    cbLeave_dateDay.SelectedValue = dyLeave_date.Trim();
                 }
                 //離開原因
-                cbLeaveReason.Text = v.Leave_reason;
+                cbLeaveReason.Text = v.Leave_reason.Trim();
 
                 //地址
                 txtAddress.Text = v.Address;
@@ -147,7 +158,7 @@ namespace Volunteer_WPF.View
             }
 
         }
-        //新增資料
+        //從空白的表單 填完資料後 按"確認"按鈕 新增資料
         private void Button_Click1(object sender, RoutedEventArgs e)
         {        
             // WLC
@@ -213,7 +224,7 @@ namespace Volunteer_WPF.View
                 IDcrad_no = txtIDcrad_no.Text,
                 Medical_record_no = txtMedical_record_no.Text,         
                 //WLC
-                //Identity_type = intIdentity_type,
+                Identity_type = intIdentity_type,
                 Seniority = intSeniority,
                 Join_date = myJoin_date,
                 Leave_date = myLeave_date,
@@ -232,6 +243,7 @@ namespace Volunteer_WPF.View
 
             dbContext.SaveChanges();
             MessageBox.Show("successful");
+            
             
         }
 
@@ -289,7 +301,7 @@ namespace Volunteer_WPF.View
                 txtPostal_code.Text = "請輸入數字";
             }
 
-            
+
 
             //姓別combobox
             List<string> itemSex = GetDataSex();
@@ -306,7 +318,7 @@ namespace Volunteer_WPF.View
             //月的combobox
             List<string> ItemMonth = GetItemMonth();
             cbBirthDayMonth.ItemsSource = ItemMonth;
-            //
+            //日的comboBox
             List<string> ItemDay = GetItemDay();
             cbBirthDayDay.ItemsSource = ItemDay;
 
@@ -372,7 +384,8 @@ namespace Volunteer_WPF.View
         }
 
 
-        //修改資料
+        //按下修改表單後, 表單從volunteer資料讀取資料
+        //修改要修改的東西後 按"確認"按鈕 修改資料
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             // WLC
@@ -449,10 +462,10 @@ namespace Volunteer_WPF.View
             }
             try
             { dbContext.SaveChanges(); }
-            catch(Exception ex)
+            catch
             { throw; }
             
-            MessageBox.Show("successful");
+            MessageBox.Show("修改成功");
         }
 
         private void txtChineseName_KeyDown(object sender, KeyEventArgs e)
@@ -483,7 +496,7 @@ namespace Volunteer_WPF.View
         public byte[] imagebyte;
 
 
-        public void btnOpen_Click(object sender, RoutedEventArgs e)
+        public void btnOpenFile_Click(object sender, RoutedEventArgs e)
         {
 
             OpenFileDialog f = new OpenFileDialog();
@@ -507,15 +520,15 @@ namespace Volunteer_WPF.View
 
         private void btnDEMO_Click(object sender, RoutedEventArgs e)
         {
-            txtChineseName.Text = "庫克";
-            txtEnglishName.Text = "cock";
+            txtChineseName.Text = "克里斯";
+            txtEnglishName.Text = "Chris";
             cbsex.Text = "男";
             cbBirthDayYear.Text = "2000";
             cbBirthDayMonth.Text = "12";
             cbBirthDayDay.Text = "30";
             txtIDcrad_no.Text = "aaa";
             txtMedical_record_no.Text = "bbb";
-            //cbIdentity_type.Text = "5";
+            cbIdentity_type.Text = "1";
             txtSeniority.Text = "2";
             cbJoin_dateYear.Text = "2000";
             cbJoin_dateMonth.Text = "3";
@@ -530,14 +543,10 @@ namespace Volunteer_WPF.View
             txtVest_no.Text = "aaaa";
             txtPostal_code.Text = "2222";
             cbEducation.Text = "小學";
-            txtLssuing_unit_no.Text = "8";
+            txtLssuing_unit_no.Text = "1";
             txtService_manual_no.Text = "rrrr";
             txtPersonality_scale.Text = "bbbb";
         }
-
-
-
-
         private void txtIdentity_type_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -616,6 +625,15 @@ namespace Volunteer_WPF.View
             }
         }
 
+        private void btnSelectExpert_Click(object sender, RoutedEventArgs e)
+        {
+            //VolunteerExpertiseGrid v = new VolunteerExpertiseGrid();
+            //v.ShowDialog();
+        }
 
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }

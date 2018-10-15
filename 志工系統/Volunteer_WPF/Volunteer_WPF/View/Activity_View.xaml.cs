@@ -52,8 +52,9 @@ namespace Volunteer_WPF.View
         private void btn_selectactivity_Click(object sender, RoutedEventArgs e)
         {
             Activity_ViewModel activity_ViewModel = new Activity_ViewModel();
-            DateTime startdate = (DateTime)dp_startdate.SelectedDate;
-            DateTime enddate = (DateTime)dp_enddate.SelectedDate;
+            
+            DateTime startdate = ((dp_startdate.SelectedDate == null) ? DateTime.Parse("2000/01/01") : (DateTime)dp_startdate.SelectedDate);            
+            DateTime enddate = ((dp_startdate.SelectedDate == null) ? DateTime.Parse("3000/01/01") : (DateTime)dp_enddate.SelectedDate);
             string activitytype = cbb_activitytype.Text;
             string activitygroup = cbb_activitygroup.Text;
             List<Activity_ViewModel> activity_viewmodels = activity_ViewModel.SelectActivity_byActivity_no(startdate, enddate, activitytype, activitygroup);

@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1,1,0.6,0.6" Grid.ColumnSpan="2" >
             <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
-                <Button x:Name="btn_addactivity" Content="新增活動" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="White"/>
+                <Button x:Name="btn_addactivity" Content="新增活動" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
                 <Label  Content="活動日期" FontSize="14"/>
                 <DatePicker Name="dp_startdate"/>
                 <Label  Content="~" FontSize="16"/>
@@ -22,7 +22,7 @@
                 <ComboBox Name="cbb_activitytype" Grid.Row="3" Height="28" Margin="3"/>
                 <Label  Content="活動組別" FontSize="14"/>
                 <ComboBox Name="cbb_activitygroup" Grid.Row="3" Height="28" Margin="3"/>
-                <Button x:Name="btn_selectactivity" Content="搜尋" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="White" Click="btn_selectactivity_Click"/>
+                <Button x:Name="btn_selectactivity" Content="搜尋" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_selectactivity_Click"/>
             </StackPanel>
             <Grid Height="584" VerticalAlignment="Top" Width="858">
                 <Grid.RowDefinitions>
@@ -35,16 +35,14 @@
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="修改" Width="50" Click="Button_Click"/>
+                                    <Button Content="修改" Width="50" Click="Button_Click" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
 
-
             </Grid>
-
 
         </DockPanel>
     </Grid>

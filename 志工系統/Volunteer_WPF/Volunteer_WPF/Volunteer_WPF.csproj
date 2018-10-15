@@ -204,6 +204,9 @@
     <Compile Include="View\Activity_View.xaml.cs">
       <DependentUpon>Activity_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Home.xaml.cs">
+      <DependentUpon>Home.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -255,6 +258,10 @@
     <Page Include="View\Activity_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Home.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -341,6 +348,12 @@
     <Resource Include="image\cancel.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="image\add-user.png" />
+    <Resource Include="image\applicant.png" />
+    <Resource Include="image\igraph-report.png" />
+    <Resource Include="image\maintenance.png" />
+    <Resource Include="image\urgent-message.png" />
+    <Resource Include="image\task-completed-.png" />
     <Content Include="Model\Volunteer_Entity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Volunteer_Entity.edmx</DependentUpon>

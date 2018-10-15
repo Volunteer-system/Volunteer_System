@@ -25,6 +25,19 @@ namespace Volunteer_WPF
         public MainWindow()
         {
             InitializeComponent();
+
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = "首頁", Name = "首頁", Width = 84.4, Height = 30, FontSize = 12 };
+
+            NewTab.SetValue(UCTabItemWithClose.StyleProperty, Application.Current.Resources["TabItemStyle1"]);
+
+            Home home = new Home();  
+            object content = home.Content;
+            home.Content = null;
+            NewTab.Content = content as UIElement;
+
+            TabControl1.Items.Add(NewTab);
+            TabControl1.SelectedItem = NewTab;
+            
         }
 
         private void Window_ContentRendered(object sender, EventArgs e)

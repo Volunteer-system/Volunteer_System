@@ -84,7 +84,7 @@ namespace Volunteer_WPF.Model
 
 
 
-        public List<Volunteer_Model> Search_Volunteer(string Name, string Group, string Expertise)
+        public List<Volunteer_Model> Search_Volunteer(string Name, string Group, string Expertise,List<int>years)
         {
             VolunteerEntities dbcontext = new VolunteerEntities();
 
@@ -102,7 +102,8 @@ namespace Volunteer_WPF.Model
                     where
                     (!(Expertise == "(無)") ? p2.Expertise1.Expertise == Expertise : true) &&
                     (!(Group == "(無)") ? p3_5.Group_name == Group : true) &&
-                    (!(Name == "") ? p1.Chinese_name.Contains(Name) : true)
+                    (!(Name == "") ? p1.Chinese_name.Contains(Name) : true) &&
+                    (!(years.Count==0)?years.Contains(p1.Seniority):true)
                     select new
                     {
                         Volunteer_no = p1.Volunteer_no.ToString(),

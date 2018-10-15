@@ -28,6 +28,8 @@ namespace Volunteer_WPF.View
         {
             InitializeComponent();
             this.DataGrid_1.IsReadOnly = true;
+            this.DataGrid_1.Columns[0].Visibility = Visibility.Hidden;
+            this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;
         }
         List<int> l_click_ok = new List<int>();        //存打勾人
         List<int> l_click_delete = new List<int>();    //存打X的人
@@ -38,10 +40,10 @@ namespace Volunteer_WPF.View
         bool Issend_pass = true;                       //判斷信件類形是審核通過的
         bool Issend_delete = false;                    //判斷信件類型是刪除的
              
-        Thread send_mail;                                        //發mail用的背景執行緒
-        int stage_first = 0;                           //審核階段的代表值變數
-        int stage_interview = 1;
-        int stage_pass_applicant = 2;
+        Thread send_mail;                              //發mail用的背景執行緒
+        int stage_first = 1;                           //審核階段的代表值變數
+        int stage_interview = 4;
+        int stage_pass_applicant = 5;
         int stage_NotUse = 9;                          //非審核階段的代表值
 
         ObservableCollection<Volunteer_Applicant> volunteer = new ObservableCollection<Volunteer_Applicant>();  //存資料庫資料類別用
@@ -144,14 +146,16 @@ namespace Volunteer_WPF.View
             Volunteer_Applicant v = this.DataGrid_1.SelectedItem as Volunteer_Applicant;          
             if (l_click_ok.Count == 0)                                  //沒點選任何勾勾時進入
             {
-                l_click_ok.Add(v.申請編號);                             //點選的項目加入集合
+                l_click_ok.Add(v.申請編號);                             //點選的項目加入集合  
+                lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
                 for (int i = 0; i < l_click_ok.Count; i += 1)           //判斷使否存在於打XX集合內
                 {
                     for (int j = 0; j < l_click_delete.Count; j += 1)
                     {
                         if (l_click_ok[i] == l_click_delete[j])         //如果有
                         {
-                            l_click_delete.Remove(l_click_delete[j]);   //刪除XX集合內的值
+                            l_click_delete.Remove(l_click_delete[j]);   //刪除XX集合內的值                          
+                            lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                         }
                     }
                 }
@@ -166,6 +170,8 @@ namespace Volunteer_WPF.View
                     {
                         l_click_ok.Remove(l_click_ok[i]);              //就從集合內刪掉該號碼
                         ok_in = false;                                 //狀態設成不可加入
+                        lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
+                        lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                         break;                                         //離開迴圈
                     }
                 }
@@ -173,6 +179,8 @@ namespace Volunteer_WPF.View
                 {
                         l_click_ok.Add(v.申請編號);                    //該號碼加入集合
                         l_click_delete.Remove(v.申請編號);             //刪除XX集合內的值
+                    lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
+                    lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                 }               
             }
         }
@@ -183,13 +191,15 @@ namespace Volunteer_WPF.View
             if (l_click_delete.Count == 0)                        //沒點選任何XX時進入
             {
                 l_click_delete.Add(v.申請編號);                   //點選的項目加入集合
+                lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                 for (int i = 0; i < l_click_delete.Count; i += 1) //判斷使否存在於打勾勾集合內
                 {
                     for (int j = 0; j < l_click_ok.Count; j += 1)
                     {
                         if (l_click_delete[i] == l_click_ok[j])   //如果有
                         {
-                            l_click_ok.Remove(l_click_ok[j]);     //刪除勾勾集合內的值                       
+                            l_click_ok.Remove(l_click_ok[j]);     //刪除勾勾集合內的值 
+                            lab_check.Content = l_click_ok.Count.ToString(); //計算勾選數
                         }
                     }
                 }
@@ -204,6 +214,8 @@ namespace Volunteer_WPF.View
                     {
                         l_click_delete.Remove(l_click_delete[i]); //就從集合內刪掉該號碼
                         ok_in = false;                            //狀態設成不可加入
+                        lab_check.Content = l_click_ok.Count.ToString();     //計算勾選數
+                        lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                         break;                                    //離開迴圈
                     }
                 }
@@ -211,6 +223,8 @@ namespace Volunteer_WPF.View
                 {
                     l_click_delete.Add(v.申請編號);               //該號碼加入集合
                     l_click_ok.Remove(v.申請編號);                //刪除勾勾集合內的值
+                    lab_check.Content = l_click_ok.Count.ToString();     //計算勾選數
+                    lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
                 }                                   
             }
         }
@@ -389,6 +403,8 @@ namespace Volunteer_WPF.View
             volunteer.Clear();                                               //清空資料集
             this.l_click_ok.Clear();                                         //清空這項功能以外的選擇項目
             this.l_click_delete.Clear();                                     //清空這項功能以外的選擇項目
+            lab_check.Content = l_click_ok.Count.ToString();                 //計算勾選數
+            lab_Dcheck.Content = l_click_delete.Count.ToString();            //計算打X數
             if (n == stage_pass_applicant)
             {
                 this.DataGrid_1.Columns[0].Visibility = Visibility.Visible;     //將刪除欄顯示
@@ -416,7 +432,7 @@ namespace Volunteer_WPF.View
             this.D_End_date.Text = "";     //查詢後將值設為預設
             foreach (var v in q)
             {
-                volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no,申請階段 = Convert.ToInt32(v.Stage) == 0 ? "初次申請" : Convert.ToInt32(v.Stage) ==1? "已要求面試":"審核已通過", 申請人姓名 = v.Chinese_name + " " + v.English_name, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期= Convert.ToDateTime(v.Sign_up_date), 審核日期 = Convert.ToDateTime(v.Approval_date) });
+                volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no,申請階段 = Convert.ToInt32(v.Stage) == stage_first ? "初次申請" : Convert.ToInt32(v.Stage) ==stage_interview? "已要求面試":"審核已通過", 申請人姓名 = v.Chinese_name + " " + v.English_name, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期= Convert.ToDateTime(v.Sign_up_date), 審核日期 = Convert.ToDateTime(v.Approval_date) });
             }
             return volunteer;
         }
