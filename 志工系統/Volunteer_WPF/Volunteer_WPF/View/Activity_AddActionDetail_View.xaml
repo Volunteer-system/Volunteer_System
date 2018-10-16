@@ -1,0 +1,47 @@
+﻿<Window x:Class="Volunteer_WPF.View.Activity_AddActionDetail_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        xmlns:t="clr-namespace:Volunteer_WPF.View_Model"
+        mc:Ignorable="d"
+        Title="Activity_AddActionDetail_View" Height="615" Width="1020">
+    <!--<Window.DataContext>
+        <t:Activity_AddAction_ViewModel></t:Activity_AddAction_ViewModel>
+    </Window.DataContext>-->
+    <Grid Background="LightGray">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lab_ActName" Content="活動名稱" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="70,25,320.2,0" Height="34" VerticalAlignment="Top" />
+        <TextBox x:Name="tbx_ActName" HorizontalAlignment="Left" Height="34" Margin="197,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20"/>
+        <Label x:Name="lab_ActType" Content="活動類別" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="70,73,340.2,0" Height="34" VerticalAlignment="Top" />
+        <ComboBox x:Name="cmb_ActType" HorizontalAlignment="Left" Margin="197,73,0,0" VerticalAlignment="Top" Width="190" Height="34" FontFamily="Microsoft Sans Serif" FontSize="20" ItemsSource="{Binding}" SelectedValue="{Binding Activity_type_ID}" DisplayMemberPath="{Binding Activity_type}"/>
+        <Label x:Name="lab_ActGroupID" Content="活動組別" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="70,123,339.2,0" Height="34" VerticalAlignment="Top" />
+        <ComboBox x:Name="cmb_ActGroupID" HorizontalAlignment="Left" Margin="197,123,0,0" VerticalAlignment="Top" Width="190" Height="34" FontFamily="Microsoft Sans Serif" FontSize="20" />
+        <Label x:Name="lab_ActOrganization" Content="承辦單位" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="41.8,25,357.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox x:Name="tbx_ActOrganization" HorizontalAlignment="Left" Height="34" Margin="153.8,25,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActTaker" Content="承辦人" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="41.8,73,357.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox x:Name="tbx_ActTaker" HorizontalAlignment="Left" Height="34" Margin="153.8,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActOrganizationPhone" Content="承辦單位電話" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="9.8,123,357.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox x:Name="tbx_ActOrganizationPhone" HorizontalAlignment="Left" Height="34" Margin="153.8,123,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActOrganizationEmail" Content="承辦單位E-Mail" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="507,175,347.6,0" Height="34" VerticalAlignment="Top" Grid.ColumnSpan="2" />
+        <TextBox x:Name="tbx_ActOrganizationEmail" HorizontalAlignment="Left" Height="34" Margin="153.8,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActCourseMemberMax" Content="課程人數" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="41.8,221,344.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox x:Name="tbx_ActCourseMemberMax" HorizontalAlignment="Left" Height="34" Margin="153.8,221,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActCourseStandbyMax" Content="備取人數" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="41.8,271,344.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <TextBox x:Name="tbx_ActCourseStandbyMax" HorizontalAlignment="Left" Height="34" Margin="153.8,271,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20" Grid.Column="1"/>
+        <Label x:Name="lab_ActPlace" Content="活動地點" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="69,175,340.2,0" Height="34" VerticalAlignment="Top" />
+        <TextBox x:Name="tbx_ActPlace" HorizontalAlignment="Left" Height="34" Margin="197,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="20"/>
+        <Label x:Name="lab_ActSummary" Content="活動簡介" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="69,318,324.2,0" Height="34" VerticalAlignment="Top" />
+        <TextBox x:Name="tbx_ActSummary" HorizontalAlignment="Left" Height="219" Margin="71,357,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="426" FontFamily="Microsoft Sans Serif" FontSize="20"/>
+        <Label x:Name="lab_ActImage" Content="活動照片" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="41.8,318,332.6,0" Height="34" VerticalAlignment="Top" Grid.Column="1" />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="172" Margin="41.8,357,0,0" VerticalAlignment="Top" Width="412" Source="/Volunteer_WPF;component/image/ok.jpg" Stretch="Fill" Grid.Column="1" />
+        <Label x:Name="lab_ActStartTime" Content="開始日期" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="71,221,339.2,0" Height="34" VerticalAlignment="Top" />
+        <DatePicker Name="datepicker_start" HorizontalAlignment="Left" Margin="197,221,0,0" VerticalAlignment="Top" Width="138" Height="34"/>
+        <Label x:Name="lab_ActEndTime" Content="結束日期" FontFamily="Microsoft Sans Serif" FontSize="20" Margin="69,271,330.2,0" Height="34" VerticalAlignment="Top" />
+        <DatePicker Name="datepicker_end" HorizontalAlignment="Left" Margin="197,271,0,0" VerticalAlignment="Top" Width="138" Height="34"/>
+    </Grid>
+</Window>

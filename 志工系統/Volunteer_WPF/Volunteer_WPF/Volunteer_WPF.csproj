@@ -205,6 +205,9 @@
     <Compile Include="User_Control\UCTabItemWithClose.xaml.cs">
       <DependentUpon>UCTabItemWithClose.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Activity_AddActionDetail_View.xaml.cs">
+      <DependentUpon>Activity_AddActionDetail_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Activity_View.xaml.cs">
       <DependentUpon>Activity_View.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="User_Control\UCTabItemWithClose.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Activity_AddActionDetail_View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
