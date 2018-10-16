@@ -41,8 +41,7 @@ namespace Volunteer_WPF.Model
         public string Approval_date { get; set; }
         //志工督導        
         public string supervision_Name { get; set; }
-        //面試意願時間
-        public string Interview_date { get; set; }
+       
 
         public void SelectSign_up_bySignup_no(int Signup_no)
         {
@@ -70,7 +69,7 @@ namespace Volunteer_WPF.Model
                         Stage = n2.Stage1.ToString(),
                         Approval_date = n1.Approval_date.ToString(),
                         supervision_Name = n3.supervision_Name.ToString(),
-                        Interview_date = n1.Interview_date.ToString()
+                        
                     };
 
             foreach (var row in q)
@@ -90,7 +89,7 @@ namespace Volunteer_WPF.Model
                 Stage = row.Stage;
                 Approval_date = row.Approval_date;
                 supervision_Name = row.supervision_Name;
-                Interview_date = row.Interview_date;
+                
             }            
         }
 

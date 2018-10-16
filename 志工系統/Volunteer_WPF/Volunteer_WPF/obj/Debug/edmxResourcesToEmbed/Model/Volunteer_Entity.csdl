@@ -270,6 +270,7 @@
     <NavigationProperty Name="Service_period21" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period1" ToRole="Service_period2" />
     <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Service_period1" ToRole="Shift_schedule" />
     <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Service_period1" ToRole="Sign_up_Service_period" />
+    <NavigationProperty Name="Sign_up_interview_period" Relationship="VolunteerModel.FK_Sign_up_interview_period_Service_period" FromRole="Service_period1" ToRole="Sign_up_interview_period" />
   </EntityType>
   <EntityType Name="Shift_schedule">
     <Key>
@@ -406,9 +407,10 @@
     <Property Name="Stage" Type="Int32" />
     <Property Name="Approval_date" Type="DateTime" Precision="3" />
     <Property Name="supervision_ID" Type="Int32" />
-    <Property Name="Interview_date" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Sign_up_Volunteer_supervision2" FromRole="Sign_up" ToRole="Volunteer_supervision" />
     <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
+    <NavigationProperty Name="Sign_up_interview_period" Relationship="VolunteerModel.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
+    <Property Name="Sign_up_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
     <Key>
@@ -1201,5 +1203,48 @@
       <End Role="Sign_up" EntitySet="Sign_up" />
       <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
     </AssociationSet>
+    <EntitySet Name="Sign_up_interview_period" EntityType="VolunteerModel.Sign_up_interview_period" />
+    <AssociationSet Name="FK_Sign_up_interview_period_Service_period" Association="VolunteerModel.FK_Sign_up_interview_period_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_interview_period_Sign_up" Association="VolunteerModel.FK_Sign_up_interview_period_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="Sign_up_interview_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="Int32" Nullable="false" />
+    <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
+    <Property Name="interview_period_no" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Service_period1" Relationship="VolunteerModel.FK_Sign_up_interview_period_Service_period" FromRole="Sign_up_interview_period" ToRole="Service_period1" />
+    <NavigationProperty Name="Sign_up" Relationship="VolunteerModel.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up_interview_period" ToRole="Sign_up" />
+  </EntityType>
+  <Association Name="FK_Sign_up_interview_period_Service_period">
+    <End Type="VolunteerModel.Service_period1" Role="Service_period1" Multiplicity="1" />
+    <End Type="VolunteerModel.Sign_up_interview_period" Role="Sign_up_interview_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Sign_up_interview_period">
+        <PropertyRef Name="interview_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_interview_period_Sign_up">
+    <End Type="VolunteerModel.Sign_up" Role="Sign_up" Multiplicity="1" />
+    <End Type="VolunteerModel.Sign_up_interview_period" Role="Sign_up_interview_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_interview_period">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

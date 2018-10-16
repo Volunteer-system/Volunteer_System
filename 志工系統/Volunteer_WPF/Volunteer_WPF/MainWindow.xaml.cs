@@ -28,7 +28,9 @@ namespace Volunteer_WPF
 
             UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = "首頁", Name = "首頁", Width = 84.4, Height = 30, FontSize = 12 };
 
-            NewTab.SetValue(UCTabItemWithClose.StyleProperty, Application.Current.Resources["TabItemStyle1"]);
+            //NewTab.SetValue(UCTabItemWithClose.StyleProperty, Application.Current.Resources["TabItemStyle1"]);
+            Style style = this.FindResource("TabItemStyle1") as Style;
+            NewTab.Style = style;
 
             Home home = new Home();  
             object content = home.Content;
@@ -47,7 +49,17 @@ namespace Volunteer_WPF
 
             if (login.login_ok)
             {
-                this.username.Content = Account_ViewModel.User;
+                string str = null;
+                if (Account_ViewModel.Permission == "director")
+                {
+                    str =  "主任 " + Account_ViewModel.User;
+                }
+                if (Account_ViewModel.Permission == "Volunteer_supervision")
+                {
+                    str = "志工督導 " + Account_ViewModel.User;
+                }
+                
+                this.username.Content = str;
             }
             else
             {

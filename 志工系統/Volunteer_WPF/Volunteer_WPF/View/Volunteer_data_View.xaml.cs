@@ -241,6 +241,8 @@ namespace Volunteer_WPF.View
                 Photo = imagebyte
             });
 
+            
+
             dbContext.SaveChanges();
             MessageBox.Show("successful");
             
@@ -635,5 +637,7 @@ namespace Volunteer_WPF.View
         {
             this.Close();
         }
+
+       
     }
 }

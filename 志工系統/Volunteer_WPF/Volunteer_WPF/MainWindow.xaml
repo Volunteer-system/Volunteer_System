@@ -330,16 +330,16 @@
             <Grid HorizontalAlignment="Left" Height="647" Margin="0,90,0,0" VerticalAlignment="Top" Width="1016">
                 <TabControl x:Name="TabControl1" HorizontalAlignment="Left" Height="650" VerticalAlignment="Top" Width="1020" Margin="0,0,-4,0">
                     <!--<TabControlWithClose:UCTabItemWithClose x:Name="UCTabItem" Header="首頁" Background="White" HorizontalAlignment="Left" Height="30" VerticalAlignment="Top" Width="120" Style="{DynamicResource TabItemStyle1}" Margin="-3,0,0,0">
-                    </TabControlWithClose:UCTabItemWithClose>-->                    
+                    </TabControlWithClose:UCTabItemWithClose>-->
                 </TabControl>
             </Grid>
-            <Button HorizontalAlignment="Left" Margin="922,6,0,0" VerticalAlignment="Top" Width="84" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
-                <WrapPanel Height="23" Width="84">
+            <Button HorizontalAlignment="Left" Margin="890,6,0,0" VerticalAlignment="Top" Width="126" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
+                <WrapPanel Height="23" Width="126">
                     <Image Source="image/user.png" Width="18"/>
-                    <Label x:Name="username" Content="username" Width="66" Foreground="DarkGray"/>
+                    <Label x:Name="username" Content="username" Width="100" Foreground="DarkGray"/>
                 </WrapPanel>
             </Button>
-            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Height="8"/>
+
         </Grid>
     </Viewbox>
 </Window>

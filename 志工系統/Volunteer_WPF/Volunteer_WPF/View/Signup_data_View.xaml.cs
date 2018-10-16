@@ -39,7 +39,7 @@ namespace Volunteer_WPF.View
             this.Education_Label.Content = sign_Up_ViewModel.Education;
             this.Job_Label.Content = sign_Up_ViewModel.Job;
             this.Personality_scale_Label.Content = sign_Up_ViewModel.Personality_scale;
-            this.Interview_date_Label.Content = sign_Up_ViewModel.Interview_date;
+
 
             //顯示服務意願時間
             foreach (string row in Service_period)
@@ -129,7 +129,7 @@ namespace Volunteer_WPF.View
                     if (row.Contains("上午"))
                     {
                         this.Sat_am.Content = row.Substring(0, 1);
-                    }                    
+                    }
                     else
                     {
                         this.Sat_pm.Content = row.Substring(0, 1);
@@ -148,7 +148,118 @@ namespace Volunteer_WPF.View
                     }
                 }
             }
+
+            Sign_up_interview_period_ViewModel Interview_Period_ViewModel = new Sign_up_interview_period_ViewModel();
+            List<string> Interview_Periods = Interview_Period_ViewModel.SelectSign_up_interview_periodbySignup_no(Signup_no);
+
+            foreach (var row in Interview_Periods)
+            {
+                if (row.Contains("週一"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Mon_am1.Content = "V";
+                    }
+                    else if (row.Contains("下午"))
+                    {
+                        this.Mon_pm1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Mon_night1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週二"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Tue_am1.Content = "V";
+                    }
+                    else if (row.Contains("下午"))
+                    {
+                        this.Tue_pm1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Tue_night1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週三"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Wed_am1.Content = "V";
+                    }
+                    else if (row.Contains("下午"))
+                    {
+                        this.Wed_pm1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Wed_night1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週四"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Thu_am1.Content = "V";
+                    }
+                    else if (row.Contains("下午"))
+                    {
+                        this.Thu_pm1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Thu_night1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週五"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Fri_am1.Content = "V";
+                    }
+                    else if (row.Contains("下午"))
+                    {
+                        this.Fri_pm1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Fri_night1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週六"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Sat_am1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Sat_pm1.Content = "V";
+                    }
+                }
+
+                if (row.Contains("週日"))
+                {
+                    if (row.Contains("上午"))
+                    {
+                        this.Sun_am1.Content = "V";
+                    }
+                    else
+                    {
+                        this.Sun_pm1.Content = "V";
+                    }
+                }
+            }
         }
+
         
     }
 }

@@ -26,7 +26,7 @@ namespace Volunteer_WPF.Model
                     {
                         User_ID = n1.User_ID,
                         User = n2.supervision_Name,
-                        Permission = "Volunteer_supervision"
+                        Permission = n1.Permission
                     };
 
             foreach (var row in q)

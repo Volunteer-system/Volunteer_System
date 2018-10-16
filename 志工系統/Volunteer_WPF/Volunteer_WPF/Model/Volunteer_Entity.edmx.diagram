@@ -84,6 +84,9 @@
         <AssociationConnector Association="VolunteerModel.FK_Service_Group_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Service_period_Volunteer" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Sign_up_Service_period_Sign_up" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VolunteerModel.Sign_up_interview_period" Width="1.5" PointX="14.25" PointY="31" />
+        <AssociationConnector Association="VolunteerModel.FK_Sign_up_interview_period_Service_period" />
+        <AssociationConnector Association="VolunteerModel.FK_Sign_up_interview_period_Sign_up" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

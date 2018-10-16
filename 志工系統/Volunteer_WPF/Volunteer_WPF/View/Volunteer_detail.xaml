@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Volunteer_detail" Height="876.689" Width="800">
+        Title="Volunteer_detail" Height="881.489" Width="800">
     <ScrollViewer Margin="0,0,0,-6">
         <Grid Background="White" Margin="0">
             <Grid.ColumnDefinitions>

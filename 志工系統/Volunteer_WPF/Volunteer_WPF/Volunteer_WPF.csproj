@@ -156,6 +156,10 @@
     <Compile Include="Model\Sign_up.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Sign_up_interview_period.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Sign_up_interview_period_Model.cs" />
     <Compile Include="Model\Sign_up_Model.cs" />
     <Compile Include="Model\Sign_up_Service_period.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
@@ -229,6 +233,7 @@
     <Compile Include="View_Model\Activity_type_ViewModel.cs" />
     <Compile Include="View_Model\Activity_ViewModel.cs" />
     <Compile Include="View_Model\Service_group_ViewModel.cs" />
+    <Compile Include="View_Model\Sign_up_interview_period_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
     <Compile Include="View_Model\Volunteer_ViewModel.cs" />
     <Page Include="MainWindow.xaml">
