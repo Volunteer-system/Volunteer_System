@@ -67,6 +67,12 @@ namespace Volunteer_WPF.View
 
             this.dg_activity.ItemsSource = activity_itemlist;
         }
+
+        private void btn_addactivity_Click(object sender, RoutedEventArgs e)
+        {
+            Activity_AddActionDetail_View activity_AddActionDetail_View = new Activity_AddActionDetail_View();
+            activity_AddActionDetail_View.ShowDialog();
+        }
     }
 
     public class activity_list

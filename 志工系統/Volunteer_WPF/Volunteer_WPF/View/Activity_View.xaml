@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1,1,0.6,0.6" Grid.ColumnSpan="2" >
             <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
-                <Button x:Name="btn_addactivity" Content="新增活動" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
+                <Button x:Name="btn_addactivity" Content="新增活動" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_addactivity_Click"/>
                 <Label  Content="活動日期" FontSize="14"/>
                 <DatePicker Name="dp_startdate"/>
                 <Label  Content="~" FontSize="16"/>
