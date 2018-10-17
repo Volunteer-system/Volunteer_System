@@ -127,6 +127,22 @@ namespace Volunteer_WPF.Model
             return activity_list;
         }
 
+        public List<DateTime> SelectActivity_bydatetime(DateTime startdate1, DateTime startdate2)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Activities
+                    where (n.Activity_startdate >= startdate1) &&
+                          (n.Activity_startdate <= startdate2)
+                    select new { Activity_startdate = (DateTime)n.Activity_startdate };
+
+            List<DateTime> dateTimes = new List<DateTime>();
+            foreach (var row in q)
+            {
+                dateTimes.Add(row.Activity_startdate);
+            }
+
+            return dateTimes;
+        }
 
     }
 }

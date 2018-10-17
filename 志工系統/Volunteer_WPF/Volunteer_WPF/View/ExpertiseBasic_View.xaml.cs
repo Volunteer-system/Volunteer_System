@@ -25,6 +25,7 @@ namespace Volunteer_WPF.View
         {
             InitializeComponent();
             rewrite();
+            this.Title = "志工專長表";
         }
         
         

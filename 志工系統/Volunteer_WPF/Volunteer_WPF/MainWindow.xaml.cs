@@ -24,21 +24,7 @@ namespace Volunteer_WPF
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = "首頁", Name = "首頁", Width = 84.4, Height = 30, FontSize = 12 };
-
-            //NewTab.SetValue(UCTabItemWithClose.StyleProperty, Application.Current.Resources["TabItemStyle1"]);
-            Style style = this.FindResource("TabItemStyle1") as Style;
-            NewTab.Style = style;
-
-            Home home = new Home();  
-            object content = home.Content;
-            home.Content = null;
-            NewTab.Content = content as UIElement;
-
-            TabControl1.Items.Add(NewTab);
-            TabControl1.SelectedItem = NewTab;
+            InitializeComponent();           
             
         }
 
@@ -65,6 +51,20 @@ namespace Volunteer_WPF
             {
                 this.Close();
             }
+
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = "首頁", Name = "首頁", Width = 84.4, Height = 30, FontSize = 12 };
+
+            //NewTab.SetValue(UCTabItemWithClose.StyleProperty, Application.Current.Resources["TabItemStyle1"]);
+            Style style = this.FindResource("TabItemStyle1") as Style;
+            NewTab.Style = style;
+
+            Home home = new Home();
+            object content = home.Content;
+            home.Content = null;
+            NewTab.Content = content as UIElement;
+
+            TabControl1.Items.Add(NewTab);
+            TabControl1.SelectedItem = NewTab;
         }
 
         List<string> CheckList = new List<string> { "0" };
@@ -270,7 +270,11 @@ namespace Volunteer_WPF
 
         private void BasicItem_Click(object sender, RoutedEventArgs e)  //基本設定檔維護按鈕
         {
-            AddTabItem(BasicItem.Header.ToString());
+            BasicItem basicitem_View = new BasicItem();
+            object content = basicitem_View.Content;
+            basicitem_View.Content = null;
+
+            AddTabItem(BasicItem.Header.ToString(), content);
             CheckList.Add(BasicItem.Header.ToString());
             Selected(BasicItem.Header.ToString());
         }

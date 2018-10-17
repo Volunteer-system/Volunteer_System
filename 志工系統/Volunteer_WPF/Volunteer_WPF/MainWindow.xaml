@@ -333,10 +333,10 @@
                     </TabControlWithClose:UCTabItemWithClose>-->
                 </TabControl>
             </Grid>
-            <Button HorizontalAlignment="Left" Margin="890,6,0,0" VerticalAlignment="Top" Width="126" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
+            <Button HorizontalAlignment="Left" Margin="875,6,0,0" VerticalAlignment="Top" Width="135" Height="24" Background="{x:Null}" BorderBrush="{x:Null}" Cursor="Hand">
                 <WrapPanel Height="23" Width="126">
                     <Image Source="image/user.png" Width="18"/>
-                    <Label x:Name="username" Content="username" Width="100" Foreground="DarkGray"/>
+                    <Label x:Name="username" Content="username" Width="107" Foreground="DarkGray"/>
                 </WrapPanel>
             </Button>
 

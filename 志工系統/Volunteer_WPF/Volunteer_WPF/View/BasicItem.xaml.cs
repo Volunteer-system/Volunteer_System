@@ -11,28 +11,23 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Volunteer_WPF.Model;
-using Volunteer_WPF.View_Model;
-using System.Collections.ObjectModel;
 
 namespace Volunteer_WPF.View
 {
     /// <summary>
-    /// Activity_AddActionDetail_View.xaml 的互動邏輯
+    /// BasicItem.xaml 的互動邏輯
     /// </summary>
-    public partial class Activity_AddActionDetail_View : Window
-    {        
-        public Activity_AddActionDetail_View()
+    public partial class BasicItem : Window
+    {
+        public BasicItem()
         {
             InitializeComponent();
-            
         }
 
-        public Activity_AddActionDetail_View(string str, DateTime dateTime)
+        private void 專長_click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-
+            ExpertiseBasic_View f = new ExpertiseBasic_View();
+            f.ShowDialog();
         }
-
     }
 }

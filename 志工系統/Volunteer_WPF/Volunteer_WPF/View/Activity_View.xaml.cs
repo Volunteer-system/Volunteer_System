@@ -46,7 +46,11 @@ namespace Volunteer_WPF.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string activity_name = (this.dg_activity.SelectedItem as activity_list).活動名稱;
+            DateTime activity_startdate = Convert.ToDateTime((this.dg_activity.SelectedItem as activity_list).活動起始時間);
 
+            Window activity_addaction = new Activity_AddActionDetail_View(activity_name, activity_startdate);
+            activity_addaction.ShowDialog();
         }
 
         private void btn_selectactivity_Click(object sender, RoutedEventArgs e)

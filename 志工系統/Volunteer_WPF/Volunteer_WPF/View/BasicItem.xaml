@@ -1,0 +1,45 @@
+﻿<Window x:Class="Volunteer_WPF.View.BasicItem"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="BasicItem" Height="407.85" Width="693.388">
+
+    <Viewbox Margin="0,0,-8,-3" Stretch="Fill">
+
+        <Grid ShowGridLines="True" Height="380" Width="693">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50*"/>
+                <RowDefinition Height="429*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="155*"/>
+                <ColumnDefinition Width="155*"/>
+                <ColumnDefinition Width="482*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.Column="0"  Content="督導相關" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label  Grid.Row="0" Grid.Column="1" Content="考核相關" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <Label Grid.Row="0" Grid.Column="2" Content="志工相關" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <StackPanel  Grid.Row="1">
+                <Button Content="活動類別" HorizontalAlignment="Center"  Width="135" VerticalAlignment="Top" Height="80" Margin="10" />
+                <Button Content="異常事件類別" HorizontalAlignment="Center"  Width="135" VerticalAlignment="Top"  Height="80" Margin="10"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button Content="人力評估項目" HorizontalAlignment="Center"  Width="135" VerticalAlignment="Top" Height="80" Margin="10"/>
+                <Button Content="人力評估結果" HorizontalAlignment="Center"  Width="135" VerticalAlignment="Top" Height="80" Margin="10"/>
+            </StackPanel>
+            <WrapPanel Orientation="Vertical" Grid.Column="2" Grid.Row="1" Height="345">
+                <Button Click="專長_click" Content="志工專長" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+                <Button Content="志工組別" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+                <Button Content="發證單位" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+                <Button Content="身分類別" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+                <Button Content="幹部類別" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+                <Button Content="服務時段" HorizontalAlignment="Left" VerticalAlignment="Top" Width="135" Height="77" Margin="10"/>
+            </WrapPanel>
+        </Grid>
+
+    </Viewbox>
+
+</Window>

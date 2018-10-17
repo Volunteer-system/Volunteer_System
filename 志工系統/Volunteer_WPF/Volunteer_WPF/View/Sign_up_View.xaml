@@ -72,7 +72,7 @@
                     <Button Content="確認" Click="btn_check_Click" Width="106" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" Height="35" BorderBrush="{x:Null}" />
                     <Label Content="已勾選數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
                     <Label Name="lab_check" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
-                    <Label Content="欲刪除數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
+                    <Label Content="欲駁回數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
                     <Label Name="lab_Dcheck" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
                     <!--<DataGrid    VerticalAlignment="Center" HorizontalAlignment="Center"  Background="DarkGray"    Focusable="False" IsHitTestVisible="True"  Height="97" Margin="84,98,564,193" Width="210" Grid.Row="1">
                    

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="ExpertiseBasic_View" Height="450" Width="800">
-    <Grid>
+        Title="ExpertiseBasic_View" Height="453.719" Width="537.19">
+    <Grid Margin="0,0,-8,-8">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="637*"/>
-            <ColumnDefinition Width="155*"/>
+            <ColumnDefinition Width="365*"/>
+            <ColumnDefinition Width="171*"/>
         </Grid.ColumnDefinitions>
         <DataGrid PreviewKeyDown="datagrid1_PreviewKeyDown" Name="datagrid1"/>
-        
+
         <Button Content="確定修改" Grid.Column="1" HorizontalAlignment="Left" Margin="23,22,0,0" VerticalAlignment="Top" Width="108" Height="55" Click="Button_Click_2"/>
         <Button Content="取消" Click="Button_Click_1" Grid.Column="1" HorizontalAlignment="Left" Margin="23,108,0,0" VerticalAlignment="Top" Width="108" Height="55"/>
         <Button Content="刪除資料" Grid.Column="1" HorizontalAlignment="Left" Margin="23,378,0,0" VerticalAlignment="Top" Width="57" Height="31" Click="Button_Click"/>

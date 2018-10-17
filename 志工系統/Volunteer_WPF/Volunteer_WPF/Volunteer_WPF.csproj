@@ -113,6 +113,7 @@
     <Compile Include="Model\Expertise2.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\ExpertiseBasic_Model.cs" />
     <Compile Include="Model\Human_assessment.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -211,6 +212,12 @@
     <Compile Include="View\Activity_View.xaml.cs">
       <DependentUpon>Activity_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\BasicItem.xaml.cs">
+      <DependentUpon>BasicItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExpertiseBasic_View.xaml.cs">
+      <DependentUpon>ExpertiseBasic_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -235,6 +242,7 @@
     <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Activity_type_ViewModel.cs" />
     <Compile Include="View_Model\Activity_ViewModel.cs" />
+    <Compile Include="View_Model\ExpertiseBasic_ViewModel.cs" />
     <Compile Include="View_Model\Service_group_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_interview_period_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
@@ -270,6 +278,14 @@
     <Page Include="View\Activity_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\BasicItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ExpertiseBasic_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Home.xaml">
       <Generator>MSBuild:Compile</Generator>
