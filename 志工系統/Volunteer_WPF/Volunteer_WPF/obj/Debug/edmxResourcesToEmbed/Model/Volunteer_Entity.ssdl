@@ -123,6 +123,7 @@
     <Property Name="Undertaker" Type="int" />
     <Property Name="Undertake_phone" Type="nvarchar" MaxLength="15" />
     <Property Name="Undertake_email" Type="nchar" MaxLength="50" />
+    <Property Name="lecturer" Type="nvarchar" MaxLength="50" />
     <Property Name="Member" Type="int" />
     <Property Name="Spare" Type="int" />
     <Property Name="Place" Type="nvarchar" MaxLength="50" />

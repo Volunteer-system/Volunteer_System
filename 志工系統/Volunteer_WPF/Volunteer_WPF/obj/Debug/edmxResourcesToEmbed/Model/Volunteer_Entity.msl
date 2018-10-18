@@ -122,6 +122,7 @@
     <EntitySetMapping Name="Activities">
       <EntityTypeMapping TypeName="VolunteerModel.Activity">
         <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="lecturer" ColumnName="lecturer" />
           <ScalarProperty Name="Activity_enddate" ColumnName="Activity_enddate" />
           <ScalarProperty Name="Activity_startdate" ColumnName="Activity_startdate" />
           <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
