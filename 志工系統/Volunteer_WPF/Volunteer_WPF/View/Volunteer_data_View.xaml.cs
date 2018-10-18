@@ -41,6 +41,7 @@ namespace Volunteer_WPF.View
         public Volunteer_data_View(int a)
         {
             InitializeComponent();
+            //按下"確認"按鈕
             this.btn_confirm.Click += Button_Click;
 
 
@@ -158,6 +159,11 @@ namespace Volunteer_WPF.View
             }
 
         }
+
+        //亞衡
+        ////加入一個靜態變數 用來存放當前加入的Volunteer
+        //public static int _Volunteer_no;
+
         //從空白的表單 填完資料後 按"確認"按鈕 新增資料
         private void Button_Click1(object sender, RoutedEventArgs e)
         {        
@@ -244,10 +250,75 @@ namespace Volunteer_WPF.View
             
 
             dbContext.SaveChanges();
-            MessageBox.Show("successful");
+
+            var q = (from n in dbContext.Volunteer
+
+                     select new { n.Volunteer_no }).ToList().LastOrDefault();
             
+            foreach(var n in AAA)
+            {
+               Expertise2 e1 = new Expertise2 { Volunteer_no = q.Volunteer_no, Expertise_no = n };
+               dbContext.Expertise2.Add(e1);
+            }
+             
+
+            dbContext.SaveChanges();
+            MessageBox.Show("志工資料新增成功");
             
-        }
+            // int numberb=0;
+
+
+            //foreach(var b in q )
+            //{
+            //    numberb = b.Volunteer_no;
+            //}
+            //dbContext.Expertise2.ToList();
+            //dbContext.Expertise2.Local.Add(new Expertise2
+            //{
+            //    Volunteer_no = numberb
+
+            //});
+           
+            
+
+            //亞衡 連線 作法 找出volunteer_no=========================================================================
+            //try
+            //{
+            //    using (SqlConnection conn = new SqlConnection("Data Source=.;Initial Catalog=Volunteer;Integrated Security=True"))
+            //    {
+            //        using (SqlCommand cmd = new SqlCommand())
+            //        {
+            //            cmd.CommandText = "insert into [Volunteer].[Volunteer](Chinese_name,English_name,sex,birthday,IDcrad_no,Medical_record_no,Identity_type,Seniority,Join_date,Leave_date,Leave_reason,Phone_no,Mobile_no,Vest_no,Postal_code,Address,Education,Lssuing_unit_no,Service_manual_no,Personality_scale,Photo)" +
+            //                "values(@Chinese_name,@English_name,@sex,@birthday,@IDcrad_no,@Medical_record_no,@Identity_type,@Seniority,@Join_date,@Leave_date,@Leave_reason,@Phone_no,@Mobile_no,@Vest_no,@Postal_code,@Address,@Education,@Lssuing_unit_no,@Service_manual_no,@Personality_scale,@Photo);" +
+            //                "select Volunteer_no from [Volunteer].[Volunteer] where Volunteer_no=Scope_Identity()";
+            //            cmd.Connection = conn;
+            //            cmd.Parameters.Add("@Chinese_name", SqlDbType.NVarChar).Value = txtChineseName.Text;
+            //            cmd.Parameters.Add("@English_name", SqlDbType.NVarChar).Value = txtEnglishName.Text;
+            //            cmd.Parameters.Add("@sex", SqlDbType.NChar).Value = cbsex.Text;
+            //            cmd.Parameters.Add("@birthday", SqlDbType.DateTime).Value = myBirthDay;
+            //            cmd.Parameters.Add("@IDcrad_no", SqlDbType.NVarChar).Value = txtIDcrad_no.Text;
+            //            cmd.Parameters.Add("@Medical_record_no", SqlDbType.NChar).Value = txtMedical_record_no.Text;
+            //            cmd.Parameters.Add("@Identity_type", SqlDbType.Int).Value = intIdentity_type;
+            //            cmd.Parameters.Add("@Seniority", SqlDbType.Int).Value = intSeniority;
+            //            cmd.Parameters.Add("@Join_date", SqlDbType.Date).Value = myJoin_date;
+            //            cmd.Parameters.Add("@Leave_date", SqlDbType.Date).Value = myLeave_date;
+            //            cmd.Parameters.Add("@Leave_reason", SqlDbType.NChar).Value = cbLeaveReason.Text;
+            //            cmd.Parameters.Add("@Phone_no", SqlDbType.Int).Value = intPhone_no;
+            //            cmd.Parameters.Add("@Mobile_no", SqlDbType.Int).Value = intMobile_no;
+            //            cmd.Parameters.Add("@Vest_no", SqlDbType.NChar).Value = txtVest_no.Text;
+            //            cmd.Parameters.Add("@Postal_code", SqlDbType.Int).Value = intPostal_code;
+            //            cmd.Parameters.Add("@Address", SqlDbType.NVarChar).Value = txtAddress.Text;
+            //            cmd.Parameters.Add("@Education", SqlDbType.NVarChar).Value = cbEducation.Text;
+            //            cmd.Parameters.Add("@Lssuing_unit_no", SqlDbType.Int).Value = Lssuing_unit_no;
+            //            cmd.Parameters.Add("@Service_manual_no", SqlDbType.NChar).Value = txtService_manual_no.Text;
+            //            cmd.Parameters.Add("@Personality_scale", SqlDbType.NVarChar).Value = txtPersonality_scale.Text;
+            //            cmd.Parameters.Add("@Photo", SqlDbType.VarBinary).Value = imagebyte;
+            //            conn.Open();
+
+
+            //            _Volunteer_no = (int)cmd.ExecuteScalar();
+            //=================================================================
+                    }
 
         public static BitmapImage ConvertByteArrayToBitmapImage(Byte[] bytes)
         {
@@ -627,10 +698,13 @@ namespace Volunteer_WPF.View
             }
         }
 
+        List<int> AAA;
+        //跳到"選專長"頁面
         private void btnSelectExpert_Click(object sender, RoutedEventArgs e)
         {
-            //VolunteerExpertiseGrid v = new VolunteerExpertiseGrid();
-            //v.ShowDialog();
+            VolunteerExpertise v = new VolunteerExpertise();
+            v.ShowDialog();
+            AAA = v.STR();
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
@@ -638,6 +712,6 @@ namespace Volunteer_WPF.View
             this.Close();
         }
 
-       
+        
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,6 +29,8 @@ namespace Volunteer_WPF.Model
         public string Undertake_phone { get; set; }
         //承辦單位e-mail
         public string Undertake_email { get; set; }
+        //講師
+        public string Lecturer { get; set; }
         //課程人數
         public string Member { get; set; }
         //備取人數
@@ -36,6 +39,60 @@ namespace Volunteer_WPF.Model
         public string Place { get; set; }
         //活動簡介
         public string Summary { get; set; }
+
+        public List<Bitmap> SelectActivity_byActivity_no(int Activity_no)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Activities
+                    join n2 in dbContext.Volunteer_supervision
+                    on n1.Undertaker equals n2.supervision_ID
+                    join n3 in dbContext.Activity_type
+                    on n1.Activity_type_ID equals n3.Activity_type_ID
+                    join n4 in dbContext.Service_group
+                    on n1.Group_no equals n4.Group_no
+                    where n1.Activity_no == Activity_no
+                    select new
+                    {
+                        Activity_no = n1.Activity_no,
+                        Activity_name = n1.Activity_name,
+                        Activity_type = n3.Activity_type1,
+                        Group = n4.Group_name,
+                        Activity_startdate = n1.Activity_startdate,
+                        Activity_enddate = n1.Activity_enddate,
+                        Undertake_unit = n1.Undertake_unit,
+                        Undertaker = n2.supervision_Name,
+                        Undertake_phone = n1.Undertake_phone,
+                        Undertake_email = n1.Undertake_email,
+                        Lecturer = n1.lecturer,
+                        Member = n1.Member,
+                        Spare = n1.Spare,
+                        Place = n1.Place,
+                        Summary = n1.Summary
+                    };
+
+            foreach (var row in q)
+            {
+                Activity_no = row.Activity_no;
+                Activity_name = row.Activity_name;
+                Activity_type = row.Activity_type;
+                Group = row.Group;
+                Activity_startdate = row.Activity_startdate.ToString();
+                Activity_enddate = row.Activity_enddate.ToString();
+                Undertake_unit = row.Undertake_unit;
+                Undertaker = row.Undertaker;
+                Undertake_phone = row.Undertake_phone;
+                Undertake_email = row.Undertake_email;
+                Lecturer = row.Lecturer;
+                Member = row.Member.ToString();
+                Spare = row.Spare.ToString();
+                Place = row.Place;
+                Summary = row.Summary;
+            }
+
+            List<Bitmap> Activity_photos = new List<Bitmap>();
+
+            return Activity_photos;
+        }
 
         public List<Activity_Model> SelectActivity_byActivity_no(DateTime Startdate, DateTime Enddate, string Type, string Group)
         {

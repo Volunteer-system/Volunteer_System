@@ -49,7 +49,7 @@ namespace Volunteer_WPF.View
             string activity_name = (this.dg_activity.SelectedItem as activity_list).活動名稱;
             DateTime activity_startdate = Convert.ToDateTime((this.dg_activity.SelectedItem as activity_list).活動起始時間);
 
-            Window activity_addaction = new Activity_AddActionDetail_View(activity_name, activity_startdate);
+            Window activity_addaction = new Activity_AddActionDetail_View();
             activity_addaction.ShowDialog();
         }
 
@@ -76,6 +76,26 @@ namespace Volunteer_WPF.View
         {
             Activity_AddActionDetail_View activity_AddActionDetail_View = new Activity_AddActionDetail_View();
             activity_AddActionDetail_View.ShowDialog();
+        }
+
+        private void dg_activity_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            if (dg_activity.SelectedItem != null)
+            {
+                activity_list v = dg_activity.SelectedItem as activity_list;
+                string activity_name = v.活動名稱;
+                DateTime activity_startdate = Convert.ToDateTime(v.活動起始時間);
+
+            }            
+        }
+
+        public void getactivity_detail_view(int Activity_no)
+        {
+            Activity_detail_View activity_detail_View = new Activity_detail_View(Activity_no);
+            wondow_show.Children.Clear();
+            object content = activity_detail_View.Content;
+            activity_detail_View.Content = null;
+            wondow_show.Children.Add(content as UIElement);
         }
     }
 

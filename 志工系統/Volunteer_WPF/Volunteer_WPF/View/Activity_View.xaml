@@ -30,7 +30,7 @@
                 <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
-                <DataGrid x:Name="dg_activity"  Margin="1" CanUserAddRows="False" FontSize="14">
+                <DataGrid x:Name="dg_activity"  Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_activity_SelectedCellsChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
@@ -41,7 +41,9 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-
+                <ScrollViewer Height="Auto" Grid.Row="2">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
+                </ScrollViewer>
             </Grid>
 
         </DockPanel>

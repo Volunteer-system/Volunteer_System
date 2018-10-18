@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,8 @@ namespace Volunteer_WPF.View_Model
         public string Undertake_phone { get; set; }
         //承辦單位e-mail
         public string Undertake_email { get; set; }
+        //講師
+        public string Lecturer { get; set; }
         //課程人數
         public string Member { get; set; }
         //備取人數
@@ -37,6 +40,31 @@ namespace Volunteer_WPF.View_Model
         public string Place { get; set; }
         //活動簡介
         public string Summary { get; set; }
+
+        public List<Image> SelectActivity_byActivity_no(int Activity_num)
+        {
+            Activity_Model activity_Model = new Activity_Model();
+            List<Bitmap> Activity_model_photos = activity_Model.SelectActivity_byActivity_no(Activity_num);
+
+            Activity_no = activity_Model.Activity_no;
+            Activity_name = activity_Model.Activity_name;
+            Activity_type = activity_Model.Activity_type;
+            Group = activity_Model.Group;
+            Activity_startdate = activity_Model.Activity_startdate;
+            Activity_enddate = activity_Model.Activity_enddate;
+            Undertake_unit = activity_Model.Undertake_unit;
+            Undertaker = activity_Model.Undertaker;
+            Undertake_phone = activity_Model.Undertake_phone;
+            Undertake_email = activity_Model.Undertake_email;
+            Lecturer = activity_Model.Lecturer;
+            Member = activity_Model.Member;
+            Spare = activity_Model.Spare;
+            Place = activity_Model.Place;
+            Summary = activity_Model.Summary;
+
+            List<Image> Activity_photos = new List<Image>();
+            return Activity_photos;
+        }
 
         public List<Activity_ViewModel> SelectActivity_byActivity_no(DateTime Startdate, DateTime Enddate, string Type, string Group)
         {

@@ -21,18 +21,27 @@ namespace Volunteer_WPF.View
     /// Activity_AddActionDetail_View.xaml 的互動邏輯
     /// </summary>
     public partial class Activity_AddActionDetail_View : Window
-    {        
+    {
+
+        Activity_AddAction_ViewModel AAVM;
         public Activity_AddActionDetail_View()
         {
             InitializeComponent();
-            
+            AAVM = new Activity_AddAction_ViewModel();  //資料綁定的方式!!
+            this.DataContext = AAVM;                    //很重要!!
         }
 
-        public Activity_AddActionDetail_View(string str, DateTime dateTime)
+        private void image_DragEnter(object sender, DragEventArgs e)
         {
-            InitializeComponent();
-
+            e.Effects = DragDropEffects.Link;
         }
 
+        private void image_Drop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+              string[] file =  (string[])e.Data.GetData(DataFormats.FileDrop);              
+            }
+        }
     }
 }

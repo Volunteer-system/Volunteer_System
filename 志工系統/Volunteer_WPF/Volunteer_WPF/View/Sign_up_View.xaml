@@ -22,6 +22,7 @@
                 <Label Content="結束日期:" FontFamily="Microsoft Sans Serif" FontSize="14" />
                 <DatePicker Name="D_End_date"/>
                 <Button x:Name="btn_selectDate" Content="查詢" Height="35"  Margin="5" Click="btn_selectDate_Click" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
+                <Button x:Name="btn_getExcel" Content="匯出Excel" Height="35"  Margin="5" Click="btn_getExcel_Click"  Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
             </StackPanel>
             <Grid Height="Auto" ShowGridLines="True">
                 <Grid.RowDefinitions>

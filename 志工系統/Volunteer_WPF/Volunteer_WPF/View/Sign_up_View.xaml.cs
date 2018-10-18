@@ -16,6 +16,8 @@ using System.Collections;
 using System.Net.Mail;
 using Volunteer_WPF.Model;
 using System.Threading;
+using OfficeOpenXml;
+using System.IO;
 
 namespace Volunteer_WPF.View
 {
@@ -31,19 +33,7 @@ namespace Volunteer_WPF.View
             this.DataGrid_1.Columns[0].Visibility = Visibility.Hidden;
             this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;
         }
-
-        private int getstageID(string stage)
-        {
-            int res = 10;
-            var q = from s in Myentity.Stages
-                    where s.Stage1 == stage
-                    select s;
-            foreach (var r in q)
-            {
-                res = r.Stage_ID;              
-            }
-            return res;
-        }
+        
 
         List<int> l_click_ok = new List<int>();        //存打勾人
         List<int> l_click_delete = new List<int>();    //存打X的人
@@ -57,11 +47,16 @@ namespace Volunteer_WPF.View
         bool Issend_delete = false;                    //判斷信件類型是刪除的
              
         Thread send_mail;                              //發mail用的背景執行緒
-        string stage_first = "初次申請";//1                        //審核階段的代表值變數
+        string stage_first = "初次申請";//1            //審核階段的代表值變數
         string stage_interview = "面試";//4
         string stage_pass_applicant = "通過";//5
-        string stage_reject = "駁回";                          //代表駁回
-        string stage_NotUse = "其他";                          //非審核階段的代表值
+        string stage_reject = "駁回";                  //代表駁回
+        string stage_NotUse = "其他";                  //非審核階段的代表值
+
+        List<string> select_use = new List<string>();   //已勾選的
+        List<string> select_canuse = new List<string>();//可供勾選的欄位
+        Window w;                                       //產生新視窗
+        StackPanel sp = new StackPanel();               //新視窗內的容器
 
         ObservableCollection<Volunteer_Applicant> volunteer = new ObservableCollection<Volunteer_Applicant>();  //存資料庫資料類別用
 
@@ -577,5 +572,183 @@ namespace Volunteer_WPF.View
             signup_Data_View.Content = null;
             wondow_show.Children.Add(content as UIElement);
         }
+        //取的階段資料表的階段代表ID▼
+        private int getstageID(string stage)
+        {//取的階段資料表的階段代表ID
+            int res = 10;
+            var q = from s in Myentity.Stages
+                    where s.Stage1 == stage
+                    select s;
+            foreach (var r in q)
+            {
+                res = r.Stage_ID;
+            }
+            return res;
+        }
+        //匯出ExcelStart▼
+        private void btn_getExcel_Click(object sender, RoutedEventArgs e)
+        {//判斷欄位數，並進行項目選擇
+            if (this.DataGrid_1.Columns.Count >= 3)   //判斷dataGrid有沒有欄位
+            {                 
+                string[] select_everytime = new string[] { "申請人姓名", "生日", "電話號碼", "手機號碼", "電子郵件", "聯絡地址" }; //常用輸出項目
+                select_use.Clear();                   //清空集合內項目
+                select_use.AddRange(select_everytime);//加入常用項目值
+                select_canuse.Clear();                //清空集合內項目
+                sp.Children.Clear();                  //清空以建立的控制項目
+                w = new Window();                     //建立新的視窗控制項
+                w.Height = 500;
+                w.Width = 150;
+                w.Title = "勾選匯出項目";
+                sp.Orientation = Orientation.Vertical;//建立容器
+                sp.Margin = new Thickness(5);
+                sp.CanVerticallyScroll = true;
+
+                for (int i = 0; i < this.DataGrid_1.Columns.Count; i += 1) //判斷dataGrid的欄位數
+                {
+                    if (DataGrid_1.Columns[i].Header != null)              //dataGrid欄位不為空時
+                    {
+                        select_canuse.Add(DataGrid_1.Columns[i].Header.ToString()); //加入可供選擇用的集合
+                    }
+                }
+                for (int j = 0; j < select_canuse.Count; j += 1)           //依可供選擇用的集合數建立checkbox控制項
+                {
+                    CheckBox Checklist = new CheckBox();
+                    Checklist.Content = select_canuse[j];
+                    if (select_use.Contains(Checklist.Content))            //判斷名稱是否與常用的項目相同
+                    {
+                        Checklist.IsChecked = true;                         //相同就預設勾起來
+                    }
+                    Checklist.Width = 140;
+                    Checklist.Margin = new Thickness(5);
+                    sp.Children.Add(Checklist);
+                    Checklist.Checked += Checklist_Checked;
+                    Checklist.Unchecked += Checklist_Unchecked;
+                }
+                Button btn_select = new Button();                          //確認選取用按鈕
+                btn_select.Width = 100;
+                btn_select.Height = 30;
+                btn_select.Click += btn_select_Click;
+                btn_select.Content = "選擇";
+                sp.Children.Add(btn_select);
+                w.Content = sp;
+                w.WindowStyle = WindowStyle.SingleBorderWindow;
+                w.ResizeMode = ResizeMode.NoResize;
+                w.Show();
+            }
+            else    //如果沒有欄位就不執行動作                              
+            {
+                return;
+            }
+        }
+
+        //勾選項目後按的選擇鍵▼
+        private void btn_select_Click(object sender, RoutedEventArgs e)
+        {//勾選項目後按的選擇鍵
+            string select = "";
+
+            w.Close();                            //關閉選擇視窗
+            if (select_use.Count != 0)
+            {
+                foreach (string s in select_use)  //將選取項目蒐集
+                {
+                    select += s + "\n";
+                }
+                System.Windows.Forms.MessageBox.Show($"選擇了:\n{select}等項目", "欲匯出的項目");  //顯示選取了哪些項目
+                System.Windows.Forms.SaveFileDialog SF = new System.Windows.Forms.SaveFileDialog();//顯示儲存視窗
+                SF.Filter = "(*.xlsx)|*.xlsx";                                                     //設定輸出檔案格式
+                SF.AddExtension = true;
+                if (SF.ShowDialog() == System.Windows.Forms.DialogResult.OK)                       //設定儲存路徑用視窗
+                {
+                    System.IO.FileInfo Fileinfo = new System.IO.FileInfo(SF.FileName);
+                    getExcel(this.DataGrid_1, Fileinfo);                                           //呼叫匯出Excel方法
+                }
+            }
+            else
+            {
+                return;
+            }
+        }
+        //產生Excel的方法▼
+        private void getExcel(DataGrid dataGrid, FileInfo fS)
+        {//產生Excel的方法
+            int ListCount = 0;
+            int ColumnsHeard = 0;
+            int Rowscount = 0;
+            if (!File.Exists(fS.ToString()))
+            {
+                ExcelPackage EP = new ExcelPackage(fS);
+                ExcelWorksheet ws;
+                if (dataGrid.Items.Count != 0)//設定工作表單名稱
+                {
+                    ws = EP.Workbook.Worksheets.Add(DateTime.Now.ToShortDateString() + "資料");
+                }
+                else
+                {
+                    MessageBox.Show("查詢無資料!!");
+                    return;
+                }
+
+                for (int j = 0; j < dataGrid.Columns.Count; j++)
+                {
+                    if (ListCount != select_use.Count)//限制欄位數用
+                    {
+                        for (int i = 0; i < select_use.Count; i += 1)
+                        {
+                            if (dataGrid.Columns[j].Header != null && dataGrid.Columns[j].Header.ToString() == select_use[i])
+                            {
+                                Rowscount = 0;
+                                ws.Cells[1, ColumnsHeard + 1].Value = dataGrid.Columns[j].Header;          //新增Excel的column名稱
+                                ws.Cells.Style.Font.Size = 12;                                             //設定Excel欄位基本設定
+                                ws.Column(ColumnsHeard + 1).Width += 20;
+                                ws.Cells.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center;
+                                for (int k = 0; k < dataGrid.Items.Count; k += 1)                          //新增Excel的row值
+                                {
+                                    TextBlock x = dataGrid.Columns[j].GetCellContent(dataGrid.Items[k]) as TextBlock;
+                                    if (x != null)
+                                    {
+                                        ws.Cells[Rowscount + 2, ColumnsHeard + 1].Value = x.Text; 
+                                        Rowscount += 1;
+                                    }
+                                }
+                                ColumnsHeard += 1;
+                                ListCount += 1;
+                            }
+                        }
+                    }
+                    else
+                    { break; }
+                }
+                EP.SaveAs(fS);
+                System.Windows.Forms.MessageBox.Show("匯出成功", "Excel產生成功");
+            }
+        }
+        //判斷勾選項目加入集合▼
+        private void Checklist_Checked(object sender, RoutedEventArgs e)
+        {//判斷勾選項目加入集合
+            if (((CheckBox)sender).IsChecked == true)
+            {
+                if (select_use.Count == 0)
+                {
+                    select_use.Add(((CheckBox)sender).Content.ToString());
+                }
+                else
+                {
+                    for (int i = 0; i < select_use.Count; i += 1)
+                    {
+                        if (select_use[i] == ((CheckBox)sender).Content.ToString())
+                        {
+                            return;
+                        }
+                    }
+                    select_use.Add(((CheckBox)sender).Content.ToString());
+                }
+            }
+        }
+        //取消勾選▼
+        private void Checklist_Unchecked(object sender, RoutedEventArgs e)
+        {//取消勾選
+            select_use.Remove(((CheckBox)sender).Content.ToString());
+        }
+    
     }
 }

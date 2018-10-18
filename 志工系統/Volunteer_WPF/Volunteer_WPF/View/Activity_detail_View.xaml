@@ -1,0 +1,41 @@
+﻿<Window x:Class="Volunteer_WPF.View.Activity_detail_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Activity_detail_View" Height="708.98" Width="800">
+    <Grid>
+        <Label Content="活動名稱:" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_activity_name" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="活動類別:" HorizontalAlignment="Left" Margin="20,42,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_activity_type" HorizontalAlignment="Left" Margin="145,42,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="組別:" HorizontalAlignment="Left" Margin="20,74,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_group" HorizontalAlignment="Left" Margin="145,74,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="活動起始時間:" HorizontalAlignment="Left" Margin="20,106,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_activity_startdate" HorizontalAlignment="Left" Margin="145,106,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="活動結束時間:" HorizontalAlignment="Left" Margin="320,106,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_activity_enddate" HorizontalAlignment="Left" Margin="435,106,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="承辦單位:" HorizontalAlignment="Left" Margin="20,138,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_undertake_unit" HorizontalAlignment="Left" Margin="145,138,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="承辦人:" HorizontalAlignment="Left" Margin="20,170,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_undertake" HorizontalAlignment="Left" Margin="145,170,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="承辦單位電話:" HorizontalAlignment="Left" Margin="20,202,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_undertake_phone" HorizontalAlignment="Left" Margin="145,202,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="承辦單位e-mail:" HorizontalAlignment="Left" Margin="20,234,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_undertake_email" HorizontalAlignment="Left" Margin="145,234,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="講師:" HorizontalAlignment="Left" Margin="20,266,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_lecturer" HorizontalAlignment="Left" Margin="145,266,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="課程人數:" HorizontalAlignment="Left" Margin="20,298,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_Member" HorizontalAlignment="Left" Margin="145,298,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="備取人數:" HorizontalAlignment="Left" Margin="20,330,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_Spare" HorizontalAlignment="Left" Margin="145,330,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="活動地點:" HorizontalAlignment="Left" Margin="20,362,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_Place" HorizontalAlignment="Left" Margin="145,362,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="活動簡介:" HorizontalAlignment="Left" Margin="20,394,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,425,0,0" VerticalAlignment="Top" Width="488">
+            <TextBox x:Name="Summary" TextWrapping="Wrap" Height="168" Width="488"/>
+        </ScrollViewer>
+    </Grid>
+</Window>
