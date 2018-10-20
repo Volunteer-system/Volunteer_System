@@ -85,13 +85,14 @@ namespace Volunteer_WPF.View
                 activity_list v = dg_activity.SelectedItem as activity_list;
                 string activity_name = v.活動名稱;
                 DateTime activity_startdate = Convert.ToDateTime(v.活動起始時間);
+                getactivity_detail_view(activity_name, activity_startdate);
 
             }            
         }
 
-        public void getactivity_detail_view(int Activity_no)
+        public void getactivity_detail_view(string Activity_name, DateTime startdate)
         {
-            Activity_detail_View activity_detail_View = new Activity_detail_View(Activity_no);
+            Activity_detail_View activity_detail_View = new Activity_detail_View(Activity_name, startdate);
             wondow_show.Children.Clear();
             object content = activity_detail_View.Content;
             activity_detail_View.Content = null;

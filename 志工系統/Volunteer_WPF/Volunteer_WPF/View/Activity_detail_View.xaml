@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Activity_detail_View" Height="708.98" Width="800">
+        Title="Activity_detail_View" Height="1120.18" Width="800">
     <Grid>
         <Label Content="活動名稱:" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label x:Name="Lab_activity_name" HorizontalAlignment="Left" Margin="145,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
@@ -35,7 +35,15 @@
         <Label x:Name="Lab_Place" HorizontalAlignment="Left" Margin="145,362,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="活動簡介:" HorizontalAlignment="Left" Margin="20,394,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,425,0,0" VerticalAlignment="Top" Width="488">
-            <TextBox x:Name="Summary" TextWrapping="Wrap" Height="168" Width="488"/>
+            <TextBox x:Name="Summary" TextWrapping="Wrap" Height="168" Width="488" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
+        <Label Content="活動首頁照片:" HorizontalAlignment="Left" Margin="20,600,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Grid HorizontalAlignment="Left" Height="206" Margin="25,635,0,0" VerticalAlignment="Top" Width="342" Background="#FFCAFCED">
+            <Image x:Name="Home_photo" Stretch="Fill" />
+        </Grid>
+        <Label Content="活動照片:" HorizontalAlignment="Left" Margin="20,850,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden" HorizontalAlignment="Left" Height="187" Margin="25,885,0,0" VerticalAlignment="Top" Width="736">
+            <WrapPanel x:Name="Photos"  Orientation="Horizontal" Height="187" Width="736" Background="#FFCAFCED"/>
         </ScrollViewer>
     </Grid>
 </Window>

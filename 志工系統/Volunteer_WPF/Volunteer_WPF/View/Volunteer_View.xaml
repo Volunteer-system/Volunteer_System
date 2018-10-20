@@ -25,7 +25,7 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
-            <Button Background="#FFA7E6DA" x:Name="btn1" FontSize="14" Grid.Row="0" Content="新增志工" Height="35" Margin="5"  Click="Button_Click_2" BorderBrush="{x:Null}" Foreground="Gray"/>
+            <Button Background="#FFA7E6DA" x:Name="btn1" FontSize="14" Grid.Row="0" Content="新增志工" Height="35" Margin="5"  Click="Button_Click_2" BorderBrush="{x:Null}" Foreground="Gray" Style="{DynamicResource ButtonTemplate}"/>
             <StackPanel Grid.Column="0" Grid.Row="1">
                 <Label Grid.Row="1" Content=" 姓名" FontSize="14" Margin="10,0,0,0"/>
                 <TextBox Name="nametext" Height="30" Margin="5,0,5,10"/>
@@ -45,7 +45,7 @@
                     <CheckBox Name="年資10年以上" Content="10年以上"/>
                 </StackPanel>
             </Expander>
-            <Button Background="#FFA7E6DA" x:Name="btn2" FontSize="14" Grid.Row="3" Content="查詢" Height="35" Click="Button_Click" Margin="5" BorderBrush="{x:Null}" Foreground="Gray"/>
+            <Button Background="#FFA7E6DA" x:Name="btn2" FontSize="14" Grid.Row="3" Content="查詢" Height="35" Click="Button_Click" Margin="5" BorderBrush="{x:Null}" Foreground="Gray" Style="{DynamicResource ButtonTemplate}"/>
 
 
         </Grid>

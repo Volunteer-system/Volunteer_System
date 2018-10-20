@@ -4,13 +4,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Volunteer_WPF.Model
 {
     class Activity_Model
     {
         //活動編號
-        public string Activity_no { get; set; }
+        public int Activity_no { get; set; }
         //活動名稱
         public string Activity_name { get; set; }
         //活動類別
@@ -39,10 +40,15 @@ namespace Volunteer_WPF.Model
         public string Place { get; set; }
         //活動簡介
         public string Summary { get; set; }
+        //活動首頁照片
+        public BitmapImage Home_image { get; set; }
 
-        public List<Bitmap> SelectActivity_byActivity_no(int Activity_no)
+
+        public List<BitmapImage> SelectActivity_byActivity_no(string activity_name, DateTime startdate)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
+            List<BitmapImage> Activity_photos = new List<BitmapImage>();
+
             var q = from n1 in dbContext.Activities
                     join n2 in dbContext.Volunteer_supervision
                     on n1.Undertaker equals n2.supervision_ID
@@ -50,11 +56,11 @@ namespace Volunteer_WPF.Model
                     on n1.Activity_type_ID equals n3.Activity_type_ID
                     join n4 in dbContext.Service_group
                     on n1.Group_no equals n4.Group_no
-                    where n1.Activity_no == Activity_no
+                    where n1.Activity_name == activity_name && n1.Activity_startdate == startdate
                     select new
                     {
                         Activity_no = n1.Activity_no,
-                        Activity_name = n1.Activity_name,
+                        activity_name = n1.Activity_name,
                         Activity_type = n3.Activity_type1,
                         Group = n4.Group_name,
                         Activity_startdate = n1.Activity_startdate,
@@ -67,13 +73,14 @@ namespace Volunteer_WPF.Model
                         Member = n1.Member,
                         Spare = n1.Spare,
                         Place = n1.Place,
-                        Summary = n1.Summary
+                        Summary = n1.Summary,
+                        Home_image_id = n1.Activity_Photo_id
                     };
 
             foreach (var row in q)
             {
                 Activity_no = row.Activity_no;
-                Activity_name = row.Activity_name;
+                Activity_name = row.activity_name;
                 Activity_type = row.Activity_type;
                 Group = row.Group;
                 Activity_startdate = row.Activity_startdate.ToString();
@@ -87,12 +94,34 @@ namespace Volunteer_WPF.Model
                 Spare = row.Spare.ToString();
                 Place = row.Place;
                 Summary = row.Summary;
-            }
 
-            List<Bitmap> Activity_photos = new List<Bitmap>();
+                var q1 = from n in dbContext.Activity_photo                         
+                         where n.Activity_photo_id == row.Home_image_id &&
+                               n.Activity_id == row.Activity_no
+                         select new { activity_photo_id = n.Activity_photo_id, activity_photo = n.Activity_photo1};
+                foreach (var row1 in q1)
+                {
+                    BitmapImage image = new BitmapImage();
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream(row1.activity_photo);
+                    image.BeginInit();
+                    image.StreamSource = ms;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+                    if (row.Home_image_id == row1.activity_photo_id)
+                    {
+                        Home_image = image;
+                    }
+                    else
+                    {
+                        Activity_photos.Add(image);
+                    }                    
+                }
+            }            
 
             return Activity_photos;
         }
+
+        
 
         public List<Activity_Model> SelectActivity_byActivity_no(DateTime Startdate, DateTime Enddate, string Type, string Group)
         {
@@ -131,7 +160,7 @@ namespace Volunteer_WPF.Model
             foreach (var row in q)
             {
                 Activity_Model activity_Model = new Activity_Model();
-                activity_Model.Activity_no = row.Activity_no.ToString();
+                activity_Model.Activity_no = row.Activity_no;
                 activity_Model.Activity_name = row.Activity_name.ToString();
                 activity_Model.Activity_type = row.Activity_type.ToString();
                 activity_Model.Group = row.Group.ToString();
@@ -174,7 +203,7 @@ namespace Volunteer_WPF.Model
             foreach (var row in q)
             {
                 Activity_Model activity_Model = new Activity_Model();
-                activity_Model.Activity_no = row.Activity_no.ToString();
+                activity_Model.Activity_no = row.Activity_no;
                 activity_Model.Activity_name = row.Activity_name.ToString();
                 activity_Model.Undertaker = row.Undertaker.ToString();
 

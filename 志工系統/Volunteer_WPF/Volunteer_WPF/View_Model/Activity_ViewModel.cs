@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using Volunteer_WPF.Model;
 
 namespace Volunteer_WPF.View_Model
@@ -40,13 +41,15 @@ namespace Volunteer_WPF.View_Model
         public string Place { get; set; }
         //活動簡介
         public string Summary { get; set; }
+        //活動首頁照片
+        public BitmapImage Home_image { get; set; }
 
-        public List<Image> SelectActivity_byActivity_no(int Activity_num)
+        public List<BitmapImage> SelectActivity_byActivity_no(string activity_name, DateTime startdate)
         {
             Activity_Model activity_Model = new Activity_Model();
-            List<Bitmap> Activity_model_photos = activity_Model.SelectActivity_byActivity_no(Activity_num);
+            List<BitmapImage> Activity_model_photos = activity_Model.SelectActivity_byActivity_no(activity_name, startdate);
 
-            Activity_no = activity_Model.Activity_no;
+            Activity_no = activity_Model.Activity_no.ToString();
             Activity_name = activity_Model.Activity_name;
             Activity_type = activity_Model.Activity_type;
             Group = activity_Model.Group;
@@ -61,8 +64,14 @@ namespace Volunteer_WPF.View_Model
             Spare = activity_Model.Spare;
             Place = activity_Model.Place;
             Summary = activity_Model.Summary;
+            Home_image = activity_Model.Home_image;
 
-            List<Image> Activity_photos = new List<Image>();
+            List<BitmapImage> Activity_photos = new List<BitmapImage>();
+            foreach (var row in Activity_model_photos)
+            {                
+                Activity_photos.Add(row);
+            }
+
             return Activity_photos;
         }
 
@@ -74,7 +83,7 @@ namespace Volunteer_WPF.View_Model
             foreach (var row in activity_models)
             {
                 Activity_ViewModel activity_ViewModel = new Activity_ViewModel();
-                activity_ViewModel.Activity_no = row.Activity_no;
+                activity_ViewModel.Activity_no = row.Activity_no.ToString();
                 activity_ViewModel.Activity_name = row.Activity_name;
                 activity_ViewModel.Activity_type = row.Activity_type;
                 activity_ViewModel.Group = row.Group;
@@ -104,7 +113,7 @@ namespace Volunteer_WPF.View_Model
             foreach (var row in activity_model_list)
             {
                 Activity_ViewModel activity_ViewModel = new Activity_ViewModel();
-                activity_ViewModel.Activity_no = row.Activity_no;
+                activity_ViewModel.Activity_no = row.Activity_no.ToString();
                 activity_ViewModel.Activity_name = row.Activity_name;
                 activity_ViewModel.Undertaker = row.Undertaker;
 

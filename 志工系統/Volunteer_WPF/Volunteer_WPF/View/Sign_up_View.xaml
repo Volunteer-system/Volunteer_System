@@ -12,17 +12,17 @@
     <Grid>
         <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1" >
             <StackPanel x:Name="StackPanel_Left" DockPanel.Dock="Left" Margin="1" Width="150" Background="White">
-                <Button x:Name="btn_firstcheck" Content="初次申請審核" Height="35" Click="btn_firstcheck_Click" Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
-                <Button x:Name="btn_interview" Content="面試階段審核" Height="35" Click="btn_interview_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
-                <Button x:Name="btn_Allpass" Content="查詢已通過審核" Height="35" Click="btn_Allpass_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
-                <Button x:Name="btn_reject" Content="查詢已拒絕審核" Height="35" Click="btn_reject_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
+                <Button x:Name="btn_firstcheck" Content="初次申請審核" Height="35" Click="btn_firstcheck_Click" Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_interview" Content="面試階段審核" Height="35" Click="btn_interview_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_Allpass" Content="查詢已通過審核" Height="35" Click="btn_Allpass_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_reject" Content="查詢已拒絕審核" Height="35" Click="btn_reject_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
                 <Label Content="依日期查詢" FontFamily="Microsoft Sans Serif" FontSize="20" FontWeight="Bold"/>
                 <Label Content="起始日期:" FontFamily="Microsoft Sans Serif" FontSize="14" />
                 <DatePicker Name="D_Start_date"/>
                 <Label Content="結束日期:" FontFamily="Microsoft Sans Serif" FontSize="14" />
                 <DatePicker Name="D_End_date"/>
-                <Button x:Name="btn_selectDate" Content="查詢" Height="35"  Margin="5" Click="btn_selectDate_Click" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
-                <Button x:Name="btn_getExcel" Content="匯出Excel" Height="35"  Margin="5" Click="btn_getExcel_Click"  Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}"/>
+                <Button x:Name="btn_selectDate" Content="查詢" Height="35"  Margin="5" Click="btn_selectDate_Click" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_getExcel" Content="匯出Excel" Height="35"  Margin="5" Click="btn_getExcel_Click"  Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
             </StackPanel>
             <Grid Height="Auto" ShowGridLines="True">
                 <Grid.RowDefinitions>
@@ -56,7 +56,7 @@
                             </DataGridTemplateColumn.HeaderTemplate>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <User_Control:MyUserControl Width="90" Height="50" x:Name="Check_interview" MU_Click_OK="Check_interview_Click" MU_Click_Delete="Check_interview_MU_Click_Delete"/>
+                                    <User_Control:MyUserControl Width="60" Height="35" x:Name="Check_interview" MU_Click_OK="Check_interview_Click" MU_Click_Delete="Check_interview_MU_Click_Delete"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -70,7 +70,7 @@
                     <!--<DataGrid    VerticalAlignment="Center" HorizontalAlignment="Center"  Background="DarkGray"    Focusable="False" IsHitTestVisible="True"  Height="97" Margin="84,98,564,193" Width="210" Grid.Row="1">
                    
                 </DataGrid>-->
-                    <Button Content="確認" Click="btn_check_Click" Width="106" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" Height="35" BorderBrush="{x:Null}" />
+                    <Button Content="確認" Click="btn_check_Click" Width="106" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" Height="35" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}" />
                     <Label Content="已勾選數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
                     <Label Name="lab_check" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
                     <Label Content="欲駁回數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>

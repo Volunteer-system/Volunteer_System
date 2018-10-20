@@ -21,12 +21,12 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Activity_detail_View : Window
     {
-        public Activity_detail_View(int Activity_no)
+        public Activity_detail_View(string Activity_name, DateTime startdate)
         {
             InitializeComponent();
 
             Activity_ViewModel activity_ViewModel = new Activity_ViewModel();
-            List<System.Drawing.Image> activity_photos = activity_ViewModel.SelectActivity_byActivity_no(Activity_no);
+            List<BitmapImage> activity_photos = activity_ViewModel.SelectActivity_byActivity_no(Activity_name, startdate);
             this.Lab_activity_name.Content = activity_ViewModel.Activity_name;
             this.Lab_activity_type.Content = activity_ViewModel.Activity_type;
             this.Lab_group.Content = activity_ViewModel.Group;
@@ -40,7 +40,15 @@ namespace Volunteer_WPF.View
             this.Lab_Member.Content = activity_ViewModel.Member;
             this.Lab_Spare.Content = activity_ViewModel.Spare;
             this.Lab_Place.Content = activity_ViewModel.Place;
+            this.Summary.Text = activity_ViewModel.Summary;
+            this.Home_photo.Source = activity_ViewModel.Home_image;
 
+            foreach (var row in activity_photos)
+            {
+                System.Windows.Controls.Image image = new System.Windows.Controls.Image();
+                image.Source = row;
+                this.Photos.Children.Add(image);
+            }
 
         }
     }
