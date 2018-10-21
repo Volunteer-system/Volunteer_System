@@ -182,7 +182,11 @@ namespace Volunteer_WPF
 
         private void EventButton_Click(object sender, RoutedEventArgs e)  //異常通報事件按鈕
         {
-            AddTabItem(EventLabel.Content.ToString());
+            Abnormal_event abnormal_Event = new Abnormal_event();
+            object content = abnormal_Event.Content;
+            abnormal_Event.Content = null;
+
+            AddTabItem(EventLabel.Content.ToString(), content);
             CheckList.Add(EventLabel.Content.ToString());
             Selected(EventLabel.Content.ToString());
         }
