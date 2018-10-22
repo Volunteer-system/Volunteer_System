@@ -41,7 +41,8 @@ namespace Volunteer_WPF.Model
         //志工督導主管
         public string Supervisor_heads { get; set; }
 
-        public List<Abnormal_event_Model> SelectAbnormal_event_byStage(string stage)
+
+        public List<Abnormal_event_Model> SelectAbnormal_event_byStage(string stage,string category,string application_unit,DateTime startdate, DateTime enddate)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n1 in dbContext.Abnormal_event
@@ -57,7 +58,12 @@ namespace Volunteer_WPF.Model
                     on n1.event_category_ID equals n6.event_category_ID
                     join n7 in dbContext.Volunteer
                     on n1.Volunteer_leader_ID equals n7.Volunteer_no
-                    where n4.Stage1 == stage && n4.Stage_type == "異常事件"
+                    where ((stage == "") ? true : n4.Stage1 == stage) &&
+                          (n4.Stage_type == "異常事件") &&
+                          ((category == "") ? true:n6.event_category1 == category) &&
+                          ((application_unit == "") ? true: n2.Application_unit1 == application_unit) &&
+                          ((startdate == DateTime.MinValue)? true : n1.Notification_date >= startdate) &&
+                          ((enddate == DateTime.MinValue) ? true: n1.Closing_date <= enddate)
                     select new
                     {
                         Abnormal_event_ID = n1.Abnormal_event_ID,

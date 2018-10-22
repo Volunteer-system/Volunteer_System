@@ -20,7 +20,7 @@
                 <Label  Content="事件類別" FontSize="14"/>
                 <ComboBox Name="cbb_category" Grid.Row="3" Height="28" Margin="3"/>
                 <Label  Content="運用單位" FontSize="14"/>
-                <ComboBox Name="cbb_Application_unit" Grid.Row="3" Height="28" Margin="3"/>
+                <ComboBox Name="cbb_application_unit" Grid.Row="3" Height="28" Margin="3"/>
                 <Label  Content="事件日期" FontSize="14"/>
                 <DatePicker Name="dp_startdate"/>
                 <Label  Content="~" FontSize="16"/>

@@ -24,47 +24,42 @@ namespace Volunteer_WPF.View
     {
         enum SelectStage { nostage, newevent, review, processing, endprocessing }
         private SelectStage selectstage = SelectStage.nostage;
-        ObservableCollection<abnormal_event_list> abnormal_event_itemlist = new ObservableCollection<abnormal_event_list>();
+        
 
         public Abnormal_event()
         {
             InitializeComponent();
+
+            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
+            List<string> event_categorys = abnormal_Event_ViewModel.Selectevent_category();
+            List<string> Application_unit_names = abnormal_Event_ViewModel.SelectApplication_unit_name();
+
+            this.cbb_category.ItemsSource = event_categorys;
+            this.cbb_application_unit.ItemsSource = Application_unit_names;
         }
 
         private void btn_unprocessed_Click(object sender, RoutedEventArgs e)
         {
             selectstage = SelectStage.newevent;
-            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
-            List<Abnormal_event_ViewModel> abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("新事件");
-
-            datagrid_show(abnormal_events);
+            datagrid_show(selectstage);
         }
 
         private void btn_processing_Click(object sender, RoutedEventArgs e)
         {
             selectstage = SelectStage.processing;
-            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
-            List<Abnormal_event_ViewModel> abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("處理中");
-
-            datagrid_show(abnormal_events);
+            datagrid_show(selectstage);
         }
 
         private void btn_endprocessing_Click(object sender, RoutedEventArgs e)
         {
             selectstage = SelectStage.endprocessing;
-            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
-            List<Abnormal_event_ViewModel> abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("事件完成");
-
-            datagrid_show(abnormal_events);
+            datagrid_show(selectstage);
         }
         
         private void btn_review_Click(object sender, RoutedEventArgs e)
         {
-            selectstage = SelectStage.review;
-            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
-            List<Abnormal_event_ViewModel> abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("成案審核");
-
-            datagrid_show(abnormal_events);
+            selectstage = SelectStage.review;        
+            datagrid_show(selectstage);
         }
 
         private void dg_abnormal_event_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
@@ -74,7 +69,7 @@ namespace Volunteer_WPF.View
 
         private void btn_selectabnormal_event_Click(object sender, RoutedEventArgs e)
         {
-
+            datagrid_show(selectstage);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -82,9 +77,38 @@ namespace Volunteer_WPF.View
 
         }
 
-        private void datagrid_show(List<Abnormal_event_ViewModel> datagrid_list)
+        private void datagrid_show(SelectStage selectstage)
         {
-            foreach (var row in datagrid_list)
+            this.dg_abnormal_event.ItemsSource = null;
+
+            string category = this.cbb_category.Text;
+            string application_unit = this.cbb_application_unit.Text;
+            DateTime startdate = ((dp_startdate.SelectedDate == null) ? DateTime.MinValue : (DateTime)dp_startdate.SelectedDate);
+            DateTime enddate = ((dp_startdate.SelectedDate == null) ? DateTime.MinValue : (DateTime)dp_enddate.SelectedDate);
+            List<Abnormal_event_ViewModel> abnormal_events = new List<Abnormal_event_ViewModel>();
+            Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
+            ObservableCollection<abnormal_event_list> abnormal_event_itemlist = new ObservableCollection<abnormal_event_list>();
+
+            switch (selectstage)
+            {
+                case SelectStage.nostage:
+                    abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("", category, application_unit, startdate, enddate);
+                    break;
+                case SelectStage.newevent:
+                    abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("新事件", category, application_unit, startdate, enddate);
+                    break;
+                case SelectStage.review:
+                    abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("成案審核", category, application_unit, startdate, enddate);
+                    break;
+                case SelectStage.processing:
+                    abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("處理中", category, application_unit, startdate, enddate);
+                    break;
+                case SelectStage.endprocessing:
+                    abnormal_events = abnormal_Event_ViewModel.SelectAbnormal_Event_byStage("事件完成", category, application_unit, startdate, enddate);
+                    break;
+            }
+
+            foreach (var row in abnormal_events)
             {
                 abnormal_event_itemlist.Add(new abnormal_event_list()
                 {

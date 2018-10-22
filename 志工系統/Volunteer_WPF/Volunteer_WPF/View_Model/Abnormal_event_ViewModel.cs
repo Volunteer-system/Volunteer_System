@@ -42,10 +42,26 @@ namespace Volunteer_WPF.View_Model
         //志工督導主管
         public string Supervisor_heads { get; set; }
 
-        public List<Abnormal_event_ViewModel> SelectAbnormal_Event_byStage(string stage)
+        public List<string> Selectevent_category()
+        {
+            Event_category_Model event_Category_Model = new Event_category_Model();
+            List<string> event_categorys = event_Category_Model.Selectevent_category();
+
+            return event_categorys;
+        }
+
+        public List<string> SelectApplication_unit_name ()
+        {
+            Application_unit_Model application_unit_Model = new Application_unit_Model();
+            List<string> application_units = application_unit_Model.SelectApplication_unit_name();
+
+            return application_units;
+        }
+
+        public List<Abnormal_event_ViewModel> SelectAbnormal_Event_byStage(string stage, string category, string application_unit, DateTime startdate, DateTime enddate)
         {
             Abnormal_event_Model abnormal_Event_Model = new Abnormal_event_Model();
-            List<Abnormal_event_Model> abnormal_Event_Models = abnormal_Event_Model.SelectAbnormal_event_byStage(stage);
+            List<Abnormal_event_Model> abnormal_Event_Models = abnormal_Event_Model.SelectAbnormal_event_byStage(stage, category, application_unit, startdate, enddate);
 
             List<Abnormal_event_ViewModel> abnormal_Event_ViewModels = new List<Abnormal_event_ViewModel>();
             foreach (var row in abnormal_Event_Models)

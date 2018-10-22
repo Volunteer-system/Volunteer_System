@@ -84,21 +84,28 @@
         <TextBox Name="txtService_manual_no" HorizontalAlignment="Left" Height="23" Margin="490,200,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"  KeyDown="txtService_manual_no_KeyDown"/>
         <Label Content="人格量表結果" HorizontalAlignment="Left" Margin="380,230,0,0" VerticalAlignment="Top"/>
         <TextBox Name="txtPersonality_scale" HorizontalAlignment="Left" Height="23" Margin="490,230,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+       
+        
+        
+        <Label Content="志工專長" HorizontalAlignment="Left" Margin="380,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.681,-0.039"/>
         <Button Name="btnSelectExpert" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White"  Content="選專長" HorizontalAlignment="Left" Margin="490,260,0,0" VerticalAlignment="Top" Height="23" Width="120" Click="btnSelectExpert_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
             </Button.Effect>
         </Button>
         
-        
-        <Label Content="志工專長" HorizontalAlignment="Left" Margin="380,260,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.681,-0.039"/>
         <Label Content="志工組別" HorizontalAlignment="Left" Margin="380,290,0,0" VerticalAlignment="Top"/>
-        <ComboBox x:Name="cbIdentity_type_Copy1" HorizontalAlignment="Left" Margin="490,290,0,0" VerticalAlignment="Top" Width="120" IsEditable="True" IsReadOnly="True"/>
-        <Label Content="照片" HorizontalAlignment="Left" Margin="670,20,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnSelectService_Group" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White"  Content="選服務類別" HorizontalAlignment="Left" Margin="490,290,0,0" VerticalAlignment="Top" Height="23" Width="120" Click="btnSelectService_Group_Click" >
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
 
+        <Label Content="照片" HorizontalAlignment="Left" Margin="670,20,0,0" VerticalAlignment="Top"/>
         <Grid Margin="711,20,31.6,364.6" Background="#FFCAFCED">
             <Image Name="myImage" />
         </Grid>
+        
         <Button x:Name="btnOpen" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Click="btnOpenFile_Click" Content="Open..." HorizontalAlignment="Left" Margin="711,227,0,0" VerticalAlignment="Top" Width="90" Height="50">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
@@ -121,5 +128,6 @@
                 <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
             </Button.Effect>
         </Button>
+
     </Grid>
 </Window>

@@ -119,9 +119,7 @@ namespace Volunteer_WPF.Model
             }            
 
             return Activity_photos;
-        }
-
-        
+        }        
 
         public List<Activity_Model> SelectActivity_byActivity_no(DateTime Startdate, DateTime Enddate, string Type, string Group)
         {

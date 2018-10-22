@@ -25,7 +25,7 @@ namespace Volunteer_WPF.View
             InitializeComponent();
             AddSelectedDates();
             Today();
-
+            AddLabel();
         }
 
         private void AddSelectedDates()
@@ -79,6 +79,32 @@ namespace Volunteer_WPF.View
                 ApprovalLabel.Foreground = new SolidColorBrush(Colors.White);
             }
             
+        }
+
+        private void AddLabel() //加入行事曆細項(未來7天)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+
+
+            DateTime dt1 = DateTime.Now.Date.AddDays(7);                           
+            var q = from a in dbContext.Activities
+                    where (a.Activity_startdate <= dt1 && a.Activity_startdate>=DateTime.Now)||(a.Activity_enddate<=dt1&&a.Activity_enddate>=DateTime.Now)
+                    select a;
+
+            int WeekActivity = q.Count(); //7天內活動數           
+            Activity_Model activity_Model = new Activity_Model();
+            
+            
+            foreach (var a in q)
+            {
+                
+                ActivityPanel.Children.Add(new Label
+                {
+                    Content =a.Activity_startdate?.ToShortDateString()+"—"+a.Activity_enddate?.ToShortDateString()+"   "+a.Activity_name
+
+                    });
+            }
+
         }
     }
 }

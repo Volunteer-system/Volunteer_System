@@ -80,6 +80,9 @@
                 </Grid>
             </WrapPanel>
         </Button>
+        <StackPanel Name="ActivityPanel" HorizontalAlignment="Left" Height="261" Margin="471,268,0,0" VerticalAlignment="Top" Width="455">
+            <Label Content="近7天事項" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16"/>
+        </StackPanel>
 
     </Grid>
 </Window>

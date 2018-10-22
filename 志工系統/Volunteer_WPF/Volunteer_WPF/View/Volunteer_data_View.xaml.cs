@@ -36,12 +36,12 @@ namespace Volunteer_WPF.View
         {
 
         }
-
+        
         //按下修改表單後, 表單從volunteer資料讀取資料
         public Volunteer_data_View(int a)
         {
             InitializeComponent();
-            //按下"確認"按鈕
+            //按下"確定"按鈕
             this.btn_confirm.Click += Button_Click;
 
 
@@ -117,7 +117,7 @@ namespace Volunteer_WPF.View
                     cbLeave_dateDay.SelectedValue = dyLeave_date.Trim();
                 }
                 //離開原因
-                cbLeaveReason.Text = v.Leave_reason.Trim();
+                cbLeaveReason.Text = (v.Leave_reason == "" ? null :v.Leave_reason.Trim());
 
                 //地址
                 txtAddress.Text = v.Address;
@@ -254,13 +254,18 @@ namespace Volunteer_WPF.View
             var q = (from n in dbContext.Volunteer
 
                      select new { n.Volunteer_no }).ToList().LastOrDefault();
-            
+           
             foreach(var n in AAA)
             {
+              
                Expertise2 e1 = new Expertise2 { Volunteer_no = q.Volunteer_no, Expertise_no = n };
                dbContext.Expertise2.Add(e1);
             }
-             
+            foreach(var n in BBB)
+            {
+                Service_Group1 sg1 = new Service_Group1 { Volunteer_no = q.Volunteer_no, Group_no = n };
+                dbContext.Service_Group1.Add(sg1);
+            }
 
             dbContext.SaveChanges();
             MessageBox.Show("志工資料新增成功");
@@ -702,16 +707,23 @@ namespace Volunteer_WPF.View
         //跳到"選專長"頁面
         private void btnSelectExpert_Click(object sender, RoutedEventArgs e)
         {
-            VolunteerExpertise v = new VolunteerExpertise();
+
+            VolunteerExpertise v = new VolunteerExpertise(Volunteer_no);
             v.ShowDialog();
             AAA = v.STR();
+            
         }
 
         private void BtnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-
-        
+        List<int> BBB;
+        private void btnSelectService_Group_Click(object sender, RoutedEventArgs e)
+        {
+            VolunteerService_group v = new VolunteerService_group();
+            v.ShowDialog();
+            BBB = v.GetVs();
+        }
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Model\Application_unit.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Application_unit_Model.cs" />
     <Compile Include="Model\Apply_Assessment.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -116,6 +117,7 @@
     <Compile Include="Model\event_category.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Event_category_Model.cs" />
     <Compile Include="Model\Expertise.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -221,6 +223,9 @@
     <Compile Include="View\Abnormal_event.xaml.cs">
       <DependentUpon>Abnormal_event.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Abnormal_event_detail.xaml.cs">
+      <DependentUpon>Abnormal_event_detail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Activity_AddActionDetail_View.xaml.cs">
       <DependentUpon>Activity_AddActionDetail_View.xaml</DependentUpon>
     </Compile>
@@ -250,6 +255,9 @@
     </Compile>
     <Compile Include="View\VolunteerExpertise.xaml.cs">
       <DependentUpon>VolunteerExpertise.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\VolunteerService_group.xaml.cs">
+      <DependentUpon>VolunteerService_group.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Volunteer_detail.xaml.cs">
       <DependentUpon>Volunteer_detail.xaml</DependentUpon>
@@ -299,6 +307,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Abnormal_event_detail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Activity_AddActionDetail_View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -336,6 +348,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\VolunteerExpertise.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\VolunteerService_group.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
