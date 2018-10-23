@@ -25,6 +25,7 @@
     <NavigationProperty Name="Volunteer" Relationship="Self.FK_Abnormal_event_Volunteer" FromRole="Abnormal_event" ToRole="Volunteer" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Abnormal_event_Volunteer_supervision" FromRole="Abnormal_event" ToRole="Volunteer_supervision" />
     <NavigationProperty Name="Volunteer1" Relationship="Self.FK_Abnormal_event_Volunteer1" FromRole="Abnormal_event" ToRole="Volunteer" />
+    <Property Name="Rejection_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Application_unit">
     <Key>

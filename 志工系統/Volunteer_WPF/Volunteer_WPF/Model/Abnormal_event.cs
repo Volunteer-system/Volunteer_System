@@ -30,6 +30,7 @@ namespace Volunteer_WPF.Model
         public string Result { get; set; }
         public Nullable<int> Volunteer_leader_ID { get; set; }
         public string Supervisor_heads { get; set; }
+        public string Rejection_Reason { get; set; }
     
         public virtual Application_unit Application_unit { get; set; }
         public virtual event_category event_category { get; set; }

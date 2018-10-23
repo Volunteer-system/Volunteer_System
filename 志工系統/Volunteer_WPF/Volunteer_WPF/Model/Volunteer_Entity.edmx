@@ -25,6 +25,7 @@
           <Property Name="Result" Type="nvarchar" MaxLength="50" />
           <Property Name="Volunteer_leader_ID" Type="int" />
           <Property Name="Supervisor_heads" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rejection_Reason" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Application_unit">
           <Key>
@@ -1190,6 +1191,7 @@
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Abnormal_event_Volunteer" FromRole="Abnormal_event" ToRole="Volunteer" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Abnormal_event_Volunteer_supervision" FromRole="Abnormal_event" ToRole="Volunteer_supervision" />
           <NavigationProperty Name="Volunteer1" Relationship="Self.FK_Abnormal_event_Volunteer1" FromRole="Abnormal_event" ToRole="Volunteer" />
+          <Property Name="Rejection_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Application_unit">
           <Key>
@@ -2422,6 +2424,7 @@
           <EntitySetMapping Name="Abnormal_event">
             <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
               <MappingFragment StoreEntitySet="Abnormal_event">
+                <ScalarProperty Name="Rejection_Reason" ColumnName="Rejection_Reason" />
                 <ScalarProperty Name="Abnormal_event_no" ColumnName="Abnormal_event_no" />
                 <ScalarProperty Name="Abnormal_event_ID" ColumnName="Abnormal_event_ID" />
                 <ScalarProperty Name="Abnormal_event1" ColumnName="Abnormal_event" />

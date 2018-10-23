@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Abnormal_event">
       <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
         <MappingFragment StoreEntitySet="Abnormal_event">
+          <ScalarProperty Name="Rejection_Reason" ColumnName="Rejection_Reason" />
           <ScalarProperty Name="Abnormal_event_no" ColumnName="Abnormal_event_no" />
           <ScalarProperty Name="Abnormal_event_ID" ColumnName="Abnormal_event_ID" />
           <ScalarProperty Name="Abnormal_event1" ColumnName="Abnormal_event" />

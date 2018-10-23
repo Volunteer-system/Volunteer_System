@@ -20,6 +20,7 @@
     <Property Name="Result" Type="nvarchar" MaxLength="50" />
     <Property Name="Volunteer_leader_ID" Type="int" />
     <Property Name="Supervisor_heads" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rejection_Reason" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Application_unit">
     <Key>
