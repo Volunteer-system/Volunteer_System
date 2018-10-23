@@ -235,6 +235,9 @@
     <Compile Include="View\Activity_View.xaml.cs">
       <DependentUpon>Activity_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Application_unit_View.xaml.cs">
+      <DependentUpon>Application_unit_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\BasicItem.xaml.cs">
       <DependentUpon>BasicItem.xaml</DependentUpon>
     </Compile>
@@ -320,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Activity_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Application_unit_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

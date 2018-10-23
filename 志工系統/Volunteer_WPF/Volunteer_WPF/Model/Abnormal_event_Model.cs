@@ -40,7 +40,66 @@ namespace Volunteer_WPF.Model
         public string Volunteer_leader { get; set; }
         //志工督導主管
         public string Supervisor_heads { get; set; }
+        //駁回原因
+        public string Rejection_Reason { get; set; }
 
+        public void SelectAbnormal_event_byAbnormal_event_ID(string event_ID)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Abnormal_event
+                    join n2 in dbContext.Application_unit
+                    on n1.Application_unit_no equals n2.Application_unit_no
+                    join n3 in dbContext.Volunteer
+                    on n1.Volunteer_no equals n3.Volunteer_no
+                    join n4 in dbContext.Stages
+                    on n1.Stage equals n4.Stage_ID
+                    join n5 in dbContext.Volunteer_supervision
+                    on n1.Supervisor_ID equals n5.supervision_ID
+                    join n6 in dbContext.event_category
+                    on n1.event_category_ID equals n6.event_category_ID
+                    join n7 in dbContext.Volunteer
+                    on n1.Volunteer_leader_ID equals n7.Volunteer_no
+                    where n1.Abnormal_event_ID.Trim() == event_ID.Trim()
+                    select new
+                    {
+                        Abnormal_event_ID = n1.Abnormal_event_ID,
+                        Abnormal_event = n1.Abnormal_event1,
+                        Volunteer_name = n3.Chinese_name,
+                        Application_unit = n2.Application_unit1,
+                        event_category = n6.event_category1,
+                        Stage = n4.Stage1,
+                        Notification_date = n1.Notification_date,
+                        Closing_date = n1.Closing_date,
+                        Supervisor = n5.supervision_Name,
+                        Unit_descrition = n1.Unit_descrition,
+                        Volunteer_description = n1.Volunteer_description,
+                        Supervisor_description = n1.Supervisor_description,
+                        Result = n1.Result,
+                        Volunteer_leader = n7.Chinese_name,
+                        Supervisor_heads = n1.Supervisor_heads,
+                        Rejection_Reason = n1.Rejection_Reason
+                    };
+
+            foreach (var row in q)
+            {
+                Abnormal_event_ID = row.Abnormal_event_ID;
+                Abnormal_event = row.Abnormal_event;
+                Volunteer_name = row.Volunteer_name;
+                Application_unit = row.Application_unit;
+                event_category = row.event_category;
+                Stage = row.Stage;
+                Notification_date = row.Notification_date.ToString();
+                Closing_date = row.Closing_date.ToString();
+                Supervisor = row.Supervisor;
+                Unit_descrition = row.Unit_descrition;
+                Volunteer_description = row.Volunteer_description;
+                Supervisor_description = row.Supervisor_description;
+                Result = row.Result;
+                Volunteer_leader = row.Volunteer_leader;
+                Supervisor_heads = row.Supervisor_heads;
+                Rejection_Reason = row.Rejection_Reason;
+            }
+        }
 
         public List<Abnormal_event_Model> SelectAbnormal_event_byStage(string stage,string category,string application_unit,DateTime startdate, DateTime enddate)
         {

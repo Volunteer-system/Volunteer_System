@@ -64,3 +64,5 @@ C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\V
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\Volunteer_WPF.csprojAssemblyReference.cache
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Abnormal_event_detail.g.cs
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Abnormal_event_detail.baml
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Application_unit_View.g.cs
+C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\obj\Debug\View\Application_unit_View.baml

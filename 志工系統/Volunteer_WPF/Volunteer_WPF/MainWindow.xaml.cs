@@ -260,7 +260,11 @@ namespace Volunteer_WPF
 
         private void AplDataItem_Click(object sender, RoutedEventArgs e)  //運用單位基本資料維護按鈕
         {
-            AddTabItem(AplDataItem.Header.ToString());
+            Application_unit_View application_Unit_View = new Application_unit_View();
+            object content = application_Unit_View.Content;
+            application_Unit_View.Content = null;
+
+            AddTabItem(AplDataItem.Header.ToString(), content);
             CheckList.Add(AplDataItem.Header.ToString());
             Selected(AplDataItem.Header.ToString());
         }

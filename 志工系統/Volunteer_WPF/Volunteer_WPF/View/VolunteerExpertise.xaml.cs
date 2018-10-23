@@ -211,9 +211,6 @@ namespace Volunteer_WPF.View
             mydatagrid1.Columns[1].Visibility = Visibility.Collapsed;
         }
 
-
-
-
         //public List<checkBoxIte> ExpChk()
         //{
 

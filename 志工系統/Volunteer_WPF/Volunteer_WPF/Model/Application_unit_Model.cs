@@ -8,7 +8,56 @@ namespace Volunteer_WPF.Model
 {
     class Application_unit_Model
     {
+        public string Application_unit_no { get; set; }
         public string Application_unit { get; set; }
+        public string Group { get; set; }
+        public string Application_phone_no { get; set; }
+        public string Principal { get; set; }
+        public string Principal_phone_no { get; set; }
+        public string Application_address { get; set; }
+        public string Work_content { get; set; }
+        public string Total_volunteers { get; set; }
+
+        public List<Application_unit_Model> SelectApplication_unit(string name, string group_name, int members)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Application_unit
+                    join n2 in dbContext.Service_group
+                    on n1.Group_no equals n2.Group_no
+                    where ((name == "") ? true : n1.Application_unit1 == name) &&
+                          ((group_name == "") ? true : n2.Group_name == group_name)
+                    select new
+                    {
+                        Application_unit_no = n1.Application_unit_no,
+                        Application_unit = n1.Application_unit1,
+                        Group = n2.Group_name,
+                        Application_phone_no = n1.Application_phone_no,
+                        Principal = n1.Principal,
+                        Principal_phone_no = n1.Principal_phone_no,
+                        Application_address = n1.Application_address,
+                        Work_content = n1.Work_content,
+                        Total_volunteers = n1.Total_volunteers
+                    };
+
+            List<Application_unit_Model> Application_units = new List<Application_unit_Model>();
+            foreach (var row in q)
+            {
+                Application_unit_Model application_Unit_Model = new Application_unit_Model();
+                application_Unit_Model.Application_unit_no = row.Application_unit_no.ToString();
+                application_Unit_Model.Application_unit = row.Application_unit;
+                application_Unit_Model.Group = row.Group;
+                application_Unit_Model.Application_phone_no = row.Application_phone_no;
+                application_Unit_Model.Principal = row.Principal;
+                application_Unit_Model.Principal_phone_no = row.Principal_phone_no;
+                application_Unit_Model.Application_address = row.Application_address;
+                application_Unit_Model.Work_content = row.Work_content;
+                application_Unit_Model.Total_volunteers = row.Total_volunteers.ToString();
+
+                Application_units.Add(application_Unit_Model);
+            }
+
+            return Application_units;
+        }
 
         public List<string> SelectApplication_unit_name()
         {

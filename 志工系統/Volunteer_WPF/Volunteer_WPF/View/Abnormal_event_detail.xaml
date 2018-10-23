@@ -5,16 +5,47 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Abnormal_event_detail" Height="450" Width="800">
+        Title="Abnormal_event_detail" Height="1112.985" Width="800">
     <Grid>
         <Label Content="事件案號:" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_abnormal_event_ID" HorizontalAlignment="Left" Margin="130,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="志工督導:" HorizontalAlignment="Left" Margin="320,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_supervisor" HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="事件名稱:" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_abnormal_event" HorizontalAlignment="Left" Margin="130,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="志工督導主管:" HorizontalAlignment="Left" Margin="320,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_supervisor_heads" HorizontalAlignment="Left" Margin="430,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="異常事件類別:" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_event_category" HorizontalAlignment="Left" Margin="130,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="志工隊幹部:" HorizontalAlignment="Left" Margin="320,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_Volunteer_leader" HorizontalAlignment="Left" Margin="430,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="志工:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_volunteer_name" HorizontalAlignment="Left" Margin="130,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="運用單位:" HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_application_unit" HorizontalAlignment="Left" Margin="130,130,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="處理階段:" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_stage" HorizontalAlignment="Left" Margin="130,160,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="通報時間:" HorizontalAlignment="Left" Margin="20,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
-        <Label Content="結案時間:" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_notification_date" HorizontalAlignment="Left" Margin="130,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="結案時間:" HorizontalAlignment="Left" Margin="320,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_closing_date" HorizontalAlignment="Left" Margin="430,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="處理結果:" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_result" HorizontalAlignment="Left" Margin="130,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label Content="運用單位敘述:" HorizontalAlignment="Left" Margin="20,250,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,280,0,0" VerticalAlignment="Top" Width="488">
+            <TextBox x:Name="txt_unit_descrition" TextWrapping="Wrap" Height="168" Width="488" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
+        <Label Content="志工自述:" HorizontalAlignment="Left" Margin="20,450,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,480,0,0" VerticalAlignment="Top" Width="488">
+            <TextBox x:Name="txt_volunteer_description" TextWrapping="Wrap" Height="168" Width="488" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
+        <Label Content="志工自述:" HorizontalAlignment="Left" Margin="20,650,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,680,0,0" VerticalAlignment="Top" Width="488">
+            <TextBox x:Name="txt_supervisor_description" TextWrapping="Wrap" Height="168" Width="488" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
+        <Label Content="駁回原因:" HorizontalAlignment="Left" Margin="20,850,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="168" Margin="25,880,0,0" VerticalAlignment="Top" Width="488">
+            <TextBox x:Name="txt_rejection_reason" TextWrapping="Wrap" Height="168" Width="488" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
     </Grid>
 </Window>

@@ -41,6 +41,32 @@ namespace Volunteer_WPF.View_Model
         public string Volunteer_leader { get; set; }
         //志工督導主管
         public string Supervisor_heads { get; set; }
+        //駁回原因
+        public string Rejection_Reason { get; set; }
+
+        public void SelectAbnormal_event_byAbnormal_event_ID(string event_ID)
+        {
+            Abnormal_event_Model abnormal_Event_Model = new Abnormal_event_Model();
+            abnormal_Event_Model.SelectAbnormal_event_byAbnormal_event_ID(event_ID);
+
+            Abnormal_event_no = abnormal_Event_Model.Abnormal_event_no;
+            Abnormal_event_ID = abnormal_Event_Model.Abnormal_event_ID;
+            Abnormal_event = abnormal_Event_Model.Abnormal_event;
+            Volunteer_name = abnormal_Event_Model.Volunteer_name;
+            Application_unit = abnormal_Event_Model.Application_unit;
+            event_category = abnormal_Event_Model.event_category;
+            Stage = abnormal_Event_Model.Stage;
+            Notification_date = abnormal_Event_Model.Notification_date;
+            Closing_date = abnormal_Event_Model.Closing_date;
+            Supervisor = abnormal_Event_Model.Supervisor;
+            Unit_descrition = abnormal_Event_Model.Unit_descrition;
+            Volunteer_description = abnormal_Event_Model.Volunteer_description;
+            Supervisor_description = abnormal_Event_Model.Supervisor_description;
+            Result = abnormal_Event_Model.Result;
+            Volunteer_leader = abnormal_Event_Model.Volunteer_leader;
+            Supervisor_heads = abnormal_Event_Model.Supervisor_heads;
+            Rejection_Reason = abnormal_Event_Model.Rejection_Reason;
+        }
 
         public List<string> Selectevent_category()
         {

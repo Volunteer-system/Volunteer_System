@@ -64,7 +64,22 @@ namespace Volunteer_WPF.View
 
         private void dg_abnormal_event_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            if (dg_abnormal_event.SelectedItem != null)
+            {
+                abnormal_event_list v = dg_abnormal_event.SelectedItem as abnormal_event_list;
+                string event_ID = v.事件案號;
+                getAbnormal_event_detail(event_ID);
 
+            }            
+        }
+
+        private void getAbnormal_event_detail(string event_ID)
+        {
+            Abnormal_event_detail abnormal_Event_Detail = new Abnormal_event_detail(event_ID);
+            wondow_show.Children.Clear();
+            object content = abnormal_Event_Detail.Content;
+            abnormal_Event_Detail.Content = null;
+            wondow_show.Children.Add(content as UIElement);
         }
 
         private void btn_selectabnormal_event_Click(object sender, RoutedEventArgs e)
@@ -124,6 +139,14 @@ namespace Volunteer_WPF.View
             }
 
             this.dg_abnormal_event.ItemsSource = abnormal_event_itemlist;
+            if (selectstage == SelectStage.nostage)
+            {
+                this.dg_abnormal_event.Columns[0].Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.dg_abnormal_event.Columns[0].Visibility = Visibility.Visible;
+            }
         }
     }
 

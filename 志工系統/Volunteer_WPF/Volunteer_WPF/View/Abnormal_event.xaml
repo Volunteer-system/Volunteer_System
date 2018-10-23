@@ -18,9 +18,9 @@
                 <Button x:Name="btn_processing" Content="處理中" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_processing_Click"  Style="{DynamicResource ButtonTemplate}"/>
                 <Button x:Name="btn_endprocessing" Content="事件完成" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_endprocessing_Click"  Style="{DynamicResource ButtonTemplate}"/>
                 <Label  Content="事件類別" FontSize="14"/>
-                <ComboBox Name="cbb_category" Grid.Row="3" Height="28" Margin="3"/>
+                <ComboBox Name="cbb_category"  Height="28" Margin="3"/>
                 <Label  Content="運用單位" FontSize="14"/>
-                <ComboBox Name="cbb_application_unit" Grid.Row="3" Height="28" Margin="3"/>
+                <ComboBox Name="cbb_application_unit" Height="28" Margin="3"/>
                 <Label  Content="事件日期" FontSize="14"/>
                 <DatePicker Name="dp_startdate"/>
                 <Label  Content="~" FontSize="16"/>
@@ -33,7 +33,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
-                <DataGrid x:Name="dg_abnormal_event"  Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
+                <DataGrid x:Name="dg_abnormal_event" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
@@ -44,7 +44,10 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-            </Grid>
+                <ScrollViewer Height="Auto" Grid.Row="1">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
+                </ScrollViewer>
+            </Grid>            
         </DockPanel>
     </Grid>
 </Window>
