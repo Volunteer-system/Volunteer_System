@@ -276,6 +276,7 @@
     <Compile Include="View_Model\Activity_AddAction_ViewModel.cs" />
     <Compile Include="View_Model\Activity_type_ViewModel.cs" />
     <Compile Include="View_Model\Activity_ViewModel.cs" />
+    <Compile Include="View_Model\Application_unit_ViewModel.cs" />
     <Compile Include="View_Model\ExpertiseBasic_ViewModel.cs" />
     <Compile Include="View_Model\RelayCommand.cs" />
     <Compile Include="View_Model\Service_group_ViewModel.cs" />

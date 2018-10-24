@@ -8,24 +8,35 @@ namespace Volunteer_WPF.Model
 {
     class Application_unit_Model
     {
+        //運用單位編號
         public string Application_unit_no { get; set; }
+        //運用單位
         public string Application_unit { get; set; }
+        //組別
         public string Group { get; set; }
+        //運用單位聯絡電話
         public string Application_phone_no { get; set; }
+        //負責人
         public string Principal { get; set; }
+        //負責人聯絡電話
         public string Principal_phone_no { get; set; }
+        //運用單位地址
         public string Application_address { get; set; }
+        //工作內容描述
         public string Work_content { get; set; }
+        //志工總人數
         public string Total_volunteers { get; set; }
 
-        public List<Application_unit_Model> SelectApplication_unit(string name, string group_name, int members)
+        public List<Application_unit_Model> SelectApplication_unit(string name, string group_name, int membersmin, int membersmax)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n1 in dbContext.Application_unit
                     join n2 in dbContext.Service_group
                     on n1.Group_no equals n2.Group_no
                     where ((name == "") ? true : n1.Application_unit1 == name) &&
-                          ((group_name == "") ? true : n2.Group_name == group_name)
+                          ((group_name == "") ? true : n2.Group_name == group_name) &&
+                          ((membersmin == 0)? true : n1.Total_volunteers >= membersmin) &&
+                          ((membersmax == 0)? true : n1.Total_volunteers <= membersmax)
                     select new
                     {
                         Application_unit_no = n1.Application_unit_no,
