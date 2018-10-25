@@ -46,6 +46,9 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
+                <ScrollViewer Height="Auto" Grid.Row="1">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
+                </ScrollViewer>
             </Grid>
         </DockPanel>
     </Grid>

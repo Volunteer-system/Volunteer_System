@@ -59,7 +59,6 @@
             <Label x:Name="Experise_list_Label" Content="{Binding Experise_list}" HorizontalAlignment="Left" Margin="119,648,0,0" VerticalAlignment="Top" FontSize="16"/>
             <Label Content="參與過的活動:" HorizontalAlignment="Left" Margin="11,683,0,0" VerticalAlignment="Top" FontSize="16"/>
             <DataGrid x:Name="Activity_datagrid" HorizontalAlignment="Left" Height="125" Margin="11,718,0,0" VerticalAlignment="Top" Width="459" FontSize="14">
-
             </DataGrid>
 
         </Grid>

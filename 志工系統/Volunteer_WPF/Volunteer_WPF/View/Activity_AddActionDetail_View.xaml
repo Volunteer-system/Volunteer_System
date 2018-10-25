@@ -1,55 +1,157 @@
-﻿<Window x:Class="Volunteer_WPF.View.Activity_AddActionDetail_View"
+﻿<Window
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         xmlns:t="clr-namespace:Volunteer_WPF.View_Model"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        xmlns:ic="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:User_Control="clr-namespace:Volunteer_WPF.User_Control" x:Class="Volunteer_WPF.View.Activity_AddActionDetail_View"
         mc:Ignorable="d"
         Title="Activity_AddActionDetail_View" Height="615" Width="1020">
-    <!--<Window.DataContext>
-        <t:Activity_AddAction_ViewModel></t:Activity_AddAction_ViewModel>
-    </Window.DataContext>-->
-    <Grid Background="LightGray">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label x:Name="lab_ActName" Content="活動名稱" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,416,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActName" HorizontalAlignment="Left" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
-        <Label x:Name="lab_ActType" Content="活動類別" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,44,416,0" Height="34" VerticalAlignment="Top" />
-        <ComboBox x:Name="cmb_ActType" HorizontalAlignment="Left" Margin="125,40,0,0" VerticalAlignment="Top" Width="190" Height="34" FontFamily="Microsoft Sans Serif" FontSize="16" ItemsSource="{Binding TM}" SelectedItem="{Binding TM_SelectedItem}"  DisplayMemberPath="Activity_type"/>
-        <Label x:Name="lab_ActGroupID" Content="活動組別" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,83,416,0" Height="34" VerticalAlignment="Top" />
-        <ComboBox x:Name="cmb_ActGroupID" HorizontalAlignment="Left" Margin="125,79,0,0" VerticalAlignment="Top" Width="190" Height="34" FontFamily="Microsoft Sans Serif" FontSize="16" ItemsSource="{Binding GM}" SelectedItem="{Binding GM_SelectedItem}" DisplayMemberPath="Group_name" />
-        <Label x:Name="lab_ActOrganization" Content="承辦單位" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="12,224,416,0" Height="34" VerticalAlignment="Top" RenderTransformOrigin="-0.131,-1.5" />
-        <TextBox x:Name="tbx_ActOrganization" HorizontalAlignment="Left" Height="25" Margin="125,224,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
-        <Label x:Name="lab_ActTaker" Content="承辦人" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="29,251,416,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActTaker" HorizontalAlignment="Left" Height="25" Margin="125,254,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_Name}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
-        <Label x:Name="lab_ActOrganizationPhone" Content="承辦單位電話" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,290,396,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActOrganizationPhone" HorizontalAlignment="Left" Height="25" Margin="125,290,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_phone}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
-        <Label x:Name="lab_ActOrganizationEmail" Content="承辦單位E-Mail" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,324,386,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActOrganizationEmail" HorizontalAlignment="Left" Height="25" Margin="125,324,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_email}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
-        <Label x:Name="lab_ActCourseMemberMax" Content="課程人數" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="12,363,416,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActCourseMemberMax" HorizontalAlignment="Left" Height="25" Margin="125,363,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
-        <Label x:Name="lab_ActCourseStandbyMax" Content="備取人數" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="9,402,416,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActCourseStandbyMax" HorizontalAlignment="Left" Height="25" Margin="125,402,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
-        <Label x:Name="lab_ActPlace" Content="活動地點" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="9,117,416,0" Height="34" VerticalAlignment="Top" />
-        <TextBox x:Name="tbx_ActPlace" HorizontalAlignment="Left" Height="25" Margin="125,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" RenderTransformOrigin="0.48,0.52"/>
-        <Label x:Name="lab_ActStartTime" Content="開始日期" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,151,416,0" Height="34" VerticalAlignment="Top" />
-        <DatePicker Name="datepicker_start" HorizontalAlignment="Left" Margin="125,148,0,0" VerticalAlignment="Top" Width="138" Height="34"/>
-        <Label x:Name="lab_ActEndTime" Content="結束日期" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="12,185,416,0" Height="34" VerticalAlignment="Top" />
-        <DatePicker Name="datepicker_end" HorizontalAlignment="Left" Margin="125,187,0,0" VerticalAlignment="Top" Width="138" Height="34"/>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label x:Name="lab_ActSummary" Content="活動簡介" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,415,0" Height="29" VerticalAlignment="Top" />
-            <Button x:Name="btn_openFile" Content="開啟檔案" HorizontalAlignment="Left" Margin="165,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif" Command=""/>
-            <Label x:Name="lab_ActImage" Content="活動照片" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="257,7,174,0" Height="29" VerticalAlignment="Top" />
-            <Button x:Name="btn_openImage" Content="開啟檔案" HorizontalAlignment="Left" Margin="418,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif" Command="{Binding ShowTEST}"/>
-            <TextBox x:Name="tbx_ActSummary" HorizontalAlignment="Left" Height="238" Margin="10,44,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="233" FontFamily="Microsoft Sans Serif" FontSize="20"/>
-            <Image x:Name="image" HorizontalAlignment="Left" Height="238" Margin="257,44,0,0" VerticalAlignment="Top" Width="239" Source="{Binding VM_Activity_photos}" Stretch="Fill" AllowDrop="True" DragDrop.DragEnter="image_DragEnter" DragDrop.Drop="image_Drop" />
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionary_ValidationErrorTemlate.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Viewbox Stretch="Fill">
+        <Grid Background="LightGray" Height="586" Width="1014">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="lab_ActName" Content="活動名稱" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,416,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActName" HorizontalAlignment="Left" Height="25" Margin="125,10,0,0" TextWrapping="Wrap" Validation.ErrorTemplate="{StaticResource validationErrorTemplate1}" Text="{Binding  VM_Activity_name ,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged ,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"  />
+            <Label x:Name="lab_ActType" Content="活動類別" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,44,416,0" Height="34" VerticalAlignment="Top" />
+            <ComboBox x:Name="cmb_ActType" HorizontalAlignment="Left" Margin="125,40,0,0" VerticalAlignment="Top" Width="100" Height="34" FontFamily="Microsoft Sans Serif" FontSize="16" ItemsSource="{Binding TM}"   DisplayMemberPath="Activity_type" Text="{Binding VM_Activity_type}"  >
+                <!--SelectedIndex="{Binding VM_Activity_type_ID}"-->
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <ic:CallMethodAction TargetObject="{Binding}" MethodName="cmb_ActType_SelectionChanged"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <Label x:Name="lab_ActGroupID" Content="活動組別" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,83,416,0" Height="34" VerticalAlignment="Top" />
+            <ComboBox x:Name="cmb_ActGroupID" HorizontalAlignment="Left" Margin="125,79,0,0" VerticalAlignment="Top" Width="100" Height="34" FontFamily="Microsoft Sans Serif" FontSize="16" ItemsSource="{Binding GM}"  DisplayMemberPath="Group_name"  Text="{Binding VM_Group_name}" > <!--SelectedIndex="{Binding VM_Group_no}"-->
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <ic:CallMethodAction TargetObject="{Binding}" MethodName="cmb_ActGroupID_SelectionChanged"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ComboBox>
+            <Label x:Name="lab_ActAddresser" Content="講師" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="41,224,424.2,0" Height="34" VerticalAlignment="Top" RenderTransformOrigin="-0.131,-1.5" />
+            <TextBox x:Name="tbx_ActOrganization" HorizontalAlignment="Left" Height="25" Margin="125,224,0,0" TextWrapping="Wrap" Text="{Binding VM_lecturer }" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
+            <Label x:Name="lab_ActTaker" Content="承辦人" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="29,251,416,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActTaker" HorizontalAlignment="Left" Height="25" Margin="125,254,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_Name}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
+            <Label x:Name="lab_ActOrganizationPhone" Content="承辦單位電話" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,290,396,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActOrganizationPhone" HorizontalAlignment="Left" Height="25" Margin="125,290,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_phone}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
+            <Label x:Name="lab_ActOrganizationEmail" Content="承辦單位E-Mail" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,324,386,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActOrganizationEmail" HorizontalAlignment="Left" Height="25" Margin="125,324,0,0" TextWrapping="Wrap" Text="{Binding VM_supervision_email}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" IsReadOnly="True"/>
+            <Label x:Name="lab_ActCourseMemberMax" Content="課程人數" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="12,363,416,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActCourseMemberMax" HorizontalAlignment="Left" Height="25" Margin="125,363,0,0" TextWrapping="Wrap" Text="{Binding VM_Member}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
+            <Label x:Name="lab_ActCourseStandbyMax" Content="備取人數" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="9,402,416,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActCourseStandbyMax" HorizontalAlignment="Left" Height="25" Margin="125,402,0,0" TextWrapping="Wrap" Text="{Binding VM_Spare}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16"/>
+            <Label x:Name="lab_ActPlace" Content="活動地點" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="9,117,416,0" Height="34" VerticalAlignment="Top" />
+            <TextBox x:Name="tbx_ActPlace" HorizontalAlignment="Left" Height="25" Margin="125,118,0,0" TextWrapping="Wrap" Text="{Binding VM_Place}" VerticalAlignment="Top" Width="300" FontFamily="Microsoft Sans Serif" FontSize="16" RenderTransformOrigin="0.48,0.52"/>
+            <Label x:Name="lab_ActStartTime" Content="開始日期" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,151,416,0" Height="34" VerticalAlignment="Top" />
+            <DatePicker x:Name="datepicker_start" HorizontalAlignment="Left" Margin="125,148,0,0" VerticalAlignment="Top" Width="138" Height="34" DisplayDateStart="{x:Static sys:DateTime.Now}" Validation.ErrorTemplate="{StaticResource validationErrorTemplate1}" SelectedDate="{Binding VM_Activity_startdate,Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}" SelectedDateFormat="Short" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged">
+                        <ic:CallMethodAction TargetObject="{Binding}" MethodName="datepicker_start_SelectedDateChanged"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <Label x:Name="lab_ActEndTime" Content="結束日期" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="12,185,416,0" Height="34" VerticalAlignment="Top" />
+            <DatePicker x:Name="datepicker_end" HorizontalAlignment="Left" Margin="125,187,0,0" VerticalAlignment="Top" Width="138" Height="34" DisplayDateStart="{x:Static sys:DateTime.Now}" Validation.ErrorTemplate="{StaticResource validationErrorTemplate1}" SelectedDate="{Binding VM_Activity_enddate ,Mode=TwoWay,ValidatesOnDataErrors=True,ValidatesOnExceptions=True,NotifyOnValidationError=True}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectedDateChanged ">
+                        <ic:CallMethodAction TargetObject="{Binding }" MethodName="datepicker_end_SelectedDateChanged "/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </DatePicker>
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lab_ActSummary" Content="活動簡介" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,415,0" Height="29" VerticalAlignment="Top" />
+                <Button x:Name="btn_openFile" Content="開啟檔案" HorizontalAlignment="Left" Margin="165,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_openFile_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Label x:Name="lab_ActImage" Content="活動照片" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="257,7,174,0" Height="29" VerticalAlignment="Top" />
+                <Button x:Name="btn_openImage" Content="開啟檔案" HorizontalAlignment="Left" Margin="418,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_openImage_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <TextBox x:Name="tbx_ActSummary" HorizontalAlignment="Left" Height="238" Margin="10,44,0,0" TextWrapping="Wrap" Text="{Binding VM_Summary}" VerticalAlignment="Top" Width="233" FontFamily="Microsoft Sans Serif" FontSize="20"/>
+                <Image x:Name="image" HorizontalAlignment="Left" Height="238" Margin="257,44,0,0" VerticalAlignment="Top" Width="239"  Stretch="Fill" AllowDrop="True" Source="{Binding VM_Activity_photos}"  >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Drop">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="image_Drop"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Image>
+                <StackPanel HorizontalAlignment="Left" Height="215" Margin="10,10.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="486" Orientation="Horizontal">
+                    <ScrollViewer Width="384" Margin="5" VerticalScrollBarVisibility="Visible"  HorizontalScrollBarVisibility="Visible">
+                        <WrapPanel x:Name="WrapPanel_Viewphoto" Background="White" Orientation="Horizontal" AllowDrop="True" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="DragEnter">
+                                    <ic:CallMethodAction TargetObject="{Binding}" MethodName="WrapPanel_Viewphoto_DragEnter"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="Drop">
+                                    <ic:CallMethodAction TargetObject="{Binding}" MethodName="WrapPanel_Viewphoto_Drop"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </WrapPanel>
+                    </ScrollViewer>
+                    <StackPanel Width="100" Background="LightGray" Orientation="Vertical">
+                        <Button x:Name="btn_amend_addimage" Content="開啟檔案" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_addimage_Click"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                        <Button x:Name="btn_amend_delete" Content="刪除勾選" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="Click">
+                                    <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_delete_Click"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Button>
+                   
+                    </StackPanel>
+                </StackPanel>
+                <Button x:Name="btn_addActivity" Content="新增活動" HorizontalAlignment="Left" Margin="10,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Addact}">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_addActivity_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button x:Name="btn_amendact" Content="修改活動" HorizontalAlignment="Left" Margin="137,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Amendact}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amendact_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+            </Grid>
+            <TextBox HorizontalAlignment="Left" Height="34" Margin="230,40,0,0" TextWrapping="Wrap" Text="{Binding VM_Activity_type}" VerticalAlignment="Top" Width="120"  IsReadOnly = "True" />
+            <TextBox HorizontalAlignment="Left" Height="34" Margin="230,79,0,0" TextWrapping="Wrap" Text="{Binding VM_Group_name}" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
         </Grid>
-    </Grid>
+    </Viewbox>
 </Window>

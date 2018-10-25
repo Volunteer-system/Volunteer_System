@@ -23,25 +23,17 @@ namespace Volunteer_WPF.View
     public partial class Activity_AddActionDetail_View : Window
     {
 
-        Activity_AddAction_ViewModel AAVM;
+        //Activity_AddAction_ViewModel AAVM;
         public Activity_AddActionDetail_View()
         {
             InitializeComponent();
-            AAVM = new Activity_AddAction_ViewModel();  //資料綁定的方式!!
-            this.DataContext = AAVM;                    //很重要!!
+            //AAVM = new Activity_AddAction_ViewModel(2,WrapPanel_Viewphoto);  //資料綁定的方式!!
+            //this.DataContext = AAVM;                    //很重要!!   
         }
 
-        private void image_DragEnter(object sender, DragEventArgs e)
+        public WrapPanel getWrapPanel()
         {
-            e.Effects = DragDropEffects.Link;
-        }
-
-        private void image_Drop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop))
-            {
-              string[] file =  (string[])e.Data.GetData(DataFormats.FileDrop);              
-            }
+            return this.WrapPanel_Viewphoto;
         }
     }
 }

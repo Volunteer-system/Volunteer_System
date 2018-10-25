@@ -9,7 +9,7 @@ namespace Volunteer_WPF.Model
     class Application_unit_Model
     {
         //運用單位編號
-        public string Application_unit_no { get; set; }
+        public int Application_unit_no { get; set; }
         //運用單位
         public string Application_unit { get; set; }
         //組別
@@ -26,6 +26,41 @@ namespace Volunteer_WPF.Model
         public string Work_content { get; set; }
         //志工總人數
         public string Total_volunteers { get; set; }
+
+        public void SelectApplication_unit_byApplication_unit(string Application_unit)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Application_unit
+                    join n2 in dbContext.Service_group
+                    on n1.Group_no equals n2.Group_no
+                    where n1.Application_unit1 == Application_unit
+                    select new
+                    {
+                        Application_unit_no = n1.Application_unit_no,
+                        Application_unit = n1.Application_unit1,
+                        Group = n2.Group_name,
+                        Application_phone_no = n1.Application_phone_no,
+                        Principal = n1.Principal,
+                        Principal_phone_no = n1.Principal_phone_no,
+                        Application_address = n1.Application_address,
+                        Work_content = n1.Work_content,
+                        Total_volunteers = n1.Total_volunteers
+                    };
+
+            foreach (var row in q)
+            {
+                Application_unit_no = row.Application_unit_no;
+                Application_unit = row.Application_unit;
+                Group = row.Group;
+                Application_phone_no = row.Application_phone_no;
+                Principal = row.Principal;
+                Principal_phone_no = row.Principal_phone_no;
+                Application_address = row.Application_address;
+                Work_content = row.Work_content;
+                Total_volunteers = row.Total_volunteers.ToString();
+            }
+
+        }
 
         public List<Application_unit_Model> SelectApplication_unit(string name, string group_name, int membersmin, int membersmax)
         {
@@ -54,7 +89,7 @@ namespace Volunteer_WPF.Model
             foreach (var row in q)
             {
                 Application_unit_Model application_Unit_Model = new Application_unit_Model();
-                application_Unit_Model.Application_unit_no = row.Application_unit_no.ToString();
+                application_Unit_Model.Application_unit_no = row.Application_unit_no;
                 application_Unit_Model.Application_unit = row.Application_unit;
                 application_Unit_Model.Group = row.Group;
                 application_Unit_Model.Application_phone_no = row.Application_phone_no;

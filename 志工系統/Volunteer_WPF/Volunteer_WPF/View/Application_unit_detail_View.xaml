@@ -1,0 +1,116 @@
+﻿<Window x:Class="Volunteer_WPF.View.Application_unit_detail_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Application_unit_detail_View" Height="647.148" Width="800">
+    <Grid>
+        <Label Content="運用單位名稱:" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_application_unit" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="運用單位聯絡電話:" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_application_unit_phone" HorizontalAlignment="Left" Margin="160,40,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="組別:" HorizontalAlignment="Left" Margin="20,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_group" HorizontalAlignment="Left" Margin="160,70,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="負責人:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_principal" HorizontalAlignment="Left" Margin="160,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="負責人聯絡電話:" HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_principal_phone" HorizontalAlignment="Left" Margin="160,130,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="運用單位地址:" HorizontalAlignment="Left" Margin="20,160,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_application_address" HorizontalAlignment="Left" Margin="160,160,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="工作內容描述:" HorizontalAlignment="Left" Margin="20,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_work_content" HorizontalAlignment="Left" Margin="160,190,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="志工總人數:" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_total_volunteers" HorizontalAlignment="Left" Margin="160,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="專長需求:" HorizontalAlignment="Left" Margin="20,250,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="Lab_expertise" HorizontalAlignment="Left" Margin="160,250,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="服務時段:" HorizontalAlignment="Left" Margin="20,280,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Border CornerRadius="6" BorderBrush="#FFA7E6DA" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="50,310,0,0" VerticalAlignment="Top" Width="550" Background="White" Grid.ColumnSpan="2">
+            <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle HorizontalAlignment="Left" Height="29"  Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68" Fill="#FFA7E6DA"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Label Content="週一" Grid.Column="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週二" Grid.Column="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週三" Grid.Column="3" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週四" Grid.Column="4" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週五" Grid.Column="5" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週六" Grid.Column="6" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="上午" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="下午" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="夜間" HorizontalAlignment="Left" Margin="13,28.4,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label x:Name="Mon_am"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Tue_am"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_am"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_am"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Mon_pm"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Tue_pm"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_pm"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_pm"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Mon_night"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Tue_night"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Wed_night"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Thu_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Fri_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sat_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label x:Name="Sun_night"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+            </Grid>
+        </Border>
+        <Label Content="志工清單:" HorizontalAlignment="Left" Margin="20,440,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <DataGrid x:Name="Activity_datagrid" HorizontalAlignment="Left" Height="125" Margin="50,475,0,0" VerticalAlignment="Top" Width="459" FontSize="14">
+        </DataGrid>
+    </Grid>
+</Window>

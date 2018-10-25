@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Volunteer_WPF.View">
+    <ControlTemplate x:Key="validationErrorTemplate1">
+        <DockPanel>
+            <Border BorderBrush="Red" BorderThickness="2" CornerRadius="10">
+                <AdornedElementPlaceholder/>
+            </Border>
+            <TextBlock Foreground="Red" FontSize="20" Text="*"></TextBlock>
+            <TextBlock Text="{Binding [0].ErrorContent}" Foreground="Red"/>
+        </DockPanel>
+    </ControlTemplate>
+</ResourceDictionary>

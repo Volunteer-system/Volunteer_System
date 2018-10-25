@@ -85,7 +85,21 @@ namespace Volunteer_WPF.View
 
         private void dg_Application_unit_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
+            if (dg_Application_unit.SelectedItem != null)
+            {
+                application_Unit_list v = dg_Application_unit.SelectedItem as application_Unit_list;
+                string Application_unit = v.運用單位;
+                getApplication_unit_detai(Application_unit);
+            }                
+        }
 
+        public void getApplication_unit_detai(string Application_unit)
+        {
+            Application_unit_detail_View application_Unit_Detail_View = new Application_unit_detail_View(Application_unit);
+            wondow_show.Children.Clear();
+            object content = application_Unit_Detail_View.Content;
+            application_Unit_Detail_View.Content = null;
+            wondow_show.Children.Add(content as UIElement);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
