@@ -28,7 +28,8 @@ namespace Volunteer_WPF.View
 
         private void btn_newApplication_unit_Click(object sender, RoutedEventArgs e)
         {
-
+            Application_unit_data_View application_Unit_Data_View = new Application_unit_data_View();
+            application_Unit_Data_View.ShowDialog();
         }
 
         private void btn_selectApplication_unit_Click(object sender, RoutedEventArgs e)

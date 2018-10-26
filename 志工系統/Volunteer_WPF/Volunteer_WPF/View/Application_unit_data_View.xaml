@@ -1,0 +1,145 @@
+﻿<Window x:Class="Volunteer_WPF.View.Application_unit_data_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Application_unit_data_View" Height="642" Width="1140">
+    <Grid Height="613" Margin="0,0,-0.4,-1" VerticalAlignment="Bottom" Background="#FFA7E6DA">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4.5*"/>
+            <ColumnDefinition Width="5.5*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="運用單位:"  HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_application_unit" Width="220" Height="30" HorizontalAlignment="Left" Margin="170,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="組別:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_group" Width="220" Height="30" HorizontalAlignment="Left" Margin="170,60,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="運用單位連絡電話:" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_application_unit_phone" Width="220" Height="30" HorizontalAlignment="Left" Margin="170,100,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="負責人:" HorizontalAlignment="Left" Margin="20,140,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_principal" Width="220" Height="30" HorizontalAlignment="Left" Margin="170,140,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="負責人聯絡電話:" HorizontalAlignment="Left" Margin="20,180,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_principal_phone" Width="220" Height="30" HorizontalAlignment="Left" Margin="170,180,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="運用單位地址:" HorizontalAlignment="Left" Margin="20,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <TextBox x:Name="txt_application_address" Width="300" Height="30" HorizontalAlignment="Left" Margin="170,220,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="志工總人數:" HorizontalAlignment="Left" Margin="20,260,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_total_volunteers" Background="#FFFFFFFF" HorizontalAlignment="Left" Margin="170,260,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="工作內容描述:" HorizontalAlignment="Left" Margin="20,300,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <ScrollViewer HorizontalAlignment="Left" Height="250" Margin="25,340,0,0" VerticalAlignment="Top" Width="450">
+            <TextBox x:Name="txt_volunteer_description" TextWrapping="Wrap" Height="250" Width="450" IsReadOnly="True" FontSize="16"/>
+        </ScrollViewer>
+        <Label Content="需求專長:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label x:Name="lab_Expertises" Background="#FFFFFFFF" Grid.Column="1" HorizontalAlignment="Left" Margin="130,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Label Content="服務時段:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Border Grid.Column="1" CornerRadius="6" BorderBrush="#FFFFFFFF" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="40,100,0,0" VerticalAlignment="Top" Width="550" Background="White" Grid.ColumnSpan="2">
+            <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="#FFFFFFFF" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="1" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="2" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="3" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="4" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="5" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="6" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle Grid.Column="7" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Rectangle HorizontalAlignment="Left" Height="29"  Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68" Fill="#FFA7E6DA"/>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
+                    <TextBox x:Name="Mon_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="1">
+                    <TextBox x:Name="Tue_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="1">
+                    <TextBox x:Name="Wed_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="1">
+                    <TextBox x:Name="Thu_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="1">
+                    <TextBox x:Name="Fri_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="1">
+                    <TextBox x:Name="Sat_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="1">
+                    <TextBox x:Name="Sun_am" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="2">
+                    <TextBox x:Name="Mon_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="2">
+                    <TextBox x:Name="Tue_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="2">
+                    <TextBox x:Name="Wed_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="2">
+                    <TextBox x:Name="Thu_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="2">
+                    <TextBox x:Name="Fri_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="2">
+                    <TextBox x:Name="Sat_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="2">
+                    <TextBox x:Name="Sun_pm" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="3">
+                    <TextBox x:Name="Mon_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="3">
+                    <TextBox x:Name="Tue_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="3">
+                    <TextBox x:Name="Wed_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="3">
+                    <TextBox x:Name="Thu_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="3">
+                    <TextBox x:Name="Fri_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="3">
+                    <TextBox x:Name="Sat_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="3">
+                    <TextBox x:Name="Sun_night" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                </Border>
+                <Label Content="週一" Grid.Column="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週二" Grid.Column="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週三" Grid.Column="3" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週四" Grid.Column="4" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週五" Grid.Column="5" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週六" Grid.Column="6" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="上午" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="下午" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="夜間" HorizontalAlignment="Left" Margin="13,28.4,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+            </Grid>
+        </Border>
+        <Label Content="志工清單:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <DataGrid x:Name="dg_volunteer_lists" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="40,280,0,0" VerticalAlignment="Top" Width="550" FontSize="14">
+        </DataGrid>
+        <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="300,510,0,0" VerticalAlignment="Top" Width="120" Height="50" />
+        <Button  Name="btn_close" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" />
+    </Grid>
+</Window>

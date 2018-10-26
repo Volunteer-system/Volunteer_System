@@ -23,17 +23,26 @@ namespace Volunteer_WPF.View
     public partial class Activity_AddActionDetail_View : Window
     {
 
-        //Activity_AddAction_ViewModel AAVM;
+        Activity_AddAction_ViewModel AAVM;
         public Activity_AddActionDetail_View()
         {
             InitializeComponent();
-            //AAVM = new Activity_AddAction_ViewModel(2,WrapPanel_Viewphoto);  //資料綁定的方式!!
-            //this.DataContext = AAVM;                    //很重要!!   
+            //AAVM = new Activity_AddAction_ViewModel(2, WrapPanel_Viewphoto);  //資料綁定的方式!!
+            //this.DataContext = AAVM;                                          //很重要!!   
         }
-
-        public WrapPanel getWrapPanel()
+        public void AddNewActivity(int supervisionID)
         {
-            return this.WrapPanel_Viewphoto;
+            AAVM = new Activity_AddAction_ViewModel(supervisionID, WrapPanel_Viewphoto);  //資料綁定的方式!!
+            this.DataContext = AAVM;
         }
+        public void AmendActivity(string activity_name, DateTime activity_starttime)
+        {
+            AAVM = new Activity_AddAction_ViewModel(activity_name, activity_starttime, WrapPanel_Viewphoto);  //資料綁定的方式!!
+            this.DataContext = AAVM;
+        }
+        //public WrapPanel getWrapPanel()
+        //{
+        //    return this.WrapPanel_Viewphoto;
+        //}
     }
 }

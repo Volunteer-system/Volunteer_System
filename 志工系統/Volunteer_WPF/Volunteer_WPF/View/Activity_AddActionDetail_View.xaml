@@ -150,8 +150,6 @@
                     </i:Interaction.Triggers>
                 </Button>
             </Grid>
-            <TextBox HorizontalAlignment="Left" Height="34" Margin="230,40,0,0" TextWrapping="Wrap" Text="{Binding VM_Activity_type}" VerticalAlignment="Top" Width="120"  IsReadOnly = "True" />
-            <TextBox HorizontalAlignment="Left" Height="34" Margin="230,79,0,0" TextWrapping="Wrap" Text="{Binding VM_Group_name}" VerticalAlignment="Top" Width="120" IsReadOnly="True" />
         </Grid>
     </Viewbox>
 </Window>
