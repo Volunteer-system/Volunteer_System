@@ -26,14 +26,36 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Sign_up_View : Window
     {
+        MainWindow m = new MainWindow();   //登入頁面的表單
         public Sign_up_View()
         {
             InitializeComponent();
             this.DataGrid_1.IsReadOnly = true;
             this.DataGrid_1.Columns[0].Visibility = Visibility.Hidden;
             this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;
+            superversion_name = m.username.Content.ToString(); //接收登入者名稱
+            supervisionID =  getloginID(superversion_name);   //抓取登入者ID ，沒有就回傳 1     
         }
-        
+
+        private int getloginID(string username)
+        {
+            int n = 1;
+            if (username != null || username != string.Empty)
+            {
+                var q = from s in Myentity.Volunteer_supervision
+                         where s.supervision_Name == username
+                         select s;
+                foreach (var r in q)
+                {
+                    n =  r.supervision_ID;
+                }
+            }
+            else
+            {
+               n= 1;
+            }
+            return n;
+        }
 
         List<int> l_click_ok = new List<int>();        //存打勾人
         List<int> l_click_delete = new List<int>();    //存打X的人
@@ -52,11 +74,16 @@ namespace Volunteer_WPF.View
         string stage_pass_applicant = "通過";//5
         string stage_reject = "駁回";                  //代表駁回
         string stage_NotUse = "其他";                  //非審核階段的代表值
+        string sign_up_type_use;                       //身分類別使用
 
         List<string> select_use = new List<string>();   //已勾選的
         List<string> select_canuse = new List<string>();//可供勾選的欄位
         Window w;                                       //產生新視窗
         StackPanel sp = new StackPanel();               //新視窗內的容器
+
+        string[] select_everytime = new string[] { "申請人姓名", "生日", "電話號碼", "手機號碼", "電子郵件", "聯絡地址" }; //常用輸出項目
+        string superversion_name = "";                  //接收登入者姓名
+        int supervisionID = 1;                          //判斷登入者的ID
 
         ObservableCollection<Volunteer_Applicant> volunteer = new ObservableCollection<Volunteer_Applicant>();  //存資料庫資料類別用
 
@@ -99,6 +126,7 @@ namespace Volunteer_WPF.View
             this.DataGrid_1.Columns[0].Visibility = Visibility.Visible;  //顯示原本隱藏的刪除欄位
             this.DataGrid_1.Columns[1].Visibility = Visibility.Hidden;   //隱藏審核設定的欄位
         }
+        //查詢已拒絕審核▼
         private void btn_reject_Click(object sender, RoutedEventArgs e)
         {//查詢已拒絕審核
             first = false;                                               //判斷點選的是哪個功能
@@ -141,20 +169,7 @@ namespace Volunteer_WPF.View
         }
         //存取資料的類別▼
         public class Volunteer_Applicant  
-        {  //存取資料庫資料用 
-            //public int Sign_up_no { get; set; }
-            //public string Stage { get; set; }
-            //public string Name { get; set; }
-            //public string Sex { get; set; }
-            //public DateTime Birthday { get; set; }
-            //public string Personality_scale { get; set; }
-            //public string Phone { get; set; }
-            //public string Mobile { get; set; }
-            //public string Email { get; set; }
-            //public string Education { get; set; }
-            //public string Job { get; set; }
-            //public string Address { get; set; }
-            //public DateTime Approval_date { get; set; }
+        {  //存取資料庫資料用          
             public int 申請編號 { get; set; }
             public string 申請階段 { get; set; }
             public string 申請人姓名 { get; set; }
@@ -169,6 +184,7 @@ namespace Volunteer_WPF.View
             public string 聯絡地址 { get; set; }
             public string 申請日期 { get; set; }
             public string 審核日期 { get; set; }
+            public string 身分類別 { get; set; }
         }
         //點選資料時▼
         private void DataGrid_1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -182,91 +198,15 @@ namespace Volunteer_WPF.View
         //儲存按下了勾勾的人▼
         private void Check_interview_Click(object sender, EventArgs e)
         { //儲存按下了勾勾的人
-            Volunteer_Applicant v = this.DataGrid_1.SelectedItem as Volunteer_Applicant;          
-            if (l_click_ok.Count == 0)                                  //沒點選任何勾勾時進入
-            {
-                l_click_ok.Add(v.申請編號);                             //點選的項目加入集合  
-                lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
-                for (int i = 0; i < l_click_ok.Count; i += 1)           //判斷使否存在於打XX集合內
-                {
-                    for (int j = 0; j < l_click_delete.Count; j += 1)
-                    {
-                        if (l_click_ok[i] == l_click_delete[j])         //如果有
-                        {
-                            l_click_delete.Remove(l_click_delete[j]);   //刪除XX集合內的值                          
-                            lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                        }
-                    }
-                }
-            }
-            else                                                       //集合內已經有值時進入
-            {
-                bool ok_in = false;                                    //判斷是否有相同號碼用
-                for (int i = 0; i < l_click_ok.Count; i += 1)
-                {
-                    ok_in = true;                                      //狀態設成可以加入
-                    if (l_click_ok[i] == v.申請編號)                   //如果已經存在同樣的號碼，代表同號碼點選2次，要取消點選
-                    {
-                        l_click_ok.Remove(l_click_ok[i]);              //就從集合內刪掉該號碼
-                        ok_in = false;                                 //狀態設成不可加入
-                        lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
-                        lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                        break;                                         //離開迴圈
-                    }
-                }
-                   if(ok_in)                                           //如果狀態為可以加入
-                {
-                        l_click_ok.Add(v.申請編號);                    //該號碼加入集合
-                        l_click_delete.Remove(v.申請編號);             //刪除XX集合內的值
-                    lab_check.Content = l_click_ok.Count.ToString();        //計算勾選數
-                    lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                }               
-            }
+            getcheck_delete(l_click_ok, l_click_delete,lab_check,lab_Dcheck); //呼叫方法         
         }
+       
         //儲存按下XX的人▼
         private void Check_interview_MU_Click_Delete(object sender, EventArgs e)
         {//儲存按下XX的人
-            Volunteer_Applicant v = this.DataGrid_1.SelectedItem as Volunteer_Applicant;           
-            if (l_click_delete.Count == 0)                        //沒點選任何XX時進入
-            {
-                l_click_delete.Add(v.申請編號);                   //點選的項目加入集合
-                lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                for (int i = 0; i < l_click_delete.Count; i += 1) //判斷使否存在於打勾勾集合內
-                {
-                    for (int j = 0; j < l_click_ok.Count; j += 1)
-                    {
-                        if (l_click_delete[i] == l_click_ok[j])   //如果有
-                        {
-                            l_click_ok.Remove(l_click_ok[j]);     //刪除勾勾集合內的值 
-                            lab_check.Content = l_click_ok.Count.ToString(); //計算勾選數
-                        }
-                    }
-                }
-            }
-            else                                                  //集合內已經有值時進入
-            {
-                bool ok_in = false;                               //判斷是否有相同號碼用
-                for (int i = 0; i < l_click_delete.Count; i += 1)
-                {
-                    ok_in = true;                                 //狀態設成可以加入
-                    if (l_click_delete[i] == v.申請編號)          //如果已經存在同樣的號碼，代表同號碼點選2次，要取消點選
-                    {
-                        l_click_delete.Remove(l_click_delete[i]); //就從集合內刪掉該號碼
-                        ok_in = false;                            //狀態設成不可加入
-                        lab_check.Content = l_click_ok.Count.ToString();     //計算勾選數
-                        lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                        break;                                    //離開迴圈
-                    }
-                }
-                if (ok_in)                                        //如果狀態為可以加入
-                {
-                    l_click_delete.Add(v.申請編號);               //該號碼加入集合
-                    l_click_ok.Remove(v.申請編號);                //刪除勾勾集合內的值
-                    lab_check.Content = l_click_ok.Count.ToString();     //計算勾選數
-                    lab_Dcheck.Content = l_click_delete.Count.ToString();//計算打X數
-                }                                   
-            }
-        }
+            getcheck_delete(l_click_delete, l_click_ok, lab_Dcheck, lab_check);//呼叫方法         
+        }       
+
         //按下確認▼
         private void btn_check_Click(object sender, RoutedEventArgs e)
         {
@@ -274,131 +214,14 @@ namespace Volunteer_WPF.View
             {
                 if (first)                                           //如果是在初次審核的頁面
                 {
-                    if (l_click_ok.Count != 0)                       //如果勾勾集合內有值的話進入
-                    {                                                //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "初次審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                        {
-                            var q =  (from v in Myentity.Sign_up
-                                     select v).ToList();
-                            for (int i = 0; i < l_click_ok.Count; i += 1)
-                            {
-                                for (int j = 0; j < q.Count; j += 1)
-                                {
-                                    if (l_click_ok[i] == q[j].Sign_up_no)  //判斷集合內的值跟資料庫內的值是否相同
-                                    {
-                                        q[j].Stage = getstageID( stage_interview); //將狀態改成1，代表為要求面試
-                                        q[j].Approval_date = DateTime.Now; //新增審核日期為今天
-                                        ThreadStart TS = new ThreadStart(
-                                            delegate ()
-                                            {
-                                                sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_pass);//寄送郵件
-                                                System.Windows.Forms.Application.DoEvents();
-                                            });
-                                        send_mail = new Thread(TS);
-                                        send_mail.IsBackground = true;
-                                        send_mail.Start();
-                                        break;                             //判斷完一筆後離開
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (l_click_delete.Count != 0)                         //如果XX集合內有值的話進入
-                    {                                                      //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認駁回" + l_click_delete.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "駁回確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                        {
-                            var q = (from v in Myentity.Sign_up
-                                     select v).ToList();
-                            for (int i = 0; i < l_click_delete.Count; i += 1)
-                            {
-                                for (int j = 0; j < q.Count; j += 1)
-                                {
-                                    if (l_click_delete[i] == q[j].Sign_up_no)   //判斷集合內的值跟資料庫內的值是否相同
-                                    {
-                                        //this.Myentity.Sign_up.Remove(q[j]);  //執行刪除的動作   
-                                        q[j].Stage = getstageID(stage_reject);             //代表駁回
-                                        q[j].Approval_date = DateTime.Now; //新增審核日期為今天
-                                        ThreadStart TS = new ThreadStart(
-                                            delegate ()
-                                            {
-                                                sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_delete);//寄送郵件
-                                                System.Windows.Forms.Application.DoEvents();
-                                            });
-                                        send_mail = new Thread(TS);
-                                        send_mail.IsBackground = true;
-                                        send_mail.Start();
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    getclick(l_click_ok, l_click_delete, "初次審核", stage_interview);                  
                     this.Myentity.SaveChanges();                               //將修改存回資料庫
                     this.DataGrid_1.ItemsSource = null;                        //更新該頁面
                     this.DataGrid_1.ItemsSource = get_volunteer(stage_first);  //重新呼叫資料
                 }
                 else if (interview || selection)                                            //如果是在面試審核的頁面
                 {
-                    if (l_click_ok.Count != 0)                                 //如果勾勾集合內有值的話進入
-                    {                                                          //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認通過" + l_click_ok.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "面試審核", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                        {
-                            var q = (from v in Myentity.Sign_up
-                                     select v).ToList();
-                            for (int i = 0; i < l_click_ok.Count; i += 1)      //判斷集合內的值跟資料庫內的值是否相同
-                            {
-                                for (int j = 0; j < q.Count; j += 1)
-                                {
-                                    if (l_click_ok[i] == q[j].Sign_up_no)
-                                    {
-                                        q[j].Stage = getstageID(stage_pass_applicant);     //將狀態改成2，代表為審核通過 
-                                        q[j].Approval_date = DateTime.Now;     //新增審核日期為今天
-                                        ThreadStart TS = new ThreadStart(
-                                            delegate ()
-                                            {
-                                                sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_pass);//寄送郵件
-                                                System.Windows.Forms.Application.DoEvents();
-                                            });
-                                        send_mail = new Thread(TS);
-                                        send_mail.IsBackground = true;
-                                        send_mail.Start();                                        
-                                        break;
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                    if (l_click_delete.Count != 0)                             //如果XX集合內有值的話進入
-                    {                                                          //秀出一個確認視窗
-                        if (System.Windows.Forms.MessageBox.Show("確認駁回" + l_click_delete.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "駁回確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
-                        {
-                            var q = (from v in Myentity.Sign_up
-                                     select v).ToList();
-                            for (int i = 0; i < l_click_delete.Count; i += 1) //判斷集合內的值跟資料庫內的值是否相同
-                            {
-                                for (int j = 0; j < q.Count; j += 1)
-                                {
-                                    if (l_click_delete[i] == q[j].Sign_up_no)
-                                    {
-                                        //this.Myentity.Sign_up.Remove(q[j]); //執行刪除的動作
-                                        q[j].Stage = getstageID(stage_reject) ;            //代表駁回
-                                        q[j].Approval_date = DateTime.Now; //新增審核日期為今天
-                                        ThreadStart TS = new ThreadStart(
-                                            delegate ()
-                                            {
-                                                sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_delete);//寄送郵件
-                                                System.Windows.Forms.Application.DoEvents();
-                                            });
-                                        send_mail = new Thread(TS);
-                                        send_mail.IsBackground = true;
-                                        send_mail.Start();                                        
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    getclick(l_click_ok, l_click_delete, "面試審核", stage_pass_applicant);                    
                     this.Myentity.SaveChanges();                              //將修改存回資料庫
                     this.DataGrid_1.ItemsSource = null;                       //更新該頁面
                     this.DataGrid_1.ItemsSource = get_volunteer(stage_interview); //重新呼叫資料
@@ -445,8 +268,8 @@ namespace Volunteer_WPF.View
                 }
             }
             
-        }
-      
+        }       
+
         //呼叫顯示資料的方法▼
         private IEnumerable get_volunteer(string n)
         {                                                                    //呼叫顯示資料的方法
@@ -468,11 +291,11 @@ namespace Volunteer_WPF.View
             if ((D_Start_date.Text != "" || D_End_date.Text != "") || n!=stage_NotUse)  //判斷點查詢鈕時的查詢條件
             {  
                var q = (from v in Myentity.Sign_up join s in Myentity.Stages on v.Stage equals s.Stage_ID
-                        where s.Stage1 == n && (D_Start_date.Text == "" ? true : v.Sign_up_date >= D_Start_date.SelectedDate) &&( D_End_date.Text == "" ? true : v.Sign_up_date <= D_End_date.SelectedDate)
-                     select new { Sign_up_no = v.Sign_up_no, Stage  = s.Stage1,Stagetype = s.Stage_type,SignupName = v.Chinese_name + " " + v.English_name ,Sex = v.Sex, Birthday =v.Birthday, Personality_scale  = v.Personality_scale,Phone = v.Phone,Mobile = v.Mobile,Email = v.Email,Education=v.Education,Job = v.Job,Address=v.Address, Sign_up_date =v.Sign_up_date, Approval_date = v.Approval_date}).ToList();
+                        where s.Stage1 == n && (D_Start_date.Text == "" ? true : v.Sign_up_date >= D_Start_date.SelectedDate) &&( D_End_date.Text == "" ? true : v.Sign_up_date <= D_End_date.SelectedDate) && v.Sign_up_type == sign_up_type_use
+                     select new { Sign_up_no = v.Sign_up_no, Stage  = s.Stage1,Stagetype = s.Stage_type,SignupName = v.Chinese_name + " " + v.English_name ,Sex = v.Sex, Birthday =v.Birthday, Personality_scale  = v.Personality_scale,Phone = v.Phone,Mobile = v.Mobile,Email = v.Email,Education=v.Education,Job = v.Job,Address=v.Address, Sign_up_date =v.Sign_up_date, Approval_date = v.Approval_date, Sign_up_type = v.Sign_up_type }).ToList();
                 foreach (var v in q)
                 {  
-                    volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no,申請階段 =v.Stage, 申請人姓名 =v.SignupName, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday).ToShortDateString(), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期 = Convert.ToDateTime(v.Sign_up_date).ToShortDateString(), 審核日期 = Convert.ToDateTime(v.Approval_date).ToShortDateString() });
+                    volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no,申請階段 =v.Stage, 申請人姓名 =v.SignupName, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday).ToShortDateString(), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期 = Convert.ToDateTime(v.Sign_up_date).ToShortDateString(), 審核日期 = Convert.ToDateTime(v.Approval_date).ToShortDateString(), 身分類別 = v.Sign_up_type });
                 }
             }
             else //未進任何頁面時點選查詢
@@ -480,10 +303,10 @@ namespace Volunteer_WPF.View
                var q = (from v in Myentity.Sign_up
                         join s in Myentity.Stages on v.Stage equals s.Stage_ID
                         where (D_Start_date.Text == "" ? true : v.Sign_up_date >= D_Start_date.SelectedDate) && (D_End_date.Text == "" ? true : v.Sign_up_date <= D_End_date.SelectedDate)
-                        select new { Sign_up_no = v.Sign_up_no, Stage = s.Stage1, Stagetype = s.Stage_type, SignupName = v.Chinese_name + " " + v.English_name, Sex = v.Sex, Birthday = v.Birthday, Personality_scale = v.Personality_scale, Phone = v.Phone, Mobile = v.Mobile, Email = v.Email, Education = v.Education, Job = v.Job, Address = v.Address, Sign_up_date = v.Sign_up_date, Approval_date = v.Approval_date }).ToList();
+                        select new { Sign_up_no = v.Sign_up_no, Stage = s.Stage1, Stagetype = s.Stage_type, SignupName = v.Chinese_name + " " + v.English_name, Sex = v.Sex, Birthday = v.Birthday, Personality_scale = v.Personality_scale, Phone = v.Phone, Mobile = v.Mobile, Email = v.Email, Education = v.Education, Job = v.Job, Address = v.Address, Sign_up_date = v.Sign_up_date, Approval_date = v.Approval_date, Sign_up_type = v.Sign_up_type }).ToList();
                 foreach (var v in q)
                 {  
-                    volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no, 申請階段 = v.Stage, 申請人姓名 = v.SignupName, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday).ToShortDateString(), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期 = Convert.ToDateTime(v.Sign_up_date).ToShortDateString(), 審核日期 = Convert.ToDateTime(v.Approval_date).ToShortDateString() });
+                    volunteer.Add(new Volunteer_Applicant() { 申請編號 = v.Sign_up_no, 申請階段 = v.Stage, 申請人姓名 = v.SignupName, 性別 = v.Sex, 生日 = Convert.ToDateTime(v.Birthday).ToShortDateString(), 人格量表結果 = v.Personality_scale, 電話號碼 = v.Phone, 手機號碼 = v.Mobile, 電子郵件 = v.Email, 教育程度 = v.Education, 職業 = v.Job, 聯絡地址 = v.Address, 申請日期 = Convert.ToDateTime(v.Sign_up_date).ToShortDateString(), 審核日期 = Convert.ToDateTime(v.Approval_date).ToShortDateString(), 身分類別 = v.Sign_up_type });
                 }
             }
             this.D_Start_date.Text = "";   //查詢後將值設為預設
@@ -590,7 +413,6 @@ namespace Volunteer_WPF.View
         {//判斷欄位數，並進行項目選擇
             if (this.DataGrid_1.Columns.Count >= 3)   //判斷dataGrid有沒有欄位
             {                 
-                string[] select_everytime = new string[] { "申請人姓名", "生日", "電話號碼", "手機號碼", "電子郵件", "聯絡地址" }; //常用輸出項目
                 select_use.Clear();                   //清空集合內項目
                 select_use.AddRange(select_everytime);//加入常用項目值
                 select_canuse.Clear();                //清空集合內項目
@@ -659,8 +481,10 @@ namespace Volunteer_WPF.View
                 SF.AddExtension = true;
                 if (SF.ShowDialog() == System.Windows.Forms.DialogResult.OK)                       //設定儲存路徑用視窗
                 {
-                    System.IO.FileInfo Fileinfo = new System.IO.FileInfo(SF.FileName);
-                    getExcel(this.DataGrid_1, Fileinfo);                                           //呼叫匯出Excel方法
+                    System.IO.FileStream f = new FileStream(SF.FileName, FileMode.Create);
+                    getExcel(this.DataGrid_1, f);
+                   // System.IO.FileInfo Fileinfo = new System.IO.FileInfo(SF.FileName);
+                   // getExcel(this.DataGrid_1, Fileinfo);                                           //呼叫匯出Excel方法
                 }
             }
             else
@@ -668,14 +492,15 @@ namespace Volunteer_WPF.View
                 return;
             }
         }
+        //private void getExcel(DataGrid dataGrid, FileInfo fS)
         //產生Excel的方法▼
-        private void getExcel(DataGrid dataGrid, FileInfo fS)
+        private void getExcel(DataGrid dataGrid, FileStream fS)
         {//產生Excel的方法
             int ListCount = 0;
             int ColumnsHeard = 0;
             int Rowscount = 0;
-            if (!File.Exists(fS.ToString()))
-            {
+            //if (!File.Exists(fS.ToString()))
+            //{
                 ExcelPackage EP = new ExcelPackage(fS);
                 ExcelWorksheet ws;
                 if (dataGrid.Items.Count != 0)//設定工作表單名稱
@@ -721,7 +546,7 @@ namespace Volunteer_WPF.View
                 EP.SaveAs(fS);
                 System.Windows.Forms.MessageBox.Show("匯出成功", "Excel產生成功");
             }
-        }
+        //}
         //判斷勾選項目加入集合▼
         private void Checklist_Checked(object sender, RoutedEventArgs e)
         {//判斷勾選項目加入集合
@@ -749,6 +574,123 @@ namespace Volunteer_WPF.View
         {//取消勾選
             select_use.Remove(((CheckBox)sender).Content.ToString());
         }
-    
+        //身分分類選擇
+        private void rbtn_Checked(object sender, RoutedEventArgs e)
+        {
+            RadioButton rb = e.Source as RadioButton;
+            if (rb != null)
+            {
+                sign_up_type_use = rb.Content.ToString();
+            }
+        }
+        //判斷勾跟X的方法
+        private void getcheck_delete(List<int> A, List<int> D, Label AL, Label DL)
+        {
+            Volunteer_Applicant v = this.DataGrid_1.SelectedItem as Volunteer_Applicant;
+            if (A.Count == 0)                                  
+            {
+                A.Add(v.申請編號);                           
+                AL.Content = A.Count.ToString();        
+                for (int i = 0; i < A.Count; i += 1)          
+                {
+                    for (int j = 0; j < D.Count; j += 1)
+                    {
+                        if (A[i] == D[j])        
+                        {
+                            D.Remove(D[j]);                            
+                            DL.Content = D.Count.ToString();
+                        }
+                    }
+                }
+            }
+            else                                                       
+            {
+                bool ok_in = false;                                    
+                for (int i = 0; i < A.Count; i += 1)
+                {
+                    ok_in = true;                                     
+                    if (A[i] == v.申請編號)                   
+                    {
+                        A.Remove(A[i]);              
+                        ok_in = false;                                
+                        AL.Content = A.Count.ToString();        
+                        DL.Content = D.Count.ToString();
+                        break;                                        
+                    }
+                }
+                if (ok_in)                                         
+                {
+                    A.Add(v.申請編號);                   
+                    D.Remove(v.申請編號);           
+                    AL.Content = A.Count.ToString();       
+                    DL.Content = D.Count.ToString();
+                }
+            }
+        }
+        //按下確認的方法
+        private void getclick(List<int> AD, List<int> DL, string message, string state)
+        {
+            if (AD.Count != 0)                       //如果勾勾集合內有值的話進入
+            {                                                //秀出一個確認視窗
+                if (System.Windows.Forms.MessageBox.Show("確認通過" + AD.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", message, System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                {
+                    var q = (from v in Myentity.Sign_up
+                             select v).ToList();
+                    for (int i = 0; i < AD.Count; i += 1)
+                    {
+                        for (int j = 0; j < q.Count; j += 1)
+                        {
+                            if (AD[i] == q[j].Sign_up_no)  //判斷集合內的值跟資料庫內的值是否相同
+                            {
+                                q[j].Stage = getstageID(state); //將狀態改成1，代表為要求面試
+                                q[j].Approval_date = DateTime.Now; //新增審核日期為今天
+                                q[j].supervision_ID = supervisionID;
+                                ThreadStart TS = new ThreadStart(
+                                    delegate ()
+                                    {
+                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_pass);//寄送郵件
+                                        System.Windows.Forms.Application.DoEvents();
+                                    });
+                                send_mail = new Thread(TS);
+                                send_mail.IsBackground = true;
+                                send_mail.Start();
+                                break;                             //判斷完一筆後離開
+                            }
+                        }
+                    }
+                }
+            }
+            if (DL.Count != 0)                         //如果XX集合內有值的話進入
+            {                                                      //秀出一個確認視窗
+                if (System.Windows.Forms.MessageBox.Show("確認駁回" + DL.Count + "筆審核?如果電子郵件欄位為空，就不會發送信件", "駁回確認", System.Windows.Forms.MessageBoxButtons.OKCancel) == System.Windows.Forms.DialogResult.OK)
+                {
+                    var q = (from v in Myentity.Sign_up
+                             select v).ToList();
+                    for (int i = 0; i < DL.Count; i += 1)
+                    {
+                        for (int j = 0; j < q.Count; j += 1)
+                        {
+                            if (DL[i] == q[j].Sign_up_no)   //判斷集合內的值跟資料庫內的值是否相同
+                            {
+                                //this.Myentity.Sign_up.Remove(q[j]);  //執行刪除的動作   
+                                q[j].Stage = getstageID(stage_reject); //代表駁回
+                                q[j].Approval_date = DateTime.Now; //新增審核日期為今天
+                                q[j].supervision_ID = supervisionID;
+                                ThreadStart TS = new ThreadStart(
+                                    delegate ()
+                                    {
+                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_delete);//寄送郵件
+                                        System.Windows.Forms.Application.DoEvents();
+                                    });
+                                send_mail = new Thread(TS);
+                                send_mail.IsBackground = true;
+                                send_mail.Start();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

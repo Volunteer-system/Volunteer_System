@@ -45,107 +45,107 @@ namespace Volunteer_WPF.View
 
             foreach (var row in application_Unit_ViewModel.Service_Periods)
             {
-                if (row.Contains("週一"))
+                if (row.Service_period.Contains("週一"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Mon_am.Content = "V";
+                        this.Mon_am.Content = row.Volunteer_number;
                     }
-                    else if (row.Contains("下午"))
+                    else if (row.Service_period.Contains("下午"))
                     {
-                        this.Mon_pm.Content = "V";
+                        this.Mon_pm.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Mon_night.Content = "V";
+                        this.Mon_night.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週二"))
+                if (row.Service_period.Contains("週二"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Tue_am.Content = "V";
+                        this.Tue_am.Content = row.Volunteer_number;
                     }
-                    else if (row.Contains("下午"))
+                    else if (row.Service_period.Contains("下午"))
                     {
-                        this.Tue_pm.Content = "V";
+                        this.Tue_pm.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Tue_night.Content = "V";
+                        this.Tue_night.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週三"))
+                if (row.Service_period.Contains("週三"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Wed_am.Content = "V";
+                        this.Wed_am.Content = row.Volunteer_number;
                     }
-                    else if (row.Contains("下午"))
+                    else if (row.Service_period.Contains("下午"))
                     {
-                        this.Wed_pm.Content = "V";
+                        this.Wed_pm.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Wed_night.Content = "V";
+                        this.Wed_night.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週四"))
+                if (row.Service_period.Contains("週四"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Thu_am.Content = "V";
+                        this.Thu_am.Content = row.Volunteer_number;
                     }
-                    else if (row.Contains("下午"))
+                    else if (row.Service_period.Contains("下午"))
                     {
-                        this.Thu_pm.Content = "V";
+                        this.Thu_pm.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Thu_night.Content = "V";
+                        this.Thu_night.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週五"))
+                if (row.Service_period.Contains("週五"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Fri_am.Content = "V";
+                        this.Fri_am.Content = row.Volunteer_number;
                     }
-                    else if (row.Contains("下午"))
+                    else if (row.Service_period.Contains("下午"))
                     {
-                        this.Fri_pm.Content = "V";
+                        this.Fri_pm.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Fri_night.Content = "V";
+                        this.Fri_night.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週六"))
+                if (row.Service_period.Contains("週六"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Sat_am.Content = "V";
+                        this.Sat_am.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Sat_pm.Content = "V";
+                        this.Sat_pm.Content = row.Volunteer_number;
                     }
                 }
 
-                if (row.Contains("週日"))
+                if (row.Service_period.Contains("週日"))
                 {
-                    if (row.Contains("上午"))
+                    if (row.Service_period.Contains("上午"))
                     {
-                        this.Sun_am.Content = "V";
+                        this.Sun_am.Content = row.Volunteer_number;
                     }
                     else
                     {
-                        this.Sun_pm.Content = "V";
+                        this.Sun_pm.Content = row.Volunteer_number;
                     }
                 }
             }
@@ -167,7 +167,7 @@ namespace Volunteer_WPF.View
                 });
             }
 
-            this.Activity_datagrid.ItemsSource = Unit_volunteer_lists;
+            this.dg_volunteer_list.ItemsSource = Unit_volunteer_lists;
         }
     }
 

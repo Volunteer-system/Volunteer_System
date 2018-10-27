@@ -32,7 +32,14 @@ namespace Volunteer_WPF.View_Model
         //專長需求
         public List<string> Expertises { get; set; }
         //運用單位服務時段
-        public List<string> Service_Periods { get; set; }
+        public List<Unit_service_period> Service_Periods { get; set; }
+
+        public List<string> Selectservice_group()
+        {
+            Service_group_Model service_Group_Model = new Service_group_Model();
+            List<string> service_Groups = service_Group_Model.SelectService_group();
+            return service_Groups;
+        }
 
         public void SelectApplication_unit_byApplication_unit(string Application_unit)
         {
@@ -79,11 +86,14 @@ namespace Volunteer_WPF.View_Model
             Expertises = tmp_expertises;
 
             Unit_service_period_Model unit_Service_Period_Model = new Unit_service_period_Model();
-            List<string> unit_Service_Periods = unit_Service_Period_Model.SelectUnit_service_period_byApplication_unit_no(application_Unit_Model.Application_unit_no);
-            List<string> tmp_Service_Periods = new List<string>();
+            List<Unit_service_period_Model> unit_Service_Periods = unit_Service_Period_Model.SelectUnit_service_period_byApplication_unit_no(application_Unit_Model.Application_unit_no);
+            List<Unit_service_period> tmp_Service_Periods = new List<Unit_service_period>();
             foreach (var row in unit_Service_Periods)
             {
-                tmp_Service_Periods.Add(row);
+                Unit_service_period unit_Service_Period = new Unit_service_period();
+                unit_Service_Period.Service_period = row.Service_period;
+                unit_Service_Period.Volunteer_number = row.Volunteer_number;
+                tmp_Service_Periods.Add(unit_Service_Period);
             }
             Service_Periods = tmp_Service_Periods;
         }
@@ -135,5 +145,13 @@ namespace Volunteer_WPF.View_Model
         public string Vest_no { get; set; }
         //學歷
         public string Education { get; set; }
+    }
+
+    public class Unit_service_period
+    {
+        //服務組別
+        public string Service_period { get; set; }
+        //人數
+        public string Volunteer_number { get; set; }
     }
 }

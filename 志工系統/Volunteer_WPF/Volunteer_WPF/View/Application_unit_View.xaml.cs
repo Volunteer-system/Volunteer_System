@@ -24,6 +24,10 @@ namespace Volunteer_WPF.View
         public Application_unit_View()
         {
             InitializeComponent();
+
+            Application_unit_ViewModel application_Unit_ViewModel = new Application_unit_ViewModel();
+            List<string> service_groups = application_Unit_ViewModel.Selectservice_group();
+            this.cbb_group.ItemsSource = service_groups;
         }
 
         private void btn_newApplication_unit_Click(object sender, RoutedEventArgs e)
@@ -105,8 +109,15 @@ namespace Volunteer_WPF.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-        }
+            if (dg_Application_unit.SelectedItem != null)
+            {
+                application_Unit_list v = dg_Application_unit.SelectedItem as application_Unit_list;
+                string Application_unit = v.運用單位;
+                Application_unit_data_View application_Unit_date_View = new Application_unit_data_View(Application_unit);
+                application_Unit_date_View.ShowDialog();
+            }
+            
+        }       
     }
 
     public class application_Unit_list

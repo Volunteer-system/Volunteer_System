@@ -110,7 +110,7 @@
             </Grid>
         </Border>
         <Label Content="志工清單:" HorizontalAlignment="Left" Margin="20,440,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
-        <DataGrid x:Name="Activity_datagrid" HorizontalAlignment="Left" Height="125" Margin="50,475,0,0" VerticalAlignment="Top" Width="459" FontSize="14">
+        <DataGrid x:Name="dg_volunteer_list" HorizontalAlignment="Left" Height="125" Margin="50,475,0,0" VerticalAlignment="Top" Width="459" FontSize="14">
         </DataGrid>
     </Grid>
 </Window>

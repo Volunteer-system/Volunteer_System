@@ -16,13 +16,16 @@
                 <Button x:Name="btn_interview" Content="面試階段審核" Height="35" Click="btn_interview_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
                 <Button x:Name="btn_Allpass" Content="查詢已通過審核" Height="35" Click="btn_Allpass_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
                 <Button x:Name="btn_reject" Content="查詢已拒絕審核" Height="35" Click="btn_reject_Click"  Margin="5" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
-                <Label Content="依日期查詢" FontFamily="Microsoft Sans Serif" FontSize="20" FontWeight="Bold"/>
+                <Label Content="依日期查詢:" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold"/>
                 <Label Content="起始日期:" FontFamily="Microsoft Sans Serif" FontSize="14" />
                 <DatePicker Name="D_Start_date"/>
                 <Label Content="結束日期:" FontFamily="Microsoft Sans Serif" FontSize="14" />
                 <DatePicker Name="D_End_date"/>
                 <Button x:Name="btn_selectDate" Content="查詢" Height="35"  Margin="5" Click="btn_selectDate_Click" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
                 <Button x:Name="btn_getExcel" Content="匯出Excel" Height="35"  Margin="5" Click="btn_getExcel_Click"  Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}"/>
+                <Label Content="身分類別選擇:" FontFamily="Microsoft Sans Serif" FontSize="16" FontWeight="Bold"/>
+                <RadioButton Name="rbtn_society" Content="社會青年" FontFamily="Microsoft Sans Serif" FontSize="14" IsChecked="True" Checked="rbtn_Checked"/>
+                <RadioButton Name="rbtn_student" Content="學生" FontFamily="Microsoft Sans Serif" FontSize="14" Checked="rbtn_Checked" />
             </StackPanel>
             <Grid Height="Auto" ShowGridLines="True">
                 <Grid.RowDefinitions>
