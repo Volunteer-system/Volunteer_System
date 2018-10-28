@@ -29,21 +29,24 @@ namespace Volunteer_WPF.User_Control
         public event EventHandler MU_Click_OK;               //控制項事件
         public event EventHandler MU_Click_Delete;
         private void btn_ok_Click(object sender, RoutedEventArgs e)
-        {  //使用的圖片刷子，註解起來的為家用
+        {  
 
             ImageBrush brush_Ok = new ImageBrush();
-            brush_Ok.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\check-green.png"));
-            //brush_Ok.ImageSource = new BitmapImage(new Uri(@"C:\Users\user\Desktop\專案用\專案1081009\Volunteer_System-master\Volunteer_System-master\志工系統\Volunteer_WPF\Volunteer_WPF\image\ok.jpg"));
+            string path_ok = System.IO.Path.GetFullPath("../../image/check-green.png");
+            brush_Ok.ImageSource = new BitmapImage(new Uri(path_ok,UriKind.RelativeOrAbsolute));
+
             ImageBrush brush_NOk = new ImageBrush();
-            brush_NOk.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\check.png"));
-            //brush_NOk.ImageSource = new BitmapImage(new Uri(@"C:\Users\user\Desktop\專案用\專案1081009\Volunteer_System-master\Volunteer_System-master\志工系統\Volunteer_WPF\Volunteer_WPF\image\Nok.jpg"));
+            string path_nok = System.IO.Path.GetFullPath("../../image/check.png");
+            brush_NOk.ImageSource = new BitmapImage(new Uri(path_nok,UriKind.RelativeOrAbsolute));
 
             ImageBrush brush_Ndelete = new ImageBrush();
-            brush_Ndelete.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\delete.png"));
-            //brush_Ndelete.ImageSource = new BitmapImage(new Uri(@"C:\Users\user\Desktop\專案用\專案1081009\Volunteer_System-master\Volunteer_System-master\志工系統\Volunteer_WPF\Volunteer_WPF\image\Ncancel.jpg"));
+            string path_ndelete = System.IO.Path.GetFullPath("../../image/delete.png");
+            brush_Ndelete.ImageSource = new BitmapImage(new Uri(path_ndelete,UriKind.RelativeOrAbsolute));
+
             ImageBrush brush_delete = new ImageBrush();
-            brush_delete.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\delete-red.png"));
-            //brush_delete.ImageSource = new BitmapImage(new Uri(@"C:\Users\user\Desktop\專案用\專案1081009\Volunteer_System-master\Volunteer_System-master\志工系統\Volunteer_WPF\Volunteer_WPF\image\cancel.jpg"));
+            string path_delete = System.IO.Path.GetFullPath("../../image/delete-red.png");
+            brush_delete.ImageSource = new BitmapImage(new Uri(path_delete,UriKind.RelativeOrAbsolute));
+
             if (((Button)e.Source).Name == "btn_ok")             //如果按下打勾的按鈕
             {
                 isok = !isok;                                    //判斷使否為亮起

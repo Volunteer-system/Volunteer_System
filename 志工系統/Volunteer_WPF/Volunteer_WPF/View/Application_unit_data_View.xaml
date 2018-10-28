@@ -137,9 +137,9 @@
             </Grid>
         </Border>
         <Label Content="志工清單:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
-        <DataGrid x:Name="dg_volunteer_lists" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="40,280,0,0" VerticalAlignment="Top" Width="550" FontSize="14">
+        <DataGrid x:Name="dg_volunteer_lists" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="40,280,0,0" VerticalAlignment="Top" Width="550" FontSize="14">
         </DataGrid>
-        <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="300,510,0,0" VerticalAlignment="Top" Width="120" Height="50" />
-        <Button  Name="btn_close" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" />
+        <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="300,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_save_Click" />
+        <Button  Name="btn_close" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_close_Click" />
     </Grid>
 </Window>

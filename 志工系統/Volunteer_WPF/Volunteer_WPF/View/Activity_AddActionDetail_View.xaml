@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         xmlns:t="clr-namespace:Volunteer_WPF.View_Model"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
-        xmlns:ic="http://schemas.microsoft.com/expression/2010/interactions"
+        xmlns:ic="http://schemas.microsoft.com/expression/2010/interactions"        
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:User_Control="clr-namespace:Volunteer_WPF.User_Control" x:Class="Volunteer_WPF.View.Activity_AddActionDetail_View"
         mc:Ignorable="d"
@@ -21,7 +21,7 @@
     </Window.Resources>
 
     <Viewbox Stretch="Fill">
-        <Grid Background="LightGray" Height="586" Width="1014">
+        <Grid Background="#FFA7E6DA" Height="586" Width="1014">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -80,8 +80,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label x:Name="lab_ActSummary" Content="活動簡介" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,415,0" Height="29" VerticalAlignment="Top" />
-                <Button x:Name="btn_openFile" Content="開啟檔案" HorizontalAlignment="Left" Margin="165,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif">
+                <Label x:Name="lab_ActSummary" Content="活動簡介"  FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,10,415,0" Height="29" VerticalAlignment="Top" />
+                <Button x:Name="btn_openFile" Content="開啟檔案" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" HorizontalAlignment="Left" Margin="165,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_openFile_Click"/>
@@ -89,7 +89,7 @@
                     </i:Interaction.Triggers>
                 </Button>
                 <Label x:Name="lab_ActImage" Content="活動照片" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="257,7,174,0" Height="29" VerticalAlignment="Top" />
-                <Button x:Name="btn_openImage" Content="開啟檔案" HorizontalAlignment="Left" Margin="418,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif" >
+                <Button x:Name="btn_openImage" Content="開啟檔案" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" HorizontalAlignment="Left" Margin="418,17,0,0" VerticalAlignment="Top" Width="78" Height="19" FontFamily="Microsoft Sans Serif" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_openImage_Click"/>
@@ -117,15 +117,15 @@
                             </i:Interaction.Triggers>
                         </WrapPanel>
                     </ScrollViewer>
-                    <StackPanel Width="100" Background="LightGray" Orientation="Vertical">
-                        <Button x:Name="btn_amend_addimage" Content="開啟檔案" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
+                    <StackPanel Width="100" Background="#FFA7E6DA" Orientation="Vertical">
+                        <Button x:Name="btn_amend_addimage" BorderBrush="{x:Null}"  FontWeight="Bold" Background="Turquoise" Foreground="White" Content="開啟檔案" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_addimage_Click"/>
                                 </i:EventTrigger>
                             </i:Interaction.Triggers>
                         </Button>
-                        <Button x:Name="btn_amend_delete" Content="刪除勾選" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
+                        <Button x:Name="btn_amend_delete" BorderBrush="{x:Null}" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="刪除勾選" Margin="10" FontFamily="Microsoft Sans Serif" FontSize="16">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger EventName="Click">
                                     <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_delete_Click"/>
@@ -135,14 +135,14 @@
                    
                     </StackPanel>
                 </StackPanel>
-                <Button x:Name="btn_addActivity" Content="新增活動" HorizontalAlignment="Left" Margin="10,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Addact}">
+                <Button x:Name="btn_addActivity" Content="新增活動" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" HorizontalAlignment="Left" Margin="10,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Addact}">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_addActivity_Click"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
-                <Button x:Name="btn_amendact" Content="修改活動" HorizontalAlignment="Left" Margin="137,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Amendact}" >
+                <Button x:Name="btn_amendact" Content="修改活動" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White"  HorizontalAlignment="Left" Margin="137,245.2,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Grid.Row="1" IsEnabled="{Binding Amendact}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amendact_Click"/>

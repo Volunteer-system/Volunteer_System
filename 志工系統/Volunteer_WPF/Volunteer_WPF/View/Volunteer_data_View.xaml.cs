@@ -725,5 +725,10 @@ namespace Volunteer_WPF.View
             v.ShowDialog();
             BBB = v.GetVs();
         }
+
+        private void btn_confirm_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

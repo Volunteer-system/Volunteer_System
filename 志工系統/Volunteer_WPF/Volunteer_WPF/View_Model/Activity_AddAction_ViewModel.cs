@@ -50,12 +50,12 @@ namespace Volunteer_WPF.View_Model
             }
         }
         private bool addact;
-        private bool amendact; 
-       // int supersionID = 2;                            //假設登錄者ID
+        private bool amendact;
+        //int supersionID = 2;                            //假設登錄者ID
         //public Activity_AddAction_ViewModel()           //建構子把Model實體化
         //{
         //    whologin(supersionID);
-        //    getcombo();                         
+        //    getcombo();
         //}
         //public Activity_AddAction_ViewModel(WrapPanel vm_wrapPanel)           //建構子把Model實體化
         //{
@@ -65,16 +65,16 @@ namespace Volunteer_WPF.View_Model
         //    whologin(supersionID);
         //    getcombo();
         //}
-        public Activity_AddAction_ViewModel(int supersionID,WrapPanel vm_wrapPanel)
+        public Activity_AddAction_ViewModel(int supersionID, WrapPanel vm_wrapPanel)
         {
             wrapPanelmodel = new WrapPanelModel();
             wrapPanelmodel.wrapPanel = vm_wrapPanel;                          //將傳入的WrapPanel，傳給wrapPanelmodel屬性
             addcommand = new Delegatecommand(btn_amend_addimage_Click);       //執行附加的方法
             whologin(supersionID);//將登錄人員的資料帶入的方法
             getcombo();
-            VM_Activity_type_ID = TM[0].Activity_type_ID-1;
+            VM_Activity_type_ID = TM[0].Activity_type_ID - 1;
             VM_Activity_type = TM[0].Activity_type;
-            VM_Group_no = GM[0].Group_no-1;
+            VM_Group_no = GM[0].Group_no - 1;
             VM_Group_name = GM[0].Group_name;
             getdefaultimage();
             addact = true;
@@ -136,21 +136,21 @@ namespace Volunteer_WPF.View_Model
                     UserControl.A_MouseleftbuttonDown += UserControl_A_MouseleftbuttonDown;
                 }
             }
-            
+
             VM_Activity_no = q.Activity_no;
             VM_Activity_name = q.Activity_name;
             VM_lecturer = q.lecturer;
             if (q.Activity_type_ID == 1)
             { VM_Activity_type_ID = 0; }
             else
-            {VM_Activity_type_ID = q.Activity_type_ID ; }
+            { VM_Activity_type_ID = q.Activity_type_ID; }
             if (Convert.ToInt32(q.Group_no) == 1)
             {
                 VM_Group_no = 0;
             }
             else
-            { VM_Group_no = Convert.ToInt32(q.Group_no) ;}
-            VM_Activity_type = q3.Activity_type1;            
+            { VM_Group_no = Convert.ToInt32(q.Group_no); }
+            VM_Activity_type = q3.Activity_type1;
             VM_Group_name = q4.Group_name;
             VM_Place = q.Place;
             VM_Activity_startdate = q.Activity_startdate.Value.ToShortDateString();
@@ -686,6 +686,21 @@ namespace Volunteer_WPF.View_Model
         //按下修改時
         public void btn_amendact_Click(object sender, RoutedEventArgs e)
         {
+            if (VM_Activity_name == null || VM_Activity_type == null || VM_Group_name == null)
+            {
+                System.Windows.Forms.MessageBox.Show("欄位有空格無法新增");
+                return;
+            }
+            else if (VM_Activity_startdate == null)
+            {
+                System.Windows.Forms.MessageBox.Show("起始日期空白", "新增活動失敗");
+                return;
+            }
+            else if (VM_Activity_enddate == null || Convert.ToDateTime(VM_Activity_enddate) < Convert.ToDateTime(VM_Activity_startdate))
+            {
+                System.Windows.Forms.MessageBox.Show("結束日期空白或短於起始日期", "新增活動失敗");
+                return;
+            }
             System.IO.MemoryStream MS = new System.IO.MemoryStream(); //將圖轉成二進位
             JpegBitmapEncoder encoder = new JpegBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(VM_Activity_photos));
@@ -741,7 +756,8 @@ namespace Volunteer_WPF.View_Model
         //初始的預設圖片▼
        public void getdefaultimage()
         {
-            BitmapImage bi = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\Noimage.png"));
+            string path_default = System.IO.Path.GetFullPath("../../image/Noimage.png");
+            BitmapImage bi = new BitmapImage(new Uri(path_default,UriKind.RelativeOrAbsolute));
             VM_Activity_photos = bi;
         }
         //驗證判斷▼

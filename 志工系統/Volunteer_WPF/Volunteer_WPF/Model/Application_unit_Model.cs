@@ -27,13 +27,13 @@ namespace Volunteer_WPF.Model
         //志工總人數
         public string Total_volunteers { get; set; }
 
-        public void SelectApplication_unit_byApplication_unit(string Application_unit)
+        public void SelectApplication_unit_byApplication_unit(string application_unit)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n1 in dbContext.Application_unit
                     join n2 in dbContext.Service_group
                     on n1.Group_no equals n2.Group_no
-                    where n1.Application_unit1 == Application_unit
+                    where n1.Application_unit1 == application_unit
                     select new
                     {
                         Application_unit_no = n1.Application_unit_no,
@@ -118,6 +118,64 @@ namespace Volunteer_WPF.Model
             }
 
             return application_units;
+        }
+
+        public void InsertApplication_unit(Application_unit_Model application_Unit_Model)
+        {
+            int group_num = 0;
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Service_group
+                    where n.Group_name == application_Unit_Model.Group
+                    select n;
+            foreach (var row in q)
+            {
+                group_num = row.Group_no;
+            }
+            
+            dbContext.Application_unit.ToList();
+            dbContext.Application_unit.Local.Add(new Application_unit
+            {
+                Application_unit1 = application_Unit_Model.Application_unit,
+                Group_no = group_num,
+                Application_phone_no = application_Unit_Model.Application_phone_no,
+                Principal = application_Unit_Model.Principal,
+                Principal_phone_no = application_Unit_Model.Principal_phone_no,
+                Application_address = application_Unit_Model.Application_address,
+                Work_content = application_Unit_Model.Work_content
+            });
+
+            dbContext.SaveChanges();
+    }
+
+        public void UpdateApplication_unit(Application_unit_Model application_Unit_Model)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+
+            var q = from n in dbContext.Application_unit
+                    where n.Application_unit_no == application_Unit_Model.Application_unit_no
+                    select n;
+            foreach (var row in q)
+            {
+                var q2 = from n in dbContext.Service_group
+                         where n.Group_name == application_Unit_Model.Group
+                         select n;
+                foreach (var row2 in q2)
+                {
+                    if (row.Group_no != row2.Group_no)
+                    {
+                        row.Group_no = row2.Group_no;
+                    }
+                }
+
+                row.Application_unit1 = application_Unit_Model.Application_unit;
+                row.Application_phone_no = application_Unit_Model.Application_phone_no;
+                row.Principal = application_Unit_Model.Principal;
+                row.Principal_phone_no = application_Unit_Model.Principal_phone_no;
+                row.Application_address = application_Unit_Model.Application_address;
+                row.Work_content = application_Unit_Model.Work_content;
+            }
+
+            dbContext.SaveChanges();            
         }
     }
 }

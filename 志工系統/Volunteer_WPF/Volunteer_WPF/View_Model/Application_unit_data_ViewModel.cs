@@ -10,7 +10,7 @@ namespace Volunteer_WPF.View_Model
     class Application_unit_data_ViewModel
     {
         //運用單位編號
-        public string Application_unit_no { get; set; }
+        public int Application_unit_no { get; set; }
         //運用單位
         public string Application_unit { get; set; }
         //組別
@@ -53,6 +53,30 @@ namespace Volunteer_WPF.View_Model
             Service_Periods = application_Unit_ViewModel.Service_Periods;
         }
 
-        
+        public void CommitApplication_unit(string Commit_type, Application_unit_data_ViewModel application_Unit_Data_ViewModel)
+        {
+            Application_unit_Model application_Unit_Model = new Application_unit_Model();
+            if (application_Unit_Data_ViewModel.Application_unit_no > 0)
+            {
+                application_Unit_Model.Application_unit_no = application_Unit_Data_ViewModel.Application_unit_no;
+            }            
+            application_Unit_Model.Application_unit = application_Unit_Data_ViewModel.Application_unit;
+            application_Unit_Model.Group = application_Unit_Data_ViewModel.Group;
+            application_Unit_Model.Application_phone_no = application_Unit_Data_ViewModel.Application_phone_no;
+            application_Unit_Model.Application_address = application_Unit_Data_ViewModel.Application_address;
+            application_Unit_Model.Principal = application_Unit_Data_ViewModel.Principal;
+            application_Unit_Model.Principal_phone_no = application_Unit_Data_ViewModel.Principal_phone_no;
+            application_Unit_Model.Work_content = application_Unit_Data_ViewModel.Work_content;
+
+            switch (Commit_type)
+            {
+                case "新增":
+                    application_Unit_Model.InsertApplication_unit(application_Unit_Model);
+                    break;
+                case "修改":
+                    application_Unit_Model.UpdateApplication_unit(application_Unit_Model);
+                    break;
+            };
+        }       
     }
 }

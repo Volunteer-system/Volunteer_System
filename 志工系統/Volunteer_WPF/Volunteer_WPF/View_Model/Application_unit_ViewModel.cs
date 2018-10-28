@@ -10,7 +10,7 @@ namespace Volunteer_WPF.View_Model
     class Application_unit_ViewModel
     {
         //運用單位編號
-        public string Application_unit_no { get; set; }
+        public int Application_unit_no { get; set; }
         //運用單位
         public string Application_unit { get; set; }
         //組別
@@ -41,11 +41,11 @@ namespace Volunteer_WPF.View_Model
             return service_Groups;
         }
 
-        public void SelectApplication_unit_byApplication_unit(string Application_unit)
+        public void SelectApplication_unit_byApplication_unit(string application_unit)
         {
             Application_unit_Model application_Unit_Model = new Application_unit_Model();
-            application_Unit_Model.SelectApplication_unit_byApplication_unit(Application_unit);
-            Application_unit_no = application_Unit_Model.Application_unit_no.ToString();
+            application_Unit_Model.SelectApplication_unit_byApplication_unit(application_unit);
+            Application_unit_no = application_Unit_Model.Application_unit_no;
             Application_unit = application_Unit_Model.Application_unit;
             Group = application_Unit_Model.Group;
             Application_phone_no = application_Unit_Model.Application_phone_no;
@@ -106,7 +106,7 @@ namespace Volunteer_WPF.View_Model
             foreach (var row in Application_unit_Models)
             {
                 Application_unit_ViewModel application_Unit_ViewModel = new Application_unit_ViewModel();
-                application_Unit_ViewModel.Application_unit_no = row.Application_unit_no.ToString();
+                application_Unit_ViewModel.Application_unit_no = row.Application_unit_no;
                 application_Unit_ViewModel.Application_unit = row.Application_unit;
                 application_Unit_ViewModel.Group = row.Group;
                 application_Unit_ViewModel.Application_phone_no = row.Application_phone_no;

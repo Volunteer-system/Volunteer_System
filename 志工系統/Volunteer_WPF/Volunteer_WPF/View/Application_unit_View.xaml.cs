@@ -32,7 +32,7 @@ namespace Volunteer_WPF.View
 
         private void btn_newApplication_unit_Click(object sender, RoutedEventArgs e)
         {
-            Application_unit_data_View application_Unit_Data_View = new Application_unit_data_View();
+            Application_unit_data_View application_Unit_Data_View = new Application_unit_data_View("新增");
             application_Unit_Data_View.ShowDialog();
         }
 
@@ -113,8 +113,10 @@ namespace Volunteer_WPF.View
             {
                 application_Unit_list v = dg_Application_unit.SelectedItem as application_Unit_list;
                 string Application_unit = v.運用單位;
-                Application_unit_data_View application_Unit_date_View = new Application_unit_data_View(Application_unit);
+                Application_unit_data_View application_Unit_date_View = new Application_unit_data_View("修改",Application_unit);
                 application_Unit_date_View.ShowDialog();
+
+                getApplication_unit_detai(application_Unit_date_View.Application_unit_name);
             }
             
         }       

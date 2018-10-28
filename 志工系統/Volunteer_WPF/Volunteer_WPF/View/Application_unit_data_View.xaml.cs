@@ -21,26 +21,33 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Application_unit_data_View : Window
     {
-        public Application_unit_data_View()
+        public string Application_unit_name { get; set; }
+        string g_type;//新增,修改
+        int unit_num;
+
+        public Application_unit_data_View(string type)
         {
             InitializeComponent();
 
+            g_type = type;
             Application_unit_ViewModel application_Unit_ViewModel = new Application_unit_ViewModel();
             List<string> service_groups = application_Unit_ViewModel.Selectservice_group();
             this.ccb_group.ItemsSource = service_groups;
             this.lab_total_volunteers.Content = "0";
         }
 
-        public Application_unit_data_View(string Application_unit)
+        public Application_unit_data_View(string type, string application_unit)
         {
             InitializeComponent();
 
+            g_type = type;
             Application_unit_ViewModel application_Unit_ViewModel = new Application_unit_ViewModel();
             List<string> service_groups = application_Unit_ViewModel.Selectservice_group();
             this.ccb_group.ItemsSource = service_groups;
 
             Application_unit_data_ViewModel application_Unit_Data_ViewModel = new Application_unit_data_ViewModel();
-            application_Unit_Data_ViewModel.SelectApplication_unit_byApplication_unit(Application_unit);
+            application_Unit_Data_ViewModel.SelectApplication_unit_byApplication_unit(application_unit);
+            unit_num = application_Unit_Data_ViewModel.Application_unit_no;
             this.txt_application_unit.Text = application_Unit_Data_ViewModel.Application_unit;
             this.ccb_group.SelectedValue = application_Unit_Data_ViewModel.Group.Trim();
             this.txt_application_unit_phone.Text = application_Unit_Data_ViewModel.Application_phone_no;
@@ -184,6 +191,37 @@ namespace Volunteer_WPF.View
                 this.dg_volunteer_lists.ItemsSource = Unit_volunteer_lists;
             }           
 
+        }
+
+        private void btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            Application_unit_data_ViewModel application_Unit_Data_ViewModel = new Application_unit_data_ViewModel();
+            application_Unit_Data_ViewModel.Application_unit_no = unit_num;
+            application_Unit_Data_ViewModel.Application_unit = this.txt_application_unit.Text;
+            application_Unit_Data_ViewModel.Group = this.ccb_group.Text;
+            application_Unit_Data_ViewModel.Application_phone_no = this.txt_application_unit_phone.Text;
+            application_Unit_Data_ViewModel.Principal = this.txt_principal.Text;
+            application_Unit_Data_ViewModel.Principal_phone_no = this.txt_principal_phone.Text;
+            application_Unit_Data_ViewModel.Application_address = this.txt_application_address.Text;            
+            application_Unit_Data_ViewModel.Work_content = this.txt_work_content.Text;
+
+            switch (g_type)
+            {
+                case "新增":
+                    application_Unit_Data_ViewModel.CommitApplication_unit("新增", application_Unit_Data_ViewModel);
+                    break;
+                case "修改":
+                    application_Unit_Data_ViewModel.CommitApplication_unit("修改",application_Unit_Data_ViewModel);
+                    break;
+            }
+
+            Application_unit_name = this.txt_application_unit.Text;
+            MessageBox.Show("存檔完成");
+        }
+
+        private void btn_close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

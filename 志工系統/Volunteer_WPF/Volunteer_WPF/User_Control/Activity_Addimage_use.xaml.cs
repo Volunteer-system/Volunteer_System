@@ -29,9 +29,12 @@ namespace Volunteer_WPF.User_Control
         {
             InitializeComponent();
             brush_ok = new ImageBrush();
-            brush_ok.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\check-green.png"));
+            string path_ok = System.IO.Path.GetFullPath("../../image/check-green.png");
+            brush_ok.ImageSource = new BitmapImage(new Uri(path_ok,UriKind.RelativeOrAbsolute));
+
             brush_nok = new ImageBrush();
-            brush_nok.ImageSource = new BitmapImage(new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\check.png"));
+            string path_nok = System.IO.Path.GetFullPath("../../image/check.png");
+            brush_nok.ImageSource = new BitmapImage(new Uri(path_nok,UriKind.RelativeOrAbsolute));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
