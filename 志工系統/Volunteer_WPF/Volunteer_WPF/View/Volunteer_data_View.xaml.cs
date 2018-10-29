@@ -36,7 +36,7 @@ namespace Volunteer_WPF.View
         {
 
         }
-        
+
         //按下修改表單後, 表單從volunteer資料讀取資料
         public Volunteer_data_View(int a)
         {
@@ -57,7 +57,7 @@ namespace Volunteer_WPF.View
                 txtChineseName.Text = v.Chinese_name;
                 txtEnglishName.Text = v.English_name;
                 //??
-                cbsex.SelectedValue= v.sex.Trim();
+                cbsex.SelectedValue = v.sex.Trim();
 
                 //將birthday 拆開year, month, day
                 if (v.birthday != null)
@@ -73,20 +73,20 @@ namespace Volunteer_WPF.View
                     //cbBirthDayMonth.Text = mn;
                     //cbBirthDayDay.Text = dy;
                     //可以把ComboBox的資料顯示出來
-                    cbBirthDayYear.SelectedValue = yy.Trim();                    
-                    cbBirthDayMonth.SelectedValue = mn.Trim();                    
+                    cbBirthDayYear.SelectedValue = yy.Trim();
+                    cbBirthDayMonth.SelectedValue = mn.Trim();
                     cbBirthDayDay.SelectedValue = dy.Trim();
                 }
                 //身份證字號
                 txtIDcrad_no.Text = v.IDcrad_no;
-                
+
                 //病歷號
                 txtMedical_record_no.Text = v.Medical_record_no;
-                
+
                 //身份類別
                 cbIdentity_type.SelectedValue = (Convert.ToString(v.Identity_type)).Trim();
                 //cbIdentity_type.Text = v.Identity_type.ToString();
-                
+
                 //服務年資
                 txtSeniority.Text = Convert.ToString(v.Seniority);
 
@@ -117,7 +117,7 @@ namespace Volunteer_WPF.View
                     cbLeave_dateDay.SelectedValue = dyLeave_date.Trim();
                 }
                 //離開原因
-                cbLeaveReason.Text = (v.Leave_reason == "" ? null :v.Leave_reason.Trim());
+                cbLeaveReason.Text = (v.Leave_reason == "" ? null : v.Leave_reason.Trim());
 
                 //地址
                 txtAddress.Text = v.Address;
@@ -155,7 +155,7 @@ namespace Volunteer_WPF.View
                     myImage.Source = ConvertByteArrayToBitmapImage(vphoto);
 
                 }
-                
+
             }
 
         }
@@ -164,9 +164,10 @@ namespace Volunteer_WPF.View
         ////加入一個靜態變數 用來存放當前加入的Volunteer
         //public static int _Volunteer_no;
 
-        //從空白的表單 填完資料後 按"確認"按鈕 新增資料
+        //從空白的表單 填完資料後 
+        //最後按"確認"按鈕 新增資料
         private void Button_Click1(object sender, RoutedEventArgs e)
-        {        
+        {
             // WLC
             DateTime myBirthDay = new DateTime();
             DateTime myJoin_date = new DateTime();
@@ -191,7 +192,7 @@ namespace Volunteer_WPF.View
             int intMobile_no = 0;
             int intPostal_code = 0;
             int intLssuing_unit_no = 0;
-            int intSeniority = 0;            
+            int intSeniority = 0;
             if (int.TryParse(cbIdentity_type.Text, out int Identity_type))
             {
                 intIdentity_type = Identity_type;
@@ -228,7 +229,7 @@ namespace Volunteer_WPF.View
                 sex = cbsex.Text,
                 birthday = myBirthDay,
                 IDcrad_no = txtIDcrad_no.Text,
-                Medical_record_no = txtMedical_record_no.Text,         
+                Medical_record_no = txtMedical_record_no.Text,
                 //WLC
                 Identity_type = intIdentity_type,
                 Seniority = intSeniority,
@@ -247,21 +248,25 @@ namespace Volunteer_WPF.View
                 Photo = imagebyte
             });
 
-            
 
+            //dbContext.SaveChanges()後，會得到新的dbContext.Volunteer的Volunteer_no流水號
             dbContext.SaveChanges();
 
+
+
+            //查詢 "新的dbContext.Volunteer的Volunteer_no流水號" 的那一筆 資料
             var q = (from n in dbContext.Volunteer
 
                      select new { n.Volunteer_no }).ToList().LastOrDefault();
-           
-            foreach(var n in AAA)
+
+            foreach (var n in AAA)
             {
-              
-               Expertise2 e1 = new Expertise2 { Volunteer_no = q.Volunteer_no, Expertise_no = n };
-               dbContext.Expertise2.Add(e1);
+
+                Expertise2 e1 = new Expertise2 { Volunteer_no = q.Volunteer_no, Expertise_no = n };
+                dbContext.Expertise2.Add(e1);
             }
-            foreach(var n in BBB)
+        
+            foreach (var n in BBB)
             {
                 Service_Group1 sg1 = new Service_Group1 { Volunteer_no = q.Volunteer_no, Group_no = n };
                 dbContext.Service_Group1.Add(sg1);
@@ -269,7 +274,7 @@ namespace Volunteer_WPF.View
 
             dbContext.SaveChanges();
             MessageBox.Show("志工資料新增成功");
-            
+
             // int numberb=0;
 
 
@@ -283,8 +288,8 @@ namespace Volunteer_WPF.View
             //    Volunteer_no = numberb
 
             //});
-           
-            
+
+
 
             //亞衡 連線 作法 找出volunteer_no=========================================================================
             //try
@@ -323,7 +328,7 @@ namespace Volunteer_WPF.View
 
             //            _Volunteer_no = (int)cmd.ExecuteScalar();
             //=================================================================
-                    }
+        }
 
         public static BitmapImage ConvertByteArrayToBitmapImage(Byte[] bytes)
         {
@@ -484,7 +489,7 @@ namespace Volunteer_WPF.View
             {
                 myLeave_date = DateTime.Parse(cbLeave_dateYear.Text + "/" + cbLeave_dateMonth.Text + "/" + cbLeave_dateDay.Text);
             }
-            
+
 
             VolunteerEntities dbContext = new VolunteerEntities();
             //// System.Windows.Data.CollectionViewSource volunteerViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("volunteerViewSource")));
@@ -494,7 +499,7 @@ namespace Volunteer_WPF.View
             var q = from a in dbContext.Volunteer
                     where a.Volunteer_no == Volunteer_no
                     select a;
-            foreach(var a in q)
+            foreach (var a in q)
             {
                 a.Chinese_name = txtChineseName.Text;
                 a.English_name = txtEnglishName.Text;
@@ -510,7 +515,7 @@ namespace Volunteer_WPF.View
                 if (int.TryParse(txtSeniority.Text, out int Seniority))
                 {
                     a.Seniority = Seniority;
-                }                    
+                }
                 a.Join_date = myJoin_date;
                 a.Leave_date = myLeave_date;
                 a.Leave_reason = cbLeaveReason.Text;
@@ -521,31 +526,94 @@ namespace Volunteer_WPF.View
                 if (int.TryParse(txtMobile_no.Text, out int Mobile_no))
                 {
                     a.Mobile_no = Mobile_no;
-                }                    
+                }
                 a.Vest_no = txtVest_no.Text;
                 if (int.TryParse(txtPostal_code.Text, out int Postal_code))
                 {
                     a.Postal_code = Postal_code;
-                }                    
+                }
                 a.Address = txtAddress.Text;
                 a.Education = cbEducation.Text;
                 if (int.TryParse(txtLssuing_unit_no.Text, out int Lssuing_unit_no))
                 {
                     a.Lssuing_unit_no = Lssuing_unit_no;
                 }
-                    
+
                 a.Service_manual_no = txtService_manual_no.Text;
                 a.Personality_scale = txtPersonality_scale.Text;
                 a.Photo = imagebyte;
+            }
+
+            foreach (var n in AAA)
+            {
+
+                Expertise2 e1 = new Expertise2 { Volunteer_no = Volunteer_no, Expertise_no = n };
+                dbContext.Expertise2.Add(e1);
+            }
+            foreach (var n in AAA1)
+            {
+                var q1 = from de in dbContext.Expertise2
+                         where de.Expertise_no == n && de.Volunteer_no == Volunteer_no
+                         select new { pk = de.Primary_key };
+                foreach( var x in q1)
+                {
+                    Expertise2 ex = dbContext.Expertise2.Find(x.pk);
+                    dbContext.Expertise2.Remove(ex);
+                }
+                
+            }
+            foreach(var n in BBB)
+            {
+                Service_Group1 e1 = new Service_Group1 { Volunteer_no = Volunteer_no, Group_no = n };
+                dbContext.Service_Group1.Add(e1);
+            }
+            foreach(var n in BBB1)
+            {
+                var q1 = from de in dbContext.Service_Group1
+                         where de.Group_no == n && de.Volunteer_no == Volunteer_no
+                         select new { pk = de.Primary_key };
+                foreach(var x in q1)
+                {
+                    Service_Group1 ex = dbContext.Service_Group1.Find(x.pk);
+                    dbContext.Service_Group1.Remove(ex);
+                }
             }
             try
             { dbContext.SaveChanges(); }
             catch
             { throw; }
-            
+
             MessageBox.Show("修改成功");
         }
 
+        List<int> AAA;
+        private List<int> AAA1;
+        List<int> BBB;
+        private List<int> BBB1;
+
+        //跳到"選專長"頁面
+        private void btnSelectExpert_Click(object sender, RoutedEventArgs e)
+        {
+
+            VolunteerExpertise v = new VolunteerExpertise(Volunteer_no);
+            v.ShowDialog();
+            AAA = v.STR();
+            AAA1 = v.STRA();
+
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSelectService_Group_Click(object sender, RoutedEventArgs e)
+        {
+            VolunteerService_group v = new VolunteerService_group(Volunteer_no);
+            v.ShowDialog();
+            BBB = v.GetVs();
+            BBB1 = v.GetVs1();
+        }
         private void txtChineseName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -703,32 +771,6 @@ namespace Volunteer_WPF.View
             }
         }
 
-        List<int> AAA;
-        //跳到"選專長"頁面
-        private void btnSelectExpert_Click(object sender, RoutedEventArgs e)
-        {
-
-            VolunteerExpertise v = new VolunteerExpertise(Volunteer_no);
-            v.ShowDialog();
-            AAA = v.STR();
-            
-        }
-
-        private void BtnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-        List<int> BBB;
-        private void btnSelectService_Group_Click(object sender, RoutedEventArgs e)
-        {
-            VolunteerService_group v = new VolunteerService_group();
-            v.ShowDialog();
-            BBB = v.GetVs();
-        }
-
-        private void btn_confirm_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
     }
 }

@@ -11,25 +11,15 @@
         <DataGrid IsReadOnly="True" Name="mydatagrid1" HorizontalAlignment="Left" Height="375" Margin="23,10,0,0" VerticalAlignment="Top" Width="184"  >
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
-                    <!--<DataGridTemplateColumn.HeaderTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="" ></TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.HeaderTemplate>-->
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <CheckBox Name="CB" IsChecked="{Binding Checked}" Unchecked="CheckBox_Unchecked" Checked="ExpertiseChk"></CheckBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <!--<DataGrid.Columns>
-                <DataGridCheckBoxColumn  Header="check" > 
-                    <DataGridCell.
-                </DataGridCheckBoxColumn>
-            </DataGrid.Columns>-->
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="btnpExpeChecked" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Width="90" Height="50" Content="確定" HorizontalAlignment="Left" Margin="263,170,0,0" VerticalAlignment="Top"  Click="btnpExpechecked_Click">
+        <Button Name="btnpExpeChecked" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold"  Background="Turquoise" Foreground="White" Width="90" Height="50" Content="確定" HorizontalAlignment="Left" Margin="263,170,0,0" VerticalAlignment="Top"  Click="btnpExpechecked_Click">
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
             </Button.Effect>
