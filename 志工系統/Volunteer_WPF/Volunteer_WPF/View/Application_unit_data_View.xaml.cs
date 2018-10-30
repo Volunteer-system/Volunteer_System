@@ -24,6 +24,8 @@ namespace Volunteer_WPF.View
         public string Application_unit_name { get; set; }
         string g_type;//新增,修改
         int unit_num;
+        List<string> insert_list = new List<string>();
+        List<string> delete_list = new List<string>();
 
         public Application_unit_data_View(string type)
         {
@@ -208,20 +210,39 @@ namespace Volunteer_WPF.View
             switch (g_type)
             {
                 case "新增":
-                    application_Unit_Data_ViewModel.CommitApplication_unit("新增", application_Unit_Data_ViewModel);
+                    application_Unit_Data_ViewModel.CommitApplication_unit("新增", application_Unit_Data_ViewModel, insert_list, delete_list);
                     break;
                 case "修改":
-                    application_Unit_Data_ViewModel.CommitApplication_unit("修改",application_Unit_Data_ViewModel);
+                    application_Unit_Data_ViewModel.CommitApplication_unit("修改",application_Unit_Data_ViewModel, insert_list, delete_list);
                     break;
             }
 
             Application_unit_name = this.txt_application_unit.Text;
+
             MessageBox.Show("存檔完成");
         }
 
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_Expertises_Click(object sender, RoutedEventArgs e)
+        {   
+            switch (g_type)
+            {
+                case "新增":
+                    Application_unit_expertise_View New_Unit_Expertise_View = new Application_unit_expertise_View();
+                    New_Unit_Expertise_View.ShowDialog();
+                    insert_list = New_Unit_Expertise_View.insert_list;
+                    break;
+                case "修改":
+                    Application_unit_expertise_View application_Unit_Expertise_View = new Application_unit_expertise_View(unit_num);
+                    application_Unit_Expertise_View.ShowDialog();
+                    insert_list = application_Unit_Expertise_View.insert_list;
+                    delete_list = application_Unit_Expertise_View.delete_list;
+                    break;
+            }
         }
     }
 }

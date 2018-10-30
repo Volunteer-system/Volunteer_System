@@ -112,7 +112,7 @@
             </Button.Effect>
         </Button>
 
-        <Button  Name="btn_confirm" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="20,400,0,0" VerticalAlignment="Top" Width="90" Height="50" >
+        <Button  Name="btn_confirm" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Style="{DynamicResource ButtonStyle1}" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="20,400,0,0" VerticalAlignment="Top" Width="90" Height="50" Click="btn_confirm_Click" >
             <Button.Effect>
                 <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
             </Button.Effect>

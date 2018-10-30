@@ -30,5 +30,60 @@ namespace Volunteer_WPF.Model
 
             return Expertises;
         }
+
+        public void InsertUnit_Expertise(int unit_no, List<string> Insert_list)
+        {
+            List<int> Expertise_no = new List<int>();
+            VolunteerEntities dbContext = new VolunteerEntities();
+            foreach (var row in Insert_list)
+            {
+                var q = from n in dbContext.Expertise1
+                        where n.Expertise == row
+                        select n;
+                foreach (var row2 in q)
+                {
+                    Expertise_no.Add(row2.Expertise_no);
+                }
+            }
+
+            dbContext.Expertises.ToList();
+            foreach (var row in Expertise_no)
+            {
+                dbContext.Expertises.Local.Add(new Expertise
+                {
+                    Application_unit_no = unit_no,
+                    Expertise_no = row
+                });
+            }
+
+            dbContext.SaveChanges();
+        }
+        
+
+        public void DeleteUnit_Expertise(int unit_no, List<string> Delete_list)
+        {
+            List<int> Expertise_no = new List<int>();
+            VolunteerEntities dbContext = new VolunteerEntities();
+            foreach (var row in Delete_list)
+            {
+                var q = from n in dbContext.Expertise1
+                        where n.Expertise == row
+                        select n;
+                foreach (var row2 in q)
+                {
+                    Expertise_no.Add(row2.Expertise_no);
+                }
+            }
+
+            foreach (var row in Expertise_no)
+            {
+                var Unit_expertise = (from n in dbContext.Expertises
+                                     where n.Expertise_no == row && n.Application_unit_no == unit_no
+                                     select n).FirstOrDefault();
+                dbContext.Expertises.Remove(Unit_expertise);
+            }
+
+            dbContext.SaveChanges();
+        }
     }
 }

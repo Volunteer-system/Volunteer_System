@@ -145,7 +145,15 @@ namespace Volunteer_WPF.Model
             });
 
             dbContext.SaveChanges();
-    }
+
+            var q2 = from n in dbContext.Application_unit
+                     where n.Application_unit1 == application_Unit_Model.Application_unit
+                     select n;
+            foreach (var row in q2)
+            {
+                Application_unit_no = row.Application_unit_no;
+            }
+        }
 
         public void UpdateApplication_unit(Application_unit_Model application_Unit_Model)
         {

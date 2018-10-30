@@ -53,9 +53,10 @@ namespace Volunteer_WPF.View_Model
             Service_Periods = application_Unit_ViewModel.Service_Periods;
         }
 
-        public void CommitApplication_unit(string Commit_type, Application_unit_data_ViewModel application_Unit_Data_ViewModel)
+        public void CommitApplication_unit(string Commit_type, Application_unit_data_ViewModel application_Unit_Data_ViewModel, List<string> Insert_list, List<string> Delete_list)
         {
             Application_unit_Model application_Unit_Model = new Application_unit_Model();
+            Unit_expertise_Model unit_Expertise_Model = new Unit_expertise_Model();
             if (application_Unit_Data_ViewModel.Application_unit_no > 0)
             {
                 application_Unit_Model.Application_unit_no = application_Unit_Data_ViewModel.Application_unit_no;
@@ -71,12 +72,16 @@ namespace Volunteer_WPF.View_Model
             switch (Commit_type)
             {
                 case "新增":
-                    application_Unit_Model.InsertApplication_unit(application_Unit_Model);
+                    application_Unit_Model.InsertApplication_unit(application_Unit_Model);                    
                     break;
                 case "修改":
                     application_Unit_Model.UpdateApplication_unit(application_Unit_Model);
+                    unit_Expertise_Model.DeleteUnit_Expertise(application_Unit_Model.Application_unit_no, Delete_list);
                     break;
             };
+
+            unit_Expertise_Model.InsertUnit_Expertise(application_Unit_Model.Application_unit_no, Insert_list);
+
         }       
     }
 }

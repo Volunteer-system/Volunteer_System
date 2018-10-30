@@ -771,6 +771,9 @@ namespace Volunteer_WPF.View
             }
         }
 
-        
+        private void btn_confirm_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

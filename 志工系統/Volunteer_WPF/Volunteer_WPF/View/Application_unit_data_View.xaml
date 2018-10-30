@@ -30,7 +30,11 @@
             <TextBox x:Name="txt_work_content" TextWrapping="Wrap" Height="250" Width="450" IsReadOnly="True" FontSize="16"/>
         </ScrollViewer>
         <Label Content="需求專長:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
-        <Button x:Name="btn_Expertises" Content="選專長" Width="120" Height="32" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Grid.Column="1" HorizontalAlignment="Left" Margin="130,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
+        <Button x:Name="btn_Expertises" Content="選專長" Width="120" Height="32" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Grid.Column="1" HorizontalAlignment="Left" Margin="130,20,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444" Click="btn_Expertises_Click">
+            <Button.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="315" Softness="1" ShadowDepth="5" Opacity="0.5" />
+            </Button.BitmapEffect>
+        </Button>
         <Label Content="服務時段:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Border Grid.Column="1" CornerRadius="6" BorderBrush="#FFFFFFFF" BorderThickness="5" HorizontalAlignment="Left" Height="125" Margin="40,100,0,0" VerticalAlignment="Top" Width="550" Background="White" Grid.ColumnSpan="2">
             <Grid HorizontalAlignment="Left" Height="115" Margin="0" VerticalAlignment="Top" Width="539">
@@ -139,7 +143,15 @@
         <Label Content="志工清單:" Grid.Column="1" HorizontalAlignment="Left" Margin="20,240,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <DataGrid x:Name="dg_volunteer_lists" IsReadOnly="True" Grid.Column="1" HorizontalAlignment="Left" Height="200" Margin="40,280,0,0" VerticalAlignment="Top" Width="550" FontSize="14">
         </DataGrid>
-        <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="300,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_save_Click" />
-        <Button  Name="btn_close" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_close_Click" />
+        <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="300,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_save_Click" >
+            <Button.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="315" Softness="1" ShadowDepth="5" Opacity="0.5" />
+            </Button.BitmapEffect>
+        </Button>
+        <Button  Name="btn_close" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="取消" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_close_Click" >
+            <Button.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="315" Softness="1" ShadowDepth="5" Opacity="0.5" />
+            </Button.BitmapEffect>
+        </Button>
     </Grid>
 </Window>

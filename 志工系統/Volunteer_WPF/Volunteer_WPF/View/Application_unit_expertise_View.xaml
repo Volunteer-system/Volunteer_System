@@ -1,0 +1,40 @@
+﻿<Window x:Class="Volunteer_WPF.View.Application_unit_expertise_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Application_unit_expertise_View" Height="450" Width="300"
+        ContentRendered="Window_ContentRendered">
+    <Grid Background="#FFA7E6DA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="dg_Expertise" FontSize="14" HorizontalAlignment="Left" IsReadOnly="True" Height="280" Margin="5,70,5.0,0" VerticalAlignment="Top" Width="294"  Grid.RowSpan="2">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox Name="CB" IsChecked="{Binding Checked}"  Unchecked="CB_Unchecked"  Checked="CB_Checked"></CheckBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="確認" Height="30" Width="100" FontSize="14" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Grid.Row="2" Margin="24,18.6,169.6,21" Click="Button_Click_1">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
+        <Button Content="取消" Height="30" Width="100" FontSize="14" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Grid.Row="2" Margin="165,18.6,28.6,21" Click="Button_Click">
+            <Button.Effect>
+                <DropShadowEffect BlurRadius="3" ShadowDepth="3" Color="LightGray"/>
+            </Button.Effect>
+        </Button>
+        <Label Content="設定此運用單位的期望專長，" FontSize="14" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+        <Label Content="會於排班作業優先顯示符合專長的志工。" FontSize="14" HorizontalAlignment="Left" Margin="10,30,0,0" VerticalAlignment="Top"/>
+    </Grid>
+</Window>
