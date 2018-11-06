@@ -74,6 +74,7 @@
     <Property Name="Apply_description" Type="nvarchar(max)" />
     <Property Name="Application_unit_Supervisor" Type="nvarchar" MaxLength="20" />
     <Property Name="Application_unit_heads" Type="nvarchar" MaxLength="20" />
+    <Property Name="Apply_type" Type="nvarchar" MaxLength="10" />
     <Property Name="Apply_state" Type="int" />
     <Property Name="Supervision_ID" Type="int" />
     <Property Name="Reply_date" Type="datetime" />

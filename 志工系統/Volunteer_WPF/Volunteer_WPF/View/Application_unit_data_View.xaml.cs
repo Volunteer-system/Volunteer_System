@@ -26,6 +26,8 @@ namespace Volunteer_WPF.View
         int unit_num;
         List<string> insert_list = new List<string>();
         List<string> delete_list = new List<string>();
+        List<Unit_service_period> Insert_Service_Periods = new List<Unit_service_period>();
+        List<Unit_service_period> Delete_Service_Periods = new List<Unit_service_period>();
 
         public Application_unit_data_View(string type)
         {
@@ -167,8 +169,7 @@ namespace Volunteer_WPF.View
                         }
                     }
                 }
-            }
-            
+            }            
 
             ObservableCollection<Unit_volunteer_list> Unit_volunteer_lists = new ObservableCollection<Unit_volunteer_list>();
             if (application_Unit_Data_ViewModel.Volunteer_Lists.Count > 0)
@@ -189,10 +190,10 @@ namespace Volunteer_WPF.View
                         學歷 = row.Education
                     });
                 }
-
                 this.dg_volunteer_lists.ItemsSource = Unit_volunteer_lists;
-            }           
+            }
 
+            Insert_Service_Periods.Clear();
         }
 
         private void btn_save_Click(object sender, RoutedEventArgs e)
@@ -207,13 +208,34 @@ namespace Volunteer_WPF.View
             application_Unit_Data_ViewModel.Application_address = this.txt_application_address.Text;            
             application_Unit_Data_ViewModel.Work_content = this.txt_work_content.Text;
 
+            foreach (var row1 in Insert_Service_Periods)
+            {
+                foreach (var row2 in Delete_Service_Periods)
+                {
+                    if (row1.Service_period == row2.Service_period)
+                    {
+                        Delete_Service_Periods.Remove(row2);
+                        if (Delete_Service_Periods.Count == 0)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if (Delete_Service_Periods.Count == 0)
+                {
+                    break;
+                }
+            }
+
             switch (g_type)
             {
                 case "新增":
-                    application_Unit_Data_ViewModel.CommitApplication_unit("新增", application_Unit_Data_ViewModel, insert_list, delete_list);
+                    application_Unit_Data_ViewModel.CommitApplication_unit("新增", application_Unit_Data_ViewModel, insert_list, delete_list, 
+                                                                           Insert_Service_Periods, Delete_Service_Periods);
                     break;
                 case "修改":
-                    application_Unit_Data_ViewModel.CommitApplication_unit("修改",application_Unit_Data_ViewModel, insert_list, delete_list);
+                    application_Unit_Data_ViewModel.CommitApplication_unit("修改",application_Unit_Data_ViewModel, insert_list, delete_list, 
+                                                                           Insert_Service_Periods, Delete_Service_Periods);
                     break;
             }
 
@@ -242,6 +264,342 @@ namespace Volunteer_WPF.View
                     insert_list = application_Unit_Expertise_View.insert_list;
                     delete_list = application_Unit_Expertise_View.delete_list;
                     break;
+            }
+        }
+
+        private void Mon_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週一上午";
+            unit_Service_Period.Volunteer_number = this.Mon_am.Text;
+
+            if (string.IsNullOrEmpty(this.Mon_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);                
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }            
+        }
+
+        private void Tue_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週二上午";
+            unit_Service_Period.Volunteer_number = this.Tue_am.Text;
+
+            if (string.IsNullOrEmpty(this.Tue_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period); 
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Wed_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週三上午";
+            unit_Service_Period.Volunteer_number = this.Wed_am.Text;
+
+            if (string.IsNullOrEmpty(this.Wed_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Thu_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週四上午";
+            unit_Service_Period.Volunteer_number = this.Thu_am.Text;
+
+            if (string.IsNullOrEmpty(this.Thu_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Fri_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週五上午";
+            unit_Service_Period.Volunteer_number = this.Fri_am.Text;
+
+            if (string.IsNullOrEmpty(this.Fri_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sat_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週六上午";
+            unit_Service_Period.Volunteer_number = this.Sat_am.Text;
+
+            if (string.IsNullOrEmpty(this.Sat_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sun_am_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週日上午";
+            unit_Service_Period.Volunteer_number = this.Sun_am.Text;
+
+            if (string.IsNullOrEmpty(this.Sun_am.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Mon_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週一下午";
+            unit_Service_Period.Volunteer_number = this.Mon_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Mon_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Tue_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週二下午";
+            unit_Service_Period.Volunteer_number = this.Tue_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Tue_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Wed_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週三下午";
+            unit_Service_Period.Volunteer_number = this.Wed_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Wed_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Thu_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週四下午";
+            unit_Service_Period.Volunteer_number = this.Thu_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Thu_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Fri_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週五下午";
+            unit_Service_Period.Volunteer_number = this.Fri_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Fri_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sat_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週六下午";
+            unit_Service_Period.Volunteer_number = this.Sat_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Sat_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sun_pm_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週日下午";
+            unit_Service_Period.Volunteer_number = this.Sun_pm.Text;
+
+            if (string.IsNullOrEmpty(this.Sun_pm.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Mon_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週一夜間";
+            unit_Service_Period.Volunteer_number = this.Mon_night.Text;
+
+            if (string.IsNullOrEmpty(this.Mon_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Tue_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週二夜間";
+            unit_Service_Period.Volunteer_number = this.Tue_night.Text;
+
+            if (string.IsNullOrEmpty(this.Tue_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Wed_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週三夜間";
+            unit_Service_Period.Volunteer_number = this.Wed_night.Text;
+
+            if (string.IsNullOrEmpty(this.Wed_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Thu_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週四夜間";
+            unit_Service_Period.Volunteer_number = this.Thu_night.Text;
+
+            if (string.IsNullOrEmpty(this.Thu_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Fri_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週五夜間";
+            unit_Service_Period.Volunteer_number = this.Fri_night.Text;
+
+            if (string.IsNullOrEmpty(this.Fri_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sat_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週六夜間";
+            unit_Service_Period.Volunteer_number = this.Sat_night.Text;
+
+            if (string.IsNullOrEmpty(this.Sat_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
+            }
+        }
+
+        private void Sun_night_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Unit_service_period unit_Service_Period = new Unit_service_period();
+            unit_Service_Period.Service_period = "週日夜間";
+            unit_Service_Period.Volunteer_number = this.Sun_night.Text;
+
+            if (string.IsNullOrEmpty(this.Sun_night.Text))
+            {
+                Delete_Service_Periods.Add(unit_Service_Period);
+            }
+            else
+            {
+                Insert_Service_Periods.Add(unit_Service_Period);
             }
         }
     }

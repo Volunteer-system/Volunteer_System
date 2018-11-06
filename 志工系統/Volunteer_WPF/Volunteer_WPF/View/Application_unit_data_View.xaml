@@ -64,69 +64,69 @@
                 <Rectangle Grid.Column="7" Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="30" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
                 <Rectangle HorizontalAlignment="Left" Height="29"  Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="68" Fill="#FFA7E6DA"/>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="1">
-                    <TextBox x:Name="Mon_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Mon_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Mon_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="1">
-                    <TextBox x:Name="Tue_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Tue_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Tue_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="1">
-                    <TextBox x:Name="Wed_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Wed_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Wed_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="1">
-                    <TextBox x:Name="Thu_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Thu_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Thu_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="1">
-                    <TextBox x:Name="Fri_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Fri_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Fri_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="1">
-                    <TextBox x:Name="Sat_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sat_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sat_am_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="1">
-                    <TextBox x:Name="Sun_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sun_am" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sun_am_TextChanged"/>
                 </Border>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="2" Stroke="Black" VerticalAlignment="Top" Width="68"/>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="2">
-                    <TextBox x:Name="Mon_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Mon_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Mon_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="2">
-                    <TextBox x:Name="Tue_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Tue_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Tue_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="2">
-                    <TextBox x:Name="Wed_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Wed_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Wed_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="2">
-                    <TextBox x:Name="Thu_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Thu_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Thu_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="2">
-                    <TextBox x:Name="Fri_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Fri_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Fri_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="2">
-                    <TextBox x:Name="Sat_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sat_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sat_pm_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="2">
-                    <TextBox x:Name="Sun_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sun_pm" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sun_pm_TextChanged"/>
                 </Border>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="29" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="68"/>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="1" Grid.Row="3">
-                    <TextBox x:Name="Mon_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Mon_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Mon_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="2" Grid.Row="3">
-                    <TextBox x:Name="Tue_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Tue_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Tue_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="3" Grid.Row="3">
-                    <TextBox x:Name="Wed_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Wed_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Wed_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="4" Grid.Row="3">
-                    <TextBox x:Name="Thu_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Thu_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Thu_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="5" Grid.Row="3">
-                    <TextBox x:Name="Fri_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Fri_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Fri_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="6" Grid.Row="3">
-                    <TextBox x:Name="Sat_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sat_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sat_night_TextChanged"/>
                 </Border>
                 <Border  BorderThickness="1" BorderBrush="Black" Grid.Column="7" Grid.Row="3">
-                    <TextBox x:Name="Sun_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68"/>
+                    <TextBox x:Name="Sun_night" TextAlignment="Center" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="68" TextChanged="Sun_night_TextChanged"/>
                 </Border>
                 <Label Content="週一" Grid.Column="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="週二" Grid.Column="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>

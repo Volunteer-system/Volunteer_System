@@ -1,0 +1,61 @@
+﻿<Window x:Class="Volunteer_WPF.View.Manpower_apply_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        xmlns:User_Control="clr-namespace:Volunteer_WPF.User_Control"
+        mc:Ignorable="d"
+        Title="Manpower_apply_View" Height="615" Width="1020">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="287*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1,1,0.6,0.6" Grid.ColumnSpan="2" >
+            <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
+                <Button x:Name="btn_newapply" Content="新申請" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_newapply_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_processing" Content="處理中" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_processing_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_endprocessing" Content="申請完成" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_endprocessing_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_rejectapply" Content="申請駁回" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_rejectapply_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Label Content="申請類別選擇:" FontFamily="Microsoft Sans Serif" FontSize="14" FontWeight="Bold"/>
+                <RadioButton Name="rbtn_year" Content="年度申請" FontFamily="Microsoft Sans Serif" FontSize="14" IsChecked="True" Checked="rbtn_year_Checked"/>
+                <RadioButton Name="rbtn_temporary" Content="臨時申請" FontFamily="Microsoft Sans Serif" FontSize="14" Checked="rbtn_temporary_Checked" />
+                <Label  Content="申請日期" FontSize="14"/>
+                <DatePicker Name="dp_startdate"/>
+                <Label  Content="~" FontSize="16"/>
+                <DatePicker Name="dp_enddate"/>
+                <Button x:Name="btn_selectabnormal_event" Content="搜尋" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_selectabnormal_event_Click"  Style="{DynamicResource ButtonTemplate}"/>
+            </StackPanel>
+            <Grid Height="584" VerticalAlignment="Top" Width="858">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="39*"/>
+                    <RowDefinition Height="155*"/>
+                    <RowDefinition Height="388*"/>
+                </Grid.RowDefinitions>
+                <GridSplitter Height="3" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
+                <DataGrid x:Name="dg_abnormal_event" Grid.Row="1" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <User_Control:MyUserControl Width="60" Height="35" x:Name="Check_interview" MU_Click_OK="Check_interview_MU_Click_OK"  MU_Click_Delete="Check_interview_MU_Click_Delete"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ScrollViewer Height="Auto" Grid.Row="1">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
+                </ScrollViewer>
+                <StackPanel Margin="1" Orientation="Horizontal" >
+                    <Button Content="確認" Click="Button_Click"  Width="106" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" Height="35" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}" />
+                    <Label Content="已勾選數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
+                    <Label Name="lab_check" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
+                    <Label Content="欲駁回數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
+                    <Label Name="lab_Dcheck" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

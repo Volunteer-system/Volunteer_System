@@ -103,6 +103,7 @@
     <NavigationProperty Name="Apply_Assessment" Relationship="Self.FK_Apply_Assessment_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Assessment" />
     <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_result" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Manpower_apply_Volunteer_supervision" FromRole="Manpower_apply" ToRole="Volunteer_supervision" />
+    <Property Name="Apply_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Service_period">
     <Key>

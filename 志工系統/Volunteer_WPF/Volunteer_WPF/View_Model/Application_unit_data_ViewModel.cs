@@ -53,10 +53,11 @@ namespace Volunteer_WPF.View_Model
             Service_Periods = application_Unit_ViewModel.Service_Periods;
         }
 
-        public void CommitApplication_unit(string Commit_type, Application_unit_data_ViewModel application_Unit_Data_ViewModel, List<string> Insert_list, List<string> Delete_list)
+        public void CommitApplication_unit(string Commit_type, Application_unit_data_ViewModel application_Unit_Data_ViewModel, List<string> Insert_list, List<string> Delete_list, List<Unit_service_period> Insert_Service_Periods, List<Unit_service_period> Delete_Service_Periods)
         {
             Application_unit_Model application_Unit_Model = new Application_unit_Model();
             Unit_expertise_Model unit_Expertise_Model = new Unit_expertise_Model();
+            Unit_service_period_Model unit_Service_Period_Model = new Unit_service_period_Model();
             if (application_Unit_Data_ViewModel.Application_unit_no > 0)
             {
                 application_Unit_Model.Application_unit_no = application_Unit_Data_ViewModel.Application_unit_no;
@@ -69,19 +70,37 @@ namespace Volunteer_WPF.View_Model
             application_Unit_Model.Principal_phone_no = application_Unit_Data_ViewModel.Principal_phone_no;
             application_Unit_Model.Work_content = application_Unit_Data_ViewModel.Work_content;
 
+            List<Unit_service_period_Model> Insert_sp = new List<Unit_service_period_Model>();
+            foreach (var row in Insert_Service_Periods)
+            {
+                Unit_service_period_Model Insert_Model = new Unit_service_period_Model();
+                Insert_Model.Service_period = row.Service_period;
+                Insert_Model.Volunteer_number = row.Volunteer_number;
+                Insert_sp.Add(Insert_Model);
+            }
+            List<Unit_service_period_Model> Delete_sp = new List<Unit_service_period_Model>();
+            foreach (var row in Delete_Service_Periods)
+            {
+                Unit_service_period_Model Delete_Model = new Unit_service_period_Model();
+                Delete_Model.Service_period = row.Service_period;
+                Delete_Model.Volunteer_number = row.Volunteer_number;
+                Delete_sp.Add(Delete_Model);
+            }
+
             switch (Commit_type)
             {
                 case "新增":
                     application_Unit_Model.InsertApplication_unit(application_Unit_Model);                    
                     break;
-                case "修改":
+                case "修改":                    
                     application_Unit_Model.UpdateApplication_unit(application_Unit_Model);
                     unit_Expertise_Model.DeleteUnit_Expertise(application_Unit_Model.Application_unit_no, Delete_list);
+                    unit_Service_Period_Model.DeleteUnit_service_period(application_Unit_Model.Application_unit_no,Delete_sp);
                     break;
             };
 
+            unit_Service_Period_Model.InsertUnit_service_period(application_Unit_Model.Application_unit_no,Insert_sp);
             unit_Expertise_Model.InsertUnit_Expertise(application_Unit_Model.Application_unit_no, Insert_list);
-
         }       
     }
 }

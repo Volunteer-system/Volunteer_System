@@ -79,6 +79,7 @@
           <Property Name="Apply_description" Type="nvarchar(max)" />
           <Property Name="Application_unit_Supervisor" Type="nvarchar" MaxLength="20" />
           <Property Name="Application_unit_heads" Type="nvarchar" MaxLength="20" />
+          <Property Name="Apply_type" Type="nvarchar" MaxLength="10" />
           <Property Name="Apply_state" Type="int" />
           <Property Name="Supervision_ID" Type="int" />
           <Property Name="Reply_date" Type="datetime" />
@@ -1269,6 +1270,7 @@
           <NavigationProperty Name="Apply_Assessment" Relationship="Self.FK_Apply_Assessment_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Assessment" />
           <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_result" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Manpower_apply_Volunteer_supervision" FromRole="Manpower_apply" ToRole="Volunteer_supervision" />
+          <Property Name="Apply_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Service_period">
           <Key>
@@ -2490,6 +2492,7 @@
           <EntitySetMapping Name="Manpower_apply">
             <EntityTypeMapping TypeName="VolunteerModel.Manpower_apply">
               <MappingFragment StoreEntitySet="Manpower_apply">
+                <ScalarProperty Name="Apply_type" ColumnName="Apply_type" />
                 <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
                 <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
                 <ScalarProperty Name="Applicant" ColumnName="Applicant" />
