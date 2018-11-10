@@ -29,17 +29,16 @@
             </StackPanel>
             <Grid Height="584" VerticalAlignment="Top" Width="858">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="39*"/>
-                    <RowDefinition Height="155*"/>
-                    <RowDefinition Height="388*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
-                <GridSplitter Height="3" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
-                <DataGrid x:Name="dg_abnormal_event" Grid.Row="1" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
+                <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
+                <DataGrid x:Name="dg_abnormal_event" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <User_Control:MyUserControl Width="60" Height="35" x:Name="Check_interview" MU_Click_OK="Check_interview_MU_Click_OK"  MU_Click_Delete="Check_interview_MU_Click_Delete"/>
+                                    <Button Content="編輯" Width="50" Click="Button_Click"  Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
@@ -48,13 +47,7 @@
                 <ScrollViewer Height="Auto" Grid.Row="1">
                     <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
                 </ScrollViewer>
-                <StackPanel Margin="1" Orientation="Horizontal" >
-                    <Button Content="確認" Click="Button_Click"  Width="106" VerticalAlignment="Bottom" HorizontalAlignment="Left" Background="#FFA7E6DA" Foreground="Gray" FontFamily="Microsoft Sans Serif" FontSize="14" Height="35" BorderBrush="{x:Null}" Style="{DynamicResource ButtonTemplate}" />
-                    <Label Content="已勾選數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
-                    <Label Name="lab_check" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
-                    <Label Content="欲駁回數:" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="10,5,5,0"/>
-                    <Label Name="lab_Dcheck" Content="0" FontFamily="Microsoft Sans Serif" FontSize="16" Margin="0,5,5,5" Foreground="Red"/>
-                </StackPanel>
+                
             </Grid>
         </DockPanel>
     </Grid>

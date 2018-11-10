@@ -63,20 +63,11 @@ namespace Volunteer_WPF.View
         {
 
         }
-
-        private void Check_interview_MU_Click_OK(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Check_interview_MU_Click_Delete(object sender, EventArgs e)
-        {
-
-        }
-
+               
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
     }
 }

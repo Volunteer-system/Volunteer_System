@@ -114,9 +114,11 @@
     <Compile Include="Model\Apply_Assessment.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Apply_assessment_Model.cs" />
     <Compile Include="Model\Apply_result.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Apply_result_Model.cs" />
     <Compile Include="Model\Education.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -137,9 +139,11 @@
     <Compile Include="Model\Human_assessment.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Human_assessment_Model.cs" />
     <Compile Include="Model\Human_assessment_result.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Human_assessment_result_Model.cs" />
     <Compile Include="Model\Identity_type.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -155,6 +159,7 @@
     <Compile Include="Model\Manpower_apply.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Manpower_apply_Model.cs" />
     <Compile Include="Model\Service_group.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
@@ -271,6 +276,9 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manpower_apply_detail_View.xaml.cs">
+      <DependentUpon>Manpower_apply_detail_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manpower_apply_View.xaml.cs">
       <DependentUpon>Manpower_apply_View.xaml</DependentUpon>
     </Compile>
@@ -304,6 +312,9 @@
     <Compile Include="View_Model\Application_unit_expertise_ViewModel.cs" />
     <Compile Include="View_Model\Application_unit_ViewModel.cs" />
     <Compile Include="View_Model\ExpertiseBasic_ViewModel.cs" />
+    <Compile Include="View_Model\Human_assessment_result_ViewModel.cs" />
+    <Compile Include="View_Model\Human_assessment_ViewModel.cs" />
+    <Compile Include="View_Model\Manpower_apply_detail_ViewModel.cs" />
     <Compile Include="View_Model\RelayCommand.cs" />
     <Compile Include="View_Model\Service_group_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_interview_period_ViewModel.cs" />
@@ -392,6 +403,10 @@
     <Page Include="View\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manpower_apply_detail_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Manpower_apply_View.xaml">
       <SubType>Designer</SubType>

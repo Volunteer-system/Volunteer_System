@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
-        Title="Application_unit_detail_View" Height="647.148" Width="800">
+        Title="Application_unit_detail_View" Height="648" Width="800">
     <Grid>
         <Label Content="運用單位名稱:" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
         <Label x:Name="Lab_application_unit" HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.332,0.444"/>
