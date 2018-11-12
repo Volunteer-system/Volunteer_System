@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
+
 namespace Volunteer_WPF
 {
     /// <summary>
@@ -18,7 +19,6 @@ namespace Volunteer_WPF
             this.ShutdownMode = ShutdownMode.OnLastWindowClose;
             Window window = new MainWindow();
             window.Show();
-
         }
     }
 }

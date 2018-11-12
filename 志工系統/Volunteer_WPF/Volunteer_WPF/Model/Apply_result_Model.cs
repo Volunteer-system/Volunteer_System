@@ -32,5 +32,59 @@ namespace Volunteer_WPF.Model
             return Assessment_results;
         }
 
+        public void InsertApply_result(int apply_ID, List<string> insert_Result)
+        {
+            List<int> Result_no = new List<int>();
+            VolunteerEntities dbContext = new VolunteerEntities();
+            foreach (var row in insert_Result)
+            {
+                var q = from n in dbContext.Human_assessment_result
+                        where n.Assessment_result == row
+                        select n;
+                foreach (var row2 in q)
+                {
+                    Result_no.Add(row2.Assessment_result_ID);
+                }
+            }
+
+            dbContext.Apply_result.ToList();
+            foreach (var row in Result_no)
+            {
+                dbContext.Apply_result.Local.Add(new Apply_result
+                {
+                    Apply_ID = apply_ID,
+                    result_ID = row
+                });
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public void DeleteApply_result(int apply_ID, List<string> delete_Result)
+        {
+            List<int> Result_no = new List<int>();
+            VolunteerEntities dbContext = new VolunteerEntities();
+            foreach (var row in delete_Result)
+            {
+                var q = from n in dbContext.Human_assessment_result
+                        where n.Assessment_result == row
+                        select n;
+                foreach (var row2 in q)
+                {
+                    Result_no.Add(row2.Assessment_result_ID);
+                }
+            }
+            foreach (var row in Result_no)
+            {
+                var results = (from n in dbContext.Apply_result
+                         where n.Apply_ID == apply_ID &&
+                               n.result_ID == row
+                         select n).FirstOrDefault();
+                dbContext.Apply_result.Remove(results);
+            }
+
+            dbContext.SaveChanges();
+        }
+
     }
 }

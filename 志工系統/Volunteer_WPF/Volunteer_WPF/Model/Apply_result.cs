@@ -16,7 +16,6 @@ namespace Volunteer_WPF.Model
     {
         public int Primary_key { get; set; }
         public int Apply_ID { get; set; }
-        public string Type { get; set; }
         public Nullable<int> result_ID { get; set; }
     
         public virtual Human_assessment_result Human_assessment_result { get; set; }

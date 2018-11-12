@@ -50,7 +50,6 @@
     </Key>
     <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Apply_ID" Type="int" Nullable="false" />
-    <Property Name="Type" Type="nchar" MaxLength="10" />
     <Property Name="result_ID" Type="int" />
   </EntityType>
   <EntityType Name="Expertise">

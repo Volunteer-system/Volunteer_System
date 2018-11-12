@@ -64,7 +64,6 @@
     </Key>
     <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Apply_ID" Type="Int32" Nullable="false" />
-    <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="result_ID" Type="Int32" />
     <NavigationProperty Name="Human_assessment_result" Relationship="Self.FK_Apply_result_Human_assessment_result" FromRole="Apply_result" ToRole="Human_assessment_result" />
     <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Apply_result" ToRole="Manpower_apply" />

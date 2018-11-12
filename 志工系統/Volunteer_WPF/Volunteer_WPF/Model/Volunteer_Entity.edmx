@@ -55,7 +55,6 @@
           </Key>
           <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Apply_ID" Type="int" Nullable="false" />
-          <Property Name="Type" Type="nchar" MaxLength="10" />
           <Property Name="result_ID" Type="int" />
         </EntityType>
         <EntityType Name="Expertise">
@@ -1231,7 +1230,6 @@
           </Key>
           <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Apply_ID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="result_ID" Type="Int32" />
           <NavigationProperty Name="Human_assessment_result" Relationship="Self.FK_Apply_result_Human_assessment_result" FromRole="Apply_result" ToRole="Human_assessment_result" />
           <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Apply_result" ToRole="Manpower_apply" />
@@ -2475,7 +2473,6 @@
               <MappingFragment StoreEntitySet="Apply_result">
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
                 <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="result_ID" ColumnName="result_ID" />
               </MappingFragment>
             </EntityTypeMapping>

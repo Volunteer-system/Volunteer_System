@@ -20,11 +20,12 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Manpower_apply_detail_View : Window
     {
-        public Manpower_apply_detail_View()
+        public Manpower_apply_detail_View(int apply_id)
         {
             InitializeComponent();
 
             Manpower_apply_detail_ViewModel manpower_Apply_Detail_ViewModel = new Manpower_apply_detail_ViewModel();
+            manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id);
             this.lab_Application_unit.Content = manpower_Apply_Detail_ViewModel.Application_unit;
             this.lab_Applicant.Content = manpower_Apply_Detail_ViewModel.Applicant;
             this.lab_Apply_date.Content = manpower_Apply_Detail_ViewModel.Apply_date;
@@ -51,7 +52,7 @@ namespace Volunteer_WPF.View
                 {
                     if (row1.Assessment_name == row2)
                     {
-                        apply_Assessment.check = true;
+                        apply_Assessment.assessment_check = true;
                     }
                 }
                 apply_Assessment.評估項目 = row1.Assessment_name;
@@ -70,7 +71,7 @@ namespace Volunteer_WPF.View
                     if (row1.Assessment_result == row2)
                     {
                         
-                        apply_Result.check = true;
+                        apply_Result.Apply_result_check = true;
                     }
                 }
                 apply_Result.評估結果 = row1.Assessment_result;
@@ -78,17 +79,25 @@ namespace Volunteer_WPF.View
             }
             this.dg_Apply_result.ItemsSource = Apply_results;
         }
+
+        private void Window_ContentRendered(object sender, EventArgs e)
+        {
+            this.dg_Apply_Assessment.Columns[0].Header = " ";
+            this.dg_Apply_Assessment.Columns[0].Width = 30;
+            this.dg_Apply_result.Columns[0].Header = " ";
+            this.dg_Apply_result.Columns[0].Width = 30;
+        }
     }
 
     class Apply_assessment
     {
-        public bool check { get; set; }
+        public bool assessment_check { get; set; }
         public string 評估項目 { get; set; }
     }
 
     class Apply_result
     {
-        public bool check { get; set; }
+        public bool Apply_result_check { get; set; }
         public string 評估結果 { get; set; }
     }
 }

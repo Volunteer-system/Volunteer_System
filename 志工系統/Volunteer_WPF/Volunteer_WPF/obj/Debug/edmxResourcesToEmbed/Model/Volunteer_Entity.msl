@@ -53,7 +53,6 @@
         <MappingFragment StoreEntitySet="Apply_result">
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
-          <ScalarProperty Name="Type" ColumnName="Type" />
           <ScalarProperty Name="result_ID" ColumnName="result_ID" />
         </MappingFragment>
       </EntityTypeMapping>

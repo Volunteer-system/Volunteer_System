@@ -85,5 +85,20 @@ namespace Volunteer_WPF.Model
                 Reply_number = row.Reply_number.ToString();
             }
         }
+
+        public void UpdateManpower_apply(int apply_ID, int reply_number,string repply_description)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Manpower_apply
+                    where n.Apply_ID == apply_ID
+                    select n;
+            foreach (var row in q)
+            {
+                row.Reply_number = reply_number;
+                row.Repply_description = repply_description;
+            }
+
+            dbContext.SaveChanges();
+        }
     }
 }
