@@ -1,0 +1,52 @@
+﻿<Window x:Class="Volunteer_WPF.View.Abnormal_event_analysis_chart_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:winformchart="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+        mc:Ignorable="d"
+        Title="Abnormal_event_analysis_chart_View" Height="300" Width="630">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column ="0">
+            <WindowsFormsHost x:Name="host1" Height="270">
+                <winformchart:Chart x:Name="Chart1" Dock="Fill">
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="series" ChartType="Line"/>
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea/>
+                    </winformchart:Chart.ChartAreas>
+                </winformchart:Chart>
+            </WindowsFormsHost>
+        </StackPanel>
+        <StackPanel Grid.Column ="1">
+            <WindowsFormsHost x:Name="host2" Height="270">
+                <winformchart:Chart x:Name="Chart2" Dock="Fill">
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="series" ChartType="Pie"/>
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea/>
+                    </winformchart:Chart.ChartAreas>
+                </winformchart:Chart>
+            </WindowsFormsHost>
+        </StackPanel>        
+        <StackPanel Grid.Column ="2">
+            <WindowsFormsHost x:Name="host3" Height="270">
+                <winformchart:Chart x:Name="Chart3" Dock="Fill">
+                    <winformchart:Chart.Series>
+                        <winformchart:Series Name="series" ChartType="Column"/>
+                    </winformchart:Chart.Series>
+                    <winformchart:Chart.ChartAreas>
+                        <winformchart:ChartArea/>
+                    </winformchart:Chart.ChartAreas>
+                </winformchart:Chart>
+            </WindowsFormsHost>
+        </StackPanel>
+    </Grid>
+</Window>

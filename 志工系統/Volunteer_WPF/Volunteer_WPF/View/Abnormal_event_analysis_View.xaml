@@ -1,0 +1,45 @@
+﻿<Window x:Class="Volunteer_WPF.View.Abnormal_event_analysis_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"        
+        mc:Ignorable="d"
+        Title="Abnormal_event_analysis_View" Height="650" Width="1020">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="287*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1,1,0.6,0.6" Grid.ColumnSpan="2" >
+            <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
+                <Button x:Name="btn_application_unit" Content="運用單位" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_application_unit_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Border MaxWidth="150" BorderThickness="1" BorderBrush="Gray" >
+                    <Label FontSize="14" Height="27" Margin="0,0,0.4,0">
+                        <TextBlock x:Name="txt_unit" TextWrapping="Wrap" />
+                    </Label>
+                </Border>
+                <Label  Content="事件類別" FontSize="14"/>
+                <ComboBox Name="cbb_category"  Height="28" Margin="3"/>                
+                <Label  Content="事件日期" FontSize="14"/>
+                <DatePicker Name="dp_startdate"/>
+                <Label  Content="~" FontSize="16"/>
+                <DatePicker Name="dp_enddate"/>
+                <Button x:Name="btn_selectabnormal_event" Content="搜尋" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_selectabnormal_event_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                <Button x:Name="btn_eventlist_excel" Content="輸出Excel" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="btn_eventlist_excel_Click"  Style="{DynamicResource ButtonTemplate}"/>
+            </StackPanel>
+            <Grid Height="610" VerticalAlignment="Top" Width="858">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
+                <ScrollViewer Height="Auto" Grid.Row="0">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="0" VerticalAlignment="Top" />
+                </ScrollViewer>
+                <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
+                <DataGrid x:Name="dg_abnormal_event" Grid.Row="1" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14">
+                </DataGrid>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>

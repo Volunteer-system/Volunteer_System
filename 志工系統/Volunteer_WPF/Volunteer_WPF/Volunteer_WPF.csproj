@@ -60,6 +60,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Windows.Interactivity.WPF.2.0.20525\lib\net40\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -72,9 +73,11 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -240,6 +243,12 @@
     <Compile Include="View\Abnormal_event.xaml.cs">
       <DependentUpon>Abnormal_event.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Abnormal_event_analysis_chart_View.xaml.cs">
+      <DependentUpon>Abnormal_event_analysis_chart_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Abnormal_event_analysis_View.xaml.cs">
+      <DependentUpon>Abnormal_event_analysis_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Abnormal_event_detail.xaml.cs">
       <DependentUpon>Abnormal_event_detail.xaml</DependentUpon>
     </Compile>
@@ -266,6 +275,15 @@
     </Compile>
     <Compile Include="View\BasicItem.xaml.cs">
       <DependentUpon>BasicItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\choose_unit_analysis_View.xaml.cs">
+      <DependentUpon>choose_unit_analysis_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Event_Application_View.xaml.cs">
+      <DependentUpon>Event_Application_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Event_result_View.xaml.cs">
+      <DependentUpon>Event_result_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ExpertiseBasic_View.xaml.cs">
       <DependentUpon>ExpertiseBasic_View.xaml</DependentUpon>
@@ -306,6 +324,7 @@
     <Compile Include="View\Volunteer_data_View.xaml.cs">
       <DependentUpon>Volunteer_data_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View_Model\Abnormal_event_analysis_ViewModel.cs" />
     <Compile Include="View_Model\Abnormal_event_ViewModel.cs" />
     <Compile Include="View_Model\Account_ViewModel.cs" />
     <Compile Include="View_Model\Activity_AddAction_ViewModel.cs" />
@@ -314,6 +333,7 @@
     <Compile Include="View_Model\Application_unit_data_ViewModel.cs" />
     <Compile Include="View_Model\Application_unit_expertise_ViewModel.cs" />
     <Compile Include="View_Model\Application_unit_ViewModel.cs" />
+    <Compile Include="View_Model\choose_unit_analysis_ViewModel.cs" />
     <Compile Include="View_Model\ExpertiseBasic_ViewModel.cs" />
     <Compile Include="View_Model\Human_assessment_result_ViewModel.cs" />
     <Compile Include="View_Model\Human_assessment_ViewModel.cs" />
@@ -356,6 +376,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Abnormal_event_analysis_chart_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Abnormal_event_analysis_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Abnormal_event_detail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -392,7 +420,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\choose_unit_analysis_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Dictionary_ValidationErrorTemlate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Event_Application_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Event_result_View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

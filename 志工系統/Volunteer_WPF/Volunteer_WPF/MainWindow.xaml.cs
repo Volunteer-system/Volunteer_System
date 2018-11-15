@@ -293,5 +293,16 @@ namespace Volunteer_WPF
             CheckList.Add(VolSuperItem.Header.ToString());
             Selected(VolSuperItem.Header.ToString());
         }
+
+        private void Abnormaleventitem_Click(object sender, RoutedEventArgs e)//異常事件分析按鈕
+        {
+            Abnormal_event_analysis_View abnormal_Event_Analysis_View = new Abnormal_event_analysis_View();
+            object content = abnormal_Event_Analysis_View.Content;
+            abnormal_Event_Analysis_View.Content = null;
+
+            AddTabItem(Abnormaleventitem.Header.ToString(),content);
+            CheckList.Add(Abnormaleventitem.Header.ToString());
+            Selected(Abnormaleventitem.Header.ToString());
+        }
     }
 }

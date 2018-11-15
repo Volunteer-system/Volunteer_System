@@ -209,6 +209,7 @@
                     <Button.ContextMenu>
                         <ContextMenu x:Name="ReportMenu" Background="#7FA7E6DA" BorderBrush="{x:Null}">
                             <MenuItem x:Name="ClassItem" Header="班表" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="Class_Click"/>
+                            <MenuItem x:Name="Abnormaleventitem" Header="異常事件分析" Background="#7FA7E6DA" Foreground="White" Cursor="Hand" Click="Abnormaleventitem_Click"/>
                         </ContextMenu>
                     </Button.ContextMenu>
                     <WrapPanel Height="56" Width="69">

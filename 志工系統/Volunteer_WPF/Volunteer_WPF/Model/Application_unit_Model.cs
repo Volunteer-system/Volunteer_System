@@ -185,5 +185,6 @@ namespace Volunteer_WPF.Model
 
             dbContext.SaveChanges();            
         }
+
     }
 }

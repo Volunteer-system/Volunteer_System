@@ -89,7 +89,19 @@ namespace Volunteer_WPF.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            string Event_ID = (this.dg_abnormal_event.SelectedItem as abnormal_event_list).事件案號;
+            string Stage = (this.dg_abnormal_event.SelectedItem as abnormal_event_list).處理階段;
 
+            if (Stage == "新事件" || Stage == "成案審核")
+            {
+                Window window = new Event_Application(Event_ID);
+                window.ShowDialog();
+            }
+            else if (Stage == "處理中" || Stage == "事件完成")
+            {
+                Window window = new Event_result(Event_ID);
+                window.ShowDialog();
+            }
         }
 
         private void datagrid_show(SelectStage selectstage)
@@ -99,7 +111,7 @@ namespace Volunteer_WPF.View
             string category = this.cbb_category.Text;
             string application_unit = this.cbb_application_unit.Text;
             DateTime startdate = ((dp_startdate.SelectedDate == null) ? DateTime.MinValue : (DateTime)dp_startdate.SelectedDate);
-            DateTime enddate = ((dp_startdate.SelectedDate == null) ? DateTime.MinValue : (DateTime)dp_enddate.SelectedDate);
+            DateTime enddate = ((dp_enddate.SelectedDate == null) ? DateTime.MinValue : (DateTime)dp_enddate.SelectedDate);
             List<Abnormal_event_ViewModel> abnormal_events = new List<Abnormal_event_ViewModel>();
             Abnormal_event_ViewModel abnormal_Event_ViewModel = new Abnormal_event_ViewModel();
             ObservableCollection<abnormal_event_list> abnormal_event_itemlist = new ObservableCollection<abnormal_event_list>();

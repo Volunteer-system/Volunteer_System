@@ -19,6 +19,7 @@ namespace Volunteer_WPF
             this.ShutdownMode = ShutdownMode.OnLastWindowClose;
             Window window = new MainWindow();
             window.Show();
+            
         }
     }
 }
