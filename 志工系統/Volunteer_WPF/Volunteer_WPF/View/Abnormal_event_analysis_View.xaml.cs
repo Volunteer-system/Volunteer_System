@@ -31,8 +31,8 @@ namespace Volunteer_WPF.View
             List<string> event_categorys = choose_Unit_Analysis_ViewModel.Selectevent_category();
             this.cbb_category.ItemsSource = event_categorys;
 
-            //this.dp_startdate.SelectedDate = DateTime.Now.Date.AddMonths(-3);
-            //this.dp_enddate.SelectedDate = DateTime.Now.Date; 
+            this.dp_startdate.SelectedDate = DateTime.Now.Date.AddMonths(-3);
+            this.dp_enddate.SelectedDate = DateTime.Now.Date;
         }
 
         private void btn_selectabnormal_event_Click(object sender, RoutedEventArgs e)

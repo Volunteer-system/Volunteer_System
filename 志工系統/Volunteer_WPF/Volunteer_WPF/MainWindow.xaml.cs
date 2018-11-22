@@ -193,7 +193,11 @@ namespace Volunteer_WPF
 
         private void ManpowerButton_Click(object sender, RoutedEventArgs e)  //人力資源申請按鈕
         {
-            AddTabItem(ManpowerLabel.Content.ToString());
+            Manpower_apply_View manpower_Apply_View = new Manpower_apply_View();
+            object content = manpower_Apply_View.Content;
+            manpower_Apply_View.Content = null;
+
+            AddTabItem(ManpowerLabel.Content.ToString(), content);
             CheckList.Add(ManpowerLabel.Content.ToString());
             Selected(ManpowerLabel.Content.ToString());
         }
@@ -271,6 +275,7 @@ namespace Volunteer_WPF
 
         private void VolPowerItem_Click(object sender, RoutedEventArgs e)  //志工人力評估項目設定按鈕
         {
+            
             AddTabItem(VolPowerItem.Header.ToString());
             CheckList.Add(VolPowerItem.Header.ToString());
             Selected(VolPowerItem.Header.ToString());

@@ -80,6 +80,8 @@ namespace Volunteer_WPF.View_Model
             }
             //異常事件類別統計
             Compute_Event_type(abnormal_Event_Analysis_ViewModels);
+            Compute_Application_unit(abnormal_Event_Analysis_ViewModels, unit_lists);
+            Compute_Event_month(abnormal_Event_Analysis_ViewModels, startdate, enddate);
 
             return abnormal_Event_Analysis_ViewModels;
         }

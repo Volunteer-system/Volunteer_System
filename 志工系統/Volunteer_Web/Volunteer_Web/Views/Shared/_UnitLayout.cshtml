@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet"/>
+    <link href="~/Css/blog.css" rel="stylesheet" />
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">*@
+    @*fixed-top*@
+    <div class="container fixed-top" style="background-color:white">
+
+        <header class="blog-header py-2">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <div class="col-4 pt-1">
+                    <a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a class="text-muted" href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+                    </a>
+                    <a class="btn btn-sm btn-outline-secondary" href="#">登入</a>
+                </div>
+            </div>
+        </header>
+        <div class="nav-scroller ">
+            <nav class="nav d-flex justify-content-between ">
+                <a class="p-2 text-muted" href="#">單位基本資料</a>
+                <a class="p-2 text-muted" href="#">人力需求申請</a>
+                <a class="p-2 text-muted" href="#">異常事件通報</a>
+                <a class="p-2 text-muted" href="#">考核</a>
+            </nav>
+        </div>
+    </div>
+
+    <main role="main" class="container body-content py-5">
+        <div>
+            @RenderBody()
+        </div>
+    </main>
+
+    <footer class="blog-footer">
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/holder.min.js"></script>
+    <script>
+        Holder.addTheme('thumb', {
+            bg: '#55595c',
+            fg: '#eceeef',
+            text: 'Thumbnail'
+        });
+    </script>
+</body>
+</html>

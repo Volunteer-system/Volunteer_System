@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,8 +122,8 @@ namespace Volunteer_WPF.Model
                           (n4.Stage_type == "異常事件") &&
                           ((category == "") ? true:n6.event_category1 == category) &&
                           ((application_unit == "") ? true: n2.Application_unit1 == application_unit) &&
-                          ((startdate == DateTime.MinValue)? true : n1.Notification_date >= startdate) &&
-                          ((enddate == DateTime.MinValue) ? true: n1.Closing_date <= enddate)
+                          ((startdate == DateTime.MinValue)? true : n1.Notification_date >= startdate) //&&
+                          //((enddate == DateTime.MinValue) ? true: n1.Closing_date <= enddate)
                     select new
                     {
                         Abnormal_event_ID = n1.Abnormal_event_ID,
@@ -191,8 +192,8 @@ namespace Volunteer_WPF.Model
                         where (n4.Stage_type == "異常事件") &&
                               ((category == "") ? true : n6.event_category1 == category) &&
                               ((unit == "") ? true : n2.Application_unit1 == unit) &&
-                              ((startdate == DateTime.MinValue) ? true : n1.Notification_date >= startdate) &&
-                              ((enddate == DateTime.MinValue) ? true : n1.Closing_date <= enddate)
+                              ((startdate == DateTime.MinValue) ? true : n1.Notification_date >= startdate) //&&
+                              //((enddate == DateTime.MinValue) ? true : n1.Closing_date <= enddate)
                         select new
                         {
                             Abnormal_event_ID = n1.Abnormal_event_ID,

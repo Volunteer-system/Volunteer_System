@@ -30,13 +30,12 @@
             </StackPanel>
             <Grid Height="610" VerticalAlignment="Top" Width="858">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="4*"/>
-                    <RowDefinition Height="6*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <ScrollViewer Height="Auto" Grid.Row="0">
                     <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="0" VerticalAlignment="Top" />
                 </ScrollViewer>
-                <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
                 <DataGrid x:Name="dg_abnormal_event" Grid.Row="1" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14">
                 </DataGrid>
             </Grid>
