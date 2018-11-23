@@ -95,9 +95,6 @@ namespace Volunteer_WPF.View_Model
 
         public void UpdateManpower_apply(Manpower_apply_data_ViewModel Apply_Data_ViewModel, List<string> insert_Assessment, List<string> delete_Assessment, List<string> insert_Result, List<string> delete_Result)
         {
-            Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
-            manpower_Apply_Model.UpdateManpower_apply(Apply_Data_ViewModel.Apply_ID, int.Parse(Apply_Data_ViewModel.Reply_number), Apply_Data_ViewModel.Repply_description);
-
             Apply_assessment_Model apply_Assessment_Model = new Apply_assessment_Model();
             apply_Assessment_Model.InsertApply_assessment(Apply_Data_ViewModel.Apply_ID, insert_Assessment);
             apply_Assessment_Model.DeleteApply_assessment(Apply_Data_ViewModel.Apply_ID, delete_Assessment);
@@ -105,6 +102,15 @@ namespace Volunteer_WPF.View_Model
             Apply_result_Model apply_Result_Model = new Apply_result_Model();
             apply_Result_Model.InsertApply_result(Apply_Data_ViewModel.Apply_ID,insert_Result);
             apply_Result_Model.DeleteApply_result(Apply_Data_ViewModel.Apply_ID, delete_Result);
+
+            Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
+            manpower_Apply_Model.UpdateManpower_apply(Apply_Data_ViewModel.Apply_ID, int.Parse(Apply_Data_ViewModel.Reply_number), Apply_Data_ViewModel.Repply_description);
+
+        }
+
+        public void UpdateManpower_apply_byreject(int Apply_ID)
+        {
+            Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
         }
     }
 }

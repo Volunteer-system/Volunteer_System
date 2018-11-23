@@ -107,10 +107,9 @@
     <Content Include="Content\Site.css" />
     <Content Include="Css\blog.css" />
     <Content Include="Global.asax" />
-    <Content Include="Images\img1.jpg" />
-    <Content Include="Images\img2.jpg" />
-    <Content Include="Images\img3.jpg" />
-    <Content Include="Images\img4.jpg" />
+    <Content Include="Images\292-12-3.jpg" />
+    <Content Include="Images\299-06-1.jpg" />
+    <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Models\Volunteer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Volunteer.Context.cs</LastGenOutput>

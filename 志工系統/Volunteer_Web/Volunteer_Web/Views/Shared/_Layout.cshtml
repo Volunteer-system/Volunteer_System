@@ -10,8 +10,9 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300|Open+Sans:400,300,300italic,400italic" rel="stylesheet">
     <link href="~/Css/blog.css" rel="stylesheet" />
+
+    @RenderSection("Home_style", false)
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">*@
@@ -37,7 +38,6 @@
                 <a class="p-2 text-muted" href="#">志工訪談</a>
                 <a class="p-2 text-muted" href="#">最近活動</a>
                 <a class="p-2 text-muted" href="#">我要成為志工</a>
-
             </nav>
         </div>
     </div>
@@ -68,5 +68,6 @@
             text: 'Thumbnail'
         });
     </script>
+    @RenderSection("Home_script", false)
 </body>
 </html>

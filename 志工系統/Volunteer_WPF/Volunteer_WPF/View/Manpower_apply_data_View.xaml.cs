@@ -55,13 +55,16 @@ namespace Volunteer_WPF.View
             foreach (var row1 in human_assessments)
             {
                 Apply_assessment apply_Assessment = new Apply_assessment();
-                foreach (var row2 in manpower_Apply_data_ViewModel.Apply_assessments)
+                if (type == "修改")
                 {
-                    if (row1.Assessment_name == row2)
+                    foreach (var row2 in manpower_Apply_data_ViewModel.Apply_assessments)
                     {
-                        apply_Assessment.assessment_check = true;
+                        if (row1.Assessment_name == row2)
+                        {
+                            apply_Assessment.assessment_check = true;
+                        }
                     }
-                }
+                }                
                 apply_Assessment.評估項目 = row1.Assessment_name;
                 Apply_assessments.Add(apply_Assessment);
             }
@@ -73,14 +76,18 @@ namespace Volunteer_WPF.View
             foreach (var row1 in human_assessment_results)
             {
                 Apply_result apply_Result = new Apply_result();
-                foreach (var row2 in manpower_Apply_data_ViewModel.Apply_result)
+                if (type == "修改")
                 {
-                    if (row1.Assessment_result == row2)
+                    foreach (var row2 in manpower_Apply_data_ViewModel.Apply_result)
                     {
+                        if (row1.Assessment_result == row2)
+                        {
 
-                        apply_Result.Apply_result_check = true;
+                            apply_Result.Apply_result_check = true;
+                        }
                     }
                 }
+                    
                 apply_Result.評估結果 = row1.Assessment_result;
                 Apply_results.Add(apply_Result);
             }
@@ -175,6 +182,13 @@ namespace Volunteer_WPF.View
         private void btn_close_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void btn_rejectapply_Click(object sender, RoutedEventArgs e)
+        {
+            Manpower_apply_data_ViewModel manpower_Apply_data_ViewModel = new Manpower_apply_data_ViewModel();
+            manpower_Apply_data_ViewModel.UpdateManpower_apply_byreject(g_apply_id);
+            MessageBox.Show("駁回完成");
         }
     }
 }

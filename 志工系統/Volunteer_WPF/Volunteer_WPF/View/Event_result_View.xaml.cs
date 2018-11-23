@@ -44,13 +44,14 @@ namespace Volunteer_WPF.View
 
             foreach (var a in q)
             {
-                Lab_event_no.Content = a.Abnormal_event_ID; //事件案號
-                Lab_event_name.Content = a.Abnormal_event1; //事件名字(主旨?)
-                Lab_event_type.Content = a.event_category.event_category1; //事件類別
-                Lab_volunteer.Content = a.Volunteer.Chinese_name; //志工中文姓名
-                Lab_application_unit.Content =a.Application_unit.Application_unit1; //運用單位編號
-                Lab_notification_date.Content =a.Notification_date; //通報時間
-                Lab_closing_date.Content =a.Closing_date; //結案時間
+                lab_event_no.Content = a.Abnormal_event_ID; //事件案號
+                lab_event_name.Content = a.Abnormal_event1; //事件名字(主旨?)
+                lab_event_type.Content = a.event_category.event_category1; //事件類別
+                lab_volunteer.Content = a.Volunteer.Chinese_name; //志工中文姓名
+                lab_application_unit.Content =a.Application_unit.Application_unit1; //運用單位編號
+                lab_notification_date.Content =a.Notification_date; //通報時間
+                lab_closing_date.Content =a.Closing_date; //結案時間
+                tb_unit.Text = a.Unit_descrition; //運用單位敘述
                 tb_Volunteer.Text = a.Volunteer_description; //志工自述
                 tb_Supervisor.Text = a.Supervisor_description; //督導敘述
                 tb_result.Text = a.Result; //處理結果
@@ -65,7 +66,7 @@ namespace Volunteer_WPF.View
 
             foreach (var a in q1)
             {
-                Lab_stage.Content = a.Stage1;//處理階段
+                lab_stage.Content = a.Stage1;//處理階段
             }
         }
 

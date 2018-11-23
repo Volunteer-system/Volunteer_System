@@ -33,7 +33,7 @@
                     <RowDefinition Height="2*"/>
                 </Grid.RowDefinitions>
                 <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
-                <DataGrid x:Name="dg_abnormal_event" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_abnormal_event_SelectedCellsChanged">
+                <DataGrid x:Name="dg_manpower_apply" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" SelectedCellsChanged="dg_manpower_apply_SelectedCellsChanged">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>

@@ -39,6 +39,55 @@ namespace Volunteer_WPF.Model
         //核定人數
         public string Reply_number { get; set; }
 
+        public List<Manpower_apply_Model> SelectManpower_apply_byStage(string stage, string type, DateTime startdate, DateTime enddate)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Manpower_apply
+                    join n2 in dbContext.Application_unit
+                    on n1.Application_unit_no equals n2.Application_unit_no
+                    join n3 in dbContext.Stages
+                    on n1.Apply_state equals n3.Stage_ID
+                    where ((n3.Stage1 == stage) &&
+                           ((type == "") ? true : n1.Apply_type == type) &&
+                           ((startdate == DateTime.MinValue) ? true : n1.Apply_date >= startdate))
+                    select new
+                    {
+                        Apply_ID = n1.Apply_ID,
+                        Application_unit = n2.Application_unit1,
+                        Applicant = n1.Applicant,
+                        Apply_date = n1.Apply_date,
+                        Applicant_phone = n1.Applicant_phone,
+                        Work_place = n1.Work_place,
+                        Apply_description = n1.Apply_description,
+                        unit_Supervisor = n1.Application_unit_Supervisor,
+                        unit_heads = n1.Application_unit_heads,
+                        Reply_date = n1.Reply_date,
+                        Repply_description = n1.Repply_description,
+                        Application_number = n1.Application_number,
+                        Reply_number = n1.Reply_number
+                    };
+
+            List<Manpower_apply_Model> Manpower_applys = new List<Manpower_apply_Model>();
+            foreach (var row in q)
+            {
+                Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
+                manpower_Apply_Model.Apply_ID = row.Apply_ID;
+                manpower_Apply_Model.Application_unit = row.Application_unit;
+                manpower_Apply_Model.Applicant = row.Applicant;
+                manpower_Apply_Model.Apply_date = row.Apply_date.ToString();
+                manpower_Apply_Model.Applicant_phone = row.Applicant_phone;
+                manpower_Apply_Model.Work_place = row.Work_place;
+                manpower_Apply_Model.Apply_description = row.Repply_description;
+                manpower_Apply_Model.unit_Supervisor = row.unit_Supervisor;
+                manpower_Apply_Model.Application_number = row.Application_number.ToString();
+                manpower_Apply_Model.Reply_number = row.Reply_number.ToString();
+
+                Manpower_applys.Add(manpower_Apply_Model);
+            }
+
+            return Manpower_applys;
+        }
+
         public void SelectManpower_apply_byApply_ID(int apply_ID)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
@@ -88,7 +137,37 @@ namespace Volunteer_WPF.Model
 
         public void UpdateManpower_apply(int apply_ID, int reply_number,string repply_description)
         {
+            int processing = 0;
+            int end_processing = 0;
+            
+
+            Apply_assessment_Model apply_Assessment_Model = new Apply_assessment_Model();
+            List<string> Assessments = apply_Assessment_Model.SelectApply_assessment_byApply_ID(apply_ID);
+            Apply_result_Model apply_Result_Model = new Apply_result_Model();
+            List<string> Assessment_results = apply_Result_Model.SelectApply_result_byApply_ID(apply_ID);
+
             VolunteerEntities dbContext = new VolunteerEntities();
+
+            var a = from n in dbContext.Stages
+                    where n.Stage_type == "人力申請"
+                    select new
+                    {
+                        Stage_ID = n.Stage_ID,
+                        Stage = n.Stage1
+                    };
+            foreach (var row in a)
+            {
+                switch (row.Stage.ToString())
+                {
+                    case "處理中":
+                        processing = row.Stage_ID;
+                        break;
+                    case "申請完成":
+                        end_processing = row.Stage_ID;
+                        break;
+                }
+            }
+
             var q = from n in dbContext.Manpower_apply
                     where n.Apply_ID == apply_ID
                     select n;
@@ -96,6 +175,51 @@ namespace Volunteer_WPF.Model
             {
                 row.Reply_number = reply_number;
                 row.Repply_description = repply_description;
+                if (reply_number > 0 &&
+                    !string.IsNullOrEmpty(repply_description) &&
+                    Assessments.Count() > 0 &&
+                    Assessment_results.Count() > 0)
+                {
+                    row.Apply_state = end_processing;
+                }
+                else
+                {
+                    row.Apply_state = processing;
+                }
+            }
+
+            dbContext.SaveChanges();
+        }
+
+        public void UpdateManpower_apply_byreject(int apply_ID)
+        {
+            int rejectapply = 0;
+
+            VolunteerEntities dbContext = new VolunteerEntities();
+
+            var a = from n in dbContext.Stages
+                    where n.Stage_type == "人力申請"
+                    select new
+                    {
+                        Stage_ID = n.Stage_ID,
+                        Stage = n.Stage1
+                    };
+            foreach (var row in a)
+            {
+                switch (row.Stage.ToString())
+                {
+                    case "申請駁回":
+                        rejectapply = row.Stage_ID;
+                        break;
+                }
+            }
+
+            var q = from n in dbContext.Manpower_apply
+                    where n.Apply_ID == apply_ID
+                    select n;
+            foreach (var row in q)
+            {
+                row.Apply_state = rejectapply;
             }
 
             dbContext.SaveChanges();

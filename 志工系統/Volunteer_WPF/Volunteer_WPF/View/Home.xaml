@@ -8,16 +8,7 @@
         Title="Home" Height="617" Width="1016" WindowStyle="None">
     <Grid>
         <Viewbox HorizontalAlignment="Left" Margin="50,268,0,0" VerticalAlignment="Top" Stretch="Fill" Width="384" Height="278">
-            <Calendar IsHitTestVisible="False" SelectionMode="MultipleRange" IsTodayHighlighted="False" x:Name="Calendar1" Height="167" Width="179" BorderBrush="White">
-                <Calendar.Background>
-                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                        <GradientStop Color="#FFE4EAF0" Offset="0"/>
-                        <GradientStop Color="#FFECF0F4" Offset="0.16"/>
-                        <GradientStop Color="#FFFCFCFD" Offset="0.16"/>
-                        <GradientStop Color="#FFA7E6DA" Offset="1"/>
-                    </LinearGradientBrush>
-                </Calendar.Background>
-            </Calendar>
+            <Calendar IsHitTestVisible="False" SelectionMode="MultipleRange" IsTodayHighlighted="False" x:Name="Calendar1" Height="167" Width="179" BorderBrush="White" Background="{x:Null}"/>
 
         </Viewbox>
         <Button Background="#FFA7E6DA"  HorizontalAlignment="Left" Margin="50,66,0,0" VerticalAlignment="Top" Width="160" Height="160" BorderBrush="{x:Null}" Cursor="Hand">
@@ -28,7 +19,7 @@
                 </Grid>
                 <Grid Width="100" Height="160">
                     <Label Content="未審核項目" Foreground="Gray" FontSize="16" Margin="2,14,10,118"/>
-                    <Label Name="ApprovalLabel" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
+                    <Label Name="label_Approval" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
                 </Grid>
             </WrapPanel>
         </Button>
@@ -39,8 +30,8 @@
                     <Label Content="異常事件通報" Foreground="Gray" FontSize="8" Margin="2,87,0,53" RenderTransformOrigin="0.534,0.107"/>
                 </Grid>
                 <Grid Width="100" Height="160">
-                    <Label Content="未處理" Foreground="Gray" FontSize="16" Margin="2,14,10,118"/>
-                    <Label Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
+                    <Label Content="未處理" Foreground="Gray" FontSize="16" Margin="18,14,22,118"/>
+                    <Label Name="label_Abnormal_event" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
                 </Grid>
             </WrapPanel>
         </Button>
@@ -75,12 +66,12 @@
                     <Label Content="活動維護" Foreground="Gray" FontSize="8" Margin="9,87,8,53" RenderTransformOrigin="0.534,0.107"/>
                 </Grid>
                 <Grid Width="100" Height="160">
-                    <Label Content="今日活動" Foreground="Gray" FontSize="16" Margin="8,14,19,118"/>
-                    <Label Name="TodayActivityLabel" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
+                    <Label Content="今日活動" Foreground="Gray" FontSize="16" Margin="10,14,17,118"/>
+                    <Label Name="label_TodayActivity" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
                 </Grid>
             </WrapPanel>
         </Button>
-        <StackPanel Name="ActivityPanel" HorizontalAlignment="Left" Height="261" Margin="471,268,0,0" VerticalAlignment="Top" Width="455">
+        <StackPanel Name="ActivityPanel" HorizontalAlignment="Left" Height="252" Margin="490,281,0,0" VerticalAlignment="Top" Width="455">
             <Label Content="近7天事項" HorizontalAlignment="Left" FontWeight="Bold" FontSize="16"/>
         </StackPanel>
 

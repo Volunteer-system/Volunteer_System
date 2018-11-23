@@ -73,6 +73,11 @@
         <ScrollViewer HorizontalAlignment="Left" Height="200" Margin="34,400,0,0" VerticalAlignment="Top" Width="350" Grid.Column="1">
             <TextBox x:Name="txt_Repply_description" TextWrapping="Wrap" Height="200" Width="350" FontSize="16"/>
         </ScrollViewer>
+        <Button  Name="btn_rejectapply" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="駁回" HorizontalAlignment="Left" Margin="450,450,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_rejectapply_Click"  RenderTransformOrigin="0.499,-0.806" >
+            <Button.BitmapEffect>
+                <DropShadowBitmapEffect Color="Black" Direction="315" Softness="1" ShadowDepth="5" Opacity="0.5" />
+            </Button.BitmapEffect>
+        </Button>
         <Button  Name="btn_save" Grid.Column="1"  BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Content="確定" HorizontalAlignment="Left" Margin="450,510,0,0" VerticalAlignment="Top" Width="120" Height="50" Click="btn_save_Click" >
             <Button.BitmapEffect>
                 <DropShadowBitmapEffect Color="Black" Direction="315" Softness="1" ShadowDepth="5" Opacity="0.5" />

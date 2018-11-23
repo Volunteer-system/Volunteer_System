@@ -46,39 +46,54 @@ namespace Volunteer_WPF.View
         {
             VolunteerEntities dbContext = new VolunteerEntities();
 
+            //未審核項目label
+            var q1 = from n in dbContext.Sign_up
+                     where n.Approval_date == null
+                     select n;
+
+            label_Approval.Content = q1.Count();
+
+            if ((int)(label_Approval.Content) > 0)
+            {
+                label_Approval.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                label_Approval.Foreground = new SolidColorBrush(Colors.White);
+            }
+
+            //未處理異常事件處理
+            var q2 = from n in dbContext.Abnormal_event
+                     where n.Stage == 8
+                     select n;
+
+            label_Abnormal_event.Content = q2.Count();
+
+            if ((int)(label_Abnormal_event.Content) > 0)
+            {
+                label_Abnormal_event.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                label_Abnormal_event.Foreground = new SolidColorBrush(Colors.White);
+            }
+
             //今日活動label
             DateTime dt1 = DateTime.Now.Date;
             var q = from n in dbContext.Activities
                     where n.Activity_startdate <= dt1 && n.Activity_enddate >= dt1
                     select n;
 
-            TodayActivityLabel.Content = q.Count();
+            label_TodayActivity.Content = q.Count();
 
-            if ((int)(TodayActivityLabel.Content) > 0)
+            if ((int)(label_TodayActivity.Content) > 0)
             {
-                TodayActivityLabel.Foreground = new SolidColorBrush(Colors.Red);
+                label_TodayActivity.Foreground = new SolidColorBrush(Colors.Red);
             }
             else
             {
-                TodayActivityLabel.Foreground = new SolidColorBrush(Colors.White);
+                label_TodayActivity.Foreground = new SolidColorBrush(Colors.White);
             }
-
-            //未審核項目label
-            var q1 = from n in dbContext.Sign_up
-                     where n.Approval_date == null
-                     select n;
-
-            ApprovalLabel.Content = q1.Count();
-
-            if ((int)(ApprovalLabel.Content) > 0)
-            {
-                ApprovalLabel.Foreground = new SolidColorBrush(Colors.Red);
-            }
-            else
-            {
-                ApprovalLabel.Foreground = new SolidColorBrush(Colors.White);
-            }
-            
         }
 
         private void AddLabel() //加入行事曆細項(未來7天)
@@ -101,10 +116,8 @@ namespace Volunteer_WPF.View
                 ActivityPanel.Children.Add(new Label
                 {
                     Content =a.Activity_startdate?.ToShortDateString()+"—"+a.Activity_enddate?.ToShortDateString()+"   "+a.Activity_name
-
                     });
             }
-
         }
     }
 }
