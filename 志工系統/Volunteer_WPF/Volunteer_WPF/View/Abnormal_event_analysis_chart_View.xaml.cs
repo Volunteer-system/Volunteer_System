@@ -26,7 +26,7 @@ namespace Volunteer_WPF.View
         {
             InitializeComponent();
             Abnormal_event_analysis_ViewModel Event_Analysis = abnormal_Event_Analysis_ViewModel as Abnormal_event_analysis_ViewModel;
-
+            //折線圖
             Chart chart1 = this.FindName("Chart1") as Chart;
             chart1.Titles.Add("月份數據分析");
             //chart1.DataSource = Event_Analysis.Compute_Eventtypes;
@@ -39,10 +39,13 @@ namespace Volunteer_WPF.View
                 yValues1.Add(row.event_count);
             }
             chart1.Series[0].Points.DataBindXY(xValues1, yValues1);
-            chart1.Series[0].Label = "#VAL";
+            chart1.Series[0].ChartType = SeriesChartType.Spline;
+            chart1.Series[0].BorderWidth = 6;
+            chart1.Series[0].IsValueShownAsLabel = true;
+            //chart1.Series[0].Label = "#VAL";
             chart1.ChartAreas[0].AxisX.Title = "月份";
             chart1.ChartAreas[0].AxisY.Title = "數量";
-
+            //圓餅圖
             Chart chart2 = this.FindName("Chart2") as Chart;
             chart2.Titles.Add("運用單位數據分析");
             //chart2.DataSource = Event_Analysis.Compute_Applicationunits;
@@ -54,16 +57,24 @@ namespace Volunteer_WPF.View
                 yValues2.Add(row.event_count);
             }
             chart2.Series[0].Points.DataBindXY(xValues2, yValues2);
+            //chart2.Series[0].Points.DataBindXY(xValues2, yValues2);
+            chart2.Series[0].ChartType = SeriesChartType.Doughnut;
             chart2.Series[0]["PieLabelStyle"] = "Inside";
-            chart2.Series[0].Label = "#VAL";
+            chart2.Series[0]["DoughnutRadius"] = "80";
+            chart2.Series[0]["PieDrawingStyle"] = "Concave";
             //chart2.Legends
-
+            //長條圖
             Chart chart3 = this.FindName("Chart3") as Chart;
             chart3.Titles.Add("事件類別數據分析");
             //chart3.DataSource = Event_Analysis.Compute_Eventtypes;
             chart3.ChartAreas[0].AxisX.Title = "類別";
             chart3.ChartAreas[0].AxisY.Title = "數量";
-            chart3.Series[0].Label = "#VAL";
+            chart3.Series[0].ChartType = SeriesChartType.Bar;
+            chart3.Series[0]["PointWidth"] = "0.8";
+            chart3.Series[0].IsValueShownAsLabel = true;
+            chart3.Series[0]["BarLabelStyle"] = "Center";
+            chart3.Series[0]["DrawingStyle"] = "Emboss";
+            //chart3.Series[0].Label = "#VAL";
             List<string> xValues3 = new List<string>();
             List<int> yValues3 = new List<int>();
             foreach (var row in Event_Analysis.Compute_Eventtypes)

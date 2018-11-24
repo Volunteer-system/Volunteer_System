@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Volunteer_WPF.View"
         mc:Ignorable="d"
         Title="Event_result" Height="620" Width="800"   WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
-    <Grid>
+    <Grid Height="590" Margin="0,0,-0.4,0" VerticalAlignment="Top">
         <!--<Grid.RowDefinitions>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
