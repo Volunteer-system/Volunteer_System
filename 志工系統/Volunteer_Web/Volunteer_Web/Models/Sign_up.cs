@@ -19,6 +19,7 @@ namespace Volunteer_Web.Models
         {
             this.Sign_up_interview_period = new HashSet<Sign_up_interview_period>();
             this.Sign_up_Service_period = new HashSet<Sign_up_Service_period>();
+            this.Sign_up_questionnaire = new HashSet<Sign_up_questionnaire>();
         }
     
         public int Sign_up_no { get; set; }
@@ -44,5 +45,7 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Sign_up_interview_period> Sign_up_interview_period { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sign_up_Service_period> Sign_up_Service_period { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
     }
 }

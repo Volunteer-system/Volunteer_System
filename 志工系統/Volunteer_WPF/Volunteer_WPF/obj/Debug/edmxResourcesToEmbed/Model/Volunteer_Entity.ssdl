@@ -205,6 +205,15 @@
     <Property Name="Lssuing_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Lssuing_unit" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="Questionnaire">
+    <Key>
+      <PropertyRef Name="Questionnaire_no" />
+    </Key>
+    <Property Name="Questionnaire_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question_no" Type="int" Nullable="false" />
+    <Property Name="Question_num" Type="int" />
+    <Property Name="Question" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Service_group">
     <Key>
       <PropertyRef Name="Group_no" />
@@ -346,6 +355,18 @@
     <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Sign_up_no" Type="int" Nullable="false" />
     <Property Name="interview_period_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sign_up_questionnaire">
+    <Key>
+      <PropertyRef Name="Sign_up_questionnaire" />
+    </Key>
+    <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sign_up_no" Type="int" Nullable="false" />
+    <Property Name="Question_no" Type="int" />
+    <Property Name="Question_num" Type="int" />
+    <Property Name="Question_result" Type="int" />
+    <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
     <Key>
@@ -851,6 +872,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sign_up_questionnaire_Sign_up">
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+    <End Role="Sign_up_questionnaire" Type="Self.Sign_up_questionnaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_questionnaire">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Sign_up_Service_period_Sign_up">
     <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
     <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
@@ -956,6 +989,7 @@
     <EntitySet Name="Identity_type" EntityType="Self.Identity_type" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Leaders" EntityType="Self.Leaders" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Lssuing_unit" EntityType="Self.Lssuing_unit" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Service_group" EntityType="Self.Service_group" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Service_period1" EntityType="Self.Service_period1" Schema="Basic" Table="Service_period" store:Type="Tables" />
     <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
@@ -970,6 +1004,7 @@
     <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
     <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="Volunteer" store:Type="Tables" />
     <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
@@ -1127,6 +1162,10 @@
     <AssociationSet Name="FK_Sign_up_interview_period_Sign_up" Association="Self.FK_Sign_up_interview_period_Sign_up">
       <End Role="Sign_up" EntitySet="Sign_up" />
       <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_questionnaire_Sign_up" Association="Self.FK_Sign_up_questionnaire_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_questionnaire" EntitySet="Sign_up_questionnaire" />
     </AssociationSet>
     <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
       <End Role="Sign_up" EntitySet="Sign_up" />

@@ -420,5 +420,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Questionnaires">
+      <EntityTypeMapping TypeName="VolunteerModel.Questionnaire">
+        <MappingFragment StoreEntitySet="Questionnaire">
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+          <ScalarProperty Name="Questionnaire_no" ColumnName="Questionnaire_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_questionnaire">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
+        <MappingFragment StoreEntitySet="Sign_up_questionnaire">
+          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+          <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
+          <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
+          <ScalarProperty Name="Question_result" ColumnName="Question_result" />
+          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+          <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

@@ -234,6 +234,9 @@
     <Compile Include="Models\Manpower_apply.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Questionnaire.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Service_group.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
@@ -257,6 +260,9 @@
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sign_up_interview_period.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Sign_up_questionnaire.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Sign_up_Service_period.cs">

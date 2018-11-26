@@ -210,6 +210,15 @@
           <Property Name="Lssuing_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Lssuing_unit" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="Questionnaire">
+          <Key>
+            <PropertyRef Name="Questionnaire_no" />
+          </Key>
+          <Property Name="Questionnaire_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question_no" Type="int" Nullable="false" />
+          <Property Name="Question_num" Type="int" />
+          <Property Name="Question" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Service_group">
           <Key>
             <PropertyRef Name="Group_no" />
@@ -351,6 +360,18 @@
           <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sign_up_no" Type="int" Nullable="false" />
           <Property Name="interview_period_no" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sign_up_questionnaire">
+          <Key>
+            <PropertyRef Name="Sign_up_questionnaire" />
+          </Key>
+          <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sign_up_no" Type="int" Nullable="false" />
+          <Property Name="Question_no" Type="int" />
+          <Property Name="Question_num" Type="int" />
+          <Property Name="Question_result" Type="int" />
+          <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
           <Key>
@@ -856,6 +877,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sign_up_questionnaire_Sign_up">
+          <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+          <End Role="Sign_up_questionnaire" Type="Self.Sign_up_questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sign_up">
+              <PropertyRef Name="Sign_up_no" />
+            </Principal>
+            <Dependent Role="Sign_up_questionnaire">
+              <PropertyRef Name="Sign_up_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sign_up_Service_period_Sign_up">
           <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
           <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
@@ -961,6 +994,7 @@
           <EntitySet Name="Identity_type" EntityType="Self.Identity_type" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Leaders" EntityType="Self.Leaders" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Lssuing_unit" EntityType="Self.Lssuing_unit" Schema="Basic" store:Type="Tables" />
+          <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Service_group" EntityType="Self.Service_group" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Service_period1" EntityType="Self.Service_period1" Schema="Basic" Table="Service_period" store:Type="Tables" />
           <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
@@ -975,6 +1009,7 @@
           <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
           <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" Schema="Volunteer" store:Type="Tables" />
+          <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="Volunteer" store:Type="Tables" />
           <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
@@ -1132,6 +1167,10 @@
           <AssociationSet Name="FK_Sign_up_interview_period_Sign_up" Association="Self.FK_Sign_up_interview_period_Sign_up">
             <End Role="Sign_up" EntitySet="Sign_up" />
             <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sign_up_questionnaire_Sign_up" Association="Self.FK_Sign_up_questionnaire_Sign_up">
+            <End Role="Sign_up" EntitySet="Sign_up" />
+            <End Role="Sign_up_questionnaire" EntitySet="Sign_up_questionnaire" />
           </AssociationSet>
           <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
             <End Role="Sign_up" EntitySet="Sign_up" />
@@ -1579,6 +1618,7 @@
           <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
           <NavigationProperty Name="Sign_up_interview_period" Relationship="VolunteerModel.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
           <Property Name="Sign_up_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sign_up_questionnaire" Relationship="VolunteerModel.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up" ToRole="Sign_up_questionnaire" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
           <Key>
@@ -2380,6 +2420,12 @@
             <End Role="Sign_up" EntitySet="Sign_up" />
             <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
           </AssociationSet>
+          <EntitySet Name="Questionnaires" EntityType="VolunteerModel.Questionnaire" />
+          <EntitySet Name="Sign_up_questionnaire" EntityType="VolunteerModel.Sign_up_questionnaire" />
+          <AssociationSet Name="FK_Sign_up_questionnaire_Sign_up" Association="VolunteerModel.FK_Sign_up_questionnaire_Sign_up">
+            <End Role="Sign_up" EntitySet="Sign_up" />
+            <End Role="Sign_up_questionnaire" EntitySet="Sign_up_questionnaire" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Sign_up_interview_period">
           <Key>
@@ -2411,6 +2457,40 @@
               <PropertyRef Name="Sign_up_no" />
             </Principal>
             <Dependent Role="Sign_up_interview_period">
+              <PropertyRef Name="Sign_up_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Questionnaire">
+          <Key>
+            <PropertyRef Name="Questionnaire_no" />
+          </Key>
+          <Property Name="Questionnaire_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question_no" Type="Int32" Nullable="false" />
+          <Property Name="Question_num" Type="Int32" />
+          <Property Name="Question" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Sign_up_questionnaire">
+          <Key>
+            <PropertyRef Name="Sign_up_questionnaire1" />
+          </Key>
+          <Property Name="Sign_up_questionnaire1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
+          <Property Name="Question_no" Type="Int32" />
+          <Property Name="Question_num" Type="Int32" />
+          <Property Name="Question_result" Type="Int32" />
+          <Property Name="Other_result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sign_up" Relationship="VolunteerModel.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
+        </EntityType>
+        <Association Name="FK_Sign_up_questionnaire_Sign_up">
+          <End Type="VolunteerModel.Sign_up" Role="Sign_up" Multiplicity="1" />
+          <End Type="VolunteerModel.Sign_up_questionnaire" Role="Sign_up_questionnaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sign_up">
+              <PropertyRef Name="Sign_up_no" />
+            </Principal>
+            <Dependent Role="Sign_up_questionnaire">
               <PropertyRef Name="Sign_up_no" />
             </Dependent>
           </ReferentialConstraint>
@@ -2837,6 +2917,29 @@
                 <ScalarProperty Name="interview_period_no" ColumnName="interview_period_no" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Questionnaires">
+            <EntityTypeMapping TypeName="VolunteerModel.Questionnaire">
+              <MappingFragment StoreEntitySet="Questionnaire">
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+                <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+                <ScalarProperty Name="Questionnaire_no" ColumnName="Questionnaire_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sign_up_questionnaire">
+            <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
+              <MappingFragment StoreEntitySet="Sign_up_questionnaire">
+                <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
+                <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
+                <ScalarProperty Name="Question_result" ColumnName="Question_result" />
+                <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+                <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+                <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+                <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
