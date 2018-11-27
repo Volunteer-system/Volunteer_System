@@ -90,6 +90,9 @@
         <EntityTypeShape EntityType="VolunteerModel.Questionnaire" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="VolunteerModel.Sign_up_questionnaire" Width="1.5" PointX="5.25" PointY="29.375" />
         <AssociationConnector Association="VolunteerModel.FK_Sign_up_questionnaire_Sign_up" />
+        <EntityTypeShape EntityType="VolunteerModel.Apply_Service_period" Width="1.5" PointX="16.5" PointY="25.5" />
+        <AssociationConnector Association="VolunteerModel.FK_Apply_Service_period_Manpower_apply" />
+        <AssociationConnector Association="VolunteerModel.FK_Apply_Service_period_Service_period" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

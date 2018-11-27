@@ -18,7 +18,6 @@ namespace Volunteer_WPF.Model
         public int Sign_up_no { get; set; }
         public Nullable<int> Question_no { get; set; }
         public Nullable<int> Question_num { get; set; }
-        public Nullable<int> Question_result { get; set; }
         public string Other_result1 { get; set; }
         public string Other_result2 { get; set; }
     

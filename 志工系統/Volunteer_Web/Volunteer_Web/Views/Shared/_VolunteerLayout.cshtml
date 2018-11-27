@@ -7,10 +7,25 @@
     <meta name="author" content="">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
+    <!--登入使用▼-->
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <!--登入使用▲-->
     <link href="~/Css/blog.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />益註解*@
+    @*<script src="~/Scripts/modernizr-2.6.2.js"></script>*@<!--新增▼過來-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>
+        /*登入失敗錯誤訊息用*/
+        #showError {
+            display: none;
+        }
+    </style>
+
 </head>
 <body>
     @*<div class="navbar navbar-inverse navbar-fixed-top">*@
@@ -32,13 +47,36 @@
         <header class="blog-header py-2">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
-                    <a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>
+                    @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark" })
+                    @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>*@
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="text-muted" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
                     </a>
-                    <a class="btn btn-sm btn-outline-secondary" href="#">登入</a>
+                    <!--11271414益修改▼-->
+                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@
+                    <div class="dropdown">
+                        @{ <!--判斷有無登入者，切換功能-->
+                            if (Session["UserName"] == null)
+                            {
+                                <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                            }
+                        }
+                                <div class="dropdown-menu" aria-labelledby="dLabel">
+                                    @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
+                                    <a class="dropdown-item" href="#">個人資料</a>
+                                    <a class="dropdown-item" href="#">課程與活動</a>
+                                    <a class="dropdown-item" href="#">志工權益</a>
+                                    <a class="dropdown-item" href="#">排班意願</a>
+                                    <a class="dropdown-item" href="~/Login/LogOut">登出</a>
+                                </div>
+                    </div>
+                    <!--11271414益修改▲-->
                 </div>
             </div>
         </header>
@@ -57,6 +95,7 @@
     <main role="main" class="container body-content py-5">
         <div>
             @RenderBody()
+            @Html.Action("LoginIndex", "Login")<!--呼叫登入頁面用-->
         </div>
     </main>
     @*<div class="container body-content">
@@ -70,9 +109,11 @@
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/holder.min.js"></script>
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/holder.min.js"></script>益註解*@
+    <script src="~/Scripts/holder.min.js"></script> <!--新增過來-->
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script>
         Holder.addTheme('thumb', {
             bg: '#55595c',

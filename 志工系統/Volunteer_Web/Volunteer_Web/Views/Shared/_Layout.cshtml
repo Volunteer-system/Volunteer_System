@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,19 +11,38 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet" />
     <link href="~/Css/blog.css" rel="stylesheet" />
+    <!--登入使用▼-->
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <link href="~/Content/util.css" rel="stylesheet" />
+    <!--登入使用▲-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <style>/*登入失敗錯誤訊息用*/
+        #showError {
+            display: none;
+        }
+    </style>
 
     @RenderSection("Home_style", false)
 </head>
-<body>
+<body>   
+    @{  string logintype = "";
+        if (Session["UserType"] == null)
+        {
+            logintype = "";
+        }
+        else
+        {
+            logintype = Session["UserType"].ToString();
+        }
+    }
     <div class="container fixed-top" style="background-color:white">
-
         <header class="blog-header py-2">
             <div class="row flex-nowrap justify-content-between align-items-center">
                 <div class="col-4 pt-1">
-                    <a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>
+                    @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark" })
+                    @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>*@
                 </div>
                 <div class="col-4 d-flex justify-content-end align-items-center">
                     <a class="text-muted" href="#">
@@ -30,14 +50,52 @@
                     </a>
                     @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@
                     <div class="dropdown">
-                        <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            登入
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dLabel">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
+                        @{ <!--判斷有無登入者，切換功能-->
+                            if (Session["UserName"] == null)
+                            {
+                                <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                            }
+                            else
+                            {
+                                <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                            }
+                        }
+                        @{
+                            if (logintype == "運用單位")
+                            {
+                                <div class="dropdown-menu" aria-labelledby="dLabel">
+                                   @Html.ActionLink("運用單位首頁", "Index", "Unit",null, new { @class = "dropdown-item" })
+                                    <a class="dropdown-item" href="#">單位基本資料</a>
+                                    <a class="dropdown-item" href="#">人力需求申請</a>
+                                    <a class="dropdown-item" href="#">異常事件通報</a>
+                                    <a class="dropdown-item" href="#">考核</a>
+                                    <a class="dropdown-item" href="~/Login/LogOut">登出</a>
+                                </div>
+                            }
+                            else if (logintype == "志工")
+                            {
+                                <div class="dropdown-menu" aria-labelledby="dLabel">
+                                    @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
+                                    <a class="dropdown-item" href="#">個人資料</a>
+                                    <a class="dropdown-item" href="#">課程與活動</a>
+                                    <a class="dropdown-item" href="#">志工權益</a>
+                                    <a class="dropdown-item" href="#">排班意願</a>
+                                    <a class="dropdown-item" href="~/Login/LogOut">登出</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="dropdown-menu" aria-labelledby="dLabel">
+                                    <a class="dropdown-item" href="#">Action</a>
+                                    <a class="dropdown-item" href="#">Another action</a>
+                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="~/Login/LogOut">登出</a>
+                                </div>
+                            }
+                        }
+
+
+
                     </div>
                 </div>
             </div>
@@ -55,6 +113,7 @@
     <main role="main" class="container body-content py-5">
         <div>
             @RenderBody()
+            @Html.Action("LoginIndex", "Login")<!--呼叫登入頁面用-->
         </div>
     </main>
     @*<div class="container body-content">
@@ -67,9 +126,8 @@
     <footer class="blog-footer">
         <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
     </footer>
-
     @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>*@
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
     <script src="~/Scripts/holder.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script>

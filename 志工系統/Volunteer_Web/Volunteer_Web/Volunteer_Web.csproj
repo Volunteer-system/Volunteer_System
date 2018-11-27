@@ -104,11 +104,14 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\main.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\util.css" />
     <Content Include="Css\blog.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\292-12-3.jpg" />
     <Content Include="Images\299-06-1.jpg" />
+    <Content Include="Images\LoginUse.jpg" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Models\Volunteer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -162,6 +165,8 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\NeedCheckLogin.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Global.asax.cs">
@@ -197,6 +202,9 @@
     <Compile Include="Models\Apply_result.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Apply_Service_period.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Education.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -228,6 +236,8 @@
     <Compile Include="Models\Leaders1.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginUse\accountMethod.cs" />
+    <Compile Include="Models\LoginUse\Patrial\account.cs" />
     <Compile Include="Models\Lssuing_unit.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -299,6 +309,7 @@
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Sign_up_session.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />

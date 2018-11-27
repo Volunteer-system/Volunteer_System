@@ -19,6 +19,7 @@ namespace Volunteer_WPF.Model
         {
             this.Apply_Assessment = new HashSet<Apply_Assessment>();
             this.Apply_result = new HashSet<Apply_result>();
+            this.Apply_Service_period = new HashSet<Apply_Service_period>();
         }
     
         public int Apply_ID { get; set; }
@@ -45,5 +46,7 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apply_result> Apply_result { get; set; }
         public virtual Volunteer_supervision Volunteer_supervision { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Apply_Service_period> Apply_Service_period { get; set; }
     }
 }

@@ -1,0 +1,70 @@
+﻿@model Volunteer_Web.Models.account
+<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
+                @*<span class="login100-form-title-1">使用者登入</span>*@
+            </div>
+            @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login100-form validate-form" }))
+            { 
+                <div id="showError" class="alert alert-danger" role="alert"></div>
+                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                    @Html.LabelFor(m => m.Account_number, new { @class = "label-input100" })
+                    @Html.TextBoxFor(m => m.Account_number, new { @class = "input100", placeholder = "Enter UserName" })
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                    @Html.LabelFor(m => m.Password, new { @class = "label-input100" })
+                    @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Enter password", type = "password" })
+                </div>
+                <button id="btn_login" class="btn_login fr" type="button">登入</button>
+                <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
+            }
+        </div>
+    </div>
+</div>
+<!--/Login/LoginIndex-->
+
+@*@section LoginScript {*@
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn_login").click(function () {
+                var Account = $("#Account_number");
+                var Pas = $("#Password");
+                $.post("/Login/LoginIndex", { "Account_number": Account.val(), "Password": Pas.val() }, function (data) {
+                    if (data == "帳號或密碼錯誤，登入失敗!!") {
+                        $("#showError").text(data).slideDown(1000, function () {
+                            window.setTimeout(function () {
+                                $("#showError").fadeOut(1000)
+                            }, 1000)
+                        });
+                    }
+                    else {
+                        //switch (data)
+                        //{
+                        //    case "運用單位":
+                        //        window.location.href = "/Unit/Index"
+                        //        break;
+                        //    case "志工督導":
+                        //        window.location.href = "/Home/Index"
+                        //        break;
+                        //    case "志工":
+                        //        window.location.href = "/Volunteer/Index"
+                        //        break;
+                        //    //default:
+                        //    //    window.location.href = "/Home/Index"
+                        //    //    break;
+                        //}    
+                        window.location.href = "/Home/Index"
+                    }
+                });
+                Account.val("");
+                Pas.val("");
+            });
+        });
+    </script>
+@*}*@
+
+
+

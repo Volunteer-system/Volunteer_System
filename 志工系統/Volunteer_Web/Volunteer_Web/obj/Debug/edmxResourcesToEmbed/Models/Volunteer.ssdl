@@ -52,6 +52,14 @@
     <Property Name="Apply_ID" Type="int" Nullable="false" />
     <Property Name="result_ID" Type="int" />
   </EntityType>
+  <EntityType Name="Apply_Service_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apply_ID" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="Expertise">
     <Key>
       <PropertyRef Name="Primary_key" />
@@ -364,7 +372,6 @@
     <Property Name="Sign_up_no" Type="int" Nullable="false" />
     <Property Name="Question_no" Type="int" />
     <Property Name="Question_num" Type="int" />
-    <Property Name="Question_result" Type="int" />
     <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
     <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
   </EntityType>
@@ -617,6 +624,30 @@
       </Principal>
       <Dependent Role="Apply_result">
         <PropertyRef Name="Apply_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Service_period_Manpower_apply">
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
+    <End Role="Apply_Service_period" Type="Self.Apply_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manpower_apply">
+        <PropertyRef Name="Apply_ID" />
+      </Principal>
+      <Dependent Role="Apply_Service_period">
+        <PropertyRef Name="Apply_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Service_period_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Apply_Service_period" Type="Self.Apply_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Apply_Service_period">
+        <PropertyRef Name="Service_period_no" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -973,6 +1004,7 @@
     <EntitySet Name="Application_unit" EntityType="Self.Application_unit" Schema="Application_unit" store:Type="Tables" />
     <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" Schema="Application_unit" store:Type="Tables" />
     <EntitySet Name="Apply_result" EntityType="Self.Apply_result" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Apply_Service_period" EntityType="Self.Apply_Service_period" Schema="Application_unit" store:Type="Tables" />
     <EntitySet Name="Expertise" EntityType="Self.Expertise" Schema="Application_unit" store:Type="Tables" />
     <EntitySet Name="Manpower_apply" EntityType="Self.Manpower_apply" Schema="Application_unit" store:Type="Tables" />
     <EntitySet Name="Service_period" EntityType="Self.Service_period" Schema="Application_unit" store:Type="Tables" />
@@ -1078,6 +1110,14 @@
     <AssociationSet Name="FK_Apply_result_Manpower_apply" Association="Self.FK_Apply_result_Manpower_apply">
       <End Role="Manpower_apply" EntitySet="Manpower_apply" />
       <End Role="Apply_result" EntitySet="Apply_result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Service_period_Manpower_apply" Association="Self.FK_Apply_Service_period_Manpower_apply">
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+      <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Service_period_Service_period" Association="Self.FK_Apply_Service_period_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
     </AssociationSet>
     <AssociationSet Name="FK_Education_Activity" Association="Self.FK_Education_Activity">
       <End Role="Activity" EntitySet="Activity" />

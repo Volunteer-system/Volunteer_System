@@ -123,6 +123,9 @@
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Apply_result_Model.cs" />
+    <Compile Include="Model\Apply_Service_period.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Education.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>

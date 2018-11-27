@@ -435,11 +435,19 @@
         <MappingFragment StoreEntitySet="Sign_up_questionnaire">
           <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
           <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
-          <ScalarProperty Name="Question_result" ColumnName="Question_result" />
           <ScalarProperty Name="Question_num" ColumnName="Question_num" />
           <ScalarProperty Name="Question_no" ColumnName="Question_no" />
           <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apply_Service_period">
+      <EntityTypeMapping TypeName="VolunteerModel.Apply_Service_period">
+        <MappingFragment StoreEntitySet="Apply_Service_period">
+          <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+          <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
+          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

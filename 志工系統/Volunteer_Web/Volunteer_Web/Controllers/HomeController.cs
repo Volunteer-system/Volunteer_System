@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Volunteer_Web.Models;
 
 namespace Volunteer_Web.Controllers
 {
     public class HomeController : Controller
     {
+        VolunteerEntities dbContext = new VolunteerEntities();
+
         // GET: Home
         //首頁
         public ActionResult Index()
@@ -42,25 +45,26 @@ namespace Volunteer_Web.Controllers
             
             return View();
         }
-
+        //申請須知
         public ActionResult Requirements()
         {
             ViewBag.Partilview = "Requirements";
             return PartialView();
         }
-
+        //基本資料
         public ActionResult basic_info()
         {
             ViewBag.Partilview = "basic_info";
+            ViewBag.Expertise = dbContext.Expertise1.ToList();
             return PartialView();
         }
-
+        //問券調查
         public ActionResult Questionnaire()
         {
             ViewBag.Partilview = "Questionnaire";
             return PartialView();
         }
-
+        //申請完成
         public ActionResult Requirement_ok()
         {
             ViewBag.Partilview = "Requirement_ok";
