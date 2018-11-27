@@ -3,5 +3,37 @@
     ViewBag.Title = "NewVolunteer";
 }
 
-<h2>NewVolunteer</h2>
+<div class="row mt-3">
+    <div class="col-lg-3">
+        <div class="btn btn-info btn-block">
+            申請步驟
+        </div>
+        <table class="table table-bordered">
+            <thead></thead>
+            <tbody>
+                <tr><td><a href="~/Home/NewVolunteer/1" class="btn btn-outline-info btn-block" value="Requirements">申請須知</a></td></tr>
+                <tr><td><a href="~/Home/NewVolunteer/2" id="basic_info" class="btn btn-outline-info btn-block" value="basic_info">基本資料</a></td></tr>
+                <tr><td><a href="~/Home/NewVolunteer/3" id="Questionnaire" class="btn btn-outline-info btn-block" value="Questionnaire">問券調查</a></td></tr>
+                <tr><td><a href="~/Home/NewVolunteer/4" class="btn btn-outline-info btn-block">人格測驗</a></td></tr>
+                <tr><td><a href="~/Home/NewVolunteer/5" id="Requirement_ok" class="btn btn-outline-info btn-block" value="Requirement_ok">申請完成</a></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-9">
+        <div class="card-body">
+            @{
+                string Partilview = ViewBag.Partilview;
 
+            }
+            @Html.Action(Partilview)
+        </div>
+    </div>
+</div>
+
+@section Home_script{
+    <script>
+        $(document).ready(function () {
+            $('a[value = "@ViewBag.Partilview"]').addClass('active');
+        })
+    </script>
+}
