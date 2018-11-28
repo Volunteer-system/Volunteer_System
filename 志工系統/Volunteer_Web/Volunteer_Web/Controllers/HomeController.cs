@@ -97,12 +97,25 @@ namespace Volunteer_Web.Controllers
         {
             return PartialView();
         }
+
+        [HttpPost]
+        public ActionResult Schedule(int[] service_no)
+        {
+            Session["service_no"] = service_no;
+            return PartialView();
+        }
         //檢查資料
         public ActionResult Alldata_check()
         {
             Sign_up_session sign_Up_Session = new Sign_up_session();
             sign_Up_Session = Session["Sign_up_session"] as Sign_up_session;
-            return PartialView(sign_Up_Session);
+            Sign_up_questionnaireVM Sign_up_question = new Sign_up_questionnaireVM();
+            Sign_up_question = Session["Question"] as Sign_up_questionnaireVM;
+
+            Sign_up_Alldata_VM sign_Up_Alldata_VM = new Sign_up_Alldata_VM();
+            sign_Up_Alldata_VM.SetSign_up_Alldata(sign_Up_Session, Sign_up_question);
+
+            return PartialView(sign_Up_Alldata_VM);
         }
 
         public ActionResult InsertSign_up()

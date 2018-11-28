@@ -309,6 +309,7 @@
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModel\Sign_up_Alldata_VM.cs" />
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
     <Compile Include="ViewModel\Sign_up_session.cs" />
   </ItemGroup>

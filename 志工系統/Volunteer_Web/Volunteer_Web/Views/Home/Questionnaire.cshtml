@@ -1,5 +1,6 @@
 ﻿<h2>Questionnaire問券調查</h2>
-
+<br />
+<br />
 <form action="~/Home/Questionnaire" method="post">
     <div id="Q1">
         <h4>一、為何想成為志工(可複選)</h4>
@@ -17,7 +18,7 @@
         <label class="form-check-label">其他</label>
         <input type="text" name="Q1esle" />
     </div>
-
+    <hr />
     <div id="Q2">
         <h4>二、您為何選擇亞東醫院做志工服務?(可複選)</h4>
         <input class="form-check-input" type="checkbox" value="1" id="離家近" name="Q2">
@@ -38,7 +39,7 @@
         <label class="form-check-label">其他</label>
         <input type="text" name=" Q2else" />
     </div>
-
+    <hr />
     <div id="Q3">
         <h4>三、您是由何處得知亞東醫院招募志工的消息?(可複選)</h4>
         <input class="form-check-input" type="checkbox" value="1" id="報紙" name="Q3">
@@ -60,11 +61,11 @@
         <input class="form-check-input" type="checkbox" value="9" id="醫生介紹" name="Q3">
         <label class="form-check-label">醫生介紹、科別</label>
         <input type="text" name="Q3doc" />
+        <br />
         <input class="form-check-input" type="checkbox" value="10" id="醫院的電視廣告介紹" name="Q3">
         <label class="form-check-label">醫院的電視廣告介紹</label>
     </div>
-
-
+    <hr />
     <div id="Q4">
         <h4>四、您以前與亞東醫院的互動關係為?(可複選)</h4>
         <input class="form-check-input" type="checkbox" value="1" id="離職員工" name="Q4">
@@ -85,35 +86,30 @@
         <label class="form-check-label">其他</label>
         <input type="text" name=" Q4else" />
     </div>
-
-
-
+    <hr />
     <div id="Q5">
         <h4>五、您是否曾經或正在其他機構擔任志工?是(續填下方內容),否?</h4>
-
         <label class="form-check-label">服務的單位為</label>
         <input type="text" name="Q5unit" />
         <label class="form-check-label">,</label>
+        <label class="form-check-label">約有幾年服務經驗 </label>
         <input type="text" name="Q5years" />
-        <label class="form-check-label">年服務經驗、工作內容為</label>
+        <label class="form-check-label">工作內容為</label>
         <input type="text" name="Q5content" />
-
         <label class="form-check-label">您目前有服務紀錄冊嗎</label>
         <input type="checkbox" value="1" id="是否有紀錄冊" name="Q5" />
-
-    </div>
-
+</div>
+    <hr />
     <div id="Q6">
         <h4>六、您曾經從事過的工作(非志工職)為? </h4>
         <input type="text" name="Q6jobs" />
     </div>
-
+    <hr />
     <div id="Q7">
         <h4>七、您在未來的一年內是否會找工作? </h4>
         <input type="checkbox" value="1" id="是否找工作" name="Q7" />未來一年會找工作
-
     </div>
-
+    <hr />
     <div id="Q8">
         <h4>八、您到醫院的交通工具為?(可複選) </h4>
         <input class="form-check-input" type="checkbox" value="1" id="公車" name="Q8">
@@ -131,6 +127,6 @@
         <input class="form-check-input" type="checkbox" value="7" id="走路" name="Q8">
         <label class="form-check-label">走路</label>
     </div>
+    <hr />
     <input type="submit" value="submit" />
-
 </form>
