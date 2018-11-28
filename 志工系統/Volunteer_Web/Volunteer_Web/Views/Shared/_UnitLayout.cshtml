@@ -60,7 +60,8 @@
                                     <a class="dropdown-item" href="#">人力需求申請</a>
                                     <a class="dropdown-item" href="#">異常事件通報</a>
                                     <a class="dropdown-item" href="#">考核</a>
-                                    <a class="dropdown-item" href="~/Login/LogOut">登出</a>
+                                    @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
+                                    @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
                                 </div>
                     </div>
                     <!--11271414益修改▲-->
