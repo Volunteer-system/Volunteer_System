@@ -1,0 +1,25 @@
+﻿@model Volunteer_Web.ViewModel.Sign_up_session
+@section Home_style{
+    <style>
+        .fontstyle {
+            font-size: 20px;
+            font-family: 微軟正黑體;
+        }
+    </style>
+}
+
+<div class="row">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td><<label>姓名:</label>/td>
+                <td><<label>@Model.Chinese_name</label>/td>
+            </tr>
+
+        </tbody>
+        
+    </table>
+    
+
+    <a href="~/Home/InsertSign_up" class="btn btn-success">確定</a>
+</div>

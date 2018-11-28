@@ -35,6 +35,6 @@ namespace Volunteer_Web.ViewModel
         [DisplayName("工作類別")]
         public string Job { get; set; }
         [DisplayName("專長")]
-        public IEnumerable<Expertise1> Expertises { get; set; }
+        public IEnumerable<string> Expertises { get; set; }
     }
 }
