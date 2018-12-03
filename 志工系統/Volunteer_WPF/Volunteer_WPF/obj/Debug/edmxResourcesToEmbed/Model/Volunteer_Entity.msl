@@ -451,5 +451,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Experiences">
+      <EntityTypeMapping TypeName="VolunteerModel.Experience">
+        <MappingFragment StoreEntitySet="Experience">
+          <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
+          <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
+          <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+          <ScalarProperty Name="Experience1" ColumnName="Experience" />
+          <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

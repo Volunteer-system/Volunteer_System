@@ -1,0 +1,77 @@
+﻿@model Volunteer_Web.ViewModel.Supervision_Experience_VM
+@{
+    ViewBag.Title = "Experience";
+}
+
+<div class="row mt-4">
+    <div class="col-3">
+        <div class="list-group">
+            @foreach (var row in Model.Service_groups)
+            {
+                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "list-group-item list-group-item-action" })
+            }
+        </div>
+    </div>
+    <div class="col-9">
+        <div class="row">
+            @foreach (var row in Model.Experiences)
+            {
+                <div class="col-sm-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <img id="img_@row.Experience_no" class="card-img-top" src="~/Images/Noimage.png" alt="Card image cap">
+                            <h6 id="name_@row.Experience_no" class="card-title">活動名稱:@row.Experience</h6>
+                            <p id="group_@row.Experience_no" class="card-text">志工:@row.Volunteer</p>
+                            <button id="@row.Experience_no" value="@row.Experience_photo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                詳細資訊
+                            </button>
+                            <p hidden id="hid_@row.Experience_no">@row.Experience_content</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img id="model_img" class="card-img-top" alt="Card image cap">
+                <p id="model_group"></p>
+                <p > 詳細資料</p>
+                <p id="model_summary"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">離開</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Home_script{
+    <script>
+        $(document).ready(function () {
+            $('a[href = "' + location.pathname + '"]').addClass('active');
+
+            $('.card-body').on('click', ':button', function () {
+                var id = $(this).attr("id");
+                var photo_id = $(this).val();
+                $('#model_img').attr("src", "/Images/Noimage.png");
+                var doc = $('#name_' + id).text();
+                $('.modal-title').append(doc);
+                $('#model_group').text($('#group_' + id).text());
+                $('#model_summary').text($('#hid_' + id).text());
+            });
+        });
+    </script>
+}
+

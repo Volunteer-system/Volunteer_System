@@ -30,17 +30,24 @@ namespace Volunteer_Web.Controllers
                 string UserName = s[2];
                 Session["UserType"] = UserType;
                 Session["UserName"] = UserName;
-                return Content(UserType, "Text/plain");
+                //return Content(UserType, "Text/plain");
+                return Json(UserType, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                return Content("帳號或密碼錯誤，登入失敗!!", "Text/plain");
+                return Json("帳號或密碼錯誤，登入失敗!!",JsonRequestBehavior.AllowGet);
+                //return Content("帳號或密碼錯誤，登入失敗!!", "Text/plain");
             }
         }
         public ActionResult LogOut()
         {
             Session.Abandon();
             return RedirectToAction("Index", "Home");
+        }
+        [ChildActionOnly]
+        public ActionResult ScriptView()
+        {
+            return PartialView();
         }
     }
 }

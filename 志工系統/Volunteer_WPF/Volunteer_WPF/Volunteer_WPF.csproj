@@ -133,6 +133,9 @@
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Event_category_Model.cs" />
+    <Compile Include="Model\Experience.cs">
+      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Expertise.cs">
       <DependentUpon>Volunteer_Entity.tt</DependentUpon>
     </Compile>

@@ -23,7 +23,7 @@ namespace Volunteer_Web.Models
         public int Stage { get; set; }
         public System.DateTime Notification_date { get; set; }
         public Nullable<System.DateTime> Closing_date { get; set; }
-        public int Supervisor_ID { get; set; }
+        public Nullable<int> Supervisor_ID { get; set; }
         public string Unit_descrition { get; set; }
         public string Volunteer_description { get; set; }
         public string Supervisor_description { get; set; }

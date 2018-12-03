@@ -1,0 +1,105 @@
+﻿@model Volunteer_Web.ViewModel.Manpower_applyStageVM
+@{
+    ViewBag.Title = "Detail";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div id="fullscreen_bg" class="fullscreen_bg" />
+<div class="container">
+    <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">年度人力申請</div>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" method="post" action="~/ManpowerApply/Detail" role="form">
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" name="Apply_ID" value="@Model.manpower_apply.Apply_ID">
+                        <label class="col-md-4 text-right" for="">運用單位</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Application_unit.Application_unit1</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 text-right" for="Apply_date">申請日期</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Apply_date.ToShortDateString().ToString()</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 text-right" for="Reply_date">核定日期</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Reply_date</label>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 text-right" for="Applicant">申請人</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Applicant</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Applicant_phone" class="col-md-4 text-right">電話</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Applicant_phone</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Work_place" class="col-md-4 text-right">值班地點</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Work_place</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Work_place" class="col-md-4 text-right">需求時段</label>
+                        @*<label class="col-md-8 text-secondary"></label>*@
+                    </div>
+                    <div class="form-group">
+                        <label for="Application_number" class="col-md-4 text-right">需求人數</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Application_number</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Reply_number" class="col-md-4 text-right">核定人數</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Reply_number</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Apply_description" class="col-md-4 text-right">志工工作項目與流程</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Apply_description</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Application_unit_Supervisor" class="col-md-4 text-right">單位主管</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Application_unit_Supervisor</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Application_unit_heads" class="col-md-4 text-right">部門主管</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Application_unit_heads</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Supervision_ID" class="col-md-4 text-right">志工督導</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Supervision_ID</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Supervision_heads" class="col-md-4 text-right">志工督導主管</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Supervision_heads</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Repply_description" class="col-md-4 text-right">志工督導評估建議</label>
+                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Repply_description</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="Stage" class="col-md-4 text-right">申請階段</label>
+                        <label class="col-md-8 text-secondary">@Model.stage.Stage1</label>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-4 col-md-8">
+                            <a href="~/ManpowerApply/Edit/@Model.manpower_apply.Apply_ID" class="btn btn-info">修改資料</a>
+                            <a href="~/ManpowerApply/Cancel/@Model.manpower_apply.Apply_ID" class="btn btn-info">取消申請</a>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    @section Home_script{
+        <script>
+            $('#myModal').on('shown.bs.modal', function () {
+                $('#myInput').trigger('focus')
+            });
+        </script>
+    }

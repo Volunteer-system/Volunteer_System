@@ -29,6 +29,7 @@ namespace Volunteer_Web.Models
         public virtual DbSet<Application_unit> Application_unit { get; set; }
         public virtual DbSet<Apply_Assessment> Apply_Assessment { get; set; }
         public virtual DbSet<Apply_result> Apply_result { get; set; }
+        public virtual DbSet<Apply_Service_period> Apply_Service_period { get; set; }
         public virtual DbSet<Expertise> Expertises { get; set; }
         public virtual DbSet<Manpower_apply> Manpower_apply { get; set; }
         public virtual DbSet<Service_period> Service_period { get; set; }
@@ -45,6 +46,7 @@ namespace Volunteer_Web.Models
         public virtual DbSet<Identity_type> Identity_type { get; set; }
         public virtual DbSet<Leader> Leaders { get; set; }
         public virtual DbSet<Lssuing_unit> Lssuing_unit { get; set; }
+        public virtual DbSet<Questionnaire> Questionnaires { get; set; }
         public virtual DbSet<Service_group> Service_group { get; set; }
         public virtual DbSet<Service_period1> Service_period1 { get; set; }
         public virtual DbSet<Shift_schedule> Shift_schedule { get; set; }
@@ -53,16 +55,15 @@ namespace Volunteer_Web.Models
         public virtual DbSet<Volunteer_supervision> Volunteer_supervision { get; set; }
         public virtual DbSet<Activity1> Activity1 { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
+        public virtual DbSet<Experience> Experiences { get; set; }
         public virtual DbSet<Expertise2> Expertise2 { get; set; }
         public virtual DbSet<Leaders1> Leaders1 { get; set; }
         public virtual DbSet<Service_Group1> Service_Group1 { get; set; }
         public virtual DbSet<Service_period2> Service_period2 { get; set; }
         public virtual DbSet<Sign_up> Sign_up { get; set; }
         public virtual DbSet<Sign_up_interview_period> Sign_up_interview_period { get; set; }
+        public virtual DbSet<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
         public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
         public virtual DbSet<Volunteer> Volunteers { get; set; }
-        public virtual DbSet<Questionnaire> Questionnaires { get; set; }
-        public virtual DbSet<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
-        public virtual DbSet<Apply_Service_period> Apply_Service_period { get; set; }
     }
 }

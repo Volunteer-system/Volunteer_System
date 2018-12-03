@@ -304,6 +304,16 @@
           <Property Name="Training_date" Type="datetime" />
           <Property Name="Proof" Type="nchar" MaxLength="10" />
         </EntityType>
+        <EntityType Name="Experience">
+          <Key>
+            <PropertyRef Name="Experience_no" />
+          </Key>
+          <Property Name="Experience_no" Type="int" Nullable="false" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="Volunteer_no" Type="int" />
+          <Property Name="Experience_content" Type="nvarchar(max)" />
+          <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Expertise2">
           <Key>
             <PropertyRef Name="Primary_key" />
@@ -680,6 +690,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Experience_Volunteer">
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+          <End Role="Experience" Type="Self.Experience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Experience">
+              <PropertyRef Name="Volunteer_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Expertise_Application_unit">
           <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
           <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
@@ -1035,6 +1057,7 @@
           <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
           <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />
+          <EntitySet Name="Experience" EntityType="Self.Experience" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Expertise2" EntityType="Self.Expertise2" Schema="Volunteer" Table="Expertise" store:Type="Tables" />
           <EntitySet Name="Leaders1" EntityType="Self.Leaders1" Schema="Volunteer" Table="Leaders" store:Type="Tables" />
           <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" Schema="Volunteer" Table="Service_Group" store:Type="Tables" />
@@ -1131,6 +1154,10 @@
           <AssociationSet Name="FK_Education_Volunteer" Association="Self.FK_Education_Volunteer">
             <End Role="Volunteer" EntitySet="Volunteer" />
             <End Role="Education" EntitySet="Education" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Experience_Volunteer" Association="Self.FK_Experience_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteer" />
+            <End Role="Experience" EntitySet="Experience" />
           </AssociationSet>
           <AssociationSet Name="FK_Expertise_Application_unit" Association="Self.FK_Expertise_Application_unit">
             <End Role="Application_unit" EntitySet="Application_unit" />
@@ -1712,6 +1739,7 @@
           <NavigationProperty Name="Leaders1" Relationship="Self.FK_Leaders_Volunteer" FromRole="Volunteer" ToRole="Leaders1" />
           <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Volunteer" FromRole="Volunteer" ToRole="Service_Group1" />
           <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Volunteer" FromRole="Volunteer" ToRole="Service_period2" />
+          <NavigationProperty Name="Experiences" Relationship="VolunteerModel.FK_Experience_Volunteer" FromRole="Volunteer" ToRole="Experience" />
         </EntityType>
         <Association Name="FK_Abnormal_event_Application_unit">
           <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
@@ -2477,6 +2505,11 @@
             <End Role="Service_period1" EntitySet="Service_period1" />
             <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
           </AssociationSet>
+          <EntitySet Name="Experiences" EntityType="VolunteerModel.Experience" />
+          <AssociationSet Name="FK_Experience_Volunteer" Association="VolunteerModel.FK_Experience_Volunteer">
+            <End Role="Volunteer" EntitySet="Volunteers" />
+            <End Role="Experience" EntitySet="Experiences" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Sign_up_interview_period">
           <Key>
@@ -2576,6 +2609,29 @@
             </Principal>
             <Dependent Role="Apply_Service_period">
               <PropertyRef Name="Service_period_no" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Experience">
+          <Key>
+            <PropertyRef Name="Experience_no" />
+          </Key>
+          <Property Name="Experience_no" Type="Int32" Nullable="false" />
+          <Property Name="Experience1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Volunteer_no" Type="Int32" />
+          <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Volunteer" Relationship="VolunteerModel.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+        </EntityType>
+        <Association Name="FK_Experience_Volunteer">
+          <End Type="VolunteerModel.Volunteer" Role="Volunteer" Multiplicity="0..1" />
+          <End Type="VolunteerModel.Experience" Role="Experience" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Volunteer">
+              <PropertyRef Name="Volunteer_no" />
+            </Principal>
+            <Dependent Role="Experience">
+              <PropertyRef Name="Volunteer_no" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3032,6 +3088,17 @@
                 <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
                 <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Experiences">
+            <EntityTypeMapping TypeName="VolunteerModel.Experience">
+              <MappingFragment StoreEntitySet="Experience">
+                <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
+                <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
+                <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+                <ScalarProperty Name="Experience1" ColumnName="Experience" />
+                <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

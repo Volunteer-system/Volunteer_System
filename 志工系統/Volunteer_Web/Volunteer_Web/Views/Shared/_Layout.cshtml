@@ -26,8 +26,8 @@
 
     @RenderSection("Home_style", false)
 </head>
-<body>   
-    @{  string logintype = "";
+<body>
+    @{ string logintype = "";
         if (Session["UserType"] == null)
         {
             logintype = "";
@@ -66,8 +66,8 @@
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
                                     @Html.ActionLink("運用單位首頁", "Index", "Unit", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">單位基本資料</a>
-                                    <a class="dropdown-item" href="#">人力需求申請</a>
-                                    <a class="dropdown-item" href="#">異常事件通報</a>
+                                    @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("異常事件通報", "Index", "Abnormalevent", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">考核</a>
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
                                     @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
@@ -78,7 +78,7 @@
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
                                     @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">個人資料</a>
-                                    <a class="dropdown-item" href="#">課程與活動</a>
+                                    @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">志工權益</a>
                                     @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
@@ -88,9 +88,10 @@
                             else
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else here</a>
+                                    <a class="dropdown-item" href="#">個人首頁</a>
+                                    <a class="dropdown-item" href="#">首頁維護</a>
+                                    <a class="dropdown-item" href="#">志工心得維護</a>
+                                    <a class="dropdown-item" href="#">志工申請維護</a>
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
                                     @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
                                 </div>
@@ -105,10 +106,10 @@
         </header>
         <div class="nav-scroller ">
             <nav class="nav d-flex justify-content-between ">
-                <a class="p-2 text-muted" href="#">志工隊介紹</a>
-                <a class="p-2 text-muted" href="#">志工訪談</a>
-                <a class="p-2 text-muted" href="#">最近活動</a>
-                <a class="p-2 text-muted" href="#">我要成為志工</a>
+                <a class="p-2 text-muted" href="~/Home/Introduction">志工隊介紹</a>
+                <a class="p-2 text-muted" href="~/Home/Experience">志工訪談</a>
+                <a class="p-2 text-muted" href="~/Home/Activity">最近活動</a>
+                <a class="p-2 text-muted" href="~/Home/NewVolunteer">我要成為志工</a>
             </nav>
         </div>
     </div>
@@ -134,8 +135,6 @@
     <script src="~/Scripts/holder.min.js"></script>
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
     <script>
-
-
         Holder.addTheme('thumb', {
             bg: '#55595c',
             fg: '#eceeef',
@@ -143,5 +142,6 @@
         });
     </script>
     @RenderSection("Home_script", false)
+    @Html.Action("ScriptView", "Login")
 </body>
 </html>

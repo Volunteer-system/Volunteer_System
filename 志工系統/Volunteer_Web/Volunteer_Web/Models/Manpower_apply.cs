@@ -45,8 +45,8 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Apply_Assessment> Apply_Assessment { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apply_result> Apply_result { get; set; }
-        public virtual Volunteer_supervision Volunteer_supervision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apply_Service_period> Apply_Service_period { get; set; }
+        public virtual Volunteer_supervision Volunteer_supervision { get; set; }
     }
 }

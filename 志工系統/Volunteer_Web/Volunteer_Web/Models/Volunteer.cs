@@ -24,6 +24,7 @@ namespace Volunteer_Web.Models
             this.Shift_schedule = new HashSet<Shift_schedule>();
             this.Activity1 = new HashSet<Activity1>();
             this.Educations = new HashSet<Education>();
+            this.Experiences = new HashSet<Experience>();
             this.Expertise2 = new HashSet<Expertise2>();
             this.Leaders1 = new HashSet<Leaders1>();
             this.Service_Group1 = new HashSet<Service_Group1>();
@@ -69,6 +70,8 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Activity1> Activity1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Experience> Experiences { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expertise2> Expertise2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

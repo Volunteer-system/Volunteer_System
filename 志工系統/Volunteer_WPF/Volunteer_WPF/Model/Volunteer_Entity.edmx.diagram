@@ -93,6 +93,8 @@
         <EntityTypeShape EntityType="VolunteerModel.Apply_Service_period" Width="1.5" PointX="16.5" PointY="25.5" />
         <AssociationConnector Association="VolunteerModel.FK_Apply_Service_period_Manpower_apply" />
         <AssociationConnector Association="VolunteerModel.FK_Apply_Service_period_Service_period" />
+        <EntityTypeShape EntityType="VolunteerModel.Experience" Width="1.5" PointX="5.25" PointY="25.125" />
+        <AssociationConnector Association="VolunteerModel.FK_Experience_Volunteer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

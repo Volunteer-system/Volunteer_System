@@ -1,0 +1,28 @@
+﻿<script>
+    $(document).ready(function () {
+        $("#btn_login").click(function () {
+            var Account = $("#Account_number");
+            var Pas = $("#Password");
+            $.ajax({
+                type: "Post",
+                url: "/Login/LoginIndex",
+                data: { "Account_number": Account.val(), "Password": Pas.val() },
+                dataType: "json"
+            }).done(function (data) {
+                if (data == "帳號或密碼錯誤，登入失敗!!") {
+                    $("#showError").text(data).slideDown(1000, function () {
+                        window.setTimeout(function () {
+                            $("#showError").fadeOut(1000)
+                        }, 1000)
+                    });
+                }
+                else {
+
+                    window.location.href = "/Home/Index"
+                }
+                })                           
+            });
+            //Account.val("");
+            //Pas.val("");
+        });
+</script>

@@ -1,0 +1,44 @@
+﻿@model Volunteer_Web.ViewModel.Activity_Photo_Schedule_typeVM
+@*@model IEnumerable<Volunteer_Web.ViewModels.Activity_Photo_Schedule_typeVM>*@ 
+@{
+    ViewBag.Title = "Activity_Browse";
+}
+
+<div class="row mt-5">
+    <div class="col-2">
+        <div class="list-group">
+            @Html.ActionLink("新增活動","Activity_Create", "Volunteer", new {}, new { @class = "list-group-item list-group-item-action" })
+            @foreach (var category in Model.activity_types)
+
+            {
+                @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "list-group-item list-group-item-action" })
+            }
+
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="row">
+            @foreach (var ac in Model.activity)
+            {
+
+                <div class="col-sm-4 mt-2">
+                    <div class="card">
+                        <img class="card-img-top" src="@Url.Action("GetImageBytes","Volunteer",new { id =ac.Activity_Photo_id})" />
+                        <div class="card-body">
+                            <h5 class="card-title">@ac.Activity_name</h5>
+                            <p class="card-text">活動類別：@ac.Activity_type.Activity_type1</p>
+                            <p class="card-text">組別名稱：@ac.Service_group.Group_name</p>
+                            <p class="card-text">活動開始時間：@ac.Activity_startdate</p>
+                            <p class="card-text">活動結束時間：@ac.Activity_enddate</p>
+                            <a href="#" class="btn btn-secondary">內容</a>
+                            <a href="#" class="btn btn-secondary">參加</a>
+
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+</div>

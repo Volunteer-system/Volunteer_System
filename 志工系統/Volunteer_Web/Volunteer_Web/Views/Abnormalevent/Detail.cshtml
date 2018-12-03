@@ -1,0 +1,144 @@
+﻿@model Volunteer_Web.ViewModel.AbnormaleventStageVM
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<div id="fullscreen_bg" class="fullscreen_bg" />
+<div class="container">
+    <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">詳細資料</div>
+            </div>
+            <div class="panel-body">
+                <form method="post" action="~/Abnormalevent/Detail" class="form-horizontal">
+
+                    <div class="form-group">
+                        <label for="Abnormal_event_ID" class="col-md-2 text-right">
+                            事件案號
+                        </label>
+                        <div class="col-md-10 ">
+                            <input type="hidden" name="Abnormal_event_no" value="@Model.abnormalevent.Abnormal_event_no" />
+                            <label name="Abnormal_event_ID">@Model.abnormalevent.Abnormal_event_ID</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Abnormal_event1" class="col-md-2 text-right">
+                            異常事件
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Abnormal_event1">@Model.abnormalevent.Abnormal_event1</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Unit_descrition" class="col-md-2 text-right">
+                            事件描述
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Unit_descrition" rows="6">@Model.abnormalevent.Unit_descrition</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Application_unit1" class="col-md-2 text-right">
+                            運用單位
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Application_unit1">@Model.abnormalevent.Application_unit.Application_unit1</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Chinese_name" class="col-md-2 text-right">
+                            當事員工
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Chinese_name">@Model.abnormalevent.Volunteer.Chinese_name</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="Stage1" class="col-md-2 text-right">
+                            處理階段
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Stage1">@Model.stage.Stage1</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Notification_date" class="col-md-2 text-right">
+                            通報時間
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Notification_date">@Model.abnormalevent.Notification_date.ToShortDateString()</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="supervision_Name" class="col-md-2 text-right">
+                            負責督導
+                        </label>
+                        <div class="col-md-10">
+                            <label name="supervision_Name">@Model.abnormalevent.Volunteer_supervision.supervision_Name</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Volunteer_description" class="col-md-2 text-right">
+                            志工自述
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Volunteer_description" rows="6" readonly>@Model.abnormalevent.Volunteer_description</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Supervisor_description" class="col-md-2 text-right">
+                            督導敘述
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Supervisor_description" rows="6" readonly>@Model.abnormalevent.Supervisor_description</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Result" class="col-md-2 text-right">
+                            判決結果
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Result">@Model.abnormalevent.Result</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="Closing_date" class="col-md-2 text-right">
+                            結案時間
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Closing_date">@Model.abnormalevent.Closing_date</label>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <a href="~/Abnormalevent/Edit/@Model.abnormalevent.Abnormal_event_no" class="btn btn-info">修改資料</a>                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,132 @@
+﻿@model IEnumerable<Volunteer_Web.Models.Manpower_apply>
+@{
+    ViewBag.Title = "Insert";
+}
+
+<h2>年度人力申請</h2>
+
+<div class="panel-body">
+    <form class="form-horizontal" method="post" action="~/ManpowerApply/Insert" role="form">
+        <div class="form-group">
+            <label for="Applicant" class="col-md-4 control-label" >申請人</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="Applicant" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Applicant_phone" class="col-md-4 control-label">電話</label>
+            <div class="col-md-8">
+                <input type="tel" class="form-control" name="Applicant_phone" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Work_place" class="col-md-4 control-label">值班地點</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="Work_place" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label">需求時段及人數</label>
+            <div div class="col-md-8">
+                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#selectModal">請選擇</button>
+                <!-- Modal -->
+                <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
+                    <div class="modal-dialog " role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>星期一</th>
+                                                <th>星期二</th>
+                                                <th>星期三</th>
+                                                <th>星期四</th>
+                                                <th>星期五</th>
+                                                <th>星期六</th>
+                                                <th>星期日</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>上午班：08:30~11:30</td>
+                                                <td><input type="text" class="form-control form-control-sm"/>人</td>
+                                                <td><input type="text" class="form-control form-control-sm"/>人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                            </tr>
+                                            <tr>
+                                                <td>下午班：13:30~16:30</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                            </tr>
+                                            <tr>
+                                                <td>夜間班：18:00~21:00</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                            </tr>
+                                            <tr>
+                                                <td>支援班：11:30~13:30</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm" />人</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">確定</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Apply_description" class="col-md-4 control-label">志工工作項目與流程</label>
+            <div class="col-md-8">
+                <textarea class="form-control" name="Apply_description" rows="4"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Application_unit_Supervisor" class="col-md-4 control-label">單位主管</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="Application_unit_Supervisor" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Application_unit_heads" class="col-md-4 control-label">部門主管</label>
+            <div class="col-md-8">
+                <input type="text" class="form-control" name="Application_unit_heads" placeholder="">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-4 col-md-8">
+                <button type="submit" class="btn btn-info">提交申請</button>
+                <button type="reset" class="btn btn-info">重新輸入</button>
+            </div>
+        </div>
+    </form>
+</div>

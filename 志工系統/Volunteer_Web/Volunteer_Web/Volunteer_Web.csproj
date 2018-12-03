@@ -113,16 +113,8 @@
     <Content Include="Images\299-06-1.jpg" />
     <Content Include="Images\LoginUse.jpg" />
     <Content Include="Images\maxresdefault.jpg" />
-    <Content Include="Models\Volunteer.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Volunteer.Context.cs</LastGenOutput>
-      <DependentUpon>Volunteer.edmx</DependentUpon>
-    </Content>
-    <Content Include="Models\Volunteer.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Volunteer.edmx</DependentUpon>
-      <LastGenOutput>Volunteer1.cs</LastGenOutput>
-    </Content>
+    <Content Include="Images\Noimage.png" />
+    <Content Include="Images\志工隊介紹用.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -160,18 +152,19 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Models\Volunteer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Volunteer.edmx</DependentUpon>
+      <LastGenOutput>Volunteer.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Volunteer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Volunteer.edmx</DependentUpon>
+      <LastGenOutput>Volunteer1.cs</LastGenOutput>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\NeedCheckLogin.cs" />
-    <Compile Include="Controllers\UnitController.cs" />
-    <Compile Include="Controllers\VolunteerController.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-    </Compile>
     <Compile Include="Models\Abnormal_event.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -205,10 +198,22 @@
     <Compile Include="Models\Apply_Service_period.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AbnormaleventController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManpowerApplyController.cs" />
+    <Compile Include="Controllers\NeedCheckLogin.cs" />
+    <Compile Include="Controllers\SupervisionController.cs" />
+    <Compile Include="Controllers\UnitController.cs" />
+    <Compile Include="Controllers\VolunteerController.cs" />
     <Compile Include="Models\Education.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\event_category.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Experience.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Expertise.cs">
@@ -220,6 +225,9 @@
     <Compile Include="Models\Expertise2.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\Human_assessment.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -229,25 +237,39 @@
     <Compile Include="Models\Identity_type.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\IRepository.cs" />
     <Compile Include="Models\Leader.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Leaders1.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginUse\accountMethod.cs" />
-    <Compile Include="Models\LoginUse\Patrial\account.cs" />
     <Compile Include="Models\Lssuing_unit.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Manpower_apply.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\IRepository.cs" />
+    <Compile Include="Models\LoginUse\accountMethod.cs" />
+    <Compile Include="Models\LoginUse\Patrial\account.cs" />
+    <Compile Include="Models\Partial\Activity.cs" />
+    <Compile Include="Models\Repository.cs" />
+    <Compile Include="Models\Volunteer1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VolunteerUse\ActivityDetail.cs" />
+    <Compile Include="Models\VolunteerUse\ActivityHistoryModel.cs" />
+    <Compile Include="Models\VolunteerUse\ScheduleModel.cs" />
+    <Compile Include="Models\VolunteerUse\ShowModel.cs" />
+    <Compile Include="Models\VolunteerUse\VolunteerLeader.cs" />
+    <Compile Include="Models\VolunteerUse\VolunteerModel.cs" />
+    <Compile Include="Models\VolunteerUse\WorkHoursModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Questionnaire.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Repository.cs" />
     <Compile Include="Models\Service_group.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -284,6 +306,15 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\AbnormaleventStageVM.cs" />
+    <Compile Include="ViewModel\Activity_Photo_Schedule_typeVM.cs" />
+    <Compile Include="ViewModel\Act_pho.cs" />
+    <Compile Include="ViewModel\Experience_VM.cs" />
+    <Compile Include="ViewModel\Manpower_applyStageVM.cs" />
+    <Compile Include="ViewModel\Sign_up_Alldata_VM.cs" />
+    <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
+    <Compile Include="ViewModel\Sign_up_session.cs" />
+    <Compile Include="ViewModel\Visitor_Activity_VM.cs" />
     <Compile Include="Models\Volunteer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -297,31 +328,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Volunteer.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\Volunteer1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Volunteer.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Volunteer_list.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Volunteer_supervision.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModel\Sign_up_Alldata_VM.cs" />
-    <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
-    <Compile Include="ViewModel\Sign_up_session.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <EntityDeploy Include="Models\Volunteer.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Volunteer.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\Volunteer.edmx.diagram">
-      <DependentUpon>Volunteer.edmx</DependentUpon>
-    </Content>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -356,6 +371,36 @@
     <Content Include="Views\Home\Alldata_check.cshtml" />
     <Content Include="Views\Login\LoginIndex.cshtml" />
     <Content Include="Views\Home\Service_period.cshtml" />
+    <Content Include="Views\Home\Activity.cshtml" />
+    <Content Include="Views\Home\Experience.cshtml" />
+    <Content Include="Views\Supervision\Index.cshtml" />
+    <Content Include="Views\Shared\_SupervisionLayout.cshtml" />
+    <Content Include="Views\Supervision\_ViewStart.cshtml" />
+    <Content Include="Views\Supervision\Experience.cshtml" />
+    <Content Include="Views\Volunteer\Activity_Browse.cshtml" />
+    <Content Include="Views\Volunteer\Activity_Create.cshtml" />
+    <Content Include="Views\Abnormalevent\Detail.cshtml" />
+    <Content Include="Views\Abnormalevent\Edit.cshtml" />
+    <Content Include="Views\Abnormalevent\Index.cshtml" />
+    <Content Include="Views\Abnormalevent\Insert.cshtml" />
+    <Content Include="Views\Abnormalevent\test.cshtml" />
+    <Content Include="Views\Abnormalevent\_ViewStart.cshtml" />
+    <Content Include="Views\Volunteer\Activity_History.cshtml" />
+    <Content Include="Views\Volunteer\MembersDetail.cshtml" />
+    <Content Include="Views\Volunteer\WorkHours.cshtml" />
+    <Content Include="Views\Login\ScriptView.cshtml" />
+    <Content Include="Views\ManpowerApply\Detail.cshtml" />
+    <Content Include="Views\ManpowerApply\Edit.cshtml" />
+    <Content Include="Views\ManpowerApply\Index.cshtml" />
+    <Content Include="Views\ManpowerApply\Insert.cshtml" />
+    <Content Include="Views\ManpowerApply\_ViewStart.cshtml" />
+    <EntityDeploy Include="Models\Volunteer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Volunteer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Volunteer.edmx.diagram">
+      <DependentUpon>Volunteer.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

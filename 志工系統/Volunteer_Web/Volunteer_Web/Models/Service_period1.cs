@@ -17,17 +17,19 @@ namespace Volunteer_Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service_period1()
         {
+            this.Apply_Service_period = new HashSet<Apply_Service_period>();
             this.Service_period2 = new HashSet<Service_period>();
             this.Service_period21 = new HashSet<Service_period2>();
             this.Shift_schedule = new HashSet<Shift_schedule>();
             this.Sign_up_interview_period = new HashSet<Sign_up_interview_period>();
             this.Sign_up_Service_period = new HashSet<Sign_up_Service_period>();
-            this.Apply_Service_period = new HashSet<Apply_Service_period>();
         }
     
         public int Service_period_no { get; set; }
         public string Service_period { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Apply_Service_period> Apply_Service_period { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service_period> Service_period2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -38,7 +40,5 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Sign_up_interview_period> Sign_up_interview_period { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sign_up_Service_period> Sign_up_Service_period { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Apply_Service_period> Apply_Service_period { get; set; }
     }
 }

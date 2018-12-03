@@ -467,6 +467,7 @@
     <NavigationProperty Name="Leaders1" Relationship="Self.FK_Leaders_Volunteer" FromRole="Volunteer" ToRole="Leaders1" />
     <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Volunteer" FromRole="Volunteer" ToRole="Service_Group1" />
     <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Volunteer" FromRole="Volunteer" ToRole="Service_period2" />
+    <NavigationProperty Name="Experiences" Relationship="VolunteerModel.FK_Experience_Volunteer" FromRole="Volunteer" ToRole="Experience" />
   </EntityType>
   <Association Name="FK_Abnormal_event_Application_unit">
     <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
@@ -1232,6 +1233,11 @@
       <End Role="Service_period1" EntitySet="Service_period1" />
       <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
     </AssociationSet>
+    <EntitySet Name="Experiences" EntityType="VolunteerModel.Experience" />
+    <AssociationSet Name="FK_Experience_Volunteer" Association="VolunteerModel.FK_Experience_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteers" />
+      <End Role="Experience" EntitySet="Experiences" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Sign_up_interview_period">
     <Key>
@@ -1331,6 +1337,29 @@
       </Principal>
       <Dependent Role="Apply_Service_period">
         <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Experience">
+    <Key>
+      <PropertyRef Name="Experience_no" />
+    </Key>
+    <Property Name="Experience_no" Type="Int32" Nullable="false" />
+    <Property Name="Experience1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Volunteer_no" Type="Int32" />
+    <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Volunteer" Relationship="VolunteerModel.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+  </EntityType>
+  <Association Name="FK_Experience_Volunteer">
+    <End Type="VolunteerModel.Volunteer" Role="Volunteer" Multiplicity="0..1" />
+    <End Type="VolunteerModel.Experience" Role="Experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Experience">
+        <PropertyRef Name="Volunteer_no" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

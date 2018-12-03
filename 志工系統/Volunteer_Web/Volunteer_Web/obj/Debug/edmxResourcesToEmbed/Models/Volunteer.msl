@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities">
+  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities1">
     <EntitySetMapping Name="Abnormal_event">
       <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
         <MappingFragment StoreEntitySet="Abnormal_event">
@@ -54,6 +54,15 @@
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
           <ScalarProperty Name="result_ID" ColumnName="result_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Apply_Service_period">
+      <EntityTypeMapping TypeName="VolunteerModel.Apply_Service_period">
+        <MappingFragment StoreEntitySet="Apply_Service_period">
+          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+          <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
+          <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -226,6 +235,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Questionnaires">
+      <EntityTypeMapping TypeName="VolunteerModel.Questionnaire">
+        <MappingFragment StoreEntitySet="Questionnaire">
+          <ScalarProperty Name="Questionnaire_no" ColumnName="Questionnaire_no" />
+          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Service_group">
       <EntityTypeMapping TypeName="VolunteerModel.Service_group">
         <MappingFragment StoreEntitySet="Service_group">
@@ -311,6 +330,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Experiences">
+      <EntityTypeMapping TypeName="VolunteerModel.Experience">
+        <MappingFragment StoreEntitySet="Experience">
+          <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
+          <ScalarProperty Name="Experience1" ColumnName="Experience" />
+          <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+          <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
+          <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Expertise2">
       <EntityTypeMapping TypeName="VolunteerModel.Expertise2">
         <MappingFragment StoreEntitySet="Expertise2">
@@ -382,6 +412,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_questionnaire">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
+        <MappingFragment StoreEntitySet="Sign_up_questionnaire">
+          <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+          <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
+          <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Sign_up_Service_period">
       <EntityTypeMapping TypeName="VolunteerModel.Sign_up_Service_period">
         <MappingFragment StoreEntitySet="Sign_up_Service_period">
@@ -417,37 +459,6 @@
           <ScalarProperty Name="Service_manual_no" ColumnName="Service_manual_no" />
           <ScalarProperty Name="Personality_scale" ColumnName="Personality_scale" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Questionnaires">
-      <EntityTypeMapping TypeName="VolunteerModel.Questionnaire">
-        <MappingFragment StoreEntitySet="Questionnaire">
-          <ScalarProperty Name="Question" ColumnName="Question" />
-          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
-          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
-          <ScalarProperty Name="Questionnaire_no" ColumnName="Questionnaire_no" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sign_up_questionnaire">
-      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
-        <MappingFragment StoreEntitySet="Sign_up_questionnaire">
-          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
-          <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
-          <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
-          <ScalarProperty Name="Question_no" ColumnName="Question_no" />
-          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
-          <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Apply_Service_period">
-      <EntityTypeMapping TypeName="VolunteerModel.Apply_Service_period">
-        <MappingFragment StoreEntitySet="Apply_Service_period">
-          <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
-          <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
-          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
