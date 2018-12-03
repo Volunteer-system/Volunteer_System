@@ -25,6 +25,27 @@ namespace Volunteer_Web.Controllers
         {
             return View();
         }
+        public ActionResult Experience(int id=0)
+        {
+            Supervision_Experience_VM supervision_Experience_VM = new Supervision_Experience_VM();
+            supervision_Experience_VM.Service_groups = dbContext.Service_group.ToList();
+            supervision_Experience_VM.Experiences = supervision_Experience_VM.SelectExperience_byGroup(id);
+            return View(supervision_Experience_VM);
+        }
+
+        public ActionResult Activity(int id=0)
+        {
+            Visitor_Activity_VM visitor_Activity_VM = new Visitor_Activity_VM();
+            visitor_Activity_VM.Activity_types = dbContext.Activity_type.ToList();
+            visitor_Activity_VM.Visitor_Activity_VMs = visitor_Activity_VM.SelectActivity_byActivity_type(id);
+            return View(visitor_Activity_VM);
+        }
+        public ActionResult GetImageBytes(int id = 1)
+        {
+            Activity_photo ap = dbContext.Activity_photo.Find(id);
+            byte[] img = ap.Activity_photo1;
+            return File(img, "image/jpeg");
+        }
         //新志工申請
         public ActionResult NewVolunteer(int id = 1)
         {

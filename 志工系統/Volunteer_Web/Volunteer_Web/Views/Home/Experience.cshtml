@@ -19,7 +19,7 @@
                 <div class="col-sm-4">
                     <div class="card">
                         <div class="card-body">
-                            <img id="img_@row.Experience_no" class="card-img-top" src="~/Images/Noimage.png" alt="Card image cap">
+                            <img id="img_@row.Experience_no" class="card-img-top" src="~/Images/@row.Experience_photo" alt="Card image cap">
                             <h6 id="name_@row.Experience_no" class="card-title">活動名稱:@row.Experience</h6>
                             <p id="group_@row.Experience_no" class="card-text">志工:@row.Volunteer</p>
                             <button id="@row.Experience_no" value="@row.Experience_photo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
@@ -47,7 +47,7 @@
             <div class="modal-body">
                 <img id="model_img" class="card-img-top" alt="Card image cap">
                 <p id="model_group"></p>
-                <p > 詳細資料</p>
+                <p > 詳細資料:</p>
                 <p id="model_summary"></p>
             </div>
             <div class="modal-footer">
@@ -65,7 +65,7 @@
             $('.card-body').on('click', ':button', function () {
                 var id = $(this).attr("id");
                 var photo_id = $(this).val();
-                $('#model_img').attr("src", "/Images/Noimage.png");
+                $('#model_img').attr("src", "/Images/" + photo_id);
                 var doc = $('#name_' + id).text();
                 $('.modal-title').append(doc);
                 $('#model_group').text($('#group_' + id).text());

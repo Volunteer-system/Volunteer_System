@@ -19,7 +19,7 @@ namespace Volunteer_Web.ViewModel
                     on n1.Group_no equals n2.Group_no
                     join n3 in dbContext.Volunteer_supervision
                     on n1.Undertaker equals n3.supervision_ID
-                    where n1.Activity_type_ID == Activity_type
+                    where ((Activity_type == 0) ?true : n1.Activity_type_ID == Activity_type)
                     select new
                     {
                         Activity_no = n1.Activity_no,

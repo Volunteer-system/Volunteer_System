@@ -19,7 +19,7 @@ namespace Volunteer_Web.ViewModel
                     on n1.Volunteer_no equals n2.Volunteer_no
                     join n3 in dbContext.Service_Group1
                     on n1.Volunteer_no equals n3.Volunteer_no
-                    where n3.Group_no == Group_no
+                    where ((Group_no == 0) ? true : n3.Group_no == Group_no)
                     select new
                     {
                         Experience_no = n1.Experience_no,
