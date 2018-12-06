@@ -1,0 +1,46 @@
+﻿@model Volunteer_Web.ViewModel.Experience_VM
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>心得修改</h2>
+<hr />
+<form method="post" action="~/Supervision/Edit" class="form-horizontal" enctype="multipart/form-data">
+    @Html.EditorFor(p => p.Experience_no, new { htmlAttributes = new { type = "hidden"} })
+    <label hidden id="Experience_no" name="Experience_no" value ="@Model.Experience_no"></label>
+    <div class="form-group row">
+        <label for="Applicant" class="col-md-4 control-label">心得標題</label>
+        <div class="col-md-8">
+            @Html.EditorFor(p => p.Experience, new { htmlAttributes = new { @class = "form-control", placeholder = "心得標題" } })
+            @*<input id="Experience" name="Experience" type="text" value="@Model.Experience" class = "form-control" placeholder = "心得標題"/>*@
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Applicant" class="col-md-4 control-label">志工</label>
+        <div class="col-md-8">
+            @Html.EditorFor(p => p.Volunteer, new { htmlAttributes = new { @class = "form-control", placeholder = "志工姓名" } })
+            @*<input id="Volunteer" name="Volunteer" type="text" value="@Model.Volunteer" class="form-control" placeholder="志工姓名" />*@
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Applicant" class="col-md-4 control-label">訪談內容</label>
+        <div class="col-md-8">
+            @Html.EditorFor(p => p.Experience_content, new { htmlAttributes = new { @class = "form-control", placeholder = "訪談內容", type = "Textarea", rows = "8" } })
+            @*<input id="Volunteer" name="Volunteer" type="text" value="@Model.Volunteer" class="form-control" placeholder="志工姓名" />*@
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="Applicant" class="col-md-4 control-label">照片</label>
+        <div class="col-md-8">
+            @Html.EditorFor(p => p.Experience_photo, new { htmlAttributes = new { @class = "form-control", type = "file" } })
+            @*<input id="Experience_photo" name="Experience_photo" value="@Model.Experience_photo" class = "form-control" type="file" />*@
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-offset-4 col-md-8">
+            <button type="submit" class="btn btn-info">修改</button>
+            <button type="reset" class="btn btn-info">重新輸入</button>
+        </div>
+    </div>
+</form>
+

@@ -88,9 +88,9 @@
                             else
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    <a class="dropdown-item" href="#">個人首頁</a>
+                                    @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">首頁維護</a>
-                                    <a class="dropdown-item" href="#">志工心得維護</a>
+                                    @Html.ActionLink("志工心得維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">志工申請維護</a>
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
                                     @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@

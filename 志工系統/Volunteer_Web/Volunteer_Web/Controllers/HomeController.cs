@@ -131,10 +131,11 @@ namespace Volunteer_Web.Controllers
         public ActionResult Alldata_check()
         {
             
-            Sign_up_session sign_Up_Session = new Sign_up_session();
-            sign_Up_Session = Session["Sign_up_session"] as Sign_up_session;
-            Sign_up_questionnaireVM Sign_up_question = new Sign_up_questionnaireVM();
-            Sign_up_question = Session["Question"] as Sign_up_questionnaireVM;
+            Sign_up_session sign_Up_Session =Session["Sign_up_session"] as Sign_up_session ?? new Sign_up_session();
+  
+            Sign_up_questionnaireVM Sign_up_question = Session["Question"] as Sign_up_questionnaireVM ?? new Sign_up_questionnaireVM();
+
+
 
             Sign_up_Alldata_VM sign_Up_Alldata_VM = new Sign_up_Alldata_VM();
             sign_Up_Alldata_VM.SetSign_up_Alldata(sign_Up_Session, Sign_up_question);
@@ -142,6 +143,8 @@ namespace Volunteer_Web.Controllers
             return PartialView(sign_Up_Alldata_VM);
         }
 
+
+        //寫入個人資料
         public ActionResult InsertSign_up()
         {
           //session轉VM
@@ -233,7 +236,15 @@ namespace Volunteer_Web.Controllers
             q4else.Other_result1 = Sign_up_question.Q4else;
             dbContext.Entry(q4else).State = System.Data.Entity.EntityState.Added;
 
-            //Q5?????????????????????????????????????????????????
+            //Q5
+            Sign_up_questionnaire q5 = new Sign_up_questionnaire();
+            q5.Sign_up_no = Number;
+            q5.Question_no = 5;
+            q5.Answer_num = 1;
+            q5.Other_result1 = Sign_up_question.Q5unit;
+            q5.Other_result2 = Sign_up_question.Q5years;
+            q5.Other_result3 = Sign_up_question.Q5content;
+            dbContext.Entry(q5).State = System.Data.Entity.EntityState.Added;
 
             //Q6
             Sign_up_questionnaire q6jobs = new Sign_up_questionnaire();

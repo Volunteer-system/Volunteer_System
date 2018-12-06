@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abnormal_event">
           <Key>
             <PropertyRef Name="Abnormal_event_no" />
@@ -314,6 +314,7 @@
           <Property Name="Volunteer_no" Type="int" />
           <Property Name="Experience_content" Type="nvarchar(max)" />
           <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Issued" Type="bit" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -1270,8 +1271,7 @@
             <End Role="Volunteer" EntitySet="Volunteer" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VolunteerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1653,6 +1653,7 @@
           <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+          <Property Name="Issued" Type="Boolean" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -2979,6 +2980,7 @@
           <EntitySetMapping Name="Experiences">
             <EntityTypeMapping TypeName="VolunteerModel.Experience">
               <MappingFragment StoreEntitySet="Experience">
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
                 <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
                 <ScalarProperty Name="Experience1" ColumnName="Experience" />
                 <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />

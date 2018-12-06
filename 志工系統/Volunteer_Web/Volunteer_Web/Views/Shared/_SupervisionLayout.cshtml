@@ -55,9 +55,9 @@
                             }
                         }
                         <div class="dropdown-menu" aria-labelledby="dLabel">
-                            <a class="p-2 text-muted" href="#">個人首頁</a>
+                            @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })
                             <a class="p-2 text-muted" href="#">首頁維護</a>
-                            <a class="p-2 text-muted" href="#">志工心得維護</a>
+                            @Html.ActionLink("志工心得維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
                             <a class="p-2 text-muted" href="#">志工申請維護</a>
                         </div>
                     </div>
@@ -67,10 +67,10 @@
         </header>
         <div class="nav-scroller ">
             <nav class="nav d-flex justify-content-between ">
-                <a class="p-2 text-muted" href="#">個人首頁</a>
+                @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "p-2 text-muted" })
                 <a class="p-2 text-muted" href="#">首頁維護</a>
-                <a class="p-2 text-muted" href="#">志工心得</a>
-                <a class="p-2 text-muted" href="#">志工權益</a>
+                @Html.ActionLink("志工心得維護", "Experience", "Supervision", null, new { @class = "p-2 text-muted" })
+                <a class="p-2 text-muted" href="#">志工申請維護</a>
             </nav>
         </div>
     </div>

@@ -133,6 +133,7 @@ namespace Volunteer_Web.Controllers
         }
         //排班意願
 
+        [HttpGet]
         public ActionResult Activity_Browse(int id = 1)
         {
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
@@ -142,8 +143,25 @@ namespace Volunteer_Web.Controllers
             //var q = from c in db.Activities
             //        let b = c.Activity_photo
             //        select new { b.Activity_photo1 };
-
+            ViewBag.userid = Session["UserID"];
             return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Activity_Browse(int id, int activityID)
+        {
+            Repository<Activity1> ry = new Repository<Activity1>();
+            Activity1 activity1 = new Activity1()
+            {
+                Activity_no = activityID,
+                Volunteer_no = id,
+                Registration_date = DateTime.Now,
+                Stage = "未簽收"
+
+            };
+            ry.Create(activity1);
+
+
+            return Content("感謝您參加活動");
         }
         public ActionResult GetImageBytes(int id = 1)
         {

@@ -21,17 +21,30 @@
                         <th>照片</th>
                         <th>心得標題</th>
                         <th>志工</th>
-                        <th>檢視/編輯</th>
+                        <th>編輯</th>
+                        <th>發布狀態</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var row in Model.Experiences)
                     {
                     <tr>
-                        <td><img id="img_@row.Experience_no" class="img-fluid img-thumbnail" width="300" src="~/Images/@row.Experience_photo" alt="Card image cap"></td>
+                        <td width="200"><img id="img_@row.Experience_no" class="img-fluid img-thumbnail" width="300" src="~/Images/@row.Experience_photo" alt="Card image cap"></td>
                         <td>@row.Experience</td>
                         <td>@row.Volunteer</td>
-                        <td><a href="~/Supervision/Detail/@row.Experience_no" class="btn btn-primary">詳細資料</a></td>
+                        <td><a href="~/Supervision/Edit/@row.Experience_no" class="btn btn-primary">編輯</a></td>
+                        @if (row.Issued)
+                        {
+                            <td>
+                                <a href="~/Supervision/Issued/@row.Experience_no" class="btn btn-success">已發布</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                               <a href="~/Supervision/Issued/@row.Experience_no" class="btn btn-danger">未發布</a>
+                            </td>
+                        }
                     </tr>
                     }
                 </tbody>

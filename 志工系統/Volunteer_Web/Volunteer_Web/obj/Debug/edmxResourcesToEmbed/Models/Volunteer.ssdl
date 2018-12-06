@@ -309,6 +309,7 @@
     <Property Name="Volunteer_no" Type="int" />
     <Property Name="Experience_content" Type="nvarchar(max)" />
     <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Issued" Type="bit" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>

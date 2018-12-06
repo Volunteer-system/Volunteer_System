@@ -28,9 +28,25 @@ namespace Volunteer_Web.Controllers
         {
             return View();
         }
-        public ActionResult Detail(int id= 0)
+        [HttpGet]
+        public ActionResult Edit(int id= 0)
         {
-            return View();
+            Experience_VM experience_VM = new Experience_VM();
+            experience_VM.SelectExperiencebyExperience_no(id);
+            return View(experience_VM);
+        }
+        [HttpPost]
+        public ActionResult Edit(Experience_VM experience)
+        {
+            var test = Request.Form["Experience"];
+
+            Experience_VM experience_VM = new Experience_VM();
+            experience_VM.UpdateExperience(experience);
+            return RedirectToAction("Index");
+        }
+        public ActionResult Issued(int id = 0)
+        {
+            return RedirectToAction("Index");
         }
     }
 }

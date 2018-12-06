@@ -378,6 +378,7 @@
     <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+    <Property Name="Issued" Type="Boolean" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>

@@ -409,7 +409,7 @@
     <Content Include="Views\ManpowerApply\Insert.cshtml" />
     <Content Include="Views\ManpowerApply\_ViewStart.cshtml" />
     <Content Include="Views\Supervision\Experience_Insert.cshtml" />
-    <Content Include="Views\Supervision\Detail.cshtml" />
+    <Content Include="Views\Supervision\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -71,6 +71,7 @@
         </header>
         <div class="nav-scroller ">
             <nav class="nav d-flex justify-content-between ">
+                @Html.ActionLink("運用單位首頁", "Index", "Unit", null, new { @class = "p-2 text-muted" })
                 <a class="p-2 text-muted" href="#">單位基本資料</a>
                 @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "p-2 text-muted" })
                 @Html.ActionLink("異常事件通報", "Index", "Abnormalevent", null, new { @class = "p-2 text-muted" })

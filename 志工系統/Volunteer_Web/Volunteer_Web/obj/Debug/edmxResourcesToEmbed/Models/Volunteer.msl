@@ -334,6 +334,7 @@
     <EntitySetMapping Name="Experiences">
       <EntityTypeMapping TypeName="VolunteerModel.Experience">
         <MappingFragment StoreEntitySet="Experience">
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
           <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
           <ScalarProperty Name="Experience1" ColumnName="Experience" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />

@@ -1,33 +1,33 @@
-﻿
+﻿@model Volunteer_Web.ViewModel.Experience_VM
 @{
     ViewBag.Title = "Experience_Insert";
 }
 
 <h2>心得新增</h2>
-<hr/>
-<form method="post" action="~/Supervision/Insert" class="form-horizontal">
+<hr />
+<form method="post" action="~/Supervision/Insert" class="form-horizontal" enctype="multipart/form-data">
     <div class="form-group">
         <label for="Applicant" class="col-md-4 control-label">心得標題</label>
         <div class="col-md-8">
-            <input type="text" class="form-control" name="Applicant" placeholder="">
+            @Html.TextBoxFor(p => p.Experience, new { @class = "form-control", placeholder = "心得標題" })
         </div>
     </div>
     <div class="form-group">
         <label for="Applicant" class="col-md-4 control-label">志工</label>
         <div class="col-md-8">
-            <input type="text" class="form-control" name="Applicant" placeholder="">
+            @Html.TextBoxFor(p => p.Volunteer, new { @class = "form-control", placeholder = "志工姓名" })
         </div>
     </div>
     <div class="form-group">
         <label for="Applicant" class="col-md-4 control-label">訪談內容</label>
         <div class="col-md-8">
-            <textarea id="TextArea1" class="form-control" rows="2" cols="20"></textarea>
+            @Html.TextAreaFor(p => p.Experience_content, new { @class = "form-control", placeholder = "訪談內容", rows = "8" })
         </div>
     </div>
     <div class="form-group">
         <label for="Applicant" class="col-md-4 control-label">照片</label>
         <div class="col-md-8">
-            <input type="text" class="form-control" name="Applicant" placeholder="">
+            @Html.TextBoxFor(p => p.Experience_photo, new { @class = "form-control", type = "file" })
         </div>
     </div>
     <div class="form-group">
