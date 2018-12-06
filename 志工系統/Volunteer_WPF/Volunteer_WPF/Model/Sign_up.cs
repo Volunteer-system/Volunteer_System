@@ -17,9 +17,9 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Sign_up()
         {
-            this.Sign_up_Service_period = new HashSet<Sign_up_Service_period>();
             this.Sign_up_interview_period = new HashSet<Sign_up_interview_period>();
             this.Sign_up_questionnaire = new HashSet<Sign_up_questionnaire>();
+            this.Sign_up_Service_period = new HashSet<Sign_up_Service_period>();
         }
     
         public int Sign_up_no { get; set; }
@@ -27,6 +27,7 @@ namespace Volunteer_WPF.Model
         public string English_name { get; set; }
         public string Sex { get; set; }
         public Nullable<System.DateTime> Birthday { get; set; }
+        public string Sign_up_type { get; set; }
         public System.DateTime Sign_up_date { get; set; }
         public string Phone { get; set; }
         public string Mobile { get; set; }
@@ -38,14 +39,13 @@ namespace Volunteer_WPF.Model
         public Nullable<int> Stage { get; set; }
         public Nullable<System.DateTime> Approval_date { get; set; }
         public Nullable<int> supervision_ID { get; set; }
-        public string Sign_up_type { get; set; }
     
         public virtual Volunteer_supervision Volunteer_supervision { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sign_up_Service_period> Sign_up_Service_period { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sign_up_interview_period> Sign_up_interview_period { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Sign_up_Service_period> Sign_up_Service_period { get; set; }
     }
 }

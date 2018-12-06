@@ -17,9 +17,10 @@ namespace Volunteer_Web.Models
         public int Sign_up_questionnaire1 { get; set; }
         public int Sign_up_no { get; set; }
         public Nullable<int> Question_no { get; set; }
-        public Nullable<int> Question_num { get; set; }
+        public Nullable<int> Answer_num { get; set; }
         public string Other_result1 { get; set; }
         public string Other_result2 { get; set; }
+        public string Other_result3 { get; set; }
     
         public virtual Sign_up Sign_up { get; set; }
     }

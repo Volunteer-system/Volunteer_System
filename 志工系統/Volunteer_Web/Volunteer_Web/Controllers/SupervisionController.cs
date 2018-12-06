@@ -24,5 +24,13 @@ namespace Volunteer_Web.Controllers
             supervision_Experience_VM.Experiences = supervision_Experience_VM.SelectExperience_byGroup(id);
             return View(supervision_Experience_VM);
         }
+        public ActionResult Experience_Insert()
+        {
+            return View();
+        }
+        public ActionResult Detail(int id= 0)
+        {
+            return View();
+        }
     }
 }

@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>心得修改</h2>
+<hr />
+<form method="post" action="~/Supervision/Detail" class="form-horizontal">
+    <div class="form-group">
+        <label for="Applicant" class="col-md-4 control-label">心得標題</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="Applicant" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Applicant" class="col-md-4 control-label">志工</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="Applicant" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Applicant" class="col-md-4 control-label">訪談內容</label>
+        <div class="col-md-8">
+            <textarea id="TextArea1" class="form-control" rows="2" cols="20"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="Applicant" class="col-md-4 control-label">照片</label>
+        <div class="col-md-8">
+            <input type="text" class="form-control" name="Applicant" placeholder="">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-8">
+            <button type="submit" class="btn btn-info">修改</button>
+            <button type="reset" class="btn btn-info">重新輸入</button>
+        </div>
+    </div>
+</form>
+

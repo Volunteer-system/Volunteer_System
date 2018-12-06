@@ -5,7 +5,7 @@
       <PropertyRef Name="Abnormal_event_no" />
     </Key>
     <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
+    <Property Name="Abnormal_event_ID" Type="nvarchar" MaxLength="50" />
     <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
     <Property Name="Volunteer_no" Type="int" Nullable="false" />
     <Property Name="Application_unit_no" Type="int" Nullable="false" />
@@ -59,6 +59,7 @@
     <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Apply_ID" Type="int" Nullable="false" />
     <Property Name="Service_period_no" Type="int" Nullable="false" />
+    <Property Name="Volunteer_number" Type="int" />
   </EntityType>
   <EntityType Name="Expertise">
     <Key>
@@ -304,7 +305,7 @@
       <PropertyRef Name="Experience_no" />
     </Key>
     <Property Name="Experience_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Experience" Type="nvarchar" MaxLength="50" />
+    <Property Name="Experience" Type="nvarchar(max)" />
     <Property Name="Volunteer_no" Type="int" />
     <Property Name="Experience_content" Type="nvarchar(max)" />
     <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
@@ -381,9 +382,10 @@
     <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Sign_up_no" Type="int" Nullable="false" />
     <Property Name="Question_no" Type="int" />
-    <Property Name="Question_num" Type="int" />
+    <Property Name="Answer_num" Type="int" />
     <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
     <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other_result3" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
     <Key>

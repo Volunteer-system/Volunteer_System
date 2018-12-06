@@ -26,18 +26,18 @@ namespace Volunteer_WPF.Model
         public string Activity_name { get; set; }
         public int Activity_type_ID { get; set; }
         public Nullable<int> Group_no { get; set; }
+        public Nullable<System.DateTime> Activity_startdate { get; set; }
+        public Nullable<System.DateTime> Activity_enddate { get; set; }
         public string Undertake_unit { get; set; }
         public Nullable<int> Undertaker { get; set; }
         public string Undertake_phone { get; set; }
         public string Undertake_email { get; set; }
+        public string lecturer { get; set; }
         public Nullable<int> Member { get; set; }
         public Nullable<int> Spare { get; set; }
         public string Place { get; set; }
         public string Summary { get; set; }
         public Nullable<int> Activity_Photo_id { get; set; }
-        public Nullable<System.DateTime> Activity_startdate { get; set; }
-        public Nullable<System.DateTime> Activity_enddate { get; set; }
-        public string lecturer { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity1> Activity1 { get; set; }

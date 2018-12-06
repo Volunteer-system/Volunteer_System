@@ -5,7 +5,7 @@
       <PropertyRef Name="Abnormal_event_no" />
     </Key>
     <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Abnormal_event_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Abnormal_event_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Abnormal_event1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
     <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
@@ -75,6 +75,7 @@
     <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Apply_ID" Type="Int32" Nullable="false" />
     <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+    <Property Name="Volunteer_number" Type="Int32" />
     <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_Service_period_Manpower_apply" FromRole="Apply_Service_period" ToRole="Manpower_apply" />
     <NavigationProperty Name="Service_period1" Relationship="Self.FK_Apply_Service_period_Service_period" FromRole="Apply_Service_period" ToRole="Service_period1" />
   </EntityType>
@@ -372,7 +373,7 @@
       <PropertyRef Name="Experience_no" />
     </Key>
     <Property Name="Experience_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Experience1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Experience1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Volunteer_no" Type="Int32" />
     <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -464,9 +465,10 @@
     <Property Name="Sign_up_questionnaire1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
     <Property Name="Question_no" Type="Int32" />
-    <Property Name="Question_num" Type="Int32" />
+    <Property Name="Answer_num" Type="Int32" />
     <Property Name="Other_result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
@@ -1121,7 +1123,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="VolunteerEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="VolunteerEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Abnormal_event" EntityType="Self.Abnormal_event" />
     <EntitySet Name="Application_unit" EntityType="Self.Application_unit" />
     <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" />

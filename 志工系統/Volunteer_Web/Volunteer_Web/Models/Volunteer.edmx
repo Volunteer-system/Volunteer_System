@@ -10,7 +10,7 @@
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
           <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
+          <Property Name="Abnormal_event_ID" Type="nvarchar" MaxLength="50" />
           <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
@@ -64,6 +64,7 @@
           <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Apply_ID" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
+          <Property Name="Volunteer_number" Type="int" />
         </EntityType>
         <EntityType Name="Expertise">
           <Key>
@@ -309,7 +310,7 @@
             <PropertyRef Name="Experience_no" />
           </Key>
           <Property Name="Experience_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Experience" Type="nvarchar" MaxLength="50" />
+          <Property Name="Experience" Type="nvarchar(max)" />
           <Property Name="Volunteer_no" Type="int" />
           <Property Name="Experience_content" Type="nvarchar(max)" />
           <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
@@ -386,9 +387,10 @@
           <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sign_up_no" Type="int" Nullable="false" />
           <Property Name="Question_no" Type="int" />
-          <Property Name="Question_num" Type="int" />
+          <Property Name="Answer_num" Type="int" />
           <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
           <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Other_result3" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
           <Key>
@@ -1278,7 +1280,7 @@
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
           <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Abnormal_event_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Abnormal_event_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Abnormal_event1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
           <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
@@ -1348,6 +1350,7 @@
           <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Apply_ID" Type="Int32" Nullable="false" />
           <Property Name="Service_period_no" Type="Int32" Nullable="false" />
+          <Property Name="Volunteer_number" Type="Int32" />
           <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Apply_Service_period_Manpower_apply" FromRole="Apply_Service_period" ToRole="Manpower_apply" />
           <NavigationProperty Name="Service_period1" Relationship="Self.FK_Apply_Service_period_Service_period" FromRole="Apply_Service_period" ToRole="Service_period1" />
         </EntityType>
@@ -1645,7 +1648,7 @@
             <PropertyRef Name="Experience_no" />
           </Key>
           <Property Name="Experience_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Experience1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Experience1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Volunteer_no" Type="Int32" />
           <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1737,9 +1740,10 @@
           <Property Name="Sign_up_questionnaire1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
           <Property Name="Question_no" Type="Int32" />
-          <Property Name="Question_num" Type="Int32" />
+          <Property Name="Answer_num" Type="Int32" />
           <Property Name="Other_result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
@@ -2394,7 +2398,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="VolunteerEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VolunteerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Abnormal_event" EntityType="Self.Abnormal_event" />
           <EntitySet Name="Application_unit" EntityType="Self.Application_unit" />
           <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" />
@@ -2641,7 +2645,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities1">
+        <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities">
           <EntitySetMapping Name="Abnormal_event">
             <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
               <MappingFragment StoreEntitySet="Abnormal_event">
@@ -2704,6 +2708,7 @@
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
                 <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
                 <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+                <ScalarProperty Name="Volunteer_number" ColumnName="Volunteer_number" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3059,9 +3064,10 @@
                 <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Question_no" ColumnName="Question_no" />
-                <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+                <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
                 <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
                 <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
+                <ScalarProperty Name="Other_result3" ColumnName="Other_result3" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -17,6 +17,7 @@ namespace Volunteer_WPF.Model
         public int Primary_key { get; set; }
         public int Apply_ID { get; set; }
         public int Service_period_no { get; set; }
+        public Nullable<int> Volunteer_number { get; set; }
     
         public virtual Manpower_apply Manpower_apply { get; set; }
         public virtual Service_period1 Service_period1 { get; set; }

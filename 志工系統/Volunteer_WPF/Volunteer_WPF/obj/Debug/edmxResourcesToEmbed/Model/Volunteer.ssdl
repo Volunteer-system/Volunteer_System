@@ -1,0 +1,1268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Abnormal_event">
+    <Key>
+      <PropertyRef Name="Abnormal_event_no" />
+    </Key>
+    <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
+    <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="event_category_ID" Type="int" />
+    <Property Name="Stage" Type="int" Nullable="false" />
+    <Property Name="Notification_date" Type="datetime" Nullable="false" />
+    <Property Name="Closing_date" Type="datetime" />
+    <Property Name="Supervisor_ID" Type="int" />
+    <Property Name="Unit_descrition" Type="nvarchar(max)" />
+    <Property Name="Volunteer_description" Type="nvarchar(max)" />
+    <Property Name="Supervisor_description" Type="nvarchar(max)" />
+    <Property Name="Result" Type="nvarchar" MaxLength="50" />
+    <Property Name="Volunteer_leader_ID" Type="int" />
+    <Property Name="Supervisor_heads" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rejection_Reason" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Application_unit">
+    <Key>
+      <PropertyRef Name="Application_unit_no" />
+    </Key>
+    <Property Name="Application_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Group_no" Type="int" />
+    <Property Name="Application_phone_no" Type="nchar" MaxLength="10" />
+    <Property Name="Principal" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Principal_phone_no" Type="nchar" MaxLength="10" />
+    <Property Name="Application_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
+    <Property Name="Total_volunteers" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Apply_Assessment">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apply_ID" Type="int" Nullable="false" />
+    <Property Name="Assessment_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Apply_result">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apply_ID" Type="int" Nullable="false" />
+    <Property Name="result_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Apply_Service_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Apply_ID" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+    <Property Name="Volunteer_number" Type="int" />
+  </EntityType>
+  <EntityType Name="Expertise">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="Expertise_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Manpower_apply">
+    <Key>
+      <PropertyRef Name="Apply_ID" />
+    </Key>
+    <Property Name="Apply_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="Applicant" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Apply_date" Type="datetime" Nullable="false" />
+    <Property Name="Applicant_phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Work_place" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apply_description" Type="nvarchar(max)" />
+    <Property Name="Application_unit_Supervisor" Type="nvarchar" MaxLength="20" />
+    <Property Name="Application_unit_heads" Type="nvarchar" MaxLength="20" />
+    <Property Name="Apply_type" Type="nvarchar" MaxLength="10" />
+    <Property Name="Apply_state" Type="int" />
+    <Property Name="Supervision_ID" Type="int" />
+    <Property Name="Reply_date" Type="datetime" />
+    <Property Name="Repply_description" Type="nvarchar(max)" />
+    <Property Name="Supervision_heads" Type="nvarchar" MaxLength="20" />
+    <Property Name="Application_number" Type="int" />
+    <Property Name="Reply_number" Type="int" />
+  </EntityType>
+  <EntityType Name="Service_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+    <Property Name="Volunteer_number" Type="int" />
+  </EntityType>
+  <EntityType Name="Volunteer_list">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="blacklist_yn" Type="bit" />
+  </EntityType>
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Account_number" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="Password" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="Permission" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Activity">
+    <Key>
+      <PropertyRef Name="Activity_no" />
+    </Key>
+    <Property Name="Activity_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activity_name" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Activity_type_ID" Type="int" Nullable="false" />
+    <Property Name="Group_no" Type="int" />
+    <Property Name="Activity_startdate" Type="datetime" />
+    <Property Name="Activity_enddate" Type="datetime" />
+    <Property Name="Undertake_unit" Type="nvarchar" MaxLength="10" />
+    <Property Name="Undertaker" Type="int" />
+    <Property Name="Undertake_phone" Type="nvarchar" MaxLength="15" />
+    <Property Name="Undertake_email" Type="nchar" MaxLength="50" />
+    <Property Name="lecturer" Type="nvarchar" MaxLength="50" />
+    <Property Name="Member" Type="int" />
+    <Property Name="Spare" Type="int" />
+    <Property Name="Place" Type="nvarchar" MaxLength="50" />
+    <Property Name="Summary" Type="nchar" MaxLength="20" />
+    <Property Name="Activity_Photo_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Activity_photo">
+    <Key>
+      <PropertyRef Name="Activity_photo_id" />
+    </Key>
+    <Property Name="Activity_photo_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activity_id" Type="int" Nullable="false" />
+    <Property Name="Activity_photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Activity_Schedule">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activity_no" Type="int" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Activity_type">
+    <Key>
+      <PropertyRef Name="Activity_type_ID" />
+    </Key>
+    <Property Name="Activity_type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Activity_type" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="event_category">
+    <Key>
+      <PropertyRef Name="event_category_ID" />
+    </Key>
+    <Property Name="event_category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="event_category" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Expertise1">
+    <Key>
+      <PropertyRef Name="Expertise_no" />
+    </Key>
+    <Property Name="Expertise_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Expertise" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Human_assessment">
+    <Key>
+      <PropertyRef Name="Assessment_ID" />
+    </Key>
+    <Property Name="Assessment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Assessment_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Human_assessment_result">
+    <Key>
+      <PropertyRef Name="Assessment_result_ID" />
+    </Key>
+    <Property Name="Assessment_result_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Assessment_result" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Identity_type">
+    <Key>
+      <PropertyRef Name="Identity_type" />
+    </Key>
+    <Property Name="Identity_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identity_type_name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Leaders">
+    <Key>
+      <PropertyRef Name="Position_no" />
+    </Key>
+    <Property Name="Position_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Position_chinese" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Position_english" Type="nchar" MaxLength="50" />
+    <Property Name="Duties" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Lssuing_unit">
+    <Key>
+      <PropertyRef Name="Lssuing_unit_no" />
+    </Key>
+    <Property Name="Lssuing_unit_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Lssuing_unit" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Questionnaire">
+    <Key>
+      <PropertyRef Name="Questionnaire_no" />
+    </Key>
+    <Property Name="Questionnaire_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question_no" Type="int" Nullable="false" />
+    <Property Name="Question_num" Type="int" />
+    <Property Name="Question" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Service_group">
+    <Key>
+      <PropertyRef Name="Group_no" />
+    </Key>
+    <Property Name="Group_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Group_name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Group_leader" Type="int" />
+    <Property Name="Group_viceleader" Type="int" />
+  </EntityType>
+  <EntityType Name="Service_period1">
+    <Key>
+      <PropertyRef Name="Service_period_no" />
+    </Key>
+    <Property Name="Service_period_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Service_period" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Shift_schedule">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Application_unit_no" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Wish_order" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Stage">
+    <Key>
+      <PropertyRef Name="Stage_ID" />
+    </Key>
+    <Property Name="Stage_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Stage" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Stage_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Volunteer_supervision">
+    <Key>
+      <PropertyRef Name="supervision_ID" />
+    </Key>
+    <Property Name="supervision_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="supervision_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="supervision_phone" Type="int" />
+    <Property Name="supervision_address" Type="nvarchar" MaxLength="50" />
+    <Property Name="supervision_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="supervision_photo" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Activity1">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Activity_no" Type="int" Nullable="false" />
+    <Property Name="Registration_date" Type="datetime" />
+    <Property Name="Stage" Type="nvarchar" MaxLength="50" />
+    <Property Name="Confirm_time" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Education">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Activity_no" Type="int" Nullable="false" />
+    <Property Name="Training_date" Type="datetime" />
+    <Property Name="Proof" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Experience">
+    <Key>
+      <PropertyRef Name="Experience_no" />
+    </Key>
+    <Property Name="Experience_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Experience" Type="nvarchar(max)" />
+    <Property Name="Volunteer_no" Type="int" />
+    <Property Name="Experience_content" Type="nvarchar(max)" />
+    <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Expertise2">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Expertise_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Leaders1">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Position_no" Type="int" Nullable="false" />
+    <Property Name="Takeoffice_date" Type="date" />
+    <Property Name="Resignation_date" Type="date" />
+  </EntityType>
+  <EntityType Name="Service_Group1">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Group_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Service_period2">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Volunteer_no" Type="int" Nullable="false" />
+    <Property Name="Wish_order" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sign_up">
+    <Key>
+      <PropertyRef Name="Sign_up_no" />
+    </Key>
+    <Property Name="Sign_up_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chinese_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="English_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sex" Type="nchar" MaxLength="10" />
+    <Property Name="Birthday" Type="datetime" />
+    <Property Name="Sign_up_type" Type="nvarchar" MaxLength="10" />
+    <Property Name="Sign_up_date" Type="datetime" Nullable="false" />
+    <Property Name="Phone" Type="nchar" MaxLength="15" />
+    <Property Name="Mobile" Type="nchar" MaxLength="15" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Education" Type="nvarchar" MaxLength="10" />
+    <Property Name="Job" Type="nvarchar" MaxLength="10" />
+    <Property Name="Personality_scale" Type="nvarchar" MaxLength="50" />
+    <Property Name="Stage" Type="int" />
+    <Property Name="Approval_date" Type="datetime" />
+    <Property Name="supervision_ID" Type="int" />
+  </EntityType>
+  <EntityType Name="Sign_up_interview_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sign_up_no" Type="int" Nullable="false" />
+    <Property Name="interview_period_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sign_up_questionnaire">
+    <Key>
+      <PropertyRef Name="Sign_up_questionnaire" />
+    </Key>
+    <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sign_up_no" Type="int" Nullable="false" />
+    <Property Name="Question_no" Type="int" />
+    <Property Name="Question_num" Type="int" />
+    <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
+    <Property Name="Other_result3" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Sign_up_Service_period">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sign_up_no" Type="int" Nullable="false" />
+    <Property Name="Wish_order" Type="int" Nullable="false" />
+    <Property Name="Service_period_no" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Volunteer">
+    <Key>
+      <PropertyRef Name="Volunteer_no" />
+    </Key>
+    <Property Name="Volunteer_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Chinese_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="English_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="sex" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="birthday" Type="datetime" />
+    <Property Name="IDcrad_no" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Medical_record_no" Type="nchar" MaxLength="10" />
+    <Property Name="Identity_type" Type="int" Nullable="false" />
+    <Property Name="Seniority" Type="int" Nullable="false" />
+    <Property Name="Join_date" Type="date" />
+    <Property Name="Leave_date" Type="date" />
+    <Property Name="Leave_reason" Type="nchar" MaxLength="10" />
+    <Property Name="Phone_no" Type="int" />
+    <Property Name="Mobile_no" Type="int" />
+    <Property Name="Vest_no" Type="nchar" MaxLength="10" />
+    <Property Name="Postal_code" Type="int" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Education" Type="nvarchar" MaxLength="10" />
+    <Property Name="Lssuing_unit_no" Type="int" Nullable="false" />
+    <Property Name="Service_manual_no" Type="nchar" MaxLength="20" />
+    <Property Name="Personality_scale" Type="nvarchar" MaxLength="50" />
+    <Property Name="Photo" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Abnormal_event_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Abnormal_event" Type="Self.Abnormal_event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Abnormal_event">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Abnormal_event_event_category">
+    <End Role="event_category" Type="Self.event_category" Multiplicity="0..1" />
+    <End Role="Abnormal_event" Type="Self.Abnormal_event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="event_category">
+        <PropertyRef Name="event_category_ID" />
+      </Principal>
+      <Dependent Role="Abnormal_event">
+        <PropertyRef Name="event_category_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Abnormal_event_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Abnormal_event" Type="Self.Abnormal_event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Abnormal_event">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Abnormal_event_Volunteer_supervision">
+    <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
+    <End Role="Abnormal_event" Type="Self.Abnormal_event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer_supervision">
+        <PropertyRef Name="supervision_ID" />
+      </Principal>
+      <Dependent Role="Abnormal_event">
+        <PropertyRef Name="Supervisor_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Abnormal_event_Volunteer1">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Abnormal_event" Type="Self.Abnormal_event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Abnormal_event">
+        <PropertyRef Name="Volunteer_leader_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Activity">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+    <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Activity_no" />
+      </Principal>
+      <Dependent Role="Activity1">
+        <PropertyRef Name="Activity_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Activity_photo">
+    <End Role="Activity_photo" Type="Self.Activity_photo" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity_photo">
+        <PropertyRef Name="Activity_photo_id" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="Activity_Photo_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Activity_type">
+    <End Role="Activity_type" Type="Self.Activity_type" Multiplicity="1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity_type">
+        <PropertyRef Name="Activity_type_ID" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="Activity_type_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Schedule_Activity">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+    <End Role="Activity_Schedule" Type="Self.Activity_Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Activity_no" />
+      </Principal>
+      <Dependent Role="Activity_Schedule">
+        <PropertyRef Name="Activity_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Schedule_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Activity_Schedule" Type="Self.Activity_Schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Activity_Schedule">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="Group_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Activity1" Type="Self.Activity1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Activity1">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Activity_Volunteer_supervision">
+    <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
+    <End Role="Activity" Type="Self.Activity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer_supervision">
+        <PropertyRef Name="supervision_ID" />
+      </Principal>
+      <Dependent Role="Activity">
+        <PropertyRef Name="Undertaker" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Application_unit_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="0..1" />
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Application_unit">
+        <PropertyRef Name="Group_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Assessment_Human_assessment">
+    <End Role="Human_assessment" Type="Self.Human_assessment" Multiplicity="1" />
+    <End Role="Apply_Assessment" Type="Self.Apply_Assessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Human_assessment">
+        <PropertyRef Name="Assessment_ID" />
+      </Principal>
+      <Dependent Role="Apply_Assessment">
+        <PropertyRef Name="Assessment_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Assessment_Manpower_apply">
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
+    <End Role="Apply_Assessment" Type="Self.Apply_Assessment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manpower_apply">
+        <PropertyRef Name="Apply_ID" />
+      </Principal>
+      <Dependent Role="Apply_Assessment">
+        <PropertyRef Name="Apply_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_result_Human_assessment_result">
+    <End Role="Human_assessment_result" Type="Self.Human_assessment_result" Multiplicity="0..1" />
+    <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Human_assessment_result">
+        <PropertyRef Name="Assessment_result_ID" />
+      </Principal>
+      <Dependent Role="Apply_result">
+        <PropertyRef Name="result_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_result_Manpower_apply">
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
+    <End Role="Apply_result" Type="Self.Apply_result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manpower_apply">
+        <PropertyRef Name="Apply_ID" />
+      </Principal>
+      <Dependent Role="Apply_result">
+        <PropertyRef Name="Apply_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Service_period_Manpower_apply">
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="1" />
+    <End Role="Apply_Service_period" Type="Self.Apply_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Manpower_apply">
+        <PropertyRef Name="Apply_ID" />
+      </Principal>
+      <Dependent Role="Apply_Service_period">
+        <PropertyRef Name="Apply_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Apply_Service_period_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Apply_Service_period" Type="Self.Apply_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Apply_Service_period">
+        <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Education_Activity">
+    <End Role="Activity" Type="Self.Activity" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Activity">
+        <PropertyRef Name="Activity_no" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="Activity_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Education_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Education" Type="Self.Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Education">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Experience_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="0..1" />
+    <End Role="Experience" Type="Self.Experience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Experience">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expertise_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Expertise">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expertise_Expertise">
+    <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="1" />
+    <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Expertise1">
+        <PropertyRef Name="Expertise_no" />
+      </Principal>
+      <Dependent Role="Expertise">
+        <PropertyRef Name="Expertise_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expertise_Expertise1">
+    <End Role="Expertise1" Type="Self.Expertise1" Multiplicity="1" />
+    <End Role="Expertise2" Type="Self.Expertise2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Expertise1">
+        <PropertyRef Name="Expertise_no" />
+      </Principal>
+      <Dependent Role="Expertise2">
+        <PropertyRef Name="Expertise_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Expertise_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Expertise2" Type="Self.Expertise2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Expertise2">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leaders_Leaders">
+    <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+    <End Role="Leaders1" Type="Self.Leaders1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Leaders">
+        <PropertyRef Name="Position_no" />
+      </Principal>
+      <Dependent Role="Leaders1">
+        <PropertyRef Name="Position_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Leaders_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Leaders1" Type="Self.Leaders1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Leaders1">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manpower_apply_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Manpower_apply">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Manpower_apply_Volunteer_supervision">
+    <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
+    <End Role="Manpower_apply" Type="Self.Manpower_apply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer_supervision">
+        <PropertyRef Name="supervision_ID" />
+      </Principal>
+      <Dependent Role="Manpower_apply">
+        <PropertyRef Name="Supervision_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_Group_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="1" />
+    <End Role="Service_Group1" Type="Self.Service_Group1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Service_Group1">
+        <PropertyRef Name="Group_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_Group_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Service_Group1" Type="Self.Service_Group1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Service_Group1">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Service_period">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Service_period">
+        <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_period1">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shift_schedule_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Shift_schedule" Type="Self.Shift_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Shift_schedule">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shift_schedule_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Shift_schedule" Type="Self.Shift_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Shift_schedule">
+        <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Shift_schedule_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Shift_schedule" Type="Self.Shift_schedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Shift_schedule">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_interview_period_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Sign_up_interview_period" Type="Self.Sign_up_interview_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Sign_up_interview_period">
+        <PropertyRef Name="interview_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_interview_period_Sign_up">
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+    <End Role="Sign_up_interview_period" Type="Self.Sign_up_interview_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_interview_period">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_questionnaire_Sign_up">
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+    <End Role="Sign_up_questionnaire" Type="Self.Sign_up_questionnaire" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_questionnaire">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_Service_period_Sign_up">
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="1" />
+    <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sign_up">
+        <PropertyRef Name="Sign_up_no" />
+      </Principal>
+      <Dependent Role="Sign_up_Service_period">
+        <PropertyRef Name="Sign_up_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sign_up_Volunteer_supervision2">
+    <End Role="Volunteer_supervision" Type="Self.Volunteer_supervision" Multiplicity="0..1" />
+    <End Role="Sign_up" Type="Self.Sign_up" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer_supervision">
+        <PropertyRef Name="supervision_ID" />
+      </Principal>
+      <Dependent Role="Sign_up">
+        <PropertyRef Name="supervision_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Signup_Serviceperiod_Service_period">
+    <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
+    <End Role="Sign_up_Service_period" Type="Self.Sign_up_Service_period" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_period1">
+        <PropertyRef Name="Service_period_no" />
+      </Principal>
+      <Dependent Role="Sign_up_Service_period">
+        <PropertyRef Name="Service_period_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Volunteer_Identity_type">
+    <End Role="Identity_type" Type="Self.Identity_type" Multiplicity="1" />
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Identity_type">
+        <PropertyRef Name="Identity_type" />
+      </Principal>
+      <Dependent Role="Volunteer">
+        <PropertyRef Name="Identity_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Volunteer_list_Application_unit">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="1" />
+    <End Role="Volunteer_list" Type="Self.Volunteer_list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Volunteer_list">
+        <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Volunteer_list_Volunteer">
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="1" />
+    <End Role="Volunteer_list" Type="Self.Volunteer_list" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Volunteer">
+        <PropertyRef Name="Volunteer_no" />
+      </Principal>
+      <Dependent Role="Volunteer_list">
+        <PropertyRef Name="Volunteer_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Volunteer_Lssuing_unit">
+    <End Role="Lssuing_unit" Type="Self.Lssuing_unit" Multiplicity="1" />
+    <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lssuing_unit">
+        <PropertyRef Name="Lssuing_unit_no" />
+      </Principal>
+      <Dependent Role="Volunteer">
+        <PropertyRef Name="Lssuing_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VolunteerModelStoreContainer">
+    <EntitySet Name="Abnormal_event" EntityType="Self.Abnormal_event" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Application_unit" EntityType="Self.Application_unit" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Apply_Assessment" EntityType="Self.Apply_Assessment" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Apply_result" EntityType="Self.Apply_result" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Apply_Service_period" EntityType="Self.Apply_Service_period" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Expertise" EntityType="Self.Expertise" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Manpower_apply" EntityType="Self.Manpower_apply" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Service_period" EntityType="Self.Service_period" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="Volunteer_list" EntityType="Self.Volunteer_list" Schema="Application_unit" store:Type="Tables" />
+    <EntitySet Name="account" EntityType="Self.account" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Activity" EntityType="Self.Activity" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Activity_photo" EntityType="Self.Activity_photo" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Activity_Schedule" EntityType="Self.Activity_Schedule" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Activity_type" EntityType="Self.Activity_type" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="event_category" EntityType="Self.event_category" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Expertise1" EntityType="Self.Expertise1" Schema="Basic" Table="Expertise" store:Type="Tables" />
+    <EntitySet Name="Human_assessment" EntityType="Self.Human_assessment" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Human_assessment_result" EntityType="Self.Human_assessment_result" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Identity_type" EntityType="Self.Identity_type" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Leaders" EntityType="Self.Leaders" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Lssuing_unit" EntityType="Self.Lssuing_unit" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Questionnaire" EntityType="Self.Questionnaire" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Service_group" EntityType="Self.Service_group" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Service_period1" EntityType="Self.Service_period1" Schema="Basic" Table="Service_period" store:Type="Tables" />
+    <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="Stage" EntityType="Self.Stage" Schema="Basic" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
+    <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
+    <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Experience" EntityType="Self.Experience" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Expertise2" EntityType="Self.Expertise2" Schema="Volunteer" Table="Expertise" store:Type="Tables" />
+    <EntitySet Name="Leaders1" EntityType="Self.Leaders1" Schema="Volunteer" Table="Leaders" store:Type="Tables" />
+    <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" Schema="Volunteer" Table="Service_Group" store:Type="Tables" />
+    <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
+    <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="Volunteer" store:Type="Tables" />
+    <AssociationSet Name="FK_Abnormal_event_Application_unit" Association="Self.FK_Abnormal_event_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Abnormal_event" EntitySet="Abnormal_event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Abnormal_event_event_category" Association="Self.FK_Abnormal_event_event_category">
+      <End Role="event_category" EntitySet="event_category" />
+      <End Role="Abnormal_event" EntitySet="Abnormal_event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Abnormal_event_Volunteer" Association="Self.FK_Abnormal_event_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Abnormal_event" EntitySet="Abnormal_event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Abnormal_event_Volunteer_supervision" Association="Self.FK_Abnormal_event_Volunteer_supervision">
+      <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
+      <End Role="Abnormal_event" EntitySet="Abnormal_event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Abnormal_event_Volunteer1" Association="Self.FK_Abnormal_event_Volunteer1">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Abnormal_event" EntitySet="Abnormal_event" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Activity" Association="Self.FK_Activity_Activity">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="Activity1" EntitySet="Activity1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Activity_photo" Association="Self.FK_Activity_Activity_photo">
+      <End Role="Activity_photo" EntitySet="Activity_photo" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Activity_type" Association="Self.FK_Activity_Activity_type">
+      <End Role="Activity_type" EntitySet="Activity_type" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Schedule_Activity" Association="Self.FK_Activity_Schedule_Activity">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="Activity_Schedule" EntitySet="Activity_Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Schedule_Volunteer" Association="Self.FK_Activity_Schedule_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Activity_Schedule" EntitySet="Activity_Schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Service_group" Association="Self.FK_Activity_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Volunteer" Association="Self.FK_Activity_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Activity1" EntitySet="Activity1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Activity_Volunteer_supervision" Association="Self.FK_Activity_Volunteer_supervision">
+      <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
+      <End Role="Activity" EntitySet="Activity" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Application_unit_Service_group" Association="Self.FK_Application_unit_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Application_unit" EntitySet="Application_unit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Assessment_Human_assessment" Association="Self.FK_Apply_Assessment_Human_assessment">
+      <End Role="Human_assessment" EntitySet="Human_assessment" />
+      <End Role="Apply_Assessment" EntitySet="Apply_Assessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Assessment_Manpower_apply" Association="Self.FK_Apply_Assessment_Manpower_apply">
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+      <End Role="Apply_Assessment" EntitySet="Apply_Assessment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_result_Human_assessment_result" Association="Self.FK_Apply_result_Human_assessment_result">
+      <End Role="Human_assessment_result" EntitySet="Human_assessment_result" />
+      <End Role="Apply_result" EntitySet="Apply_result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_result_Manpower_apply" Association="Self.FK_Apply_result_Manpower_apply">
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+      <End Role="Apply_result" EntitySet="Apply_result" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Service_period_Manpower_apply" Association="Self.FK_Apply_Service_period_Manpower_apply">
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+      <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Apply_Service_period_Service_period" Association="Self.FK_Apply_Service_period_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Apply_Service_period" EntitySet="Apply_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Education_Activity" Association="Self.FK_Education_Activity">
+      <End Role="Activity" EntitySet="Activity" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Education_Volunteer" Association="Self.FK_Education_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Education" EntitySet="Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Experience_Volunteer" Association="Self.FK_Experience_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Experience" EntitySet="Experience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expertise_Application_unit" Association="Self.FK_Expertise_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Expertise" EntitySet="Expertise" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expertise_Expertise" Association="Self.FK_Expertise_Expertise">
+      <End Role="Expertise1" EntitySet="Expertise1" />
+      <End Role="Expertise" EntitySet="Expertise" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expertise_Expertise1" Association="Self.FK_Expertise_Expertise1">
+      <End Role="Expertise1" EntitySet="Expertise1" />
+      <End Role="Expertise2" EntitySet="Expertise2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Expertise_Volunteer" Association="Self.FK_Expertise_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Expertise2" EntitySet="Expertise2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leaders_Leaders" Association="Self.FK_Leaders_Leaders">
+      <End Role="Leaders" EntitySet="Leaders" />
+      <End Role="Leaders1" EntitySet="Leaders1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Leaders_Volunteer" Association="Self.FK_Leaders_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Leaders1" EntitySet="Leaders1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manpower_apply_Application_unit" Association="Self.FK_Manpower_apply_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Manpower_apply_Volunteer_supervision" Association="Self.FK_Manpower_apply_Volunteer_supervision">
+      <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
+      <End Role="Manpower_apply" EntitySet="Manpower_apply" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_Group_Service_group" Association="Self.FK_Service_Group_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Service_Group1" EntitySet="Service_Group1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_Group_Volunteer" Association="Self.FK_Service_Group_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Service_Group1" EntitySet="Service_Group1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Application_unit" Association="Self.FK_Service_period_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Service_period" EntitySet="Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_period" Association="Self.FK_Service_period_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Service_period" EntitySet="Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_period1" Association="Self.FK_Service_period_Service_period1">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Volunteer" Association="Self.FK_Service_period_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shift_schedule_Application_unit" Association="Self.FK_Shift_schedule_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Shift_schedule" EntitySet="Shift_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shift_schedule_Service_period" Association="Self.FK_Shift_schedule_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Shift_schedule" EntitySet="Shift_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Shift_schedule_Volunteer" Association="Self.FK_Shift_schedule_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Shift_schedule" EntitySet="Shift_schedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_interview_period_Service_period" Association="Self.FK_Sign_up_interview_period_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_interview_period_Sign_up" Association="Self.FK_Sign_up_interview_period_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_interview_period" EntitySet="Sign_up_interview_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_questionnaire_Sign_up" Association="Self.FK_Sign_up_questionnaire_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_questionnaire" EntitySet="Sign_up_questionnaire" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_Service_period_Sign_up" Association="Self.FK_Sign_up_Service_period_Sign_up">
+      <End Role="Sign_up" EntitySet="Sign_up" />
+      <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sign_up_Volunteer_supervision2" Association="Self.FK_Sign_up_Volunteer_supervision2">
+      <End Role="Volunteer_supervision" EntitySet="Volunteer_supervision" />
+      <End Role="Sign_up" EntitySet="Sign_up" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Signup_Serviceperiod_Service_period" Association="Self.FK_Signup_Serviceperiod_Service_period">
+      <End Role="Service_period1" EntitySet="Service_period1" />
+      <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Volunteer_Identity_type" Association="Self.FK_Volunteer_Identity_type">
+      <End Role="Identity_type" EntitySet="Identity_type" />
+      <End Role="Volunteer" EntitySet="Volunteer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Volunteer_list_Application_unit" Association="Self.FK_Volunteer_list_Application_unit">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Volunteer_list" EntitySet="Volunteer_list" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Volunteer_list_Volunteer" Association="Self.FK_Volunteer_list_Volunteer">
+      <End Role="Volunteer" EntitySet="Volunteer" />
+      <End Role="Volunteer_list" EntitySet="Volunteer_list" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Volunteer_Lssuing_unit" Association="Self.FK_Volunteer_Lssuing_unit">
+      <End Role="Lssuing_unit" EntitySet="Lssuing_unit" />
+      <End Role="Volunteer" EntitySet="Volunteer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

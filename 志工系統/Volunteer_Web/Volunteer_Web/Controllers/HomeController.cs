@@ -178,7 +178,7 @@ namespace Volunteer_Web.Controllers
                 sq.Sign_up_no = Number;
                 sq.Question_no = 1;
                
-                sq.Question_num =Convert.ToInt32(q1.Substring(0,1));
+                sq.Answer_num =Convert.ToInt32(q1.Substring(0,1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q1else = new Sign_up_questionnaire();
@@ -193,7 +193,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 2;
-                sq.Question_num = Convert.ToInt32(q2.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q2.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q2else = new Sign_up_questionnaire();
@@ -209,7 +209,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 3;
-                sq.Question_num = Convert.ToInt32(q3.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q3.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q3doc = new Sign_up_questionnaire();
@@ -224,7 +224,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 4;
-                sq.Question_num = Convert.ToInt32(q4.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q4.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q4else = new Sign_up_questionnaire();
@@ -249,7 +249,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 7;
-                sq.Question_num = Convert.ToInt32(q7.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q7.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
 
@@ -259,7 +259,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 8;
-                sq.Question_num = Convert.ToInt32(q8.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q8.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
 

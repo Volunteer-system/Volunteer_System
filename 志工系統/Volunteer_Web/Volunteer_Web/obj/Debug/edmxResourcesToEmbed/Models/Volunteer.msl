@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities1">
+  <EntityContainerMapping StorageEntityContainer="VolunteerModelStoreContainer" CdmEntityContainer="VolunteerEntities">
     <EntitySetMapping Name="Abnormal_event">
       <EntityTypeMapping TypeName="VolunteerModel.Abnormal_event">
         <MappingFragment StoreEntitySet="Abnormal_event">
@@ -63,6 +63,7 @@
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
           <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+          <ScalarProperty Name="Volunteer_number" ColumnName="Volunteer_number" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -418,9 +419,10 @@
           <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
           <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Question_no" ColumnName="Question_no" />
-          <ScalarProperty Name="Question_num" ColumnName="Question_num" />
+          <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
           <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
           <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
+          <ScalarProperty Name="Other_result3" ColumnName="Other_result3" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

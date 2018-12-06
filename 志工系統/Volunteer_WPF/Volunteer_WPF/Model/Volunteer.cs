@@ -24,11 +24,11 @@ namespace Volunteer_WPF.Model
             this.Shift_schedule = new HashSet<Shift_schedule>();
             this.Activity1 = new HashSet<Activity1>();
             this.Educations = new HashSet<Education>();
+            this.Experiences = new HashSet<Experience>();
             this.Expertise2 = new HashSet<Expertise2>();
             this.Leaders1 = new HashSet<Leaders1>();
             this.Service_Group1 = new HashSet<Service_Group1>();
             this.Service_period2 = new HashSet<Service_period2>();
-            this.Experiences = new HashSet<Experience>();
         }
     
         public int Volunteer_no { get; set; }
@@ -71,6 +71,8 @@ namespace Volunteer_WPF.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Education> Educations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Experience> Experiences { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Expertise2> Expertise2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Leaders1> Leaders1 { get; set; }
@@ -78,7 +80,5 @@ namespace Volunteer_WPF.Model
         public virtual ICollection<Service_Group1> Service_Group1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service_period2> Service_period2 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Experience> Experiences { get; set; }
     }
 }

@@ -69,7 +69,7 @@
                 var photo_id = $(this).val();
                 $('#model_img').attr("src", "/Home/GetImageBytes/" + photo_id);
                 var doc = $('#name_' + id).text();
-                $('.modal-title').append(doc);
+                $('.modal-title').text(doc);
                 doc = $('#start_' + id).text();
                 $('#model_start').text(doc);
                 $('#model_group').text($('#group_' + id).text());

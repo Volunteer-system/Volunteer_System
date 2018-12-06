@@ -86,160 +86,161 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\Abnormal_event.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Abnormal_event_Model.cs" />
     <Compile Include="Model\account.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Account_Model.cs" />
     <Compile Include="Model\Activity.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity1.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity_AddAction_Model.cs" />
     <Compile Include="Model\Activity_Model.cs" />
     <Compile Include="Model\Activity_photo.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity_Schedule.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity_type.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity_type_Model.cs" />
     <Compile Include="Model\Application_unit.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Application_unit_Model.cs" />
     <Compile Include="Model\Apply_Assessment.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Apply_assessment_Model.cs" />
     <Compile Include="Model\Apply_result.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Apply_result_Model.cs" />
     <Compile Include="Model\Apply_Service_period.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Education.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\event_category.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Event_category_Model.cs" />
     <Compile Include="Model\Experience.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Expertise.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Expertise1.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Expertise2.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\ExpertiseBasic_Model.cs" />
     <Compile Include="Model\Human_assessment.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Human_assessment_Model.cs" />
     <Compile Include="Model\Human_assessment_result.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Human_assessment_result_Model.cs" />
     <Compile Include="Model\Identity_type.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Leader.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Leaders1.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Lssuing_unit.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manpower_apply.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Manpower_apply_Model.cs" />
     <Compile Include="Model\Questionnaire.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_group.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_Group1.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_group_Model.cs" />
     <Compile Include="Model\Service_period.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_period1.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Service_period2.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Shift_schedule.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up_interview_period.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up_interview_period_Model.cs" />
     <Compile Include="Model\Sign_up_Model.cs" />
     <Compile Include="Model\Sign_up_questionnaire.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up_Service_period.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sign_up_Service_period_Model.cs" />
     <Compile Include="Model\Stage.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\sysdiagram.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Unit_expertise_Model.cs" />
     <Compile Include="Model\Unit_service_period_Model.cs" />
     <Compile Include="Model\Unit_volunteer_list_Model.cs" />
+    <Compile Include="Model\Volunteer.Context.cs" />
+    <Compile Include="Model\Volunteer.Context1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Volunteer.Context.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Volunteer.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\Volunteer_Entity.Context.cs">
+    <Compile Include="Model\Volunteer.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Volunteer_Entity.Context.tt</DependentUpon>
+      <DependentUpon>Volunteer.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Model\Volunteer_Entity.cs">
+    <Compile Include="Model\Volunteer1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\Volunteer_Entity.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Volunteer_list.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Volunteer_Model.cs" />
     <Compile Include="Model\Volunteer_supervision.cs">
-      <DependentUpon>Volunteer_Entity.tt</DependentUpon>
+      <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Control\Activity_Addimage_use.xaml.cs">
       <DependentUpon>Activity_Addimage_use.xaml</DependentUpon>
@@ -521,12 +522,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\Volunteer_Entity.edmx">
+    <EntityDeploy Include="Model\Volunteer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Volunteer_Entity.Designer.cs</LastGenOutput>
+      <LastGenOutput>Volunteer.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\Volunteer_Entity.edmx.diagram">
-      <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
+    <None Include="Model\Volunteer.edmx.diagram">
+      <DependentUpon>Volunteer.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -535,7 +536,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="image\abnormal.png" />
@@ -570,15 +573,17 @@
     <Resource Include="image\urgent-message.png" />
     <Resource Include="image\task-completed-.png" />
     <Resource Include="image\Noimage.png" />
-    <Content Include="Model\Volunteer_Entity.Context.tt">
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\Volunteer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
-      <LastGenOutput>Volunteer_Entity.Context.cs</LastGenOutput>
+      <DependentUpon>Volunteer.edmx</DependentUpon>
+      <LastGenOutput>Volunteer.Context1.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\Volunteer_Entity.tt">
+    <Content Include="Model\Volunteer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Volunteer_Entity.edmx</DependentUpon>
-      <LastGenOutput>Volunteer_Entity.cs</LastGenOutput>
+      <DependentUpon>Volunteer.edmx</DependentUpon>
+      <LastGenOutput>Volunteer1.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
