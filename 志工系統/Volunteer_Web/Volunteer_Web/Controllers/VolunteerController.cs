@@ -21,6 +21,7 @@ namespace Volunteer_Web.Controllers
         //志工基本資料
         public ActionResult Index()
         {
+            ViewBag.userID = Session["UserID"];
             return View();
         }
         //活動
@@ -199,6 +200,28 @@ namespace Volunteer_Web.Controllers
             });
             return Json(volunteer_user, JsonRequestBehavior.AllowGet);
             
+        }
+        //取得照片
+        public ActionResult GetImageByID(int id)
+        {
+            VolunteerEntities db = new VolunteerEntities();
+            var p = db.Activity_photo.Find(id);
+            byte[] imgs = p.Activity_photo1;
+            return File(imgs, "image/jpeg");
+        }
+        //取得月曆的顯示
+        public ActionResult GetCalendar(int id)
+        {
+            ActivityHistoryModel AHM = new ActivityHistoryModel();
+            return new JsonResult { Data = AHM.GetHistoryActivity(id).Select(n => new { Activity_no = n.Activity_no, Activity_name = n.Activity_name, Activity_startdate = n.Activity_startdate.Value.ToString("yyyy-MM-dd"), Activity_enddate = n.Activity_enddate.Value.ToString("yyyy-MM-dd") }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public ActionResult GetCalendarJson(int id)
+        {
+            VolunteerEntities db = new VolunteerEntities();
+
+            var detail = db.Activities.Where(n => n.Activity_no == id);
+            Session["photo"] = detail.FirstOrDefault().Activity_no;
+            return Json(detail.AsEnumerable().Select(n => new { Activity_name = n.Activity_name, Activity_type1 = n.Activity_type.Activity_type1, Activity_startdate = n.Activity_startdate.Value.ToShortDateString(), Activity_enddate = n.Activity_enddate.Value.ToShortDateString(), Summary = n.Summary, Activity_Photo_id = n.Activity_Photo_id }), JsonRequestBehavior.AllowGet);
         }
     }
 }

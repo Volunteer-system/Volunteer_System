@@ -6,19 +6,36 @@
                 @*<span class="login100-form-title-1">使用者登入</span>*@
             </div>
             @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login100-form validate-form" }))
-            { 
+            {
                 <div id="showError" class="alert alert-danger" role="alert"></div>
-                <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                    @Html.LabelFor(m => m.Account_number, new { @class = "label-input100" })
-                    @Html.TextBoxFor(m => m.Account_number, new { @class = "input100", placeholder = "Enter UserName" })
-                </div>
+                <div id="login">
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        @Html.LabelFor(m => m.Account_number, new { @class = "label-input100" })
+                        @Html.TextBoxFor(m => m.Account_number, new { @class = "input100", placeholder = "Enter UserName" })
+                    </div>
 
-                <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                    @Html.LabelFor(m => m.Password, new { @class = "label-input100" })
-                    @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Enter password", type = "password" })
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        @Html.LabelFor(m => m.Password, new { @class = "label-input100" })
+                        @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Enter password", type = "password" })
+                    </div>
+                    <a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>
+                    <button id="btn_login" class="btn_login fr" type="button">登入</button>
+                    <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
                 </div>
-                <button id="btn_login" class="btn_login fr" type="button">登入</button>
-                <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
+                <!--切換忘記帳號-->
+                <div id="forget" class="swap">
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+                        @Html.Label("identity", "身分證字號:", new { @class = "label-input100" })
+                        @Html.TextBox("identity", null, new { @class = "input100", placeholder = "Enter IdentityNumber" })
+                    </div>
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
+                        @Html.Label("birthday", "生日:", new { @class = "label-input100" })
+                        @Html.TextBox("birthday", null, new { @class = "input100", placeholder = "Enter Birthday" })
+                    </div>
+                    <a href="#" id="a_login" class="input100" style="color:blue">返回登入</a>
+                    <button id="btn_edit" class="btn_login fr" type="button">送出</button>
+                    <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
+                </div>
             }
         </div>
     </div>

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Schedule";
 }
-@{
+@*@{
     List<SelectListItem> WishSelectItem = new List<SelectListItem>();
     WishSelectItem.AddRange(new[]
                           { new SelectListItem() {Text = "______",Value = "0" },
@@ -10,7 +10,7 @@
     new SelectListItem() {Text = "2",Value = "2" },
     new SelectListItem() {Text = "3",Value = "3" } });
 
-}
+}*@
 <br />
 <br />
 <br />
@@ -19,6 +19,7 @@
     table {
         table-layout: fixed;
         word-break: break-word;
+        width:100%;
         /*overflow-wrap:break-word;*/
     }
 
@@ -27,7 +28,7 @@
     }
 </style>
 <h2>Schedule</h2>
-<table class="table table-bordered table-hover ">
+<table class="table table-bordered">
     <thead>
         <tr>
             <th></th>
@@ -42,6 +43,36 @@
     </thead>
     <tbody>
         <tr>
+            <td>上午</td>
+            <td data-service_period_no="1"><p ></p></td>
+            <td data-service_period_no="4"><p ></p></td>
+            <td data-service_period_no="7"><p ></p></td>
+            <td data-service_period_no="10"><p ></p></td>
+            <td data-service_period_no="13"><p></p></td>
+            <td data-service_period_no="16"><p ></p></td>
+            <td data-service_period_no="18"><p></p></td>
+        </tr>
+        <tr>
+            <td>下午</td>
+            <td data-service_period_no="2"><p></p></td>
+            <td data-service_period_no="5"><p></p></td>
+            <td data-service_period_no="8"><p></p></td>
+            <td data-service_period_no="11"><p></p></td>
+            <td data-service_period_no="14"><p></p></td>
+            <td data-service_period_no="17"><p></p></td>
+            <td data-service_period_no="19"><p></p></td>
+        </tr>
+        <tr>
+            <td>夜間</td>
+            <td data-service_period_no="3"><p></p></td>
+            <td data-service_period_no="6"><p></p></td>
+            <td data-service_period_no="9"><p></p></td>
+            <td data-service_period_no="12"><p></p></td>
+            <td data-service_period_no="15"><p ></p></td>
+            <td colspan="2"><button id="btn_edit" class="btn btn-info ml-3">編輯</button><button id="btn_insert" class="btn btn-info ml-3">儲存</button></td>
+
+        </tr>
+        @*<tr>
             <td>上午</td>
             <td data-service_period_no="1">@Html.DropDownList("select1", WishSelectItem)</td>
             <td data-service_period_no="4">@Html.DropDownList("select4", WishSelectItem)</td>
@@ -69,68 +100,95 @@
             <td data-service_period_no="12">@Html.DropDownList("select12", WishSelectItem)</td>
             <td data-service_period_no="15">@Html.DropDownList("select15", WishSelectItem)</td>
             <td colspan="2"><button id="btn_insert" class="btn btn-success">送出</button></td>
-        </tr>
+        </tr>*@
     </tbody>
 </table>
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script>   
+<script> 
+    var btn_edit = $("#btn_edit");
     var btn_insert = $("#btn_insert");
-    var select = $("select[id^='select']");  
+    var select = $("td>p");  
+    var re = /^[1-3]{1}$/
     $(document).ready(function () {
         //================================有新增過資料就顯示=================================
-        $.getJSON("/Volunteer/Getjson", function (datas) {
-            $.each(datas, function (index, vals) {
-                $("td[data-service_period_no='" + vals.Service_period_no + "']").find(select).val(vals.Wish_order);
+        //$.getJSON("/Volunteer/Getjson", function (datas) {
+        //    $.each(datas, function (index, vals) {
+        //        $("td[data-service_period_no='" + vals.Service_period_no + "']").find(select).val(vals.Wish_order);
+        //    });
+        //});
+                $.getJSON("/Volunteer/Getjson", function (datas) {
+                    $.each(datas, function (index, vals) {
+                        $("td[data-service_period_no='" + vals.Service_period_no + "']").find(select).text(vals.Wish_order);
             });
         });
-
         //================================新增/修改志願=======================================
+        btn_edit.click(function () {
+            switch ($(this).text())
+            {
+                case "編輯":
+                    $(this).text("完成").removeClass("btn-info").addClass("btn-danger")
+                    select.attr("contenteditable", true).css("border", "1px solid red")
+                    break;
+                case "完成":
+                    $(this).text("編輯").removeClass("btn-danger").addClass("btn-info")
+                    select.attr("contenteditable", false).css("border", "none")
+                    break;
+            }           
+        });
+        select.keyup(function () {
+            if (!re.test($(this).text()))
+            {
+                alert("請填入1-3");
+                $(this).text("");
+            }
+        });
         btn_insert.click(function () {
-            var wish1 = [];
-            var wish2 = [];
-            var wish3 = [];
-            $("select").find(":selected").each(function () {
-                switch ($(this).val())
-                {
-                    case "1":
-                        wish1.push($(this).parents("td").data("service_period_no"));
-                    break;
-                    case "2":
-                        wish2.push($(this).parents("td").data("service_period_no"));
-                    break;
-                    case "3":
-                        wish3.push($(this).parents("td").data("service_period_no"));
-                    break;
-                }
-            });
-            if (wish1.length == 0) {
-                alert("至少要有1個志願1");
+            if (btn_edit.text() == "完成") {
+                alert("請先完成編輯");
             }
-            else if (wish3.length != 0 && wish2.length == 0)
-            {
-                alert("缺少志願2，不能直接選志願3")
-            }
-            else
-            {
-                var divery = [wish1];
-                var wishID = [1];
-                if (wish2.length != 0)
-                {
-                    divery.push(wish2);
-                    wishID.push(2);
-                }
-                if (wish3.length != 0) {
-                    divery.push(wish3);
-                    wishID.push(3);
-                }
-                $.ajax({
-                    type: "post",
-                    url: "/Volunteer/Schedule",
-                    data: { "id": @ViewBag.UserID, "wishid": wishID, "service_no": divery }
-                }).done(function (data) {
-                    alert(data);
-                    window.location.href = "/Volunteer/Index"
+            else {
+                var wish1 = [];
+                var wish2 = [];
+                var wish3 = [];
+                $("td").children("p").each(function () {
+                    switch ($(this).text()) {
+                        case "1":
+                            wish1.push($(this).parents("td").data("service_period_no"));
+                            break;
+                        case "2":
+                            wish2.push($(this).parents("td").data("service_period_no"));
+                            break;
+                        case "3":
+                            wish3.push($(this).parents("td").data("service_period_no"));
+                            break;
+                    }
                 });
+                if (wish1.length == 0) {
+                    alert("至少要有1個志願1");
+                }
+                else if (wish3.length != 0 && wish2.length == 0) {
+                    alert("缺少志願2，不能直接選志願3")
+                }
+                else {
+                    var divery = [wish1];
+                    var wishID = [1];
+                    if (wish2.length != 0) {
+                        divery.push(wish2);
+                        wishID.push(2);
+                    }
+                    if (wish3.length != 0) {
+                        divery.push(wish3);
+                        wishID.push(3);
+                    }
+                    $.ajax({
+                        type: "post",
+                        url: "/Volunteer/Schedule",
+                        data: { "id": @ViewBag.UserID, "wishid": wishID, "service_no": divery }
+                    }).done(function (data) {
+                        alert(data);
+                        window.location.href = "/Volunteer/Index"
+                    });
+                }
             }
         });            
     });

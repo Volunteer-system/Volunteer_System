@@ -68,27 +68,27 @@ h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
 
-/*p {
+p {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
 	color: #666666;
 	margin: 0px;
-}*/
+}
 
-/*ul, li {
+ul, li {
 	margin: 0px;
 	list-style-type: none;
-}*/
+}
 
 
 /*---------------------------------------------*/
-/*input {
+input {
 	outline: none;
 	border: none;
-}*/
+}
 
-/*input[type="number"] {
+input[type="number"] {
     -moz-appearance: textfield;
     appearance: none;
     -webkit-appearance: none;
@@ -106,9 +106,9 @@ textarea {
 
 textarea:focus, input:focus {
   border-color: transparent !important;
-}*/
+}
 
-/*input:focus::-webkit-input-placeholder { color:transparent; }
+input:focus::-webkit-input-placeholder { color:transparent; }
 input:focus:-moz-placeholder { color:transparent; }
 input:focus::-moz-placeholder { color:transparent; }
 input:focus:-ms-input-placeholder { color:transparent; }
@@ -126,7 +126,7 @@ input:-ms-input-placeholder {color: #999999;}
 textarea::-webkit-input-placeholder {color: #999999;}
 textarea:-moz-placeholder {color: #999999;}
 textarea::-moz-placeholder {color: #999999;}
-textarea:-ms-input-placeholder {color: #999999;}*/
+textarea:-ms-input-placeholder {color: #999999;}
 
 label {
   display: block;
@@ -151,22 +151,22 @@ button:hover {
 
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
-/*.txt1 {
+.txt1 {
   font-family: Poppins-Regular;
   font-size: 13px;
   line-height: 1.4;
   color: #999999;
-}*/
+}
 
 /*//////////////////////////////////////////////////////////////////
 [ login ]*/
 
-/*.limiter {
+.limiter {
   width: 100%;
   margin: 0 auto;
-}*/
+}
 
-/*.container-login100 {
+.container-login100 {
   width: 100%;  
   min-height: 100vh;
   display: -webkit-box;
@@ -179,16 +179,16 @@ button:hover {
   align-items: center;
   padding: 15px;
   background: #ebeeef;
-}*/
+}
 
 
-/*.wrap-login100 {
+.wrap-login100 {
   width: 670px;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
   position: relative;
-}*/
+}
 
 /*==================================================================
 [ Title form ]*/
@@ -274,6 +274,7 @@ button:hover {
   padding: 0 5px;
 }
 
+
 .focus-input100 {
   position: absolute;
   display: block;
@@ -306,8 +307,6 @@ button:hover {
 input.input100 {
   height: 45px;
 }
-
-
 .input100:focus + .focus-input100::before {
   width: 100%;
 }
@@ -315,6 +314,7 @@ input.input100 {
 .has-val.input100 + .focus-input100::before {
   width: 100%;
 }
+
 
 /*==================================================================
 [ Restyle Checkbox ]*/
