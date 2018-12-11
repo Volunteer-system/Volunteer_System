@@ -8,7 +8,7 @@
         <div class="list-group">
             @foreach (var row in Model.Service_groups)
             {
-                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "list-group-item list-group-item-action" })
+                @Html.ActionLink(row.Group_name, "Experience", "Home", new { id = row.Group_no }, new { @class = "list-group-item list-group-item-action" })
             }
         </div>
     </div>
@@ -16,19 +16,22 @@
         <div class="row">
             @foreach (var row in Model.Experiences)
             {
-                <div class="col-sm-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <img id="img_@row.Experience_no" class="card-img-top" src="~/Images/@row.Experience_photo" alt="Card image cap">
-                            <h6 id="name_@row.Experience_no" class="card-title">活動名稱:@row.Experience</h6>
-                            <p id="group_@row.Experience_no" class="card-text">志工:@row.Volunteer</p>
-                            <button id="@row.Experience_no" value="@row.Experience_photo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-                                詳細資訊
-                            </button>
-                            <p hidden id="hid_@row.Experience_no">@row.Experience_content</p>
+                if (row.Issued)
+                {
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <img id="img_@row.Experience_no" class="card-img-top" src="~/Images/@row.Experience_photo" alt="Card image cap">
+                                <h6 id="name_@row.Experience_no" class="card-title">活動名稱:@row.Experience</h6>
+                                <p id="group_@row.Experience_no" class="card-text">志工:@row.Volunteer</p>
+                                <button id="@row.Experience_no" value="@row.Experience_photo" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                    詳細資訊
+                                </button>
+                                <p hidden id="hid_@row.Experience_no">@row.Experience_content</p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                }
             }
         </div>
     </div>
@@ -45,10 +48,25 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="model_img" class="card-img-top" alt="Card image cap">
-                <p id="model_group"></p>
-                <p > 詳細資料:</p>
-                <p id="model_summary"></p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <img id="model_img" class="card-img-top" alt="Card image cap">
+                            </th>
+                        </tr>                        
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>活動組別:</td>
+                            <td id="model_group"></td>
+                        </tr>
+                        <tr>
+                            <td>詳細資料:</td>
+                            <td id="model_summary"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">離開</button>

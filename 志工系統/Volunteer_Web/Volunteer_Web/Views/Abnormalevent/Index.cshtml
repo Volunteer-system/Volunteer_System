@@ -1,60 +1,69 @@
 ﻿@model IEnumerable<Volunteer_Web.ViewModel.AbnormaleventStageVM>
-
-@{
-    ViewBag.Title = "Index";
-}
-
 <a href="~/Abnormalevent/Insert" class="btn btn-primary" target="_blank">通報事件</a>
 
-
-
-
-@using (Html.BeginForm("SelectByDate", "Abnormalevent"))
-{
 <div class="row">
+    <div class="col-3">
+        <!--載入 PartialView-->
+        @Html.Action("Menu")
+    </div>
+    <div class="col-9">
+        <div class="row">
 
-    <label>事件日期：</label>
-    <input type="date" class="alert-light" id="date1" name="date1" />
-    <label>～</label>
-    <input type="date" class="alert-light" id="date2" name="date2" />
+            @using (Html.BeginForm("SelectByDate", "Abnormalevent"))
+            {
+                <label>事件日期：</label>
+                <input type="date" class="alert-light" id="date1" name="date1" value="@ViewBag.date1" required />
+                <label>～</label>
+                <input type="date" class="alert-light" id="date2" name="date2" value="@ViewBag.date2" required />
+                <input type="submit" value="搜尋" class="btn btn-info" />
+            }
 
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>事件案號</th>
+                        <th>異常事件</th>
+                        <th>當事員工</th>
+                        <th>負責督導</th>
+                        <th>通報日期</th>
+                        <th>處理階段</th>
+                        @*<th>結案時間</th>*@
+                        <th>檢視/編輯</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.abnormalevent.Abnormal_event_ID</td>
+                            <td>@item.abnormalevent.Abnormal_event1</td>
+                            <td>@item.abnormalevent.Volunteer.Chinese_name</td>
+                            @if (item.abnormalevent.Supervisor_ID != null)
+                            {
+                                <td>@item.abnormalevent.Volunteer_supervision.supervision_Name</td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
+                            <td>@Html.DisplayFor(a=>item.abnormalevent.Notification_date)</td>
+                            <td>@item.stage.Stage1</td>
+                            @*<td>@Html.DisplayFor(a => item.abnormalevent.Closing_date)</td>*@
+                            <td><a href="~/Abnormalevent/Detail/@item.abnormalevent.Abnormal_event_no" class="btn btn-primary">詳細資料</a></td>
+                        </tr>
+                    }
 
-    <label>階段：</label>
-    @Html.DropDownList("Stage", (SelectList)ViewBag.stage, "請選擇", new { @class = "form-control" })
+                </tbody>
+            </table>
 
-    <input type="submit" value="搜尋" class="btn-info" />
+        </div>
+    </div>
 </div>
+
+@section Home_script{
+    <script>
+        $(document).ready(function () {
+            $('a[id = "@ViewBag.id"]').addClass('active');
+        })
+    </script>
 }
-
-
-
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>事件案號</th>
-            <th>異常事件</th>
-            <th>當事員工</th>
-            <th>負責督導</th>
-            <th>通報日期</th>
-            <th>處理階段</th>
-            <th>檢視/編輯</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>            
-            <td>@item.abnormalevent.Abnormal_event_ID</td>           
-            <td>@item.abnormalevent.Abnormal_event1</td>
-            <td>@item.abnormalevent.Volunteer.Chinese_name</td>
-            <td>@item.abnormalevent.Volunteer_supervision.supervision_Name</td>
-            <td>@item.abnormalevent.Notification_date.ToShortDateString().ToString()</td>
-            <td>@item.stage.Stage1</td>           
-            <td><a href="~/Abnormalevent/Detail/@item.abnormalevent.Abnormal_event_no" class="btn btn-primary" target="_blank">詳細資料</a></td>
-        </tr>
-        }
-
-    </tbody>
-</table>
-
-

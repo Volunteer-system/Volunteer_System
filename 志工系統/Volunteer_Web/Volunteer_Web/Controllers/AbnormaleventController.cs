@@ -6,46 +6,137 @@ using System.Web.Mvc;
 using Volunteer_Web.Models;
 using Volunteer_Web.ViewModel;
 
+
 namespace Volunteer_Web.Controllers
 {
     public class AbnormaleventController : Controller
     {
         private Repository<Abnormal_event> abnormaleventRepository = new Repository<Abnormal_event>();
         private VolunteerEntities db = new VolunteerEntities();
-        public static IQueryable<AbnormaleventStageVM> selectit = null;
+        
+
 
         // GET: Abnormalevent
-        public ActionResult Index()
-        {            
+        public ActionResult Index(int id = 0)
+        {
+            
+            DateTime date1 = new DateTime();
+           DateTime date2 = new DateTime();
+
             int unit = Convert.ToInt32(Session["UserID"]);                //搜尋近3個月通報
             DateTime date = DateTime.Now.Date.AddMonths(-3);
 
-            var q = from a in db.Abnormal_event
-                    join s in db.Stages on a.Stage equals s.Stage_ID
-                    where a.Application_unit_no == unit && a.Notification_date > date
-                    orderby a.Notification_date descending
-                    select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-
-
-            var stage = from s in db.Stages                       //階段下拉選單
-                        where s.Stage_type == "異常事件"
-                        select new
-                        {
-                            s.Stage_ID,
-                            s.Stage1
-                        };
-
-            ViewBag.stage = new SelectList(stage, "Stage_ID", "Stage1");
-
-
-            if (selectit == null)
+            if (id != 0)
             {
+                Response.Cookies["selectid"]["id"] = id.ToString();
+                if (Request.Cookies["selectid"] != null)
+                {
+                    ViewBag.id = id;
+                }
+            }
+
+            if (Request.Cookies["selectstage"]["date1"] != null)
+            {
+
+                date1 = DateTime.ParseExact(Request.Cookies["selectstage"]["date1"],"yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+            }           
+
+            if (Request.Cookies["selectstage"]["date2"] != null)
+            {
+                date2 = DateTime.ParseExact(Request.Cookies["selectstage"]["date2"], "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+            }
+            
+
+
+            if (id != 0 && (date1.ToString("yyyyMMdd") != "00010101" || date2.ToString("yyyyMMdd") != "00010101")) //有時間有階段
+            {
+                ViewBag.date1 = date1.ToString("yyyy-MM-dd");
+                ViewBag.date2 = date2.AddDays(-1).ToString("yyyy-MM-dd");
+
+                var q = from a in db.Abnormal_event
+                        join s in db.Stages on a.Stage equals s.Stage_ID
+                        where a.Application_unit_no == unit && s.Stage_ID == id && a.Notification_date >= date1 && a.Notification_date <= date2
+                        orderby a.Notification_date descending
+                        select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
                 return View(q);
             }
-            else
+
+
+            else if (id == 0 && Request.Cookies["selectid"]["id"] != "0" ) 
             {
-                return View(selectit);
+                if (date1.ToString("yyyyMMdd") != "00010101" || date2.ToString("yyyyMMdd") != "00010101")  //編輯後搜尋之前條件用(有時間)
+                {
+                    ViewBag.date1 = date1.ToString("yyyy-MM-dd");
+                    ViewBag.date2 = date2.AddDays(-1).ToString("yyyy-MM-dd");
+                    int goodID = Convert.ToInt32(Request.Cookies["selectid"]["id"]);
+                    ViewBag.id = Convert.ToInt32(Request.Cookies["selectid"]["id"]);
+
+                    var q = from a in db.Abnormal_event
+                            join s in db.Stages on a.Stage equals s.Stage_ID
+                            where a.Application_unit_no == unit && s.Stage_ID == goodID && a.Notification_date >= date1 && a.Notification_date <= date2
+                            orderby a.Notification_date descending
+                            select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
+                    return View(q);
+                }
+
+                else                                                                                     //編輯後搜尋之前條件用(沒時間)           
+                {               
+                    int goodID = Convert.ToInt32(Request.Cookies["selectid"]["id"]);
+                    ViewBag.id = Convert.ToInt32(Request.Cookies["selectid"]["id"]);
+
+                    var q = from a in db.Abnormal_event
+                            join s in db.Stages on a.Stage equals s.Stage_ID
+                            where a.Application_unit_no == unit && s.Stage_ID == goodID 
+                            orderby a.Notification_date descending
+                            select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
+                    return View(q);
+                }
             }
+
+            else if (id == 0 && Request.Cookies["selectid"]["id"] == "0" && date1.ToString("yyyyMMdd") != "00010101" || date2.ToString("yyyyMMdd") != "00010101")//一開始只選時間
+            {
+                ViewBag.date1 = date1.ToString("yyyy-MM-dd");
+                ViewBag.date2 = date2.AddDays(-1).ToString("yyyy-MM-dd");
+
+                var q = from a in db.Abnormal_event
+                        join s in db.Stages on a.Stage equals s.Stage_ID
+                        where a.Application_unit_no == unit && a.Notification_date >= date1 && a.Notification_date <= date2
+                        orderby a.Notification_date descending
+                        select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
+                return View(q);
+
+            }
+
+
+
+            else if (id != 0 && date1.ToString("yyyyMMdd") == "00010101" && date2.ToString("yyyyMMdd") == "00010101") //有階段沒選時間=>近3個月
+            {
+                var q = from a in db.Abnormal_event
+                        join s in db.Stages on a.Stage equals s.Stage_ID
+                        where a.Application_unit_no == unit && a.Notification_date >= date && s.Stage_ID == id
+                        orderby a.Notification_date descending
+                        select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
+                return View(q);
+            }
+
+
+            else                                                                              //一開始近來搜 近3個月
+            {
+                var q = from a in db.Abnormal_event
+                        join s in db.Stages on a.Stage equals s.Stage_ID
+                        where a.Application_unit_no == unit && a.Notification_date >= date
+                        orderby a.Notification_date descending
+                        select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+
+                return View(q);
+
+            }
+
         }
 
 
@@ -54,7 +145,7 @@ namespace Volunteer_Web.Controllers
 
             int vol = Convert.ToInt32(Session["UserID"]);
             var volunteer_no = from v in db.Volunteer_list                                         //志工姓名下拉選單
-                               //join vs in db.Volunteers on v.Volunteer_no equals vs.Volunteer_no
+                                                                                                   //join vs in db.Volunteers on v.Volunteer_no equals vs.Volunteer_no
                                where v.Application_unit_no == vol
                                select new
                                {
@@ -70,7 +161,6 @@ namespace Volunteer_Web.Controllers
             {
                 Abnormal_event _abnormal_Event = new Abnormal_event();
 
-                _abnormal_Event.Supervisor_ID = 1;
                 _abnormal_Event.Abnormal_event_ID = Request.Form["Abnormal_event_ID"];
                 _abnormal_Event.Abnormal_event1 = Request.Form["Abnormal_event"];
                 _abnormal_Event.Unit_descrition = Request.Form["Unit_description"];
@@ -97,7 +187,7 @@ namespace Volunteer_Web.Controllers
             int vol = Convert.ToInt32(Session["UserID"]);
 
             var volunteer_no = from v in db.Volunteer_list                                         //志工姓名下拉選單
-                               where v.Application_unit_no == vol
+                               where v.Application_unit_no == vol 
                                select new
                                {
                                    v.Volunteer_no,
@@ -106,14 +196,19 @@ namespace Volunteer_Web.Controllers
 
             ViewBag.editvoluteer = new SelectList(volunteer_no, "Volunteer_no", "Chinese_name"); //後面兩個>值,顯示
 
+            try
+            {
+                var q = from a in db.Abnormal_event
+                        join s in db.Stages on a.Stage equals s.Stage_ID
+                        where a.Abnormal_event_no == id && s.Stage1 == "新事件" && s.Stage_type == "異常事件"
+                        select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-            var q = from a in db.Abnormal_event
-                    join s in db.Stages on a.Stage equals s.Stage_ID
-                    where a.Abnormal_event_no == id
-                    select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-
-            return View(q.First());
-            // return View(abnormaleventVMRepository.GetByid(id));
+                return View(q.First());
+            }
+            catch
+            {
+               return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
@@ -154,77 +249,47 @@ namespace Volunteer_Web.Controllers
         }
 
 
-        
-        public ActionResult SelectByDate(DateTime? date1, DateTime? date2)
+
+        public ActionResult SelectByDate(DateTime date1, DateTime date2)
         {
-            int selectstage = 0;
-            DateTime longago = DateTime.Now.AddYears(-200);
-            DateTime future = DateTime.Now.AddDays(1);
+            ViewBag.date1 = date1.ToString("yyyy-MM-dd");
+            ViewBag.date2 = date2.ToString("yyyy-MM-dd");
+            Response.Cookies["selectstage"]["date1"] = date1.ToString("yyyyMMdd");
+            Response.Cookies["selectstage"]["date2"] = date2.AddDays(1).ToString("yyyyMMdd");
+
+            DateTime day2 = date2.AddDays(1);
 
 
-            var stageselect = from s in db.Stages                       //階段下拉選單
-                              where s.Stage_type == "異常事件" 
-                              select new
-                              {
-                                  s.Stage_ID,
-                                  s.Stage1
-                              };
-
-            ViewBag.stage = new SelectList(stageselect, "Stage_ID", "Stage1");
-
-            if (Request.Form["Stage"] != null && Request.Form["Stage"] != "")
+            if (Request.Cookies["selectid"]["id"] != "0")    //有選階段
             {
-                selectstage = Convert.ToInt32(Request.Form["Stage"]);
-            }
+                ViewBag.id = Request.Cookies["selectid"]["id"];
+                int thisstage = Convert.ToInt32(Request.Cookies["selectid"]["id"]);
 
-
-            if ((date1 != null || date2 != null) && (selectstage != 0))      //有選階段
-            {
                 var searchDate = from a in db.Abnormal_event
                                  join s in db.Stages on a.Stage equals s.Stage_ID
-                                 where a.Notification_date > ((date1 == null) ? longago : date1) && a.Notification_date < ((date2 == null) ? future : date2) && a.Stage == selectstage
+                                 where a.Notification_date >= date1 && a.Notification_date <= day2 && a.Stage == thisstage
+                                 orderby a.Notification_date descending
+                                 select new AbnormaleventStageVM { abnormalevent = a, stage = s };
+                return View("Index", searchDate);
+            }
+
+            else if (Request.Cookies["selectid"]["id"] == "0")   //沒選階段
+            {
+
+
+                var searchDate = from a in db.Abnormal_event
+                                 join s in db.Stages on a.Stage equals s.Stage_ID
+                                 where a.Notification_date >= date1 && a.Notification_date <= day2
                                  orderby a.Notification_date descending
                                  select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                selectit = searchDate;
-                return RedirectToAction("Index");
-            }
+                return View("Index", searchDate);
 
-            else if ((date1 != null || date2 != null) && (selectstage == 0))    //沒選階段
-            {
-                var searchDate = from a in db.Abnormal_event
-                                 join s in db.Stages on a.Stage equals s.Stage_ID
-                                 where a.Notification_date > ((date1 == null) ? longago : date1) && a.Notification_date < ((date2 == null) ? future : date2)
-                                 orderby a.Notification_date descending
-                                 select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-
-                selectit = searchDate;
-                return RedirectToAction("Index");
-
-            }
-
-            else if ((date1 == null && date2 == null) && (selectstage != 0))  //沒選日期有選階段
-            {
-                var searchDate = from a in db.Abnormal_event
-                                 join s in db.Stages on a.Stage equals s.Stage_ID
-                                 where a.Stage == selectstage
-                                 orderby a.Notification_date descending
-                                 select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-                selectit = searchDate;                
-                return RedirectToAction("Index");
             }
 
             else
             {
-                var searchDate = from a in db.Abnormal_event
-                                 join s in db.Stages on a.Stage equals s.Stage_ID
-                                 where a.Stage ==-1
-                                 orderby a.Notification_date descending
-                                 select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-                selectit = searchDate;
-
-                return RedirectToAction("Index");
-                //return View("Index", new List<AbnormaleventStageVM>());
+                return View("Index", new List<AbnormaleventStageVM>());
             }
 
         }
@@ -240,11 +305,11 @@ namespace Volunteer_Web.Controllers
         }
 
 
-        
+
         public ActionResult Cancel(int id)
         {
             var q = from s in db.Stages
-                    where s.Stage1 == "事件取消" && s.Stage_type=="異常事件"
+                    where s.Stage1 == "事件取消" && s.Stage_type == "異常事件"
                     select s.Stage_ID;
 
             Abnormal_event abnormal_Event = abnormaleventRepository.GetByid(id);
@@ -258,6 +323,14 @@ namespace Volunteer_Web.Controllers
         public ActionResult test()
         {
             return View();
+        }
+
+        //Partial View
+        [ChildActionOnly]
+        public ActionResult Menu()
+        {
+            //return View();  //結合主版
+            return PartialView(db.Stages.Where(s => s.Stage_type == "異常事件")); //不會結合主版
         }
 
     }

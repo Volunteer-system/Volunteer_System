@@ -5,32 +5,32 @@
 
 <h2>心得新增</h2>
 <hr />
-<form method="post" action="~/Supervision/Insert" class="form-horizontal" enctype="multipart/form-data">
-    <div class="form-group">
+<form method="post" action="~/Supervision/Experience_Insert" class="form-horizontal" enctype="multipart/form-data">
+    <div class="form-group row container">
         <label for="Applicant" class="col-md-4 control-label">心得標題</label>
         <div class="col-md-8">
             @Html.TextBoxFor(p => p.Experience, new { @class = "form-control", placeholder = "心得標題" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row container">
         <label for="Applicant" class="col-md-4 control-label">志工</label>
         <div class="col-md-8">
             @Html.TextBoxFor(p => p.Volunteer, new { @class = "form-control", placeholder = "志工姓名" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row container">
         <label for="Applicant" class="col-md-4 control-label">訪談內容</label>
         <div class="col-md-8">
             @Html.TextAreaFor(p => p.Experience_content, new { @class = "form-control", placeholder = "訪談內容", rows = "8" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row container">
         <label for="Applicant" class="col-md-4 control-label">照片</label>
         <div class="col-md-8">
             @Html.TextBoxFor(p => p.Experience_photo, new { @class = "form-control", type = "file" })
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row container">
         <div class="col-md-offset-4 col-md-8">
             <button type="submit" class="btn btn-info">新增</button>
             <button type="reset" class="btn btn-info">重新輸入</button>

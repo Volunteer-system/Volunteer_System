@@ -46,11 +46,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <img id="model_img" class="card-img-top" alt="Card image cap">
-                <p id="model_start"></p>
-                <p id="model_group"></p>
-                <p>詳細資訊:</p>
-                <p id="model_summary"></p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th colspan="2"><img id="model_img" class="card-img-top" alt="Card image cap"></th>                       
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>組別</td>
+                            <td id="model_group"></td>
+                        </tr>
+                        <tr>
+                            <td>活動開始時間</td>
+                            <td id="model_start"></td>
+                        </tr>
+                        <tr>
+                            <td>詳細資訊</td>
+                            <td id="model_summary"></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">離開</button>

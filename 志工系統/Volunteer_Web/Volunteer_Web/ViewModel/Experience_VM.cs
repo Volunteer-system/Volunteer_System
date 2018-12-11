@@ -26,7 +26,8 @@ namespace Volunteer_Web.ViewModel
                         Experience = n1.Experience1,
                         Volunteer = n2.Chinese_name,
                         Experience_content = n1.Experience_content,
-                        Experience_photo = n1.Experience_photo
+                        Experience_photo = n1.Experience_photo,
+                        Issued = n1.Issued
                     };
             List<Experience_VM> experience_VMs = new List<Experience_VM>();
             foreach (var row in q)
@@ -37,6 +38,7 @@ namespace Volunteer_Web.ViewModel
                 experience_VM.Volunteer = row.Volunteer;
                 experience_VM.Experience_content = row.Experience_content;
                 experience_VM.Experience_photo = row.Experience_photo;
+                experience_VM.Issued = (bool)row.Issued;
                 experience_VMs.Add(experience_VM);
             }
             IEnumerable<Experience_VM> Experience_VMs = experience_VMs;
@@ -60,13 +62,14 @@ namespace Volunteer_Web.ViewModel
                     join n2 in dbContext.Volunteers
                     on n1.Volunteer_no equals n2.Volunteer_no
                     where n1.Experience_no == experience_no
-                    select new 
+                    select new
                     {
                         Experience_no = n1.Experience_no,
                         Experience = n1.Experience1,
                         Volunteer = n2.Chinese_name,
                         Experience_content = n1.Experience_content,
-                        Experience_photo = n1.Experience_photo
+                        Experience_photo = n1.Experience_photo,
+                        Issued = n1.Issued
                     };
 
             foreach (var row in q)
@@ -76,6 +79,7 @@ namespace Volunteer_Web.ViewModel
                 Volunteer = row.Volunteer;
                 Experience_content = row.Experience_content;
                 Experience_photo = row.Experience_photo;
+                Issued = (bool)row.Issued;
             }
         }
 
@@ -99,9 +103,29 @@ namespace Volunteer_Web.ViewModel
                 row.Volunteer_no = Convert.ToInt32(q2.First());
                 row.Experience_content = experience.Experience_content;
                 row.Experience_photo = experience.Experience_photo;
-                row.Issued = experience.Issued;
+                row.Issued = false;
             }
 
+            dbContext.SaveChanges();
+        }
+
+        public void InsertExperience(Experience_VM _experience, string Filename)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            int VolunteerNo = 0;
+            foreach (var row in dbContext.Volunteers.Where(p => p.Chinese_name == _experience.Volunteer))
+            {
+                VolunteerNo = row.Volunteer_no;
+            }
+
+            Experience experience = new Experience();
+            experience.Experience1 = _experience.Experience;
+            experience.Volunteer_no = VolunteerNo;
+            experience.Experience_content = _experience.Experience_content;
+            experience.Experience_photo = Filename;
+            experience.Issued = false;
+
+            dbContext.Experiences.Add(experience);
             dbContext.SaveChanges();
         }
     }

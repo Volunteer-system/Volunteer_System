@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Volunteer_Web.Models.Stage>
+
+
+<div class="list-group" role="tablist">
+    @*@Html.ActionLink()*@
+
+    @foreach (var stage in Model)
+    {
+        @Html.ActionLink(stage.Stage1, "Index", "Abnormalevent", new { id = stage.Stage_ID }, new { @class = "list-group-item list-group-item-action", @id = stage.Stage_ID })
+    }   
+
+</div>
+
+@section Home_script{
+    <script>
+      
+    </script>
+    }

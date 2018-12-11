@@ -19,6 +19,14 @@ namespace Volunteer_Web.Controllers
         [HttpPost]
         public ActionResult LoginIndex(account accounts)
         {
+            Response.Cookies["selectid"]["id"] = "0";
+            Response.Cookies["selectstage"]["date1"] = new DateTime().ToString("yyyyMMdd");
+            Response.Cookies["selectstage"]["date2"] = new DateTime().ToString("yyyyMMdd");
+            Request.Cookies["selectid"].Expires = DateTime.Now.AddHours(1);
+            Response.Cookies["selectid"].Expires = DateTime.Now.AddHours(1);
+            Request.Cookies["selectstage"].Expires = DateTime.Now.AddHours(1);
+            Response.Cookies["selectstage"].Expires = DateTime.Now.AddHours(1);
+
             accountMethod account_db = new accountMethod();
             //接收回傳使用者: (ID△運用單位△名稱)
             string TypeAndName = account_db.GetUserName(accounts.Account_number, accounts.Password);

@@ -25,6 +25,14 @@ namespace Volunteer_Web.Controllers
         {
             return View();
         }
+        public ActionResult Experience()
+        {            
+            Supervision_Experience_VM supervision_Experience_VM = new Supervision_Experience_VM();
+            supervision_Experience_VM.Service_groups = dbContext.Service_group.ToList();
+            supervision_Experience_VM.Experiences = supervision_Experience_VM.SelectExperience_byGroup(0);
+            return View(supervision_Experience_VM);
+        }
+        [HttpPost]
         public ActionResult Experience(int id=0)
         {
             Supervision_Experience_VM supervision_Experience_VM = new Supervision_Experience_VM();

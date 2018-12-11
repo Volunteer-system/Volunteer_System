@@ -24,9 +24,20 @@ namespace Volunteer_Web.Controllers
             supervision_Experience_VM.Experiences = supervision_Experience_VM.SelectExperience_byGroup(id);
             return View(supervision_Experience_VM);
         }
+        [HttpGet]
         public ActionResult Experience_Insert()
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult Experience_Insert(Experience_VM experience_VM, HttpPostedFileBase Experience_photo)
+        {
+            string strPath = Request.PhysicalApplicationPath + @"Images\" + Experience_photo.FileName;
+            Experience_photo.SaveAs(strPath);
+
+            experience_VM.InsertExperience(experience_VM, Experience_photo.FileName);
+
+            return RedirectToAction("Experience");
         }
         [HttpGet]
         public ActionResult Edit(int id= 0)
@@ -39,14 +50,23 @@ namespace Volunteer_Web.Controllers
         public ActionResult Edit(Experience_VM experience)
         {
             var test = Request.Form["Experience"];
-
-            Experience_VM experience_VM = new Experience_VM();
-            experience_VM.UpdateExperience(experience);
+            experience.UpdateExperience(experience);
             return RedirectToAction("Index");
         }
         public ActionResult Issued(int id = 0)
         {
-            return RedirectToAction("Index");
+            Volunteer_Web.Models.Experience experience = dbContext.Experiences.Find(id);
+            if (experience.Issued == true)
+            {
+                experience.Issued = false;
+            } else
+            {
+                experience.Issued = true;
+            }
+
+            dbContext.SaveChanges();
+
+            return RedirectToAction("Experience");
         }
     }
 }
