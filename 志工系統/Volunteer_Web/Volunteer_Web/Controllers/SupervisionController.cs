@@ -47,11 +47,15 @@ namespace Volunteer_Web.Controllers
             return View(experience_VM);
         }
         [HttpPost]
-        public ActionResult Edit(Experience_VM experience)
+        public ActionResult Edit(Experience_VM experience_VM, HttpPostedFileBase Experience_photo)
         {
-            var test = Request.Form["Experience"];
-            experience.UpdateExperience(experience);
-            return RedirectToAction("Index");
+            if (Experience_photo != null)
+            {
+                string strPath = Request.PhysicalApplicationPath + @"Images\" + Experience_photo.FileName;
+                Experience_photo.SaveAs(strPath);
+            }
+            experience_VM.UpdateExperience(experience_VM, Experience_photo.FileName);
+            return RedirectToAction("Experience");
         }
         public ActionResult Issued(int id = 0)
         {

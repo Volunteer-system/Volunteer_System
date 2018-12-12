@@ -83,26 +83,30 @@ namespace Volunteer_Web.ViewModel
             }
         }
 
-        public void UpdateExperience(Experience_VM experience)
+        public void UpdateExperience(Experience_VM experience, string Filename)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n in dbContext.Experiences
                     where n.Experience_no == experience.Experience_no
                     select n;
 
-            var q2 = from n in dbContext.Volunteers
+            var q2 = (from n in dbContext.Volunteers
                      where n.Chinese_name == experience.Volunteer
                      select new
                      {
                          Volunteer_no = n.Volunteer_no
-                     };
+                     }).First();
+            
 
             foreach (var row in q)
             {
                 row.Experience1 = experience.Experience;
-                row.Volunteer_no = Convert.ToInt32(q2.First());
+                row.Volunteer_no = q2.Volunteer_no;
                 row.Experience_content = experience.Experience_content;
-                row.Experience_photo = experience.Experience_photo;
+                if (!string.IsNullOrEmpty(Filename))
+                {
+                    row.Experience_photo = Filename;
+                }                
                 row.Issued = false;
             }
 

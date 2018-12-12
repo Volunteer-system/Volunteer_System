@@ -111,10 +111,14 @@
     <Content Include="Global.asax" />
     <Content Include="Images\292-12-3.jpg" />
     <Content Include="Images\299-06-1.jpg" />
+    <Content Include="Images\5-16620-1.jpg" />
+    <Content Include="Images\images %281%29.jpg" />
+    <Content Include="Images\images%282%29.jpg" />
     <Content Include="Images\IMG_6533.JPG" />
     <Content Include="Images\LoginUse.jpg" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Noimage.png" />
+    <Content Include="Images\下載 %281%29.jpg" />
     <Content Include="Images\志工隊介紹用.jpg" />
     <Content Include="Images\手術室 %283%29.JPG" />
     <Content Include="Images\眼科 %281%29.JPG" />
@@ -266,6 +270,7 @@
     <Compile Include="Models\Manpower_apply.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partial\Abnormal_event.cs" />
     <Compile Include="Models\Partial\Activity.cs" />
     <Compile Include="Models\Questionnaire.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
@@ -410,6 +415,7 @@
     <Content Include="Views\ManpowerApply\_ViewStart.cshtml" />
     <Content Include="Views\Supervision\Experience_Insert.cshtml" />
     <Content Include="Views\Supervision\Edit.cshtml" />
+    <Content Include="Views\Abnormalevent\Menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

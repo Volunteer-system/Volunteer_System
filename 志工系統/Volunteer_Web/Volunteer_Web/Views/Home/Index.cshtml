@@ -7,6 +7,50 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        div.vision-news-loop{margin:15px 0px;}
+        div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo{
+            -webkit-transform: scale(1.1, 1.1);
+            -moz-transform: scale(1.1, 1.1);
+            -ms-transform: scale(1.1, 1.1);
+            -o-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+        }
+        div.vision-news-loop div.vision-thumbnails img.vision-news-photo,div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo{
+            -webkit-transition: all 0.9s;
+            -moz-transition: all 0.9s;
+            -o-transition: all 0.9s;
+            transition: all 0.9s;
+        }
+        div.vision-news-loop div.mask,div.vision-news-loop:hover div.mask{
+           -webkit-transition: all 0.35s;
+           -moz-transition: all 0.35s;
+           -o-transition: all 0.35s;
+           transition: all 0.35s;
+        }
+        div.vision-news-loop div.mask{position:absolute;top:0px;right:0px;width:50%;height:100%;background-color:rgba(0,0,0,0.77);z-index:2;padding:30px;color:#BBB;}
+        div.vision-news-loop:hover div.mask{width:100%;}
+        span.news-date{color:#3CBBE8;font-size:18px;font-weight:bold;}
+        div.vision-news-loop div.mask h3{color:#FFF;}
+        div.vision-news-loop:hover div.mask h3{color:#3CBBE8;}
+        div.news-more{color:#3CBBE8;margin-top:15px;}
+
+        @@media (min-width:992px) and (max-width:1199px){
+	       div.vision-news-loop div.mask h3{font-size:20px;}
+         }
+         @@media (min-width:768px) and (max-width:991px){
+	       div.vision-news-loop div.mask{padding:15px;}
+	       span.news-date{font-size:14px;}
+	       div.vision-news-loop div.mask h3{font-size:16px;margin-top:5px;}
+         }
+         @@media (max-width: 540px) {
+	       div.vision-news-loop div.mask{padding:15px;}
+	       span.news-date{font-size:14px;}
+	       div.vision-news-loop div.mask h3{font-size:16px;margin-top:5px;}
+	       div.vision-news-loop div.mask{width:100%;}
+         }
+
+    </style>    
 }
 
 
@@ -52,8 +96,8 @@
 <div class="row mb-2">
     <div class="col-md-6">
         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-            <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/350x250?theme=thumb" alt="Card image cap">
-            <div class="card-body d-flex flex-column align-items-start">
+            <img class="card-img-right flex-auto d-none d-lg-block s1" src="~/Images/5-16620-1.jpg" alt="Card image cap">
+            <div id="activity" class="card-body d-flex flex-column align-items-start">
                 <strong class="d-inline-block mb-2 text-primary">近期焦點</strong>
                 <h3 class="mb-0">
                     <a class="text-dark" href="/Home/Activity">活動名稱</a>
@@ -62,13 +106,12 @@
                 <p class="card-text mb-auto">活動簡介</p>
                 <a href="#">Continue reading</a>
             </div>
-
         </div>
     </div>
     <div class="col-md-6">
         <div class="card flex-md-row mb-4 shadow-sm h-md-250">
-            <img class="card-img-right flex-auto d-none d-lg-block" data-src="holder.js/350x250?theme=thumb" alt="Card image cap">
-            <div class="card-body d-flex flex-column align-items-start">
+            <img class="card-img-right flex-auto d-none d-lg-block s1" src="~/Images/images (1).jpg" alt="Card image cap">
+            <div id="newvolunter" class="card-body d-flex flex-column align-items-start">
                 <strong class="d-inline-block mb-2 text-success">志工招募</strong>
                 <h3 class="mb-0">
                     <a class="text-dark" href="/Home/NewVolunteer">我要成為志工</a>
@@ -80,6 +123,70 @@
 
         </div>
     </div>
+</div>
+<div class="row mb-2">
+    <div class="col-sm-6 vision-news-loop">
+        <a href="/Home/Activity" target="_top" title="活動名稱">
+            <div class="vision-thumbnails">
+                <div class="thumbnails-2by1">
+                    <div class="mask">
+                        <span class="news-date">
+                            更新日期
+                        </span>
+                        <h3>活動簡介</h3>
+                        活動簡介內容 活動簡介內容 活動簡介內容 活動簡介內容 活動簡介內容
+                        <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
+                    </div>
+                    <img src="~/Images/5-16620-1.jpg" alt="活動名稱" class="img-responsive vision-news-photo" />
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-sm-6 vision-news-loop">
+        <a href="/Home/Activity" target="_top" title="志工招募">
+            <div class="vision-thumbnails">
+                <div class="thumbnails-2by1">
+                    <div class="mask">
+                        <span class="news-date">
+                            我要成為志工
+                        </span>
+                        <h3>招募辦法</h3>
+                        XXXXXXXXXX
+                        <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
+                    </div>
+                    <img src="~/Images/images (1).jpg" alt="志工招募" class="img-responsive vision-news-photo" />
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<div class="row m-1">
+    <div class="m-5">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+    </div>
+    <div class="m-5">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+    </div>
+    <div class="m-5">
+        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+    </div>
+    @*<div class="col-md-4">
+            <div class="card flex-md-row embed-responsive embed-responsive-16by9">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card flex-md-row embed-responsive embed-responsive-16by90">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="card col-md-4">
+            <div class="card flex-md-row embed-responsive embed-responsive-16by90">
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
+            </div>
+        </div>*@
 </div>
 
 <div class="row">
@@ -123,11 +230,7 @@
 
 
 @section Home_script{
-    <script>
-        $(document).ready(function () {
 
-        });
-    </script>
 }
 
 

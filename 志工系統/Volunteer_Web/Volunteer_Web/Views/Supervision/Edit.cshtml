@@ -5,7 +5,7 @@
 
 <h2>心得修改</h2>
 <hr />
-<form method="post" action="~/Supervision/Edit" class="form-horizontal" enctype="multipart/form-data">
+<form method="post" action="~/Supervision/Edit" class="form-horizontal"  enctype="multipart/form-data">>
     @Html.EditorFor(p => p.Experience_no, new { htmlAttributes = new { type = "hidden"} })
     <label hidden id="Experience_no" name="Experience_no" value ="@Model.Experience_no"></label>
     <div class="form-group row">
