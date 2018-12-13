@@ -36,6 +36,18 @@
     <script>
         $(document).ready(function () {
             $('a[value = "@ViewBag.Partilview"]').addClass('active');
+
+             @{
+                if (Session["Agree"] == null)
+                {
+                 @: $('#td1 a').addClass('list-group-item disabled');
+                }
+                else
+                {
+                    @: $('#td1 a').removeClass('list-group-item disabled');
+                }
+
+            }
         })
     </script>
 }

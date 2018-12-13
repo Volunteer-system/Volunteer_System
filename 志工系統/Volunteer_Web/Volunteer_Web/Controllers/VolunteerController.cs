@@ -40,18 +40,25 @@ namespace Volunteer_Web.Controllers
             return View(volunteer_detail);
         }
 
-        //歷史活動活動
-        public ActionResult Activity_History(int id = 0)
+        //歷史活動
+        public ActionResult Activity_History(int id = 0, int photo = 0)
         {
             ActivityHistoryModel AHM = new ActivityHistoryModel();
-            ActivityDetail ad = new ActivityDetail();
-            ShowModel SM = new ShowModel();
+            //ActivityDetail ad = new ActivityDetail();
+            //ShowModel SM = new ShowModel();
+            VolunteerEntities db = new VolunteerEntities();
             if (id != 0)
             {
-                SM.ActivityDetail = ad.GetActivity(id);
-                ViewBag.photo = ad.GetActivityPhoto(id);
+                //SM.ActivityDetail = ad.GetActivity(id);                
+                var detail = db.Activities.Where(a => a.Activity_name == id.ToString());
+                return Json(detail.AsEnumerable().Select(a => new { Activity_no = a.Activity_no, Activity_name = a.Activity_name, Activity_type = a.Activity_type.Activity_type1, Activity_startdate = a.Activity_startdate.Value.ToShortDateString(), Activity_enddate = a.Activity_enddate.Value.ToShortDateString(), supervision_Name = a.Volunteer_supervision.supervision_Name, supervision_phone = a.Volunteer_supervision.supervision_phone, supervision_email = a.Volunteer_supervision.supervision_email, Group_name = a.Service_group.Group_name, lecturer = a.lecturer, Place = a.Place, Summary = a.Summary, Activity_photo_id = a.Activity_Photo_id }), JsonRequestBehavior.AllowGet);
             }
-            SM.ActivityHistoryModel = AHM.GetHistoryActivity(Convert.ToInt32(Session["UserID"]));
+            if (photo != 0)
+            {
+                var photoid = db.Activity_photo.Where(p => p.Activity_id == photo);
+                return Json(photoid.AsEnumerable().Select(p => new { Activity_photo_id = p.Activity_photo_id }), JsonRequestBehavior.AllowGet);
+            }
+            var SM = AHM.GetHistoryActivity(Convert.ToInt32(Session["UserID"]));
 
             return View(SM);
         }
@@ -77,29 +84,11 @@ namespace Volunteer_Web.Controllers
             Act_pho ap1 = new Act_pho();
             return View(ap1);
         }
-        //[HttpPost]
-        //public ActionResult Activity_Create(Activity activity)
-        //{
-        //    db.Activities.Add(activity);
-        //    db.SaveChanges();
-        //    //return View();
-        //    return RedirectToAction("Activity_Browse");
-        //}
+
         [HttpPost]
         public ActionResult Activity_Create(Act_pho ap1, HttpPostedFileBase photo)
         {
-            //檔案上傳
-            //<input type="file" name="ProductImage"
-            //<form enctype="multipart/form-data"
-            //用HttpPostedFileBase ProductImage來接收傳到Server上的檔案
 
-            //將檔案儲存到一個資料夾中
-            //1.足夠的權限 users everyone write
-            //2.資料夾的實際路徑 
-            //string strPath = Request.PhysicalApplicationPath + @"ProductImages\" + ProductImage.FileName;
-            //ProductImage.SaveAs(strPath);
-
-            //product.ProductImage = ProductImage.FileName;
 
             //將檔案轉成二進位存進資料庫中
 
@@ -117,19 +106,15 @@ namespace Volunteer_Web.Controllers
 
             db.Activities.Add(ap1.activity);
             db.Activity_photo.Add(ap1.activity_photo);
-            //db.Activities.Add(activity);
             db.SaveChanges();
             ap1.activity.Activity_Photo_id = ap1.activity_photo.Activity_photo_id;
             var q = db.Activity_photo.Select(n => n.Activity_photo_id).ToList().LastOrDefault();
-            //db.Activities.LastOrDefault().Activity_no = ap1.activity_photo.Activity_photo_id;
-            //var q = db.Activities.LastOrDefault().Activity_no;
             var x = db.Activities.Select(c => c.Activity_Photo_id).ToList().LastOrDefault();
             x = q;
             var a = db.Activities.Select(k => k.Activity_no).ToList().LastOrDefault();
             var p = db.Activities.Find(a);
             db.Entry(p).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            //return View();
             return RedirectToAction("Activity_Browse");
         }
         //排班意願
@@ -140,10 +125,6 @@ namespace Volunteer_Web.Controllers
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
             vm.activity = db.Activities.Where(p => p.Activity_type_ID == id);
             vm.activity_types = db.Activity_type.ToList();
-
-            //var q = from c in db.Activities
-            //        let b = c.Activity_photo
-            //        select new { b.Activity_photo1 };
             ViewBag.userid = Session["UserID"];
             return View(vm);
         }
@@ -213,7 +194,7 @@ namespace Volunteer_Web.Controllers
         public ActionResult GetCalendar(int id)
         {
             ActivityHistoryModel AHM = new ActivityHistoryModel();
-            return new JsonResult { Data = AHM.GetHistoryActivity(id).Select(n => new { Activity_no = n.Activity_no, Activity_name = n.Activity_name, Activity_startdate = n.Activity_startdate.Value.ToString("yyyy-MM-dd"), Activity_enddate = n.Activity_enddate.Value.ToString("yyyy-MM-dd") }), JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+            return Json(AHM.GetHistoryActivity(id).Select(n => new { Activity_no = n.Activity_no, Activity_name = n.Activity_name, Activity_startdate = n.Activity_startdate.Value.ToString("yyyy-MM-dd"), Activity_enddate = n.Activity_enddate.Value.ToString("yyyy-MM-dd") }), JsonRequestBehavior.AllowGet);
         }
         public ActionResult GetCalendarJson(int id)
         {

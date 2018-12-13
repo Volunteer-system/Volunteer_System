@@ -1,59 +1,113 @@
-﻿
+﻿@model IEnumerable<Volunteer_Web.Models.VolunteerUse.ActivityHistoryModel>
 @{
     ViewBag.Title = "Index";
 }
-<h2>Index</h2>
+@section Home_style{
+    <style>
+        .calendar {
+            border: 1px solid tomato;
+            width: 70%
+        }
 
-<div id="calendar1"></div>
+        .actTable {
+            margin-left: 1%;
+            width: 29%
+        }
+
+        @@media only screen and (max-width:760px) {
+            .calendar {
+                border: 1px solid tomato;
+                width: 100%;
+            }
+
+            .actTable {
+                margin-top: 1%;
+                width: 99%
+            }
+        }
+    </style>
+}
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<h2>志工首頁</h2>
+<div class="container">
+    <div class="row">
+        <div class="calendar">
+            <div id="calendar1"></div>
+        </div>
+        <div class="actTable">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>活動名稱</th>
+                        <th>活動日期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var a in Model)
+                    {
+                        <tr>
+                            <td>@a.Activity_name</td>
+                            <td>@a.Activity_startdate.Value.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog ">
         <div class="modal-content ">
-            <div class=" modal-header ">
+            <div style="background-color:lightgray" class=" modal-header ">
                 <h4 class=" modal-title"><span id="eventTitle"></span></h4>
                 <button type="button" class=" close " data-dismiss="modal">&times;</button>
             </div>
-            <div class="modal-body ">
+            <div style="background-color:#81c0c0" class="modal-body ">
                 @*<p id="pDetails"></p>*@
-                <div class="form-group row  table-bordered">
+                <div class="form-group row  ">
                     <label for="a_summy" class="col-sm-4 col-form-label">活動簡介:</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="a_summy" value="">
                     </div>
                 </div>
-                <div class="form-group row  table-bordered">
+                <div class="form-group row  ">
                     <label for="a_startdate" class="col-sm-4 col-form-label">活動開始日期:</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="a_startdate" value="">
                     </div>
                 </div>
-                <div class="form-group row  table-bordered">
+                <div class="form-group row ">
                     <label for="a_enddate" class="col-sm-4 col-form-label">活動結束日期:</label>
                     <div class="col-sm-8">
                         <input type="text" readonly class="form-control-plaintext" id="a_enddate" value="">
                     </div>
                 </div>
-                <div class="form-group row  table-bordered">
+                <div class="form-group row ">
                     <label for="a_photo" class="col-sm-4 col-form-label">活動照片:</label>
-                    <div class="col-sm-8">
-                        <img id="a_photo" src=" @Url.Action("GetImageByID","Volunteer",new { id = Session["photo"]})"/>
-                    </div>
+                    <div id="dimg" class="col-sm-8">
+                        <img id="a_photo" style="width:100%" src=" @Url.Action("GetImageByID","Volunteer",new { id = 0})" />
+                    </div><!--,new { id = Session["photo"]}-->
                 </div>
-            </div>
-            <div class="modal-footer ">
-                <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default " style="margin-left:85%" data-dismiss="modal">關閉</button>
             </div>
         </div>
     </div>
 </div>
 @section calendar{
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
-<script src="~/Scripts/jquery-3.3.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
-<script>
-    $(document).ready(function () {      
-            var events = [];
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script>
+    $(document).ready(function () {
+        var events = [];
             $.ajax({
                 type: "GET",
                 url: "/Volunteer/GetCalendar/@ViewBag.userID",
@@ -76,34 +130,37 @@
             //==============================================產生月曆▼===============================================
             function GenerateCalendar(events)
             {
-                $("#calendar1").fullCalendar("destroy");
-                $("#calendar1").fullCalendar({
-                    contentHeight: 400,
-                    defaultDate: new Date(),
-                    header: { left: "prev,today,next", center: "title", right: "" },
-                    buttonText: { today: "今天", prev: "上個月", next: "下個月" },
+                $("#calendar1").fullCalendar("destroy");//清空日曆
+                $("#calendar1").fullCalendar({          //建立日曆
+                    contentHeight: 500, //日曆高度
+                    //defaultDate: new Date(),
+                    header: { left: "prev,today,next", center: "title", right: "" },//設定上方顯示的內容
+                    buttonText: { today: "今天", prev: "上個月", next: "下個月" },  //設定按鍵的中文
                     views: {
-                        month: { titleFormat: "YYYY年MM月" }
+                        month: { titleFormat: "YYYY年MM月" }                        //設定中間顯示的樣式
                     },
-                    dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-                    eventLimit: true,
-                    eventColor: "#ff7575",
-                    events: events,
-                    eventClick: function (calEvent, jsEvent, view) {
+                    dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],//中文化星期顯示
+                    //eventLimit: true,
+                    eventColor: "#ff7575",                                          //事件條的顏色
+                    events: events,                                                 //接收事件json格式，設定title顯示字，start起始日,end結束日
+                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件
                         $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
                         $.getJSON("/Volunteer/GetCalendarJson/" + calEvent.act_no, function (datas) {
                             $.each(datas, function (index, vals) {
                                 $("#eventTitle").text(calEvent.title);
                                 $("#a_summy").val(vals.Summary);
                                 $("#a_startdate").val(vals.Activity_startdate);
-                                $("#a_enddate").val(vals.Activity_enddate);//                             
+                                $("#a_enddate").val(vals.Activity_enddate);//
+                                //var ur = $("#a_photo").attr("src");
+                                var ur = "/Volunteer/GetImageByID/"+ vals.Activity_Photo_id
+                                //console.log(ur);
+                                $("#a_photo").attr("src",ur)
                             });
                         });
                     }
 
                 });
         }
-
         });
-</script>
-    }
+    </script>
+}

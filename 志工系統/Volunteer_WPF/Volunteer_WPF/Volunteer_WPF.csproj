@@ -308,6 +308,9 @@
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Manpower_applydata_View.xaml.cs">
+      <DependentUpon>Manpower_applydata_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Manpower_apply_data_View.xaml.cs">
       <DependentUpon>Manpower_apply_data_View.xaml</DependentUpon>
     </Compile>
@@ -462,6 +465,10 @@
     <Page Include="View\Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Manpower_applydata_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Manpower_apply_data_View.xaml">
       <SubType>Designer</SubType>

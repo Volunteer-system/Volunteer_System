@@ -64,6 +64,7 @@ namespace Volunteer_Web.Controllers
                     break;
                 case 2:
                     ViewBag.Partilview = "basic_info";
+                    Session["Agree"] = true;
                     break;
                 case 3:
                     ViewBag.Partilview = "Questionnaire";
@@ -95,7 +96,7 @@ namespace Volunteer_Web.Controllers
         {
             ViewBag.Partilview = "basic_info";
             ViewBag.Expertise = dbContext.Expertise1.ToList();
-            return PartialView();
+            return Redirect("~/Home/NewVolunteer/3");
         }
 
         [HttpPost]
@@ -121,7 +122,7 @@ namespace Volunteer_Web.Controllers
            
             ViewBag.Partilview = "Questionnaire";
             Session["Question"] = SQ;
-            return PartialView();
+            return Redirect("~/Home/NewVolunteer/4");
         }
         //服務時段調查
         public ActionResult Service_period()

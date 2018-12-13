@@ -8,7 +8,7 @@
             @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login100-form validate-form" }))
             {
                 <div id="showError" class="alert alert-danger" role="alert"></div>
-                <div id="login">
+                <div id="login" style="margin:0 auto">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         @Html.LabelFor(m => m.Account_number, new { @class = "label-input100" })
                         @Html.TextBoxFor(m => m.Account_number, new { @class = "input100", placeholder = "Enter UserName" })
@@ -23,7 +23,7 @@
                     <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
                 </div>
                 <!--切換忘記帳號-->
-                <div id="forget" class="swap">
+                <div id="forget" class="swap" style="margin:0 auto">
                     <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         @Html.Label("identity", "身分證字號:", new { @class = "label-input100" })
                         @Html.TextBox("identity", null, new { @class = "input100", placeholder = "Enter IdentityNumber" })

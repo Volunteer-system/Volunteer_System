@@ -1,4 +1,4 @@
-﻿@model Volunteer_Web.Models.VolunteerUse.ShowModel
+﻿@model IEnumerable<Volunteer_Web.Models.VolunteerUse.ActivityHistoryModel>
 @{
     ViewBag.Title = "Activity_History";
 }
@@ -9,10 +9,10 @@
         /*@@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");*/
         @@import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
 
-        body {
+        /*body {
             padding: 60px 0px;
             background-color: rgb(220, 220, 220);
-        }
+        }*/
 
         .event-list {
             list-style: none;
@@ -227,12 +227,30 @@
         td {
             white-space: nowrap;
         }
+
+        .nowrap {
+            white-space: pre-wrap;
+        }
+
+        td > img {
+            margin: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        body {
+            overflow-y: scroll;
+        }
     </style>
 }
 @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
 <!------ Include the above in your HEAD tag ---------->
+<br />
+<br />
+<br />
+<br />
 <div class="container">
     <div class="row">
         <div class="col-2">
@@ -243,9 +261,9 @@
         <div class="col-10">
             <div class="row">
                 <!--[ col-xs-12 col-sm-offset-2 col-sm-8 ]-->
-                <div class="col-6">
+                <div class="col-xs-12 col-sm-offset-2 col-sm-8">
                     <ul class="event-list">
-                        @foreach (var h in Model.ActivityHistoryModel)
+                        @foreach (var h in Model)
                         {
                             <li>
                                 <time>
@@ -254,7 +272,8 @@
                                 </time>
                                 <img src="@Url.Action("GetImageByID","Volunteer",new {id = h.Activity_photo_id })" />
                                 <div class="info">
-                                    <h2 class="title">@Html.ActionLink(h.Activity_name, "Activity_History", "Volunteer", new { id = h.Activity_no }, null)</h2>
+                                    @*<h2 class="title">@Html.ActionLink(h.Activity_name, "Activity_History", "Volunteer", new { id = h.Activity_no }, new { name = "actnum" })</h2>*@
+                                    <h2 class="title"><a href="#" name="actnum">@h.Activity_name</a></h2>
                                     <p class="desc">報名階段:@h.Stage</p>
                                     <ul>
                                         <li style="width:33%;"><span class="fa fa-male"></span>活動人數:@h.Member</li>
@@ -264,83 +283,35 @@
                         }
                     </ul>
                 </div>
-                <div class="col-6">
-                    @if (Model.ActivityDetail != null)
-                    {
-                        <table class="table table-bordered  table-hover">
-                            <tbody>
-                                <tr>
-                                    <td>活動名稱</td>
-                                    <td>@Model.ActivityDetail.Activity_name</td>
-                                </tr>
-                                <tr>
-                                    <td>活動類型</td>
-                                    <td>@Model.ActivityDetail.Activity_type</td>
-                                </tr>
-                                <tr>
-                                    <td>活動講師</td>
-                                    <td>@Model.ActivityDetail.lecturer</td>
-                                </tr>
-                                <tr>
-                                    <td>承辦組別</td>
-                                    <td>@Model.ActivityDetail.GroupName</td>
-                                </tr>
-                                <tr>
-                                    <td>承辦人</td>
-                                    <td>@Model.ActivityDetail.Undertake_unit</td>
-                                </tr>
-                                <tr>
-                                    <td>承辦人電話</td>
-                                    <td>@Model.ActivityDetail.Undertake_phone</td>
-                                </tr>
-                                <tr>
-                                    <td>承辦人電子郵件</td>
-                                    <td>@Model.ActivityDetail.Undertake_email</td>
-                                </tr>
-                                <tr>
-                                    <td>活動日期</td>
-                                    <td>@Model.ActivityDetail.Activity_startdate.Value.ToShortDateString() ~ @Model.ActivityDetail.Activity_enddate.Value.ToShortDateString() </td>
-                                </tr>
-                                <tr>
-                                    <td>活動人數</td>
-                                    <td>@Model.ActivityDetail.Member</td>
-                                </tr>
-                                <tr>
-                                    <td>活動地點</td>
-                                    <td>@Model.ActivityDetail.Place</td>
-                                </tr>
-                                <tr>
-                                    <td>活動簡介</td>
-                                    <td>@Model.ActivityDetail.Summary</td>
-                                </tr>
-                                <tr>
-                                    <td>活動照片</td>
-                                    <td>
-                                        @foreach (var p in ViewBag.photo)//Activity_photo1
-                                        {
-                                            <img style="display:block;float:left;margin:3px ;cursor:pointer" width="100" src="@Url.Action("GetImageByID","Volunteer",new { id=p.Activity_photo_id})" />
-                                        }
-                                    </td>
-                                </tr>
-                            </tbody>
+            </div>
+        </div>
+        <div class="modal show" id="showModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content ">
+                    <div style="background-color:lightgray" class="modal-header login100-form-title">
+                        <button  type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span style="color:white" aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div style="background-color:#81c0c0" class="modal-body">
+                        <table class="table  table-hover table-responsive">
+                            <tbody  id="tbody1"></tbody>
                         </table>
-                    }
-
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- Button trigger modal -->
-        <div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="DetailModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade " id="DetailModal" tabindex="-1" role="dialog" @*style="z-index:10000"*@>
+            <div class="modal-dialog" @*role="document"*@>
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div style="background-color:lightgray" class="modal-header login100-form-title">
                         @*<h5 class="modal-title" id="DetailModalLabel"></h5>*@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-                        <img style="width:100%" id="showimg" />
+                    <div class="modal-body login100-form validate-form">
+                        <img style="width:100%;" id="showimg" />
                     </div>
                 </div>
             </div>
@@ -352,10 +323,49 @@
 @section script{
     <script>
         $(document).ready(function () {
-            $("td>img").click(function () {
+            $("h2>a[name='actnum'").click(function () {
+                //console.log($(this).text())
+                $("#tbody1").html("");
+                var link = "";
+                $.getJSON("/Volunteer/Activity_History/" + $(this).text(), function (datas) {
+                    var doc = $(document.createDocumentFragment());
+                    $.each(datas, function (i, v) {
+                        //console.log(v.supervision_Name)
+                        var tr1 = $("<tr></tr>").append("<td>活動名稱:</td><td>" + v.Activity_name + "</td>");
+                        var tr2 = $("<tr></tr>").append("<td>活動類型:</td><td>" + v.Activity_type + "</td>");
+                        var tr3 = $("<tr></tr>").append("<td>承辦組別:</td><td>" + v.Group_name + "</td>");
+                        var tr4 = $("<tr></tr>").append("<td>承辦人:</td><td>" + v.supervision_Name + "</td>");
+                        var tr5 = $("<tr></tr>").append("<td>承辦人電話:</td><td>" + v.supervision_phone + "</td>");
+                        var tr6 = $("<tr></tr>").append("<td>承辦人Email:</td><td>" + v.supervision_email + "</td>");
+                        var tr7 = $("<tr></tr>").append("<td>講師:</td><td>" + v.lecturer + "</td>");
+                        var tr8 = $("<tr></tr>").append("<td>活動地點:</td><td>" + v.Place + "</td>");
+                        var tr9 = $("<tr></tr>").append("<td>活動時間:</td><td>" + v.Activity_startdate + "~" + v.Activity_enddate + "</td>");
+                        var tr10 = $("<tr></tr>").append("<td>活動簡介:</td><td>" + v.Summary + "</td>");
+                        doc.append([tr1, tr2, tr3, tr4, tr5, tr6, tr7, tr8, tr9, tr10]);
+                        var tr11 = $("<tr></tr>").append("<td>活動照片:</td>");
+                        doc.append(tr11);
+                        var tdimg = $("<td class='nowrap'></td>");
+                        $.getJSON("/Volunteer/Activity_History/?photo=" + v.Activity_no, function (datas) {
+                            $.each(datas, function (i, vp) {
+                                link = "@Url.Action("GetImageByID", "Volunteer", new { id = "-1" })";
+                                link = link.replace("-1", vp.Activity_photo_id);
+                                tdimg.append("<img  src='"+link+"'/>");
+                            });
+                            tr11.append(tdimg);
+                        });
+                    });
+                    $("#tbody1").append(doc);
+                });
+                $(this).attr({ "data-toggle": "modal", "data-target": "#showModal"})
+            });
+            $("#tbody1").on("click","td>img",function () {
+                //console.log("OK")
                 $(this).attr({ "data-toggle": "modal", "data-target": "#DetailModal" })
                 $("#showimg").attr("src", $(this).attr("src"))
             });
+        });
+        $(document).on('hidden.bs.modal', '.modal', function () {
+            $('.modal:visible').length && $(document.body).addClass('modal-open');
         });
     </script>
 }

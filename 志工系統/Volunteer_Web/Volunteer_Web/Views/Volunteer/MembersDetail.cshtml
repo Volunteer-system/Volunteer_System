@@ -5,6 +5,7 @@
 }
 @section style{
     <style>
+
         .prof-page-info {
             padding: 10px;
         }
@@ -154,6 +155,11 @@
         }
     </style>
 }
+<br />
+<br />
+<br />
+<br />
+<br />
 <h2>@*個人基本資料*@</h2>
 <div class="container">
     <div class="row">
@@ -177,10 +183,8 @@
                             <h2>@*<i class="fa fa-info-circle"></i>*@@Html.Label("Volunteer_no", "志工個人資料")</h2>
                         </div>
                     </div>
-
                     <div class="prof-page-info">
                         <div class="row">
-
                             <div class="col-md-3">
                                 <div class="prof-img">
                                     @*<div class="tags-label">
@@ -193,22 +197,19 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-9">
-
                                 <div class="prof-info">
                                     <div class="info"><label><i class="fas fa-venus-mars"></i>性別:</label>  <span>@Html.Label("sex", Model.sex)</span></div>
                                     <div class="info">
                                         <label><i class="fas fa-birthday-cake"></i>生日:</label><span>
                                             @if (@Model.birthday != null)
-                                            {
-                                                @Html.Label("birthday", Model.birthday.Value.ToShortDateString())
-                                            }
-                                            else
-                                            {
-                                                <label>無</label>
-                                            }
-
+                                                {
+                                                    @Html.Label("birthday", Model.birthday.Value.ToShortDateString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
                                         </span>
                                     </div>
                                     <div class="info"><label><i class="fas fa-id-card"></i>身分證號碼(護照編號):</label>  <span>@Html.Label("IDcrad_no", Model.IDcrad_no)</span></div>
@@ -250,7 +251,6 @@
                                             {
                                                 <label>無</label>
                                             }
-
                                         </span>
                                     </div>
                                     <div class="info">
@@ -276,7 +276,6 @@
                                             {
                                                 <label>無</label>
                                             }
-
                                         </span>
                                     </div>
                                     <div class="info"><label><i class="fas fa-home"></i>地址:</label>  <span>@Html.Label("Address", Model.Address)</span></div>
@@ -304,7 +303,6 @@
                                                     </label>
                                                 }
                                             }
-
                                         </span>
                                     </div>
                                     <div class="info">
@@ -322,16 +320,13 @@
                                             }
                                         </span>
                                     </div>
-
                                     @*<label><i class="fab fa-etsy"></i>幹部經歷:</label>*@
                                     @*<span><div class="info">*@
                                     <div class="info columns">
                                         <label><i class="fab fa-etsy"></i>幹部經歷:</label>
-
                                         @if (ViewBag.leaders != null)
                                         {
                                             <div class="row">
-
                                                 @foreach (var l in ViewBag.leaders)
                                                 {
                                                     <div class="col-md-6">
@@ -380,4 +375,3 @@
         </div>
     </div>
 </div>
-

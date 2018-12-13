@@ -15,6 +15,7 @@
 <br />
 <br />
 <br />
+<br />
 <style>
     table {
         table-layout: fixed;
@@ -25,10 +26,15 @@
 
     th, td {
         text-align: center;
+        /*width:100%*/
     }
+    button{
+             /*width:50%;*/
+             margin:3px;
+        }
 </style>
-<h2>Schedule</h2>
-<table class="table table-bordered">
+<h2>志願預排</h2>
+<table class="table table-bordered ">
     <thead>
         <tr>
             <th></th>
@@ -69,7 +75,7 @@
             <td data-service_period_no="9"><p></p></td>
             <td data-service_period_no="12"><p></p></td>
             <td data-service_period_no="15"><p ></p></td>
-            <td colspan="2"><button id="btn_edit" class="btn btn-info ml-3">編輯</button><button id="btn_insert" class="btn btn-info ml-3">儲存</button></td>
+            <td colspan="2" ><button id="btn_edit" class="btn btn-info ">編輯</button><button id="btn_insert" class="btn btn-info ">儲存</button></td>
 
         </tr>
         @*<tr>
@@ -127,7 +133,7 @@
             {
                 case "編輯":
                     $(this).text("完成").removeClass("btn-info").addClass("btn-danger")
-                    select.attr("contenteditable", true).css("border", "1px solid red")
+                    select.attr("contenteditable", true).css("border", "1px solid black")
                     break;
                 case "完成":
                     $(this).text("編輯").removeClass("btn-danger").addClass("btn-info")
