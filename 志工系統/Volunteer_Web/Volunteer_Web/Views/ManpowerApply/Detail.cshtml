@@ -2,12 +2,10 @@
 @{
     ViewBag.Title = "Detail";
 }
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
 <div id="fullscreen_bg" class="fullscreen_bg" />
 <div class="container">
     <div id="signupbox" style=" margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -15,7 +13,6 @@
             <div class="panel-heading">
                 <div class="panel-title">年度人力申請</div>
             </div>
-
             <div class="panel-body">
                 <form class="form-horizontal" method="post" action="~/ManpowerApply/Detail" role="form">
                     <div class="form-group">
@@ -25,11 +22,12 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 text-right" for="Apply_date">申請日期</label>
-                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Apply_date.ToShortDateString().ToString()</label>
+                        <label class="col-md-8 text-secondary">@Html.DisplayFor(m => m.manpower_apply.Apply_date)</label>
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 text-right" for="Reply_date">核定日期</label>
-                        <label class="col-md-8 text-secondary">@Model.manpower_apply.Reply_date</label>
+                        <label class="col-md-8 text-secondary">@Html.DisplayFor(m => m.manpower_apply.Reply_date)</label>
+                        @*<span class="col-md-8">@Html.Label("-",Model.manpower_apply.Reply_date)</span>*@
                     </div>
                     <div class="form-group">
                         <label class="col-md-4 text-right" for="Applicant">申請人</label>
@@ -42,10 +40,6 @@
                     <div class="form-group">
                         <label for="Work_place" class="col-md-4 text-right">值班地點</label>
                         <label class="col-md-8 text-secondary">@Model.manpower_apply.Work_place</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="Work_place" class="col-md-4 text-right">需求時段</label>
-                        @*<label class="col-md-8 text-secondary"></label>*@
                     </div>
                     <div class="form-group">
                         <label for="Application_number" class="col-md-4 text-right">需求人數</label>
@@ -84,22 +78,22 @@
                         <label class="col-md-8 text-secondary">@Model.stage.Stage1</label>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-4 col-md-8">
-                            <a href="~/ManpowerApply/Edit/@Model.manpower_apply.Apply_ID" class="btn btn-info">修改資料</a>
-                            <a href="~/ManpowerApply/Cancel/@Model.manpower_apply.Apply_ID" class="btn btn-info">取消申請</a>
-                           
+                        <div class="col-md-offset-5 col-md-7">
+                            @if (@Model.stage.Stage1=="新申請"|| @Model.stage.Stage1 == "申請駁回" )
+                            {
+                                <a href="~/ManpowerApply/Edit/@Model.manpower_apply.Apply_ID" class="btn btn-info">修改資料</a>
+                            }
                         </div>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    </div>
-
-    @section Home_script{
-        <script>
-            $('#myModal').on('shown.bs.modal', function () {
-                $('#myInput').trigger('focus')
-            });
-        </script>
-    }
+</div>
+@section Home_script{
+    <script>
+        $('#myModal').on('shown.bs.modal', function () {
+            $('#myInput').trigger('focus')
+        });
+    </script>
+}

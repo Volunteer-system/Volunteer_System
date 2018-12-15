@@ -1,0 +1,21 @@
+﻿@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>*@
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="~/Css/Manpower_apply.css" rel="stylesheet" />
+
+@model IEnumerable<Volunteer_Web.Models.Stage>
+
+
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            @*<h3 class="panel-title">
+                申請階段
+            </h3>*@
+        </div>
+        <div class="list-group">
+            @foreach (var stage in Model)
+            {
+                @Html.ActionLink(stage.Stage1, "Index", "ManpowerApply", new { id = stage.Stage_ID }, new { @class = "list-group-item list-group-item-action", @id = stage.Stage_ID })
+            }
+        </div>
+    </div>

@@ -267,11 +267,13 @@
     <Compile Include="Models\Lssuing_unit.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ManpowerApplyUse\ManpowerDataContext.cs" />
     <Compile Include="Models\Manpower_apply.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Partial\Abnormal_event.cs" />
     <Compile Include="Models\Partial\Activity.cs" />
+    <Compile Include="Models\Partial\Manpower_apply.cs" />
     <Compile Include="Models\Questionnaire.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -416,6 +418,8 @@
     <Content Include="Views\Supervision\Experience_Insert.cshtml" />
     <Content Include="Views\Supervision\Edit.cshtml" />
     <Content Include="Views\Abnormalevent\Menu.cshtml" />
+    <Content Include="Views\ManpowerApply\Menu.cshtml" />
+    <Content Include="Views\ManpowerApply\text.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

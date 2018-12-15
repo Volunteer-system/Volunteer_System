@@ -2,33 +2,44 @@
 @{
     ViewBag.Title = "Manpower_apply_Index";
 }
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<link href="~/Css/Manpower_apply.css" rel="stylesheet" />
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
 
-<h2>人力需求申請</h2>
 
 <div class="row">
-    <div class="col-3">
-        <a href="~/ManpowerApply/Insert" class="btn btn-primary" target="_blank">新增申請</a>
-        <a href="~/ManpowerApply/All" class="list-group-item list-group-item-action">所有階段</a>
-        <a href="~/ManpowerApply/New" class="list-group-item list-group-item-action">新申請</a>
-        <a href="~/ManpowerApply/Processing" class="list-group-item list-group-item-action">處理中</a>
-        <a href="~/ManpowerApply/Complete" class="list-group-item list-group-item-action">申請完成</a>
-        <a href="~/ManpowerApply/Overrule" class="list-group-item list-group-item-action">申請駁回</a>
-        <a href="~/ManpowerApply/Revoke" class="list-group-item list-group-item-action">取消申請</a>
-        @*@foreach (var stage in Model)
-        {
-            @Html.ActionLink(stage.stage.Stage1, "Browse", "Stage", new { id = stage.stage.Stage_ID }, new { @class = "list-group-item list-group-item-action" })
-        }*@
+    <div class="col-3" style=" margin-top:30px">
+        <a href="~/ManpowerApply/Insert" class="btn btn-warning text-white btn-block">新增申請</a>
+        <div style=" margin-top:40px">
+            @Html.Action("Menu")
+        </div>
     </div>
-    <div class="col-9">
-        <div class="row">
-            <input type="date" class="form-control" id="date1" name="date1" />～
-            <input type="date" class="form-control" id="date2" name="date2" />
-            <a href="~/ManpowerApply/SelectDate" class="btn btn-info">查詢</a>
-            <table class="table table-bordered table-hover">
+    <div class="card mb-4" style="margin-top:10px;margin-left:30px">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-9">
+                    <h2 class="pt-3 pb-4  font-bold font-up deep-purple-text">年度人力申請</h2>
+                    @using (Html.BeginForm("SelectYear", "ManpowerApply"))
+                    {
+                        <div class="input-group md-form form-sm form-2 pl-0 form-inline ">
+                            <label>查詢年份：</label>
+                            @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "請選擇", new { @class = "selectpicker", data_live_search = "true", required = "true" })
+                            <input type="submit" value="開始查詢" class="btn btn-info">
+                        </div>
+                    }
+                </div>
+            </div>
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>申請日期</th>
-                        @*<th>核定日期</th>*@
+                        <th>核定日期</th>
                         <th>值班地點</th>
                         <th>申請人數</th>
                         <th>核定人數</th>
@@ -40,13 +51,14 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.manpower_apply.Apply_date.ToShortDateString().ToString()</td>
-                            @*<td>@item.manpower_apply.Reply_date</td>*@
+                            @*<td>@item.manpower_apply.Apply_date.ToShortDateString().ToString()</td>*@
+                            <td>@Html.DisplayFor(m => item.manpower_apply.Apply_date)</td>
+                            <td>@Html.DisplayFor(m => item.manpower_apply.Reply_date)</td>
                             <td>@item.manpower_apply.Work_place</td>
                             <td>@item.manpower_apply.Application_number</td>
                             <td>@item.manpower_apply.Reply_number</td>
                             <td>@item.stage.Stage1</td>
-                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-primary">詳細資料</a></td>
+                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-warning">詳細資料</a></td>
                         </tr>
                     }
                 </tbody>
@@ -54,3 +66,11 @@
         </div>
     </div>
 </div>
+
+    @section Home_script{
+        <script>
+        $(document).ready(function () {
+            $('a[id = "@ViewBag.Partilview"]').addClass('active');
+        });
+        </script>
+    }
