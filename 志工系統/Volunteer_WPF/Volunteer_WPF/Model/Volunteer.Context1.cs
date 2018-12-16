@@ -16,7 +16,7 @@ namespace Volunteer_WPF.Model
     public partial class VolunteerEntities : DbContext
     {
         public VolunteerEntities()
-            : base("name=VolunteerEntities")
+            : base("VolunteerEntities")
         {
         }
     

@@ -4,13 +4,13 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="VolunteerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Abnormal_event">
           <Key>
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
           <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
+          <Property Name="Abnormal_event_ID" Type="nvarchar" MaxLength="50" />
           <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Application_unit_no" Type="int" Nullable="false" />
@@ -40,6 +40,7 @@
           <Property Name="Application_address" Type="nvarchar" MaxLength="50" />
           <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
           <Property Name="Total_volunteers" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Apply_Assessment">
           <Key>
@@ -142,7 +143,7 @@
           <Property Name="Member" Type="int" />
           <Property Name="Spare" Type="int" />
           <Property Name="Place" Type="nvarchar" MaxLength="50" />
-          <Property Name="Summary" Type="nchar" MaxLength="20" />
+          <Property Name="Summary" Type="nvarchar(max)" />
           <Property Name="Activity_Photo_id" Type="int" />
         </EntityType>
         <EntityType Name="Activity_photo">
@@ -314,6 +315,7 @@
           <Property Name="Volunteer_no" Type="int" />
           <Property Name="Experience_content" Type="nvarchar(max)" />
           <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Issued" Type="bit" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -387,7 +389,7 @@
           <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Sign_up_no" Type="int" Nullable="false" />
           <Property Name="Question_no" Type="int" />
-          <Property Name="Question_num" Type="int" />
+          <Property Name="Answer_num" Type="int" />
           <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
           <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
           <Property Name="Other_result3" Type="nvarchar" MaxLength="50" />
@@ -1270,8 +1272,7 @@
             <End Role="Volunteer" EntitySet="Volunteer" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VolunteerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1280,7 +1281,7 @@
             <PropertyRef Name="Abnormal_event_no" />
           </Key>
           <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Abnormal_event_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Abnormal_event_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Abnormal_event1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
           <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
@@ -1322,6 +1323,7 @@
           <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
           <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Apply_Assessment">
           <Key>
@@ -1441,7 +1443,7 @@
           <Property Name="Member" Type="Int32" />
           <Property Name="Spare" Type="Int32" />
           <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Summary" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Activity_Photo_id" Type="Int32" />
           <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Activity" FromRole="Activity" ToRole="Activity1" />
           <NavigationProperty Name="Activity_photo" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity" ToRole="Activity_photo" />
@@ -1653,6 +1655,7 @@
           <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+          <Property Name="Issued" Type="Boolean" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -1745,6 +1748,7 @@
           <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
+          <Property Name="Answer_num" Type="Int32" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
           <Key>
@@ -2672,6 +2676,7 @@
           <EntitySetMapping Name="Application_unit">
             <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
               <MappingFragment StoreEntitySet="Application_unit">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
                 <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
                 <ScalarProperty Name="Group_no" ColumnName="Group_no" />
@@ -2979,6 +2984,7 @@
           <EntitySetMapping Name="Experiences">
             <EntityTypeMapping TypeName="VolunteerModel.Experience">
               <MappingFragment StoreEntitySet="Experience">
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
                 <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
                 <ScalarProperty Name="Experience1" ColumnName="Experience" />
                 <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
@@ -3061,10 +3067,10 @@
           <EntitySetMapping Name="Sign_up_questionnaire">
             <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
               <MappingFragment StoreEntitySet="Sign_up_questionnaire">
+                <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
                 <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Question_no" ColumnName="Question_no" />
-                <ScalarProperty Name="Question_num" ColumnName="Question_num" />
                 <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
                 <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
                 <ScalarProperty Name="Other_result3" ColumnName="Other_result3" />

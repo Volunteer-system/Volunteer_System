@@ -27,6 +27,7 @@
     <EntitySetMapping Name="Application_unit">
       <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
         <MappingFragment StoreEntitySet="Application_unit">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
           <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
           <ScalarProperty Name="Group_no" ColumnName="Group_no" />

@@ -5,7 +5,7 @@
       <PropertyRef Name="Abnormal_event_no" />
     </Key>
     <Property Name="Abnormal_event_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Abnormal_event_ID" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Abnormal_event_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Abnormal_event1" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
     <Property Name="Application_unit_no" Type="Int32" Nullable="false" />
@@ -47,6 +47,7 @@
     <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
     <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
     <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -166,7 +167,7 @@
     <Property Name="Member" Type="Int32" />
     <Property Name="Spare" Type="Int32" />
     <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Summary" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Activity_Photo_id" Type="Int32" />
     <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Activity" FromRole="Activity" ToRole="Activity1" />
     <NavigationProperty Name="Activity_photo" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity" ToRole="Activity_photo" />
@@ -378,6 +379,7 @@
     <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
+    <Property Name="Issued" Type="Boolean" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -470,6 +472,7 @@
     <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
+    <Property Name="Answer_num" Type="Int32" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
     <Key>

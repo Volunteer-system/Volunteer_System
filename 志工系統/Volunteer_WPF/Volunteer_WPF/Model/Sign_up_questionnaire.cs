@@ -21,6 +21,7 @@ namespace Volunteer_WPF.Model
         public string Other_result1 { get; set; }
         public string Other_result2 { get; set; }
         public string Other_result3 { get; set; }
+        public Nullable<int> Answer_num { get; set; }
     
         public virtual Sign_up Sign_up { get; set; }
     }

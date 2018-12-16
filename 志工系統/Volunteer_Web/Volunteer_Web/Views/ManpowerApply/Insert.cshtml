@@ -2,7 +2,13 @@
 @{
     ViewBag.Title = "Insert";
 }
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Css/Manpower_apply.css" rel="stylesheet" />
 <h2>年度人力申請</h2>
+
 <div class="panel-body">
     <form class="form-horizontal" method="post" action="~/ManpowerApply/Insert" role="form">
         <div class="form-group">
@@ -28,7 +34,7 @@
             <div div class="col-md-8">
                 <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#selectModal">請選擇</button>
                 <!-- Modal -->
-                <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true" >
+                <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -37,7 +43,7 @@
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body" >
+                            <div class="modal-body">
                                 <div class="row">
                                     <table class="table table-bordered table-hover">
                                         <thead>
@@ -55,40 +61,40 @@
                                         <tbody>
                                             <tr>
                                                 <td>上午班：08:30~11:30</td>
-                                                                                               
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m1"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m2"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m3"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m4"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m5"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m6"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="m7"/>人</td>
+
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m1" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m2" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m3" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m4" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m5" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m6" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="m7" />人</td>
                                             </tr>
                                             <tr>
                                                 <td>下午班：13:30~16:30</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af1"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af2"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af3"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af4"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af5"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af6"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="af7"/>人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af1" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af2" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af3" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af4" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af5" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af6" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="af7" />人</td>
                                             </tr>
                                             <tr>
                                                 <td>夜間班：18:00~21:00</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="n1"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="n2"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="n3"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="n4"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="n5"/>人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="n1" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="n2" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="n3" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="n4" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="n5" />人</td>
                                             </tr>
                                             <tr>
                                                 <td>支援班：11:30~13:30</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="as1"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="as2"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="as3"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="as4"/>人</td>
-                                                <td><input type="text" class="form-control form-control-sm countP" id="as5"/>人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="as1" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="as2" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="as3" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="as4" />人</td>
+                                                <td><input type="text" class="form-control form-control-sm countP" id="as5" />人</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -128,27 +134,26 @@
         </div>
     </form>
 </div>
-<input id="count" type="hidden"/>
-
+<input id="count" type="hidden" />
 @section Home_script{
     <script>
         $(document).ready(function () {
             var count = 0;
-            $("#IsCh").click(function () {//按下班表確定按鈕                
-                
+            $("#IsCh").click(function () {//按下班表確定按鈕
+
                 $(".countP").each(function () {
                     if ($(this).val() == "") {
                         $(this).val("0");
                     }
-                    if ($(this).val() != "" ) {
+                    if ($(this).val() != "") {
                         var c = parseInt($(this).val());
                         count += c;
-                    }      
+                    }
                 })
                 var morning = [];
                 var afternoon = [];
                 var night = [];
-                var assistance = [];              
+                var assistance = [];
 
                 morning.push($("#m1").val());
                 morning.push($("#m2").val());
@@ -165,12 +170,12 @@
                 afternoon.push($("#af5").val());
                 afternoon.push($("#af6").val());
                 afternoon.push($("#af7").val());
-                
+
                 night.push($("#n1").val());
                 night.push($("#n2").val());
                 night.push($("#n3").val());
                 night.push($("#n4").val());
-                night.push($("#n5").val());                               
+                night.push($("#n5").val());
 
                 assistance.push($("#as1").val());
                 assistance.push($("#as2").val());
@@ -241,7 +246,6 @@
             })
         })
 
-        
-    </script>
 
+    </script>
 }

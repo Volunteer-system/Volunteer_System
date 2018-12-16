@@ -5,7 +5,7 @@
       <PropertyRef Name="Abnormal_event_no" />
     </Key>
     <Property Name="Abnormal_event_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Abnormal_event_ID" Type="nchar" MaxLength="10" />
+    <Property Name="Abnormal_event_ID" Type="nvarchar" MaxLength="50" />
     <Property Name="Abnormal_event" Type="nvarchar" MaxLength="20" />
     <Property Name="Volunteer_no" Type="int" Nullable="false" />
     <Property Name="Application_unit_no" Type="int" Nullable="false" />
@@ -35,6 +35,7 @@
     <Property Name="Application_address" Type="nvarchar" MaxLength="50" />
     <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
     <Property Name="Total_volunteers" Type="int" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -137,7 +138,7 @@
     <Property Name="Member" Type="int" />
     <Property Name="Spare" Type="int" />
     <Property Name="Place" Type="nvarchar" MaxLength="50" />
-    <Property Name="Summary" Type="nchar" MaxLength="20" />
+    <Property Name="Summary" Type="nvarchar(max)" />
     <Property Name="Activity_Photo_id" Type="int" />
   </EntityType>
   <EntityType Name="Activity_photo">
@@ -309,6 +310,7 @@
     <Property Name="Volunteer_no" Type="int" />
     <Property Name="Experience_content" Type="nvarchar(max)" />
     <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Issued" Type="bit" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -382,7 +384,7 @@
     <Property Name="Sign_up_questionnaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Sign_up_no" Type="int" Nullable="false" />
     <Property Name="Question_no" Type="int" />
-    <Property Name="Question_num" Type="int" />
+    <Property Name="Answer_num" Type="int" />
     <Property Name="Other_result1" Type="nvarchar" MaxLength="50" />
     <Property Name="Other_result2" Type="nvarchar" MaxLength="50" />
     <Property Name="Other_result3" Type="nvarchar" MaxLength="50" />

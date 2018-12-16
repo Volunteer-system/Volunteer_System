@@ -19,11 +19,11 @@ namespace Volunteer_Web.Controllers
         // GET: Abnormalevent
         public ActionResult Index(int id = 0)
         {
-            
-            DateTime date1 = new DateTime();
-           DateTime date2 = new DateTime();
 
-            int unit = Convert.ToInt32(Session["UserID"]);                //搜尋近3個月通報
+            DateTime date1 = new DateTime();
+            DateTime date2 = new DateTime();
+
+            int unit = Convert.ToInt32(Session["UserID"]);
             DateTime date = DateTime.Now.Date.AddMonths(-3);
 
             if (id != 0)
@@ -200,7 +200,7 @@ namespace Volunteer_Web.Controllers
             {
                 var q = from a in db.Abnormal_event
                         join s in db.Stages on a.Stage equals s.Stage_ID
-                        where a.Abnormal_event_no == id && s.Stage1 == "新事件" && s.Stage_type == "異常事件"
+                        where a.Abnormal_event_no == id && s.Stage1 == "新事件"|| s.Stage1 == "駁回" && s.Stage_type == "異常事件"
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
                 return View(q.First());
@@ -220,6 +220,23 @@ namespace Volunteer_Web.Controllers
             abnormal_Event.Abnormal_event1 = Request.Form["Abnormal_event1"];
             abnormal_Event.Unit_descrition = Request.Form["Unit_descrition"];
             abnormal_Event.Volunteer_no = Convert.ToInt32(Request.Form["Volunteer_no"]);
+
+            var q = from s in db.Stages
+                    where s.Stage1 == "駁回" && s.Stage_type == "異常事件"
+                    select s.Stage_ID;
+
+            var q1 = from s in db.Stages
+                    where s.Stage1 == "新事件" && s.Stage_type == "異常事件"
+                    select s.Stage_ID;
+
+
+            if (abnormal_Event.Stage == q.ToList().First())
+            {
+                abnormal_Event.Stage = q1.ToList().First();
+                abnormal_Event.Notification_date = DateTime.Now;
+            }
+
+
 
 
             int vol = Convert.ToInt32(Session["UserID"]);

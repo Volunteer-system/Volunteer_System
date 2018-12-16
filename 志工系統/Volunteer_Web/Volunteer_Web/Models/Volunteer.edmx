@@ -40,6 +40,7 @@
           <Property Name="Application_address" Type="nvarchar" MaxLength="50" />
           <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
           <Property Name="Total_volunteers" Type="int" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Apply_Assessment">
           <Key>
@@ -142,7 +143,7 @@
           <Property Name="Member" Type="int" />
           <Property Name="Spare" Type="int" />
           <Property Name="Place" Type="nvarchar" MaxLength="50" />
-          <Property Name="Summary" Type="nchar" MaxLength="20" />
+          <Property Name="Summary" Type="nvarchar(max)" />
           <Property Name="Activity_Photo_id" Type="int" />
         </EntityType>
         <EntityType Name="Activity_photo">
@@ -1322,6 +1323,7 @@
           <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
           <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Apply_Assessment">
           <Key>
@@ -1441,7 +1443,7 @@
           <Property Name="Member" Type="Int32" />
           <Property Name="Spare" Type="Int32" />
           <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Summary" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Activity_Photo_id" Type="Int32" />
           <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Activity" FromRole="Activity" ToRole="Activity1" />
           <NavigationProperty Name="Activity_photo" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity" ToRole="Activity_photo" />
@@ -2673,6 +2675,7 @@
           <EntitySetMapping Name="Application_unit">
             <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
               <MappingFragment StoreEntitySet="Application_unit">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
                 <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
                 <ScalarProperty Name="Group_no" ColumnName="Group_no" />
