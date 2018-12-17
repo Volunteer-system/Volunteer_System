@@ -96,7 +96,7 @@ namespace Volunteer_Web.Controllers
         {
             ViewBag.Partilview = "basic_info";
             ViewBag.Expertise = dbContext.Expertise1.ToList();
-            return Redirect("~/Home/NewVolunteer/3");
+            return PartialView();
         }
 
         [HttpPost]
@@ -105,7 +105,7 @@ namespace Volunteer_Web.Controllers
             ViewBag.Partilview = "basic_info";
             ViewBag.Expertise = dbContext.Expertise1.ToList();
             Session["Sign_up_session"] = sign_Up_Session;
-            return PartialView();
+             return Redirect("~/Home/NewVolunteer/3");
         }
         //問券調查
         [HttpGet]
@@ -156,33 +156,47 @@ namespace Volunteer_Web.Controllers
         //寫入個人資料
         public ActionResult InsertSign_up()
         {
+
+
           //session轉VM
           Sign_up_session sign_Up_Session = Session["Sign_up_session"] as Sign_up_session;
           Sign_up_questionnaireVM  Sign_up_question = Session["Question"] as Sign_up_questionnaireVM;
 
           //轉dbset並存檔
-              //存個人資料   日期通通是問號
+              //存個人資料   日期沒輸入的預設為1800/1/1
                 Sign_up s = new Sign_up();
                 s.Chinese_name = sign_Up_Session.Chinese_name;
                 s.Sex = sign_Up_Session.Sex;
-                s.Birthday = DateTime.Now;
-            s.Phone = sign_Up_Session.Phone;
+                s.Birthday = sign_Up_Session.Birthday;
+                s.Phone = sign_Up_Session.Phone;
                 s.Mobile = sign_Up_Session.Mobile;
                 s.Email = sign_Up_Session.Email;
                 s.Address = sign_Up_Session.Address;
                 s.Education = sign_Up_Session.Education;
                 s.Job = sign_Up_Session.Job;
-                s.Sign_up_date = DateTime.Now;
-            s.Approval_date= DateTime.Now;
+            //日期預設
+            s.Sign_up_date = Convert.ToDateTime("1800-01-01 00:00:00");
+            s.Approval_date= Convert.ToDateTime("1800-01-01 00:00:00");
             dbContext.Entry(s).State = System.Data.Entity.EntityState.Added;
             dbContext.SaveChanges();
+            
+            
+            //找出此新志工的暫時ID
+                int Number= dbContext.Sign_up.Where(p=>p.Chinese_name==s.Chinese_name).First().Sign_up_no;
+            
+            
             //存專長資料
-            //foreach (var exp in sign_Up_Session.Expertises)
-            //{
-            //   exp.First();
-            //}
-            //存表單資料
-            int Number= dbContext.Sign_up.Where(p=>p.Chinese_name==s.Chinese_name).First().Sign_up_no;
+            foreach (var exp in sign_Up_Session.Expertises)
+            {
+                Sign_up_expertise se = new Sign_up_expertise();
+                se.Sign_up_no = Number;
+                se.Expertise = Convert.ToInt32(exp.Substring(0, 1));
+                dbContext.Entry(se).State = System.Data.Entity.EntityState.Added;
+            }
+
+
+            //存表單資料 
+           
             //存Q1
             foreach (var q1 in Sign_up_question.Q1)
             {

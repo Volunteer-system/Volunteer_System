@@ -466,5 +466,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_expertise">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_expertise">
+        <MappingFragment StoreEntitySet="Sign_up_expertise">
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

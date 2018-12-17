@@ -22,7 +22,9 @@ namespace Volunteer_Web.Controllers
         public ActionResult Index()
         {
             ViewBag.userID = Session["UserID"];
-            return View();
+            ActivityHistoryModel AHM = new ActivityHistoryModel();
+            var activities = AHM.GetHistoryActivity(Convert.ToInt32(Session["UserID"]));
+            return View(activities);
         }
         //活動
         public ActionResult Activity()

@@ -1,48 +1,63 @@
 ﻿@model Volunteer_Web.Models.account
+        
 <div class="modal fade" id="LoginModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
-                @*<span class="login100-form-title-1">使用者登入</span>*@
-            </div>
-            @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login100-form validate-form" }))
+        <div id="login_m_content" class="modal-content">
+            @*<div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
+                </div>*@
+            <div id="login_m_header" class="modal-header">
+                <img class="login_img" src="~/Images/LoginUse.jpg" />
+            </div>@*, new { @class = "login100-form validate-form" }*@
+            @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
             {
                 <div id="showError" class="alert alert-danger" role="alert"></div>
-                <div id="login" style="margin:0 auto">
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        @Html.LabelFor(m => m.Account_number, new { @class = "label-input100" })
-                        @Html.TextBoxFor(m => m.Account_number, new { @class = "input100", placeholder = "Enter UserName" })
+                <div style="text-align:center;" class="modal-body">
+                    <div id="login" style="margin:0 auto">
+                        @*<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">*@
+                        <div class="login_insert">
+                            @Html.LabelFor(m => m.Account_number, new { @class = "login_lab" })
+                            @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "Enter UserName" , autocomplete = "off" })
+                        </div>
+                        @*<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">*@
+                        <div class="login_insert">
+                            @Html.LabelFor(m => m.Password, new { @class = "login_lab" })
+                            @Html.TextBoxFor(m => m.Password, new { @class = "login_txt", placeholder = "Enter password", type = "password" })
+                        </div>
+                        @*<a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>*@
+                        <div>
+                            <a id="a_forget" href="#">忘記密碼?</a>
+                        </div>
+                        <div class="login_button_div">
+                            <button id="btn_login" class="btn btn-outline-success login_button" type="button">登入</button>
+                            <button type="button" class="btn btn-outline-danger login_button" data-dismiss="modal">取消</button>
+                        </div>
                     </div>
-
-                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        @Html.LabelFor(m => m.Password, new { @class = "label-input100" })
-                        @Html.TextBoxFor(m => m.Password, new { @class = "input100", placeholder = "Enter password", type = "password" })
+                    <!--切換忘記帳號-->
+                    <div id="forget" class="swap" style="margin:0 auto">
+                        <div class="login_insert">
+                            @Html.Label("identity", "身分證字號:", new { @class = "login_lab" })
+                            @Html.TextBox("identity", null, new { @class = "login_txt", placeholder = "Enter IdentityNumber", autocomplete = "off" })
+                        </div>
+                        <div class="login_insert">
+                            @Html.Label("birthday", "生日:", new { @class = "login_lab" })
+                            @Html.TextBox("birthday", null, new { @class = "login_txt", placeholder = "Enter Birthday", autocomplete = "off" })
+                        </div>
+                        <div>
+                            <a href="#" id="a_login">返回登入</a>
+                        </div>
+                        <div class="login_button_div">
+                            <button id="btn_edit" class="btn btn-outline-success login_button" type="button">送出</button>
+                            <button type="button" class="btn btn-outline-danger login_button " data-dismiss="modal">取消</button>
+                            </div>
+                        </div>
                     </div>
-                    <a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>
-                    <button id="btn_login" class="btn_login fr" type="button">登入</button>
-                    <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
-                </div>
-                <!--切換忘記帳號-->
-                <div id="forget" class="swap" style="margin:0 auto">
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                        @Html.Label("identity", "身分證字號:", new { @class = "label-input100" })
-                        @Html.TextBox("identity", null, new { @class = "input100", placeholder = "Enter IdentityNumber" })
-                    </div>
-                    <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">
-                        @Html.Label("birthday", "生日:", new { @class = "label-input100" })
-                        @Html.TextBox("birthday", null, new { @class = "input100", placeholder = "Enter Birthday" })
-                    </div>
-                    <a href="#" id="a_login" class="input100" style="color:blue">返回登入</a>
-                    <button id="btn_edit" class="btn_login fr" type="button">送出</button>
-                    <button type="button" class="btn_logout" data-dismiss="modal">取消</button>
-                </div>
-            }
+                    }               
+            </div>
         </div>
     </div>
-</div>
 <!--/Login/LoginIndex-->
-    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
-    @*<script>
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+@*<script>
         $(document).ready(function () {
             $("#btn_login").click(function () {
                 var Account = $("#Account_number");
@@ -70,7 +85,7 @@
                         //    //default:
                         //    //    window.location.href = "/Home/Index"
                         //    //    break;
-                        //}    
+                        //}
                         window.location.href = "/Home/Index"
                     }
                 });
@@ -79,6 +94,4 @@
             });
         });
     </script>*@
-
-
 

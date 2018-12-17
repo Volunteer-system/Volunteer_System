@@ -1,11 +1,11 @@
-/* input[type="password"] {
+ /*input[type="password"] {
   color: transparent;
-} */
+} 
 
 
 
-/*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
+//////////////////////////////////////////////////////////////////
+[ FONT ]
 
 @font-face {
   font-family: Poppins-Regular;
@@ -27,8 +27,8 @@
   src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
+//////////////////////////////////////////////////////////////////
+[ RESTYLE TAG ]
 
 * {
 	margin: 0px; 
@@ -41,8 +41,8 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 
-/*---------------------------------------------*/
-/*a {
+---------------------------------------------
+a {
 	font-family: Poppins-Regular;
 	font-size: 14px;
 	line-height: 1.7;
@@ -61,9 +61,9 @@ a:focus {
 a:hover {
 	text-decoration: none;
   color: #57b846;
-}*/
+}
 
-/*---------------------------------------------*/
+---------------------------------------------
 h1,h2,h3,h4,h5,h6 {
 	margin: 0px;
 }
@@ -82,7 +82,7 @@ ul, li {
 }
 
 
-/*---------------------------------------------*/
+---------------------------------------------
 input {
 	outline: none;
 	border: none;
@@ -133,7 +133,7 @@ label {
   margin: 0;
 }
 
-/*---------------------------------------------*/
+---------------------------------------------
 button {
 	outline: none !important;
 	border: none;
@@ -144,13 +144,13 @@ button:hover {
 	cursor: pointer;
 }
 
-/*iframe {
+iframe {
 	border: none !important;
-}*/
+}
 
 
-/*//////////////////////////////////////////////////////////////////
-[ Utility ]*/
+//////////////////////////////////////////////////////////////////
+[ Utility ]
 .txt1 {
   font-family: Poppins-Regular;
   font-size: 13px;
@@ -158,8 +158,8 @@ button:hover {
   color: #999999;
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ login ]*/
+//////////////////////////////////////////////////////////////////
+[ login ]
 
 .limiter {
   width: 100%;
@@ -190,8 +190,8 @@ button:hover {
   position: relative;
 }
 
-/*==================================================================
-[ Title form ]*/
+==================================================================
+[ Title form ]
 .login100-form-title {
   width: 100%;
   position: relative;
@@ -222,8 +222,8 @@ button:hover {
 }
 
 
-/*==================================================================
-[ Form ]*/
+==================================================================
+[ Form ]
 
 .login100-form {
   width: 100%;
@@ -238,8 +238,8 @@ button:hover {
 }
 
 
-/*------------------------------------------------------------------
-[ Input ]*/
+------------------------------------------------------------------
+[ Input ]
 
 .wrap-input100 {
   width: 100%;
@@ -261,7 +261,7 @@ button:hover {
 
 }
 
-/*---------------------------------------------*/
+---------------------------------------------
 .input100 {
   font-family: Poppins-Regular;
   font-size: 15px;
@@ -303,7 +303,7 @@ button:hover {
 }
 
 
-/*---------------------------------------------*/
+---------------------------------------------
 input.input100 {
   height: 45px;
 }
@@ -316,10 +316,10 @@ input.input100 {
 }
 
 
-/*==================================================================
-[ Restyle Checkbox ]*/
+==================================================================
+[ Restyle Checkbox ]
 
-/*.input-checkbox100 {
+.input-checkbox100 {
   display: none;
 }
 
@@ -365,11 +365,11 @@ input.input100 {
 
 .input-checkbox100:checked + .label-checkbox100::before {
   color: #57b846;
-}*/
+}
 
-/*------------------------------------------------------------------
-[ Button ]*/
-/*.container-login100-form-btn {
+------------------------------------------------------------------
+[ Button ]
+.container-login100-form-btn {
   width: 100%;
   display: -webkit-box;
   display: -webkit-flex;
@@ -377,9 +377,9 @@ input.input100 {
   display: -ms-flexbox;
   display: flex;
   flex-wrap: wrap;
-}*/
+}
 
-/*.login100-form-btn {
+.login100-form-btn {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -402,7 +402,7 @@ input.input100 {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
-}*/
+}
 .btn_logout {
     display: -webkit-box;
     display: -webkit-flex;
@@ -452,16 +452,16 @@ input.input100 {
     transition: all 0.4s;
     margin-top :30px;
 }
-/*.login100-form-btn:hover,.login100-form-btn_red:hover {
+.login100-form-btn:hover,.login100-form-btn_red:hover {
     background-color: #333333;
-}*/
+}
 .btn_login:hover, .btn_logout:hover {
     background-color: #333333;
 }
 
 
-/*------------------------------------------------------------------
-[ Responsive ]*/
+------------------------------------------------------------------
+[ Responsive ]
 
 @media (max-width: 576px) {
   .login100-form {
@@ -485,8 +485,8 @@ input.input100 {
 }
 
 
-/*------------------------------------------------------------------
-[ Alert validate ]*/
+------------------------------------------------------------------
+[ Alert validate ]
 
 .validate-input {
   position: relative;
@@ -550,7 +550,83 @@ input.input100 {
     visibility: visible;
     opacity: 1;
   }
+}*/
+#login_m_content {
+    border-radius: 10%;
+    background: linear-gradient(lemonchiffon,white);
 }
 
+#login_m_header {
+    border: none;
+}
+
+.login_insert {
+    margin-bottom: 10px;
+}
+
+.login_button_div {
+    margin: 0 auto;
+}
+
+.login_button {
+    margin: 10px 5px 10px 5px;
+    width: 100px;
+}
+
+.login_img {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    /*border: 1px solid red;*/
+}
+
+#moved {
+    position: relative;
+}
+
+.login_lab {
+    /*background-color: red;*/
+    /*float:left;*/
+    width: 29%;
+    margin-right: 1%;
+    text-align: right;
+    /*line-height:1.6px;*/
+    font-size: 1.5em;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+}
+
+.login_txt {
+    width: 60%;
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+    border-bottom: thin solid #808080;
+    outline-color: transparent;
+    font-family: Comic Sans MS, Comic Sans, cursive;
+    /*border-bottom-color:lightblue;*/
+}
+
+@media only screen and (max-width:768px) {
+    .login_lab {
+        text-align: initial;
+        width: 100%;
+    }
+
+    .login_txt {
+        width: 100%
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .login_lab {
+        font-size: 14px;
+        width: 100%;
+    }
+
+    .login_txt {
+        font-size: 14px;
+        width: 100%
+    }
+}
 
 

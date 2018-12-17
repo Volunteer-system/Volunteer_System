@@ -369,6 +369,14 @@
     <Property Name="Approval_date" Type="datetime" />
     <Property Name="supervision_ID" Type="int" />
   </EntityType>
+  <EntityType Name="Sign_up_expertise">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Sign_up_no" Type="int" />
+    <Property Name="Expertise" Type="int" />
+  </EntityType>
   <EntityType Name="Sign_up_interview_period">
     <Key>
       <PropertyRef Name="Primary_key" />
@@ -1062,6 +1070,7 @@
     <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" Schema="Volunteer" Table="Service_Group" store:Type="Tables" />
     <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
     <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
+    <EntitySet Name="Sign_up_expertise" EntityType="Self.Sign_up_expertise" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" Schema="Volunteer" store:Type="Tables" />
     <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />

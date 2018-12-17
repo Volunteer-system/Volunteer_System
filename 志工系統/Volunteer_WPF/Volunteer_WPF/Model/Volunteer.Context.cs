@@ -7,17 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Volunteer_Web.Models
+namespace Volunteer_WPF.Model
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using Volunteer_WPF.Model;
-
+    
     public partial class VolunteerEntities : DbContext
     {
         public VolunteerEntities()
-            : base("name=VolunteerEntities")
+            : base("VolunteerEntities")
         {
         }
     
@@ -65,6 +64,7 @@ namespace Volunteer_Web.Models
         public virtual DbSet<Sign_up_interview_period> Sign_up_interview_period { get; set; }
         public virtual DbSet<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
         public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
-        public virtual DbSet<Volunteer> Volunteers { get; set; }
+        public virtual DbSet<Volunteer> Volunteer { get; set; }
+        public virtual DbSet<Sign_up_expertise> Sign_up_expertise { get; set; }
     }
 }

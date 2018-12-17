@@ -29,7 +29,7 @@ namespace Volunteer_Web.Models
                         break;
                     case "Volunteer":
                         permission = "志工";
-                        VolunteersName = db.Volunteers.Where(v => v.Volunteer_no == userID.User_ID).Select(v => v.Chinese_name + " " + v.English_name).FirstOrDefault();
+                        VolunteersName = db.Volunteers.Where(v => v.Volunteer_no == userID.User_ID).Select(v => v.Chinese_name + "(" + v.English_name+")").FirstOrDefault();
                         break;
                     case "Application_unit":
                         permission = "運用單位";
@@ -39,7 +39,7 @@ namespace Volunteer_Web.Models
                         permission = "社工";
                         break;
                 }              
-                UserName = ApplicationName != null ? userID.User_ID +" "+ permission + " " + ApplicationName : SupersionName != null ? userID.User_ID + " " + permission + " " + SupersionName : VolunteersName != null ? userID.User_ID + " " + permission + " " + VolunteersName : "";
+                UserName = ApplicationName != "" ? userID.User_ID +" "+ permission + " " + ApplicationName : SupersionName != "" ? userID.User_ID + " " + permission + " " + SupersionName : VolunteersName != "" ? userID.User_ID + " " + permission + " " + VolunteersName : "";
             }
 
             return UserName;

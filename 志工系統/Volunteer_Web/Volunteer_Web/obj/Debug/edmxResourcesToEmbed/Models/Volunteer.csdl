@@ -1366,5 +1366,14 @@
       <End Role="Sign_up" EntitySet="Sign_up" />
       <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
     </AssociationSet>
+    <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
   </EntityContainer>
+  <EntityType Name="Sign_up_expertise">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sign_up_no" Type="Int32" />
+    <Property Name="Expertise" Type="Int32" />
+  </EntityType>
 </Schema>

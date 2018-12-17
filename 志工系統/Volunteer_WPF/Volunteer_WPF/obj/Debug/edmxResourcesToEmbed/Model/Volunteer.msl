@@ -27,7 +27,6 @@
     <EntitySetMapping Name="Application_unit">
       <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
         <MappingFragment StoreEntitySet="Application_unit">
-          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
           <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
           <ScalarProperty Name="Group_no" ColumnName="Group_no" />
@@ -37,6 +36,7 @@
           <ScalarProperty Name="Application_address" ColumnName="Application_address" />
           <ScalarProperty Name="Work_content" ColumnName="Work_content" />
           <ScalarProperty Name="Total_volunteers" ColumnName="Total_volunteers" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -335,12 +335,12 @@
     <EntitySetMapping Name="Experiences">
       <EntityTypeMapping TypeName="VolunteerModel.Experience">
         <MappingFragment StoreEntitySet="Experience">
-          <ScalarProperty Name="Issued" ColumnName="Issued" />
           <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
           <ScalarProperty Name="Experience1" ColumnName="Experience" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
           <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
           <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -418,10 +418,10 @@
     <EntitySetMapping Name="Sign_up_questionnaire">
       <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
         <MappingFragment StoreEntitySet="Sign_up_questionnaire">
-          <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
           <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
           <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+          <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
           <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
           <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
           <ScalarProperty Name="Other_result3" ColumnName="Other_result3" />
@@ -463,6 +463,15 @@
           <ScalarProperty Name="Service_manual_no" ColumnName="Service_manual_no" />
           <ScalarProperty Name="Personality_scale" ColumnName="Personality_scale" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_expertise">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_expertise">
+        <MappingFragment StoreEntitySet="Sign_up_expertise">
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

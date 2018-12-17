@@ -374,6 +374,14 @@
           <Property Name="Approval_date" Type="datetime" />
           <Property Name="supervision_ID" Type="int" />
         </EntityType>
+        <EntityType Name="Sign_up_expertise">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sign_up_no" Type="int" />
+          <Property Name="Expertise" Type="int" />
+        </EntityType>
         <EntityType Name="Sign_up_interview_period">
           <Key>
             <PropertyRef Name="Primary_key" />
@@ -1067,6 +1075,7 @@
           <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" Schema="Volunteer" Table="Service_Group" store:Type="Tables" />
           <EntitySet Name="Service_period2" EntityType="Self.Service_period2" Schema="Volunteer" Table="Service_period" store:Type="Tables" />
           <EntitySet Name="Sign_up" EntityType="Self.Sign_up" Schema="Volunteer" store:Type="Tables" />
+          <EntitySet Name="Sign_up_expertise" EntityType="Self.Sign_up_expertise" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" Schema="Volunteer" store:Type="Tables" />
           <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" Schema="Volunteer" store:Type="Tables" />
@@ -1316,6 +1325,7 @@
           <Property Name="Application_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Work_content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Total_volunteers" Type="Int32" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Application_unit" FromRole="Application_unit" ToRole="Abnormal_event" />
           <NavigationProperty Name="Service_group" Relationship="Self.FK_Application_unit_Service_group" FromRole="Application_unit" ToRole="Service_group" />
           <NavigationProperty Name="Expertises" Relationship="Self.FK_Expertise_Application_unit" FromRole="Application_unit" ToRole="Expertise" />
@@ -1323,7 +1333,6 @@
           <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
           <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
-          <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Apply_Assessment">
           <Key>
@@ -1654,8 +1663,8 @@
           <Property Name="Volunteer_no" Type="Int32" />
           <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
           <Property Name="Issued" Type="Boolean" />
+          <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -1743,12 +1752,11 @@
           <Property Name="Sign_up_questionnaire1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
           <Property Name="Question_no" Type="Int32" />
-          <Property Name="Question_num" Type="Int32" />
+          <Property Name="Answer_num" Type="Int32" />
           <Property Name="Other_result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
-          <Property Name="Answer_num" Type="Int32" />
         </EntityType>
         <EntityType Name="Sign_up_Service_period">
           <Key>
@@ -2643,7 +2651,16 @@
             <End Role="Sign_up" EntitySet="Sign_up" />
             <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
           </AssociationSet>
+          <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
         </EntityContainer>
+        <EntityType Name="Sign_up_expertise">
+          <Key>
+            <PropertyRef Name="Primary_key" />
+          </Key>
+          <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sign_up_no" Type="Int32" />
+          <Property Name="Expertise" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2676,7 +2693,6 @@
           <EntitySetMapping Name="Application_unit">
             <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
               <MappingFragment StoreEntitySet="Application_unit">
-                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
                 <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
                 <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
                 <ScalarProperty Name="Group_no" ColumnName="Group_no" />
@@ -2686,6 +2702,7 @@
                 <ScalarProperty Name="Application_address" ColumnName="Application_address" />
                 <ScalarProperty Name="Work_content" ColumnName="Work_content" />
                 <ScalarProperty Name="Total_volunteers" ColumnName="Total_volunteers" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2984,12 +3001,12 @@
           <EntitySetMapping Name="Experiences">
             <EntityTypeMapping TypeName="VolunteerModel.Experience">
               <MappingFragment StoreEntitySet="Experience">
-                <ScalarProperty Name="Issued" ColumnName="Issued" />
                 <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
                 <ScalarProperty Name="Experience1" ColumnName="Experience" />
                 <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
                 <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
                 <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3067,10 +3084,10 @@
           <EntitySetMapping Name="Sign_up_questionnaire">
             <EntityTypeMapping TypeName="VolunteerModel.Sign_up_questionnaire">
               <MappingFragment StoreEntitySet="Sign_up_questionnaire">
-                <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
                 <ScalarProperty Name="Sign_up_questionnaire1" ColumnName="Sign_up_questionnaire" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Question_no" ColumnName="Question_no" />
+                <ScalarProperty Name="Answer_num" ColumnName="Answer_num" />
                 <ScalarProperty Name="Other_result1" ColumnName="Other_result1" />
                 <ScalarProperty Name="Other_result2" ColumnName="Other_result2" />
                 <ScalarProperty Name="Other_result3" ColumnName="Other_result3" />
@@ -3112,6 +3129,15 @@
                 <ScalarProperty Name="Service_manual_no" ColumnName="Service_manual_no" />
                 <ScalarProperty Name="Personality_scale" ColumnName="Personality_scale" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sign_up_expertise">
+            <EntityTypeMapping TypeName="VolunteerModel.Sign_up_expertise">
+              <MappingFragment StoreEntitySet="Sign_up_expertise">
+                <ScalarProperty Name="Expertise" ColumnName="Expertise" />
+                <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+                <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -195,6 +195,9 @@
     <Compile Include="Model\Sign_up.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Sign_up_expertise.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Sign_up_interview_period.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -216,8 +219,7 @@
     <Compile Include="Model\Unit_expertise_Model.cs" />
     <Compile Include="Model\Unit_service_period_Model.cs" />
     <Compile Include="Model\Unit_volunteer_list_Model.cs" />
-    <Compile Include="Model\Volunteer.Context.cs" />
-    <Compile Include="Model\Volunteer.Context1.cs">
+    <Compile Include="Model\Volunteer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Volunteer.Context.tt</DependentUpon>
@@ -592,8 +594,8 @@
   <ItemGroup>
     <Content Include="Model\Volunteer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Volunteer.Context.cs</LastGenOutput>
       <DependentUpon>Volunteer.edmx</DependentUpon>
-      <LastGenOutput>Volunteer.Context1.cs</LastGenOutput>
     </Content>
     <Content Include="Model\Volunteer.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

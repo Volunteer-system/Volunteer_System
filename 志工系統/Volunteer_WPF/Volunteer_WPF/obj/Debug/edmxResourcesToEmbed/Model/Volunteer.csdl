@@ -40,6 +40,7 @@
     <Property Name="Application_address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Work_content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Total_volunteers" Type="Int32" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Application_unit" FromRole="Application_unit" ToRole="Abnormal_event" />
     <NavigationProperty Name="Service_group" Relationship="Self.FK_Application_unit_Service_group" FromRole="Application_unit" ToRole="Service_group" />
     <NavigationProperty Name="Expertises" Relationship="Self.FK_Expertise_Application_unit" FromRole="Application_unit" ToRole="Expertise" />
@@ -47,7 +48,6 @@
     <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
     <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
     <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
-    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -378,8 +378,8 @@
     <Property Name="Volunteer_no" Type="Int32" />
     <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
     <Property Name="Issued" Type="Boolean" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -467,12 +467,11 @@
     <Property Name="Sign_up_questionnaire1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Sign_up_no" Type="Int32" Nullable="false" />
     <Property Name="Question_no" Type="Int32" />
-    <Property Name="Question_num" Type="Int32" />
+    <Property Name="Answer_num" Type="Int32" />
     <Property Name="Other_result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Other_result2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Other_result3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Sign_up" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up_questionnaire" ToRole="Sign_up" />
-    <Property Name="Answer_num" Type="Int32" />
   </EntityType>
   <EntityType Name="Sign_up_Service_period">
     <Key>
@@ -1367,5 +1366,14 @@
       <End Role="Sign_up" EntitySet="Sign_up" />
       <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
     </AssociationSet>
+    <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
   </EntityContainer>
+  <EntityType Name="Sign_up_expertise">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sign_up_no" Type="Int32" />
+    <Property Name="Expertise" Type="Int32" />
+  </EntityType>
 </Schema>
