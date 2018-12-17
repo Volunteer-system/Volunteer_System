@@ -43,7 +43,8 @@ namespace Volunteer_WPF.View_Model
         public List<Manpower_apply_ViewModel> SelectManpower_apply_byStage(string stage, string type, DateTime startdate, DateTime enddate)
         {
             Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
-            List<Manpower_apply_Model> Manpower_applys = manpower_Apply_Model.SelectManpower_apply_byStage(stage, type, startdate, enddate);
+            List<Manpower_apply_Model> Manpower_applys = Manpower_applys = manpower_Apply_Model.SelectManpower_apply_byStage(stage, type, startdate, enddate);
+            
             List<Manpower_apply_ViewModel> apply_ViewModels = new List<Manpower_apply_ViewModel>();
 
             foreach (var row in Manpower_applys)

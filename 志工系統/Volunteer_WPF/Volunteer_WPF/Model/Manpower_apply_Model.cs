@@ -86,7 +86,7 @@ namespace Volunteer_WPF.Model
             }
 
             return Manpower_applys;
-        }
+        }                
 
         public void SelectManpower_apply_byApply_ID(int apply_ID)
         {
@@ -135,7 +135,50 @@ namespace Volunteer_WPF.Model
             }
         }
 
-        public void UpdateManpower_apply(int apply_ID, int reply_number,string repply_description)
+        public void SelectNNewManpower_apply_byApply_ID(int apply_ID)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Manpower_apply
+                    join n2 in dbContext.Application_unit
+                    on n1.Application_unit_no equals n2.Application_unit_no
+                    where n1.Apply_ID == apply_ID
+                    select new
+                    {
+                        Apply_ID = n1.Apply_ID,
+                        Application_unit = n2.Application_unit1,
+                        Applicant = n1.Applicant,
+                        Apply_date = n1.Apply_date,
+                        Applicant_phone = n1.Applicant_phone,
+                        Work_place = n1.Work_place,
+                        Apply_description = n1.Apply_description,
+                        unit_Supervisor = n1.Application_unit_Supervisor,
+                        unit_heads = n1.Application_unit_heads,
+                        Reply_date = n1.Reply_date,
+                        Repply_description = n1.Repply_description,
+                        Supervision_heads = n1.Supervision_heads,
+                        Application_number = n1.Application_number,
+                        Reply_number = n1.Reply_number
+                    };
+            foreach (var row in q)
+            {
+                Apply_ID = row.Apply_ID;
+                Application_unit = row.Application_unit;
+                Applicant = row.Applicant;
+                Apply_date = row.Apply_date.ToString();
+                Applicant_phone = row.Applicant_phone;
+                Work_place = row.Work_place;
+                Apply_description = row.Apply_description;
+                unit_Supervisor = row.unit_Supervisor;
+                unit_heads = row.unit_heads;
+                Reply_date = row.Reply_date.ToString();
+                Repply_description = row.Repply_description;
+                Supervision_heads = row.Supervision_heads;
+                Application_number = row.Application_number.ToString();
+                Reply_number = row.Reply_number.ToString();
+            }
+        }
+
+        public void UpdateManpower_apply(int apply_ID, int reply_number,string repply_description,int supervision_ID)
         {
             int processing = 0;
             int end_processing = 0;
@@ -175,6 +218,9 @@ namespace Volunteer_WPF.Model
             {
                 row.Reply_number = reply_number;
                 row.Repply_description = repply_description;
+                row.Supervision_ID = supervision_ID;
+                row.Supervision_heads = "熊主任";
+                row.Reply_date = DateTime.Now;
                 if (reply_number > 0 &&
                     !string.IsNullOrEmpty(repply_description) &&
                     Assessments.Count() > 0 &&

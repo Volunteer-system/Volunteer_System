@@ -134,7 +134,7 @@ namespace Volunteer_WPF.View
 
         private void getManpower_apply(int Apply_ID)
         {
-            Manpower_apply_detail_View Manpower_apply_detail = new Manpower_apply_detail_View(Apply_ID);
+            Manpower_apply_detail_View Manpower_apply_detail = new Manpower_apply_detail_View(Apply_ID, Stage);
             wondow_show.Children.Clear();
             object content = Manpower_apply_detail.Content;
             Manpower_apply_detail.Content = null;

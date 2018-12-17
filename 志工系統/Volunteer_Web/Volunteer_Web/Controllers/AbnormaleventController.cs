@@ -167,6 +167,7 @@ namespace Volunteer_Web.Controllers
                 _abnormal_Event.Application_unit_no = Convert.ToInt32(Session["UserID"]);
                 _abnormal_Event.Volunteer_no = Convert.ToInt32(Request.Form["Volunteer_no"]);
                 _abnormal_Event.Notification_date = DateTime.Now;
+                _abnormal_Event.event_category_ID = 1;
 
                 var q = from s in db.Stages
                         where s.Stage1 == "新事件" && s.Stage_type == "異常事件"

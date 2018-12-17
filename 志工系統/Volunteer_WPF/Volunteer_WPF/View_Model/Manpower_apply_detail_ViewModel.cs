@@ -44,10 +44,17 @@ namespace Volunteer_WPF.View_Model
         //評量結果
         public List<string> Apply_result { get; set; }
 
-        public void SelectManpower_apply_byApply_ID(int apply_ID)
+        public void SelectManpower_apply_byApply_ID(int apply_ID,string stage)
         {
             Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
-            manpower_Apply_Model.SelectManpower_apply_byApply_ID(apply_ID);
+            if (stage == "新申請")
+            {
+                manpower_Apply_Model.SelectNNewManpower_apply_byApply_ID(apply_ID);
+            }
+            else
+            {
+                manpower_Apply_Model.SelectManpower_apply_byApply_ID(apply_ID);
+            }            
             Apply_ID = manpower_Apply_Model.Apply_ID;
             Application_unit = manpower_Apply_Model.Application_unit;
             Applicant = manpower_Apply_Model.Applicant;

@@ -20,12 +20,12 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Manpower_apply_detail_View : Window
     {
-        public Manpower_apply_detail_View(int apply_id)
+        public Manpower_apply_detail_View(int apply_id,string stage)
         {
             InitializeComponent();
 
             Manpower_apply_detail_ViewModel manpower_Apply_Detail_ViewModel = new Manpower_apply_detail_ViewModel();
-            manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id);
+            manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id, stage);
             this.lab_Application_unit.Content = manpower_Apply_Detail_ViewModel.Application_unit;
             this.lab_Applicant.Content = manpower_Apply_Detail_ViewModel.Applicant;
             this.lab_Apply_date.Content = manpower_Apply_Detail_ViewModel.Apply_date;

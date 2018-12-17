@@ -51,7 +51,7 @@ namespace Volunteer_WPF.View_Model
             {
                 case "新申請":
                     Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
-                    manpower_Apply_Model.SelectManpower_apply_byApply_ID(apply_id);
+                    manpower_Apply_Model.SelectNNewManpower_apply_byApply_ID(apply_id);
 
                     Apply_ID = manpower_Apply_Model.Apply_ID;
                     Application_unit = manpower_Apply_Model.Application_unit;
@@ -70,7 +70,7 @@ namespace Volunteer_WPF.View_Model
                     Reply_number = manpower_Apply_Model.Reply_number;
                     break;
                 case "修改":
-                    manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id);
+                    manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id, type);
 
                     Apply_ID = manpower_Apply_Detail_ViewModel.Apply_ID;
                     Application_unit = manpower_Apply_Detail_ViewModel.Application_unit;
@@ -97,14 +97,20 @@ namespace Volunteer_WPF.View_Model
         {
             Apply_assessment_Model apply_Assessment_Model = new Apply_assessment_Model();
             apply_Assessment_Model.InsertApply_assessment(Apply_Data_ViewModel.Apply_ID, insert_Assessment);
-            apply_Assessment_Model.DeleteApply_assessment(Apply_Data_ViewModel.Apply_ID, delete_Assessment);
+            if (delete_Assessment.Count() > 0)
+            {
+                apply_Assessment_Model.DeleteApply_assessment(Apply_Data_ViewModel.Apply_ID, delete_Assessment);
+            }            
 
             Apply_result_Model apply_Result_Model = new Apply_result_Model();
             apply_Result_Model.InsertApply_result(Apply_Data_ViewModel.Apply_ID,insert_Result);
-            apply_Result_Model.DeleteApply_result(Apply_Data_ViewModel.Apply_ID, delete_Result);
+            if (delete_Result.Count() > 0)
+            {
+                apply_Result_Model.DeleteApply_result(Apply_Data_ViewModel.Apply_ID, delete_Result);
+            }            
 
             Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
-            manpower_Apply_Model.UpdateManpower_apply(Apply_Data_ViewModel.Apply_ID, int.Parse(Apply_Data_ViewModel.Reply_number), Apply_Data_ViewModel.Repply_description);
+            manpower_Apply_Model.UpdateManpower_apply(Apply_Data_ViewModel.Apply_ID, int.Parse(Apply_Data_ViewModel.Reply_number), Apply_Data_ViewModel.Repply_description,Account_ViewModel.User_ID);
 
         }
 

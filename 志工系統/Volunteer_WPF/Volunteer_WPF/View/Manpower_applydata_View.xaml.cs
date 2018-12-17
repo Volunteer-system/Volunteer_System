@@ -148,7 +148,7 @@ namespace Volunteer_WPF.View
         {
             if (this.dg_Apply_result.SelectedItem != null)
             {
-                insert_Assessment.Add((this.dg_Apply_result.SelectedItem as Apply_result).評估結果);
+                insert_Result.Add((this.dg_Apply_result.SelectedItem as Apply_result).評估結果);
                 if (delete_Result.Where(p => p == (this.dg_Apply_result.SelectedItem as Apply_result).評估結果).Count() > 0)
                 {
                     delete_Result.Remove((this.dg_Apply_result.SelectedItem as Apply_result).評估結果);

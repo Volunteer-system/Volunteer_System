@@ -125,9 +125,15 @@ namespace Volunteer_Web.Controllers
             return Redirect("~/Home/NewVolunteer/4");
         }
         //服務時段調查
+        [HttpGet]
         public ActionResult Service_period()
         {
             return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Service_period(int id=0)
+        {
+            return Redirect("~/Home/NewVolunteer/6");
         }
 
         [HttpPost]
@@ -174,6 +180,8 @@ namespace Volunteer_Web.Controllers
                 s.Address = sign_Up_Session.Address;
                 s.Education = sign_Up_Session.Education;
                 s.Job = sign_Up_Session.Job;
+                s.Stage = 1;
+                s.Sign_up_type = "社會青年";
             //日期預設
             s.Sign_up_date = Convert.ToDateTime("1800-01-01 00:00:00");
             s.Approval_date= Convert.ToDateTime("1800-01-01 00:00:00");
