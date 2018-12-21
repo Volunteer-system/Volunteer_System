@@ -113,6 +113,8 @@
     <Content Include="Images\292-12-3.jpg" />
     <Content Include="Images\299-06-1.jpg" />
     <Content Include="Images\5-16620-1.jpg" />
+    <Content Include="Images\asp-net-mvc.jpg" />
+    <Content Include="Images\ASP.NET.png" />
     <Content Include="Images\images %281%29.jpg" />
     <Content Include="Images\images%282%29.jpg" />
     <Content Include="Images\IMG_6533.JPG" />
@@ -254,6 +256,12 @@
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Identity_type.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Indexphoto.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Indexvideolink.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IRepository.cs" />

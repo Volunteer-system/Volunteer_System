@@ -66,5 +66,7 @@ namespace Volunteer_Web.Models
         public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
         public virtual DbSet<Volunteer> Volunteers { get; set; }
         public virtual DbSet<Sign_up_expertise> Sign_up_expertise { get; set; }
+        public virtual DbSet<Indexphoto> Indexphotoes { get; set; }
+        public virtual DbSet<Indexvideolink> Indexvideolinks { get; set; }
     }
 }

@@ -12,17 +12,10 @@ namespace Volunteer_Web.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Activity1
+    public partial class Indexphoto
     {
-        public int Primary_key { get; set; }
-        public int Volunteer_no { get; set; }
-        public int Activity_no { get; set; }
-        public Nullable<System.DateTime> Registration_date { get; set; }
-        public string Stage { get; set; }
-        public Nullable<System.DateTime> Confirm_time { get; set; }
-        public Nullable<bool> Vegetarian { get; set; }
-    
-        public virtual Activity Activity { get; set; }
-        public virtual Volunteer Volunteer { get; set; }
+        public int Indexphoto_no { get; set; }
+        public string Indexphoto1 { get; set; }
+        public Nullable<bool> Issued { get; set; }
     }
 }

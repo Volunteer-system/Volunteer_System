@@ -60,6 +60,8 @@
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
     </ol>
 
     <!-- 輪播（Carousel）項目 -->
@@ -72,6 +74,12 @@
         </div>
         <div class="item">
             <img src="~/Images/maxresdefault.jpg" alt="Third slide">
+        </div>
+        <div class="item">
+            <img src="~/Images/志工隊介紹用.jpg" alt="Four slide">
+        </div>
+        <div class="item">
+            <img src="~/Images/志工隊介紹用.jpg" alt="Five slide">
         </div>
     </div>
     <!-- 輪播（Carousel -->
@@ -87,26 +95,28 @@
 
 <!-- 控制按钮 -->
 
-<div style="text-align:center;">    
-    <input type="image" src="~/Images/292-12-3.jpg" data-target="#myCarousel" data-slide-to="0" class="btn slide-one " >
-    <input type="image" src="~/Images/299-06-1.jpg" data-target="#myCarousel" data-slide-to="1" class="btn slide-two" >
-    <input type="image" src="~/Images/maxresdefault.jpg" data-target="#myCarousel" data-slide-to="2" class="btn slide-three" >
+<div style="text-align:center">
+    <input type="image" src="~/Images/292-12-3.jpg" data-target="#myCarousel" data-slide-to="0" class="btn" style="width:20rem;">
+    <input type="image" src="~/Images/299-06-1.jpg" data-target="#myCarousel" data-slide-to="1" class="btn" style="width:20rem;">
+    <input type="image" src="~/Images/maxresdefault.jpg" data-target="#myCarousel" data-slide-to="2" class="btn" style="width:20rem;">
+    <input type="image" src="~/Images/志工隊介紹用.jpg" data-target="#myCarousel" data-slide-to="3" class="btn" style="width:20rem;">
+    <input type="image" src="~/Images/志工隊介紹用.jpg" data-target="#myCarousel" data-slide-to="" class="btn" style="width:20rem;">
 </div>
 
 <div class="row mb-2">
     <div class="col-sm-6 vision-news-loop">
-        <a href="/Home/Activity" target="_top" title="活動名稱">
+        <a href="/Home/Activity" target="_top" title="績優志工簡介">
             <div class="vision-thumbnails">
                 <div class="thumbnails-2by1">
                     <div class="mask">
                         <span class="news-date">
                             更新日期
                         </span>
-                        <h3>活動簡介</h3>
-                        活動簡介內容 活動簡介內容 活動簡介內容 活動簡介內容 活動簡介內容
+                        <h3>績優志工簡介</h3>
+                        簡介內容 動簡介內容 簡介內容 簡介內容 簡介內容
                         <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
                     </div>
-                    <img src="~/Images/5-16620-1.jpg" alt="活動名稱" class="img-responsive vision-news-photo" />
+                    <img src="~/Images/5-16620-1.jpg" alt="績優志工簡介" class="img-responsive vision-news-photo" />
                 </div>
             </div>
         </a>
@@ -141,60 +151,41 @@
     <div class="m-5">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
     </div>
-    @*<div class="col-md-4">
-            <div class="card flex-md-row embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="card col-md-4">
-            <div class="card flex-md-row embed-responsive embed-responsive-16by90">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="card col-md-4">
-            <div class="card flex-md-row embed-responsive embed-responsive-16by90">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-            </div>
-        </div>*@
+
 </div>
 
 <div class="row">
-    <div class="col-md-8 blog-main">
+    <div class="col-md-12 blog-main">
         <h3 class="pb-3 mb-4 font-italic border-bottom">
-            From the Firehose
+            相關聯絡資訊
         </h3>
-        <div class="blog-post">
-            <h2 class="blog-post-title">Sample blog post</h2>
-            <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p>
-            <p>This blog post shows a few different types of content that's supported and styled with Bootstrap. Basic typography, images, and code are all supported.</p>
+        <div class="blog-post col-md-3">
+            <h2 class="blog-post-title" style="font-size:large">主任辦公室</h2>
+            <h2 class="blog-post-title" style="font-size:large">明倫身障服務中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">癌症資源中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">志工室</h2>
             <hr>
+        </div>
+        <div class="blog-post col-md-3">
+            <h2 class="blog-post-title" style="font-size:large">02-77282937</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281283</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281709</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281285</h2>
+            <hr>
+        </div>
+        <div class="blog-post col-md-4">
+            <h2 class="blog-post-title" style="font-size:large">明倫病友家庭服務中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">福利諮詢暨輔具租借櫃檯</h2>
+            <h2 class="blog-post-title" style="font-size:large">淑宜的幸福小棧</h2>
+        </div>
+        <div class="blog-post col-md-2">
+            <h2 class="blog-post-title" style="font-size:large">02-77281278</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281277</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77380799</h2>
         </div>
     </div>
 
-    <aside class="col-md-4 blog-sidebar">
-        <div class="p-3 mb-3 bg-light rounded">
-            <h4 class="font-italic">About</h4>
-            <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-        </div>
-
-        <div class="p-3">
-            <h4 class="font-italic">Archives</h4>
-            <ol class="list-unstyled mb-0">
-                <li><a href="#">March 2014</a></li>
-                <li><a href="#">February 2014</a></li>
-                <li><a href="#">January 2014</a></li>
-                <li><a href="#">December 2013</a></li>
-                <li><a href="#">November 2013</a></li>
-                <li><a href="#">October 2013</a></li>
-                <li><a href="#">September 2013</a></li>
-                <li><a href="#">August 2013</a></li>
-                <li><a href="#">July 2013</a></li>
-                <li><a href="#">June 2013</a></li>
-                <li><a href="#">May 2013</a></li>
-                <li><a href="#">April 2013</a></li>
-            </ol>
-        </div>
-    </aside>
+    
 </div>
 
 

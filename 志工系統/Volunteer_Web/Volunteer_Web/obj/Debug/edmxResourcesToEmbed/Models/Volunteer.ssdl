@@ -140,6 +140,7 @@
     <Property Name="Place" Type="nvarchar" MaxLength="50" />
     <Property Name="Summary" Type="nvarchar(max)" />
     <Property Name="Activity_Photo_id" Type="int" />
+    <Property Name="Meal" Type="bit" />
   </EntityType>
   <EntityType Name="Activity_photo">
     <Key>
@@ -269,6 +270,22 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Indexphoto">
+    <Key>
+      <PropertyRef Name="Indexphoto_no" />
+    </Key>
+    <Property Name="Indexphoto_no" Type="int" Nullable="false" />
+    <Property Name="Indexphoto" Type="nvarchar(max)" />
+    <Property Name="Issued" Type="bit" />
+  </EntityType>
+  <EntityType Name="Indexvideolink">
+    <Key>
+      <PropertyRef Name="Indexvideolink_no" />
+    </Key>
+    <Property Name="Indexvideolink_no" Type="int" Nullable="false" />
+    <Property Name="Videolink" Type="nvarchar(max)" />
+    <Property Name="Issued" Type="bit" />
+  </EntityType>
   <EntityType Name="Volunteer_supervision">
     <Key>
       <PropertyRef Name="supervision_ID" />
@@ -290,6 +307,7 @@
     <Property Name="Registration_date" Type="datetime" />
     <Property Name="Stage" Type="nvarchar" MaxLength="50" />
     <Property Name="Confirm_time" Type="datetime" />
+    <Property Name="Vegetarian" Type="bit" />
   </EntityType>
   <EntityType Name="Education">
     <Key>
@@ -311,6 +329,7 @@
     <Property Name="Experience_content" Type="nvarchar(max)" />
     <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
     <Property Name="Issued" Type="bit" />
+    <Property Name="Home_issued" Type="bit" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -1061,6 +1080,8 @@
     <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Stage" EntityType="Self.Stage" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Indexphoto" EntityType="Self.Indexphoto" Schema="supervision" store:Type="Tables" />
+    <EntitySet Name="Indexvideolink" EntityType="Self.Indexvideolink" Schema="supervision" store:Type="Tables" />
     <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
     <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
     <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />

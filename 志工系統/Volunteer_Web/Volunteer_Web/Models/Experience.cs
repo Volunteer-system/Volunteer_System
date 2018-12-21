@@ -20,6 +20,7 @@ namespace Volunteer_Web.Models
         public string Experience_content { get; set; }
         public string Experience_photo { get; set; }
         public Nullable<bool> Issued { get; set; }
+        public Nullable<bool> Home_issued { get; set; }
     
         public virtual Volunteer Volunteer { get; set; }
     }

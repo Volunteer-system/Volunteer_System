@@ -145,6 +145,7 @@
           <Property Name="Place" Type="nvarchar" MaxLength="50" />
           <Property Name="Summary" Type="nvarchar(max)" />
           <Property Name="Activity_Photo_id" Type="int" />
+          <Property Name="Meal" Type="bit" />
         </EntityType>
         <EntityType Name="Activity_photo">
           <Key>
@@ -274,6 +275,22 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="Indexphoto">
+          <Key>
+            <PropertyRef Name="Indexphoto_no" />
+          </Key>
+          <Property Name="Indexphoto_no" Type="int" Nullable="false" />
+          <Property Name="Indexphoto" Type="nvarchar(max)" />
+          <Property Name="Issued" Type="bit" />
+        </EntityType>
+        <EntityType Name="Indexvideolink">
+          <Key>
+            <PropertyRef Name="Indexvideolink_no" />
+          </Key>
+          <Property Name="Indexvideolink_no" Type="int" Nullable="false" />
+          <Property Name="Videolink" Type="nvarchar(max)" />
+          <Property Name="Issued" Type="bit" />
+        </EntityType>
         <EntityType Name="Volunteer_supervision">
           <Key>
             <PropertyRef Name="supervision_ID" />
@@ -295,6 +312,7 @@
           <Property Name="Registration_date" Type="datetime" />
           <Property Name="Stage" Type="nvarchar" MaxLength="50" />
           <Property Name="Confirm_time" Type="datetime" />
+          <Property Name="Vegetarian" Type="bit" />
         </EntityType>
         <EntityType Name="Education">
           <Key>
@@ -316,6 +334,7 @@
           <Property Name="Experience_content" Type="nvarchar(max)" />
           <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
           <Property Name="Issued" Type="bit" />
+          <Property Name="Home_issued" Type="bit" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -1066,6 +1085,8 @@
           <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="Stage" EntityType="Self.Stage" Schema="Basic" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Indexphoto" EntityType="Self.Indexphoto" Schema="supervision" store:Type="Tables" />
+          <EntitySet Name="Indexvideolink" EntityType="Self.Indexvideolink" Schema="supervision" store:Type="Tables" />
           <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
           <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
           <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />
@@ -1461,6 +1482,7 @@
           <NavigationProperty Name="Service_group" Relationship="Self.FK_Activity_Service_group" FromRole="Activity" ToRole="Service_group" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Activity" ToRole="Volunteer_supervision" />
           <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Activity" FromRole="Activity" ToRole="Education" />
+          <Property Name="Meal" Type="Boolean" />
         </EntityType>
         <EntityType Name="Activity_photo">
           <Key>
@@ -1641,6 +1663,7 @@
           <Property Name="Confirm_time" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Activity" FromRole="Activity1" ToRole="Activity" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Activity_Volunteer" FromRole="Activity1" ToRole="Volunteer" />
+          <Property Name="Vegetarian" Type="Boolean" />
         </EntityType>
         <EntityType Name="Education">
           <Key>
@@ -1665,6 +1688,7 @@
           <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
           <Property Name="Issued" Type="Boolean" />
+          <Property Name="Home_issued" Type="Boolean" />
         </EntityType>
         <EntityType Name="Expertise2">
           <Key>
@@ -2652,6 +2676,8 @@
             <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
           </AssociationSet>
           <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
+          <EntitySet Name="Indexphotoes" EntityType="VolunteerModel.Indexphoto" />
+          <EntitySet Name="Indexvideolinks" EntityType="VolunteerModel.Indexvideolink" />
         </EntityContainer>
         <EntityType Name="Sign_up_expertise">
           <Key>
@@ -2660,6 +2686,22 @@
           <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Sign_up_no" Type="Int32" />
           <Property Name="Expertise" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Indexphoto">
+          <Key>
+            <PropertyRef Name="Indexphoto_no" />
+          </Key>
+          <Property Name="Indexphoto_no" Type="Int32" Nullable="false" />
+          <Property Name="Indexphoto1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Issued" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Indexvideolink">
+          <Key>
+            <PropertyRef Name="Indexvideolink_no" />
+          </Key>
+          <Property Name="Indexvideolink_no" Type="Int32" Nullable="false" />
+          <Property Name="Videolink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Issued" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2800,6 +2842,7 @@
           <EntitySetMapping Name="Activities">
             <EntityTypeMapping TypeName="VolunteerModel.Activity">
               <MappingFragment StoreEntitySet="Activity">
+                <ScalarProperty Name="Meal" ColumnName="Meal" />
                 <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
                 <ScalarProperty Name="Activity_name" ColumnName="Activity_name" />
                 <ScalarProperty Name="Activity_type_ID" ColumnName="Activity_type_ID" />
@@ -2978,6 +3021,7 @@
           <EntitySetMapping Name="Activity1">
             <EntityTypeMapping TypeName="VolunteerModel.Activity1">
               <MappingFragment StoreEntitySet="Activity1">
+                <ScalarProperty Name="Vegetarian" ColumnName="Vegetarian" />
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
                 <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
                 <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
@@ -3001,6 +3045,7 @@
           <EntitySetMapping Name="Experiences">
             <EntityTypeMapping TypeName="VolunteerModel.Experience">
               <MappingFragment StoreEntitySet="Experience">
+                <ScalarProperty Name="Home_issued" ColumnName="Home_issued" />
                 <ScalarProperty Name="Issued" ColumnName="Issued" />
                 <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
                 <ScalarProperty Name="Experience1" ColumnName="Experience" />
@@ -3138,6 +3183,24 @@
                 <ScalarProperty Name="Expertise" ColumnName="Expertise" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indexphotoes">
+            <EntityTypeMapping TypeName="VolunteerModel.Indexphoto">
+              <MappingFragment StoreEntitySet="Indexphoto">
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
+                <ScalarProperty Name="Indexphoto1" ColumnName="Indexphoto" />
+                <ScalarProperty Name="Indexphoto_no" ColumnName="Indexphoto_no" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Indexvideolinks">
+            <EntityTypeMapping TypeName="VolunteerModel.Indexvideolink">
+              <MappingFragment StoreEntitySet="Indexvideolink">
+                <ScalarProperty Name="Issued" ColumnName="Issued" />
+                <ScalarProperty Name="Videolink" ColumnName="Videolink" />
+                <ScalarProperty Name="Indexvideolink_no" ColumnName="Indexvideolink_no" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

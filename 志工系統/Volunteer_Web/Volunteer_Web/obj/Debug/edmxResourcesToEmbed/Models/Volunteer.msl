@@ -134,6 +134,7 @@
     <EntitySetMapping Name="Activities">
       <EntityTypeMapping TypeName="VolunteerModel.Activity">
         <MappingFragment StoreEntitySet="Activity">
+          <ScalarProperty Name="Meal" ColumnName="Meal" />
           <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
           <ScalarProperty Name="Activity_name" ColumnName="Activity_name" />
           <ScalarProperty Name="Activity_type_ID" ColumnName="Activity_type_ID" />
@@ -312,6 +313,7 @@
     <EntitySetMapping Name="Activity1">
       <EntityTypeMapping TypeName="VolunteerModel.Activity1">
         <MappingFragment StoreEntitySet="Activity1">
+          <ScalarProperty Name="Vegetarian" ColumnName="Vegetarian" />
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
           <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
@@ -335,6 +337,7 @@
     <EntitySetMapping Name="Experiences">
       <EntityTypeMapping TypeName="VolunteerModel.Experience">
         <MappingFragment StoreEntitySet="Experience">
+          <ScalarProperty Name="Home_issued" ColumnName="Home_issued" />
           <ScalarProperty Name="Issued" ColumnName="Issued" />
           <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
           <ScalarProperty Name="Experience1" ColumnName="Experience" />
@@ -472,6 +475,24 @@
           <ScalarProperty Name="Expertise" ColumnName="Expertise" />
           <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indexphotoes">
+      <EntityTypeMapping TypeName="VolunteerModel.Indexphoto">
+        <MappingFragment StoreEntitySet="Indexphoto">
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
+          <ScalarProperty Name="Indexphoto1" ColumnName="Indexphoto" />
+          <ScalarProperty Name="Indexphoto_no" ColumnName="Indexphoto_no" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indexvideolinks">
+      <EntityTypeMapping TypeName="VolunteerModel.Indexvideolink">
+        <MappingFragment StoreEntitySet="Indexvideolink">
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
+          <ScalarProperty Name="Videolink" ColumnName="Videolink" />
+          <ScalarProperty Name="Indexvideolink_no" ColumnName="Indexvideolink_no" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

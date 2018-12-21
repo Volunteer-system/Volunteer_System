@@ -38,6 +38,7 @@ namespace Volunteer_Web.Models
         public string Place { get; set; }
         public string Summary { get; set; }
         public Nullable<int> Activity_Photo_id { get; set; }
+        public Nullable<bool> Meal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Activity1> Activity1 { get; set; }
