@@ -362,6 +362,7 @@
     <Compile Include="ViewModel\Activity_Photo_Schedule_typeVM.cs" />
     <Compile Include="ViewModel\Act_pho.cs" />
     <Compile Include="ViewModel\Experience_VM.cs" />
+    <Compile Include="ViewModel\Home_maintenanceVM.cs" />
     <Compile Include="ViewModel\Manpower_applyStageVM.cs" />
     <Compile Include="ViewModel\Sign_up_Alldata_VM.cs" />
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
@@ -432,6 +433,7 @@
     <Content Include="Views\Abnormalevent\Menu.cshtml" />
     <Content Include="Views\ManpowerApply\Menu.cshtml" />
     <Content Include="Views\ManpowerApply\text.cshtml" />
+    <Content Include="Views\Supervision\Home_maintenance.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

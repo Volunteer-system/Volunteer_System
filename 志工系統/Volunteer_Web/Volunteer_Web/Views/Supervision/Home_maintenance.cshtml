@@ -1,0 +1,104 @@
+﻿@model Volunteer_Web.ViewModel.Home_maintenanceVM
+@{
+    ViewBag.Title = "Home_maintenance";
+}
+
+<div class="accordion mt-4" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link col-sm-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    首頁照片維護
+                </button>
+                <input class="btn btn-outline-info col-sm-4" type="file">
+                <button class="btn btn-info">新增照片</button>
+            </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                @foreach (var row in Model.Indexphotos)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <p hidden id="Indexphoto_@row.Indexphoto_no"><p>
+                        <img class="card-img-top" src="~/Images/@row.Indexphoto_name" alt="Card image cap">
+                        <div class="card-body">
+                            @if (row.Issued)
+                            {
+                                <a href="#" class="btn btn-success">已發布</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="btn btn-danger">未發布</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed col-sm-2" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    績優志工維護
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                @foreach (var row in Model.Experiences)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <p hidden id="Experience_@row.Experience_no"><p>
+                        <img class="card-img-top" src="~/Images/@row.Experience_photo" alt="Card image cap">
+                        <h5 class="card-title">@row.Experience</h5>
+                        <div class="card-body">
+                            @if (row.Issued)
+                            {
+                                <a href="#" class="btn btn-success">已發布</a>
+                            }
+                            else
+                            {
+                                <a href="#" class="btn btn-danger">未發布</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed col-sm-2" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    首頁影片維護
+                </button>
+                <input class="btn btn-outline-info col-sm-4" type="file">
+                <button class="btn btn-info">新增影片</button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                @foreach (var row in Model.Indexvideolinks)
+                {
+                    <div class="card" style="width: 18rem;">
+                        <p hidden id="Indexvideolink_@row.Indexvideolink_no"><p>
+                            <iframe class="card-img-top" src="@row.Videolink" allowfullscreen></iframe>
+                            <div class="card-body">
+                                @if (row.Issued)
+                                {
+                                    <a href="#" class="btn btn-success">已發布</a>
+                                }
+                                else
+                                {
+                                    <a href="#" class="btn btn-danger">未發布</a>
+                                }
+                            </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

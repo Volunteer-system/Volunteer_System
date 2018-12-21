@@ -72,5 +72,17 @@ namespace Volunteer_Web.Controllers
 
             return RedirectToAction("Experience");
         }
+        [HttpGet]
+        public ActionResult Home_maintenance()
+        {
+            Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+            home_MaintenanceVM.SelectHome_maintenance();
+            return View(home_MaintenanceVM);
+        }
+        [HttpPost]
+        public ActionResult Home_maintenance(int id = 0)
+        {
+            return View();
+        }
     }
 }

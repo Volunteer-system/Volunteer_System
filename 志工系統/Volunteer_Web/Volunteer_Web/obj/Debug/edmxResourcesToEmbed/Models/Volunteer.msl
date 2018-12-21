@@ -27,6 +27,7 @@
     <EntitySetMapping Name="Application_unit">
       <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
         <MappingFragment StoreEntitySet="Application_unit">
+          <ScalarProperty Name="Work_place" ColumnName="Work_place" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
           <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
           <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
@@ -85,7 +86,6 @@
           <ScalarProperty Name="Applicant" ColumnName="Applicant" />
           <ScalarProperty Name="Apply_date" ColumnName="Apply_date" />
           <ScalarProperty Name="Applicant_phone" ColumnName="Applicant_phone" />
-          <ScalarProperty Name="Work_place" ColumnName="Work_place" />
           <ScalarProperty Name="Apply_description" ColumnName="Apply_description" />
           <ScalarProperty Name="Application_unit_Supervisor" ColumnName="Application_unit_Supervisor" />
           <ScalarProperty Name="Application_unit_heads" ColumnName="Application_unit_heads" />

@@ -36,6 +36,7 @@
     <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
     <Property Name="Total_volunteers" Type="int" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="Work_place" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -79,7 +80,6 @@
     <Property Name="Applicant" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Apply_date" Type="datetime" Nullable="false" />
     <Property Name="Applicant_phone" Type="nvarchar" MaxLength="20" />
-    <Property Name="Work_place" Type="nvarchar" MaxLength="50" />
     <Property Name="Apply_description" Type="nvarchar(max)" />
     <Property Name="Application_unit_Supervisor" Type="nvarchar" MaxLength="20" />
     <Property Name="Application_unit_heads" Type="nvarchar" MaxLength="20" />

@@ -27,7 +27,6 @@ namespace Volunteer_Web.Models
         public string Applicant { get; set; }
         public System.DateTime Apply_date { get; set; }
         public string Applicant_phone { get; set; }
-        public string Work_place { get; set; }
         public string Apply_description { get; set; }
         public string Application_unit_Supervisor { get; set; }
         public string Application_unit_heads { get; set; }

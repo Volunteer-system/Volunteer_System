@@ -54,13 +54,14 @@
                                 <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
                             }
                         }
-                        <div class="dropdown-menu" aria-labelledby="dLabel">
-                            @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })
-                            <a class="p-2 text-muted" href="#">首頁維護</a>
-                            @Html.ActionLink("志工心得維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
-                            <a class="p-2 text-muted" href="#">志工申請維護</a>
-                            @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                        </div>
+                                <div class="dropdown-menu" aria-labelledby="dLabel">
+                                    @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("首頁維護", "Home_maintenance", "Supervision", null, new { @class = "dropdown-item" })
+                                    <a class="p-2 text-muted" href="#">首頁維護</a>Home_maintenance
+                                    @Html.ActionLink("績優志工維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
+                                    <a class="p-2 text-muted" href="#">志工申請維護</a>
+                                    @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
+                                </div>
                     </div>
                     <!--11271414益修改▲-->
                 </div>
@@ -69,8 +70,8 @@
         <div class="nav-scroller ">
             <nav class="nav d-flex justify-content-between ">
                 @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "p-2 text-muted" })
-                <a class="p-2 text-muted" href="#">首頁維護</a>
-                @Html.ActionLink("志工心得維護", "Experience", "Supervision", null, new { @class = "p-2 text-muted" })
+                @Html.ActionLink("首頁維護", "Home_maintenance", "Supervision", null, new { @class = "p-2 text-muted" })
+                @Html.ActionLink("績優志工維護", "Experience", "Supervision", null, new { @class = "p-2 text-muted" })
                 <a class="p-2 text-muted" href="#">志工申請維護</a>
             </nav>
         </div>

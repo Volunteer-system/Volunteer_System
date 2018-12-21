@@ -35,6 +35,7 @@ namespace Volunteer_Web.Models
         public string Work_content { get; set; }
         public int Total_volunteers { get; set; }
         public string ImagePath { get; set; }
+        public string Work_place { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Abnormal_event> Abnormal_event { get; set; }
