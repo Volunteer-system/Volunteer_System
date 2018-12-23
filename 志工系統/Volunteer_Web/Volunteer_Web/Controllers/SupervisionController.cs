@@ -80,9 +80,43 @@ namespace Volunteer_Web.Controllers
             return View(home_MaintenanceVM);
         }
         [HttpPost]
-        public ActionResult Home_maintenance(int id = 0)
+        public ActionResult Insert_Indexphotos(HttpPostedFileBase Index_photo)
         {
-            return View();
+            if (Index_photo != null)
+            {
+                string strPath = Request.PhysicalApplicationPath + @"Images\" + Index_photo.FileName;
+                Index_photo.SaveAs(strPath);
+                Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+                home_MaintenanceVM.Insert_indexphoto(Index_photo.FileName);
+            }            
+
+            return RedirectToAction("Home_maintenance");
+        }
+        [HttpPost]
+        public ActionResult Update_Indexphotos(int id=0)
+        {
+            Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+            home_MaintenanceVM.Updata_indexphoto(id);
+            return RedirectToAction("Home_maintenance");
+        }
+
+        [HttpPost]
+        public ActionResult Insert_Indexvideolinks(string link)
+        {
+            if (link != null)
+            {
+                Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+                home_MaintenanceVM.Insert_indexvideolink(link);
+            }
+            return RedirectToAction("Home_maintenance");
+        }
+
+        [HttpPost]
+        public ActionResult Update_Indexvideolinks(int id)
+        {
+            Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+            home_MaintenanceVM.Updata_indexvideolink(id);
+            return RedirectToAction("Home_maintenance");
         }
     }
 }

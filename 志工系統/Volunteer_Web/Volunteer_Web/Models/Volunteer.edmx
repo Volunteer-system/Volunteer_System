@@ -96,6 +96,7 @@
           <Property Name="Supervision_heads" Type="nvarchar" MaxLength="20" />
           <Property Name="Application_number" Type="int" />
           <Property Name="Reply_number" Type="int" />
+          <Property Name="Remarks" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Service_period">
           <Key>
@@ -279,7 +280,7 @@
           <Key>
             <PropertyRef Name="Indexphoto_no" />
           </Key>
-          <Property Name="Indexphoto_no" Type="int" Nullable="false" />
+          <Property Name="Indexphoto_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Indexphoto" Type="nvarchar(max)" />
           <Property Name="Issued" Type="bit" />
         </EntityType>
@@ -287,7 +288,7 @@
           <Key>
             <PropertyRef Name="Indexvideolink_no" />
           </Key>
-          <Property Name="Indexvideolink_no" Type="int" Nullable="false" />
+          <Property Name="Indexvideolink_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Videolink" Type="nvarchar(max)" />
           <Property Name="Issued" Type="bit" />
         </EntityType>
@@ -370,6 +371,7 @@
           <Property Name="Volunteer_no" Type="int" Nullable="false" />
           <Property Name="Wish_order" Type="int" Nullable="false" />
           <Property Name="Service_period_no" Type="int" Nullable="false" />
+          <Property Name="Stage" Type="int" />
         </EntityType>
         <EntityType Name="Sign_up">
           <Key>
@@ -1422,6 +1424,7 @@
           <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_result" />
           <NavigationProperty Name="Apply_Service_period" Relationship="Self.FK_Apply_Service_period_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Service_period" />
           <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Manpower_apply_Volunteer_supervision" FromRole="Manpower_apply" ToRole="Volunteer_supervision" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Service_period">
           <Key>
@@ -1732,6 +1735,7 @@
           <Property Name="Service_period_no" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
+          <Property Name="Stage" Type="Int32" />
         </EntityType>
         <EntityType Name="Sign_up">
           <Key>
@@ -2789,6 +2793,7 @@
           <EntitySetMapping Name="Manpower_apply">
             <EntityTypeMapping TypeName="VolunteerModel.Manpower_apply">
               <MappingFragment StoreEntitySet="Manpower_apply">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
                 <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
                 <ScalarProperty Name="Applicant" ColumnName="Applicant" />
@@ -3087,6 +3092,7 @@
           <EntitySetMapping Name="Service_period2">
             <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
               <MappingFragment StoreEntitySet="Service_period2">
+                <ScalarProperty Name="Stage" ColumnName="Stage" />
                 <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
                 <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
                 <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />

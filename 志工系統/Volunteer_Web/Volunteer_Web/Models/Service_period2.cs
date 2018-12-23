@@ -18,6 +18,7 @@ namespace Volunteer_Web.Models
         public int Volunteer_no { get; set; }
         public int Wish_order { get; set; }
         public int Service_period_no { get; set; }
+        public Nullable<int> Stage { get; set; }
     
         public virtual Service_period1 Service_period1 { get; set; }
         public virtual Volunteer Volunteer { get; set; }

@@ -27,7 +27,8 @@ namespace Volunteer_Web.ViewModel
                         Volunteer = n2.Chinese_name,
                         Experience_content = n1.Experience_content,
                         Experience_photo = n1.Experience_photo,
-                        Issued = n1.Issued
+                        Issued = n1.Issued,
+                        Home_issued = n1.Home_issued
                     };
             List<Experience_VM> experience_VMs = new List<Experience_VM>();
             foreach (var row in q)
@@ -39,6 +40,7 @@ namespace Volunteer_Web.ViewModel
                 experience_VM.Experience_content = row.Experience_content;
                 experience_VM.Experience_photo = row.Experience_photo;
                 experience_VM.Issued = (bool)row.Issued;
+                experience_VM.Home_issued = (bool)row.Home_issued;
                 experience_VMs.Add(experience_VM);
             }
             IEnumerable<Experience_VM> Experience_VMs = experience_VMs;
@@ -54,6 +56,75 @@ namespace Volunteer_Web.ViewModel
         public string Experience_content { get; set; }
         public string Experience_photo { get; set; }
         public bool Issued { get; set; }
+        public bool Home_issued { get; set; }
+
+        public List<Experience_VM> SelectExperience()
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q3 = from n1 in dbContext.Experiences
+                     join n2 in dbContext.Volunteers
+                     on n1.Volunteer_no equals n2.Volunteer_no
+                     select new
+                     {
+                         Experience_no = n1.Experience_no,
+                         Experience = n1.Experience1,
+                         Volunteer = n2.Chinese_name,
+                         Experience_content = n1.Experience_content,
+                         Experience_photo = n1.Experience_photo,
+                         Issued = n1.Issued,
+                         Home_issued = n1.Home_issued
+                     };
+            List<Experience_VM> experiences = new List<Experience_VM>();
+            foreach (var row in q3)
+            {
+                Experience_VM experience = new Experience_VM();
+                experience.Experience_no = row.Experience_no;
+                experience.Experience = row.Experience;
+                experience.Volunteer = row.Volunteer;
+                experience.Experience_content = row.Experience_content;
+                experience.Experience_photo = row.Experience_photo;
+                experience.Issued = (bool)row.Issued;
+                experience.Home_issued = (bool)row.Home_issued;
+                experiences.Add(experience);
+            }
+            return experiences;
+        }
+
+        public IEnumerable<Experience_VM> SelectExperiencebyHome_Issued()
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Experiences
+                    join n2 in dbContext.Volunteers
+                    on n1.Volunteer_no equals n2.Volunteer_no
+                    where n1.Home_issued == true
+                    select new
+                    {
+                        Experience_no = n1.Experience_no,
+                        Experience = n1.Experience1,
+                        Volunteer = n2.Chinese_name,
+                        Experience_content = n1.Experience_content,
+                        Experience_photo = n1.Experience_photo,
+                        Issued = n1.Issued,
+                        Home_issued = n1.Home_issued
+                    };
+
+            List<Experience_VM> experience_VMs = new List<Experience_VM>();
+            foreach (var row in q)
+            {
+                Experience_VM experience_VM = new Experience_VM();
+                experience_VM.Experience_no = row.Experience_no;
+                experience_VM.Experience = row.Experience;
+                experience_VM.Volunteer = row.Volunteer;
+                experience_VM.Experience_content = row.Experience_content;
+                experience_VM.Experience_photo = row.Experience_photo;
+                experience_VM.Issued = (bool)row.Issued;
+                experience_VM.Home_issued = (bool)Home_issued;
+                experience_VMs.Add(experience_VM);
+            }
+            IEnumerable<Experience_VM> experiences = experience_VMs;
+
+            return experiences;
+        }
 
         public void SelectExperiencebyExperience_no(int experience_no)
         {
@@ -69,7 +140,8 @@ namespace Volunteer_Web.ViewModel
                         Volunteer = n2.Chinese_name,
                         Experience_content = n1.Experience_content,
                         Experience_photo = n1.Experience_photo,
-                        Issued = n1.Issued
+                        Issued = n1.Issued,
+                        Home_issued = n1.Home_issued
                     };
 
             foreach (var row in q)
@@ -79,6 +151,7 @@ namespace Volunteer_Web.ViewModel
                 Volunteer = row.Volunteer;
                 Experience_content = row.Experience_content;
                 Experience_photo = row.Experience_photo;
+                Home_issued = (bool)row.Home_issued;
                 Issued = (bool)row.Issued;
             }
         }
@@ -108,6 +181,7 @@ namespace Volunteer_Web.ViewModel
                     row.Experience_photo = Filename;
                 }                
                 row.Issued = false;
+                row.Home_issued = false;
             }
 
             dbContext.SaveChanges();
@@ -128,6 +202,7 @@ namespace Volunteer_Web.ViewModel
             experience.Experience_content = _experience.Experience_content;
             experience.Experience_photo = Filename;
             experience.Issued = false;
+            experience.Home_issued = false;
 
             dbContext.Experiences.Add(experience);
             dbContext.SaveChanges();

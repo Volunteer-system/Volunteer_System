@@ -18,7 +18,9 @@ namespace Volunteer_Web.Controllers
         //首頁
         public ActionResult Index()
         {
-            return View();
+            Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
+            home_MaintenanceVM.SelectHome_maintenance_inHome();
+            return View(home_MaintenanceVM);
         }
         //志工隊介紹
         public ActionResult Introduction()

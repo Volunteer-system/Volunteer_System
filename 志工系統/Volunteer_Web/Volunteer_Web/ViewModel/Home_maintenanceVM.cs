@@ -12,11 +12,32 @@ namespace Volunteer_Web.ViewModel
         public IEnumerable<Indexvideolink_VM> Indexvideolinks { get; set; }
         public IEnumerable<Experience_VM> Experiences { get; set; }
 
+        //首頁維護
         public void SelectHome_maintenance()
+        {
+            SelectIndexphotoe();
+
+            SelectIndexvideolinks();
+
+            Experience_VM experience_VM = new Experience_VM();
+            Experiences = experience_VM.SelectExperience();           
+        }
+        //首頁讀取
+        public void SelectHome_maintenance_inHome()
+        {
+            SelectIndexphotoe();
+
+            SelectIndexvideolinks();
+
+            Experience_VM experience_VM = new Experience_VM();
+            Experiences = experience_VM.SelectExperiencebyHome_Issued();
+        }
+
+        public void SelectIndexphotoe()
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q1 = from n in dbContext.Indexphotoes
-                    select n;
+                     select n;
             List<Indexphoto_VM> indexphotos = new List<Indexphoto_VM>();
             foreach (var row in q1)
             {
@@ -27,7 +48,11 @@ namespace Volunteer_Web.ViewModel
                 indexphotos.Add(indexphoto);
             }
             Indexphotos = indexphotos;
+        }
 
+        public void SelectIndexvideolinks()
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
             var q2 = from n in dbContext.Indexvideolinks
                      select n;
             List<Indexvideolink_VM> indexvideolinks = new List<Indexvideolink_VM>();
@@ -40,32 +65,66 @@ namespace Volunteer_Web.ViewModel
                 indexvideolinks.Add(indexvideolink);
             }
             Indexvideolinks = indexvideolinks;
+        }
 
-            var q3 = from n1 in dbContext.Experiences
-                    join n2 in dbContext.Volunteers
-                    on n1.Volunteer_no equals n2.Volunteer_no
-                    select new
-                    {
-                        Experience_no = n1.Experience_no,
-                        Experience = n1.Experience1,
-                        Volunteer = n2.Chinese_name,
-                        Experience_content = n1.Experience_content,
-                        Experience_photo = n1.Experience_photo,
-                        Issued = n1.Issued
-                    };
-            List<Experience_VM> experiences = new List<Experience_VM>();
-            foreach (var row in q3)
+        public void Insert_indexphoto(string Filename)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            Indexphoto indexphoto = new Indexphoto();
+            indexphoto.Indexphoto1 = Filename;
+            indexphoto.Issued = false;
+            dbContext.Indexphotoes.Add(indexphoto);
+            dbContext.SaveChanges();
+        }
+
+        public void Updata_indexphoto(int id)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Indexphotoes
+                    where n.Indexphoto_no == id
+                    select n;
+            foreach (var row in q)
             {
-                Experience_VM experience = new Experience_VM();
-                experience.Experience_no = row.Experience_no;
-                experience.Experience = row.Experience;
-                experience.Volunteer = row.Volunteer;
-                experience.Experience_content = row.Experience_content;
-                experience.Experience_photo = row.Experience_photo;
-                experience.Issued = (bool)row.Issued;
-                experiences.Add(experience);
+                if ((bool)row.Issued)
+                {
+                    row.Issued = false;
+                }
+                else
+                {
+                    row.Issued = true;
+                }
+                dbContext.SaveChanges();
             }
-            Experiences = experiences;
+        }
+
+        public void Insert_indexvideolink(string Filename)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            Indexvideolink indexvideolink = new Indexvideolink();
+            indexvideolink.Videolink = Filename;
+            indexvideolink.Issued = false;
+            dbContext.Indexvideolinks.Add(indexvideolink);
+            dbContext.SaveChanges();
+        }
+
+        public void Updata_indexvideolink(int id)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Indexvideolinks
+                    where n.Indexvideolink_no == id
+                    select n;
+            foreach (var row in q)
+            {
+                if ((bool)row.Issued)
+                {
+                    row.Issued = false;
+                }
+                else
+                {
+                    row.Issued = true;
+                }
+                dbContext.SaveChanges();
+            }
         }
     }
 

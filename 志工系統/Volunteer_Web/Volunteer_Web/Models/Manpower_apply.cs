@@ -38,6 +38,7 @@ namespace Volunteer_Web.Models
         public string Supervision_heads { get; set; }
         public Nullable<int> Application_number { get; set; }
         public Nullable<int> Reply_number { get; set; }
+        public string Remarks { get; set; }
     
         public virtual Application_unit Application_unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
