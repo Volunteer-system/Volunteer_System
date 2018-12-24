@@ -16,7 +16,6 @@ namespace Volunteer_Web.Models
     {
         public int Primary_key { get; set; }
         public int Volunteer_no { get; set; }
-        public int Wish_order { get; set; }
         public int Service_period_no { get; set; }
         public Nullable<int> Stage { get; set; }
         public Nullable<int> Srevice_group { get; set; }

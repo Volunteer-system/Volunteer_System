@@ -26,7 +26,7 @@ namespace Volunteer_Web.Models.VolunteerUse
                 {
                     Service_period2 sp = new Service_period2();
                     sp.Volunteer_no = Volunteer_no;
-                    sp.Wish_order = Wish_order[i];
+                    //sp.Wish_order = Wish_order[i];
                     sp.Service_period_no = Service_period_no[i][j];
                     dbContext.Service_period2.Add(sp);
                 }

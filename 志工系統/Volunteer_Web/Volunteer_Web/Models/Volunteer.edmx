@@ -1766,7 +1766,6 @@
           </Key>
           <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-          <Property Name="Wish_order" Type="Int32" Nullable="false" />
           <Property Name="Service_period_no" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
           <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />

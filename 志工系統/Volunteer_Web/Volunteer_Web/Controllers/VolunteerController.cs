@@ -177,10 +177,12 @@ namespace Volunteer_Web.Controllers
             VolunteerEntities db = new VolunteerEntities();
             int userID = Convert.ToInt32(Session["UserID"]);
 
-            var volunteer_user = db.Service_period2.Where(v => v.Volunteer_no == userID).Select(v => new
-            {
-                v.Wish_order, v.Service_period_no
-            });
+            var volunteer_user = db.Service_period2.Where(v => v.Volunteer_no == userID);
+            //var volunteer_user = db.Service_period2.Where(v => v.Volunteer_no == userID).Select(v => new
+            //{
+            //    v.Wish_order,
+            //    v.Service_period_no
+            //});
             return Json(volunteer_user, JsonRequestBehavior.AllowGet);
             
         }
