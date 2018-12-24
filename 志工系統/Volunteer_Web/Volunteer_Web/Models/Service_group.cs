@@ -20,6 +20,7 @@ namespace Volunteer_Web.Models
             this.Application_unit = new HashSet<Application_unit>();
             this.Activities = new HashSet<Activity>();
             this.Service_Group1 = new HashSet<Service_Group1>();
+            this.Service_period2 = new HashSet<Service_period2>();
         }
     
         public int Group_no { get; set; }
@@ -33,5 +34,7 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Activity> Activities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Service_Group1> Service_Group1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Service_period2> Service_period2 { get; set; }
     }
 }

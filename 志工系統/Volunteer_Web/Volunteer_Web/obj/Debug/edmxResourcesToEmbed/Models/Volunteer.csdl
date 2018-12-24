@@ -49,6 +49,7 @@
     <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Work_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Service_period2" Relationship="VolunteerModel.FK_Service_period_Application_unit1" FromRole="Application_unit" ToRole="Service_period2" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -285,6 +286,7 @@
     <NavigationProperty Name="Application_unit" Relationship="Self.FK_Application_unit_Service_group" FromRole="Service_group" ToRole="Application_unit" />
     <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Service_group" FromRole="Service_group" ToRole="Activity" />
     <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Service_group" FromRole="Service_group" ToRole="Service_Group1" />
+    <NavigationProperty Name="Service_period2" Relationship="VolunteerModel.FK_Service_period_Service_group" FromRole="Service_group" ToRole="Service_period2" />
   </EntityType>
   <EntityType Name="Service_period1">
     <Key>
@@ -428,6 +430,10 @@
     <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
     <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
     <Property Name="Stage" Type="Int32" />
+    <Property Name="Srevice_group" Type="Int32" />
+    <Property Name="Application_unit" Type="Int32" />
+    <NavigationProperty Name="Application_unit1" Relationship="VolunteerModel.FK_Service_period_Application_unit1" FromRole="Service_period2" ToRole="Application_unit" />
+    <NavigationProperty Name="Service_group" Relationship="VolunteerModel.FK_Service_period_Service_group" FromRole="Service_period2" ToRole="Service_group" />
   </EntityType>
   <EntityType Name="Sign_up">
     <Key>
@@ -1374,6 +1380,14 @@
     <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
     <EntitySet Name="Indexphotoes" EntityType="VolunteerModel.Indexphoto" />
     <EntitySet Name="Indexvideolinks" EntityType="VolunteerModel.Indexvideolink" />
+    <AssociationSet Name="FK_Service_period_Application_unit1" Association="VolunteerModel.FK_Service_period_Application_unit1">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_group" Association="VolunteerModel.FK_Service_period_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Sign_up_expertise">
     <Key>
@@ -1399,4 +1413,28 @@
     <Property Name="Videolink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Issued" Type="Boolean" />
   </EntityType>
+  <Association Name="FK_Service_period_Application_unit1">
+    <End Type="VolunteerModel.Application_unit" Role="Application_unit" Multiplicity="0..1" />
+    <End Type="VolunteerModel.Service_period2" Role="Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Application_unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_group">
+    <End Type="VolunteerModel.Service_group" Role="Service_group" Multiplicity="0..1" />
+    <End Type="VolunteerModel.Service_period2" Role="Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Srevice_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

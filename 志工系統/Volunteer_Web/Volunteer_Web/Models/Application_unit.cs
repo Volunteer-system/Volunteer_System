@@ -23,6 +23,7 @@ namespace Volunteer_Web.Models
             this.Service_period = new HashSet<Service_period>();
             this.Shift_schedule = new HashSet<Shift_schedule>();
             this.Volunteer_list = new HashSet<Volunteer_list>();
+            this.Service_period2 = new HashSet<Service_period2>();
         }
     
         public int Application_unit_no { get; set; }
@@ -50,5 +51,7 @@ namespace Volunteer_Web.Models
         public virtual ICollection<Shift_schedule> Shift_schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Volunteer_list> Volunteer_list { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Service_period2> Service_period2 { get; set; }
     }
 }

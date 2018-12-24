@@ -380,10 +380,11 @@
     <EntitySetMapping Name="Service_period2">
       <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
         <MappingFragment StoreEntitySet="Service_period2">
+          <ScalarProperty Name="Application_unit" ColumnName="Application_unit" />
+          <ScalarProperty Name="Srevice_group" ColumnName="Srevice_group" />
           <ScalarProperty Name="Stage" ColumnName="Stage" />
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
-          <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
           <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
         </MappingFragment>
       </EntityTypeMapping>

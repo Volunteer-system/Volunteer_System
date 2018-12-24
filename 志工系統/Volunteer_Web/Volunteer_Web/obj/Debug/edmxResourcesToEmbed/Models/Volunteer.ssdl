@@ -364,7 +364,8 @@
     </Key>
     <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Volunteer_no" Type="int" Nullable="false" />
-    <Property Name="Wish_order" Type="int" Nullable="false" />
+    <Property Name="Srevice_group" Type="int" />
+    <Property Name="Application_unit" Type="int" />
     <Property Name="Service_period_no" Type="int" Nullable="false" />
     <Property Name="Stage" Type="int" />
   </EntityType>
@@ -862,6 +863,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Service_period_Application_unit1">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Application_unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Srevice_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Service_period_Service_period">
     <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
     <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
@@ -1233,6 +1258,14 @@
     <AssociationSet Name="FK_Service_period_Application_unit" Association="Self.FK_Service_period_Application_unit">
       <End Role="Application_unit" EntitySet="Application_unit" />
       <End Role="Service_period" EntitySet="Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Application_unit1" Association="Self.FK_Service_period_Application_unit1">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_group" Association="Self.FK_Service_period_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
     </AssociationSet>
     <AssociationSet Name="FK_Service_period_Service_period" Association="Self.FK_Service_period_Service_period">
       <End Role="Service_period1" EntitySet="Service_period1" />
