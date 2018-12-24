@@ -19,7 +19,7 @@ namespace Volunteer_Web.Models
             var userID = (from a in db.accounts
                          where a.Account_number == Account_number && a.Password == Password
                          select new { User_ID = a.User_ID, Permission = a.Permission }).FirstOrDefault();
-            if (userID.User_ID != null)
+            if (userID != null)
             {
                 switch (userID.Permission)
                 {
@@ -29,7 +29,7 @@ namespace Volunteer_Web.Models
                         break;
                     case "Volunteer":
                         permission = "志工";
-                        VolunteersName = db.Volunteers.Where(v => v.Volunteer_no == userID.User_ID).Select(v => v.Chinese_name + "(" + v.English_name+")").FirstOrDefault();
+                        VolunteersName = db.Volunteers.Where(v => v.Volunteer_no == userID.User_ID).Select(v => v.Chinese_name + "(" + v.English_name + ")").FirstOrDefault();
                         break;
                     case "Application_unit":
                         permission = "運用單位";
@@ -38,11 +38,16 @@ namespace Volunteer_Web.Models
                     case "director":
                         permission = "社工";
                         break;
-                }              
-                UserName = ApplicationName != "" ? userID.User_ID +" "+ permission + " " + ApplicationName : SupersionName != "" ? userID.User_ID + " " + permission + " " + SupersionName : VolunteersName != "" ? userID.User_ID + " " + permission + " " + VolunteersName : "";
+                }
+                UserName = ApplicationName != "" ? userID.User_ID + " " + permission + " " + ApplicationName : SupersionName != "" ? userID.User_ID + " " + permission + " " + SupersionName : VolunteersName != "" ? userID.User_ID + " " + permission + " " + VolunteersName : "";
+                return UserName;
+            }
+            else
+            {
+                return "";
             }
 
-            return UserName;
+            
         }
     }
 }

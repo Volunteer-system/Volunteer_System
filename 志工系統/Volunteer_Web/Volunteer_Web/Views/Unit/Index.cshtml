@@ -200,15 +200,15 @@
                             </div>
                             <div class="col-md-9">
                                 <div>
-                                    
-                                    <input  type="hidden" name="Application_unit_no" value="@Model.Application_unit_no"/>
+
+                                    <input type="hidden" name="Application_unit_no" value="@Model.Application_unit_no" />
                                     <div class="info"><label><i class="fas fa-hospital-alt"></i>運用單位:</label>  <span>@Html.Label("-", Model.Application_unit1)</span></div>
                                     <div class="info"><label><i class="fa fa-phone"></i>單位聯絡電話:</label><span>@Html.Label("-", Model.Application_phone_no) </span></div>
-                                    <div class="info"><label><i class="fas fa-user-tie"></i>負責人:</label>  <span>@Html.Label("-", Model.Principal)</span></div>
-                                    <div class="info"><label><i class="fas fa-mobile-alt"></i>負責人聯絡電話:</label>  <span>@Html.Label("-", Model.Principal_phone_no)</span></div>
                                     <div class="info"><label><i class="fas fa-home"></i>單位地址:</label>  <span>@Html.Label("-", Model.Application_address)</span></div>
                                     <div class="info"><label><i class="far fa-list-alt"></i>工作內容:</label>  <span>@Html.Label("-", Model.Work_content)</span></div>
                                     <div class="info"><label><i class="fas fa-users"></i>單位志工人數:</label><span>@Html.Label("-", Model.Total_volunteers.ToString())</span></div>
+                                    <div class="info"><label><i class="fas fa-user-tie"></i>負責人:</label>  <span>@Html.Label("-", Model.Principal)</span></div>
+                                    <div class="info"><label><i class="fas fa-mobile-alt"></i>負責人聯絡電話:</label>  <span>@Html.Label("-", Model.Principal_phone_no)</span></div>
                                 </div>
                             </div>
                         </div>

@@ -109,17 +109,22 @@ namespace Volunteer_Web.ViewModel
                     };
 
             List<Experience_VM> experience_VMs = new List<Experience_VM>();
+            bool first = true;
             foreach (var row in q)
             {
-                Experience_VM experience_VM = new Experience_VM();
-                experience_VM.Experience_no = row.Experience_no;
-                experience_VM.Experience = row.Experience;
-                experience_VM.Volunteer = row.Volunteer;
-                experience_VM.Experience_content = row.Experience_content;
-                experience_VM.Experience_photo = row.Experience_photo;
-                experience_VM.Issued = (bool)row.Issued;
-                experience_VM.Home_issued = (bool)Home_issued;
-                experience_VMs.Add(experience_VM);
+                if (first)
+                {
+                    Experience_VM experience_VM = new Experience_VM();
+                    experience_VM.Experience_no = row.Experience_no;
+                    experience_VM.Experience = row.Experience;
+                    experience_VM.Volunteer = row.Volunteer;
+                    experience_VM.Experience_content = row.Experience_content;
+                    experience_VM.Experience_photo = row.Experience_photo;
+                    experience_VM.Issued = (bool)row.Issued;
+                    experience_VM.Home_issued = (bool)Home_issued;
+                    experience_VMs.Add(experience_VM);
+                    first = false;
+                }                
             }
             IEnumerable<Experience_VM> experiences = experience_VMs;
 
@@ -184,6 +189,26 @@ namespace Volunteer_Web.ViewModel
                 row.Home_issued = false;
             }
 
+            dbContext.SaveChanges();
+        }
+
+        public void UpdateExperience_Home_issued(int id)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Experiences
+                    where n.Experience_no == id
+                    select n;
+            foreach (var row in q)
+            {
+                if ((bool)row.Home_issued)
+                {
+                    row.Home_issued = false;
+                }
+                else
+                {
+                    row.Home_issued = true;
+                }
+            }
             dbContext.SaveChanges();
         }
 

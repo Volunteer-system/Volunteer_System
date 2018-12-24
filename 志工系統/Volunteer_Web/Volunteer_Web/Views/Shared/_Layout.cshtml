@@ -64,8 +64,8 @@
                             if (logintype == "運用單位")
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    @Html.ActionLink("運用單位首頁", "Index", "Unit", null, new { @class = "dropdown-item" })
-                                    <a class="dropdown-item" href="#">單位基本資料</a>
+                                    <a class="dropdown-item" href="#">運用單位首頁</a>
+                                    @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("異常事件通報", "Index", "Abnormalevent", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">考核</a>
@@ -77,7 +77,7 @@
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
                                     @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
-                                    <a class="dropdown-item" href="#">個人資料</a>
+                                    @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">志工權益</a>
                                     @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })

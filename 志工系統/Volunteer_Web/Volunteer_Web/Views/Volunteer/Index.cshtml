@@ -2,19 +2,69 @@
 @{
     ViewBag.Title = "Index";
 }
+@{ 
+    List<SelectListItem> year = new List<SelectListItem>();
+    for (int i = DateTime.Now.Year + 1; i > DateTime.Now.Year - 5; i -= 1)
+    {
+        year.Add(new SelectListItem()
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+        });
+    }
+    List<SelectListItem> month = new List<SelectListItem>();
+    for(int i = 1;i<=12;i+=1)
+    {
+        month.Add(new SelectListItem {
+            Text = i.ToString(),
+            Value = i.ToString()
+    });
+    }
+
+}
 @section Home_style{
     <style>
+
         .calendar {
             border: 1px solid tomato;
-            width: 70%
+            width: 70%;
         }
 
         .actTable {
             margin-left: 1%;
             width: 29%
         }
-
-        @@media only screen and (max-width:760px) {
+        .search_date{
+            width:100%;
+            text-align:right;
+        }
+        .screen{
+            margin-top:5%;
+        }
+        .btn_c{
+            margin-left:80%
+        }
+        @@media only screen and (min-width:1200px) {
+            .screen {
+                margin-top: 7%;
+            }
+        }
+        @@media only screen and (min-width:1024px) and (max-width:1200px) {
+            .screen {
+                margin-top: 10%;
+            }
+        }
+        @@media only screen and (min-width:768px) and (max-width:900px) {
+            .screen {
+                margin-top: 12%;
+            }
+        }
+        /*@@media only screen and (min-width:735px) and (max-width:768px) {
+            .screen {
+                margin-top: 15%;
+            }
+        }*/
+        @@media only screen and (min-width:720px) and (max-width:735px)  {
             .calendar {
                 border: 1px solid tomato;
                 width: 100%;
@@ -24,109 +74,221 @@
                 margin-top: 1%;
                 width: 99%
             }
+            /*.search_date {
+                width: 50%;
+                text-align: right;
+            }*/
+            .screen {
+                margin-top: 15%;
+            }
+        }       
+        
+        @@media only screen and (min-width:480px) and (max-width:720px) {
+            .screen {
+                margin-top: 40%;
+            }
+        }
+        /*@@media only screen and (max-width:413px) {
+            .screen {
+                margin-top: 75%;
+            }
+        }*/
+        @@media only screen and (min-width:320px) and (max-width:480px) {
+            .screen {
+                margin-top: 50%;
+            }
+        }
+
+        @@media only screen and (max-width:320px) {
+            .screen {
+                margin-top: 80%;
+            }
+            .btn_c {
+                margin-left: 75%
+            }
         }
     </style>
 }
+@*<br />
 <br />
 <br />
 <br />
 <br />
-<br />
-<br />
-<h2>志工首頁</h2>
-<div class="container">
-    <div class="row">
-        <div class="calendar">
-            <div id="calendar1"></div>
-        </div>
-        <div class="actTable">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>活動名稱</th>
-                        <th>活動日期</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var a in Model)
-                    {
-                        <tr>
-                            <td>@a.Activity_name</td>
-                            <td>@a.Activity_startdate.Value.ToShortDateString()</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<br />*@
+    <div class="screen">
+        <h2>志工首頁</h2>
+        @*<marquee>123</marquee>*@
+        <div class="container">
+            <div class="row">
+                <div class="calendar">
+                    <div class="search_date">
+                        <label>依日期查詢:</label>
+                        @Html.DropDownList("year", year, "請選擇", null)年
+                        @Html.DropDownList("month", month, "請選擇", null)月
+                        <button class="btn btn-outline-info" id="btn_search">查詢</button>
+                    </div>
+                    <div id="calendar1">
+                    </div>
+                </div>
+                <div class="actTable">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>活動名稱</th>
+                                <th>活動日期</th>
+                                <th>狀態</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var a in Model)
+                            {
+                                <tr>
+                                    <td>@a.Activity_name</td>
+                                    <td>@a.Activity_startdate.Value.ToShortDateString()</td>
+                                    @if (a.Stage == "駁回")
+                                    {
+                                        <td style="color:red">@a.Stage</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@a.Stage</td>
+                                    }
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog ">
-        <div class="modal-content ">
-            <div style="background-color:lightgray" class=" modal-header ">
-                <h4 class=" modal-title"><span id="eventTitle"></span></h4>
-                <button type="button" class=" close " data-dismiss="modal">&times;</button>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div style="background-color:#81c0c0" class="modal-body ">
-                @*<p id="pDetails"></p>*@
-                <div class="form-group row  ">
-                    <label for="a_summy" class="col-sm-4 col-form-label">活動簡介:</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="a_summy" value="">
+        </div>
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog ">
+                <div class="modal-content ">
+                    <div class=" modal-header ">
+                        <h4 class=" modal-title"><span id="eventTitle"></span></h4>
+                        <button type="button" class=" close " data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body ">
+                        @*<p id="pDetails"></p>*@
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label for="a_summy" class="col-form-label">活動簡介:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly class="form-control-plaintext" id="a_summy" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="a_summy" class="col-form-label">活動開始日期:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly class="form-control-plaintext" id="a_startdate" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="a_summy" class="col-form-label">活動結束日期:</label>
+                                    </td>
+                                    <td>
+                                        <input type="text" readonly class="form-control-plaintext" id="a_enddate" value="">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="a_summy" class="col-form-label">活動照片:</label>
+                                    </td>
+                                    <td>
+                                        @*<img id="a_photo" style="width:100%" src=" @Url.Action("GetImageByID","Volunteer",new { id = 0})" />*@
+                                        <img id="a_photo" style="width:100%" src="#" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @*<div class="form-group row  ">
+                            <label for="a_summy" class="col-sm-4 col-form-label">活動簡介:</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="a_summy" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row  ">
+                            <label for="a_startdate" class="col-sm-4 col-form-label">活動開始日期:</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="a_startdate" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label for="a_enddate" class="col-sm-4 col-form-label">活動結束日期:</label>
+                            <div class="col-sm-8">
+                                <input type="text" readonly class="form-control-plaintext" id="a_enddate" value="">
+                            </div>
+                        </div>
+                        <div class="form-group row ">
+                            <label for="a_photo" class="col-sm-4 col-form-label">活動照片:</label>
+                            <div id="dimg" class="col-sm-8">
+                                <img id="a_photo" style="width:100%" src=" @Url.Action("GetImageByID","Volunteer",new { id = 0})" />
+                            </div>,new { id = Session["photo"]}
+                        </div>*@
+                        <button type="button" class="btn btn-default btn_c" data-dismiss="modal">關閉</button>
                     </div>
                 </div>
-                <div class="form-group row  ">
-                    <label for="a_startdate" class="col-sm-4 col-form-label">活動開始日期:</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="a_startdate" value="">
-                    </div>
-                </div>
-                <div class="form-group row ">
-                    <label for="a_enddate" class="col-sm-4 col-form-label">活動結束日期:</label>
-                    <div class="col-sm-8">
-                        <input type="text" readonly class="form-control-plaintext" id="a_enddate" value="">
-                    </div>
-                </div>
-                <div class="form-group row ">
-                    <label for="a_photo" class="col-sm-4 col-form-label">活動照片:</label>
-                    <div id="dimg" class="col-sm-8">
-                        <img id="a_photo" style="width:100%" src=" @Url.Action("GetImageByID","Volunteer",new { id = 0})" />
-                    </div><!--,new { id = Session["photo"]}-->
-                </div>
-                <button type="button" class="btn btn-default " style="margin-left:85%" data-dismiss="modal">關閉</button>
             </div>
         </div>
     </div>
-</div>
 @section calendar{
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script><!--引用jqueryUI-->
+    <link href="http://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" /><!--引用主題-->
     <script>
     $(document).ready(function () {
         var events = [];
             $.ajax({
                 type: "GET",
-                url: "/Volunteer/GetCalendar/@ViewBag.userID",
-                success: function (datas) {
-                    $.each(datas, function (index, value) {
-                        events.push({
-                            title:"活動:"+value.Activity_name,
-                            start: value.Activity_startdate,
-                            end: value.Activity_enddate,
-                            act_no: value.Activity_no,
-                            photo: value.Activity_Photo_id
-                        });
-                    })
-                   GenerateCalendar(events);
-                },
-                error: function (data) {
+                url: "/Volunteer/GetCalendar/@ViewBag.userID"
+                //success: function (datas) {
+                //    $.each(datas, function (index, value) {
+                //        events.push({
+                //            title:"活動:"+value.Activity_name,
+                //            start: value.Activity_startdate,
+                //            end: value.Activity_enddate,
+                //            act_no: value.Activity_no,
+                //            photo: value.Activity_Photo_id
+                //        });
+                //    })
+                //   GenerateCalendar(events);
+                //},
+                //error: function (data) {
+                //    alert("沒有資料");
+                //}
+            }).done(function (datas) {
+                $.each(datas, function (index, value) {
+                    events.push({
+                        title: "活動:" + value.Activity_name,
+                        start: value.Activity_startdate,
+                        end: value.Activity_enddate,
+                        act_no: value.Activity_no,
+                        photo: value.Activity_Photo_id
+                    });
+                })
+                    GenerateCalendar(events);
+                }).fail(function () {
                     alert("沒有資料");
-                }
             })
+        //=================================跳到指定年月============================
+        $("#btn_search").click(function () {      
+            if ($("#year").val() != "" && $("#month").val() != "") {
+                var month = $("#month").val() - 1;
+                var year = $("#year").val();
+                var s = moment([year, month, 1]).format("YYYY-MM-DD");
+                $("#calendar1").fullCalendar("gotoDate", s)
+            }
+        });
             //==============================================產生月曆▼===============================================
             function GenerateCalendar(events)
             {
@@ -134,7 +296,11 @@
                 $("#calendar1").fullCalendar({          //建立日曆
                     contentHeight: 500, //日曆高度
                     //defaultDate: new Date(),
-                    header: { left: "prev,today,next", center: "title", right: "" },//設定上方顯示的內容
+                   themeSystem:"jquery-ui",//套用jquery ui的主題
+                  
+                    businessHours: true, // 可以產生假日的陰影
+                    editable: false,//不允許拖曳事件
+                    header: { left: "", center: "title", right: "prev,today,next" },//設定上方顯示的內容
                     buttonText: { today: "今天", prev: "上個月", next: "下個月" },  //設定按鍵的中文
                     views: {
                         month: { titleFormat: "YYYY年MM月" }                        //設定中間顯示的樣式

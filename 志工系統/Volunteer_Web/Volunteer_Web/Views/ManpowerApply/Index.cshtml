@@ -2,6 +2,9 @@
 @{
     ViewBag.Title = "Manpower_apply_Index";
 }
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <link href="~/Css/Manpower_apply.css" rel="stylesheet" />
@@ -40,7 +43,6 @@
                     <tr>
                         <th>申請日期</th>
                         <th>核定日期</th>
-                        <th>值班地點</th>
                         <th>申請人數</th>
                         <th>核定人數</th>
                         <th>申請階段</th>
@@ -54,7 +56,6 @@
                             @*<td>@item.manpower_apply.Apply_date.ToShortDateString().ToString()</td>*@
                             <td>@Html.DisplayFor(m => item.manpower_apply.Apply_date)</td>
                             <td>@Html.DisplayFor(m => item.manpower_apply.Reply_date)</td>
-                            @*<td>@item.manpower_apply.Work_place</td>*@
                             <td>@item.manpower_apply.Application_number</td>
                             <td>@item.manpower_apply.Reply_number</td>
                             <td>@item.stage.Stage1</td>

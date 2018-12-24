@@ -35,11 +35,18 @@
                                 <div class="card-body">
                                     @if (row.Issued)
                                     {
-                                        <a href="~/Supervision/Update_Indexphotos/@row.Indexphoto_no" class="btn btn-success">已發布</a>
+                                        @Html.ActionLink("已發布", "Update_Indexphotos", "Supervision", new { id = row.Indexphoto_no }, new { @class = "btn btn-success" })
                                     }
                                     else
                                     {
-                                        <a href="~/Supervision/Update_Indexphotos/@row.Indexphoto_no" class="btn btn-danger">未發布</a>
+                                        if (Model.Indexphoto_number >= 5)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Indexphotos", "Supervision", new { id = row.Indexphoto_no }, new { @class = "btn btn-danger" })
+                                        }
                                     }
                                 </div>
                         </div>
@@ -68,11 +75,19 @@
                                 <div class="card-body">
                                     @if (row.Home_issued)
                                     {
-                                        <a href="#" class="btn btn-success">已發布至首頁</a>
+                                        @Html.ActionLink("已發布至首頁", "Update_Experiences", "Supervision", new { id = row.Experience_no }, new { @class = "btn btn-success" })
                                     }
                                     else
                                     {
-                                        <a href="#" class="btn btn-danger">未發布</a>
+                                        if (Model.Experience_number >= 1)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Experiences", "Supervision", new { id = row.Experience_no }, new { @class = "btn btn-danger" })
+                                        }
+
                                     }
                                 </div>
                         </div>
@@ -111,11 +126,19 @@
                                 <div class="card-body">
                                     @if (row.Issued)
                                     {
-                                        <a href="~/Supervision/Update_Indexvideolinks/@row.Indexvideolink_no" class="btn btn-success">已發布</a>
+                                        @Html.ActionLink("已發布", "Update_Indexvideolinks", "Supervision", new { id = row.Indexvideolink_no }, new { @class = "btn btn-success" })
                                     }
                                     else
                                     {
-                                        <a href="~/Supervision/Update_Indexvideolinks/@row.Indexvideolink_no" class="btn btn-danger">未發布</a>
+                                        if (Model.Indexvideolink_number >= 3)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Indexvideolinks", "Supervision", new { id = row.Indexvideolink_no }, new { @class = "btn btn-danger" })
+                                        }
+
                                     }
                                 </div>
                         </div>

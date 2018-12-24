@@ -75,6 +75,7 @@ namespace Volunteer_Web.Controllers
                     ViewBag.Partilview = "Service_period";
                     break;
                 case 5:
+                    ViewBag.Partilview = "Interview_period";
                     break;
                 case 6:
                     ViewBag.Partilview = "Alldata_check";
@@ -133,16 +134,27 @@ namespace Volunteer_Web.Controllers
             return PartialView();
         }
         [HttpPost]
-        public ActionResult Service_period(int id=0)
+        public ActionResult Service_period(int[] wish_1st, int[] wish_2nd, int[] wish_3rd)
         {
-            return Redirect("~/Home/NewVolunteer/6");
-        }
+            Session["Service_period_1st"] = wish_1st;
+            Session["Service_period_2nd"] = wish_2nd;
+            Session["Service_period_3rd"] = wish_3rd;
 
-        [HttpPost]
-        public ActionResult Schedule(int[] service_no)
+            return Content("新增服務時段成功", "text/plain");
+        }
+        //面試時間
+        [HttpGet]
+        public ActionResult Interview_period()
         {
-            Session["service_no"] = service_no;
+
             return PartialView();
+        }
+        [HttpPost]
+        public ActionResult Interview_period(int[] wish_1st)
+        {
+            Session["Interview_period_1st"] = wish_1st;
+            return Content("新增/修改成功", "text/plain");
+
         }
         //檢查資料
         public ActionResult Alldata_check()
@@ -305,6 +317,54 @@ namespace Volunteer_Web.Controllers
                 sq.Question_no = 8;
                 sq.Answer_num = Convert.ToInt32(q8.Substring(0, 1));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
+            }
+
+            //存服務時間
+
+            int[] wish1 = Session["Service_period_1st"] as int[];
+            int[] wish2 = Session["Service_period_2nd"] as int[];
+            int[] wish3 = Session["Service_period_3rd"] as int[];
+
+            foreach (var i in wish1)
+            {
+                Sign_up_Service_period service_period = new Sign_up_Service_period();
+                service_period.Sign_up_no = Number;
+                service_period.Wish_order = 1;
+                service_period.Service_period_no = i;
+                dbContext.Entry(service_period).State = System.Data.Entity.EntityState.Added;
+            }
+            if (wish2 != null)
+            {
+                foreach (var i in wish2)
+                {
+                    Sign_up_Service_period service_period = new Sign_up_Service_period();
+                    service_period.Sign_up_no = Number;
+                    service_period.Wish_order = 2;
+                    service_period.Service_period_no = i;
+                    dbContext.Entry(service_period).State = System.Data.Entity.EntityState.Added;
+                }
+            }
+            if (wish3 != null)
+            {
+                foreach (var i in wish3)
+                {
+                    Sign_up_Service_period service_period = new Sign_up_Service_period();
+                    service_period.Sign_up_no = Number;
+                    service_period.Wish_order = 3;
+                    service_period.Service_period_no = i;
+                    dbContext.Entry(service_period).State = System.Data.Entity.EntityState.Added;
+                }
+            }
+            //存可面試時間
+
+            int[] interview_wish = Session["Interview_period_1st"] as int[];
+
+            foreach (var i in interview_wish)
+            {
+                Sign_up_interview_period interview_period = new Sign_up_interview_period();
+                interview_period.Sign_up_no = Number;
+                interview_period.interview_period_no = i;
+                dbContext.Entry(interview_period).State = System.Data.Entity.EntityState.Added;
             }
 
             dbContext.SaveChanges();

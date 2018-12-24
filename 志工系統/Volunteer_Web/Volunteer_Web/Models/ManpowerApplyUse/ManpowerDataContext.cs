@@ -151,7 +151,13 @@ namespace Volunteer_Web.Models
                             break;
                         case 4:
                             PeriodCategory = "週五夜間";
-                            break;                        
+                            break;
+                        case 5:
+                            PeriodCategory = "週六夜間";
+                            break;
+                        case 6:
+                            PeriodCategory = "週日夜間";
+                            break;
                     }
 
                     int service_period_no = db.Service_period1.Where(s => s.Service_period == PeriodCategory).First().Service_period_no;//根據中文班別找到service_period_no
@@ -185,6 +191,12 @@ namespace Volunteer_Web.Models
                             break;
                         case 4:
                             PeriodCategory = "週五支援";
+                            break;
+                        case 5:
+                            PeriodCategory = "週六支援";
+                            break;
+                        case 6:
+                            PeriodCategory = "週日支援";
                             break;
                     }
 
@@ -236,12 +248,16 @@ namespace Volunteer_Web.Models
             completePeriod.Add("週三夜間", 0);
             completePeriod.Add("週四夜間", 0);
             completePeriod.Add("週五夜間", 0);
+            completePeriod.Add("週六夜間", 0);
+            completePeriod.Add("週日夜間", 0);
             completePeriod.Add("週一支援", 0);
             completePeriod.Add("週二支援", 0);
             completePeriod.Add("週三支援", 0);
             completePeriod.Add("週四支援", 0);
-            completePeriod.Add("週五支援", 0);//字典到這邊為止建好了
-            List<string> temp = new List<string> {"週一上午", "週二上午", "週三上午", "週四上午", "週五上午", "週六上午", "週日上午", "週一下午", "週二下午", "週三下午", "週四下午", "週五下午", "週六下午", "週日下午", "週一夜間", "週二夜間", "週三夜間", "週四夜間", "週五夜間", "週一支援", "週二支援", "週三支援", "週四支援", "週五支援" };
+            completePeriod.Add("週五支援", 0);
+            completePeriod.Add("週六支援", 0);
+            completePeriod.Add("週日支援", 0);//字典到這邊為止建好了
+            List<string> temp = new List<string> {"週一上午", "週二上午", "週三上午", "週四上午", "週五上午", "週六上午", "週日上午", "週一下午", "週二下午", "週三下午", "週四下午", "週五下午", "週六下午", "週日下午", "週一夜間", "週二夜間", "週三夜間", "週四夜間", "週五夜間", "週六夜間", "週日夜間", "週一支援", "週二支援", "週三支援", "週四支援", "週五支援", "週六支援", "週日支援" };
 
             for (int i = 0; i < temp.Count; i++)//長度根據temp
             {

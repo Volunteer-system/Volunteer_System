@@ -124,10 +124,19 @@ namespace Volunteer_Web.Controllers
         [HttpGet]
         public ActionResult Activity_Browse(int id = 1)
         {
+            //string a = null;
+            //if(Request.Form.Count>0)
+            //{
+            //    a = Request.Form["activity_no"];
+            //}
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
-            vm.activity = db.Activities.Where(p => p.Activity_type_ID == id);
+            //vm.activity = db.Activities.Where(p => p.Activity_type_ID == id);
+            activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
+            vm.acvno_VM = actvm.activityNumberOfPeople(id);
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
+            //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
+            //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
             return View(vm);
         }
         [HttpPost]
@@ -156,20 +165,51 @@ namespace Volunteer_Web.Controllers
         //排班意願
         [HttpGet]
         public ActionResult Schedule()
-        {
-            ViewBag.UserID = Session["UserID"];
-            return View();
+        {   //取得運用單位
+            Volunteer_Schedule_applicationModel vsa = new Volunteer_Schedule_applicationModel();
+            var A = vsa.Getapplication();
+            Session["Schedule_application"] = A;
+            //取的服務組別
+            Volunteer_Schedule_GroupModel GM = new Volunteer_Schedule_GroupModel();
+            var G = GM.Getgroup();
+            Session["Schedule_group"] = G;
+            //取得時段
+            Volunteer_Schedule_PeriodModel VSP = new Volunteer_Schedule_PeriodModel();
+            var P = VSP.Getservice_period();
+            Session["Schedule_period"] = P;
+            ScheduleModel SM = new ScheduleModel();
+            var schedule = SM.GetSchedule(Convert.ToInt32(Session["UserID"]));
+            if (schedule != null)
+            {
+                return View(schedule);
+            }
+            else
+            {
+                return View();
+            }
+
         }
         [HttpPost]
-        public ActionResult Schedule(int id,int[] wishid,List<int[]> service_no)
+        public ActionResult Schedule(List<Volunteer_Schedule_saveModel> SM)
         {
-            if (id != 0)
+            Volunteer_Schedule_saveModel sm = new Volunteer_Schedule_saveModel();
+            sm.Insert_Volunteer_Service_period(SM);
+            return Content("成功", "text/plain");
+            //return View();
+        }//12/22
+        //Schedule下拉清單
+        public ActionResult Schedule_select(string type)
+        {
+            switch (type)
             {
-                Repository<Service_period2> db = new Repository<Service_period2>();
-                db.Insert_Volunteer_Service_period(id, wishid, service_no);
-                return Content("新增/修改成功","text/plain");
+                case "A":
+                    return Json(Session["Schedule_application"], JsonRequestBehavior.AllowGet);
+                case "G":
+                    return Json(Session["Schedule_group"], JsonRequestBehavior.AllowGet);
+                case "P":
+                    return Json(Session["Schedule_period"], JsonRequestBehavior.AllowGet);
             }
-            return View();
+            return new EmptyResult(); //不回傳到view     
         }
         //讀取已排過班的資料
         public JsonResult GetJson()

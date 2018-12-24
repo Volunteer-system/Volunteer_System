@@ -16,7 +16,7 @@
                 <tr><td><a href="~/Home/NewVolunteer/2" id="basic_info" class="btn btn-outline-info btn-block" value="basic_info">基本資料</a></td></tr>
                 <tr><td><a href="~/Home/NewVolunteer/3" id="Questionnaire" class="btn btn-outline-info btn-block" value="Questionnaire">問券調查</a></td></tr>
                 <tr><td><a href="~/Home/NewVolunteer/4" id="Service_period" class="btn btn-outline-info btn-block" value="Service_period">服務時段調查</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/5" class="btn btn-outline-info btn-block">人格測驗</a></td></tr>
+                <tr><td><a href="~/Home/NewVolunteer/5" class="btn btn-outline-info btn-block">可面試時間</a></td></tr>
                 <tr><td><a href="~/Home/NewVolunteer/6" id="Alldata_check" class="btn btn-outline-info btn-block" value="Alldata_check">資料確認</a></td></tr>
                 <tr><td><a href="~/Home/NewVolunteer/7" id="Requirement_ok" class="btn btn-outline-info btn-block" value="Requirement_ok">申請完成</a></td></tr>
             </tbody>
@@ -34,20 +34,173 @@
 
 @section Home_script{
     <script>
+
         $(document).ready(function () {
+
+
+            //可面試時段、排班意願時段的JS
+            var btn_edit = $("#btn_edit");
+            var btn_insert = $("#btn_insert");
+            var btn_insert_interview = $('#btn_insert_interview');
+            var select = $("td>p");
+            var pv_title = $("#Pv_title");
+
+
+                        //================================新增/修改志願=======================================
+            btn_edit.click(function () {
+                switch ($(this).text()) {
+                    case "編輯":
+                        $(this).text("完成").removeClass("btn-info").addClass("btn-danger")
+                        select.attr("contenteditable", true).css("border", "1px solid black")
+                        break;
+                    case "完成":
+                        $(this).text("編輯").removeClass("btn-danger").addClass("btn-info")
+                        select.attr("contenteditable", false).css("border", "none")
+                        break;
+                }
+            });
+            //檢查使用者輸入時段志願
+            if (pv_title.text() == "面試時間調查") {
+                var re_interview = /^[1]{1}$/;
+                select.keyup(function () {
+                    if (!re_interview.test($(this).text())) {
+                        alert("請依照說明填寫");
+                        $(this).text("");
+                    }
+                });
+            }
+            else if (pv_title.text() == "服務時段調查") {
+                var re_service = /^[1-3]{1}$/;
+                select.keyup(function () {
+                    if (!re_service.test($(this).text())) {
+                        alert("請依照說明填寫");
+                        $(this).text("");
+                    }
+                });
+            }
+
+
+
+
+            //存檔--可服務時間
+            btn_insert.click(function () {
+                if (btn_edit.text() == "完成") {
+                    alert("請先完成編輯");
+                }
+                else {
+                    var wish_1st = [];
+                    var wish_2nd = [];
+                    var wish_3rd = [];
+                    $("td").children("p").each(function () {
+                        switch ($(this).text()) {
+                            case "1":
+                                wish_1st.push($(this).parents("td").data("service_period_no"));
+                                break;
+                            case "2":
+                                wish_2nd.push($(this).parents("td").data("service_period_no"));
+                                break;
+                            case "3":
+                                wish_3rd.push($(this).parents("td").data("service_period_no"));
+                                break;
+                        }
+                    });
+                    if (wish_1st.length == 0) {
+                        alert("至少要有1個志願1");
+                    }
+                    else if (wish_3rd.length != 0 && wish_2nd.length == 0) {
+                        alert("缺少志願2，不能直接選志願3")
+                    }
+                    else {
+
+                        $.ajax({
+                            type: "post",
+                            url: "/Home/Service_period",
+                            data: { "wish_1st": wish_1st, "wish_2nd": wish_2nd, "wish_3rd": wish_3rd }
+                        }).done(function (data) {
+                            alert(data);
+                        });
+                    }
+                }
+            });
+
+            //存檔--可面試時間
+            btn_insert_interview.click(function () {
+                if (btn_edit.text() == "完成") {
+                    alert("請先完成編輯");
+                }
+                else {
+                    var wish_1st = [];
+                    $("td").children("p").each(function () {
+                        if ($(this).text == 1) {
+                            wish_1st.push($(this).parents("td").data("service_period_no"));
+                        }
+
+                        }
+                    );
+                    if (wish_1st.length == 0) {
+                        alert("至少要有1個時段");
+                    }
+                    else {
+
+                        $.ajax({
+                            type: "post",
+                            url: "/Home/Interview_period",
+                            data: { "wish_1st": wish_1st }
+                        }).done(function (data) {
+                            alert(data);
+                        });
+                    }
+                }
+            });
+
+
+            //按下接受條約才可開始申請志工
             $('a[value = "@ViewBag.Partilview"]').addClass('active');
 
              @{
                 if (Session["Agree"] == null)
                 {
                  @: $('#td1 a').addClass('list-group-item disabled');
-                }
-                else
-                {
+                 }
+                 else
+                 {
                     @: $('#td1 a').removeClass('list-group-item disabled');
                 }
-
             }
+        });
+
+
+        //最終確認畫面的存檔前檢查
+        var all_basic=$('#check_basic label');
+        var OKinsert=0;
+
+        $('#Allcheck').click(function () {
+            //檢查個資
+            all_basic.each(function () {
+                if ($(this).text() == "") {
+                    var thenull = $(this).parents("tr").children('td:nth-child(1)').text();
+                    alert(thenull + "尚未填寫喔");
+                    OKinsert += 1;
+                } 
+
+            })
+
+            //檢查問卷
+            var all_quest = $('#check_quest label');
+            all_quest.each(function () {
+                if ($(this).text() == "") {
+                    var thenull = $(this).parents("tr").children('td:nth-child(1)').text();
+                    alert(thenull + "尚未填寫喔");
+                    OKinsert += 1;
+                }
+
+            })
+            //檢查完確定OK才開放存檔
+            if (OKinsert == 0)
+            {
+                $('#OKinsert').removeClass("disabled");
+            } 
+                
         })
     </script>
 }

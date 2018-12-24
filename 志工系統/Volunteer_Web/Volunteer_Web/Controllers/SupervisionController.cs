@@ -92,7 +92,7 @@ namespace Volunteer_Web.Controllers
 
             return RedirectToAction("Home_maintenance");
         }
-        [HttpPost]
+        
         public ActionResult Update_Indexphotos(int id=0)
         {
             Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
@@ -101,21 +101,27 @@ namespace Volunteer_Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert_Indexvideolinks(string link)
+        public ActionResult Insert_Indexvideolinks(string Index_video)
         {
-            if (link != null)
+            if (Index_video != null)
             {
                 Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
-                home_MaintenanceVM.Insert_indexvideolink(link);
+                home_MaintenanceVM.Insert_indexvideolink(Index_video);
             }
             return RedirectToAction("Home_maintenance");
         }
-
-        [HttpPost]
-        public ActionResult Update_Indexvideolinks(int id)
+        
+        public ActionResult Update_Indexvideolinks(int id=0)
         {
             Home_maintenanceVM home_MaintenanceVM = new Home_maintenanceVM();
             home_MaintenanceVM.Updata_indexvideolink(id);
+            return RedirectToAction("Home_maintenance");
+        }
+
+        public ActionResult Update_Experiences(int id = 0)
+        {
+            Experience_VM experience_VM = new Experience_VM();
+            experience_VM.UpdateExperience_Home_issued(id);
             return RedirectToAction("Home_maintenance");
         }
     }

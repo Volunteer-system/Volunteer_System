@@ -17,7 +17,7 @@
     <div class="col-10">
         <div class="row">
 
-            @foreach (var ac in Model.activity)
+            @foreach (var ac in Model.acvno_VM)
             {
 
                 <div class="col-sm-4 mt-2">
@@ -28,21 +28,21 @@
                             <h3 id="Activity_name_@ac.Activity_no" @*data-value="@ac.Activity_no"*@ class="card-title">@ac.Activity_name</h3>
                             @*<input type="hidden" name="actno" value="@ac.Activity_no" />*@
                             @*<p hidden id="Activity_name_@ac.Activity_no"></p>*@
-
                             <p id="Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
                             <p id="start_@ac.Activity_no" class="card-text">@ac.Activity_startdate</p>
+                            <p>活動報名人數 @ac.count</p>
+                            <p>活動人數上限 @ac.Member</p>
                             @*<p id="end_@ac.Activity_no" class="card-text">活動結束時間：@ac.Activity_enddate</p>*@
                             @*<p id="Undertake_unit_@ac.Activity_no" class="card-text">承辦單位：@ac.Undertake_unit</p>
-                                <p id="Undertaker_@ac.Activity_no" class="card-text">承辦人：@ac.Volunteer_supervision.supervision_Name</p>*@
-
+        <p id="Undertaker_@ac.Activity_no" class="card-text">承辦人：@ac.Volunteer_supervision.supervision_Name</p>*@
                             <p hidden id="m_Activity_no_@ac.Activity_no" class="card-text">@ac.Activity_no</p>
-                            <p hidden id="m_Activity_type_ID_@ac.Activity_no" class="card-text">@ac.Activity_type.Activity_type1</p>
+                            <p hidden id="m_Activity_type_ID_@ac.Activity_no" class="card-text">@ac.Activity_type1</p>
                             <p hidden id="m_Activity_name_@ac.Activity_no" class="card-text">@ac.Activity_name</p>
-                            <p hidden id="m_group_@ac.Activity_no" class="card-text">@ac.Service_group.Group_name</p>
+                            <p hidden id="m_group_@ac.Activity_no" class="card-text">@ac.Group_name</p>
                             <p hidden id="m_Activity_startdate_@ac.Activity_no" class="card-text">@ac.Activity_startdate</p>
                             <p hidden id="m_Activity_enddate_@ac.Activity_no" class="card-text">@ac.Activity_enddate</p>
                             <p hidden id="m_Undertake_unit_@ac.Activity_no" class="card-text">@ac.Undertake_unit</p>
-                            <p hidden id="m_Undertaker_@ac.Activity_no" class="card-text">@ac.Volunteer_supervision.supervision_Name</p>
+                            <p hidden id="m_Undertaker_@ac.Activity_no" class="card-text">@ac.supervision_Name</p>
                             <p hidden id="m_Undertake_phone_@ac.Activity_no" class="card-text">@ac.Undertake_phone</p>
                             <p hidden id="m_Undertake_email_@ac.Activity_no" class="card-text">@ac.Undertake_email</p>
                             <p hidden id="m_lecturer_@ac.Activity_no" class="card-text">@ac.lecturer</p>
@@ -50,29 +50,24 @@
                             <p hidden id="m_Spare_@ac.Activity_no" class="card-text">@ac.Spare</p>
                             <p hidden id="m_Place_@ac.Activity_no" class="card-text">@ac.Place</p>
                             <p hidden id="m_Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
-
-
-
-
-
+                            
+                            <p hidden id="@ac.Activity_no" name="acactivityNo"></p>
+                            @{ 
+                                ViewBag.acactivityNo = ac.Activity_no;
+                            }
 
                             @*<a type="" href="#" class="btn btn-secondary">內容</a>*@
                             @*<a href="~/volunteer/xxx/id=@ac.Activity_no" class="btn btn-secondary">內容</a>*@
-
                             @*<input type="submit" value="參加" />*@
                             @*<a id="att" href="~/Volunteer/Activity_Browse/id=@ViewBag.userid?activityID=@ac.Activity_no" class="btn btn-secondary">參加</a>*@
-            @*重要*@   <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>
-
+                            @*重要*@   <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>
                             <!-- Button trigger modal-->
                             <button id="@ac.Activity_no" value="@ac.Activity_Photo_id" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
                                 詳細資訊
                             </button>
 
-
                             <p hidden id="hid_@ac.Activity_no">@ac.Summary</p>
-
                             @*</form>*@
-
                         </div>
                     </div>
                 </div>
@@ -228,12 +223,12 @@
                 var n = $(this).data("value")/*$('input[type="hidden"]').val();*/
 
                 //console.log();
-                $.post("/Volunteer/Activity_Browse", { id: @ViewBag.userid, activityID: n }, function (datas) {
+                $.post("/Volunteer/Activity_Browse", { id: @ViewBag.userid, activityID: n}, function (datas) {
                     //alert(datas); //提示 感謝參加活動
 
                 })
             })
-
+            
             $('.card-body').on('click', ':button', function () {
                 var id = $(this).attr("id");
                      var nameee = $(this).attr("name");
@@ -260,6 +255,8 @@
                 $('#model_Place').text($('#m_Place_' + id).text());
                 $('#model_Summary').text($('#m_Summary_' + id).text());
             })
+
+            
         })
     </script>
 }

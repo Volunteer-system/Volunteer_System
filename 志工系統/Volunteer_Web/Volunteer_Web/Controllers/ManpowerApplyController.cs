@@ -127,6 +127,7 @@ namespace Volunteer_Web.Controllers
                 _manpower_apply.Apply_type ="年度申請"; //申請類別
                 //_manpower_apply.Application_number = Convert.ToInt32(Request.Form["Application_number"]);  //申請人數
                 _manpower_apply.Application_number = countPeple;
+                _manpower_apply.Remarks = Request.Form["Remarks"];  //備註
 
                 var q = from s in dbContext.Stages
                         where s.Stage1 == "新申請"
@@ -180,7 +181,8 @@ namespace Volunteer_Web.Controllers
             _manpower_apply.Application_unit_Supervisor = Request.Form["Application_unit_Supervisor"];  //單位主管
             _manpower_apply.Application_unit_heads = Request.Form["Application_unit_heads"];  //部門主管
             _manpower_apply.Application_number = Convert.ToInt32(Request.Form["Application_number"]);  //申請人數
-            
+            _manpower_apply.Remarks = Request.Form["Remarks"];  //備註
+
             var q = from s in dbContext.Stages  //申請階段
                     where s.Stage1 == "新申請"
                     select s.Stage_ID;

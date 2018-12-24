@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,21 +52,43 @@ namespace Volunteer_Web.Controllers
         [HttpPost]
         public ActionResult Upload(Application_unit Application_unit_no, HttpPostedFileBase ImagePath)
         {
-            Application_unit Application_unit = applicationRepository.GetByid(Convert.ToInt32(Request.Form["Application_unit_no"]));
+           string now = DateTime.Now.ToString("yyyyMMddhhmmss");
+            int unit = Convert.ToInt32(Session["UserID"]);                         //目前登入的單位ID
+            string strPath = Request.PhysicalApplicationPath + @"Images\" + now + ImagePath.FileName; //存進資料夾的圖片路徑
 
-            string strPath = Request.PhysicalApplicationPath + @"Images\" + ImagePath.FileName;
-            ImagePath.SaveAs(strPath);
+            Application_unit Application_unit = applicationRepository.GetByid(Convert.ToInt32(Request.Form["Application_unit_no"]));
+        
+            //string[] pathword = ImagePath.FileName.Split(".".ToCharArray());
+            //string s = pathword[0] + now +"."+ pathword[1];
 
             
+            ImagePath.SaveAs(strPath);
 
-            //db.Application_unit.Add(application_Unit);
-           // db.SaveChanges();
-          TempData["Image"]= ImagePath.FileName;
-            ViewBag.Path = strPath;
+            TempData["Image"]= now + ImagePath.FileName;
 
-            Application_unit.ImagePath = ImagePath.FileName;
-            applicationRepository.Update(Application_unit);
 
+
+            var img = from a in db.Application_unit
+                      join ac in db.accounts on a.Application_unit_no equals ac.User_ID
+                      where ac.Permission == "Application_unit" && a.Application_unit_no == unit
+                      select a.ImagePath;
+
+           string deletepath = Request.PhysicalApplicationPath + @"Images\" + img.ToList().First();
+
+          if(System.IO.File.Exists(deletepath))         //換照片成功後刪除舊的圖檔
+            {
+                try
+                {
+                    System.IO.File.Delete(deletepath);
+                }
+                catch (System.IO.IOException e)
+                {
+                    Console.WriteLine(e.Message);                 
+                }
+            }
+
+            Application_unit.ImagePath = now + ImagePath.FileName;                    //更新進資料庫
+            applicationRepository.Update(Application_unit);  
 
             return RedirectToAction("Index");
         }

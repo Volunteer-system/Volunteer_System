@@ -6,10 +6,18 @@
         var dropdown = $("#dropdownMenuLink");
         var a_forget = $("#a_forget");
         var a_login = $("#a_login");
-        dropdown.click(function () {
+        var m_login = $("#LoginModal")
+        dropdown.click(function () {          
             login.show()
             forget.hide()
         });
+        $(document).keydown(function (e) {
+            if (m_login.hasClass("show") && e.which == 13) {
+                fun_login();
+            }
+
+        })
+       
         //=============================================切換登入=========================================
         a_forget.click(function () {
             login.slideUp(500, function () {
@@ -21,8 +29,11 @@
                 login.slideDown(500)
             });
         });
-            //=============================================切換登入=========================================
+        //=============================================登入=========================================       
         $("#btn_login").click(function () {
+            fun_login();
+        });
+        function fun_login() {
             var Account = $("#Account_number");
             var Pas = $("#Password");
             $.ajax({
@@ -42,9 +53,9 @@
 
                     window.location.href = "/Home/Index"
                 }
-                })                           
-            });
-            //Account.val("");
-            //Pas.val("");
-        });
+            })
+        }
+        //Account.val("");
+        //Pas.val("");
+    });
 </script>

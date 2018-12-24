@@ -23,10 +23,14 @@ namespace Volunteer_Web.Controllers
             Response.Cookies["selectid"]["id"] = "0";
             Response.Cookies["selectstage"]["date1"] = new DateTime().ToString("yyyyMMdd");
             Response.Cookies["selectstage"]["date2"] = new DateTime().ToString("yyyyMMdd");
-            Request.Cookies["selectid"].Expires = DateTime.Now.AddHours(1);
-            Response.Cookies["selectid"].Expires = DateTime.Now.AddHours(1);
-            Request.Cookies["selectstage"].Expires = DateTime.Now.AddHours(1);
-            Response.Cookies["selectstage"].Expires = DateTime.Now.AddHours(1);
+            Response.Cookies["category"]["id"] = "0";
+
+            Request.Cookies["selectid"].Expires = DateTime.Now.AddHours(6);
+            Response.Cookies["selectid"].Expires = DateTime.Now.AddHours(6);
+            Request.Cookies["selectstage"].Expires = DateTime.Now.AddHours(6);
+            Response.Cookies["selectstage"].Expires = DateTime.Now.AddHours(6);
+            Request.Cookies["category"].Expires = DateTime.Now.AddHours(6);
+            Response.Cookies["category"].Expires = DateTime.Now.AddHours(6);
             #endregion
 
             #region 人力申請

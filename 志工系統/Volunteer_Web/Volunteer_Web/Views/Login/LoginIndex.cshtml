@@ -1,22 +1,23 @@
 ﻿@model Volunteer_Web.Models.account
         
-<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog">
+<div class="modal fade " id="LoginModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div id="login_m_content" class="modal-content">
             @*<div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
-                </div>*@
+        </div>*@
             <div id="login_m_header" class="modal-header">
                 <img class="login_img" src="~/Images/LoginUse.jpg" />
             </div>@*, new { @class = "login100-form validate-form" }*@
+
             @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
             {
-                <div id="showError" class="alert alert-danger" role="alert"></div>
+                <div id="showError" style="text-align:center;height:40px;" class="alert alert-danger" role="alert"></div>
                 <div style="text-align:center;" class="modal-body">
                     <div id="login" style="margin:0 auto">
                         @*<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">*@
                         <div class="login_insert">
                             @Html.LabelFor(m => m.Account_number, new { @class = "login_lab" })
-                            @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "Enter UserName" , autocomplete = "off" })
+                            @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "Enter UserName", autocomplete = "off" })
                         </div>
                         @*<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">*@
                         <div class="login_insert">
@@ -48,11 +49,11 @@
                         <div class="login_button_div">
                             <button id="btn_edit" class="btn btn-outline-success login_button" type="button">送出</button>
                             <button type="button" class="btn btn-outline-danger login_button " data-dismiss="modal">取消</button>
-                            </div>
                         </div>
                     </div>
-                    }               
-            </div>
+                </div>
+            }
+        </div>
         </div>
     </div>
 <!--/Login/LoginIndex-->

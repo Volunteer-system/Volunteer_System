@@ -41,7 +41,6 @@
                             <label name="Unit_descrition" rows="6">@Model.abnormalevent.Unit_descrition</label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="Application_unit1" class="col-md-2 text-right">
                             運用單位
@@ -50,7 +49,6 @@
                             <label name="Application_unit1">@Model.abnormalevent.Application_unit.Application_unit1</label>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="Chinese_name" class="col-md-2 text-right">
                             當事員工
@@ -59,6 +57,16 @@
                             <label name="Chinese_name">@Model.abnormalevent.Volunteer.Chinese_name</label>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="Chinese_name" class="col-md-2 text-right">
+                            事件類別
+                        </label>
+                        <div class="col-md-10">
+                            <label name="Chinese_name">@Model.abnormalevent.event_category.event_category1</label>
+                        </div>
+                    </div>
+
 
                     <div class="form-group">
                         <label for="Stage1" class="col-md-2 text-right">
@@ -83,12 +91,7 @@
                         </label>
                         <div class="col-md-10">
                             <label name="supervision_Name">
-
-                                @if (Model.abnormalevent.Supervisor_ID != null)
-                                {
-                                    @Model.abnormalevent.Volunteer_supervision.supervision_Name
-                                }
-
+                                @Html.DisplayFor(a => a.abnormalevent.Volunteer_supervision.supervision_Name)
                             </label>
                         </div>
                     </div>
@@ -125,14 +128,13 @@
                             @*<label name="Closing_date">@Model.abnormalevent.Closing_date</label>*@
                         </div>
                     </div>
-
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-10">
                             @if (@Model.stage.Stage1 == "新事件")
                             {
-                            <a href="~/Abnormalevent/Edit/@Model.abnormalevent.Abnormal_event_no" class="btn btn-info" name="alter" >修改資料</a>
+                                <a href="~/Abnormalevent/Edit/@Model.abnormalevent.Abnormal_event_no" class="btn btn-info" name="alter">修改資料</a>
                             }
-                           
+
                         </div>
                     </div>
                 </form>

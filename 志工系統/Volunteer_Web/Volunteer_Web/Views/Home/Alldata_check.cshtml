@@ -8,7 +8,7 @@
         }
     </style>
 }
-<div class="row" id="div1">
+<div class="row" id="check_basic">
     <table class="table table-bordered">
         <tbody>
             <tr>
@@ -16,12 +16,26 @@
                 <td><label>@Model.Chinese_name</label></td>
             </tr>
             <tr>
-                <td><label>姓別:</label></td>
+                <td><label>性別:</label></td>
                 <td><label>@Model.Sex</label></td>
             </tr>
             <tr>
                 <td><label>生日:</label></td>
-                <td><label>@Model.Birthday</label></td>
+                <td>
+                    @{
+                        if (Model.Birthday.Year == 1)
+                        {
+                            <label></label>
+                        }
+                        else
+                        {
+                            <label>@Model.Birthday</label>
+                        }
+
+
+                    }
+
+                </td>
             </tr>
             <tr>
                 <td><label>申請類別:</label></td>
@@ -72,7 +86,7 @@
 </div>
 
 <div class="row" id="div2">
-    <table class="table table-bordered">
+    <table class="table table-bordered" id="check_quest">
         <tbody>
             <tr>
                 <td><label>1.為何想成為志工:</label></td>
@@ -146,15 +160,14 @@
                 </td>
             </tr>
             <tr>
-                <td><label>5.是否曾經或正在其他機構擔任志工:</label></td>
+                <td><label>5.是否曾經或正在其他機構擔任志工?__單位、__年、__工作內容</label></td>
                 <td>
                     @{
-                        string unit = Model.Q5unit ?? "__";
-                        string year = Model.Q5years ?? "__";
-                        string content = Model.Q5content ?? "__";
-
-
-                        string q5 = "機構:" + unit + " , " + year + "年 , " + "工作內容 : " + content;
+                        string q5 = "";
+                        if (Model.Q5unit != null && Model.Q5years!=null && Model.Q5content!=null)
+                        {
+                            q5 = Model.Q5unit + "," + Model.Q5years + "," + Model.Q5content;
+                        }
                         <label id="q5">@q5</label>
                     }
                 </td>
@@ -209,8 +222,8 @@
         </tbody>
     </table>
 </div>
-<a href="~/Home/InsertSign_up" class="btn btn-success">確定並送出</a>
-
+<button id="Allcheck">檢查</button>
+<a href="~/Home/InsertSign_up" class="btn btn-success disabled" id="OKinsert">確定並送出</a>
 
 
 

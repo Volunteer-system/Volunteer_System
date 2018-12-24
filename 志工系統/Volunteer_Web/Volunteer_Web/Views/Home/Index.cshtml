@@ -70,7 +70,7 @@
             int count1 = 0;
             foreach (var row in Model.Indexphotos)
             {
-                if (row.Issued)
+                if (row.Issued && count1 < 5)
                 {
                     if (count1 == 0)
                     {
@@ -112,7 +112,7 @@
         int count2 = 0;
         foreach (var row in Model.Indexphotos)
         {
-            if (row.Issued)
+            if (row.Issued && count2 < 5)
             {
                 <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn" style="width:20rem;">
                 count2++;
@@ -139,7 +139,6 @@
                         <img src="~/Images/@row.Experience_photo" alt="績優志工簡介" class="img-responsive vision-news-photo" />
                     }
                 </div>
-
             </div>
         </a>
     </div>
@@ -164,22 +163,17 @@
 </div>
 
 <div class="row m-1">
-    @*<div class="m-5">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0" allowfullscreen></iframe>
-        </div>
-        <div class="m-5">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/adXmM-eqwz8" allowfullscreen></iframe>
-        </div>
-        <div class="m-5">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/uMuHCZY_DrM" allowfullscreen></iframe>
-        </div>*@
-    @foreach (var row in Model.Indexvideolinks)
-    {
-        if (row.Issued)
+    @{
+        int count3 = 0;
+        foreach (var row in Model.Indexvideolinks)
         {
-            <div class="m-5">
-                <iframe class="embed-responsive-item" src="@row.Videolink" allowfullscreen></iframe>
-            </div>
+            if (row.Issued && count3 < 5)
+            {
+                <div class="m-5">
+                    <iframe class="embed-responsive-item" src="@row.Videolink" allowfullscreen></iframe>
+                </div>
+            }
+            count3++;
         }
     }
 </div>

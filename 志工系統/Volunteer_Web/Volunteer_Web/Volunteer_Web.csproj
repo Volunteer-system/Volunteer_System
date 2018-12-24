@@ -118,6 +118,8 @@
     <Content Include="Images\images %281%29.jpg" />
     <Content Include="Images\images%282%29.jpg" />
     <Content Include="Images\IMG_6533.JPG" />
+    <Content Include="Images\JQuery.png" />
+    <Content Include="Images\JSon.jpg" />
     <Content Include="Images\LoginUse.jpg" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Noimage.png" />
@@ -360,6 +362,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AbnormaleventStageVM.cs" />
     <Compile Include="ViewModel\Activity_Photo_Schedule_typeVM.cs" />
+    <Compile Include="ViewModel\activity_volunteerNo_VM.cs" />
     <Compile Include="ViewModel\Act_pho.cs" />
     <Compile Include="ViewModel\Experience_VM.cs" />
     <Compile Include="ViewModel\Home_maintenanceVM.cs" />
@@ -368,6 +371,10 @@
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
     <Compile Include="ViewModel\Sign_up_session.cs" />
     <Compile Include="ViewModel\Visitor_Activity_VM.cs" />
+    <Compile Include="ViewModel\Volunteer_Schedule_applicationModel.cs" />
+    <Compile Include="ViewModel\Volunteer_Schedule_GroupModel.cs" />
+    <Compile Include="ViewModel\Volunteer_Schedule_PeriodModel.cs" />
+    <Compile Include="ViewModel\Volunteer_Schedule_saveModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -434,6 +441,8 @@
     <Content Include="Views\ManpowerApply\Menu.cshtml" />
     <Content Include="Views\ManpowerApply\text.cshtml" />
     <Content Include="Views\Supervision\Home_maintenance.cshtml" />
+    <Content Include="Views\Abnormalevent\CategoryMenu.cshtml" />
+    <Content Include="Views\Home\Interview_period.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

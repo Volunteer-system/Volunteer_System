@@ -9,18 +9,24 @@ namespace Volunteer_Web.ViewModel
     public class Home_maintenanceVM
     {
         public IEnumerable<Indexphoto_VM> Indexphotos { get; set; }
+        public int Indexphoto_number { get; set; }
         public IEnumerable<Indexvideolink_VM> Indexvideolinks { get; set; }
+        public int Indexvideolink_number { get; set; }
         public IEnumerable<Experience_VM> Experiences { get; set; }
+        public int Experience_number { get; set; }
 
         //首頁維護
         public void SelectHome_maintenance()
         {
             SelectIndexphotoe();
+            Indexphoto_number = Indexphotos.Where(p => p.Issued == true).Count();
 
             SelectIndexvideolinks();
+            Indexvideolink_number = Indexvideolinks.Where(p => p.Issued == true).Count();
 
             Experience_VM experience_VM = new Experience_VM();
-            Experiences = experience_VM.SelectExperience();           
+            Experiences = experience_VM.SelectExperience();
+            Experience_number = Experiences.Where(p => p.Home_issued == true).Count();
         }
         //首頁讀取
         public void SelectHome_maintenance_inHome()
@@ -92,9 +98,9 @@ namespace Volunteer_Web.ViewModel
                 else
                 {
                     row.Issued = true;
-                }
-                dbContext.SaveChanges();
+                }                
             }
+            dbContext.SaveChanges();
         }
 
         public void Insert_indexvideolink(string Filename)
@@ -122,10 +128,11 @@ namespace Volunteer_Web.ViewModel
                 else
                 {
                     row.Issued = true;
-                }
-                dbContext.SaveChanges();
+                }                
             }
+            dbContext.SaveChanges();
         }
+
     }
 
     public class Indexphoto_VM

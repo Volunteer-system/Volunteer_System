@@ -70,7 +70,7 @@
                         }
                         <div class="dropdown-menu" aria-labelledby="dLabel">
                             @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
-                            <a class="dropdown-item" href="#">個人資料</a>
+                            @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })
                             @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
                             <a class="dropdown-item" href="#">志工權益</a>
                             @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
@@ -85,8 +85,7 @@
         <div class="nav-scroller ">
             <nav class="nav d-flex justify-content-between ">
                 @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "p-2 text-muted" })
-                @*<a class="p-2 text-muted" href="#">個人首頁</a>*@
-                <a class="p-2 text-muted" href="#">個人資料</a>
+                @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "p-2 text-muted" })
                 @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "p-2 text-muted" })
                 <a class="p-2 text-muted" href="#">志工權益</a>
                 @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "p-2 text-muted" })
