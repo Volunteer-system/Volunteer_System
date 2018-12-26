@@ -27,7 +27,6 @@ namespace Volunteer_WPF.Model
         public string Applicant { get; set; }
         public System.DateTime Apply_date { get; set; }
         public string Applicant_phone { get; set; }
-        public string Work_place { get; set; }
         public string Apply_description { get; set; }
         public string Application_unit_Supervisor { get; set; }
         public string Application_unit_heads { get; set; }
@@ -39,6 +38,7 @@ namespace Volunteer_WPF.Model
         public string Supervision_heads { get; set; }
         public Nullable<int> Application_number { get; set; }
         public Nullable<int> Reply_number { get; set; }
+        public string Remarks { get; set; }
     
         public virtual Application_unit Application_unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

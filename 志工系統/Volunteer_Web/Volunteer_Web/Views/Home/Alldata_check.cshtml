@@ -29,7 +29,7 @@
                         }
                         else
                         {
-                            <label>@Model.Birthday</label>
+                            <label>@Model.Birthday.Date</label>
                         }
 
 
@@ -74,7 +74,7 @@
                         {
                             foreach (var a in @Model.Expertises)
                             {
-                                exp = exp + a.Substring(1);
+                                exp = exp + a.Substring(2);
                             }
                         }
                         <label id="exp">@exp</label>
@@ -97,7 +97,7 @@
                         {
                             foreach (var a in @Model.Q1)
                             {
-                                q1 = q1 + a.Substring(1) + " , ";
+                                q1 = q1 + a.Substring(2) + " , ";
                             }
                         }
                         q1 = q1 + Model.Q1else;
@@ -114,7 +114,7 @@
                         {
                             foreach (var a in @Model.Q2)
                             {
-                                q2 = q2 + a.Substring(1) + " , ";
+                                q2 = q2 + a.Substring(2) + " , ";
                             }
                         }
                         q2 = q2 + Model.Q2else;
@@ -132,7 +132,7 @@
                         {
                             foreach (var a in @Model.Q3)
                             {
-                                q3 = q3 + a.Substring(1) + " , ";
+                                q3 = q3 + a.Substring(2) + " , ";
                             }
                         }
                         q3 = q3 + Model.Q3doc;
@@ -150,7 +150,7 @@
                         {
                             foreach (var a in @Model.Q4)
                             {
-                                q4 = q4 + a.Substring(1) + " , ";
+                                q4 = q4 + a.Substring(2) + " , ";
                             }
                         }
                         q4 = q4 + Model.Q4else;
@@ -194,7 +194,7 @@
                         {
                             foreach (var a in Model.Q7)
                             {
-                                q7 = q7 + a.Substring(1) + " , ";
+                                q7 = q7 + a.Substring(2) + " , ";
                             }
                         }
                         <label id="q7">@q7</label>
@@ -212,7 +212,7 @@
                         {
                             foreach (var a in @Model.Q8)
                             {
-                                q8 = q8 + a.Substring(1) + " , ";
+                                q8 = q8 + a.Substring(2) + " , ";
                             }
                         }
                         <label id="q8">@q8</label>
@@ -222,7 +222,7 @@
         </tbody>
     </table>
 </div>
-<button id="Allcheck">檢查</button>
+<button id="Allcheck" class="btn btn-info">檢查</button>
 <a href="~/Home/InsertSign_up" class="btn btn-success disabled" id="OKinsert">確定並送出</a>
 
 

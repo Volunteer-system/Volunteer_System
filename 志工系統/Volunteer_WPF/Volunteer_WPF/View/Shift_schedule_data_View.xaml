@@ -1,0 +1,162 @@
+﻿<Window x:Class="Volunteer_WPF.View.Shift_schedule_data_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Shift_schedule_data_View" Height="800" Width="866">
+    <ScrollViewer>
+        <Grid Height="800" Width="859">
+            <Grid x:Name="grid_schedule" HorizontalAlignment="Left" Height="750" Margin="10,10,0,0" VerticalAlignment="Top" Width="815" Grid.ColumnSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0.35*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="#FFFFFFFF" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"  />
+                <Rectangle Grid.Column="2" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFA7E6DA" Grid.Row="0" Stroke="Gray"/>
+                <Rectangle Grid.Row="1" Stroke="Gray" Fill="#FFA7E6DA"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="1" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="2" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="3" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="4" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="5" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="6" Stroke="Gray"/>
+                <Rectangle Fill="#FFA7E6DA" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="1" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="2" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="3" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="4" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="5" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="6" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Rectangle Grid.Column="7" Fill="#FFFFFFFF" Grid.Row="7" Stroke="Gray"/>
+                <Label Content="週一" Grid.Column="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週二" Grid.Column="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週三" Grid.Column="3" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週四" Grid.Column="4" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週五" Grid.Column="5" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週六" Grid.Column="6" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="時段一" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top"  FontSize="16"/>
+                <Label Content="時段二" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="時段三" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="時段四" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="時段五" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="時段六" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="時段七" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>                
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="5" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="6" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="4" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="5" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="6" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+                <Label Content="實/應:"  Grid.Column="7" HorizontalAlignment="Left" Grid.Row="7" VerticalAlignment="Top" FontSize="16"/>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</Window>

@@ -20,6 +20,7 @@ namespace Volunteer_WPF.Model
         public Nullable<System.DateTime> Registration_date { get; set; }
         public string Stage { get; set; }
         public Nullable<System.DateTime> Confirm_time { get; set; }
+        public Nullable<bool> Vegetarian { get; set; }
     
         public virtual Activity Activity { get; set; }
         public virtual Volunteer Volunteer { get; set; }

@@ -31,7 +31,7 @@
         <div class="form-group row">
             @Html.LabelFor(p => p.Birthday, new { @class = "col-sm-2 col-form-label" })
             <div class="col-sm-10">
-                <input name="Birthday" type="date" >
+                <input name="Birthday" type="date" value="@Model.Birthday">
             </div>
         </div>
         <div class="form-group row">
@@ -96,13 +96,24 @@
             <div class="col-sm-10">
                 @foreach (var _Expertise in ViewBag.Expertise)
                 {
-                    <input id="@_Expertise.Expertise_no" name="Expertises" type="checkbox" value="@_Expertise.Expertise_no@_Expertise.Expertise" /> @_Expertise.Expertise
-                  
+
+                    if (Model.Expertises.ToList().Contains(_Expertise.Expertise_no + _Expertise.Expertise))
+                    {
+                        <input id="@_Expertise.Expertise_no" name="Expertises" type="checkbox" value="@_Expertise.Expertise_no@_Expertise.Expertise" checked="checked" /> @_Expertise.Expertise
+                    }
+                    else
+                    {
+
+                        <input id="@_Expertise.Expertise_no" name="Expertises" type="checkbox" value="@_Expertise.Expertise_no@_Expertise.Expertise" /> @_Expertise.Expertise
+                    }
+
                 }
+
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
+                <a href="~/Home/Demo"  class="btn btn-primary">Demo</a>
                 <button type="submit" class="btn btn-primary">確定並儲存</button>
             </div>
         </div>

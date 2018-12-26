@@ -99,9 +99,20 @@ namespace Volunteer_Web.Controllers
         {
             ViewBag.Partilview = "basic_info";
             ViewBag.Expertise = dbContext.Expertise1.ToList();
+
+            //有填寫過則使用已填寫資料
+            Sign_up_session session;
+            if (Session["Sign_up_session"] == null)
+            {
+                session = new Sign_up_session();
+            }
+            else
+            {
+                session = Session["Sign_up_session"] as Sign_up_session;
+            }
+            ViewData.Model = session;
             return PartialView();
         }
-
         [HttpPost]
         public ActionResult basic_info(Sign_up_session sign_Up_Session)
         {
@@ -110,15 +121,74 @@ namespace Volunteer_Web.Controllers
             Session["Sign_up_session"] = sign_Up_Session;
              return Redirect("~/Home/NewVolunteer/3");
         }
+        //Demo
+        public ActionResult Demo()
+        {
+
+            Session["Sign_up_session"] = new Sign_up_session {
+                Chinese_name = "李小明",
+                Sex = "Male",
+                Birthday = DateTime.Now.AddYears(-25),
+                Sign_up_type = "社會志工",
+                Phone = "02-12345678",
+                Mobile = "0912345678",
+                Email = "Ming120@gmail.com",
+                Address = "台北市大安區復興南路一段390號",
+                Education = "大學",
+                Job = "服務業",
+                Expertises = new string[] { "2飛天","3衝浪" }
+            };
+            Session["Question"] = new Sign_up_questionnaireVM {
+                Q1 = new string[] { "02打發時間", "03體驗志願服務工作" },
+                Q2 = new string[] { "05有認識的人在醫院", "01離家近" },
+                Q3 = new string[] { "05親友介紹", "09醫生介紹" },
+                Q3doc = "李大明醫師",
+                Q4 = new string[] { "03員工眷屬", "06曾參與過本院相關活動" },
+                Q5unit = "春暉工作社",
+                Q5years = "2",
+                Q5content = "陪伴唐氏症兒童",
+                Q6jobs = "超商店員",
+                Q7=new string[] {"01是" },
+                Q8=new string[] { "03捷運", "02機車" }
+
+            };
+            Session["Service_period"] = new Service_period_VM {
+                wish1 = new int[] {1,5,8,9 },
+                wish2 = new int[] {2 },
+                wish3 = new int[] {7 }
+        };
+            Session["Interview_period"] = new Interview_period_VM {
+                wish1= new int[] { 1, 5, 8, 9 }
+            };
+
+
+
+
+
+            return Redirect("/Home/NewVolunteer/2");
+        }
+
+
         //問券調查
         [HttpGet]
         public ActionResult Questionnaire()
         {
             ViewBag.Partilview = "Questionnaire";
 
+            Sign_up_questionnaireVM session;
+            if (Session["Question"] == null)
+            {
+                session = new Sign_up_questionnaireVM();
+            }
+            else
+            {
+                session = Session["Question"] as Sign_up_questionnaireVM;
+            }
+            ViewData.Model = session;
+
+
             return PartialView();
         }
-
         [HttpPost]
         public ActionResult Questionnaire(Sign_up_questionnaireVM SQ)
         {
@@ -127,36 +197,67 @@ namespace Volunteer_Web.Controllers
             Session["Question"] = SQ;
             return Redirect("~/Home/NewVolunteer/4");
         }
+
         //服務時段調查
         [HttpGet]
         public ActionResult Service_period()
         {
+            Service_period_VM temp;
+            if (Session["Service_period"] == null)
+            {
+                temp = new Service_period_VM();
+            }
+            else
+            {
+                temp = Session["Service_period"] as Service_period_VM;
+            }
+            TempData["data"] = temp;
             return PartialView();
         }
         [HttpPost]
         public ActionResult Service_period(int[] wish_1st, int[] wish_2nd, int[] wish_3rd)
         {
-            Session["Service_period_1st"] = wish_1st;
-            Session["Service_period_2nd"] = wish_2nd;
-            Session["Service_period_3rd"] = wish_3rd;
+
+            Service_period_VM service=new Service_period_VM();
+
+            service.wish1 = null;
+            service.wish1 = wish_1st;
+            service.wish2 = wish_2nd;
+            service.wish3 = wish_3rd;
+
+            Session["Service_period"]= service ;
+
 
             return Content("新增服務時段成功", "text/plain");
         }
-        //面試時間
+
+        //面試時段調查
         [HttpGet]
         public ActionResult Interview_period()
         {
-
+            Interview_period_VM temp;
+            if (Session["Interview_period"] == null)
+            {
+                temp = new Interview_period_VM();
+            }
+            else
+            {
+                temp = Session["Interview_period"] as Interview_period_VM;
+            }
+            TempData["data"] = temp;
             return PartialView();
         }
         [HttpPost]
         public ActionResult Interview_period(int[] wish_1st)
         {
-            Session["Interview_period_1st"] = wish_1st;
+            Interview_period_VM service = new Interview_period_VM();
+            service.wish1 = wish_1st;
+            Session["Interview_period"] = service;
             return Content("新增/修改成功", "text/plain");
 
         }
-        //檢查資料
+
+        //資料總表顯示
         public ActionResult Alldata_check()
         {
             
@@ -172,8 +273,25 @@ namespace Volunteer_Web.Controllers
             return PartialView(sign_Up_Alldata_VM);
         }
 
+        //檢查時段
+        public ActionResult Check_period(int [] wish) {
 
-        //寫入個人資料
+            string re = "";
+            var service=Session["Service_perviod"] as Service_period_VM;
+            var interview = Session["Interview_perviod"] as Interview_period_VM;
+            if (service.wish1.Length == 0)
+            {
+                re += "服務時間";
+                
+            }
+            if(interview.wish1.Length==0)
+            {
+                re += "," + "可面試時間";
+            }
+            return Content(re, "/UTF-8");
+        }
+
+        //存入個人資料
         public ActionResult InsertSign_up()
         {
 
@@ -184,27 +302,27 @@ namespace Volunteer_Web.Controllers
 
           //轉dbset並存檔
               //存個人資料   日期沒輸入的預設為1800/1/1
-                Sign_up s = new Sign_up();
-                s.Chinese_name = sign_Up_Session.Chinese_name;
-                s.Sex = sign_Up_Session.Sex;
-                s.Birthday = sign_Up_Session.Birthday;
-                s.Phone = sign_Up_Session.Phone;
-                s.Mobile = sign_Up_Session.Mobile;
-                s.Email = sign_Up_Session.Email;
-                s.Address = sign_Up_Session.Address;
-                s.Education = sign_Up_Session.Education;
-                s.Job = sign_Up_Session.Job;
-                s.Stage = 1;
-                s.Sign_up_type = "社會青年";
+                Sign_up sign = new Sign_up();
+                sign.Chinese_name = sign_Up_Session.Chinese_name;
+                sign.Sex = sign_Up_Session.Sex;
+                sign.Birthday = sign_Up_Session.Birthday;
+                sign.Phone = sign_Up_Session.Phone;
+                sign.Mobile = sign_Up_Session.Mobile;
+                sign.Email = sign_Up_Session.Email;
+                sign.Address = sign_Up_Session.Address;
+                sign.Education = sign_Up_Session.Education;
+                sign.Job = sign_Up_Session.Job;
+                sign.Stage = 1;
+                sign.Sign_up_type = "社會青年";
             //日期預設
-            s.Sign_up_date = Convert.ToDateTime("1800-01-01 00:00:00");
-            s.Approval_date= Convert.ToDateTime("1800-01-01 00:00:00");
-            dbContext.Entry(s).State = System.Data.Entity.EntityState.Added;
+            sign.Sign_up_date = Convert.ToDateTime("1800-01-01 00:00:00");
+            sign.Approval_date= Convert.ToDateTime("1800-01-01 00:00:00");
+            dbContext.Entry(sign).State = System.Data.Entity.EntityState.Added;
             dbContext.SaveChanges();
             
             
             //找出此新志工的暫時ID
-                int Number= dbContext.Sign_up.Where(p=>p.Chinese_name==s.Chinese_name).First().Sign_up_no;
+                int Number= dbContext.Sign_up.Where(p=>p.Chinese_name==sign.Chinese_name).First().Sign_up_no;
             
             
             //存專長資料
@@ -226,7 +344,7 @@ namespace Volunteer_Web.Controllers
                 sq.Sign_up_no = Number;
                 sq.Question_no = 1;
                
-                sq.Answer_num =Convert.ToInt32(q1.Substring(0,1));
+                sq.Answer_num =Convert.ToInt32(q1.Substring(0,2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q1else = new Sign_up_questionnaire();
@@ -241,7 +359,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 2;
-                sq.Answer_num = Convert.ToInt32(q2.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q2.Substring(0, 2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q2else = new Sign_up_questionnaire();
@@ -257,7 +375,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 3;
-                sq.Answer_num = Convert.ToInt32(q3.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q3.Substring(0, 2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q3doc = new Sign_up_questionnaire();
@@ -272,7 +390,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 4;
-                sq.Answer_num = Convert.ToInt32(q4.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q4.Substring(0, 2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
             Sign_up_questionnaire q4else = new Sign_up_questionnaire();
@@ -305,7 +423,7 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 7;
-                sq.Answer_num = Convert.ToInt32(q7.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q7.Substring(0, 2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
 
@@ -315,15 +433,16 @@ namespace Volunteer_Web.Controllers
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 8;
-                sq.Answer_num = Convert.ToInt32(q8.Substring(0, 1));
+                sq.Answer_num = Convert.ToInt32(q8.Substring(0, 2));
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
 
             //存服務時間
+            var service_period_vm = Session["Service_period"] as Service_period_VM;
+            int[] wish1 = service_period_vm.wish1;
+            int[] wish2 = service_period_vm.wish2;
+            int[] wish3 = service_period_vm.wish3;
 
-            int[] wish1 = Session["Service_period_1st"] as int[];
-            int[] wish2 = Session["Service_period_2nd"] as int[];
-            int[] wish3 = Session["Service_period_3rd"] as int[];
 
             foreach (var i in wish1)
             {
@@ -356,8 +475,8 @@ namespace Volunteer_Web.Controllers
                 }
             }
             //存可面試時間
-
-            int[] interview_wish = Session["Interview_period_1st"] as int[];
+            var interview_period_vm=Session["Interview_period"] as Interview_period_VM;
+            int[] interview_wish = interview_period_vm.wish1;
 
             foreach (var i in interview_wish)
             {
@@ -371,6 +490,9 @@ namespace Volunteer_Web.Controllers
 
             return RedirectToAction("NewVolunteer");
         }
+
+
+        
         //申請完成
         public ActionResult Requirement_ok()
         {

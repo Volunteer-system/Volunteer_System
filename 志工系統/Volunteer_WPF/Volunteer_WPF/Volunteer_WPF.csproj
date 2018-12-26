@@ -157,6 +157,12 @@
     <Compile Include="Model\Identity_type.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Indexphoto.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Indexvideolink.cs">
+      <DependentUpon>Volunteer.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\Leader.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -192,6 +198,7 @@
     <Compile Include="Model\Shift_schedule.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Shift_schedule_unit_Model.cs" />
     <Compile Include="Model\Sign_up.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -325,6 +332,12 @@
     <Compile Include="View\Manpower_apply_View.xaml.cs">
       <DependentUpon>Manpower_apply_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Shift_schedule_data_View.xaml.cs">
+      <DependentUpon>Shift_schedule_data_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shift_schedule_View.xaml.cs">
+      <DependentUpon>Shift_schedule_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Signup_data_View.xaml.cs">
       <DependentUpon>Signup_data_View.xaml</DependentUpon>
     </Compile>
@@ -365,6 +378,8 @@
     <Compile Include="View_Model\Manpower_apply_ViewModel.cs" />
     <Compile Include="View_Model\RelayCommand.cs" />
     <Compile Include="View_Model\Service_group_ViewModel.cs" />
+    <Compile Include="View_Model\Shift_schedule_data_ViewModel.cs" />
+    <Compile Include="View_Model\Shift_schedule_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_interview_period_ViewModel.cs" />
     <Compile Include="View_Model\Sign_up_ViewModel.cs" />
     <Compile Include="View_Model\Volunteer_ViewModel.cs" />
@@ -489,6 +504,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Manpower_apply_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shift_schedule_data_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shift_schedule_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -246,7 +246,11 @@ namespace Volunteer_WPF
 
         private void Class_Click(object sender, RoutedEventArgs e)  //班表按鈕
         {
-            AddTabItem(ClassItem.Header.ToString());
+            Shift_schedule_View shift_Schedule_View = new Shift_schedule_View();
+            object content = shift_Schedule_View.Content;
+            shift_Schedule_View.Content = null;
+
+            AddTabItem(ClassItem.Header.ToString(), content);
             CheckList.Add(ClassItem.Header.ToString());
             Selected(ClassItem.Header.ToString());
         }

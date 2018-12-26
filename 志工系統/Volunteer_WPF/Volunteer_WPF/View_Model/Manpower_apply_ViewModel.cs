@@ -55,7 +55,6 @@ namespace Volunteer_WPF.View_Model
                 manpower_Apply_ViewModel.Applicant = row.Applicant;
                 manpower_Apply_ViewModel.Apply_date = row.Apply_date;
                 manpower_Apply_ViewModel.Applicant_phone = row.Applicant_phone;
-                manpower_Apply_ViewModel.Work_place = row.Work_place;
                 manpower_Apply_ViewModel.Apply_description = row.Apply_description;
                 manpower_Apply_ViewModel.unit_Supervisor = row.unit_Supervisor;
                 manpower_Apply_ViewModel.unit_heads = row.unit_heads;

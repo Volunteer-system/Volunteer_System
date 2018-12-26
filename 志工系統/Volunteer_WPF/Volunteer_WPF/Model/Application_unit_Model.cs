@@ -105,11 +105,30 @@ namespace Volunteer_WPF.Model
             return Application_units;
         }
 
+        public List<Application_unit_Model> SelectApplication_unit()
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n in dbContext.Application_unit
+                    select n; ;
+
+            List<Application_unit_Model> application_units = new List<Application_unit_Model>();
+            foreach (var row in q)
+            {
+                Application_unit_Model application_Unit_Model = new Application_unit_Model();
+                application_Unit_Model.Application_unit_no = row.Application_unit_no;
+                application_Unit_Model.Application_unit = row.Application_unit1;
+
+                application_units.Add(application_Unit_Model);
+            }
+
+            return application_units;
+        }
+
         public List<string> SelectApplication_unit_name()
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n in dbContext.Application_unit
-                    select new { application_unit = n.Application_unit1};
+                    select new { application_unit = n.Application_unit1 };
 
             List<string> application_units = new List<string>();
             foreach (var row in q)

@@ -96,6 +96,10 @@
         <AssociationConnector Association="VolunteerModel.FK_Sign_up_questionnaire_Sign_up" ManuallyRouted="false" />
         <AssociationConnector Association="VolunteerModel.FK_Sign_up_Service_period_Sign_up" ManuallyRouted="false" />
         <EntityTypeShape EntityType="VolunteerModel.Sign_up_expertise" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="VolunteerModel.Indexphoto" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="VolunteerModel.Indexvideolink" Width="1.5" PointX="7.375" PointY="0.75" />
+        <AssociationConnector Association="VolunteerModel.FK_Service_period_Application_unit1" />
+        <AssociationConnector Association="VolunteerModel.FK_Service_period_Service_group" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

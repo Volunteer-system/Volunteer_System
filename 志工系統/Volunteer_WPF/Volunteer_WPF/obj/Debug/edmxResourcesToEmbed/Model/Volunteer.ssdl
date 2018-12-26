@@ -36,6 +36,7 @@
     <Property Name="Work_content" Type="nvarchar" MaxLength="50" />
     <Property Name="Total_volunteers" Type="int" Nullable="false" />
     <Property Name="ImagePath" Type="nvarchar(max)" />
+    <Property Name="Work_place" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -79,7 +80,6 @@
     <Property Name="Applicant" Type="nvarchar" MaxLength="20" Nullable="false" />
     <Property Name="Apply_date" Type="datetime" Nullable="false" />
     <Property Name="Applicant_phone" Type="nvarchar" MaxLength="20" />
-    <Property Name="Work_place" Type="nvarchar" MaxLength="50" />
     <Property Name="Apply_description" Type="nvarchar(max)" />
     <Property Name="Application_unit_Supervisor" Type="nvarchar" MaxLength="20" />
     <Property Name="Application_unit_heads" Type="nvarchar" MaxLength="20" />
@@ -91,6 +91,7 @@
     <Property Name="Supervision_heads" Type="nvarchar" MaxLength="20" />
     <Property Name="Application_number" Type="int" />
     <Property Name="Reply_number" Type="int" />
+    <Property Name="Remarks" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Service_period">
     <Key>
@@ -140,6 +141,7 @@
     <Property Name="Place" Type="nvarchar" MaxLength="50" />
     <Property Name="Summary" Type="nvarchar(max)" />
     <Property Name="Activity_Photo_id" Type="int" />
+    <Property Name="Meal" Type="bit" />
   </EntityType>
   <EntityType Name="Activity_photo">
     <Key>
@@ -239,6 +241,7 @@
     </Key>
     <Property Name="Service_period_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Service_period" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Time" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Shift_schedule">
     <Key>
@@ -269,6 +272,22 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="Indexphoto">
+    <Key>
+      <PropertyRef Name="Indexphoto_no" />
+    </Key>
+    <Property Name="Indexphoto_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Indexphoto" Type="nvarchar(max)" />
+    <Property Name="Issued" Type="bit" />
+  </EntityType>
+  <EntityType Name="Indexvideolink">
+    <Key>
+      <PropertyRef Name="Indexvideolink_no" />
+    </Key>
+    <Property Name="Indexvideolink_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Videolink" Type="nvarchar(max)" />
+    <Property Name="Issued" Type="bit" />
+  </EntityType>
   <EntityType Name="Volunteer_supervision">
     <Key>
       <PropertyRef Name="supervision_ID" />
@@ -290,6 +309,7 @@
     <Property Name="Registration_date" Type="datetime" />
     <Property Name="Stage" Type="nvarchar" MaxLength="50" />
     <Property Name="Confirm_time" Type="datetime" />
+    <Property Name="Vegetarian" Type="bit" />
   </EntityType>
   <EntityType Name="Education">
     <Key>
@@ -311,6 +331,7 @@
     <Property Name="Experience_content" Type="nvarchar(max)" />
     <Property Name="Experience_photo" Type="nvarchar" MaxLength="50" />
     <Property Name="Issued" Type="bit" />
+    <Property Name="Home_issued" Type="bit" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -344,8 +365,10 @@
     </Key>
     <Property Name="Primary_key" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Volunteer_no" Type="int" Nullable="false" />
-    <Property Name="Wish_order" Type="int" Nullable="false" />
+    <Property Name="Srevice_group" Type="int" />
+    <Property Name="Application_unit" Type="int" />
     <Property Name="Service_period_no" Type="int" Nullable="false" />
+    <Property Name="Stage" Type="int" />
   </EntityType>
   <EntityType Name="Sign_up">
     <Key>
@@ -841,6 +864,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Service_period_Application_unit1">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Application_unit" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Srevice_group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Service_period_Service_period">
     <End Role="Service_period1" Type="Self.Service_period1" Multiplicity="1" />
     <End Role="Service_period" Type="Self.Service_period" Multiplicity="*" />
@@ -1061,6 +1108,8 @@
     <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="Stage" EntityType="Self.Stage" Schema="Basic" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Indexphoto" EntityType="Self.Indexphoto" Schema="supervision" store:Type="Tables" />
+    <EntitySet Name="Indexvideolink" EntityType="Self.Indexvideolink" Schema="supervision" store:Type="Tables" />
     <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" Schema="supervision" store:Type="Tables" />
     <EntitySet Name="Activity1" EntityType="Self.Activity1" Schema="Volunteer" Table="Activity" store:Type="Tables" />
     <EntitySet Name="Education" EntityType="Self.Education" Schema="Volunteer" store:Type="Tables" />
@@ -1210,6 +1259,14 @@
     <AssociationSet Name="FK_Service_period_Application_unit" Association="Self.FK_Service_period_Application_unit">
       <End Role="Application_unit" EntitySet="Application_unit" />
       <End Role="Service_period" EntitySet="Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Application_unit1" Association="Self.FK_Service_period_Application_unit1">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_group" Association="Self.FK_Service_period_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
     </AssociationSet>
     <AssociationSet Name="FK_Service_period_Service_period" Association="Self.FK_Service_period_Service_period">
       <End Role="Service_period1" EntitySet="Service_period1" />

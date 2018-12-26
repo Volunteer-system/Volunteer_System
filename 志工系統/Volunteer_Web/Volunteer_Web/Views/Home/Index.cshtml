@@ -84,8 +84,9 @@
                             <img src="~/Images/@row.Indexphoto_name" alt=" side">
                         </div>
                     }
+                    count1++;
                 }
-                count1++;
+                
             }
         }
     </div>
@@ -114,7 +115,7 @@
         {
             if (row.Issued && count2 < 5)
             {
-                <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn" style="width:20rem;">
+                <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn" style="width:18rem;">
                 count2++;
             }
         }
@@ -169,7 +170,7 @@
         {
             if (row.Issued && count3 < 5)
             {
-                <div class="m-5">
+                <div class="m-4">
                     <iframe class="embed-responsive-item" src="@row.Videolink" allowfullscreen></iframe>
                 </div>
             }

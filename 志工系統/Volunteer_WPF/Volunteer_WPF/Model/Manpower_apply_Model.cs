@@ -18,8 +18,6 @@ namespace Volunteer_WPF.Model
         public string Apply_date { get; set; }
         //申請人電話
         public string Applicant_phone { get; set; }
-        //值班地點
-        public string Work_place { get; set; }
         //工作項目與流程
         public string Apply_description { get; set; }
         //單位主管
@@ -57,7 +55,6 @@ namespace Volunteer_WPF.Model
                         Applicant = n1.Applicant,
                         Apply_date = n1.Apply_date,
                         Applicant_phone = n1.Applicant_phone,
-                        Work_place = n1.Work_place,
                         Apply_description = n1.Apply_description,
                         unit_Supervisor = n1.Application_unit_Supervisor,
                         unit_heads = n1.Application_unit_heads,
@@ -76,7 +73,6 @@ namespace Volunteer_WPF.Model
                 manpower_Apply_Model.Applicant = row.Applicant;
                 manpower_Apply_Model.Apply_date = row.Apply_date.ToString();
                 manpower_Apply_Model.Applicant_phone = row.Applicant_phone;
-                manpower_Apply_Model.Work_place = row.Work_place;
                 manpower_Apply_Model.Apply_description = row.Repply_description;
                 manpower_Apply_Model.unit_Supervisor = row.unit_Supervisor;
                 manpower_Apply_Model.Application_number = row.Application_number.ToString();
@@ -104,7 +100,6 @@ namespace Volunteer_WPF.Model
                         Applicant = n1.Applicant,
                         Apply_date = n1.Apply_date,
                         Applicant_phone = n1.Applicant_phone,
-                        Work_place = n1.Work_place,
                         Apply_description = n1.Apply_description,
                         unit_Supervisor = n1.Application_unit_Supervisor,
                         unit_heads = n1.Application_unit_heads,
@@ -122,7 +117,6 @@ namespace Volunteer_WPF.Model
                 Applicant = row.Applicant;
                 Apply_date = row.Apply_date.ToString();
                 Applicant_phone = row.Applicant_phone;
-                Work_place = row.Work_place;
                 Apply_description = row.Apply_description;
                 unit_Supervisor = row.unit_Supervisor;
                 unit_heads = row.unit_heads;
@@ -149,7 +143,6 @@ namespace Volunteer_WPF.Model
                         Applicant = n1.Applicant,
                         Apply_date = n1.Apply_date,
                         Applicant_phone = n1.Applicant_phone,
-                        Work_place = n1.Work_place,
                         Apply_description = n1.Apply_description,
                         unit_Supervisor = n1.Application_unit_Supervisor,
                         unit_heads = n1.Application_unit_heads,
@@ -166,7 +159,6 @@ namespace Volunteer_WPF.Model
                 Applicant = row.Applicant;
                 Apply_date = row.Apply_date.ToString();
                 Applicant_phone = row.Applicant_phone;
-                Work_place = row.Work_place;
                 Apply_description = row.Apply_description;
                 unit_Supervisor = row.unit_Supervisor;
                 unit_heads = row.unit_heads;
