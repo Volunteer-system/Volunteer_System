@@ -39,6 +39,10 @@ namespace Volunteer_Web.Models
         public Nullable<int> Stage { get; set; }
         public Nullable<System.DateTime> Approval_date { get; set; }
         public Nullable<int> supervision_ID { get; set; }
+        public string Emergency_contact { get; set; }
+        public string Emergency_contact_phone { get; set; }
+        public string Scool_name { get; set; }
+        public string Identity_card { get; set; }
     
         public virtual Volunteer_supervision Volunteer_supervision { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

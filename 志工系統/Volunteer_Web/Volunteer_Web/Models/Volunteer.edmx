@@ -246,6 +246,7 @@
           </Key>
           <Property Name="Service_period_no" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Service_period" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Shift_schedule">
           <Key>
@@ -395,6 +396,10 @@
           <Property Name="Stage" Type="int" />
           <Property Name="Approval_date" Type="datetime" />
           <Property Name="supervision_ID" Type="int" />
+          <Property Name="Emergency_contact" Type="nvarchar" MaxLength="10" />
+          <Property Name="Emergency_contact_phone" Type="nchar" MaxLength="15" />
+          <Property Name="Scool_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Identity_card" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="Sign_up_expertise">
           <Key>
@@ -1641,6 +1646,7 @@
           <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Service_period1" ToRole="Shift_schedule" />
           <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Service_period" FromRole="Service_period1" ToRole="Sign_up_interview_period" />
           <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Service_period1" ToRole="Sign_up_Service_period" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Shift_schedule">
           <Key>
@@ -1800,6 +1806,10 @@
           <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
           <NavigationProperty Name="Sign_up_questionnaire" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up" ToRole="Sign_up_questionnaire" />
           <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
+          <Property Name="Emergency_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Emergency_contact_phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Scool_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Identity_card" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="Sign_up_interview_period">
           <Key>
@@ -3044,6 +3054,7 @@
           <EntitySetMapping Name="Service_period1">
             <EntityTypeMapping TypeName="VolunteerModel.Service_period1">
               <MappingFragment StoreEntitySet="Service_period1">
+                <ScalarProperty Name="Time" ColumnName="Time" />
                 <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
                 <ScalarProperty Name="Service_period" ColumnName="Service_period" />
               </MappingFragment>
@@ -3174,6 +3185,10 @@
           <EntitySetMapping Name="Sign_up">
             <EntityTypeMapping TypeName="VolunteerModel.Sign_up">
               <MappingFragment StoreEntitySet="Sign_up">
+                <ScalarProperty Name="Identity_card" ColumnName="Identity_card" />
+                <ScalarProperty Name="Scool_name" ColumnName="Scool_name" />
+                <ScalarProperty Name="Emergency_contact_phone" ColumnName="Emergency_contact_phone" />
+                <ScalarProperty Name="Emergency_contact" ColumnName="Emergency_contact" />
                 <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
                 <ScalarProperty Name="Chinese_name" ColumnName="Chinese_name" />
                 <ScalarProperty Name="English_name" ColumnName="English_name" />

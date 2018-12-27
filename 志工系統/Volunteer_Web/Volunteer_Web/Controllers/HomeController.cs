@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Volunteer_Web.Models;
 using Volunteer_Web.ViewModel;
-
+using System.Text.RegularExpressions;
 
 
 namespace Volunteer_Web.Controllers
@@ -130,6 +130,7 @@ namespace Volunteer_Web.Controllers
                 Sex = "Male",
                 Birthday = DateTime.Now.AddYears(-25),
                 Sign_up_type = "社會志工",
+                Identity_card="A123456789",
                 Phone = "02-12345678",
                 Mobile = "0912345678",
                 Email = "Ming120@gmail.com",
@@ -148,7 +149,7 @@ namespace Volunteer_Web.Controllers
                 Q5years = "2",
                 Q5content = "陪伴唐氏症兒童",
                 Q6jobs = "超商店員",
-                Q7=new string[] {"01是" },
+                Q7="01是",
                 Q8=new string[] { "03捷運", "02機車" }
 
             };
@@ -304,6 +305,7 @@ namespace Volunteer_Web.Controllers
               //存個人資料   日期沒輸入的預設為1800/1/1
                 Sign_up sign = new Sign_up();
                 sign.Chinese_name = sign_Up_Session.Chinese_name;
+                sign.Identity_card = sign_Up_Session.Identity_card;
                 sign.Sex = sign_Up_Session.Sex;
                 sign.Birthday = sign_Up_Session.Birthday;
                 sign.Phone = sign_Up_Session.Phone;
@@ -330,74 +332,90 @@ namespace Volunteer_Web.Controllers
             {
                 Sign_up_expertise se = new Sign_up_expertise();
                 se.Sign_up_no = Number;
-                se.Expertise = Convert.ToInt32(exp.Substring(0, 1));
+                se.Expertise = Convert.ToInt32(Regex.Replace(exp, "[^0-9]", ""));
                 dbContext.Entry(se).State = System.Data.Entity.EntityState.Added;
             }
 
 
             //存表單資料 
-           
+
             //存Q1
             foreach (var q1 in Sign_up_question.Q1)
             {
+               // var q1num = ;
+
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 1;
-               
-                sq.Answer_num =Convert.ToInt32(q1.Substring(0,2));
+                sq.Answer_num = Convert.ToInt32(Regex.Replace(q1, "[^0-9]", ""));
+
+                //選到其他，則加入其他的值
+                if (Regex.Replace(q1, "[^0-9]", "") == "06")
+                {
+                    sq.Other_result1 = Sign_up_question.Q1else;
+                }
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
+
             }
-            Sign_up_questionnaire q1else = new Sign_up_questionnaire();
-            q1else.Sign_up_no = Number;
-            q1else.Question_no = 1;
-            q1else.Other_result1 = Sign_up_question.Q1else;
-            dbContext.Entry(q1else).State = System.Data.Entity.EntityState.Added;
+
 
             //存Q2
             foreach (var q2 in Sign_up_question.Q2)
             {
+                var q2num = Regex.Replace(q2, "[^0-9]", "");
+
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 2;
-                sq.Answer_num = Convert.ToInt32(q2.Substring(0, 2));
-                dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
-            }
-            Sign_up_questionnaire q2else = new Sign_up_questionnaire();
-            q2else.Sign_up_no = Number;
-            q2else.Question_no = 2;
-            q2else.Other_result1 = Sign_up_question.Q2else;
-            dbContext.Entry(q1else).State = System.Data.Entity.EntityState.Added;
+                sq.Answer_num = Convert.ToInt32(q2num);
 
+                //選到其他，則加入其他的值
+                if (q2num == "08")
+                {
+                    sq.Other_result1 = Sign_up_question.Q2else;
+                }
+                dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
+
+
+            }
 
             //存Q3
             foreach (var q3 in Sign_up_question.Q3)
             {
+                var q3num = Regex.Replace(q3, "[^0-9]", "");
+
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 3;
-                sq.Answer_num = Convert.ToInt32(q3.Substring(0, 2));
+                sq.Answer_num = Convert.ToInt32(q3num);
+
+                //選到其他，則加入其他的值
+                if (q3num == "09")
+                {
+                    sq.Other_result1 = Sign_up_question.Q3doc;
+                }
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
+
+
             }
-            Sign_up_questionnaire q3doc = new Sign_up_questionnaire();
-            q3doc.Sign_up_no = Number;
-            q3doc.Question_no = 3;
-            q3doc.Other_result1 = Sign_up_question.Q3doc;
-            dbContext.Entry(q3doc).State = System.Data.Entity.EntityState.Added;
 
             //存Q4
             foreach (var q4 in Sign_up_question.Q4)
             {
+                var q4num = Regex.Replace(q4, "[^0-9]", "");
+
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 4;
-                sq.Answer_num = Convert.ToInt32(q4.Substring(0, 2));
+                sq.Answer_num = Convert.ToInt32(q4num);
+
+                //選到其他，則加入其他的值
+                if (q4num == "08")
+                {
+                    sq.Other_result1 = Sign_up_question.Q4else;
+                }
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
-            Sign_up_questionnaire q4else = new Sign_up_questionnaire();
-            q4else.Sign_up_no = Number;
-            q4else.Question_no = 4;
-            q4else.Other_result1 = Sign_up_question.Q4else;
-            dbContext.Entry(q4else).State = System.Data.Entity.EntityState.Added;
 
             //Q5
             Sign_up_questionnaire q5 = new Sign_up_questionnaire();
@@ -416,24 +434,24 @@ namespace Volunteer_Web.Controllers
             q6jobs.Other_result1 = Sign_up_question.Q6jobs;
             dbContext.Entry(q6jobs).State = System.Data.Entity.EntityState.Added;
 
-
             //Q7
-            foreach (var q7 in Sign_up_question.Q7)
-            {
-                Sign_up_questionnaire sq = new Sign_up_questionnaire();
-                sq.Sign_up_no = Number;
-                sq.Question_no = 7;
-                sq.Answer_num = Convert.ToInt32(q7.Substring(0, 2));
-                dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
-            }
+            Sign_up_questionnaire q7 = new Sign_up_questionnaire();
+            q7.Sign_up_no = Number;
+            q7.Question_no = 7;
+            q7.Other_result1 = Sign_up_question.Q7;
+            dbContext.Entry(q7).State = System.Data.Entity.EntityState.Added;
+
 
             //Q8
-            foreach (var q8 in Sign_up_question.Q4)
+            foreach (var q8 in Sign_up_question.Q8)
             {
+                var q8num = Regex.Replace(q8, "[^0-9]", "");
+
                 Sign_up_questionnaire sq = new Sign_up_questionnaire();
                 sq.Sign_up_no = Number;
                 sq.Question_no = 8;
-                sq.Answer_num = Convert.ToInt32(q8.Substring(0, 2));
+                sq.Answer_num = Convert.ToInt32(q8num);
+
                 dbContext.Entry(sq).State = System.Data.Entity.EntityState.Added;
             }
 
@@ -475,7 +493,7 @@ namespace Volunteer_Web.Controllers
                 }
             }
             //存可面試時間
-            var interview_period_vm=Session["Interview_period"] as Interview_period_VM;
+            var interview_period_vm = Session["Interview_period"] as Interview_period_VM;
             int[] interview_wish = interview_period_vm.wish1;
 
             foreach (var i in interview_wish)
@@ -488,7 +506,7 @@ namespace Volunteer_Web.Controllers
 
             dbContext.SaveChanges();
 
-            return RedirectToAction("NewVolunteer");
+            return Redirect("~/Home/NewVolunteer/7");
         }
 
 

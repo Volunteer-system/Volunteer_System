@@ -101,7 +101,6 @@ namespace Volunteer_WPF
         private void NewTab_CheckClose(object sender, EventArgs e)
         {
             UCTabItemWithClose SelectedTab = sender as UCTabItemWithClose;
-
             //刪除List裡面重複的
             for (int i = 0; i < CheckList.Count; i++)  //循環的次數
             {
@@ -132,7 +131,11 @@ namespace Volunteer_WPF
 
         private void AddTabItem(string s, object content)  //按Button時，新增一個同名的TabItem
         {
-            UCTabItemWithClose NewTab = new UCTabItemWithClose() { Header = s, Name = s, Height = 30, FontSize = 12 };
+            UCTabItemWithClose NewTab = new UCTabItemWithClose() {
+                Header = s,
+                Name = s,
+                Height = 30
+            };
             NewTab.CheckClose += NewTab_CheckClose;
             for (int i = 0; i < CheckList.Count(); i++)  //判斷有沒有重複的TabItem
             {

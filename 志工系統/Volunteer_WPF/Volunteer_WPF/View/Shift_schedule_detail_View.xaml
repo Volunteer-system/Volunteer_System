@@ -1,0 +1,81 @@
+﻿<Window x:Class="Volunteer_WPF.View.Shift_schedule_detail_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Shift_schedule_detail_View" Height="600" Width="1000">
+    <Grid Height="580" Margin="0,0,-0.4,-0.2" VerticalAlignment="Bottom">        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Height="521" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Stroke="Gray" Fill="#FFA7E6DA"/>
+            <Label Content="留任" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <ScrollViewer Grid.Row="1" Margin="1">
+                <ListBox x:Name="pan_stay" Height="457" Width="246" >
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="1" Height="521" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="15*"/>                
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0" Grid.Row="0" Stroke="Gray" Fill="#FFA7E6DA"/>
+            <Label Content="新增" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <ScrollViewer Grid.Row="1" Margin="1">
+                <ListBox x:Name="new_stay" Height="457" Width="247" >
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="2" Height="521" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="15*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Column="0" Grid.Row="0" Stroke="Gray" Fill="#FFA7E6DA"/>
+            <Label Content="移除" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+            <ScrollViewer Grid.Row="1" Margin="1">
+                <ListBox x:Name="leave_stay" Height="457" Width="246" >
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Column="3" Height="521" VerticalAlignment="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <DockPanel LastChildFill="True">
+                <StackPanel DockPanel.Dock="Left" >
+                    <Button x:Name="btn_volunteer" Content="社會志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_volunteer_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                    <Button x:Name="btn_student" Content="學生志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_student_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                    <Label  Content="姓名" FontSize="16" FontWeight="Bold"/>
+                    <TextBox Name="nametext" Height="35" Margin="5"/>
+                    <Button x:Name="btn_select" Content="搜尋" Height="35" Margin="2" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_select_Click"  Style="{DynamicResource ButtonTemplate}"/>
+                </StackPanel>
+            </DockPanel>
+            <ScrollViewer Grid.Row="1" Margin="1">
+                <ListBox x:Name="select_stay" Height="314" Width="247" ></ListBox>
+            </ScrollViewer>
+        </Grid>
+        <Rectangle Grid.Column="0" Grid.Row="1" Fill="White"/>
+        <Rectangle Grid.Column="1" Grid.Row="1" Fill="White"/>
+        <Rectangle Grid.Column="2" Grid.Row="1" Fill="White"/>
+        <Rectangle Grid.Column="3" Grid.Row="1" Fill="White"/>
+        <Button Content="確認" Grid.Column="3" Grid.Row="1" Margin="5.2,5,125.6,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"></Button>
+        <Button Content="取消" Grid.Column="3" Grid.Row="1" Margin="128.2,5,4.8,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"></Button>
+    </Grid>
+</Window>

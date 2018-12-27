@@ -76,30 +76,66 @@ namespace Volunteer_WPF.View
                 }
 
                 int schedule_row = list.FindIndex(p => p == row.Time) + 1;
-                string str = row.Actual_number + "/" + row.Volunteer_number;
 
-                Label label = new Label();
-                label.Content = str;
-                label.HorizontalAlignment = HorizontalAlignment.Right;
-                label.VerticalAlignment = VerticalAlignment.Top;
-                label.FontSize = 16;
-                Grid.SetRow(label, schedule_row);
-                Grid.SetColumn(label, schedule_column);
-                this.grid_schedule.Children.Add(label);
+                Label label1 = new Label();
+                label1.Content =  row.Volunteer_number;
+                label1.HorizontalAlignment = HorizontalAlignment.Right;
+                label1.VerticalAlignment = VerticalAlignment.Center;
+                label1.FontSize = 16;
+                Grid.SetRow(label1, schedule_row);
+                Grid.SetColumn(label1, schedule_column);
+                this.grid_schedule.Children.Add(label1);
+
+                Label label2 = new Label();
+                label2.Content = row.Actual_number;
+                label2.HorizontalAlignment = HorizontalAlignment.Left;
+                label2.VerticalAlignment = VerticalAlignment.Center;
+                label2.FontSize = 16;
+                if (row.Actual_number > row.Volunteer_number)
+                {
+                    label2.Foreground = Brushes.Red;
+                } else if (row.Actual_number == row.Volunteer_number)
+                {
+                    label2.Foreground = Brushes.Green;
+                } else
+                {
+                    label2.Foreground = Brushes.Gray;
+                }
+                Grid.SetRow(label2, schedule_row);
+                Grid.SetColumn(label2, schedule_column);
+                this.grid_schedule.Children.Add(label2);
+
+                Label label3 = new Label();
+                label3.Content = "/";
+                label3.HorizontalAlignment = HorizontalAlignment.Center;
+                label3.VerticalAlignment = VerticalAlignment.Center;
+                label3.FontSize = 16;
+                Grid.SetRow(label3, schedule_row);
+                Grid.SetColumn(label3, schedule_column);
+                this.grid_schedule.Children.Add(label3);
 
                 Button button = new Button();
                 button.Content = "編輯";
-                button.Height = 30;
+                button.Height = 35;
                 button.Width = 100;
                 button.HorizontalAlignment = HorizontalAlignment.Center;
                 button.VerticalAlignment = VerticalAlignment.Bottom;
-                button.Background = new SolidColorBrush(Color.FromArgb(100, 120, 230, 200));
+                button.Background = new SolidColorBrush(Color.FromArgb(100, 120, 240, 200));
                 button.BorderBrush = null;
                 button.Foreground = Brushes.Gray;
+                button.Click += Button_Click;
+                //Style style = this.FindResource("ButtonTemplate") as Style;
+                //button.Style = style;
                 Grid.SetRow(button, schedule_row);
                 Grid.SetColumn(button, schedule_column);
                 this.grid_schedule.Children.Add(button);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Window window = new Shift_schedule_detail_View();
+            window.ShowDialog();
         }
     }
 }

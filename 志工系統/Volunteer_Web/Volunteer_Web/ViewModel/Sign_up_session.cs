@@ -10,9 +10,29 @@ namespace Volunteer_Web.ViewModel
 {
     public class Sign_up_session
     {
+        public Sign_up_session() {
+            Chinese_name = "";
+            English_name = "";
+            Identity_card = "";
+            Sex = "";
+            Birthday = new DateTime();
+            Sign_up_type = "";
+            Sign_up_date = new DateTime();
+            Phone = "";
+            Mobile = "";
+            Email = "";
+            Address = "";
+            Education = "";
+            Job = "";
+            Expertises = new List<string>();
+
+        }
+
         [DisplayName("姓名")]
         public string Chinese_name { get; set; }
         public string English_name { get; set; }
+        [DisplayName("身分證號碼")]
+        public string Identity_card { get; set; }
         [DisplayName("性別")]
         public string Sex { get; set; }
         [DataType(DataType.DateTime)]

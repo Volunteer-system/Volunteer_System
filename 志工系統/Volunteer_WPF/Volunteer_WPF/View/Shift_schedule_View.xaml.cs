@@ -32,7 +32,6 @@ namespace Volunteer_WPF.View
             List<Button> btn_units = new List<Button>();
             foreach(var row in shift_Schedule_ViewModel.SelectApplication_unit())
             {
-                //< Button x: Name = "btn_newevent" Content = "新事件" Height = "35" Margin = "5" FontSize = "14" Background = "#FFA7E6DA" BorderBrush = "{x:Null}" Foreground = "Gray" Click = "btn_unprocessed_Click"  Style = "{DynamicResource ButtonTemplate}" />
                 Button btn = new Button();
                 btn.Name = "btn_" + row.Application_unit;
                 btn.Tag = row.Application_unit_no;
@@ -44,7 +43,8 @@ namespace Volunteer_WPF.View
                 btn.Background = new SolidColorBrush(Color.FromArgb(100, 120, 230, 200));
                 btn.BorderBrush = null;
                 btn.Foreground = Brushes.Gray;
-                //btn.Style = (Style)FindResource("ButtonTemplate");
+                //Style style = this.FindResource("ButtonTemplate") as Style;
+                //btn.Style = style;
                 btn.Click += Btn_Unit_Click;
 
                 btn_units.Add(btn);

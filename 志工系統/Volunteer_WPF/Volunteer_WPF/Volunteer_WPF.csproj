@@ -263,6 +263,9 @@
     <Compile Include="User_Control\UCTabItemWithClose.xaml.cs">
       <DependentUpon>UCTabItemWithClose.xaml</DependentUpon>
     </Compile>
+    <Compile Include="User_Control\Volunteer_card.xaml.cs">
+      <DependentUpon>Volunteer_card.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Abnormal_event.xaml.cs">
       <DependentUpon>Abnormal_event.xaml</DependentUpon>
     </Compile>
@@ -334,6 +337,9 @@
     </Compile>
     <Compile Include="View\Shift_schedule_data_View.xaml.cs">
       <DependentUpon>Shift_schedule_data_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shift_schedule_detail_View.xaml.cs">
+      <DependentUpon>Shift_schedule_detail_View.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shift_schedule_View.xaml.cs">
       <DependentUpon>Shift_schedule_View.xaml</DependentUpon>
@@ -410,6 +416,10 @@
     <Page Include="User_Control\UCTabItemWithClose.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="User_Control\Volunteer_card.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Abnormal_event.xaml">
       <SubType>Designer</SubType>
@@ -508,6 +518,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Shift_schedule_data_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shift_schedule_detail_View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

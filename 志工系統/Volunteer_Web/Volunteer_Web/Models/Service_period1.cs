@@ -27,6 +27,7 @@ namespace Volunteer_Web.Models
     
         public int Service_period_no { get; set; }
         public string Service_period { get; set; }
+        public string Time { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Apply_Service_period> Apply_Service_period { get; set; }

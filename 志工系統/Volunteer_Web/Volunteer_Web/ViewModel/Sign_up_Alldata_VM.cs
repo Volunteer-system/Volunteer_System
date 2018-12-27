@@ -34,7 +34,7 @@ namespace Volunteer_Web.ViewModel
         public string Q5content { get; set; }
        // public IEnumerable<int> Q6 { get; set; }
         public string Q6jobs { get; set; }
-        public IEnumerable<string> Q7 { get; set; }
+        public string Q7 { get; set; }
         public IEnumerable<string> Q8 { get; set; }
 
         public void SetSign_up_Alldata(Sign_up_session sign_Up_Session, Sign_up_questionnaireVM sign_Up_QuestionnaireVM)
