@@ -6,7 +6,9 @@
 <div class="row mt-5">
     <div class="col-2">
         <div class="list-group">
-            @Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })
+
+            @*@Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })*@
+
             @foreach (var category in Model.activity_types)
 
             {
@@ -16,7 +18,7 @@
     </div>
     <div class="col-10">
         <div class="row">
-
+            
             @foreach (var ac in Model.acvno_VM)
             {
 
@@ -30,8 +32,10 @@
                             @*<p hidden id="Activity_name_@ac.Activity_no"></p>*@
                             <p id="Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
                             <p id="start_@ac.Activity_no" class="card-text">@ac.Activity_startdate</p>
+                            <p>活動編號 @ac.Activity_no</p>
                             <p>活動報名人數 @ac.count</p>
                             <p>活動人數上限 @ac.Member</p>
+                            <p>活動備取人數 @ac.Spare</p>
                             @*<p id="end_@ac.Activity_no" class="card-text">活動結束時間：@ac.Activity_enddate</p>*@
                             @*<p id="Undertake_unit_@ac.Activity_no" class="card-text">承辦單位：@ac.Undertake_unit</p>
         <p id="Undertaker_@ac.Activity_no" class="card-text">承辦人：@ac.Volunteer_supervision.supervision_Name</p>*@
@@ -50,9 +54,9 @@
                             <p hidden id="m_Spare_@ac.Activity_no" class="card-text">@ac.Spare</p>
                             <p hidden id="m_Place_@ac.Activity_no" class="card-text">@ac.Place</p>
                             <p hidden id="m_Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
-                            
+
                             <p hidden id="@ac.Activity_no" name="acactivityNo"></p>
-                            @{ 
+                            @{
                                 ViewBag.acactivityNo = ac.Activity_no;
                             }
 
@@ -60,9 +64,49 @@
                             @*<a href="~/volunteer/xxx/id=@ac.Activity_no" class="btn btn-secondary">內容</a>*@
                             @*<input type="submit" value="參加" />*@
                             @*<a id="att" href="~/Volunteer/Activity_Browse/id=@ViewBag.userid?activityID=@ac.Activity_no" class="btn btn-secondary">參加</a>*@
-                            @*重要*@   <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>
+                            @*if( 活動報名人數 @ac.count < 活動人數上限 @ac.Member )
+        {
+        參加 按鈕 顯示 且 有功能
+        }
+        else
+        {
+        參加 按鈕 無法使用 且 沒有功能
+        }*@
+
+                            @*重要*@
+                            @*活動報名人數<活動人數上限*@
+                            @if (ac.count < ac.Member)
+                            {
+                                if (ac.part)
+                                {
+                                    <a class="btn btn-danger">已參加</a>
+                                }
+                                else
+                                {
+                                    <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-outline-success">參加</a>
+
+                                }
+                            }
+                            else
+                            {
+                                if (ac.part)
+                                {
+                                    <a class="btn btn-danger">已參加</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-warning">人數已滿</a>
+
+                                }
+
+                                
+                            }
+
+
+
+                            @* 重要  <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>*@
                             <!-- Button trigger modal-->
-                            <button id="@ac.Activity_no" value="@ac.Activity_Photo_id" type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            <button id="@ac.Activity_no" value="@ac.Activity_Photo_id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
                                 詳細資訊
                             </button>
 
@@ -184,34 +228,43 @@
 <div class="modal fade"  id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-notify modal-success" role="document">
-        <!--Content-->
-        <div class="modal-content">
-            <!--Header-->
-            <div class="modal-header">
-                <h1 class="heading lead">感謝您的參與</h1>
+        <form action="~/Volunteer/Activity_Browse" method="post">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h1 class="heading lead">感謝您的參與</h1>
 
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="white-text">&times;</span>
-                </button>
-            </div>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
 
-            <!--Body-->
-            <div class="modal-body">
-                <div class="text-center">
-                    <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
-                    <h5>
-                        非常高興你能參加活動,期待活動日與你見面
-                    </h5>
+                <!--Body-->
+
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h5>
+                            此次活動提供便當
+                            如果你吃素的話
+                            請在以下選擇素食便當
+                        </h5>
+                        <input class="form-check-input" type="checkbox" name="VegeYesOrNo" value="true" id="VegeYesOrNo">素食便當
+                        <input hidden type="text" name="id" id="@ViewBag.userid" value="@ViewBag.userid" />
+                        <input hidden type="text" name="activityNo" id="exactivityNo" value="" />
+                    </div>
+                </div>
+
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <input class="btn btn-outline-danger" type="submit" value="確定" />
+                    <a class="btn btn-outline-success waves-effect" data-dismiss="modal">結束</a>
                 </div>
             </div>
-
-            <!--Footer-->
-            <div class="modal-footer justify-content-center">
-              
-                <a class="btn btn-outline-success waves-effect" data-dismiss="modal">結束</a>
-            </div>
-        </div>
-        <!--/.Content-->
+            <!--/.Content-->
+        </form>
+        
     </div>
 </div>
 <!-- Central Modal Medium Success-->
@@ -219,19 +272,24 @@
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            $('a[name="a1"]').click(function () {
+            $('a[name="a1"]').click(function () {        
+                            @*當按下 參加 按鈕的時 , 把按鈕的 data-value="@ac.Activity_no" 指派給 var n*@ 
                 var n = $(this).data("value")/*$('input[type="hidden"]').val();*/
+               // alert(n)
+                $('#exactivityNo').val(n);
+                            //找到id = "exactivityNo" 的 input 標籤 把 n 設定到 value 中
 
-                //console.log();
+                @*var n1 =$('')
+                console.log();
                 $.post("/Volunteer/Activity_Browse", { id: @ViewBag.userid, activityID: n}, function (datas) {
-                    //alert(datas); //提示 感謝參加活動
+                    alert(datas); //提示 感謝參加活動
 
-                })
+                })*@
             })
             
             $('.card-body').on('click', ':button', function () {
                 var id = $(this).attr("id");
-                     var nameee = $(this).attr("name");
+                     //var nameee = $(this).attr("name");
                 //var doc = $('#Activity_name_' + id).text();
                 $('.modal-title').text('活動詳細資訊');
 

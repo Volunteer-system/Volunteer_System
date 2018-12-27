@@ -56,6 +56,7 @@ namespace Volunteer_Web.Controllers
                 return Json(detail.AsEnumerable().Select(a => new { Activity_no = a.Activity_no, Activity_name = a.Activity_name, Activity_type = a.Activity_type.Activity_type1, Activity_startdate = a.Activity_startdate.Value.ToShortDateString(), Activity_enddate = a.Activity_enddate.Value.ToShortDateString(), supervision_Name = a.Volunteer_supervision.supervision_Name, supervision_phone = a.Volunteer_supervision.supervision_phone, supervision_email = a.Volunteer_supervision.supervision_email, Group_name = a.Service_group.Group_name, lecturer = a.lecturer, Place = a.Place, Summary = a.Summary, Activity_photo_id = a.Activity_Photo_id }), JsonRequestBehavior.AllowGet);
             }
             if (photo != 0)
+
             {
                 var photoid = db.Activity_photo.Where(p => p.Activity_id == photo);
                 return Json(photoid.AsEnumerable().Select(p => new { Activity_photo_id = p.Activity_photo_id }), JsonRequestBehavior.AllowGet);
@@ -132,7 +133,8 @@ namespace Volunteer_Web.Controllers
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
             //vm.activity = db.Activities.Where(p => p.Activity_type_ID == id);
             activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
-            vm.acvno_VM = actvm.activityNumberOfPeople(id);
+            //actvm.activityNumberOfPeople(id)取得活動報名的人數 
+            vm.acvno_VM = actvm.activityNumberOfPeople(id, Convert.ToInt32(Session["UserID"]));
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
             //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
@@ -140,21 +142,38 @@ namespace Volunteer_Web.Controllers
             return View(vm);
         }
         [HttpPost]
-        public ActionResult Activity_Browse(int id, int activityID)
+        public ActionResult Activity_Browse(int id, int activityNo, bool VegeYesOrNo = false)
         {
+
+            //if (查詢到的 每個活動的 活動報名人數 < 查詢到的 每個活動的 活動人數上限)
+            //{
+            //    才要新增一筆Volunteer.Activity表的資料
+            //}
+
             Repository<Activity1> ry = new Repository<Activity1>();
             Activity1 activity1 = new Activity1()
             {
-                Activity_no = activityID,
+
                 Volunteer_no = id,
+                Activity_no = activityNo,
                 Registration_date = DateTime.Now,
-                Stage = "未簽收"
+                Stage = "未簽收",
+                Vegetarian = VegeYesOrNo
 
             };
             ry.Create(activity1);
 
 
-            return Content("感謝您參加活動");
+            //return Content("感謝您參加活動");
+            return Redirect("~/Volunteer/Activity_Browse");
+
+            //public ActionResult Activity_Browse(int id, int activityID, int? activity_no)
+            //傳布林值過來的時候會預設是null,可是布林值不能為null,
+            //所以我按submit 按鈕的時候 勾選素食便當 value的值 會是 true
+            //所以我按submit 按鈕的時候 沒勾選素食便當 value的值 會是 null
+            //所以我在[HttpPost]
+            //public ActionResult Activity_Browse(int id, int activityID, bool VegeYesOrNo = false)
+            //接收 bool VegeYesOrNo 的參數先給它預設 false
         }
         public ActionResult GetImageBytes(int id = 1)
         {
@@ -191,10 +210,16 @@ namespace Volunteer_Web.Controllers
         }
         [HttpPost]
         public ActionResult Schedule(List<Volunteer_Schedule_saveModel> SM)
-        {
-            Volunteer_Schedule_saveModel sm = new Volunteer_Schedule_saveModel();
-            sm.Insert_Volunteer_Service_period(SM);
-            return Content("成功", "text/plain");
+        {  if (SM != null)
+            {
+                Volunteer_Schedule_saveModel sm = new Volunteer_Schedule_saveModel();
+                sm.Insert_Volunteer_Service_period(SM);
+                return Json("成功", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json("失敗", JsonRequestBehavior.AllowGet);
+            }
             //return View();
         }//12/22
         //Schedule下拉清單
@@ -235,18 +260,21 @@ namespace Volunteer_Web.Controllers
             return File(imgs, "image/jpeg");
         }
         //取得月曆的顯示
-        public ActionResult GetCalendar(int id)
+        public ActionResult GetCalendar(int id=0 ,int month= 0)
         {
-            ActivityHistoryModel AHM = new ActivityHistoryModel();
-            return Json(AHM.GetHistoryActivity(id).Select(n => new { Activity_no = n.Activity_no, Activity_name = n.Activity_name, Activity_startdate = n.Activity_startdate.Value.ToString("yyyy-MM-dd"), Activity_enddate = n.Activity_enddate.Value.ToString("yyyy-MM-dd") }), JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult GetCalendarJson(int id)
-        {
-            VolunteerEntities db = new VolunteerEntities();
-
-            var detail = db.Activities.Where(n => n.Activity_no == id);
-            Session["photo"] = detail.FirstOrDefault().Activity_no;
-            return Json(detail.AsEnumerable().Select(n => new { Activity_name = n.Activity_name, Activity_type1 = n.Activity_type.Activity_type1, Activity_startdate = n.Activity_startdate.Value.ToShortDateString(), Activity_enddate = n.Activity_enddate.Value.ToShortDateString(), Summary = n.Summary, Activity_Photo_id = n.Activity_Photo_id }), JsonRequestBehavior.AllowGet);
+            if (id != 0)
+            {
+                ActivityHistoryModel AHM = new ActivityHistoryModel();
+                return Json(AHM.GetHistoryActivity(id), JsonRequestBehavior.AllowGet);
+            }
+            else if (month != 0)
+            {
+                return new EmptyResult();
+            }
+            else
+            {
+                return new EmptyResult();
+            }
         }
     }
 }

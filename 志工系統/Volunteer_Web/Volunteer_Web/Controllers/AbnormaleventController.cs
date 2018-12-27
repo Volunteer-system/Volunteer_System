@@ -9,11 +9,15 @@ using Volunteer_Web.ViewModel;
 
 namespace Volunteer_Web.Controllers
 {
-    public class AbnormaleventController : Controller
+    public class AbnormaleventController : NeedCheckLogin
     {
         private Repository<Abnormal_event> abnormaleventRepository = new Repository<Abnormal_event>();
         private VolunteerEntities db = new VolunteerEntities();
 
+        public AbnormaleventController()
+        {
+            IsCheck = true;
+        }
 
         // GET: Abnormalevent
         public ActionResult Index(int id = 0)
@@ -85,7 +89,7 @@ namespace Volunteer_Web.Controllers
                         orderby a.Notification_date descending
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q);
+                return View(q.ToList());
             }
 
 
@@ -104,7 +108,7 @@ namespace Volunteer_Web.Controllers
                             orderby a.Notification_date descending
                             select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                    return View(q);
+                    return View(q.ToList());
                 }
 
                 else                                                                                     //編輯後搜尋之前條件用(沒時間)           
@@ -118,7 +122,7 @@ namespace Volunteer_Web.Controllers
                             orderby a.Notification_date descending
                             select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                    return View(q);
+                    return View(q.ToList());
                 }
             }
 
@@ -133,7 +137,7 @@ namespace Volunteer_Web.Controllers
                         orderby a.Notification_date descending
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q);
+                return View(q.ToList());
 
             }
             else if(id == 0 && Request.Cookies["selectid"]["id"] == "0" && date1.ToString("yyyyMMdd") == "00010101"&&categoryid!=0) //只選種類
@@ -147,7 +151,7 @@ namespace Volunteer_Web.Controllers
                         orderby a.Notification_date descending
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q);
+                return View(q.ToList());
             }
 
 
@@ -162,7 +166,7 @@ namespace Volunteer_Web.Controllers
                         orderby a.Notification_date descending
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q);
+                return View(q.ToList());
             }
 
 
@@ -177,7 +181,7 @@ namespace Volunteer_Web.Controllers
                         orderby a.Notification_date descending
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q);
+                return View(q.ToList());
 
             }
 
@@ -229,7 +233,9 @@ namespace Volunteer_Web.Controllers
                 _abnormal_Event.Stage = q.ToList().First();
                 abnormaleventRepository.Create(_abnormal_Event);
 
+                
                 return RedirectToAction("Index");
+
             }
             return View();
         }
@@ -277,7 +283,7 @@ namespace Volunteer_Web.Controllers
                         where a.Abnormal_event_no == id && s.Stage1 == "新事件"|| s.Stage1 == "駁回" && s.Stage_type == "異常事件"
                         select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                return View(q.First());
+                return View(q.ToList().First());
             }
             catch
             {
@@ -399,7 +405,7 @@ namespace Volunteer_Web.Controllers
                                      where a.Notification_date >= date1 && a.Notification_date <= day2 && ((thisstage!=-1)? a.Stage == thisstage:true) && ((eventcategory != 0) ? a.event_category_ID == eventcategory : true)
                                      orderby a.Notification_date descending
                                      select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-                    return View("Index", searchDate);
+                    return View("Index", searchDate.ToList());
                 }
                 else //沒時間
                 {
@@ -408,7 +414,7 @@ namespace Volunteer_Web.Controllers
                                      where ((thisstage != -1) ? a.Stage == thisstage : true) && ((eventcategory != 0) ? a.event_category_ID == eventcategory : true)
                                      orderby a.Notification_date descending
                                      select new AbnormaleventStageVM { abnormalevent = a, stage = s };
-                    return View("Index", searchDate);
+                    return View("Index", searchDate.ToList());
                 }
                 
                 
@@ -425,7 +431,7 @@ namespace Volunteer_Web.Controllers
                                      orderby a.Notification_date descending
                                      select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                    return View("Index", searchDate);
+                    return View("Index", searchDate.ToList());
                 }
                 else  //沒時間
                 {
@@ -435,7 +441,7 @@ namespace Volunteer_Web.Controllers
                                      orderby a.Notification_date descending
                                      select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-                    return View("Index", searchDate);
+                    return View("Index", searchDate.ToList());
                 }
 
             }
@@ -454,7 +460,7 @@ namespace Volunteer_Web.Controllers
                     where a.Abnormal_event_no == id
                     select new AbnormaleventStageVM { abnormalevent = a, stage = s };
 
-            return View(q.First());
+            return View(q.ToList().First());
         }
 
 
@@ -473,6 +479,13 @@ namespace Volunteer_Web.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult Home()
+        {
+            return View();
+        }
+
+
         //Partial View
         [ChildActionOnly]
         public ActionResult Menu()
@@ -480,23 +493,7 @@ namespace Volunteer_Web.Controllers
             return PartialView(db.Stages.Where(s => s.Stage_type == "異常事件")); //不會結合主版
         }
 
-
-        //[ChildActionOnly]
-        //public ActionResult CategoryMenu()
-        //{
-        //    #region 下拉選單
-
-        //    var category = from c in db.event_category      //事件類別下拉選單
-        //                   select new
-        //                   {
-        //                       c.event_category_ID,
-        //                       c.event_category1
-        //                   };
-
-        //    ViewBag.indexcategory = new SelectList(category, "event_category_ID", "event_category1");
-        //    #endregion
-        //    return PartialView(db.event_category); //不會結合主版
-        //}
+        
 
     }
 }

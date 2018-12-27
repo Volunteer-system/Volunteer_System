@@ -33,30 +33,30 @@ namespace Volunteer_WPF.View
             for (int i = 0; i < 3; i++)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_name = "測試" + i;
-                volunteer_Card.Type = "測試" + i;
+                volunteer_Card.Volunteer_no = i;
+                volunteer_Card.Volunteer_name = "留任測試" + i;
+                volunteer_Card.Type = "留任測試" + i;
                 stay_Volunteer_cards.Add(volunteer_Card);
-                
+                this.pan_stay.Items.Add(volunteer_Card);
             }
             for (int i = 0; i < 3; i++)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_name = "測試" + i;
-                volunteer_Card.Type = "測試" + i;
+                volunteer_Card.Volunteer_no = i + 10;
+                volunteer_Card.Volunteer_name = "新增測試" + i;
+                volunteer_Card.Type = "新增測試" + i;
                 new_Volunteer_cards.Add(volunteer_Card);
+                this.new_stay.Items.Add(volunteer_Card);
             }
             for (int i = 0; i < 3; i++)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_name = "測試" + i;
-                volunteer_Card.Type = "測試" + i;
+                volunteer_Card.Volunteer_no = i + 100;
+                volunteer_Card.Volunteer_name = "移除測試" + i;
+                volunteer_Card.Type = "移除測試" + i;
                 leave_Volunteer_cards.Add(volunteer_Card);
+                this.leave_stay.Items.Add(volunteer_Card);
             }
-
-            this.pan_stay.ItemsSource = stay_Volunteer_cards;
-            this.new_stay.ItemsSource = new_Volunteer_cards;
-            this.leave_stay.ItemsSource = leave_Volunteer_cards;
-
 
             Style itemContainerStyle1 = new Style(typeof(ListBoxItem));
             itemContainerStyle1.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
@@ -76,14 +76,14 @@ namespace Volunteer_WPF.View
             itemContainerStyle3.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(leave_stay_Drop)));
             this.leave_stay.ItemContainerStyle = itemContainerStyle3;
         }
-
+        
         private void s_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-
             if (sender is ListBoxItem)
-            {
+            {                
                 ListBoxItem draggedItem = sender as ListBoxItem;
-                DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
+                //DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Move);
+                DragDrop.DoDragDrop(draggedItem, draggedItem.DataContext, DragDropEffects.Copy);
                 draggedItem.IsSelected = true;
             }
         }
@@ -93,26 +93,33 @@ namespace Volunteer_WPF.View
             Volunteer_card droppedData = e.Data.GetData(typeof(Volunteer_card)) as Volunteer_card;
             Volunteer_card target = ((ListBoxItem)(sender)).DataContext as Volunteer_card;
 
-            var name = target.Volunteer_name;
-            var type = target.Type;
+            Volunteer_card volunteer_Card = new Volunteer_card();
+            volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
+            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Type = droppedData.Type;
 
-            int removedIdx = pan_stay.Items.IndexOf(droppedData);
-            int targetIdx = pan_stay.Items.IndexOf(target);
+            int removedIdx = stay_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
-            if (removedIdx < targetIdx)
+            if (removedIdx == 0)
             {
-                stay_Volunteer_cards.Insert(targetIdx + 1, droppedData);
-                //stay_Volunteer_cards.RemoveAt(removedIdx);
-            }
-            else
-            {
-                int remIdx = removedIdx + 1;
-                if (stay_Volunteer_cards.Count + 1 > remIdx)
+                stay_Volunteer_cards.Add(volunteer_Card);
+                this.pan_stay.Items.Add(volunteer_Card);
+
+                int new_index = new_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (new_index >= 0)
                 {
-                    stay_Volunteer_cards.Insert(targetIdx, droppedData);
-                    //stay_Volunteer_cards.RemoveAt(remIdx);
+                    this.new_stay.Items.RemoveAt(new_index);
+                    new_Volunteer_cards.RemoveAt(new_index);
+                }
+
+                int leave_index = leave_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (leave_index >= 0)
+                {
+                    this.leave_stay.Items.RemoveAt(leave_index);
+                    leave_Volunteer_cards.RemoveAt(leave_index);
                 }
             }
+
         }
 
         private void new_stay_Drop(object sender, DragEventArgs e)
@@ -120,26 +127,33 @@ namespace Volunteer_WPF.View
             Volunteer_card droppedData = e.Data.GetData(typeof(Volunteer_card)) as Volunteer_card;
             Volunteer_card target = ((ListBoxItem)(sender)).DataContext as Volunteer_card;
 
-            var name = target.Volunteer_name;
-            var type = target.Type;
+            Volunteer_card volunteer_Card = new Volunteer_card();
+            volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
+            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Type = droppedData.Type;
 
-            int removedIdx = new_stay.Items.IndexOf(droppedData);
-            int targetIdx = new_stay.Items.IndexOf(target);
+            int removedIdx = new_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
-            if (removedIdx < targetIdx)
+            if (removedIdx == 0)
             {
-                new_Volunteer_cards.Insert(targetIdx + 1, droppedData);
-                //new_Volunteer_cards.RemoveAt(removedIdx);
-            }
-            else
-            {
-                int remIdx = removedIdx + 1;
-                if (new_Volunteer_cards.Count + 1 > remIdx)
+                new_Volunteer_cards.Add(volunteer_Card);
+                this.new_stay.Items.Add(volunteer_Card);
+
+                int stay_index = stay_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (stay_index >= 0)
                 {
-                    new_Volunteer_cards.Insert(targetIdx, droppedData);
-                    //new_Volunteer_cards.RemoveAt(remIdx);
+                    this.pan_stay.Items.RemoveAt(stay_index);
+                    stay_Volunteer_cards.RemoveAt(stay_index);
+                }
+
+                int leave_index = leave_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (leave_index >= 0)
+                {
+                    this.leave_stay.Items.RemoveAt(leave_index);
+                    leave_Volunteer_cards.RemoveAt(leave_index);
                 }
             }
+            
         }
 
         private void leave_stay_Drop(object sender, DragEventArgs e)
@@ -147,24 +161,30 @@ namespace Volunteer_WPF.View
             Volunteer_card droppedData = e.Data.GetData(typeof(Volunteer_card)) as Volunteer_card;
             Volunteer_card target = ((ListBoxItem)(sender)).DataContext as Volunteer_card;
 
-            var name = target.Volunteer_name;
-            var type = target.Type;
+            Volunteer_card volunteer_Card = new Volunteer_card();
+            volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
+            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Type = droppedData.Type;
 
-            int removedIdx = leave_stay.Items.IndexOf(droppedData);
-            int targetIdx = leave_stay.Items.IndexOf(target);
+            int removedIdx = leave_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
-            if (removedIdx < targetIdx)
+            if (removedIdx == 0)
             {
-                leave_Volunteer_cards.Insert(targetIdx + 1, droppedData);
-                //leave_Volunteer_cards.RemoveAt(removedIdx);
-            }
-            else
-            {
-                int remIdx = removedIdx + 1;
-                if (leave_Volunteer_cards.Count + 1 > remIdx)
+                leave_Volunteer_cards.Add(volunteer_Card);
+                this.leave_stay.Items.Add(volunteer_Card);
+
+                int new_index = new_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (new_index >= 0)
                 {
-                    leave_Volunteer_cards.Insert(targetIdx, droppedData);
-                    //leave_Volunteer_cards.RemoveAt(remIdx);
+                    this.new_stay.Items.RemoveAt(new_index);
+                    new_Volunteer_cards.RemoveAt(new_index);
+                }
+
+                int stay_index = stay_Volunteer_cards.FindIndex(p => p.Volunteer_no == volunteer_Card.Volunteer_no);
+                if (stay_index >= 0)
+                {
+                    this.pan_stay.Items.RemoveAt(stay_index);
+                    stay_Volunteer_cards.RemoveAt(stay_index);
                 }
             }
         }

@@ -9,37 +9,495 @@
             font-size: 20px;
             font-family: 微軟正黑體;
         }
+
+        .card {
+            width: 24%;
+            margin-left: 1%;
+            height: 200px;
+            float: left;
+        }
+
+        .card_content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            transition: transform 1s;
+            transform-style: preserve-3d;
+        }
+
+        .card:hover .card_content {
+            transform: rotateY( 180deg );
+            transition: transform 0.5s;
+        }
+
+        .card_front,
+        .card_back {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: white;
+            color: #03446A;
+            text-align: center;
+            border-radius: 5px;
+            border: 1px solid tomato;
+            backface-visibility: hidden;
+        }
+
+        .card_back {
+            background: white;
+            padding-top: 25%;
+            transform: rotateY( 180deg );
+        }
+
+        .card_img {
+            width: 150px;
+            margin: 10px;
+        }
+
+        .fastlist {
+            position: fixed;
+            top: 80px;
+            right: -175px;
+            z-index: 1030;
+        }
+
+            .fastlist .fast_title {
+                display: block;
+                position: absolute;
+                width: 35px;
+                height: 200px;
+                font-size: 20px;
+                color: white;
+                padding-top: 50px;
+                background-image: url('../../Images/fast-arrow.png');
+                background-repeat: no-repeat;
+                background-position: center 20px;
+                text-align: center;
+                font-family: 微軟正黑體;
+                background-color: #ffbd9d;
+                cursor: pointer;
+                text-decoration: none;
+            }
+
+                .fastlist .fast_title:hover {
+                    background-color: #ffad86;
+                }
+
+        .fast_ul {
+            width: 210px;
+            height: 200px;
+            background-color: #fff3ee;
+            display: block;
+            list-style-type: none;
+            padding: 0 50px;
+            text-align: center;
+        }
+
+        .fast_li {
+            line-height: 45px;
+            border-bottom: 1px solid lightgray;
+        }
+
+            .fast_li a {
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 15px;
+                font-family: 微軟正黑體;
+            }
+        .main-timeline8 {
+            overflow: hidden;
+            position: relative
+        }
+
+            .main-timeline8:after, .main-timeline8:before {
+                content: "";
+                display: block;
+                width: 100%;
+                clear: both
+            }
+
+            .main-timeline8:before {
+                content: "";
+                width: 3px;
+                height: 100%;
+                background: #d6d5d5;
+                position: absolute;
+                top: 30px;
+                left: 50%
+            }
+
+            .main-timeline8 .timeline {
+                width: 50%;
+                float: left;
+                padding-right: 30px;
+                position: relative
+            }
+
+            .main-timeline8 .timeline-icon {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: #fff;
+                border: 3px solid #fe6847;
+                position: absolute;
+                top: 5.5%;
+                right: -17.5px
+            }
+
+            .main-timeline8 .year {
+                display: block;
+                padding: 10px;
+                margin: 0;
+                font-size: 30px;
+                color: #fff;
+                border-radius: 0 50px 50px 0;
+                background: #fe6847;
+                text-align: center;
+                position: relative
+            }
+
+                .main-timeline8 .year:before {
+                    content: "";
+                    border-top: 35px solid #f59c8b;
+                    border-left: 35px solid transparent;
+                    position: absolute;
+                    bottom: -35px;
+                    left: 0
+                }
+
+            .main-timeline8 .timeline-content {
+                padding: 30px 20px;
+                margin: 0 45px 0 35px;
+                background: #f2f2f2
+            }
+
+            .main-timeline8 .title {
+                font-size: 19px;
+                font-weight: 700;
+                color: #504f54;
+                margin: 0 0 10px
+            }
+
+            .main-timeline8 .description {
+                font-size: 14px;
+                color: #7d7b7b;
+                margin: 0
+            }
+
+            .main-timeline8 .timeline:nth-child(2n) {
+                padding: 0 0 0 30px
+            }
+
+                .main-timeline8 .timeline:nth-child(2n) .timeline-icon {
+                    right: auto;
+                    left: -14.5px
+                }
+
+                .main-timeline8 .timeline:nth-child(2n) .year {
+                    border-radius: 50px 0 0 50px;
+                    background: #7eda99
+                }
+
+                    .main-timeline8 .timeline:nth-child(2n) .year:before {
+                        border-left: none;
+                        border-right: 35px solid transparent;
+                        left: auto;
+                        right: 0
+                    }
+
+                .main-timeline8 .timeline:nth-child(2n) .timeline-content {
+                    text-align: right;
+                    margin: 0 35px 0 45px
+                }
+
+            .main-timeline8 .timeline:nth-child(2) {
+                margin-top: 170px
+            }
+
+            .main-timeline8 .timeline:nth-child(odd) {
+                margin: -175px 0 0
+            }
+
+            .main-timeline8 .timeline:nth-child(even) {
+                margin-bottom: 80px
+            }
+
+            .main-timeline8 .timeline:first-child, .main-timeline8 .timeline:last-child:nth-child(even) {
+                margin: 0
+            }
+
+            .main-timeline8 .timeline:nth-child(2n) .timeline-icon {
+                border-color: #7eda99
+            }
+
+            .main-timeline8 .timeline:nth-child(2n) .year:before {
+                border-top-color: #92efad
+            }
+
+            .main-timeline8 .timeline:nth-child(3n) .timeline-icon {
+                border-color: #8a5ec1
+            }
+
+            .main-timeline8 .timeline:nth-child(3n) .year {
+                background: #8a5ec1
+            }
+
+                .main-timeline8 .timeline:nth-child(3n) .year:before {
+                    border-top-color: #a381cf
+                }
+
+            .main-timeline8 .timeline:nth-child(4n) .timeline-icon {
+                border-color: #f98d9c
+            }
+
+            .main-timeline8 .timeline:nth-child(4n) .year {
+                background: #f98d9c
+            }
+
+                .main-timeline8 .timeline:nth-child(4n) .year:before {
+                    border-top-color: #f2aab3
+                }
+
+        @@media only screen and (max-width:767px) {
+            .main-timeline8 {
+                overflow: visible
+            }
+
+                .main-timeline8:before {
+                    top: 0;
+                    left: 0
+                }
+
+                .main-timeline8 .timeline:nth-child(2), .main-timeline8 .timeline:nth-child(even), .main-timeline8 .timeline:nth-child(odd) {
+                    margin: 0
+                }
+
+                .main-timeline8 .timeline {
+                    width: 100%;
+                    float: none;
+                    padding: 0 0 0 30px;
+                    margin-bottom: 20px !important
+                }
+
+                    .main-timeline8 .timeline:last-child {
+                        margin: 0 !important
+                    }
+
+                .main-timeline8 .timeline-icon {
+                    right: auto;
+                    left: -14.5px
+                }
+
+                .main-timeline8 .year {
+                    border-radius: 50px 0 0 50px
+                }
+
+                    .main-timeline8 .year:before {
+                        border-left: none;
+                        border-right: 35px solid transparent;
+                        left: auto;
+                        right: 0
+                    }
+
+                .main-timeline8 .timeline-content {
+                    margin: 0 35px 0 45px
+                }
+        }
+
     </style>
 }
-
-<div class="row mt-4">
-    <div class="col-md-10 blog-main fontstyle">
-        <p>志工隊介紹</p>
-        <hr />
-        <p>一、志工服務隊緣起：</p>
-        <p>民國74年，本院嘗試與亞東工專(現改制為亞東技術學院)之慈幼社合作開辦兒童病房慰問服務活動；民國76年亦合作開辦病房圖書推車之志願服務，此為現今志工隊前身。</p>
-        <p>民國79年，本院針對婦女朋友推出「第二道彩虹」之志工招募活動，並建立社會人士志願服務組織及服務、訓練辦法，志願服務隊自此正式成立運作。</p>
-        <p>&nbsp;</p>
-        <p>二、服務宗旨：</p>
-        <p>為提升對病患之服務，增進病患的福利；並提供社區居民參與服務人群的機會，使有心人士可透過服務，學習實踐「施比受更有福，予比求更快樂」的人生寶貴意義。</p>
-        <p>&nbsp;</p>
-        <p>三、服務內容：</p>
-        <p>亞東醫院志工隊共服務組別共分為8大類組，40小組，以下分別針對8大類組介紹：</p>
-        <p>1. 診區服務類：協助指引病患報到、看診及住院等就醫流程相關事宜</p>
-        <p>2. 急診服務類：協助病患量血壓、體溫、引導及陪伴</p>
-        <p>3. 檢查服務類：協助病患填寫資料、測量身高、體重、血壓及體溫</p>
-        <p>4. 福利關懷類：主動病房探視、陪伴及社會福利諮詢</p>
-        <p>5. 癌症服務類：主動病房探視、陪伴及治療與疾病適應經驗分享</p>
-        <p>6. 婦幼服務類：早期療育篩檢、兒童遊戲室維護、親善母乳哺育</p>
-        <p>7. 影像服務類：協助病患報到、引導批價、並指導更衣進行檢查</p>
-        <p>8. 綜合服務類：協助初診病歷、紗布、敷料製作，或圖書整理、活動企劃等支援</p>
-        <p>&nbsp;</p>
-        <p>四、得獎紀錄：</p>
-        <p>亞東醫院志願服務工作隊每年隊上得獎人數大約500人，且獲獎人數逐年增加。另外，在102年同時獲頒衛生福利部全國績優團隊獎，以及新北市社會局績優志工團隊獎，在同一年獲得全國及地方的肯定，大大的鼓舞了志工的士氣。</p>
-        <p>&nbsp;</p>
+    <div id="fast_list" class="fastlist">
+        <a class="fast_title">快捷列</a>
         <div>
-            <img src="~/Images/志工隊介紹用.jpg" style="height:433px; width:650px"/>
-        </div>        
+            <ul id="fast_ul" class="fast_ul">
+                <li class="fast_li"><a href="#I_header">志工服務隊緣起</a></li>
+                <li class="fast_li"><a href="#I_Subject">服務宗旨</a></li>
+                <li class="fast_li"><a href="#I_service_detail">服務內容</a></li>
+                <li class="fast_li"><a href="#I_Champion">得獎紀錄</a></li>
+            </ul>
+        </div>
     </div>
-</div>
+    <div class="row mt-4">
+        <div class="col-md-12 blog-main fontstyle">
+            <p>志工隊介紹</p>
+            <hr />
+            <p id="I_header">一、志工服務隊緣起：</p>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="main-timeline8">
+                            <div class="timeline">
+                                <span class="timeline-icon"></span>
+                                <span class="year">2017</span>
+                                <div class="timeline-content">
+                                    <h3 class="title">Web Desginer</h3>
+                                    <p class="description">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mattis justo id pulvinar suscipit. Pellentesque rutrum vehicula erat sed dictum. Integer quis turpis magna. Suspendisse tincidunt elit at erat tincidunt, vel vulputate arcu dapibus. Etiam accumsan ornare posuere. Nullam est.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <span class="timeline-icon"></span>
+                                <span class="year">民國79年</span>
+                                <div class="timeline-content">
+                                    <h3 class="title">第二道彩虹</h3>
+                                    <p class="description">
+                                        本院針對婦女朋友推出「第二道彩虹」之志工招募活動，並建立社會人士志願服務組織及服務、訓練辦法，志願服務隊自此正式成立運作。
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <span class="timeline-icon"></span>
+                                <span class="year">民國76年</span>
+                                <div class="timeline-content">
+                                    <h3 class="title">志工隊前身</h3>
+                                    <p class="description">
+                                        民國76年亦合作開辦病房圖書推車之志願服務，此為現今志工隊前身
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="timeline">
+                                <span class="timeline-icon"></span>
+                                <span class="year">民國74年</span>
+                                <div class="timeline-content">
+                                    <h3 class="title">服務活動</h3>
+                                    <p class="description">
+                                        本院嘗試與亞東工專(現改制為亞東技術學院)之慈幼社合作開辦兒童病房慰問服務活動。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p id="I_Subject">&nbsp;</p>
+            <p>二、服務宗旨：</p>
+            <p>為提升對病患之服務，增進病患的福利；並提供社區居民參與服務人群的機會，使有心人士可透過服務，學習實踐「施比受更有福，予比求更快樂」的人生寶貴意義。</p>
+            <p id="I_service_detail">&nbsp;</p>
+            <p>三、服務內容：</p>
+            <p>亞東醫院志工隊共服務組別共分為8大類組，40小組，以下分別針對8大類組介紹：</p>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>診區服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>協助指引病患報到、看診及住院等就醫流程相關事宜。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>急診服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>協助病患量血壓、體溫、引導及陪伴。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>檢查服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>協助病患填寫資料、測量身高、體重、血壓及體溫。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>福利關懷類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>主動病房探視、陪伴及社會福利諮詢。</b></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>癌症服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>主動病房探視、陪伴及治療與疾病適應經驗分享。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>婦幼服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>早期療育篩檢、兒童遊戲室維護、親善母乳哺育。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>影像服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>協助病患報到、引導批價、並指導更衣進行檢查。</b></label>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_content">
+                    <div class="card_front">
+                        <img class="card_img" src="~/Images/JSon.jpg" />
+                        <label><b>綜合服務類</b></label>
+                    </div>
+                    <div class="card_back">
+                        <label><b>協助初診病歷、紗布、敷料製作，或圖書整理、活動企劃等支援。</b></label>
+                    </div>
+                </div>
+            </div>
+            @*<p>1. 診區服務類：協助指引病患報到、看診及住院等就醫流程相關事宜</p>
+            <p>2. 急診服務類：協助病患量血壓、體溫、引導及陪伴</p>
+            <p>3. 檢查服務類：協助病患填寫資料、測量身高、體重、血壓及體溫</p>
+            <p>4. 福利關懷類：主動病房探視、陪伴及社會福利諮詢</p>
+            <p>5. 癌症服務類：主動病房探視、陪伴及治療與疾病適應經驗分享</p>
+            <p>6. 婦幼服務類：早期療育篩檢、兒童遊戲室維護、親善母乳哺育</p>
+            <p>7. 影像服務類：協助病患報到、引導批價、並指導更衣進行檢查</p>
+            <p>8. 綜合服務類：協助初診病歷、紗布、敷料製作，或圖書整理、活動企劃等支援</p>*@
+            <p id="I_Champion">&nbsp;</p>
+            <p>四、得獎紀錄：</p>
+            <p>亞東醫院志願服務工作隊每年隊上得獎人數大約500人，且獲獎人數逐年增加。另外，在102年同時獲頒衛生福利部全國績優團隊獎，以及新北市社會局績優志工團隊獎，在同一年獲得全國及地方的肯定，大大的鼓舞了志工的士氣。</p>
+            <p>&nbsp;</p>
+            <div>
+                <img src="~/Images/志工隊介紹用.jpg" style="height:433px; width:650px" />
+            </div>
+        </div>
+    </div>
+@section Home_script{
+<script>
+    $(document).ready(function () {
+        var fast_list = $("#fast_list");
+        var fast_ul = $("#fast_ul");
+        fast_list.click(function () {
+            if (fast_list.css("right") != "0px") {
+                fast_list.animate({ "right": "0px" }, 500)
+            }
+            else {
+                fast_list.animate({ "right": "-175px" }, 500)
+            }
+        });
+    });
+</script>
+    }
 

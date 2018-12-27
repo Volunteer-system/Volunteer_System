@@ -3,11 +3,9 @@
     ViewBag.Title = "Insert";
 }
 
-
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 
 <div id="fullscreen_bg" class="fullscreen_bg" />
 <div class="container">
@@ -18,7 +16,6 @@
             </div>
             <div class="panel-body">
                 <form method="post" action="~/Abnormalevent/Insert" class="form-horizontal">
-
                     <div class="form-group">
                         <label for="Abnormal_event_ID"
                                class="col-sm-2 control-label">事件案號</label>
@@ -42,41 +39,32 @@
                             <textarea class="form-control" name="Unit_description" rows="6" id="Unit_description" required></textarea>
                         </div>
                     </div>
-
                     <div class="form-group">
                         <label for="Volunteer_no"
                                class="col-sm-2 control-label">異常志工</label>
                         <div>
                             @*<input type="text" class="form-control" autocomplete="off"
-                name="Volunteer_no" />*@
-                            @Html.DropDownList("Volunteer_no", (SelectList)ViewBag.voluteer, "請選擇", new { @class = "form-control" , required = "Select Plan Type" })
+                                name="Volunteer_no" />*@
+                            @Html.DropDownList("Volunteer_no", (SelectList)ViewBag.voluteer, "請選擇", new { @class = "form-control", required = "Select Plan Type" })
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label for="category"
                                class="col-sm-2 control-label">事件類別</label>
-                        <div>         
-                            @Html.DropDownList("category", (SelectList)ViewBag.insertcategory, "請選擇", new { @class = "form-control" , required = "Select Plan Type" })
+                        <div>
+                            @Html.DropDownList("category", (SelectList)ViewBag.insertcategory, "請選擇", new { @class = "form-control", required = "Select Plan Type" })
                         </div>
                     </div>
-
-
 
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success">
-                                送出
-                            </button>
-                            <input onclick="window.close();" value="關閉" type="button" class="btn btn-danger">
-
+                            <button type="submit" class="btn btn-success" onclick="return confirm('確定要送出通報嗎?')">送出</button>
+                            <a href="~/Abnormalevent/Home" class="btn btn-danger" onclick="return confirm('確定要取消通報嗎？')">取消</a>    
                         </div>
                     </div>
-
                 </form>
             </div>
         </div>
     </div>
 </div>
-

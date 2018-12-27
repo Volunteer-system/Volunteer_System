@@ -189,15 +189,12 @@
                 <td><label>7.您在未來的一年內是否會找工作:</label></td>
                 <td>
                     @{
-                        string q7 = "";
-                        if (Model.Q7 != null)
+                        if (Model.Q7 != "")
                         {
-                            foreach (var a in Model.Q7)
-                            {
-                                q7 = q7 + a.Substring(2) + " , ";
-                            }
+                            
+                    <label id="q7">@Model.Q7.Substring(2)</label>
                         }
-                        <label id="q7">@q7</label>
+                        
                     }
                 </td>
             </tr>

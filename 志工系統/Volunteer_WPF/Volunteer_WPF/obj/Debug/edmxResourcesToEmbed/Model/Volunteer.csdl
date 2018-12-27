@@ -460,6 +460,10 @@
     <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
     <NavigationProperty Name="Sign_up_questionnaire" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up" ToRole="Sign_up_questionnaire" />
     <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
+    <Property Name="Emergency_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Emergency_contact_phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Scool_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Identity_card" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
   </EntityType>
   <EntityType Name="Sign_up_interview_period">
     <Key>

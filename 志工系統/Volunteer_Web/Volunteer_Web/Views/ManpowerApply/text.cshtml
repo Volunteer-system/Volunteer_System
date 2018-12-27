@@ -1,174 +1,59 @@
-﻿<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+﻿<style>
+    html, body {
+        height: 100%;
+    }
 
-<style>
     body {
-        background-color: #F9F3E6;
-    }
-    .col-md-3 {
-        background: #F5D6A9;
-        padding: 4%;
-        border-top-left-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
+        text-align: center;
     }
 
-    .contact-info {
-        margin-top: 10%;
-    }
-
-        .contact-info img {
-            margin-bottom: 15%;
+        body:before {
+            content: '';
+            height: 100%;
+            display: inline-block;
+            vertical-align: middle;
         }
 
-        .contact-info h2 {
-            margin-bottom: 10%;
+    button {
+        background: #1AAB8A;
+        color: #fff;
+        border: none;
+        position: relative;
+        height: 60px;
+        font-size: 1.6em;
+        padding: 0 2em;
+        cursor: pointer;
+        transition: 800ms ease all;
+        outline: none;
+    }
+
+        button:hover {
+            background: #fff;
+            color: #1AAB8A;
         }
 
-    .col-md-9 {
-        background: #fff;
-        padding: 3%;
-        border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-    }
+        button:before, button:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 2px;
+            width: 0;
+            background: #1AAB8A;
+            transition: 400ms ease all;
+        }
 
-    .contact-form label {
-        font-weight: 600;
-    }
+        button:after {
+            right: inherit;
+            top: inherit;
+            left: 0;
+            bottom: 0;
+        }
+
+        button:hover:before, button:hover:after {
+            width: 100%;
+            transition: 800ms ease all;
+        }
 </style>
-<div class="container contact" style="margin-top:30px;">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="contact-info">
-                <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" />
-                <h5>人力申請注意事項</h5>
-                <h6>請於每年11月前完成申請</h6>
-            </div>
-        </div>
-        <div class="col-md-9">
-            <div class="contact-form">
-                <div class="form-group">
-                    <label for="Applicant" class="col-md-4 control-label">申請人</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="Applicant" placeholder="必填" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Applicant_phone" class="col-md-4 control-label">電話</label>
-                    <div class="col-md-8">
-                        <input type="tel" class="form-control" name="Applicant_phone" placeholder="必填" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Work_place" class="col-md-4 control-label">值班地點</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="Work_place" placeholder="必填" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-4 control-label">需求時段及人數</label>
-                    <div div class="col-md-8">
-                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#selectModal">請選擇</button>
-                        <!-- Modal -->
-                        <div class="modal fade" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <table class="table table-bordered table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>星期一</th>
-                                                        <th>星期二</th>
-                                                        <th>星期三</th>
-                                                        <th>星期四</th>
-                                                        <th>星期五</th>
-                                                        <th>星期六</th>
-                                                        <th>星期日</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>上午班：08:30~11:30</td>
 
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m1" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m2" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m3" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m4" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m5" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m6" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="m7" />人</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>下午班：13:30~16:30</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af1" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af2" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af3" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af4" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af5" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af6" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="af7" />人</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>夜間班：18:00~21:00</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="n1" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="n2" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="n3" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="n4" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="n5" />人</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>支援班：11:30~13:30</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="as1" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="as2" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="as3" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="as4" />人</td>
-                                                        <td><input type="text" class="form-control form-control-sm countP" id="as5" />人</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" id="IsCh">確定</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Apply_description" class="col-md-4 control-label">志工工作項目與流程</label>
-                    <div class="col-md-8">
-                        <textarea class="form-control" name="Apply_description" rows="4" placeholder="必填" autocomplete="off" required></textarea>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Application_unit_Supervisor" class="col-md-4 control-label">單位主管</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="Application_unit_Supervisor" placeholder="必填" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Application_unit_heads" class="col-md-4 control-label">部門主管</label>
-                    <div class="col-md-8">
-                        <input type="text" class="form-control" name="Application_unit_heads" placeholder="必填" autocomplete="off" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-4 col-md-8">
-                        <button type="submit" id="sbt" class="btn btn-info" onclick="return confirm('確定要提交申請嗎？')">提交申請</button>
-                        <button type="reset" class="btn btn-info">重新輸入</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<button>Hover me !</button>

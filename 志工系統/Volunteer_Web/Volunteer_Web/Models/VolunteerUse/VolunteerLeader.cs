@@ -6,7 +6,7 @@ using System.Web;
 namespace Volunteer_Web.Models.VolunteerUse
 {
     public class VolunteerLeader
-    { 
+    {
         public int Position_no { get; set; }
 
         public string Position_chinese { get; set; }
@@ -21,22 +21,24 @@ namespace Volunteer_Web.Models.VolunteerUse
 
         public List<VolunteerLeader> GetVolunteerLeader(int id)
         {
-            VolunteerEntities db = new VolunteerEntities();
             List<VolunteerLeader> leaders = new List<VolunteerLeader>();
-            var leader = from vl in db.Leaders1
-                         join lb in db.Leaders on vl.Position_no equals lb.Position_no
-                         where vl.Volunteer_no == id
-                         select new { lb.Position_chinese, lb.Position_english, lb.Duties, vl.Takeoffice_date, vl.Resignation_date };
-            foreach (var l in leader)
+            using (VolunteerEntities db = new VolunteerEntities())
             {
-                leaders.Add(new VolunteerLeader()
+                var leader = from vl in db.Leaders1
+                             join lb in db.Leaders on vl.Position_no equals lb.Position_no
+                             where vl.Volunteer_no == id
+                             select new { lb.Position_chinese, lb.Position_english, lb.Duties, vl.Takeoffice_date, vl.Resignation_date };
+                foreach (var l in leader)
                 {
-                    Position_chinese = l.Position_chinese,
-                    Position_english = l.Position_english,
-                    Duties = l.Duties,
-                    Takeoffice_date = l.Takeoffice_date,
-                    Resignation_date = l.Resignation_date
-                });
+                    leaders.Add(new VolunteerLeader()
+                    {
+                        Position_chinese = l.Position_chinese,
+                        Position_english = l.Position_english,
+                        Duties = l.Duties,
+                        Takeoffice_date = l.Takeoffice_date,
+                        Resignation_date = l.Resignation_date
+                    });
+                }
             }
             return leaders;
         }

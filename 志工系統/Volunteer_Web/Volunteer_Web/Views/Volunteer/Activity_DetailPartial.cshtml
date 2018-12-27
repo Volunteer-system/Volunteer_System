@@ -1,0 +1,56 @@
+﻿@model Volunteer_Web.Models.VolunteerUse.ActivityDetail
+<table class="table table-bordered table-responsive">
+    <tbody id="tbody1">
+        <tr>
+            <td>活動名稱:</td>
+            <td>@Model.Activity_name</td>
+        </tr>
+        <tr>
+            <td>活動類型:</td>
+            <td>@Model.Activity_type</td>
+        </tr>
+        <tr>
+            <td>承辦組別:</td>
+            <td>@Model.GroupName</td>
+        </tr>
+        <tr>
+            <td>承辦人:</td>
+            <td>@Model.Undertake_unit</td>
+        </tr>
+        <tr>
+            <td>承辦人電話:</td>
+            <td>@Model.Undertake_phone</td>
+        </tr>
+        <tr>
+            <td>承辦人Email:</td>
+            <td>@Model.Undertake_email</td>
+        </tr>
+        <tr>
+            <td>講師:</td>
+            <td>@Model.lecturer</td>
+        </tr>
+        <tr>
+            <td>活動地點:</td>
+            <td>@Model.Place</td>
+        </tr>
+        <tr>
+            <td>活動時間:</td>
+            <td>@Model.Activity_startdate.Value.ToShortDateString() ~ @Model.Activity_enddate.Value.ToShortDateString()</td>
+        </tr>
+
+        <tr>
+            <td>活動簡介:</td>
+            <td>@Model.Summary</td>
+        </tr>
+        <tr>
+            <td>活動照片:</td>
+            <td class='nowrap'>
+                @*@Model.Activity_photo_id*@
+                @foreach (var p in ViewBag.photoids)
+                {
+                   <img  src="@Url.Action("GetImageByID","Volunteer",new {id = p.Activity_photo_id})"/>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>

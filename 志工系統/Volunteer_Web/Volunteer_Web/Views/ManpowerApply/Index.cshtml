@@ -2,12 +2,7 @@
 @{
     ViewBag.Title = "Manpower_apply_Index";
 }
-@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link href="~/Css/Manpower_apply.css" rel="stylesheet" />
+
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
 <!-- Latest compiled and minified JavaScript -->
@@ -16,21 +11,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
 
 
+
 <div class="row">
     <div class="col-3" style=" margin-top:30px">
-        <a href="~/ManpowerApply/Insert" class="btn btn-warning text-white btn-block">新增申請</a>
+        @*<a href="~/ManpowerApply/Insert" class="btn btn-warning text-white btn-block">新增申請</a>*@
         <div style=" margin-top:40px">
             @Html.Action("Menu")
         </div>
     </div>
-    <div class="card mb-4" style="margin-top:10px;margin-left:30px">
+    <div class="card mb-5" style="margin-top:70px;margin-left:70px;">
         <div class="card-body">
             <div class="row">
                 <div class="col-md-9">
-                    <h2 class="pt-3 pb-4  font-bold font-up deep-purple-text">年度人力申請</h2>
+                    @*<h2 class="pt-3 pb-4  font-bold font-up deep-purple-text">年度人力申請</h2>*@
                     @using (Html.BeginForm("SelectYear", "ManpowerApply"))
                     {
-                        <div class="input-group md-form form-sm form-2 pl-0 form-inline ">
+                        <div class="input-group md-form form-sm form-2 pl-0 form-inline">
                             <label>查詢年份：</label>
                             @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "請選擇", new { @class = "selectpicker", data_live_search = "true", required = "true" })
                             <input type="submit" value="開始查詢" class="btn btn-info">
@@ -59,7 +55,7 @@
                             <td>@item.manpower_apply.Application_number</td>
                             <td>@item.manpower_apply.Reply_number</td>
                             <td>@item.stage.Stage1</td>
-                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-warning">詳細資料</a></td>
+                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-warning btn-sm">詳細資料</a></td>
                         </tr>
                     }
                 </tbody>

@@ -391,6 +391,10 @@
     <Property Name="Stage" Type="int" />
     <Property Name="Approval_date" Type="datetime" />
     <Property Name="supervision_ID" Type="int" />
+    <Property Name="Emergency_contact" Type="nvarchar" MaxLength="10" />
+    <Property Name="Emergency_contact_phone" Type="nchar" MaxLength="15" />
+    <Property Name="Scool_name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Identity_card" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="Sign_up_expertise">
     <Key>

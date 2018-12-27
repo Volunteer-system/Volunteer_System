@@ -17,40 +17,43 @@ namespace Volunteer_Web.Models.VolunteerUse
         public Nullable<int> Application_unit { get; set; }
         public string Application_unit_name { get; set; }
         public List<ScheduleModel> GetSchedule(int id)
-        { VolunteerEntities db = new VolunteerEntities();
-            List<ScheduleModel> LS = new List<ScheduleModel>();
-            var q = from s in db.Service_period2
-                    join st in db.Stages on s.Stage equals st.Stage_ID
-                    join sp in db.Service_period1 on s.Service_period_no equals sp.Service_period_no
-                    join sg in db.Service_group on s.Srevice_group equals sg.Group_no
-                    join sa in db.Application_unit on s.Application_unit equals sa.Application_unit_no
-                    where s.Volunteer_no == id && st.Stage_type == "排班意願"
-                    select new
+        {    List<ScheduleModel> LS = new List<ScheduleModel>();
+            using (VolunteerEntities db = new VolunteerEntities())
+            {
+                
+                var q = from s in db.Service_period2
+                        join st in db.Stages on s.Stage equals st.Stage_ID
+                        join sp in db.Service_period1 on s.Service_period_no equals sp.Service_period_no
+                        join sg in db.Service_group on s.Srevice_group equals sg.Group_no
+                        join sa in db.Application_unit on s.Application_unit equals sa.Application_unit_no
+                        where s.Volunteer_no == id && st.Stage_type == "排班意願"
+                        select new
+                        {
+                            Volunteer_no = s.Volunteer_no,
+                            Service_period_no = s.Service_period_no,
+                            Service_period_name = sp.Service_period,
+                            Stage = s.Stage,
+                            Stage_name = st.Stage1,
+                            Srevice_group = s.Srevice_group,
+                            Srevice_group_name = sg.Group_name,
+                            Application_unit = s.Application_unit,
+                            Application_unit_name = sa.Application_unit1
+                        };
+                foreach (var s in q)
+                {
+                    LS.Add(new ScheduleModel()
                     {
                         Volunteer_no = s.Volunteer_no,
                         Service_period_no = s.Service_period_no,
-                        Service_period_name = sp.Service_period,
-                        Stage = s.Stage,
-                        Stage_name = st.Stage1,
+                        Service_period_name = s.Service_period_name,
                         Srevice_group = s.Srevice_group,
-                        Srevice_group_name = sg.Group_name,
+                        Srevice_group_name = s.Srevice_group_name,
                         Application_unit = s.Application_unit,
-                        Application_unit_name = sa.Application_unit1
-                    };
-            foreach (var s in q)
-            {
-                LS.Add(new ScheduleModel()
-                {
-                    Volunteer_no = s.Volunteer_no,
-                    Service_period_no = s.Service_period_no,
-                    Service_period_name = s.Service_period_name,
-                    Srevice_group = s.Srevice_group,
-                    Srevice_group_name = s.Srevice_group_name,
-                    Application_unit = s.Application_unit,
-                    Application_unit_name = s.Application_unit_name,
-                    Stage = s.Stage,
-                    Stage_name = s.Stage_name
-                });
+                        Application_unit_name = s.Application_unit_name,
+                        Stage = s.Stage,
+                        Stage_name = s.Stage_name
+                    });
+                }
             }
             return LS;
         }

@@ -8,11 +8,16 @@ using Volunteer_Web.ViewModel;
 
 namespace Volunteer_Web.Controllers
 {
-    public class ManpowerApplyController : Controller
+    public class ManpowerApplyController : NeedCheckLogin
     {
         private IRepository<Manpower_apply> manpowerapplyRepository = new Repository<Manpower_apply>();
         Manpower_apply _manpower_apply = new Manpower_apply();
         VolunteerEntities dbContext = new VolunteerEntities();
+
+        public ManpowerApplyController()
+        {
+            IsCheck = true;
+        }
 
 
         // GET: ManpowerApply
@@ -261,6 +266,27 @@ namespace Volunteer_Web.Controllers
                 return View("Index", searchYear);
             }
         }
+
+        public ActionResult Home()
+        {
+            return View();
+        }
+
+        public ActionResult InsertSuccess(int id=1)
+        {
+            var q = from m in dbContext.Manpower_apply
+                    join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
+                    where m.Apply_ID == id
+                    select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
+
+            return View(q.First());
+        }
+
+
+
+
+
+
 
 
         public ActionResult text()

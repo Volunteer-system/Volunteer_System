@@ -115,6 +115,8 @@
     <Content Include="Images\5-16620-1.jpg" />
     <Content Include="Images\asp-net-mvc.jpg" />
     <Content Include="Images\ASP.NET.png" />
+    <Content Include="Images\fast-arrow.png" />
+    <Content Include="Images\hospital.png" />
     <Content Include="Images\images %281%29.jpg" />
     <Content Include="Images\images%282%29.jpg" />
     <Content Include="Images\IMG_6533.JPG" />
@@ -123,6 +125,7 @@
     <Content Include="Images\LoginUse.jpg" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Noimage.png" />
+    <Content Include="Images\shattered.png" />
     <Content Include="Images\下載 %281%29.jpg" />
     <Content Include="Images\志工隊介紹用.jpg" />
     <Content Include="Images\手術室 %283%29.JPG" />
@@ -361,6 +364,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\AbnormaleventStageVM.cs" />
+    <Compile Include="ViewModel\Activity_History_DetailModel.cs" />
     <Compile Include="ViewModel\Activity_Photo_Schedule_typeVM.cs" />
     <Compile Include="ViewModel\activity_volunteerNo_VM.cs" />
     <Compile Include="ViewModel\Act_pho.cs" />
@@ -373,6 +377,8 @@
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
     <Compile Include="ViewModel\Sign_up_session.cs" />
     <Compile Include="ViewModel\Visitor_Activity_VM.cs" />
+    <Compile Include="ViewModel\Volunteer_Index_Schedule.cs" />
+    <Compile Include="ViewModel\Volunteer_Index_use.cs" />
     <Compile Include="ViewModel\Volunteer_Schedule_applicationModel.cs" />
     <Compile Include="ViewModel\Volunteer_Schedule_GroupModel.cs" />
     <Compile Include="ViewModel\Volunteer_Schedule_PeriodModel.cs" />
@@ -445,6 +451,10 @@
     <Content Include="Views\Supervision\Home_maintenance.cshtml" />
     <Content Include="Views\Abnormalevent\CategoryMenu.cshtml" />
     <Content Include="Views\Home\Interview_period.cshtml" />
+    <Content Include="Views\Abnormalevent\Home.cshtml" />
+    <Content Include="Views\ManpowerApply\Home.cshtml" />
+    <Content Include="Views\ManpowerApply\InsertSuccess.cshtml" />
+    <Content Include="Views\Volunteer\Activity_DetailPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

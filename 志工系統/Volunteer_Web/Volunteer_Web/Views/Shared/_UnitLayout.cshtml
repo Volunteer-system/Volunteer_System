@@ -58,8 +58,8 @@
                         <div class="dropdown-menu" aria-labelledby="dLabel">
                             <a class="dropdown-item" href="#">運用單位首頁</a>
                              @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("異常事件通報", "Index", "Abnormalevent", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
+                            @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })
                             <a class="dropdown-item" href="#">考核</a>
                             @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
                             @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
@@ -74,7 +74,12 @@
                 <a class="p-2 text-muted" href="#">運用單位首頁</a>
                 @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "p-2 text-muted" })
                 @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "p-2 text-muted" })
-                @Html.ActionLink("異常事件通報", "Index", "Abnormalevent", null, new { @class = "p-2 text-muted" })
+                <ul style="display:none;">
+                    異常事件通報
+                    <li><a href="#">異常通報須知</a></li>
+                    <li><a href="#">異常通報申請</a></li>
+                    <li><a href="#">異常通報查詢</a></li>
+                </ul>
                 <a class="p-2 text-muted" href="#">考核</a>
             </nav>
         </div>

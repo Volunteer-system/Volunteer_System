@@ -50,8 +50,23 @@
                     });
                 }
                 else {
-
-                    window.location.href = "/Home/Index"
+                    switch (data)
+                    {
+                        case "運用單位":
+                            window.location.href ="/Unit/Index";
+                            break;
+                        case "志工":
+                            window.location.href = "/Volunteer/Index";
+                            //alert(window.location.href)
+                            break;
+                        case "志工督導":
+                            window.location.href = "/Supervision/Index";
+                            break;
+                        default:
+                            window.location.href = "/Home/Index";
+                            break;
+                    }
+                   
                 }
             })
         }

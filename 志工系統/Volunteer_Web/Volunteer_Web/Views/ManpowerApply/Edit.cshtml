@@ -3,238 +3,174 @@
     ViewBag.Title = "Edit";
 }
 
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<div class="cotainer" style="margin-top:50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">年度人力申請</div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post" action="~/ManpowerApply/Edit" role="form">
+                        <div class="form-group row">
+                            <input type="hidden" class="form-control" name="Apply_ID" value="@Model.manpower_apply.Apply_ID">
+                            <label class="col-md-4 text-right" for="Application_unit1">運用單位</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Application_unit.Application_unit1</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-right" for="Apply_date">申請日期</label>
+                            <div class="col-md-8">
+                                <label>@Html.DisplayFor(m => m.manpower_apply.Apply_date)</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-right" for="Reply_date">核定日期</label>
+                            <div class="col-md-8">
+                                <label>-</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Applicant" class="col-md-4 text-right">申請人</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Applicant" value="@Model.manpower_apply.Applicant" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Applicant_phone" class="col-md-4 text-right">電話</label>
+                            <div class="col-md-8">
+                                <input type="tel" class="form-control" name="Applicant_phone" value="@Model.manpower_apply.Applicant_phone" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-right">需求時段及人數</label>
+                            <div class="col-md-8">
+                                <button type="button" class=" btn btn-outline-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">請選擇</button>
+                            </div>
+                            <!-- Modal -->
+                            <div class="modal fade bd-example-modal-lg" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <table class="table table-bordered table-hover tb1">
+                                                    <thead>
+                                                        <tr>
+                                                            <th width="75px"></th>
+                                                            <th>星期一</th>
+                                                            <th>星期二</th>
+                                                            <th>星期三</th>
+                                                            <th>星期四</th>
+                                                            <th>星期五</th>
+                                                            <th>星期六</th>
+                                                            <th>星期日</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>上午班</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m1" value="@ViewBag.PeriodDictionary["週一上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m2" value="@ViewBag.PeriodDictionary["週二上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m3" value="@ViewBag.PeriodDictionary["週三上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m4" value="@ViewBag.PeriodDictionary["週四上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m5" value="@ViewBag.PeriodDictionary["週五上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m6" value="@ViewBag.PeriodDictionary["週六上午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m7" value="@ViewBag.PeriodDictionary["週日上午"]" />人</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>下午班</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af1" value="@ViewBag.PeriodDictionary["週一下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af2" value="@ViewBag.PeriodDictionary["週二下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af3" value="@ViewBag.PeriodDictionary["週三下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af4" value="@ViewBag.PeriodDictionary["週四下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af5" value="@ViewBag.PeriodDictionary["週五下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af6" value="@ViewBag.PeriodDictionary["週六下午"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af7" value="@ViewBag.PeriodDictionary["週日下午"]" />人</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>夜間班</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n1" value="@ViewBag.PeriodDictionary["週一夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n2" value="@ViewBag.PeriodDictionary["週二夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n3" value="@ViewBag.PeriodDictionary["週三夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n4" value="@ViewBag.PeriodDictionary["週四夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n5" value="@ViewBag.PeriodDictionary["週五夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n6" value="@ViewBag.PeriodDictionary["週六夜間"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n7" value="@ViewBag.PeriodDictionary["週日夜間"]" />人</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>支援班</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as1" value="@ViewBag.PeriodDictionary["週一支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as2" value="@ViewBag.PeriodDictionary["週二支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as3" value="@ViewBag.PeriodDictionary["週三支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as4" value="@ViewBag.PeriodDictionary["週四支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as5" value="@ViewBag.PeriodDictionary["週五支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as6" value="@ViewBag.PeriodDictionary["週六支援"]" />人</td>
+                                                            <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as7" value="@ViewBag.PeriodDictionary["週日支援"]" />人</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>備註</td>
+                                                            <td colspan="7"><input type="text" class="col-md-12 form-control" name="Remarks" value="@Model.manpower_apply.Remarks" /></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
 
-<style>
-    body {
-        background-color: #F9F3E6;
-    }
-
-    .col-md-3 {
-        background: #F5D6A9;
-        padding: 4%;
-        border-top-left-radius: 0.5rem;
-        border-bottom-left-radius: 0.5rem;
-    }
-
-    .contact-info {
-        margin-top: 10%;
-    }
-
-        .contact-info img {
-            margin-bottom: 15%;
-        }
-
-        .contact-info h2 {
-            margin-bottom: 10%;
-        }
-
-    .col-md-9 {
-        background: #fff;
-        padding: 3%;
-        border-top-right-radius: 0.5rem;
-        border-bottom-right-radius: 0.5rem;
-    }
-
-    .contact-form label {
-        font-weight: 600;
-    }
-
-    .form-control-xx{
-        width:60px;
-        display:inline;
-    }
-
-    td,th {
-        text-align: center;
-    }
-
-</style>
-
-<h2>年度人力申請修改</h2>
-
-<div class="container contact" style="margin-top:30px;">
-    <div class="row">
-        <div class="col-md-3">
-            <div class="contact-info">
-                <img src="https://image.ibb.co/kUASdV/contact-image.png" alt="image" />
-                <h5>人力申請注意事項</h5>
-                <h6>請於每年11月前完成申請</h6>
-            </div>
-        </div>
-
-        <div class="panel-body col-md-9">
-            <form class="form-horizontal" method="post" action="~/ManpowerApply/Edit" role="form">
-                <div class="form-group">
-                    <div class="form-inline">
-                        <input type="hidden" class="form-control" name="Apply_ID" value="@Model.manpower_apply.Apply_ID">
-                        <label class="col-md-4 text-right" for="">運用單位</label>
-                        <label>@Model.manpower_apply.Application_unit.Application_unit1</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label class="col-md-4 control-label" for="Apply_date">申請日期</label>
-                        <label>@Html.DisplayFor(m => m.manpower_apply.Apply_date)</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label class="col-md-4 control-label" for="Reply_date">核定日期</label>
-                        @*<label>@Html.DisplayFor(m => m.manpower_apply.Reply_date)</label>*@
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Applicant" class="col-md-4 control-label">申請人</label>
-                        <input type="text" class="col-md-7 form-control" name="Applicant" value="@Model.manpower_apply.Applicant" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Applicant_phone" class="col-md-4 control-label">電話</label>
-                        <input type="tel" class="col-md-7 form-control" name="Applicant_phone" value="@Model.manpower_apply.Applicant_phone" autocomplete="off">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label class="col-md-4 control-label">需求時段及人數</label>
-                        <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">請選擇</button>
-                    </div>
-                    <!-- Modal -->
-                    <div class="modal fade bd-example-modal-lg" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
-                                        <table class="table table-bordered table-hover tb1">
-                                            <thead>
-                                                <tr>
-                                                    <th width="75px"></th>
-                                                    <th>星期一</th>
-                                                    <th>星期二</th>
-                                                    <th>星期三</th>
-                                                    <th>星期四</th>
-                                                    <th>星期五</th>
-                                                    <th>星期六</th>
-                                                    <th>星期日</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>上午班</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m1" value="@ViewBag.PeriodDictionary["週一上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m2" value="@ViewBag.PeriodDictionary["週二上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m3" value="@ViewBag.PeriodDictionary["週三上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m4" value="@ViewBag.PeriodDictionary["週四上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m5" value="@ViewBag.PeriodDictionary["週五上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m6" value="@ViewBag.PeriodDictionary["週六上午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m7" value="@ViewBag.PeriodDictionary["週日上午"]" />人</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>下午班</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af1" value="@ViewBag.PeriodDictionary["週一下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af2" value="@ViewBag.PeriodDictionary["週二下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af3" value="@ViewBag.PeriodDictionary["週三下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af4" value="@ViewBag.PeriodDictionary["週四下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af5" value="@ViewBag.PeriodDictionary["週五下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af6" value="@ViewBag.PeriodDictionary["週六下午"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af7" value="@ViewBag.PeriodDictionary["週日下午"]" />人</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>夜間班</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n1" value="@ViewBag.PeriodDictionary["週一夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n2" value="@ViewBag.PeriodDictionary["週二夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n3" value="@ViewBag.PeriodDictionary["週三夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n4" value="@ViewBag.PeriodDictionary["週四夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n5" value="@ViewBag.PeriodDictionary["週五夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n6" value="@ViewBag.PeriodDictionary["週六夜間"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n7" value="@ViewBag.PeriodDictionary["週日夜間"]" />人</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>支援班</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as1" value="@ViewBag.PeriodDictionary["週一支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as2" value="@ViewBag.PeriodDictionary["週二支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as3" value="@ViewBag.PeriodDictionary["週三支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as4" value="@ViewBag.PeriodDictionary["週四支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as5" value="@ViewBag.PeriodDictionary["週五支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as6" value="@ViewBag.PeriodDictionary["週六支援"]" />人</td>
-                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as7" value="@ViewBag.PeriodDictionary["週日支援"]" />人</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>備註</td>
-                                                    <td colspan="7"><input type="text" class="col-md-12 form-control" name="Remarks" value="@Model.manpower_apply.Remarks"/></td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="IsCh">確定</button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="IsCh">確定</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Reply_number" class="col-md-4 text-right">核定人數</label>
-                        <label class="text-secondary">@Model.manpower_apply.Reply_number</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Apply_description" class="col-md-4 control-label">志工工作項目與流程</label>
-                            <textarea class="col-md-7 form-control" name="Apply_description" rows="4">@Model.manpower_apply.Apply_description</textarea>
-                     </div>
-                    </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Application_unit_Supervisor" class="col-md-4 control-label">單位主管</label>
-                            <input type="text" class="col-md-7 form-control" name="Application_unit_Supervisor" placeholder="" value="@Model.manpower_apply.Application_unit_Supervisor" autocomplete="off">
+                        <div class="form-group row">
+                            <label for="Reply_number" class="col-md-4 text-right">核定人數</label>
+                            <div class="col-md-8">
+                                <label>-</label>
+                            </div>
                         </div>
-                    </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Application_unit_heads" class="col-md-4 control-label">部門主管</label>
-                            <input type="text" class="col-md-7 form-control" name="Application_unit_heads" placeholder="" value="@Model.manpower_apply.Application_unit_heads" autocomplete="off">
+                        <div class="form-group row">
+                            <label for="Apply_description" class="col-md-4 text-right">志工工作項目與流程</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="Apply_description" rows="4">@Model.manpower_apply.Apply_description</textarea>
+                            </div>
                         </div>
-                    </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Supervision_ID" class="col-md-4 text-right">志工督導</label>
-                        <label class="col-md-7 text-secondary">@Model.manpower_apply.Supervision_ID</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Supervision_heads" class="col-md-4 text-right">志工督導主管</label>
-                        <label class="col-md-7 text-secondary">@Model.manpower_apply.Supervision_heads</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Repply_description" class="col-md-4 text-right">志工督導評估建議</label>
-                        <label class="col-md-7 text-secondary">@Model.manpower_apply.Repply_description</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-inline">
-                        <label for="Stage" class="col-md-4 text-right">申請階段</label>
-                        <label class="text-secondary">@Model.stage.Stage1</label>
-                    </div>
-                </div>
-                    <div class="form-group">
-                        <div class="col-md-offset-4 col-md-8">
+                        <div class="form-group row">
+                            <label for="Application_unit_Supervisor" class="col-md-4 text-right">單位主管</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Application_unit_Supervisor" placeholder="" value="@Model.manpower_apply.Application_unit_Supervisor" autocomplete="off">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Supervision_ID" class="col-md-4 text-right">志工督導</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Supervision_ID</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Supervision_heads" class="col-md-4 text-right">志工督導主管</label>
+                            <div>
+                                <label>@Model.manpower_apply.Supervision_heads</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Repply_description" class="col-md-4 text-right">志工督導評估建議</label>
+                            <div>
+                                <label ">@Model.manpower_apply.Repply_description</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Stage" class="col-md-4 text-right">申請階段</label>
+                            <div class="col-md-8">
+                                <label>@Model.stage.Stage1</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 offset-md-4">
                             @if (@Model.stage.Stage1 == "新申請")
                             {
                                 <button type="submit" id="sbm" class="btn btn-info" onclick="return confirm('確定要送出修改嗎？')">完成修改</button>
@@ -245,132 +181,133 @@
                             }
                             <a href="~/ManpowerApply/Cancel/@Model.manpower_apply.Apply_ID" class="btn btn-info" onclick="return confirm('確定要取消申請嗎？取消後將無法復原')">取消申請</a>
                         </div>
-                    </div>
-</form>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-        @section Home_script{
-            <script>
-                $(document).ready(function () {
-                    var count = 0;
-                    $("#IsCh").click(function () {//按下班表確定按鈕
+@section Home_script{
+    <script>
+        $(document).ready(function () {
+            var count = 0;
+            $("#IsCh").click(function () {//按下班表確定按鈕
 
-                        $(".countP").each(function () {
-                            if ($(this).val() == "") {
-                                $(this).val("0");
-                            }
-                            if ($(this).val() != "") {
-                                var c = parseInt($(this).val());
-                                count += c;
-                            }
-                        })
-                        var morning = [];
-                        var afternoon = [];
-                        var night = [];
-                        var assistance = [];
-
-                        morning.push($("#m1").val());
-                        morning.push($("#m2").val());
-                        morning.push($("#m3").val());
-                        morning.push($("#m4").val());
-                        morning.push($("#m5").val());
-                        morning.push($("#m6").val());
-                        morning.push($("#m7").val());
-
-                        afternoon.push($("#af1").val());
-                        afternoon.push($("#af2").val());
-                        afternoon.push($("#af3").val());
-                        afternoon.push($("#af4").val());
-                        afternoon.push($("#af5").val());
-                        afternoon.push($("#af6").val());
-                        afternoon.push($("#af7").val());
-
-                        night.push($("#n1").val());
-                        night.push($("#n2").val());
-                        night.push($("#n3").val());
-                        night.push($("#n4").val());
-                        night.push($("#n5").val());
-                        night.push($("#n6").val());
-                        night.push($("#n7").val());
-
-                        assistance.push($("#as1").val());
-                        assistance.push($("#as2").val());
-                        assistance.push($("#as3").val());
-                        assistance.push($("#as4").val());
-                        assistance.push($("#as5").val());
-                        assistance.push($("#as6").val());
-                        assistance.push($("#as7").val());
-
-                        $("#count").val(count);
-                        document.cookie = "countPeple=" + count + ";path=/";//有時間參透一下
-                        document.cookie = "morning=" + morning.toString() + ";path=/"
-                        document.cookie = "afternoon=" + afternoon.toString() + ";path=/"
-                        document.cookie = "night=" + night.toString() + ";path=/"
-                        document.cookie = "assistance=" + assistance.toString() + ";path=/"
-
-                        count = 0;
-                    })
-
-                    $("#sbm").click(function () {//按下完成修改按鈕
-
-                        $(".countP").each(function () {
-                            if ($(this).val() == "") {
-                                $(this).val("0");
-                            }
-                            if ($(this).val() != "") {
-                                var c = parseInt($(this).val());
-                                count += c;
-                            }
-                        })
-                        var morning = [];
-                        var afternoon = [];
-                        var night = [];
-                        var assistance = [];
-
-                        morning.push($("#m1").val());
-                        morning.push($("#m2").val());
-                        morning.push($("#m3").val());
-                        morning.push($("#m4").val());
-                        morning.push($("#m5").val());
-                        morning.push($("#m6").val());
-                        morning.push($("#m7").val());
-
-                        afternoon.push($("#af1").val());
-                        afternoon.push($("#af2").val());
-                        afternoon.push($("#af3").val());
-                        afternoon.push($("#af4").val());
-                        afternoon.push($("#af5").val());
-                        afternoon.push($("#af6").val());
-                        afternoon.push($("#af7").val());
-
-                        night.push($("#n1").val());
-                        night.push($("#n2").val());
-                        night.push($("#n3").val());
-                        night.push($("#n4").val());
-                        night.push($("#n5").val());
-                        night.push($("#n6").val());
-                        night.push($("#n7").val());
-
-                        assistance.push($("#as1").val());
-                        assistance.push($("#as2").val());
-                        assistance.push($("#as3").val());
-                        assistance.push($("#as4").val());
-                        assistance.push($("#as5").val());
-                        assistance.push($("#as6").val());
-                        assistance.push($("#as7").val());
-
-                        $("#count").val(count);
-                        document.cookie = "countPeple=" + count + ";path=/";//有時間參透一下
-                        document.cookie = "morning=" + morning.toString() + ";path=/"
-                        document.cookie = "afternoon=" + afternoon.toString() + ";path=/"
-                        document.cookie = "night=" + night.toString() + ";path=/"
-                        document.cookie = "assistance=" + assistance.toString() + ";path=/"
-                        count = 0;
-                    })
-
+                $(".countP").each(function () {
+                    if ($(this).val() == "") {
+                        $(this).val("0");
+                    }
+                    if ($(this).val() != "") {
+                        var c = parseInt($(this).val());
+                        count += c;
+                    }
                 })
+                var morning = [];
+                var afternoon = [];
+                var night = [];
+                var assistance = [];
+
+                morning.push($("#m1").val());
+                morning.push($("#m2").val());
+                morning.push($("#m3").val());
+                morning.push($("#m4").val());
+                morning.push($("#m5").val());
+                morning.push($("#m6").val());
+                morning.push($("#m7").val());
+
+                afternoon.push($("#af1").val());
+                afternoon.push($("#af2").val());
+                afternoon.push($("#af3").val());
+                afternoon.push($("#af4").val());
+                afternoon.push($("#af5").val());
+                afternoon.push($("#af6").val());
+                afternoon.push($("#af7").val());
+
+                night.push($("#n1").val());
+                night.push($("#n2").val());
+                night.push($("#n3").val());
+                night.push($("#n4").val());
+                night.push($("#n5").val());
+                night.push($("#n6").val());
+                night.push($("#n7").val());
+
+                assistance.push($("#as1").val());
+                assistance.push($("#as2").val());
+                assistance.push($("#as3").val());
+                assistance.push($("#as4").val());
+                assistance.push($("#as5").val());
+                assistance.push($("#as6").val());
+                assistance.push($("#as7").val());
+
+                $("#count").val(count);
+                document.cookie = "countPeple=" + count + ";path=/";//有時間參透一下
+                document.cookie = "morning=" + morning.toString() + ";path=/"
+                document.cookie = "afternoon=" + afternoon.toString() + ";path=/"
+                document.cookie = "night=" + night.toString() + ";path=/"
+                document.cookie = "assistance=" + assistance.toString() + ";path=/"
+
+                count = 0;
+            })
+
+            $("#sbm").click(function () {//按下完成修改按鈕
+
+                $(".countP").each(function () {
+                    if ($(this).val() == "") {
+                        $(this).val("0");
+                    }
+                    if ($(this).val() != "") {
+                        var c = parseInt($(this).val());
+                        count += c;
+                    }
+                })
+                var morning = [];
+                var afternoon = [];
+                var night = [];
+                var assistance = [];
+
+                morning.push($("#m1").val());
+                morning.push($("#m2").val());
+                morning.push($("#m3").val());
+                morning.push($("#m4").val());
+                morning.push($("#m5").val());
+                morning.push($("#m6").val());
+                morning.push($("#m7").val());
+
+                afternoon.push($("#af1").val());
+                afternoon.push($("#af2").val());
+                afternoon.push($("#af3").val());
+                afternoon.push($("#af4").val());
+                afternoon.push($("#af5").val());
+                afternoon.push($("#af6").val());
+                afternoon.push($("#af7").val());
+
+                night.push($("#n1").val());
+                night.push($("#n2").val());
+                night.push($("#n3").val());
+                night.push($("#n4").val());
+                night.push($("#n5").val());
+                night.push($("#n6").val());
+                night.push($("#n7").val());
+
+                assistance.push($("#as1").val());
+                assistance.push($("#as2").val());
+                assistance.push($("#as3").val());
+                assistance.push($("#as4").val());
+                assistance.push($("#as5").val());
+                assistance.push($("#as6").val());
+                assistance.push($("#as7").val());
+
+                $("#count").val(count);
+                document.cookie = "countPeple=" + count + ";path=/";//有時間參透一下
+                document.cookie = "morning=" + morning.toString() + ";path=/"
+                document.cookie = "afternoon=" + afternoon.toString() + ";path=/"
+                document.cookie = "night=" + night.toString() + ";path=/"
+                document.cookie = "assistance=" + assistance.toString() + ";path=/"
+                count = 0;
+            })
+
+        })
 
 
-            </script>
-        }
+    </script>
+}

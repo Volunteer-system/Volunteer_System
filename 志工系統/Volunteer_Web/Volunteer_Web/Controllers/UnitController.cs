@@ -8,14 +8,19 @@ using Volunteer_Web.Models;
 
 namespace Volunteer_Web.Controllers
 {
-    public class UnitController : Controller
+    public class UnitController : NeedCheckLogin
     {
         private Repository<Application_unit> applicationRepository = new Repository<Application_unit>();
         private VolunteerEntities db = new VolunteerEntities();
 
+        public UnitController()
+        {
+            IsCheck = true;
+        }
+
         // GET: Unit
         //運用單位基本資料
-        
+
         public ActionResult Index()
         {
             int unit = Convert.ToInt32(Session["UserID"]);
@@ -26,7 +31,14 @@ namespace Volunteer_Web.Controllers
                       where ac.Permission == "Application_unit" && a.Application_unit_no == unit
                       select a.ImagePath;
 
-            TempData["Image"] = img.ToList().First();
+            if (img.ToList().First() == null)
+            {
+                TempData["Image"] = "hospital.png";
+            }
+            else
+            {
+                TempData["Image"] = img.ToList().First();
+            }
 
 
             var q = from a in db.Application_unit
@@ -63,8 +75,8 @@ namespace Volunteer_Web.Controllers
 
             
             ImagePath.SaveAs(strPath);
-
-            TempData["Image"]= now + ImagePath.FileName;
+            
+                TempData["Image"] = now + ImagePath.FileName;
 
 
 

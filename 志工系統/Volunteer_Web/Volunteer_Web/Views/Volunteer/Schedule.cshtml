@@ -73,6 +73,7 @@
         .screen {
             margin-top: 5%;            
         }
+        
         @@media only screen and (max-width:1200px) {
             .screen {
                 margin-top: 10%;
@@ -266,7 +267,7 @@
                     <td data-service_period_no="15">@Html.DropDownList("select15", WishSelectItem)</td>
                     <td colspan="2"><button id="btn_insert" class="btn btn-success">送出</button></td>
                 </tr>*@
-
+                
             </tbody>
         </table>
     </div>
@@ -286,6 +287,8 @@
         //================基本設定=================
          //================按鈕功能=================
         $("#btn_submit").click(function () {
+            @*var a = @Request.Url.AbsolutePath;*@
+            //console.log(a)          
             class_fix.length = 0;
             class_sup.length = 0;
             outputuse = [];
@@ -345,15 +348,19 @@
                 });
             }
             if (outputuse.length != 0) {
+                console.log(window.location.href);
                 $.ajax({
                     type: "Post",
                     contentType: "application/json",
-                    url: "/Volunteer/Schedule",
-                    data: JSON.stringify(outputuse)
-                }).done(function () {
-                    alert("新增/修改成功");
-                    window.location.href ="/Volunteer/Index"
-                    })              
+                    url:'@Url.Action("Schedule", "Volunteer")',//"/Volunteer/Schedule",
+                    data: JSON.stringify(outputuse),
+                    dataType: "json"
+                }).done(function (data) {
+                    alert("新增/修改" + data);
+                    window.location.href = "/Volunteer/Index"
+                    }).fail(function (data) {
+                        alert("新增失敗!!")
+                });             
             }
 
         })
