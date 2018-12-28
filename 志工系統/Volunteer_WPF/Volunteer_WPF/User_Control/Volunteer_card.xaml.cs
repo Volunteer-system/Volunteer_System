@@ -30,7 +30,10 @@ namespace Volunteer_WPF.User_Control
             get { return this.lab_type.Content.ToString(); }
             set { this.lab_type.Content = value; }
         }
-        public byte[] photo { get; set; }
+        public BitmapImage photo {
+            get { return this.img_photo.Source as BitmapImage; }
+            set { this.img_photo.Source = photo; }
+        }
 
         public Volunteer_card()
         {
@@ -43,24 +46,8 @@ namespace Volunteer_WPF.User_Control
             bitmap.UriSource = new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\Noimage.png");
             bitmap.EndInit();
 
-            this.img_photo.Source = bitmap;
-
-            if (photo != null)
-            {
-                this.img_photo.Source = ConvertByteArrayToBitmapImage(photo);
-            }
+            this.img_photo.Source = bitmap;           
             
-        }
-
-        public static BitmapImage ConvertByteArrayToBitmapImage(Byte[] bytes)
-        {
-            var stream = new MemoryStream(bytes);
-            stream.Seek(0, SeekOrigin.Begin);
-            var image = new BitmapImage();
-            image.BeginInit();
-            image.StreamSource = stream;
-            image.EndInit();
-            return image;
-        }
+        }        
     }
 }

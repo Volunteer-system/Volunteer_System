@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Volunteer_WPF.User_Control;
+using Volunteer_WPF.View_Model;
 
 namespace Volunteer_WPF.View
 {
@@ -24,6 +25,7 @@ namespace Volunteer_WPF.View
         List<Volunteer_card> stay_Volunteer_cards = new List<Volunteer_card>();
         List<Volunteer_card> new_Volunteer_cards = new List<Volunteer_card>();
         List<Volunteer_card> leave_Volunteer_cards = new List<Volunteer_card>();
+        List<Volunteer_card> select_Volunteer_cards = new List<Volunteer_card>();
 
         public Shift_schedule_detail_View()
         {
@@ -75,8 +77,16 @@ namespace Volunteer_WPF.View
             itemContainerStyle3.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(s_PreviewMouseLeftButtonDown)));
             itemContainerStyle3.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(leave_stay_Drop)));
             this.leave_stay.ItemContainerStyle = itemContainerStyle3;
+
+            Style itemContainerStyle4 = new Style(typeof(ListBoxItem));
+            itemContainerStyle4.Setters.Add(new Setter(ListBoxItem.AllowDropProperty, true));
+            itemContainerStyle4.Setters.Add(new EventSetter(ListBoxItem.PreviewMouseLeftButtonDownEvent, new MouseButtonEventHandler(s_PreviewMouseLeftButtonDown)));
+            //itemContainerStyle4.Setters.Add(new EventSetter(ListBoxItem.DropEvent, new DragEventHandler(select_stay_Drop)));
+            this.select_stay.ItemContainerStyle = itemContainerStyle4;
         }
-        
+
+       
+
         private void s_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is ListBoxItem)
@@ -191,12 +201,34 @@ namespace Volunteer_WPF.View
 
         private void Btn_volunteer_Click(object sender, RoutedEventArgs e)
         {
-
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
+            
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("社會志工"))
+            {
+                Volunteer_card volunteer_Card = new Volunteer_card();
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+                this.select_stay.Items.Add(volunteer_Card);
+                select_Volunteer_cards.Add(volunteer_Card);
+            }
         }
 
         private void Btn_student_Click(object sender, RoutedEventArgs e)
         {
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
 
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("學生志工"))
+            {
+                Volunteer_card volunteer_Card = new Volunteer_card();
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+                this.select_stay.Items.Add(volunteer_Card);
+                select_Volunteer_cards.Add(volunteer_Card);
+            }
         }
 
         private void Btn_select_Click(object sender, RoutedEventArgs e)

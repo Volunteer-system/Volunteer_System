@@ -43,28 +43,21 @@ namespace Volunteer_Web.Controllers
         }
 
         //歷史活動
-        public ActionResult Activity_History(int id = 0, int photo = 0)
+        public ActionResult Activity_History()
         {
-            ActivityHistoryModel AHM = new ActivityHistoryModel();
-            //ActivityDetail ad = new ActivityDetail();
-            //ShowModel SM = new ShowModel();
-            VolunteerEntities db = new VolunteerEntities();
-            if (id != 0)
-            {
-                //SM.ActivityDetail = ad.GetActivity(id);                
-                var detail = db.Activities.Where(a => a.Activity_name == id.ToString());
-                return Json(detail.AsEnumerable().Select(a => new { Activity_no = a.Activity_no, Activity_name = a.Activity_name, Activity_type = a.Activity_type.Activity_type1, Activity_startdate = a.Activity_startdate.Value.ToShortDateString(), Activity_enddate = a.Activity_enddate.Value.ToShortDateString(), supervision_Name = a.Volunteer_supervision.supervision_Name, supervision_phone = a.Volunteer_supervision.supervision_phone, supervision_email = a.Volunteer_supervision.supervision_email, Group_name = a.Service_group.Group_name, lecturer = a.lecturer, Place = a.Place, Summary = a.Summary, Activity_photo_id = a.Activity_Photo_id }), JsonRequestBehavior.AllowGet);
-            }
-            if (photo != 0)
-
-            {
-                var photoid = db.Activity_photo.Where(p => p.Activity_id == photo);
-                return Json(photoid.AsEnumerable().Select(p => new { Activity_photo_id = p.Activity_photo_id }), JsonRequestBehavior.AllowGet);
-            }
+            ActivityHistoryModel AHM = new ActivityHistoryModel();            
             var SM = AHM.GetHistoryActivity(Convert.ToInt32(Session["UserID"]));
 
             return View(SM);
         }
+        //歷史活動Partial
+        public ActionResult Activity_DetailPartial(int id = 0)
+        {
+            ActivityDetail AD = new ActivityDetail();
+            var act = AD.GetActivity(id);
+            ViewBag.photoids = AD.GetActivityPhoto(id);
+            return PartialView(act);
+        }    
         public ActionResult WorkHours()
         {
             return View();
