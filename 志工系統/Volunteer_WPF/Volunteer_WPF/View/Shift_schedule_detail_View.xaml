@@ -63,7 +63,7 @@
                     <Button x:Name="btn_volunteer" Content="社會志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_volunteer_Click"  Style="{DynamicResource ButtonTemplate}"/>
                     <Button x:Name="btn_student" Content="學生志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_student_Click"  Style="{DynamicResource ButtonTemplate}"/>
                     <Label  Content="姓名" FontSize="16" FontWeight="Bold"/>
-                    <TextBox Name="nametext" Height="35" Margin="5"/>
+                    <TextBox Name="txt_name" Height="35" Margin="5"/>
                     <Button x:Name="btn_select" Content="搜尋" Height="35" Margin="2" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_select_Click"  Style="{DynamicResource ButtonTemplate}"/>
                 </StackPanel>
             </DockPanel>
@@ -75,7 +75,7 @@
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White"/>
         <Rectangle Grid.Column="2" Grid.Row="1" Fill="White"/>
         <Rectangle Grid.Column="3" Grid.Row="1" Fill="White"/>
-        <Button Content="確認" Grid.Column="3" Grid.Row="1" Margin="5.2,5,125.6,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"></Button>
-        <Button Content="取消" Grid.Column="3" Grid.Row="1" Margin="128.2,5,4.8,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"></Button>
+        <Button Content="確認" x:Name="btn_save" Grid.Column="3" Grid.Row="1" Margin="5.2,5,125.6,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_save_Click"></Button>
+        <Button Content="離開" Grid.Column="3" Grid.Row="1" Margin="128.2,5,4.8,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Button_Click"></Button>
     </Grid>
 </Window>

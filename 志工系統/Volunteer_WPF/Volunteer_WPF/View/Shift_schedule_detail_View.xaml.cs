@@ -21,41 +21,60 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Shift_schedule_detail_View : Window
     {
+        public int Volunteer_count { get; set; }
+
+        private int _unit_no;
+        private int _service_period_no;
         private List<ListBoxItem> selectedItems = new List<ListBoxItem>();
         List<Volunteer_card> stay_Volunteer_cards = new List<Volunteer_card>();
         List<Volunteer_card> new_Volunteer_cards = new List<Volunteer_card>();
         List<Volunteer_card> leave_Volunteer_cards = new List<Volunteer_card>();
         List<Volunteer_card> select_Volunteer_cards = new List<Volunteer_card>();
 
-        public Shift_schedule_detail_View()
+        public Shift_schedule_detail_View(int application_unit_no, int service_period_no)
         {
             InitializeComponent();
 
-            
-            for (int i = 0; i < 3; i++)
+            _unit_no = application_unit_no;
+            _service_period_no = service_period_no;
+
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
+
+            List<Shift_schedule_detail_ViewModel> Stay_Volunteers = Schedule_Detail_ViewModel.SelectStay_Volunteer_byService_Period(application_unit_no, service_period_no);
+            foreach (var row in Stay_Volunteers)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_no = i;
-                volunteer_Card.Volunteer_name = "留任測試" + i;
-                volunteer_Card.Type = "留任測試" + i;
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+
                 stay_Volunteer_cards.Add(volunteer_Card);
                 this.pan_stay.Items.Add(volunteer_Card);
             }
-            for (int i = 0; i < 3; i++)
+
+            List<Shift_schedule_detail_ViewModel> New_Volunteers = Schedule_Detail_ViewModel.SelectNew_Volunteer_byService_Period(application_unit_no, service_period_no);
+            foreach (var row in New_Volunteers)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_no = i + 10;
-                volunteer_Card.Volunteer_name = "新增測試" + i;
-                volunteer_Card.Type = "新增測試" + i;
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+
                 new_Volunteer_cards.Add(volunteer_Card);
                 this.new_stay.Items.Add(volunteer_Card);
             }
-            for (int i = 0; i < 3; i++)
+
+            List<Shift_schedule_detail_ViewModel> Leave_Volunteers = Schedule_Detail_ViewModel.SelectLeave_Volunteer_byService_Period(application_unit_no, service_period_no);
+            foreach (var row in Leave_Volunteers)
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
-                volunteer_Card.Volunteer_no = i + 100;
-                volunteer_Card.Volunteer_name = "移除測試" + i;
-                volunteer_Card.Type = "移除測試" + i;
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+
                 leave_Volunteer_cards.Add(volunteer_Card);
                 this.leave_stay.Items.Add(volunteer_Card);
             }
@@ -105,8 +124,9 @@ namespace Volunteer_WPF.View
 
             Volunteer_card volunteer_Card = new Volunteer_card();
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
-            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = stay_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
@@ -139,8 +159,9 @@ namespace Volunteer_WPF.View
 
             Volunteer_card volunteer_Card = new Volunteer_card();
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
-            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = new_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
@@ -173,8 +194,9 @@ namespace Volunteer_WPF.View
 
             Volunteer_card volunteer_Card = new Volunteer_card();
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
-            volunteer_Card.Name = droppedData.Volunteer_name;
+            volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = leave_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
 
@@ -201,8 +223,9 @@ namespace Volunteer_WPF.View
 
         private void Btn_volunteer_Click(object sender, RoutedEventArgs e)
         {
-            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
-            
+            this.select_stay.Items.Clear();
+
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();            
             foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("社會志工"))
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
@@ -217,8 +240,9 @@ namespace Volunteer_WPF.View
 
         private void Btn_student_Click(object sender, RoutedEventArgs e)
         {
-            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
+            this.select_stay.Items.Clear();
 
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
             foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("學生志工"))
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
@@ -233,9 +257,75 @@ namespace Volunteer_WPF.View
 
         private void Btn_select_Click(object sender, RoutedEventArgs e)
         {
+            string name = this.txt_name.Text;
+            if (string.IsNullOrEmpty(name))
+            {
+                return;
+            }
 
+            this.select_stay.Items.Clear();
+
+            Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();            
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byName(name))
+            {
+                Volunteer_card volunteer_Card = new Volunteer_card();
+                volunteer_Card.Volunteer_no = row.Volunteer_no;
+                volunteer_Card.Volunteer_name = row.Chinese_name;
+                volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.photo = row.Photo;
+                this.select_stay.Items.Add(volunteer_Card);
+                select_Volunteer_cards.Add(volunteer_Card);
+            }
         }
 
-        
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Volunteer_count = stay_Volunteer_cards.Count() + new_Volunteer_cards.Count();
+
+            this.Close();
+        }
+
+        private void Btn_save_Click(object sender, RoutedEventArgs e)
+        {
+            Shift_schedule_detail_ViewModel shift_Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
+
+            List<Shift_schedule_detail_ViewModel> stay_list = new List<Shift_schedule_detail_ViewModel>();
+            foreach (var row in stay_Volunteer_cards)
+            {
+                Shift_schedule_detail_ViewModel Schedule_Detail = new Shift_schedule_detail_ViewModel();
+                Schedule_Detail.Volunteer_no = row.Volunteer_no;
+                Schedule_Detail.Chinese_name = row.Volunteer_name;
+                Schedule_Detail.Identity_type_name = row.Type;
+
+                stay_list.Add(Schedule_Detail);
+            }
+
+            List<Shift_schedule_detail_ViewModel> new_list = new List<Shift_schedule_detail_ViewModel>();
+            foreach (var row in new_Volunteer_cards)
+            {
+                Shift_schedule_detail_ViewModel Schedule_Detail = new Shift_schedule_detail_ViewModel();
+                Schedule_Detail.Volunteer_no = row.Volunteer_no;
+                Schedule_Detail.Chinese_name = row.Volunteer_name;
+                Schedule_Detail.Identity_type_name = row.Type;
+
+                new_list.Add(Schedule_Detail);
+            }
+
+            List<Shift_schedule_detail_ViewModel> leave_list = new List<Shift_schedule_detail_ViewModel>();
+            foreach (var row in leave_Volunteer_cards)
+            {
+                Shift_schedule_detail_ViewModel Schedule_Detail = new Shift_schedule_detail_ViewModel();
+                Schedule_Detail.Volunteer_no = row.Volunteer_no;
+                Schedule_Detail.Chinese_name = row.Volunteer_name;
+                Schedule_Detail.Identity_type_name = row.Type;
+
+                leave_list.Add(Schedule_Detail);
+            }
+
+            shift_Schedule_Detail_ViewModel.UpdateSchedule_volunteer(stay_list, new_list, leave_list, _unit_no, _service_period_no);
+            MessageBox.Show("更新成功");
+
+            Volunteer_count = stay_Volunteer_cards.Count() + new_Volunteer_cards.Count();
+        }
     }
 }

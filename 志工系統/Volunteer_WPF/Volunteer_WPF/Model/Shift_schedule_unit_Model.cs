@@ -9,6 +9,7 @@ namespace Volunteer_WPF.Model
     class Shift_schedule_unit_Model
     {
         public int Unit_no { get; set; }
+        public int Service_period_no { get; set; }
         public string Service_period { get; set; }
         public string Time { get; set; }
         public int Actual_number { get; set; }
@@ -24,6 +25,7 @@ namespace Volunteer_WPF.Model
                     select new
                     {
                         Unit_no = n1.Application_unit_no,
+                        Service_period_no = n1.Service_period_no,
                         Service_period = n2.Service_period,
                         Time = n2.Time,
                         Volunteer_number = n1.Volunteer_number
@@ -34,6 +36,7 @@ namespace Volunteer_WPF.Model
             {
                 Shift_schedule_unit_Model shift_Schedule_Unit = new Shift_schedule_unit_Model();
                 shift_Schedule_Unit.Unit_no = row.Unit_no;
+                shift_Schedule_Unit.Service_period_no = row.Service_period_no;
                 shift_Schedule_Unit.Service_period = row.Service_period;
                 shift_Schedule_Unit.Time = row.Time;
                 shift_Schedule_Unit.Volunteer_number = (int)row.Volunteer_number;

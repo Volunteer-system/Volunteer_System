@@ -20,6 +20,7 @@ namespace Volunteer_WPF.View_Model
             {
                 Shift_schedule_data_VM shift_Schedule_Data_VM = new Shift_schedule_data_VM();
                 shift_Schedule_Data_VM.Unit_no = row.Unit_no;
+                shift_Schedule_Data_VM.Service_period_no = row.Service_period_no;
                 shift_Schedule_Data_VM.Service_period = row.Service_period;
                 shift_Schedule_Data_VM.Time = row.Time;
                 shift_Schedule_Data_VM.Actual_number = row.Actual_number;
@@ -50,6 +51,7 @@ namespace Volunteer_WPF.View_Model
     class Shift_schedule_data_VM
     {
         public int Unit_no { get; set; }
+        public int Service_period_no { get; set; }
         public string Service_period { get; set; }
         public string Time { get; set; }
         public int Actual_number { get; set; }

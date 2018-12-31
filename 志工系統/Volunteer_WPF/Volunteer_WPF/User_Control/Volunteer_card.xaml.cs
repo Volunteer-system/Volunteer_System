@@ -30,9 +30,25 @@ namespace Volunteer_WPF.User_Control
             get { return this.lab_type.Content.ToString(); }
             set { this.lab_type.Content = value; }
         }
-        public BitmapImage photo {
-            get { return this.img_photo.Source as BitmapImage; }
-            set { this.img_photo.Source = photo; }
+        private byte[] p_photo { get; set; }
+        public byte[] photo {
+            get { return p_photo; }
+            set {
+                BitmapImage image = new BitmapImage();
+                if (value != null)
+                {
+                    System.IO.MemoryStream ms = new System.IO.MemoryStream(value);
+                    image.BeginInit();
+                    image.StreamSource = ms;
+                    image.DecodePixelHeight = 55;
+                    image.DecodePixelWidth = 55;
+                    image.CacheOption = BitmapCacheOption.OnLoad;
+                    image.EndInit();
+                    this.img_photo.Source = image;
+
+                    p_photo = value;
+                }
+            }
         }
 
         public Volunteer_card()

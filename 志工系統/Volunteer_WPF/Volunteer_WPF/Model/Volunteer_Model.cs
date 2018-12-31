@@ -58,6 +58,7 @@ namespace Volunteer_WPF.Model
         public string Personality_scale { get; set; }
         //個人照片
         public BitmapImage Photo { get; set; }
+        public byte[] _Photo { get; set; }
 
         //合併項目==================================================
         //組別
@@ -340,17 +341,37 @@ namespace Volunteer_WPF.Model
                 volunteer_Model.Volunteer_no = row.Volunteer_no.ToString();
                 volunteer_Model.Chinese_name = row.Chinese_name;
                 volunteer_Model.Identity_type = row.Identity_type_name;
+                volunteer_Model._Photo = row.Photo;
 
-                BitmapImage image = new BitmapImage();
-                if (row.Photo != null && row.Photo.Length > 0)
-                {
-                    System.IO.MemoryStream ms = new System.IO.MemoryStream(row.Photo);
-                    image.BeginInit();
-                    image.StreamSource = ms;
-                    image.CacheOption = BitmapCacheOption.OnLoad;
-                    image.EndInit();
-                    volunteer_Model.Photo = image;
-                }
+                Volunteer_Models.Add(volunteer_Model);
+            }
+
+            return Volunteer_Models;
+        }
+
+        public List<Volunteer_Model> SelectVolunteer_byName(string name)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Volunteer
+                    join n2 in dbContext.Identity_type
+                    on n1.Identity_type equals n2.Identity_type1
+                    where n1.Chinese_name == name
+                    select new
+                    {
+                        Volunteer_no = n1.Volunteer_no,
+                        Chinese_name = n1.Chinese_name,
+                        Identity_type_name = n2.Identity_type_name,
+                        Photo = n1.Photo
+                    };
+
+            List<Volunteer_Model> Volunteer_Models = new List<Volunteer_Model>();
+            foreach (var row in q)
+            {
+                Volunteer_Model volunteer_Model = new Volunteer_Model();
+                volunteer_Model.Volunteer_no = row.Volunteer_no.ToString();
+                volunteer_Model.Chinese_name = row.Chinese_name;
+                volunteer_Model.Identity_type = row.Identity_type_name;
+                volunteer_Model._Photo = row.Photo;
 
                 Volunteer_Models.Add(volunteer_Model);
             }

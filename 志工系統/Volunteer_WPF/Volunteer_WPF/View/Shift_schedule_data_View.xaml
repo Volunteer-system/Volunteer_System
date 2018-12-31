@@ -100,13 +100,13 @@
                 <Label Content="週五" Grid.Column="5" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="週六" Grid.Column="6" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="週日" Grid.Column="7" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
-                <Label Content="時段一" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top"  FontSize="16"/>
+                <!--<Label Content="時段一" Grid.Row="1" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top"  FontSize="16"/>
                 <Label Content="時段二" Grid.Row="2" HorizontalAlignment="Center"  Grid.RowSpan="2" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="時段三" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
                 <Label Content="時段四" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
                 <Label Content="時段五" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
                 <Label Content="時段六" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
-                <Label Content="時段七" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>
+                <Label Content="時段七" HorizontalAlignment="Center" Grid.Row="7" VerticalAlignment="Top" FontSize="16" Grid.RowSpan="2"/>-->
                 <Label Content="實/應:"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>                
                 <Label Content="實/應:"  Grid.Column="2" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
                 <Label Content="實/應:"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" FontSize="16"/>
