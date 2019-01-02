@@ -126,13 +126,31 @@ namespace Volunteer_Web.Controllers
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
             //vm.activity = db.Activities.Where(p => p.Activity_type_ID == id);
             activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
-            //actvm.activityNumberOfPeople(id)取得活動報名的人數 
-            vm.acvno_VM = actvm.activityNumberOfPeople(id, Convert.ToInt32(Session["UserID"]));
+
+            vm.acvno_VM = actvm.activity_By_Activity_type_ID(id, Convert.ToInt32(Session["UserID"]));
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
+            ViewBag.Activity_type_ID = id;
             //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
             //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
             return View(vm);
+        }
+        [HttpPost]
+        public ActionResult Activity_Browse_DateFilter(activity_volunteerNo_VM avvm)
+        {
+            DateTime startDate = (DateTime)avvm.Activity_startdate;
+            DateTime endDate = (DateTime)avvm.Activity_enddate;
+            int activity_typeID = (int)avvm.Activity_type_ID;
+
+            Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
+            activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
+
+            vm.acvno_VM = actvm.activity_By_Activity_type_ID(activity_typeID, startDate, endDate, Convert.ToInt32(Session["UserID"]));
+            vm.activity_types = db.Activity_type.ToList();
+            ViewBag.userid = Session["UserID"];
+            ViewBag.Activity_type_ID = activity_typeID;
+            return View("Activity_Browse", vm);
+
         }
         [HttpPost]
         public ActionResult Activity_Browse(int id, int activityNo, bool VegeYesOrNo = false)
@@ -168,6 +186,32 @@ namespace Volunteer_Web.Controllers
             //public ActionResult Activity_Browse(int id, int activityID, bool VegeYesOrNo = false)
             //接收 bool VegeYesOrNo 的參數先給它預設 false
         }
+        public ActionResult Activity_Participate()
+        {
+            Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
+            activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
+            vm.acvno_VM = actvm.activityByAlreadyParticipated(Convert.ToInt32(Session["UserID"]));
+            vm.activity_types = db.Activity_type.ToList();
+            ViewBag.userid = Session["UserID"];
+            //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
+            //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
+            return View(vm);
+
+        }
+
+        public ActionResult Activity_NotParticipate()
+        {
+            Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
+            activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
+            vm.acvno_VM = actvm.activityByNotParticipated(Convert.ToInt32(Session["UserID"]));
+            vm.activity_types = db.Activity_type.ToList();
+            ViewBag.userid = Session["UserID"];
+            //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
+            //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
+            return View(vm);
+
+        }
+
         public ActionResult GetImageBytes(int id = 1)
         {
             Activity_photo ap = db.Activity_photo.Find(id);

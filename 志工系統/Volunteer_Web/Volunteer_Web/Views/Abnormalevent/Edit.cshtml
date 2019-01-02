@@ -132,15 +132,13 @@
                         </label>
                         <div class="col-md-10">
                             @Html.DisplayFor(a => a.abnormalevent.Closing_date, new { @class = "control-label" })
-                            @*<input type="text" class="form-control" name="Closing_date"
-                value="@Model.abnormalevent.Closing_date" readonly />*@
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="submit" class="btn btn-success" id="alter" value="送出" onclick="return confirm('確定要送出修改嗎?')" />
-                            <a href="~/Abnormalevent/Cancel/@Model.abnormalevent.Abnormal_event_no" class="btn btn-danger" onclick="return confirm('確定要取消事件嗎？取消後將無法復原')">取消申請</a>
+                        <div class="col-md-offset-4 col-md-8">
+                            <input type="submit" class="btn btn-info" id="alter" value="送出" onclick="return confirm('確定要送出修改嗎?')" />
+                            <a href="~/Abnormalevent/Cancel/@Model.abnormalevent.Abnormal_event_no" class="btn btn-info" onclick="return confirm('確定要取消事件嗎？取消後將無法復原')">取消申請</a>
                         </div>
                     </div>
                 </form>

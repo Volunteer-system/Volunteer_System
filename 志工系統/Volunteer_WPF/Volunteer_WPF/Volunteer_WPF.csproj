@@ -111,6 +111,7 @@
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Activity_type_Model.cs" />
+    <Compile Include="Model\Activity_volunteer_list_Model.cs" />
     <Compile Include="Model\Application_unit.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
@@ -283,6 +284,9 @@
     <Compile Include="View\Activity_AddActionDetail_View.xaml.cs">
       <DependentUpon>Activity_AddActionDetail_View.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Activity_data_View.xaml.cs">
+      <DependentUpon>Activity_data_View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Activity_detail_View.xaml.cs">
       <DependentUpon>Activity_detail_View.xaml</DependentUpon>
     </Compile>
@@ -443,6 +447,10 @@
     <Page Include="View\Activity_AddActionDetail_View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Activity_data_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Activity_detail_View.xaml">
       <SubType>Designer</SubType>

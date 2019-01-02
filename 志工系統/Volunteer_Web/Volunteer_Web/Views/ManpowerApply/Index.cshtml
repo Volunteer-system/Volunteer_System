@@ -10,7 +10,11 @@
 <!-- (Optional) Latest compiled and minified JavaScript translation files -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
 
-
+<style>
+    body {
+        background-color: #eee;
+    }
+</style>
 
 <div class="row">
     <div class="col-3" style=" margin-top:30px">
@@ -35,17 +39,18 @@
                 </div>
             </div>
             <table class="table table-striped">
-                <thead>
+                <thead style="text-align:center;">
                     <tr>
                         <th>申請日期</th>
                         <th>核定日期</th>
                         <th>申請人數</th>
                         <th>核定人數</th>
+                        <th>申請類別</th>
                         <th>申請階段</th>
                         <th>檢視/編輯</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align:center;">
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -54,6 +59,7 @@
                             <td>@Html.DisplayFor(m => item.manpower_apply.Reply_date)</td>
                             <td>@item.manpower_apply.Application_number</td>
                             <td>@item.manpower_apply.Reply_number</td>
+                            <td>@item.manpower_apply.Apply_type</td>
                             <td>@item.stage.Stage1</td>
                             <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-warning btn-sm">詳細資料</a></td>
                         </tr>

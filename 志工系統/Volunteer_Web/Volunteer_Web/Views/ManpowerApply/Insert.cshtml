@@ -3,134 +3,144 @@
     ViewBag.Title = "Insert";
 }
 
-    <div class="cotainer" style="margin-top:50px;">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">年度人力申請</div>
-                    <div class="card-body">
-                        <form class="form-horizontal" method="post" action="~/ManpowerApply/Insert" role="form">
-                            <div class="form-group row">
-                                <label for="Applicant" class="col-md-4 col-form-label text-md-right">申請人</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="Applicant" placeholder="必填" autocomplete="off" required>
-                                </div>
+<style>
+    *[role="form"] {
+        max-width: 530px;
+        padding: 15px;
+        margin: 0 auto;
+        border-radius: 0.3em;
+    }
+
+
+</style>
+
+<div class="cotainer" style="margin-top:50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header" style="text-align:center;font-size:40px;">年度人力需求申請</div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post" action="~/ManpowerApply/Insert" role="form">
+                        <div class="form-group row">
+                            <label for="Applicant" class="col-md-4 col-form-label text-md-left">申請人</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Applicant" placeholder="必填" autocomplete="off" required>
                             </div>
-                            <div class="form-group row">
-                                <label for="Applicant_phone" class="col-md-4 col-form-label text-md-right">電話</label>
-                                <div class="col-md-8">
-                                    <input type="tel" class="form-control" name="Applicant_phone" placeholder="必填" autocomplete="off" required>
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Applicant_phone" class="col-md-4 col-form-label text-md-left">電話</label>
+                            <div class="col-md-8">
+                                <input type="tel" class="form-control" name="Applicant_phone" placeholder="必填" autocomplete="off" required>
                             </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">需求時段及人數</label>
-                                <div div class="col-md-8">
-                                    <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">請選擇</button>
-                                    <!-- Modal -->
-                                    <div class="modal fade bd-example-modal-lg" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 col-form-label text-md-left">需求時段及人數</label>
+                            <div div class="col-md-8">
+                                <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target=".bd-example-modal-lg">請選擇</button>
+                                <!-- Modal -->
+                                <div class="modal fade bd-example-modal-lg" id="selectModal" tabindex="-1" role="dialog" aria-labelledby="selectModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="selectModalLabel">需求時段及人數</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <table class="table table-bordered table-hover">
+                                                        <thead style="text-align:center;">
+                                                            <tr>
+                                                                <th></th>
+                                                                <th>星期一</th>
+                                                                <th>星期二</th>
+                                                                <th>星期三</th>
+                                                                <th>星期四</th>
+                                                                <th>星期五</th>
+                                                                <th>星期六</th>
+                                                                <th>星期日</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>上午班</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m1" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m2" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m3" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m4" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m5" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m6" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="m7" />人</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>下午班</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af1" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af2" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af3" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af4" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af5" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af6" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="af7" />人</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>夜間班</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n1" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n2" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n3" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n4" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n5" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n6" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="n7" />人</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>支援班</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as1" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as2" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as3" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as4" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as5" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as6" />人</td>
+                                                                <td><input type="text" class="form-control form-control-sm countP" id="as7" />人</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>備註</td>
+                                                                <td colspan="7"><textarea class="form-control " name="Remarks" rows="4"></textarea></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class="modal-body">
-                                                    <div class="row">
-                                                        <table class="table table-bordered table-hover">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th></th>
-                                                                    <th>星期一</th>
-                                                                    <th>星期二</th>
-                                                                    <th>星期三</th>
-                                                                    <th>星期四</th>
-                                                                    <th>星期五</th>
-                                                                    <th>星期六</th>
-                                                                    <th>星期日</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>上午班</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m1" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m2" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m3" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m4" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m5" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m6" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="m7" />人</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>下午班</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af1" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af2" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af3" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af4" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af5" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af6" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="af7" />人</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>夜間班</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n1" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n2" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n3" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n4" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n5" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n6" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="n7" />人</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>支援班</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as1" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as2" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as3" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as4" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as5" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as6" />人</td>
-                                                                    <td><input type="text" class="form-control-xx form-control form-control-sm countP" id="as7" />人</td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>備註</td>
-                                                                    <td colspan="7"><input type="text" class="col-md-12 form-control" name="Remarks" /></td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="IsCh">確定</button>
-                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" data-dismiss="modal" id="IsCh">確定</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="Apply_description" class="col-md-4 col-form-label text-md-right">志工工作項目與流程</label>
-                                <div class="col-md-8">
-                                    <textarea class="form-control" name="Apply_description" rows="4" placeholder="必填" autocomplete="off" required></textarea>
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Apply_description" class="col-md-4 col-form-label text-md-left">志工工作項目與流程</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control" name="Apply_description" rows="4" placeholder="必填" autocomplete="off" required></textarea>
                             </div>
-                            <div class="form-group row">
-                                <label for="Application_unit_Supervisor" class="col-md-4 col-form-label text-md-right">單位主管</label>
-                                <div class="col-md-8">
-                                    <input type="text" class="form-control" name="Application_unit_Supervisor" placeholder="必填" autocomplete="off" required>
-                                </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Application_unit_Supervisor" class="col-md-4 col-form-label text-md-left">單位主管</label>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" name="Application_unit_Supervisor" placeholder="必填" autocomplete="off" required>
                             </div>
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" id="sbt" class="btn btn-info" onclick="return confirm('確定要提交申請嗎？')">提交申請</button>
-                                <button type="reset" class="btn btn-info">重新輸入</button>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" id="sbt" class="btn btn-info" onclick="return confirm('確定要提交申請嗎？')">提交申請</button>
+                            <button type="reset" class="btn btn-info">重新輸入</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
 
 <input id="count" type="hidden" />
 @section Home_script{

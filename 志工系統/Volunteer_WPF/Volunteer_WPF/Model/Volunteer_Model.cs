@@ -361,7 +361,9 @@ namespace Volunteer_WPF.Model
                         Volunteer_no = n1.Volunteer_no,
                         Chinese_name = n1.Chinese_name,
                         Identity_type_name = n2.Identity_type_name,
-                        Photo = n1.Photo
+                        Photo = n1.Photo,
+                        Phone_no = n1.Phone_no,
+                        Mobile_no = n1.Mobile_no
                     };
 
             List<Volunteer_Model> Volunteer_Models = new List<Volunteer_Model>();
@@ -372,6 +374,8 @@ namespace Volunteer_WPF.Model
                 volunteer_Model.Chinese_name = row.Chinese_name;
                 volunteer_Model.Identity_type = row.Identity_type_name;
                 volunteer_Model._Photo = row.Photo;
+                volunteer_Model.Phone_no = row.Phone_no.ToString();
+                volunteer_Model.Mobile_no = row.Mobile_no.ToString();
 
                 Volunteer_Models.Add(volunteer_Model);
             }

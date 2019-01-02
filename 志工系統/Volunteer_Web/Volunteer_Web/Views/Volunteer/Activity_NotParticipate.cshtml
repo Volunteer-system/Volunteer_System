@@ -1,0 +1,423 @@
+﻿@model Volunteer_Web.ViewModel.Activity_Photo_Schedule_typeVM
+@*@model IEnumerable<Volunteer_Web.ViewModels.Activity_Photo_Schedule_typeVM>*@
+@{
+    ViewBag.Title = "Activity_NotParticipate";
+}
+@section style{
+    <style>
+        .form-control-inline {
+            display: inline-block;
+            height: calc(2.25rem + 2px);
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form_date {
+            width: 100%;
+            /*vertical-align:middle;*/
+        }
+
+            .form_date .btn {
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                padding: 0.375rem 0.75rem;
+                font-size: 1rem;
+                border-radius: 0.25rem;
+                margin-top: 0px;
+                transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
+
+        .form-group-inline {
+            margin-bottom: 1rem;
+            display: inline;
+            /*margin-right:20px;*/
+        }
+
+            .form-group-inline label {
+                margin-right: 5px;
+            }
+    </style>
+}
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="offset-2">
+            <form class="form_date">
+                <div class="form-group-inline">
+                    <label>活動區間</label>
+                    <input type="datetime-local" class="form-control-inline" />
+                </div>
+                <div class="form-group-inline">
+                    <label class="mx-1">~</label>
+                    <input type="datetime-local" class="form-control-inline" />
+                </div>
+                <input type="submit" class="btn btn-outline-danger  ml-2" value="查詢" />
+                @*<div class="form-group-inline">
+
+
+                    </div>*@
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="row mt-3">
+    <div class="col-2">
+        <div class="list-group">
+            <a href="~/Volunteer/Activity_Participate" class="btn btn-outline-danger">你已參加的活動</a>
+            <a href="~/Volunteer/Activity_NotParticipate" class="btn btn-outline-danger">你未參加的活動</a>
+            @*<a href="~"></a>*@
+            @*@Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })*@
+            @foreach (var category in Model.activity_types)
+
+            {
+                @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "list-group-item list-group-item-action" })
+            }
+        </div>
+    </div>
+    <div class="col-10">
+        <div class="row">
+
+            @foreach (var ac in Model.acvno_VM)
+            {
+
+                <div class="col-sm-4 mt-2">
+                    <div class="card">
+                        <img class="card-img-top" src="@Url.Action("GetImageBytes", "Volunteer", new { id = ac.Activity_Photo_id })" />
+                        <div class="card-body">
+                            @*<form action="/Volunteer/Activity_Browse" method="post">*@
+                            <h3 id="Activity_name_@ac.Activity_no" @*data-value="@ac.Activity_no"*@ class="card-title">@ac.Activity_name</h3>
+                            @*<input type="hidden" name="actno" value="@ac.Activity_no" />*@
+                            @*<p hidden id="Activity_name_@ac.Activity_no"></p>*@
+                            <p id="Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
+                            <p id="start_@ac.Activity_no" class="card-text">@ac.Activity_startdate</p>
+                            <p>活動編號 @ac.Activity_no</p>
+                            <p>活動報名人數 @ac.count</p>
+                            <p>活動人數上限 @ac.Member</p>
+                            <p>活動備取人數 @ac.Spare</p>
+                            @*<p id="end_@ac.Activity_no" class="card-text">活動結束時間：@ac.Activity_enddate</p>*@
+                            @*<p id="Undertake_unit_@ac.Activity_no" class="card-text">承辦單位：@ac.Undertake_unit</p>
+                                <p id="Undertaker_@ac.Activity_no" class="card-text">承辦人：@ac.Volunteer_supervision.supervision_Name</p>*@
+                            <p hidden id="m_Activity_no_@ac.Activity_no" class="card-text">@ac.Activity_no</p>
+                            <p hidden id="m_Activity_type_ID_@ac.Activity_no" class="card-text">@ac.Activity_type1</p>
+                            <p hidden id="m_Activity_name_@ac.Activity_no" class="card-text">@ac.Activity_name</p>
+                            <p hidden id="m_group_@ac.Activity_no" class="card-text">@ac.Group_name</p>
+                            <p hidden id="m_Activity_startdate_@ac.Activity_no" class="card-text">@ac.Activity_startdate</p>
+                            <p hidden id="m_Activity_enddate_@ac.Activity_no" class="card-text">@ac.Activity_enddate</p>
+                            <p hidden id="m_Undertake_unit_@ac.Activity_no" class="card-text">@ac.Undertake_unit</p>
+                            <p hidden id="m_Undertaker_@ac.Activity_no" class="card-text">@ac.supervision_Name</p>
+                            <p hidden id="m_Undertake_phone_@ac.Activity_no" class="card-text">@ac.Undertake_phone</p>
+                            <p hidden id="m_Undertake_email_@ac.Activity_no" class="card-text">@ac.Undertake_email</p>
+                            <p hidden id="m_lecturer_@ac.Activity_no" class="card-text">@ac.lecturer</p>
+                            <p hidden id="m_Member_@ac.Activity_no" class="card-text">@ac.Member</p>
+                            <p hidden id="m_Spare_@ac.Activity_no" class="card-text">@ac.Spare</p>
+                            <p hidden id="m_Place_@ac.Activity_no" class="card-text">@ac.Place</p>
+                            <p hidden id="m_Summary_@ac.Activity_no" class="card-text">@ac.Summary</p>
+                            <p hidden id="@ac.Activity_no" name="acactivityNo"></p>
+                            @{
+                                ViewBag.acactivityNo = ac.Activity_no;
+                            }
+                            @*<a type="" href="#" class="btn btn-secondary">內容</a>*@
+                            @*<a href="~/volunteer/xxx/id=@ac.Activity_no" class="btn btn-secondary">內容</a>*@
+                            @*<input type="submit" value="參加" />*@
+                            @*<a id="att" href="~/Volunteer/Activity_Browse/id=@ViewBag.userid?activityID=@ac.Activity_no" class="btn btn-secondary">參加</a>*@
+                            @*if( 活動報名人數 @ac.count < 活動人數上限 @ac.Member )
+                                {
+                                參加 按鈕 顯示 且 有功能
+                                }
+                                else
+                                {
+                                參加 按鈕 無法使用 且 沒有功能
+                                }*@
+                            @*重要*@
+                            @*活動報名人數<活動人數上限*@
+                            @if (ac.count < ac.Member)
+                            {
+                                if (ac.part)
+                                {
+                                    <a class="btn btn-danger">已參加</a>
+                                }
+                                else
+                                {
+                                    <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-outline-success">參加</a>
+
+                                }
+                            }
+                            else
+                            {
+                                if (ac.part)
+                                {
+                                    <a class="btn btn-danger">已參加</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-warning">人數已滿</a>
+
+                                }
+
+
+                            }
+
+                            @* 重要  <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>*@
+                            <!-- Button trigger modal-->
+                            <button id="@ac.Activity_no" value="@ac.Activity_Photo_id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
+                                詳細資訊
+                            </button>
+                            <p hidden id="hid_@ac.Activity_no">@ac.Summary</p>
+                            @*</form>*@
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+
+                            <th colspan="2"><img id="model_img" class="card-img-top" alt="Card image cap"></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>活動編號</td>
+                            <td id="model_Activity_no"></td>
+                        </tr>
+                        <tr>
+                            <td>活動名稱</td>
+                            <td id="model_Activity_name"></td>
+                        </tr>
+                        <tr>
+                            <td>活動類別</td>
+                            <td id="model_Activity_type_ID"></td>
+                        </tr>
+                        <tr>
+                            <td>組別</td>
+                            <td id="model_group"></td>
+                        </tr>
+                        <tr>
+                            <td>活動開始時間</td>
+                            <td id="model_Activity_startdate"></td>
+                        </tr>
+                        <tr>
+                            <td>活動結束時間</td>
+                            <td id="model_Activity_enddate"></td>
+                        </tr>
+                        <tr>
+                            <td>承辦單位</td>
+                            <td id="model_Undertake_unit"></td>
+                        </tr>
+                        <tr>
+                            <td>承辦人</td>
+                            <td id="model_Undertaker"></td>
+                        </tr>
+                        <tr>
+                            <td>承辦單位電話</td>
+                            <td id="model_Undertake_phone"></td>
+                        </tr>
+                        <tr>
+                            <td>承辦單位e-mail</td>
+                            <td id="model_Undertake_email"></td>
+                        </tr>
+                        <tr>
+                            <td>講師</td>
+                            <td id="model_lecturer"></td>
+                        </tr>
+                        <tr>
+                            <td>課程人數</td>
+                            <td id="model_Member"></td>
+                        </tr>
+                        <tr>
+                            <td>備取人數</td>
+                            <td id="model_Spare"></td>
+                        </tr>
+                        <tr>
+                            <td>活動地點</td>
+                            <td id="model_Place"></td>
+                        </tr>
+                        <tr>
+                            <td>活動簡介</td>
+                            <td id="model_Summary"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--Footer-->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">結束</button>
+                @*<button class="btn btn-primary">Checkout</button>*@
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+<!-- Central Modal Medium Success -->
+<div class="modal fade" id="centralModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-success" role="document">
+        <form action="~/Volunteer/Activity_Browse" method="post">
+            <!--Content-->
+            <div class="modal-content">
+                <!--Header-->
+                <div class="modal-header">
+                    <h1 class="heading lead">感謝您的參與</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="white-text">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="fa fa-check fa-4x mb-3 animated rotateIn"></i>
+                        <h5>
+                            此次活動提供便當
+                            如果你吃素的話
+                            請在以下選擇素食便當
+                        </h5>
+                        <input class="form-check-input" type="checkbox" name="VegeYesOrNo" value="true" id="VegeYesOrNo">素食便當
+                        <input hidden type="text" name="id" id="@ViewBag.userid" value="@ViewBag.userid" />
+                        <input hidden type="text" name="activityNo" id="exactivityNo" value="" />
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer justify-content-center">
+                    <input class="btn btn-outline-danger" type="submit" value="確定" />
+                    <a class="btn btn-outline-success waves-effect" data-dismiss="modal">結束</a>
+                </div>
+            </div>
+            <!--/.Content-->
+        </form>
+
+    </div>
+</div>
+<!-- Central Modal Medium Success-->
+@section script{
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('a[name="a1"]').click(function () {
+                            @*當按下 參加 按鈕的時 , 把按鈕的 data-value="@ac.Activity_no" 指派給 var n*@
+                var n = $(this).data("value")/*$('input[type="hidden"]').val();*/
+               // alert(n)
+                $('#exactivityNo').val(n);
+                            //找到id = "exactivityNo" 的 input 標籤 把 n 設定到 value 中
+
+                @*var n1 =$('')
+                console.log();
+                $.post("/Volunteer/Activity_Browse", { id: @ViewBag.userid, activityID: n}, function (datas) {
+                    alert(datas); //提示 感謝參加活動
+
+                })*@
+            })
+
+            $('.card-body').on('click', ':button', function () {
+                var id = $(this).attr("id");
+                     //var nameee = $(this).attr("name");
+                //var doc = $('#Activity_name_' + id).text();
+                $('.modal-title').text('活動詳細資訊');
+
+
+                var photo_id = $(this).val();
+                $('#model_img').attr("src", "/Volunteer/GetImageBytes/" + photo_id);
+
+                $('#model_Activity_no').text($('#m_Activity_no_' + id).text());
+                $('#model_Activity_name').text($('#m_Activity_name_' + id).text());
+                $('#model_Activity_type_ID').text($('#m_Activity_type_ID_' + id).text());
+                $('#model_group').text($('#m_group_' + id).text());
+                $('#model_Activity_startdate').text($('#m_Activity_startdate_' + id).text());
+                $('#model_Activity_enddate').text($('#m_Activity_enddate_' + id).text());
+                $('#model_Undertake_unit').text($('#m_Undertake_unit_' + id).text());
+                $('#model_Undertaker').text($('#m_Undertaker_' + id).text());
+                $('#model_Undertake_phone').text($('#m_Undertake_phone_' + id).text());
+                $('#model_Undertake_email').text($('#m_Undertake_email_' + id).text());
+                $('#model_lecturer').text($('#m_lecturer_' + id).text());
+                $('#model_Member').text($('#m_Member_' + id).text());
+                $('#model_Spare').text($('#m_Spare_' + id).text());
+                $('#model_Place').text($('#m_Place_' + id).text());
+                $('#model_Summary').text($('#m_Summary_' + id).text());
+            })
+
+
+        })
+    </script>
+}
+@*[DisplayName("活動編號")]
+    public int Activity_no { get; set; }
+    //[Required(ErrorMessage = "請輸入活動名稱")]
+    [DisplayName("活動名稱")]
+    public string Activity_name { get; set; }
+    [DisplayName("活動類別")]
+    public int Activity_type_ID { get; set; }
+    [DisplayName("組別")]
+    public Nullable<int>
+    Group_no { get; set; }
+    [DisplayName("活動起始時間")]
+    [DataType(DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm:ss}")]
+    public Nullable<System.DateTime>
+    Activity_startdate { get; set; }
+    [DisplayName("活動結束時間")]
+    [DataType(DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd HH:mm:ss}")]
+    public Nullable<System.DateTime>
+    Activity_enddate { get; set; }
+    [DisplayName("承辦單位")]
+    public string Undertake_unit { get; set; }
+    [DisplayName("承辦人")]
+    public Nullable<int>
+    Undertaker { get; set; }
+    [DisplayName("承辦單位電話")]
+    //[RegularExpression(@"^\d{10}$",ErrorMessage ="請輸入格式(02)12345678")]
+    public string Undertake_phone { get; set; }
+    //[Required]
+    [DataType(DataType.EmailAddress)]
+    [DisplayName("承辦單位e-mail")]
+    public string Undertake_email { get; set; }
+    [DisplayName("講師")]
+    public string lecturer { get; set; }
+    [DisplayName("課程人數")]
+    public Nullable<int>
+    Member { get; set; }
+    [DisplayName("備取人數")]
+    public Nullable<int>
+    Spare { get; set; }
+    [DisplayName("活動地點")]
+    public string Place { get; set; }
+    [DisplayName("活動簡介")]
+    public string Summary { get; set; }
+    [DisplayName("活動照片id")]
+    public Nullable<int> Activity_Photo_id { get; set; }*@

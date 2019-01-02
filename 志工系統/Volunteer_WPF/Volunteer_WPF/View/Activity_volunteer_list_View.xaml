@@ -15,15 +15,15 @@
         </Grid.RowDefinitions>
         <Button Content="新增" Height="30" FontSize="14" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Margin="24,19,213.6,21.4" Click="Button_Click_2"/>
         <TextBox x:Name="txt_Addvolunteer" HorizontalAlignment="Left" Height="30" Margin="97,19,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.445,0.546" FontSize="16"/>
-        <Button x:Name="btn_Addvolunteer" Content="加入" Height="30" FontSize="14" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Margin="220,19,9.6,21.4" Click="Button_Click_2"/>
-        <DataGrid x:Name="dg_Expertise" FontSize="14" HorizontalAlignment="Left" IsReadOnly="True" Height="280" Margin="5,70,5.0,0" VerticalAlignment="Top" Width="294"  Grid.RowSpan="2">
+        <Button x:Name="btn_Addvolunteer" Content="加入" Height="30" FontSize="14" Background="Turquoise" Foreground="White" BorderBrush="{x:Null}" Margin="220,19,9.6,21.4" Click="Btn_Addvolunteer_Click"/>
+        <DataGrid x:Name="dg_Volunteer_list" FontSize="14" HorizontalAlignment="Left" IsReadOnly="True" Height="280" Margin="5,70,5.0,0" VerticalAlignment="Top" Width="294"  Grid.RowSpan="2">
             <DataGrid.Columns>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <CheckBox Name="CB" IsChecked="{Binding Checked}"  Unchecked="CB_Unchecked"  Checked="CB_Checked"></CheckBox>
+                            <CheckBox Name="CB" IsChecked="{Binding Checked}"  Unchecked="CB_Unchecked"  Checked="CB_Checked"></CheckBox>                            
                         </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn.CellTemplate>                    
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>

@@ -184,7 +184,7 @@ namespace Volunteer_Web.Controllers
             //_manpower_apply.Work_place = Request.Form["Work_place"];  //值班地點]
             _manpower_apply.Apply_description = Request.Form["Apply_description"];  //工作項目與流程
             _manpower_apply.Application_unit_Supervisor = Request.Form["Application_unit_Supervisor"];  //單位主管
-            _manpower_apply.Application_unit_heads = Request.Form["Application_unit_heads"];  //部門主管
+            //_manpower_apply.Application_unit_heads = Request.Form["Application_unit_heads"];  //部門主管
             _manpower_apply.Application_number = Convert.ToInt32(Request.Form["Application_number"]);  //申請人數
             _manpower_apply.Remarks = Request.Form["Remarks"];  //備註
 
@@ -272,6 +272,34 @@ namespace Volunteer_Web.Controllers
             return View();
         }
 
+        public ActionResult TemporaryInsert()
+        {
+            if (Request.Form.Count > 0)
+            {
+                _manpower_apply.Application_unit_no = Convert.ToInt32(Session["UserID"]);  //運用單位編號
+                _manpower_apply.Applicant = Request.Form["Applicant"];  //申請人
+                _manpower_apply.Apply_date = DateTime.Now;  //申請日期
+                _manpower_apply.Applicant_phone = Request.Form["Applicant_phone"];  //申請人電話
+                _manpower_apply.Apply_description = Request.Form["Apply_description"];  //工作項目與流程
+                _manpower_apply.Application_unit_Supervisor = Request.Form["Application_unit_Supervisor"];  //單位主管
+                _manpower_apply.Apply_type = "臨時申請"; //申請類別
+                _manpower_apply.Application_number = Convert.ToInt32(Request.Form["Application_number"]);  //申請人數
+                _manpower_apply.Remarks = Request.Form["Remarks"];  //備註
+
+                var q = from s in dbContext.Stages
+                        where s.Stage1 == "新申請"
+                        select s.Stage_ID;
+                _manpower_apply.Apply_state = q.ToList().First(); //申請階段
+
+                manpowerapplyRepository.Create(_manpower_apply);
+                
+
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+
         public ActionResult InsertSuccess(int id=1)
         {
             var q = from m in dbContext.Manpower_apply
@@ -281,10 +309,7 @@ namespace Volunteer_Web.Controllers
 
             return View(q.First());
         }
-
-
-
-
+        
 
 
 

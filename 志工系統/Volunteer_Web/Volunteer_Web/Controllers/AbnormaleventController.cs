@@ -233,8 +233,7 @@ namespace Volunteer_Web.Controllers
                 _abnormal_Event.Stage = q.ToList().First();
                 abnormaleventRepository.Create(_abnormal_Event);
 
-                
-                return RedirectToAction("Index");
+                return Content("<script>alert('通報成功!');window.open('" + Url.Content("~/Abnormalevent/Home") + "', '_self')</script>");
 
             }
             return View();

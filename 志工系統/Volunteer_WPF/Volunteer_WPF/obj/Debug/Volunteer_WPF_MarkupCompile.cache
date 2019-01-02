@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\App.xaml
-401110188281
+41-890001635
 2-1577328519
-138-1160638429
+140-10972936
 30-755132010
-MainWindow.xaml;User_Control\Activity_Addimage_use.xaml;User_Control\CloseableHeader.xaml;User_Control\MyUserControl.xaml;User_Control\UCTabItemWithClose.xaml;User_Control\Volunteer_card.xaml;View\Abnormal_event.xaml;View\Abnormal_event_analysis_chart_View.xaml;View\Abnormal_event_analysis_View.xaml;View\Abnormal_event_detail.xaml;View\Activity_AddActionDetail_View.xaml;View\Activity_detail_View.xaml;View\Activity_View.xaml;View\Activity_volunteer_list_View.xaml;View\Application_unitdata_View.xaml;View\Application_unit_data_View.xaml;View\Application_unit_detail_View.xaml;View\Application_unit_expertise_View.xaml;View\Application_unit_View.xaml;View\BasicItem.xaml;View\choose_unit_analysis_View.xaml;View\Dictionary_ValidationErrorTemlate.xaml;View\Event_Application_View.xaml;View\Event_result_View.xaml;View\ExpertiseBasic_View.xaml;View\Home.xaml;View\Login.xaml;View\Manpower_applydata_View.xaml;View\Manpower_apply_detail_View.xaml;View\Manpower_apply_View.xaml;View\Shift_schedule_data_View.xaml;View\Shift_schedule_detail_View.xaml;View\Shift_schedule_View.xaml;View\Signup_data_View.xaml;View\Sign_up_View.xaml;View\VolunteerExpertise.xaml;View\VolunteerService_group.xaml;View\Volunteer_detail.xaml;View\Volunteer_View.xaml;View\Volunteer_data_View.xaml;
+MainWindow.xaml;User_Control\Activity_Addimage_use.xaml;User_Control\CloseableHeader.xaml;User_Control\MyUserControl.xaml;User_Control\UCTabItemWithClose.xaml;User_Control\Volunteer_card.xaml;View\Abnormal_event.xaml;View\Abnormal_event_analysis_chart_View.xaml;View\Abnormal_event_analysis_View.xaml;View\Abnormal_event_detail.xaml;View\Activity_AddActionDetail_View.xaml;View\Activity_data_View.xaml;View\Activity_detail_View.xaml;View\Activity_View.xaml;View\Activity_volunteer_list_View.xaml;View\Application_unitdata_View.xaml;View\Application_unit_data_View.xaml;View\Application_unit_detail_View.xaml;View\Application_unit_expertise_View.xaml;View\Application_unit_View.xaml;View\BasicItem.xaml;View\choose_unit_analysis_View.xaml;View\Dictionary_ValidationErrorTemlate.xaml;View\Event_Application_View.xaml;View\Event_result_View.xaml;View\ExpertiseBasic_View.xaml;View\Home.xaml;View\Login.xaml;View\Manpower_applydata_View.xaml;View\Manpower_apply_detail_View.xaml;View\Manpower_apply_View.xaml;View\Shift_schedule_data_View.xaml;View\Shift_schedule_detail_View.xaml;View\Shift_schedule_View.xaml;View\Signup_data_View.xaml;View\Sign_up_View.xaml;View\VolunteerExpertise.xaml;View\VolunteerService_group.xaml;View\Volunteer_detail.xaml;View\Volunteer_View.xaml;View\Volunteer_data_View.xaml;
 
 False
 

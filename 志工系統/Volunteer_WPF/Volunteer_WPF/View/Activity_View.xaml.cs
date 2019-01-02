@@ -51,9 +51,10 @@ namespace Volunteer_WPF.View
                 string activity_name = (this.dg_activity.SelectedItem as activity_list).活動名稱;
                 DateTime activity_startdate = Convert.ToDateTime((this.dg_activity.SelectedItem as activity_list).活動起始時間);
 
-                Activity_AddActionDetail_View activity_addaction = new Activity_AddActionDetail_View();
-                activity_addaction.AmendActivity(activity_name, activity_startdate);
-                activity_addaction.ShowDialog();
+                //Activity_AddActionDetail_View activity_addaction = new Activity_AddActionDetail_View();
+                Activity_data_View activity_Data_View = new Activity_data_View();
+                activity_Data_View.AmendActivity(activity_name, activity_startdate);
+                activity_Data_View.ShowDialog();
             }
             
         }
