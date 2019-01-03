@@ -58,8 +58,8 @@ namespace Volunteer_WPF.Model
                     on n1.Supervisor_ID equals n5.supervision_ID
                     join n6 in dbContext.event_category
                     on n1.event_category_ID equals n6.event_category_ID
-                    join n7 in dbContext.Volunteer
-                    on n1.Volunteer_leader_ID equals n7.Volunteer_no
+                    //join n7 in dbContext.Volunteer
+                    //on n1.Volunteer_leader_ID equals n7.Volunteer_no
                     where n1.Abnormal_event_ID.Trim() == event_ID.Trim()
                     select new
                     {
@@ -76,7 +76,7 @@ namespace Volunteer_WPF.Model
                         Volunteer_description = n1.Volunteer_description,
                         Supervisor_description = n1.Supervisor_description,
                         Result = n1.Result,
-                        Volunteer_leader = n7.Chinese_name,
+                        //Volunteer_leader = n7.Chinese_name,
                         Supervisor_heads = n1.Supervisor_heads,
                         Rejection_Reason = n1.Rejection_Reason
                     };
@@ -96,7 +96,7 @@ namespace Volunteer_WPF.Model
                 Volunteer_description = row.Volunteer_description;
                 Supervisor_description = row.Supervisor_description;
                 Result = row.Result;
-                Volunteer_leader = row.Volunteer_leader;
+                //Volunteer_leader = row.Volunteer_leader;
                 Supervisor_heads = row.Supervisor_heads;
                 Rejection_Reason = row.Rejection_Reason;
             }

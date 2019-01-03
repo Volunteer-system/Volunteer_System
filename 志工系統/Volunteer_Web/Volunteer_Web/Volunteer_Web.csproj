@@ -455,6 +455,8 @@
     <Content Include="Views\ManpowerApply\Home.cshtml" />
     <Content Include="Views\ManpowerApply\InsertSuccess.cshtml" />
     <Content Include="Views\Volunteer\Activity_DetailPartial.cshtml" />
+    <Content Include="Views\Volunteer\Activity_NotParticipate.cshtml" />
+    <Content Include="Views\Volunteer\Activity_Participate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

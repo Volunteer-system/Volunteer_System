@@ -223,6 +223,9 @@ namespace Volunteer_WPF.View
                 {
                     getclick(l_click_ok, l_click_delete, "面試審核", stage_pass_applicant);                    
                     this.Myentity.SaveChanges();                              //將修改存回資料庫
+
+                    Inertgroup_andexpertise(l_click_ok);
+
                     this.DataGrid_1.ItemsSource = null;                       //更新該頁面
                     this.DataGrid_1.ItemsSource = get_volunteer(stage_interview); //重新呼叫資料
 
@@ -645,6 +648,41 @@ namespace Volunteer_WPF.View
                                 q[j].Stage = getstageID(state); //將狀態改成1，代表為要求面試
                                 q[j].Approval_date = DateTime.Now; //新增審核日期為今天
                                 q[j].supervision_ID = supervisionID;
+
+                                // -wlc-
+                                if (message == "面試審核")
+                                {
+                                    Volunteer volunteer = new Volunteer();
+                                    volunteer.Chinese_name = q[j].Chinese_name;
+                                    volunteer.English_name = q[j].English_name;
+                                    volunteer.sex = q[j].Sex;
+                                    volunteer.birthday = q[j].Birthday;
+                                    volunteer.IDcrad_no = "A123456789";
+                                    if (q[j].Sign_up_type == "學生志工")
+                                    {
+                                        volunteer.Identity_type = 2;
+                                    }
+                                    else
+                                    {
+                                        volunteer.Identity_type = 1;
+                                    }
+                                    volunteer.Join_date = q[j].Sign_up_date;
+                                    if (int.TryParse(q[j].Phone, out int phone_no))
+                                    {
+                                        volunteer.Phone_no = phone_no;
+                                    }
+                                    if (int.TryParse(q[j].Mobile, out int mobile_no))
+                                    {
+                                        volunteer.Mobile_no = mobile_no;
+                                    }
+                                    volunteer.Address = q[j].Address;
+                                    volunteer.Education = q[j].Education;
+                                    volunteer.Lssuing_unit_no = 1;                                    
+
+                                    Myentity.Volunteer.Add(volunteer);
+                                }                                
+                                // -wlc-
+
                                 ThreadStart TS = new ThreadStart(
                                     delegate ()
                                     {
@@ -691,6 +729,41 @@ namespace Volunteer_WPF.View
                     }
                 }
             }
+        }
+
+        public void Inertgroup_andexpertise(List<int> AD)
+        {
+            var Sign_up_list = (from n in Myentity.Sign_up
+                     select n).ToList();
+            var Sign_up_expertise_list = (from n in Myentity.Sign_up_expertise
+                                          select n).ToList();
+            foreach (var row in AD)
+            {
+                Sign_up sign_Up = Sign_up_list.Where(p => p.Sign_up_no == row).First();
+
+                var q = (from n in Myentity.Volunteer
+                         where n.Chinese_name == sign_Up.Chinese_name &&
+                              n.Join_date == sign_Up.Sign_up_date
+                         select n).First();
+
+                Service_Group1 service_Group1 = new Service_Group1();
+                service_Group1.Volunteer_no = q.Volunteer_no;
+                service_Group1.Group_no = 1;
+
+                Myentity.Service_Group1.Add(service_Group1);
+
+                var expertise_list = Sign_up_expertise_list.Where(p => p.Sign_up_no == row).ToList();
+                foreach (var expertise in expertise_list)
+                {
+                    Expertise2 expertise2 = new Expertise2();
+                    expertise2.Volunteer_no = q.Volunteer_no;
+                    expertise2.Expertise_no = (int)expertise.Expertise;
+
+                    Myentity.Expertise2.Add(expertise2);
+                }
+            }
+
+            this.Myentity.SaveChanges();
         }
     }
 }

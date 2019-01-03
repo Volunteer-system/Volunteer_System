@@ -47,7 +47,7 @@
                             </DataGridTemplateColumn.HeaderTemplate>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button Content="刪除" Width="50" Click="btn_check_Click"/>
+                                    <Button Content="刪除" Width="50" Click="btn_check_Click" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

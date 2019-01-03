@@ -160,19 +160,21 @@ namespace Volunteer_WPF.View
             window.ShowDialog();
 
             Button Btn = sender as Button;
+            int row = Grid.GetRow(Btn);
+            int column = Grid.GetColumn(Btn);
             string lab1_name = "lab1_" + Btn.Name.Substring(4);
-
-            Label label1 = this.grid_schedule.FindName(lab1_name) as Label;
-
             string lab2_name = "lab2_" + Btn.Name.Substring(4);
-            Label label2 = this.grid_schedule.FindName(lab2_name) as Label;
 
-            //label2.Content = window.Volunteer_count;
-            //if (window.Volunteer_count > (int)label1.Content)
+            //var labels = this.grid_schedule.Children.Cast<Label>().Where(i => Grid.GetRow(i) == row && Grid.GetColumn(i) == column);
+            //var label1 = labels.Where(p => p.Name == lab1_name).First();
+            //var count = (int)label1.Content;
+            //Label label2 = labels.Where(p => p.Name == lab2_name).First();
+
+            //if (window.Volunteer_count > count)
             //{
             //    label2.Foreground = Brushes.Red;
             //}
-            //else if (window.Volunteer_count == (int)label1.Content)
+            //else if (window.Volunteer_count == count)
             //{
             //    label2.Foreground = Brushes.Green;
             //}
@@ -180,6 +182,7 @@ namespace Volunteer_WPF.View
             //{
             //    label2.Foreground = Brushes.Gray;
             //}
+
         }
     }
 }
