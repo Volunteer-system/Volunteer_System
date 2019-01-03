@@ -534,7 +534,7 @@ namespace Volunteer_WPF.View_Model
             {
                 VM_Group_no = 1;
             }
-            Activity Ac = new Activity() { Activity_name = VM_Activity_name ,lecturer = VM_lecturer,Activity_type_ID = VM_Activity_type_ID, Group_no = VM_Group_no, Undertaker = VM_supervision_ID, Undertake_phone = VM_supervision_phone.ToString(), Undertake_email = VM_supervision_email, Member = VM_Member , Spare = VM_Spare, Place = VM_Place, Summary = VM_Summary, Activity_startdate = DateTime.Parse(VM_Activity_startdate), Activity_enddate = DateTime.Parse(VM_Activity_enddate)};
+            Activity Ac = new Activity() { Activity_name = VM_Activity_name ,lecturer = VM_lecturer,Activity_type_ID = VM_Activity_type_ID, Group_no = VM_Group_no, Undertake_unit = "社工室", Undertaker = VM_supervision_ID, Undertake_phone = VM_supervision_phone.ToString(), Undertake_email = VM_supervision_email, Member = VM_Member , Spare = VM_Spare, Place = VM_Place, Summary = VM_Summary, Activity_startdate = DateTime.Parse(VM_Activity_startdate), Activity_enddate = DateTime.Parse(VM_Activity_enddate)};
             Myentity.Activities.Add(Ac);          
             Myentity.SaveChanges();
             //再新增照片進資料庫▼
@@ -815,9 +815,11 @@ namespace Volunteer_WPF.View_Model
         {
             for (int i = 0; i < list_photo.Count; i += 1)
             {
-                int name_end = (list_photo[i].Length - list_photo[i].LastIndexOf('\\')) - (list_photo[i].Length - list_photo[i].IndexOf('.'));
+                //int name_end = (list_photo[i].Length - list_photo[i].LastIndexOf('\\')) - (list_photo[i].Length - list_photo[i].IndexOf('.'));
+                int name_end = (list_photo[i].Length - list_photo[i].IndexOf('.')) - (list_photo[i].Length - list_photo[i].LastIndexOf('\\'));
                 Activity_Addimage_use UserControl = new Activity_Addimage_use();
-                UserControl.Title = list_photo[i].Substring(list_photo[i].LastIndexOf('\\') + 1, name_end - 1);
+                //UserControl.Title = list_photo[i].Substring(list_photo[i].LastIndexOf('\\') + 1, name_end - 1);
+                UserControl.Title = list_photo[i].Substring(list_photo[i].LastIndexOf('\\') + 1);
                 UserControl.imagesource = new BitmapImage(new Uri(list_photo[i]));
                 UserControl.Height = 150;//210
                 UserControl.Width = 200;//200

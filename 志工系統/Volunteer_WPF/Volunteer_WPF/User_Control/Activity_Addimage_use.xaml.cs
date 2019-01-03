@@ -28,13 +28,20 @@ namespace Volunteer_WPF.User_Control
         public Activity_Addimage_use()
         {
             InitializeComponent();
+            //brush_ok = new ImageBrush();
+            //string path_ok = System.IO.Path.GetFullPath("../../image/check-green.png");
+            //brush_ok.ImageSource = new BitmapImage(new Uri(path_ok,UriKind.RelativeOrAbsolute));
+
+            //brush_nok = new ImageBrush();
+            //string path_nok = System.IO.Path.GetFullPath("../../image/check.png");
+            //brush_nok.ImageSource = new BitmapImage(new Uri(path_nok,UriKind.RelativeOrAbsolute));
+
             brush_ok = new ImageBrush();
-            string path_ok = System.IO.Path.GetFullPath("../../image/check-green.png");
-            brush_ok.ImageSource = new BitmapImage(new Uri(path_ok,UriKind.RelativeOrAbsolute));
+            brush_ok.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/check-green.png", UriKind.RelativeOrAbsolute));
+
 
             brush_nok = new ImageBrush();
-            string path_nok = System.IO.Path.GetFullPath("../../image/check.png");
-            brush_nok.ImageSource = new BitmapImage(new Uri(path_nok,UriKind.RelativeOrAbsolute));
+            brush_nok.ImageSource = new BitmapImage(new Uri("pack://application:,,,/image/check.png", UriKind.RelativeOrAbsolute));
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

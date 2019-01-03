@@ -18,7 +18,7 @@
     </Window.Resources>
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible"  HorizontalScrollBarVisibility="Hidden" Margin="0,0,0.0,50" >
-            <Grid Height="1050" Width="794" VerticalAlignment="Top">
+            <Grid Height="1080" Width="794" VerticalAlignment="Top">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="50" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,1,0,0"/>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="222" Margin="0,2,0,0"/>
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="50" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,51,0,0"/>
@@ -136,6 +136,20 @@
                         </i:Interaction.Triggers>
                     </WrapPanel>
                 </ScrollViewer>
+                <Button x:Name="btn_amend_addimage" Background="Turquoise" Foreground="White" Content="開啟檔案" HorizontalAlignment="Left" Margin="126,971,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16"  Width="82" Height="33">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_addimage_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
+                <Button x:Name="btn_amend_delete" Background="Turquoise" Foreground="White" Content="刪除勾選" HorizontalAlignment="Left" Margin="126,1011,0,0" VerticalAlignment="Top" FontFamily="Microsoft Sans Serif" FontSize="16"  Width="82" Height="33">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <ic:CallMethodAction TargetObject="{Binding}" MethodName="btn_amend_delete_Click"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </Button>
             </Grid>
         </ScrollViewer>
         <Button  Content="人員調整" BorderBrush="{x:Null}" FontSize="18" Background="Turquoise" Foreground="White" HorizontalAlignment="Left" Margin="416,680,0,0" VerticalAlignment="Top" Width="106" Height="38" FontFamily="Microsoft Sans Serif" Click="Button_Click">
