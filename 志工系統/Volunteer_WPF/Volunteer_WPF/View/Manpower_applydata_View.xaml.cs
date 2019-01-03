@@ -42,7 +42,15 @@ namespace Volunteer_WPF.View
             this.lab_unit_heads.Content = manpower_Apply_data_ViewModel.unit_heads;
             this.lab_Application_number.Content = manpower_Apply_data_ViewModel.Application_number;            
             this.txt_unit_descrition.Text = manpower_Apply_data_ViewModel.Apply_description;
-            this.lab_Supervision.Content = manpower_Apply_data_ViewModel.Supervision;
+            if (string.IsNullOrEmpty(manpower_Apply_data_ViewModel.Supervision))
+            {
+                this.lab_Supervision.Content = Account_ViewModel.User;
+            }
+            else
+            {
+                this.lab_Supervision.Content = manpower_Apply_data_ViewModel.Supervision;
+            }
+            
             this.lab_Supervision_heads.Content = manpower_Apply_data_ViewModel.Supervision_heads;
             this.lab_Reply_date.Content = manpower_Apply_data_ViewModel.Reply_date;
             this.txt_Reply_number.Text = manpower_Apply_data_ViewModel.Reply_number;

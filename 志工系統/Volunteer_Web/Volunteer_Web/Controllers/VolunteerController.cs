@@ -149,6 +149,15 @@ namespace Volunteer_Web.Controllers
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
             ViewBag.Activity_type_ID = activity_typeID;
+
+            ViewBag.startDate = startDate;
+            ViewBag.endDate = endDate;
+            ViewBag.ss = false;
+            if (ViewBag.startDate != null && ViewBag.endDate != null)
+            {
+                ViewBag.ss = true;
+            }
+
             return View("Activity_Browse", vm);
 
         }
@@ -195,8 +204,8 @@ namespace Volunteer_Web.Controllers
             ViewBag.userid = Session["UserID"];
             //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
             //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
-            return View(vm);
-
+            //return View(vm);
+            return View("Activity_Browse", vm);
         }
 
         public ActionResult Activity_NotParticipate()
@@ -208,7 +217,8 @@ namespace Volunteer_Web.Controllers
             ViewBag.userid = Session["UserID"];
             //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
             //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
-            return View(vm);
+            //return View(vm);
+            return View("Activity_Browse", vm);
 
         }
 

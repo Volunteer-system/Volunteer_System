@@ -67,6 +67,15 @@ namespace Volunteer_WPF.View_Model
                     Supervision_heads = manpower_Apply_Model.Supervision_heads;
                     Application_number = manpower_Apply_Model.Application_number;
                     Reply_number = manpower_Apply_Model.Reply_number;
+
+                    Account_Model account_Model = new Account_Model();
+                    string director = account_Model.Selectdirector();
+                    Supervision_heads = director;
+
+                    if (string.IsNullOrEmpty(Reply_date))
+                    {
+                        Reply_date = DateTime.Now.ToShortDateString();
+                    }
                     break;
                 case "修改":
                     manpower_Apply_Detail_ViewModel.SelectManpower_apply_byApply_ID(apply_id, type);
@@ -111,11 +120,14 @@ namespace Volunteer_WPF.View_Model
             Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
             manpower_Apply_Model.UpdateManpower_apply(Apply_Data_ViewModel.Apply_ID, int.Parse(Apply_Data_ViewModel.Reply_number), Apply_Data_ViewModel.Repply_description,Account_ViewModel.User_ID);
 
+            Apply_Service_period_Model apply_Service_Period_Model = new Apply_Service_period_Model();
+            apply_Service_Period_Model.InsertService_period(Apply_Data_ViewModel.Apply_ID);
         }
 
         public void UpdateManpower_apply_byreject(int Apply_ID)
         {
             Manpower_apply_Model manpower_Apply_Model = new Manpower_apply_Model();
+            manpower_Apply_Model.UpdateManpower_apply_byreject(Apply_ID);
         }
     }
 }

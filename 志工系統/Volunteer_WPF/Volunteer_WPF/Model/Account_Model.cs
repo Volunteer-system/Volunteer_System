@@ -42,5 +42,17 @@ namespace Volunteer_WPF.Model
 
             return false;
         }
+
+        public string Selectdirector()
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = (from n1 in dbContext.accounts
+                     join n2 in dbContext.Volunteer_supervision
+                     on n1.User_ID equals n2.supervision_ID
+                     where n1.Permission == "director"
+                     select new { supervision_Name = n2.supervision_Name }).First();
+
+            return q.supervision_Name;
+        }
     }
 }

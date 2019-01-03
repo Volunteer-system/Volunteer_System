@@ -70,7 +70,7 @@
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="150" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="1,501,0,0"/>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="221" Margin="1,501,0,0"/>
                 <Label Content="志工督導" HorizontalAlignment="Left" Margin="23,11,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
-                <Label Content="社工室主任" HorizontalAlignment="Left" Margin="23,61,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
+                <Label Content="社工室主任" HorizontalAlignment="Left" Margin="23,61,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="評估日期" HorizontalAlignment="Left" Margin="23,112,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="核准人數" HorizontalAlignment="Left" Margin="23,161,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="評估項目" HorizontalAlignment="Left" Margin="23,212,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
