@@ -13,7 +13,8 @@ namespace Volunteer_WPF.View_Model
         public int Volunteer_no { get; set; }
         public string Chinese_name { get; set; }
         public string Identity_type_name { get; set; }
-        public byte[] Photo { get; set; }
+        public int Order { get; set; }
+    public byte[] Photo { get; set; }
 
         public List<Shift_schedule_detail_ViewModel> SelectStay_Volunteer_byService_Period(int application_unit_no, int service_period_no)
         {
@@ -72,34 +73,36 @@ namespace Volunteer_WPF.View_Model
             return Leave_Volunteers;
         }
 
-        public List<Shift_schedule_detail_ViewModel> SelectVolunteer_byIdentity_type(string Identity_type)
+        public List<Shift_schedule_detail_ViewModel> SelectVolunteer_byIdentity_type(string Identity_type, int application_unit_no, int service_period_no)
         {
             Volunteer_Model volunteer_Model = new Volunteer_Model();
 
             List<Shift_schedule_detail_ViewModel> Schedule_Detail_ViewModels = new List<Shift_schedule_detail_ViewModel>();
-            foreach (var row in volunteer_Model.SelectVolunteer_byIdentity_type(Identity_type))
+            foreach (var row in volunteer_Model.SelectVolunteer_byIdentity_type(Identity_type, application_unit_no, service_period_no))
             {
                 Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
                 Schedule_Detail_ViewModel.Volunteer_no = int.Parse(row.Volunteer_no);
                 Schedule_Detail_ViewModel.Chinese_name = row.Chinese_name;
                 Schedule_Detail_ViewModel.Identity_type_name = row.Identity_type;
                 Schedule_Detail_ViewModel.Photo = row._Photo;
+                Schedule_Detail_ViewModel.Order = row.Wish_order;
                 Schedule_Detail_ViewModels.Add(Schedule_Detail_ViewModel);
             }
 
             return Schedule_Detail_ViewModels;
         }
 
-        public List<Shift_schedule_detail_ViewModel> SelectVolunteer_byName(string name)
+        public List<Shift_schedule_detail_ViewModel> SelectVolunteer_byName(string name, int application_unit_no, int service_period_no)
         {
             Volunteer_Model volunteer_Model = new Volunteer_Model();
             List<Shift_schedule_detail_ViewModel> Schedule_Detail_ViewModels = new List<Shift_schedule_detail_ViewModel>();
-            foreach (var row in volunteer_Model.SelectVolunteer_byName(name))
+            foreach (var row in volunteer_Model.SelectVolunteer_byName(name, application_unit_no, service_period_no))
             {
                 Shift_schedule_detail_ViewModel shift_Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
                 shift_Schedule_Detail_ViewModel.Volunteer_no = int.Parse(row.Volunteer_no);
                 shift_Schedule_Detail_ViewModel.Chinese_name = row.Chinese_name;
                 shift_Schedule_Detail_ViewModel.Identity_type_name = row.Identity_type;
+                shift_Schedule_Detail_ViewModel.Order = row.Wish_order;
                 shift_Schedule_Detail_ViewModel.Photo = row._Photo;
 
                 Schedule_Detail_ViewModels.Add(shift_Schedule_Detail_ViewModel);

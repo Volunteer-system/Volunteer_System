@@ -737,6 +737,11 @@ namespace Volunteer_WPF.View
                      select n).ToList();
             var Sign_up_expertise_list = (from n in Myentity.Sign_up_expertise
                                           select n).ToList();
+
+            var Sign_up_Service_period_list = (from n in Myentity.Sign_up_Service_period select n).ToList();
+
+            var stage_id = (from n in Myentity.Stages where n.Stage1 == "未排班" && n.Stage_type == "排班意願" select n.Stage_ID).First();
+
             foreach (var row in AD)
             {
                 Sign_up sign_Up = Sign_up_list.Where(p => p.Sign_up_no == row).First();
@@ -761,7 +766,19 @@ namespace Volunteer_WPF.View
 
                     Myentity.Expertise2.Add(expertise2);
                 }
-            }
+
+                var Service_period_list = Sign_up_Service_period_list.Where(p => p.Sign_up_no == row).ToList();
+                foreach (var _period in Service_period_list)
+                {
+                    Service_period2 service_Period2 = new Service_period2();
+                    service_Period2.Volunteer_no = q.Volunteer_no;
+                    service_Period2.Service_period_no = _period.Service_period_no;
+                    service_Period2.Stage = stage_id;
+                    service_Period2.Wish_order = _period.Wish_order;
+
+                    Myentity.Service_period2.Add(service_Period2);
+                }
+            }            
 
             this.Myentity.SaveChanges();
         }

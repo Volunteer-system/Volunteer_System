@@ -16,14 +16,15 @@ namespace Volunteer_WPF.Model
     {
         public int Primary_key { get; set; }
         public int Volunteer_no { get; set; }
-        public int Service_period_no { get; set; }
         public Nullable<int> Srevice_group { get; set; }
         public Nullable<int> Application_unit { get; set; }
+        public int Service_period_no { get; set; }
         public Nullable<int> Stage { get; set; }
+        public Nullable<int> Wish_order { get; set; }
     
-        public virtual Service_period1 Service_period1 { get; set; }
-        public virtual Volunteer Volunteer { get; set; }
         public virtual Application_unit Application_unit1 { get; set; }
         public virtual Service_group Service_group { get; set; }
+        public virtual Service_period1 Service_period1 { get; set; }
+        public virtual Volunteer Volunteer { get; set; }
     }
 }

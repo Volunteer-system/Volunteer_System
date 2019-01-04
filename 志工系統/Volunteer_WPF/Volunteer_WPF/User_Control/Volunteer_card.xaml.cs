@@ -30,6 +30,10 @@ namespace Volunteer_WPF.User_Control
             get { return this.lab_type.Content.ToString(); }
             set { this.lab_type.Content = value; }
         }
+        public string Order {
+            get { return this.lab_order.Content.ToString(); }
+            set { this.lab_order.Content = value; }
+        }
         private byte[] p_photo { get; set; }
         public byte[] photo {
             get { return p_photo; }

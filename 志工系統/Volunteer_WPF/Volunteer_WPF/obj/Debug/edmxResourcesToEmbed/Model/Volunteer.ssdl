@@ -369,6 +369,7 @@
     <Property Name="Application_unit" Type="int" />
     <Property Name="Service_period_no" Type="int" Nullable="false" />
     <Property Name="Stage" Type="int" />
+    <Property Name="Wish_order" Type="int" />
   </EntityType>
   <EntityType Name="Sign_up">
     <Key>
@@ -455,7 +456,7 @@
     <Property Name="Postal_code" Type="int" />
     <Property Name="Address" Type="nvarchar" MaxLength="50" />
     <Property Name="Education" Type="nvarchar" MaxLength="10" />
-    <Property Name="Lssuing_unit_no" Type="int" Nullable="false" />
+    <Property Name="Lssuing_unit_no" Type="int" />
     <Property Name="Service_manual_no" Type="nchar" MaxLength="20" />
     <Property Name="Personality_scale" Type="nvarchar" MaxLength="50" />
     <Property Name="Photo" Type="varbinary(max)" />
@@ -1073,7 +1074,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Volunteer_Lssuing_unit">
-    <End Role="Lssuing_unit" Type="Self.Lssuing_unit" Multiplicity="1" />
+    <End Role="Lssuing_unit" Type="Self.Lssuing_unit" Multiplicity="0..1" />
     <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lssuing_unit">

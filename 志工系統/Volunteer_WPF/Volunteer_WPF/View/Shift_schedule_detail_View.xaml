@@ -63,7 +63,7 @@
                     <Button x:Name="btn_volunteer" Content="社會志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_volunteer_Click"  Style="{DynamicResource ButtonTemplate}"/>
                     <Button x:Name="btn_student" Content="學生志工" Height="35" Margin="5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_student_Click"  Style="{DynamicResource ButtonTemplate}"/>
                     <Label  Content="姓名" FontSize="16" FontWeight="Bold"/>
-                    <TextBox Name="txt_name" Height="35" Margin="5"/>
+                    <TextBox Name="txt_name" Height="35" Margin="5" FontSize="16"/>
                     <Button x:Name="btn_select" Content="搜尋" Height="35" Margin="2" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_select_Click"  Style="{DynamicResource ButtonTemplate}"/>
                 </StackPanel>
             </DockPanel>

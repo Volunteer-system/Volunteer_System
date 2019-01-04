@@ -47,6 +47,7 @@ namespace Volunteer_WPF.View
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.Order = "續留";
                 volunteer_Card.photo = row.Photo;
 
                 stay_Volunteer_cards.Add(volunteer_Card);
@@ -60,6 +61,7 @@ namespace Volunteer_WPF.View
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.Order = "新申請";
                 volunteer_Card.photo = row.Photo;
 
                 new_Volunteer_cards.Add(volunteer_Card);
@@ -73,6 +75,7 @@ namespace Volunteer_WPF.View
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
+                volunteer_Card.Order = "移除";
                 volunteer_Card.photo = row.Photo;
 
                 leave_Volunteer_cards.Add(volunteer_Card);
@@ -126,6 +129,7 @@ namespace Volunteer_WPF.View
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
             volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.Order = droppedData.Order;
             volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = stay_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
@@ -161,6 +165,7 @@ namespace Volunteer_WPF.View
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
             volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.Order = droppedData.Order;
             volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = new_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
@@ -196,6 +201,7 @@ namespace Volunteer_WPF.View
             volunteer_Card.Volunteer_no = droppedData.Volunteer_no;
             volunteer_Card.Volunteer_name = droppedData.Volunteer_name;
             volunteer_Card.Type = droppedData.Type;
+            volunteer_Card.Order = droppedData.Order;
             volunteer_Card.photo = droppedData.photo;
 
             int removedIdx = leave_Volunteer_cards.Where(p => p.Volunteer_no == droppedData.Volunteer_no).Count();
@@ -225,13 +231,23 @@ namespace Volunteer_WPF.View
         {
             this.select_stay.Items.Clear();
 
+            Button Btn = sender as Button;
+
             Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();            
-            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("社會志工"))
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("社會志工", _unit_no, _service_period_no))
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
+                if (row.Order > 0)
+                {
+                    volunteer_Card.Order = row.Order.ToString();
+                }
+                else
+                {
+                    volunteer_Card.Order = "非志願";
+                }
                 volunteer_Card.photo = row.Photo;
                 this.select_stay.Items.Add(volunteer_Card);
                 select_Volunteer_cards.Add(volunteer_Card);
@@ -243,13 +259,21 @@ namespace Volunteer_WPF.View
             this.select_stay.Items.Clear();
 
             Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
-            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("學生志工"))
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byIdentity_type("學生志工", _unit_no, _service_period_no))
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
                 volunteer_Card.photo = row.Photo;
+                if (row.Order > 0)
+                {
+                    volunteer_Card.Order = row.Order.ToString();
+                }
+                else
+                {
+                    volunteer_Card.Order = "非志願";
+                }
                 this.select_stay.Items.Add(volunteer_Card);
                 select_Volunteer_cards.Add(volunteer_Card);
             }
@@ -266,13 +290,21 @@ namespace Volunteer_WPF.View
             this.select_stay.Items.Clear();
 
             Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();            
-            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byName(name))
+            foreach (var row in Schedule_Detail_ViewModel.SelectVolunteer_byName(name, _unit_no, _service_period_no))
             {
                 Volunteer_card volunteer_Card = new Volunteer_card();
                 volunteer_Card.Volunteer_no = row.Volunteer_no;
                 volunteer_Card.Volunteer_name = row.Chinese_name;
                 volunteer_Card.Type = row.Identity_type_name;
                 volunteer_Card.photo = row.Photo;
+                if (row.Order > 0)
+                {
+                    volunteer_Card.Order = row.Order.ToString();
+                }
+                else
+                {
+                    volunteer_Card.Order = "非志願";
+                }
                 this.select_stay.Items.Add(volunteer_Card);
                 select_Volunteer_cards.Add(volunteer_Card);
             }

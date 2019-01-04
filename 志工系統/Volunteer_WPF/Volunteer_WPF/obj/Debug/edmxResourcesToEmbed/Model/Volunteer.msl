@@ -27,7 +27,6 @@
     <EntitySetMapping Name="Application_unit">
       <EntityTypeMapping TypeName="VolunteerModel.Application_unit">
         <MappingFragment StoreEntitySet="Application_unit">
-          <ScalarProperty Name="Work_place" ColumnName="Work_place" />
           <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
           <ScalarProperty Name="Application_unit1" ColumnName="Application_unit" />
           <ScalarProperty Name="Group_no" ColumnName="Group_no" />
@@ -38,6 +37,7 @@
           <ScalarProperty Name="Work_content" ColumnName="Work_content" />
           <ScalarProperty Name="Total_volunteers" ColumnName="Total_volunteers" />
           <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Work_place" ColumnName="Work_place" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -81,7 +81,6 @@
     <EntitySetMapping Name="Manpower_apply">
       <EntityTypeMapping TypeName="VolunteerModel.Manpower_apply">
         <MappingFragment StoreEntitySet="Manpower_apply">
-          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
           <ScalarProperty Name="Apply_ID" ColumnName="Apply_ID" />
           <ScalarProperty Name="Application_unit_no" ColumnName="Application_unit_no" />
           <ScalarProperty Name="Applicant" ColumnName="Applicant" />
@@ -98,6 +97,7 @@
           <ScalarProperty Name="Supervision_heads" ColumnName="Supervision_heads" />
           <ScalarProperty Name="Application_number" ColumnName="Application_number" />
           <ScalarProperty Name="Reply_number" ColumnName="Reply_number" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -135,7 +135,6 @@
     <EntitySetMapping Name="Activities">
       <EntityTypeMapping TypeName="VolunteerModel.Activity">
         <MappingFragment StoreEntitySet="Activity">
-          <ScalarProperty Name="Meal" ColumnName="Meal" />
           <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
           <ScalarProperty Name="Activity_name" ColumnName="Activity_name" />
           <ScalarProperty Name="Activity_type_ID" ColumnName="Activity_type_ID" />
@@ -152,6 +151,7 @@
           <ScalarProperty Name="Place" ColumnName="Place" />
           <ScalarProperty Name="Summary" ColumnName="Summary" />
           <ScalarProperty Name="Activity_Photo_id" ColumnName="Activity_Photo_id" />
+          <ScalarProperty Name="Meal" ColumnName="Meal" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -262,9 +262,9 @@
     <EntitySetMapping Name="Service_period1">
       <EntityTypeMapping TypeName="VolunteerModel.Service_period1">
         <MappingFragment StoreEntitySet="Service_period1">
-          <ScalarProperty Name="Time" ColumnName="Time" />
           <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
           <ScalarProperty Name="Service_period" ColumnName="Service_period" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -300,6 +300,24 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Indexphotoes">
+      <EntityTypeMapping TypeName="VolunteerModel.Indexphoto">
+        <MappingFragment StoreEntitySet="Indexphoto">
+          <ScalarProperty Name="Indexphoto_no" ColumnName="Indexphoto_no" />
+          <ScalarProperty Name="Indexphoto1" ColumnName="Indexphoto" />
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Indexvideolinks">
+      <EntityTypeMapping TypeName="VolunteerModel.Indexvideolink">
+        <MappingFragment StoreEntitySet="Indexvideolink">
+          <ScalarProperty Name="Indexvideolink_no" ColumnName="Indexvideolink_no" />
+          <ScalarProperty Name="Videolink" ColumnName="Videolink" />
+          <ScalarProperty Name="Issued" ColumnName="Issued" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="Volunteer_supervision">
       <EntityTypeMapping TypeName="VolunteerModel.Volunteer_supervision">
         <MappingFragment StoreEntitySet="Volunteer_supervision">
@@ -315,13 +333,13 @@
     <EntitySetMapping Name="Activity1">
       <EntityTypeMapping TypeName="VolunteerModel.Activity1">
         <MappingFragment StoreEntitySet="Activity1">
-          <ScalarProperty Name="Vegetarian" ColumnName="Vegetarian" />
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
           <ScalarProperty Name="Activity_no" ColumnName="Activity_no" />
           <ScalarProperty Name="Registration_date" ColumnName="Registration_date" />
           <ScalarProperty Name="Stage" ColumnName="Stage" />
           <ScalarProperty Name="Confirm_time" ColumnName="Confirm_time" />
+          <ScalarProperty Name="Vegetarian" ColumnName="Vegetarian" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -339,13 +357,13 @@
     <EntitySetMapping Name="Experiences">
       <EntityTypeMapping TypeName="VolunteerModel.Experience">
         <MappingFragment StoreEntitySet="Experience">
-          <ScalarProperty Name="Home_issued" ColumnName="Home_issued" />
           <ScalarProperty Name="Experience_no" ColumnName="Experience_no" />
           <ScalarProperty Name="Experience1" ColumnName="Experience" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
           <ScalarProperty Name="Experience_content" ColumnName="Experience_content" />
           <ScalarProperty Name="Experience_photo" ColumnName="Experience_photo" />
           <ScalarProperty Name="Issued" ColumnName="Issued" />
+          <ScalarProperty Name="Home_issued" ColumnName="Home_issued" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -381,22 +399,19 @@
     <EntitySetMapping Name="Service_period2">
       <EntityTypeMapping TypeName="VolunteerModel.Service_period2">
         <MappingFragment StoreEntitySet="Service_period2">
-          <ScalarProperty Name="Stage" ColumnName="Stage" />
-          <ScalarProperty Name="Application_unit" ColumnName="Application_unit" />
-          <ScalarProperty Name="Srevice_group" ColumnName="Srevice_group" />
           <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
           <ScalarProperty Name="Volunteer_no" ColumnName="Volunteer_no" />
+          <ScalarProperty Name="Srevice_group" ColumnName="Srevice_group" />
+          <ScalarProperty Name="Application_unit" ColumnName="Application_unit" />
           <ScalarProperty Name="Service_period_no" ColumnName="Service_period_no" />
+          <ScalarProperty Name="Stage" ColumnName="Stage" />
+          <ScalarProperty Name="Wish_order" ColumnName="Wish_order" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Sign_up">
       <EntityTypeMapping TypeName="VolunteerModel.Sign_up">
         <MappingFragment StoreEntitySet="Sign_up">
-          <ScalarProperty Name="Identity_card" ColumnName="Identity_card" />
-          <ScalarProperty Name="Scool_name" ColumnName="Scool_name" />
-          <ScalarProperty Name="Emergency_contact_phone" ColumnName="Emergency_contact_phone" />
-          <ScalarProperty Name="Emergency_contact" ColumnName="Emergency_contact" />
           <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
           <ScalarProperty Name="Chinese_name" ColumnName="Chinese_name" />
           <ScalarProperty Name="English_name" ColumnName="English_name" />
@@ -414,6 +429,19 @@
           <ScalarProperty Name="Stage" ColumnName="Stage" />
           <ScalarProperty Name="Approval_date" ColumnName="Approval_date" />
           <ScalarProperty Name="supervision_ID" ColumnName="supervision_ID" />
+          <ScalarProperty Name="Emergency_contact" ColumnName="Emergency_contact" />
+          <ScalarProperty Name="Emergency_contact_phone" ColumnName="Emergency_contact_phone" />
+          <ScalarProperty Name="Scool_name" ColumnName="Scool_name" />
+          <ScalarProperty Name="Identity_card" ColumnName="Identity_card" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sign_up_expertise">
+      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_expertise">
+        <MappingFragment StoreEntitySet="Sign_up_expertise">
+          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
+          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
+          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -474,33 +502,6 @@
           <ScalarProperty Name="Service_manual_no" ColumnName="Service_manual_no" />
           <ScalarProperty Name="Personality_scale" ColumnName="Personality_scale" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Sign_up_expertise">
-      <EntityTypeMapping TypeName="VolunteerModel.Sign_up_expertise">
-        <MappingFragment StoreEntitySet="Sign_up_expertise">
-          <ScalarProperty Name="Expertise" ColumnName="Expertise" />
-          <ScalarProperty Name="Sign_up_no" ColumnName="Sign_up_no" />
-          <ScalarProperty Name="Primary_key" ColumnName="Primary_key" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Indexphotoes">
-      <EntityTypeMapping TypeName="VolunteerModel.Indexphoto">
-        <MappingFragment StoreEntitySet="Indexphoto">
-          <ScalarProperty Name="Issued" ColumnName="Issued" />
-          <ScalarProperty Name="Indexphoto1" ColumnName="Indexphoto" />
-          <ScalarProperty Name="Indexphoto_no" ColumnName="Indexphoto_no" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Indexvideolinks">
-      <EntityTypeMapping TypeName="VolunteerModel.Indexvideolink">
-        <MappingFragment StoreEntitySet="Indexvideolink">
-          <ScalarProperty Name="Issued" ColumnName="Issued" />
-          <ScalarProperty Name="Videolink" ColumnName="Videolink" />
-          <ScalarProperty Name="Indexvideolink_no" ColumnName="Indexvideolink_no" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -81,7 +81,7 @@ namespace Volunteer_WPF.Model
         //組別集合
         public List<string> VLT_group;
         //=========================================================
-
+        public int Wish_order { get; set; }
 
 
 
@@ -319,7 +319,7 @@ namespace Volunteer_WPF.Model
             return list_Expertise;
         }
 
-        public List<Volunteer_Model> SelectVolunteer_byIdentity_type(string Identity_type)
+        public List<Volunteer_Model> SelectVolunteer_byIdentity_type(string Identity_type, int application_unit_no, int service_period_no)
         {
             VolunteerEntities dbContext = new VolunteerEntities();
             var q = from n1 in dbContext.Volunteer
@@ -334,6 +334,8 @@ namespace Volunteer_WPF.Model
                         Photo = n1.Photo
                     };
 
+            string period_name = dbContext.Service_period1.Where(p => p.Service_period_no == service_period_no).Select(p => p.Service_period).First();
+
             List<Volunteer_Model> Volunteer_Models = new List<Volunteer_Model>();
             foreach (var row in q)
             {
@@ -343,6 +345,29 @@ namespace Volunteer_WPF.Model
                 volunteer_Model.Identity_type = row.Identity_type_name;
                 volunteer_Model._Photo = row.Photo;
 
+                var q2 = from n1 in dbContext.Service_period2
+                         join n2 in dbContext.Stages
+                         on n1.Stage equals n2.Stage_ID
+                         join n3 in dbContext.Service_period1
+                         on n1.Service_period_no equals n3.Service_period_no
+                         where n2.Stage_type == "排班意願" &&
+                               n2.Stage1 == "未排班" &&
+                               //n1.Application_unit == application_unit_no &&
+                               n3.Service_period == period_name &&
+                               n1.Volunteer_no == row.Volunteer_no
+                         select n1;
+                foreach (var row1 in q2)
+                {
+                    if (row1.Wish_order > 0)
+                    {
+                        volunteer_Model.Wish_order = (int)row1.Wish_order;
+                    }
+                    else
+                    {
+                        volunteer_Model.Wish_order = 0;
+                    }
+                }                
+                
                 Volunteer_Models.Add(volunteer_Model);
             }
 
@@ -365,7 +390,7 @@ namespace Volunteer_WPF.Model
                         Phone_no = n1.Phone_no,
                         Mobile_no = n1.Mobile_no
                     };
-
+            
             List<Volunteer_Model> Volunteer_Models = new List<Volunteer_Model>();
             foreach (var row in q)
             {
@@ -375,7 +400,62 @@ namespace Volunteer_WPF.Model
                 volunteer_Model.Identity_type = row.Identity_type_name;
                 volunteer_Model._Photo = row.Photo;
                 volunteer_Model.Phone_no = row.Phone_no.ToString();
-                volunteer_Model.Mobile_no = row.Mobile_no.ToString();
+                volunteer_Model.Mobile_no = row.Mobile_no.ToString();                
+
+                Volunteer_Models.Add(volunteer_Model);
+            }
+
+            return Volunteer_Models;
+        }
+
+        public List<Volunteer_Model> SelectVolunteer_byName(string name, int application_unit_no, int service_period_no)
+        {
+            VolunteerEntities dbContext = new VolunteerEntities();
+            var q = from n1 in dbContext.Volunteer
+                    join n2 in dbContext.Identity_type
+                    on n1.Identity_type equals n2.Identity_type1
+                    where n1.Chinese_name == name
+                    select new
+                    {
+                        Volunteer_no = n1.Volunteer_no,
+                        Chinese_name = n1.Chinese_name,
+                        Identity_type_name = n2.Identity_type_name,
+                        Photo = n1.Photo,
+                    };
+
+            string period_name = dbContext.Service_period1.Where(p => p.Service_period_no == service_period_no).Select(p => p.Service_period).First();
+
+            List<Volunteer_Model> Volunteer_Models = new List<Volunteer_Model>();
+            foreach (var row in q)
+            {
+                Volunteer_Model volunteer_Model = new Volunteer_Model();
+                volunteer_Model.Volunteer_no = row.Volunteer_no.ToString();
+                volunteer_Model.Chinese_name = row.Chinese_name;
+                volunteer_Model.Identity_type = row.Identity_type_name;
+                volunteer_Model._Photo = row.Photo;
+
+                var q2 = from n1 in dbContext.Service_period2
+                         join n2 in dbContext.Stages
+                         on n1.Stage equals n2.Stage_ID
+                         join n3 in dbContext.Service_period1
+                         on n1.Service_period_no equals n3.Service_period_no
+                         where n2.Stage_type == "排班意願" &&
+                               n2.Stage1 == "未排班" &&
+                               //n1.Application_unit == application_unit_no &&
+                               n3.Service_period == period_name &&
+                               n1.Volunteer_no == row.Volunteer_no
+                         select n1;
+                foreach (var row1 in q2)
+                {
+                    if (row1.Wish_order > 0)
+                    {
+                        volunteer_Model.Wish_order = (int)row1.Wish_order;
+                    }
+                    else
+                    {
+                        volunteer_Model.Wish_order = 0;
+                    }
+                }
 
                 Volunteer_Models.Add(volunteer_Model);
             }

@@ -49,7 +49,7 @@ namespace Volunteer_WPF.Model
         public Nullable<int> Postal_code { get; set; }
         public string Address { get; set; }
         public string Education { get; set; }
-        public int Lssuing_unit_no { get; set; }
+        public Nullable<int> Lssuing_unit_no { get; set; }
         public string Service_manual_no { get; set; }
         public string Personality_scale { get; set; }
         public byte[] Photo { get; set; }

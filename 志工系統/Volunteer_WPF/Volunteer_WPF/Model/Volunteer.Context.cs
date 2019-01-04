@@ -52,6 +52,8 @@ namespace Volunteer_WPF.Model
         public virtual DbSet<Shift_schedule> Shift_schedule { get; set; }
         public virtual DbSet<Stage> Stages { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Indexphoto> Indexphotoes { get; set; }
+        public virtual DbSet<Indexvideolink> Indexvideolinks { get; set; }
         public virtual DbSet<Volunteer_supervision> Volunteer_supervision { get; set; }
         public virtual DbSet<Activity1> Activity1 { get; set; }
         public virtual DbSet<Education> Educations { get; set; }
@@ -61,12 +63,10 @@ namespace Volunteer_WPF.Model
         public virtual DbSet<Service_Group1> Service_Group1 { get; set; }
         public virtual DbSet<Service_period2> Service_period2 { get; set; }
         public virtual DbSet<Sign_up> Sign_up { get; set; }
+        public virtual DbSet<Sign_up_expertise> Sign_up_expertise { get; set; }
         public virtual DbSet<Sign_up_interview_period> Sign_up_interview_period { get; set; }
         public virtual DbSet<Sign_up_questionnaire> Sign_up_questionnaire { get; set; }
         public virtual DbSet<Sign_up_Service_period> Sign_up_Service_period { get; set; }
         public virtual DbSet<Volunteer> Volunteer { get; set; }
-        public virtual DbSet<Sign_up_expertise> Sign_up_expertise { get; set; }
-        public virtual DbSet<Indexphoto> Indexphotoes { get; set; }
-        public virtual DbSet<Indexvideolink> Indexvideolinks { get; set; }
     }
 }

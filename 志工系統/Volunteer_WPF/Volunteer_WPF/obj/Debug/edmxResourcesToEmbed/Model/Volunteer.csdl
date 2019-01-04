@@ -41,15 +41,15 @@
     <Property Name="Work_content" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Total_volunteers" Type="Int32" Nullable="false" />
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Work_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Abnormal_event" Relationship="Self.FK_Abnormal_event_Application_unit" FromRole="Application_unit" ToRole="Abnormal_event" />
     <NavigationProperty Name="Service_group" Relationship="Self.FK_Application_unit_Service_group" FromRole="Application_unit" ToRole="Service_group" />
     <NavigationProperty Name="Expertises" Relationship="Self.FK_Expertise_Application_unit" FromRole="Application_unit" ToRole="Expertise" />
     <NavigationProperty Name="Manpower_apply" Relationship="Self.FK_Manpower_apply_Application_unit" FromRole="Application_unit" ToRole="Manpower_apply" />
     <NavigationProperty Name="Service_period" Relationship="Self.FK_Service_period_Application_unit" FromRole="Application_unit" ToRole="Service_period" />
+    <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Application_unit1" FromRole="Application_unit" ToRole="Service_period2" />
     <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Application_unit" FromRole="Application_unit" ToRole="Shift_schedule" />
     <NavigationProperty Name="Volunteer_list" Relationship="Self.FK_Volunteer_list_Application_unit" FromRole="Application_unit" ToRole="Volunteer_list" />
-    <Property Name="Work_place" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Service_period2" Relationship="VolunteerModel.FK_Service_period_Application_unit1" FromRole="Application_unit" ToRole="Service_period2" />
   </EntityType>
   <EntityType Name="Apply_Assessment">
     <Key>
@@ -112,12 +112,12 @@
     <Property Name="Supervision_heads" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Application_number" Type="Int32" />
     <Property Name="Reply_number" Type="Int32" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Application_unit" Relationship="Self.FK_Manpower_apply_Application_unit" FromRole="Manpower_apply" ToRole="Application_unit" />
     <NavigationProperty Name="Apply_Assessment" Relationship="Self.FK_Apply_Assessment_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Assessment" />
     <NavigationProperty Name="Apply_result" Relationship="Self.FK_Apply_result_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_result" />
     <NavigationProperty Name="Apply_Service_period" Relationship="Self.FK_Apply_Service_period_Manpower_apply" FromRole="Manpower_apply" ToRole="Apply_Service_period" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Manpower_apply_Volunteer_supervision" FromRole="Manpower_apply" ToRole="Volunteer_supervision" />
-    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Service_period">
     <Key>
@@ -171,6 +171,7 @@
     <Property Name="Place" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Activity_Photo_id" Type="Int32" />
+    <Property Name="Meal" Type="Boolean" />
     <NavigationProperty Name="Activity1" Relationship="Self.FK_Activity_Activity" FromRole="Activity" ToRole="Activity1" />
     <NavigationProperty Name="Activity_photo" Relationship="Self.FK_Activity_Activity_photo" FromRole="Activity" ToRole="Activity_photo" />
     <NavigationProperty Name="Activity_type" Relationship="Self.FK_Activity_Activity_type" FromRole="Activity" ToRole="Activity_type" />
@@ -178,7 +179,6 @@
     <NavigationProperty Name="Service_group" Relationship="Self.FK_Activity_Service_group" FromRole="Activity" ToRole="Service_group" />
     <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Activity_Volunteer_supervision" FromRole="Activity" ToRole="Volunteer_supervision" />
     <NavigationProperty Name="Educations" Relationship="Self.FK_Education_Activity" FromRole="Activity" ToRole="Education" />
-    <Property Name="Meal" Type="Boolean" />
   </EntityType>
   <EntityType Name="Activity_photo">
     <Key>
@@ -286,7 +286,7 @@
     <NavigationProperty Name="Application_unit" Relationship="Self.FK_Application_unit_Service_group" FromRole="Service_group" ToRole="Application_unit" />
     <NavigationProperty Name="Activities" Relationship="Self.FK_Activity_Service_group" FromRole="Service_group" ToRole="Activity" />
     <NavigationProperty Name="Service_Group1" Relationship="Self.FK_Service_Group_Service_group" FromRole="Service_group" ToRole="Service_Group1" />
-    <NavigationProperty Name="Service_period2" Relationship="VolunteerModel.FK_Service_period_Service_group" FromRole="Service_group" ToRole="Service_period2" />
+    <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Service_group" FromRole="Service_group" ToRole="Service_period2" />
   </EntityType>
   <EntityType Name="Service_period1">
     <Key>
@@ -294,13 +294,13 @@
     </Key>
     <Property Name="Service_period_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Service_period" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Apply_Service_period" Relationship="Self.FK_Apply_Service_period_Service_period" FromRole="Service_period1" ToRole="Apply_Service_period" />
     <NavigationProperty Name="Service_period2" Relationship="Self.FK_Service_period_Service_period" FromRole="Service_period1" ToRole="Service_period" />
     <NavigationProperty Name="Service_period21" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period1" ToRole="Service_period2" />
     <NavigationProperty Name="Shift_schedule" Relationship="Self.FK_Shift_schedule_Service_period" FromRole="Service_period1" ToRole="Shift_schedule" />
     <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Service_period" FromRole="Service_period1" ToRole="Sign_up_interview_period" />
     <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Signup_Serviceperiod_Service_period" FromRole="Service_period1" ToRole="Sign_up_Service_period" />
-    <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Shift_schedule">
     <Key>
@@ -334,6 +334,22 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
+  <EntityType Name="Indexphoto">
+    <Key>
+      <PropertyRef Name="Indexphoto_no" />
+    </Key>
+    <Property Name="Indexphoto_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Indexphoto1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Issued" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Indexvideolink">
+    <Key>
+      <PropertyRef Name="Indexvideolink_no" />
+    </Key>
+    <Property Name="Indexvideolink_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Videolink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Issued" Type="Boolean" />
+  </EntityType>
   <EntityType Name="Volunteer_supervision">
     <Key>
       <PropertyRef Name="supervision_ID" />
@@ -359,9 +375,9 @@
     <Property Name="Registration_date" Type="DateTime" Precision="3" />
     <Property Name="Stage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Confirm_time" Type="DateTime" Precision="3" />
+    <Property Name="Vegetarian" Type="Boolean" />
     <NavigationProperty Name="Activity" Relationship="Self.FK_Activity_Activity" FromRole="Activity1" ToRole="Activity" />
     <NavigationProperty Name="Volunteer" Relationship="Self.FK_Activity_Volunteer" FromRole="Activity1" ToRole="Volunteer" />
-    <Property Name="Vegetarian" Type="Boolean" />
   </EntityType>
   <EntityType Name="Education">
     <Key>
@@ -385,8 +401,8 @@
     <Property Name="Experience_content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Experience_photo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Issued" Type="Boolean" />
-    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
     <Property Name="Home_issued" Type="Boolean" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Experience_Volunteer" FromRole="Experience" ToRole="Volunteer" />
   </EntityType>
   <EntityType Name="Expertise2">
     <Key>
@@ -426,14 +442,15 @@
     </Key>
     <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Volunteer_no" Type="Int32" Nullable="false" />
-    <Property Name="Service_period_no" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
-    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
     <Property Name="Srevice_group" Type="Int32" />
     <Property Name="Application_unit" Type="Int32" />
+    <Property Name="Service_period_no" Type="Int32" Nullable="false" />
     <Property Name="Stage" Type="Int32" />
-    <NavigationProperty Name="Application_unit1" Relationship="VolunteerModel.FK_Service_period_Application_unit1" FromRole="Service_period2" ToRole="Application_unit" />
-    <NavigationProperty Name="Service_group" Relationship="VolunteerModel.FK_Service_period_Service_group" FromRole="Service_period2" ToRole="Service_group" />
+    <Property Name="Wish_order" Type="Int32" />
+    <NavigationProperty Name="Application_unit1" Relationship="Self.FK_Service_period_Application_unit1" FromRole="Service_period2" ToRole="Application_unit" />
+    <NavigationProperty Name="Service_group" Relationship="Self.FK_Service_period_Service_group" FromRole="Service_period2" ToRole="Service_group" />
+    <NavigationProperty Name="Service_period1" Relationship="Self.FK_Service_period_Service_period1" FromRole="Service_period2" ToRole="Service_period1" />
+    <NavigationProperty Name="Volunteer" Relationship="Self.FK_Service_period_Volunteer" FromRole="Service_period2" ToRole="Volunteer" />
   </EntityType>
   <EntityType Name="Sign_up">
     <Key>
@@ -456,14 +473,22 @@
     <Property Name="Stage" Type="Int32" />
     <Property Name="Approval_date" Type="DateTime" Precision="3" />
     <Property Name="supervision_ID" Type="Int32" />
-    <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Sign_up_Volunteer_supervision2" FromRole="Sign_up" ToRole="Volunteer_supervision" />
-    <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
-    <NavigationProperty Name="Sign_up_questionnaire" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up" ToRole="Sign_up_questionnaire" />
-    <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
     <Property Name="Emergency_contact" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Emergency_contact_phone" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="Scool_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Identity_card" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Volunteer_supervision" Relationship="Self.FK_Sign_up_Volunteer_supervision2" FromRole="Sign_up" ToRole="Volunteer_supervision" />
+    <NavigationProperty Name="Sign_up_interview_period" Relationship="Self.FK_Sign_up_interview_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_interview_period" />
+    <NavigationProperty Name="Sign_up_questionnaire" Relationship="Self.FK_Sign_up_questionnaire_Sign_up" FromRole="Sign_up" ToRole="Sign_up_questionnaire" />
+    <NavigationProperty Name="Sign_up_Service_period" Relationship="Self.FK_Sign_up_Service_period_Sign_up" FromRole="Sign_up" ToRole="Sign_up_Service_period" />
+  </EntityType>
+  <EntityType Name="Sign_up_expertise">
+    <Key>
+      <PropertyRef Name="Primary_key" />
+    </Key>
+    <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Sign_up_no" Type="Int32" />
+    <Property Name="Expertise" Type="Int32" />
   </EntityType>
   <EntityType Name="Sign_up_interview_period">
     <Key>
@@ -521,7 +546,7 @@
     <Property Name="Postal_code" Type="Int32" />
     <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Education" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="Lssuing_unit_no" Type="Int32" Nullable="false" />
+    <Property Name="Lssuing_unit_no" Type="Int32" />
     <Property Name="Service_manual_no" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
     <Property Name="Personality_scale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Photo" Type="Binary" MaxLength="Max" FixedLength="false" />
@@ -645,6 +670,18 @@
       </Principal>
       <Dependent Role="Service_period">
         <PropertyRef Name="Application_unit_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Application_unit1">
+    <End Role="Application_unit" Type="Self.Application_unit" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Application_unit">
+        <PropertyRef Name="Application_unit_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Application_unit" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -925,7 +962,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Volunteer_Lssuing_unit">
-    <End Role="Lssuing_unit" Type="Self.Lssuing_unit" Multiplicity="1" />
+    <End Role="Lssuing_unit" Type="Self.Lssuing_unit" Multiplicity="0..1" />
     <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Lssuing_unit">
@@ -945,6 +982,18 @@
       </Principal>
       <Dependent Role="Service_Group1">
         <PropertyRef Name="Group_no" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Service_period_Service_group">
+    <End Role="Service_group" Type="Self.Service_group" Multiplicity="0..1" />
+    <End Role="Service_period2" Type="Self.Service_period2" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service_group">
+        <PropertyRef Name="Group_no" />
+      </Principal>
+      <Dependent Role="Service_period2">
+        <PropertyRef Name="Srevice_group" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1168,6 +1217,8 @@
     <EntitySet Name="Shift_schedule" EntityType="Self.Shift_schedule" />
     <EntitySet Name="Stages" EntityType="Self.Stage" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Indexphotoes" EntityType="Self.Indexphoto" />
+    <EntitySet Name="Indexvideolinks" EntityType="Self.Indexvideolink" />
     <EntitySet Name="Volunteer_supervision" EntityType="Self.Volunteer_supervision" />
     <EntitySet Name="Activity1" EntityType="Self.Activity1" />
     <EntitySet Name="Educations" EntityType="Self.Education" />
@@ -1177,6 +1228,7 @@
     <EntitySet Name="Service_Group1" EntityType="Self.Service_Group1" />
     <EntitySet Name="Service_period2" EntityType="Self.Service_period2" />
     <EntitySet Name="Sign_up" EntityType="Self.Sign_up" />
+    <EntitySet Name="Sign_up_expertise" EntityType="Self.Sign_up_expertise" />
     <EntitySet Name="Sign_up_interview_period" EntityType="Self.Sign_up_interview_period" />
     <EntitySet Name="Sign_up_questionnaire" EntityType="Self.Sign_up_questionnaire" />
     <EntitySet Name="Sign_up_Service_period" EntityType="Self.Sign_up_Service_period" />
@@ -1216,6 +1268,10 @@
     <AssociationSet Name="FK_Service_period_Application_unit" Association="Self.FK_Service_period_Application_unit">
       <End Role="Application_unit" EntitySet="Application_unit" />
       <End Role="Service_period" EntitySet="Service_period" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Application_unit1" Association="Self.FK_Service_period_Application_unit1">
+      <End Role="Application_unit" EntitySet="Application_unit" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
     </AssociationSet>
     <AssociationSet Name="FK_Shift_schedule_Application_unit" Association="Self.FK_Shift_schedule_Application_unit">
       <End Role="Application_unit" EntitySet="Application_unit" />
@@ -1317,6 +1373,10 @@
       <End Role="Service_group" EntitySet="Service_group" />
       <End Role="Service_Group1" EntitySet="Service_Group1" />
     </AssociationSet>
+    <AssociationSet Name="FK_Service_period_Service_group" Association="Self.FK_Service_period_Service_group">
+      <End Role="Service_group" EntitySet="Service_group" />
+      <End Role="Service_period2" EntitySet="Service_period2" />
+    </AssociationSet>
     <AssociationSet Name="FK_Service_period_Service_period1" Association="Self.FK_Service_period_Service_period1">
       <End Role="Service_period1" EntitySet="Service_period1" />
       <End Role="Service_period2" EntitySet="Service_period2" />
@@ -1381,64 +1441,5 @@
       <End Role="Sign_up" EntitySet="Sign_up" />
       <End Role="Sign_up_Service_period" EntitySet="Sign_up_Service_period" />
     </AssociationSet>
-    <EntitySet Name="Sign_up_expertise" EntityType="VolunteerModel.Sign_up_expertise" />
-    <EntitySet Name="Indexphotoes" EntityType="VolunteerModel.Indexphoto" />
-    <EntitySet Name="Indexvideolinks" EntityType="VolunteerModel.Indexvideolink" />
-    <AssociationSet Name="FK_Service_period_Application_unit1" Association="VolunteerModel.FK_Service_period_Application_unit1">
-      <End Role="Application_unit" EntitySet="Application_unit" />
-      <End Role="Service_period2" EntitySet="Service_period2" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Service_period_Service_group" Association="VolunteerModel.FK_Service_period_Service_group">
-      <End Role="Service_group" EntitySet="Service_group" />
-      <End Role="Service_period2" EntitySet="Service_period2" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Sign_up_expertise">
-    <Key>
-      <PropertyRef Name="Primary_key" />
-    </Key>
-    <Property Name="Primary_key" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Sign_up_no" Type="Int32" />
-    <Property Name="Expertise" Type="Int32" />
-  </EntityType>
-  <EntityType Name="Indexphoto">
-    <Key>
-      <PropertyRef Name="Indexphoto_no" />
-    </Key>
-    <Property Name="Indexphoto_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Indexphoto1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Issued" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="Indexvideolink">
-    <Key>
-      <PropertyRef Name="Indexvideolink_no" />
-    </Key>
-    <Property Name="Indexvideolink_no" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Videolink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <Property Name="Issued" Type="Boolean" />
-  </EntityType>
-  <Association Name="FK_Service_period_Application_unit1">
-    <End Type="VolunteerModel.Application_unit" Role="Application_unit" Multiplicity="0..1" />
-    <End Type="VolunteerModel.Service_period2" Role="Service_period2" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Application_unit">
-        <PropertyRef Name="Application_unit_no" />
-      </Principal>
-      <Dependent Role="Service_period2">
-        <PropertyRef Name="Application_unit" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Service_period_Service_group">
-    <End Type="VolunteerModel.Service_group" Role="Service_group" Multiplicity="0..1" />
-    <End Type="VolunteerModel.Service_period2" Role="Service_period2" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Service_group">
-        <PropertyRef Name="Group_no" />
-      </Principal>
-      <Dependent Role="Service_period2">
-        <PropertyRef Name="Srevice_group" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>
