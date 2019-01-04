@@ -5,54 +5,58 @@
         <div id="login_m_content" class="modal-content">
             @*<div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
         </div>*@
-            <div id="login_m_header" class="modal-header">
+            @*<div id="login_m_header" class="modal-header">
+                <img class="login_img" src="~/Images/LoginUse.png" />
+            </div>*@
+            <div>
+                @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login_form" }))
+                {
                 <img class="login_img" src="~/Images/LoginUse.jpg" />
-            </div>@*, new { @class = "login100-form validate-form" }*@
-
-            @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
-            {
-                <div id="showError" style="text-align:center;height:40px;" class="alert alert-danger" role="alert"></div>
-                <div style="text-align:center;" class="modal-body">
-                    <div id="login" style="margin:0 auto">
-                        @*<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">*@
-                        <div class="login_insert">
-                            @Html.LabelFor(m => m.Account_number, new { @class = "login_lab" })
-                            @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "Enter UserName", autocomplete = "off" })
+                    <div id="showError" style="text-align:center;height:40px;" class="alert alert-danger" role="alert"></div>
+                    <div style="text-align:center;" class="modal-body">                       
+                        <div id="login" style="margin:0 auto;">
+                            <label class="login_lab">使用者登入</label>
+                            @*<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">*@
+                            <div class="login_insert">
+                                @*@Html.LabelFor(m => m.Account_number, new { @class = "login_lab" })*@
+                                @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "使用者帳號", autocomplete = "off" })
+                            </div>
+                            @*<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">*@
+                            <div class="login_insert">
+                                @*@Html.LabelFor(m => m.Password, new { @class = "login_lab" })*@
+                                @Html.TextBoxFor(m => m.Password, new { @class = "login_txt", placeholder = "使用者密碼", type = "password" })
+                            </div>
+                            @*<a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>*@
+                            <div>
+                                <a id="a_forget" href="#">忘記密碼?</a>
+                            </div>
+                            <div class="login_button_div">
+                                <button id="btn_login" class="btn btn-outline-success login_button" type="button">登入</button>
+                                <button type="button" class="btn btn-outline-danger login_button" data-dismiss="modal">取消</button>
+                            </div>
                         </div>
-                        @*<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">*@
-                        <div class="login_insert">
-                            @Html.LabelFor(m => m.Password, new { @class = "login_lab" })
-                            @Html.TextBoxFor(m => m.Password, new { @class = "login_txt", placeholder = "Enter password", type = "password" })
-                        </div>
-                        @*<a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>*@
-                        <div>
-                            <a id="a_forget" href="#">忘記密碼?</a>
-                        </div>
-                        <div class="login_button_div">
-                            <button id="btn_login" class="btn btn-outline-success login_button" type="button">登入</button>
-                            <button type="button" class="btn btn-outline-danger login_button" data-dismiss="modal">取消</button>
+                        <!--切換忘記帳號-->
+                        <div id="forget" class="swap" style="margin:0 auto">
+                            <label class="login_lab">找回密碼</label>
+                            <div class="login_insert">
+                                @*@Html.Label("identity", "身分證字號:", new { @class = "login_lab" })*@
+                                @Html.TextBox("identity", null, new { @class = "login_txt", placeholder = "輸入身分證號碼", autocomplete = "off" })
+                            </div>
+                            <div class="login_insert">
+                                @*@Html.Label("birthday", "生日:", new { @class = "login_lab" })*@
+                                @Html.TextBox("birthday", null, new { @class = "login_txt", placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off" })
+                            </div>
+                            <div>
+                                <a href="#" id="a_login">返回登入</a>
+                            </div>
+                            <div class="login_button_div">
+                                <button id="btn_edit" class="btn btn-outline-success login_button" type="button">送出</button>
+                                <button type="button" class="btn btn-outline-danger login_button " data-dismiss="modal">取消</button>
+                            </div>
                         </div>
                     </div>
-                    <!--切換忘記帳號-->
-                    <div id="forget" class="swap" style="margin:0 auto">
-                        <div class="login_insert">
-                            @Html.Label("identity", "身分證字號:", new { @class = "login_lab" })
-                            @Html.TextBox("identity", null, new { @class = "login_txt", placeholder = "Enter IdentityNumber", autocomplete = "off" })
-                        </div>
-                        <div class="login_insert">
-                            @Html.Label("birthday", "生日:", new { @class = "login_lab" })
-                            @Html.TextBox("birthday", null, new { @class = "login_txt", placeholder = "Enter Birthday", autocomplete = "off" })
-                        </div>
-                        <div>
-                            <a href="#" id="a_login">返回登入</a>
-                        </div>
-                        <div class="login_button_div">
-                            <button id="btn_edit" class="btn btn-outline-success login_button" type="button">送出</button>
-                            <button type="button" class="btn btn-outline-danger login_button " data-dismiss="modal">取消</button>
-                        </div>
-                    </div>
-                </div>
-            }
+                }
+            </div>
         </div>
         </div>
     </div>

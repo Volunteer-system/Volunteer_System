@@ -113,7 +113,6 @@ namespace Volunteer_Web.Controllers
             db.SaveChanges();
             return RedirectToAction("Activity_Browse");
         }
-        //排班意願
 
         [HttpGet]
         public ActionResult Activity_Browse(int id = 1)
@@ -256,11 +255,19 @@ namespace Volunteer_Web.Controllers
 
         }
         [HttpPost]
-        public ActionResult Schedule(List<Volunteer_Schedule_saveModel> SM)
-        {  if (SM != null)
+        public ActionResult Schedule(Volunteer_Schedule_saveModel[] SM)
+        {
+            if (SM != null)
             {
                 Volunteer_Schedule_saveModel sm = new Volunteer_Schedule_saveModel();
-                sm.Insert_Volunteer_Service_period(SM);
+                try
+                {
+                    sm.Insert_Volunteer_Service_period(SM);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
                 return Json("成功", JsonRequestBehavior.AllowGet);
             }
             else
@@ -307,21 +314,30 @@ namespace Volunteer_Web.Controllers
             return File(imgs, "image/jpeg");
         }
         //取得月曆的顯示
-        public ActionResult GetCalendar(int id=0 ,int month= 0)
+        public ActionResult GetCalendar(int id = 0, string month = "")
         {
             if (id != 0)
             {
                 ActivityHistoryModel AHM = new ActivityHistoryModel();
                 return Json(AHM.GetHistoryActivity(id), JsonRequestBehavior.AllowGet);
             }
-            else if (month != 0)
+            else if (month != "")
             {
-                return new EmptyResult();
+                Volunteer_Index_Schedule VIS = new Volunteer_Index_Schedule();
+                var workschedule = VIS.GetWorkTime(Convert.ToInt32(Session["UserID"]), month);
+                return Json(workschedule, JsonRequestBehavior.AllowGet);
             }
             else
             {
                 return new EmptyResult();
             }
+        }
+        //顯示班表細項
+        public ActionResult GetSchedule_detail_Partial(int Volunteer_no, string Service_period_name, string Worktime)
+        {
+            Volunteer_Index_Schedule VIS = new Volunteer_Index_Schedule();
+            var detail = VIS.GetSchedule(Volunteer_no, Service_period_name, Worktime);
+            return PartialView(detail);
         }
     }
 }

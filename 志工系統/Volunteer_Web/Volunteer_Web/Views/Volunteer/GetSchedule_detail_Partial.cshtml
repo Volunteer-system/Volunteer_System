@@ -1,0 +1,45 @@
+﻿@model Volunteer_Web.ViewModel.Volunteer_Index_Schedule
+    <ul class="table table-bordered" style="list-style-type:none">
+        <li>
+            服務組:@Model.Srevice_group_name
+        </li>
+        <li>
+            運用單位:@Model.Application_unit_name
+        </li>
+        <li>
+            服務時段:@Model.Service_period_name
+        </li>
+        <li>
+            日期:@(string.Format("{0:yyyy/MM/dd}", Model.Worktime))
+        </li>
+    </ul>
+@*<table>
+    <thead>
+        <tr>
+            <th>服務組</th>
+        </tr>
+        <tr>
+            <th>運用單位</th>
+        </tr>
+        <tr>
+            <th>服務時段</th>
+        </tr>
+        <tr>
+            <th>日期</th>
+        </tr>                         
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Srevice_group_name</td>
+        </tr>
+        <tr>
+            <td>@Model.Application_unit_name</td>
+        </tr>
+        <tr>
+            <td>@Model.Service_period_name</td>
+        </tr>
+        <tr>
+            <td>@(string.Format("{0:yyyy/MM/dd}", Model.Worktime))</td>
+        </tr>
+    </tbody>
+</table>*@

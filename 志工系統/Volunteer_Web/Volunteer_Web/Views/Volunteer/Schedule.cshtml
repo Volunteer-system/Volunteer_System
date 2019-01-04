@@ -42,7 +42,10 @@
             width: 100%;
             /*overflow-wrap:break-word;*/
         }
-
+        thead{
+            background-color:darkgrey;
+            color:white;
+        }
         select {
             width: 100%
         }
@@ -71,19 +74,11 @@
                 border-color: #bd2130;
             }
         .screen {
-            margin-top: 5%;            
+            margin-top: 70px;            
         }
         
-        @@media only screen and (max-width:1200px) {
-            .screen {
-                margin-top: 10%;
-            }
-        }
 
         @@media only screen and (max-width:768px) {
-            .screen {
-                margin-top: 15%;
-            }
             .d_btn {
                 width: 80px;
                 margin: 3px;
@@ -100,9 +95,6 @@
             }
         }*/
         @@media only screen and (max-width:415px) {
-            .screen {
-                margin-top: 40%;
-            }
             .d_btn {
                 /*font-size:12px;*/
                 width: 35px;
@@ -110,23 +102,8 @@
             }
         }
 
-        @@media only screen and (max-width:414px) {
-            .screen {
-                margin-top: 70%;
-            }
-            
-        }
-
-        @@media only screen and (max-width:400px) {
-            .screen {
-                margin-top: 80%;
-            }
-        }
 
         @@media only screen and (max-width:320px) {
-            .screen {
-                margin-top: 100%;
-            }
             .d_btn {
                 writing-mode:horizontal-tb;
                 font-size:1px;
@@ -177,7 +154,7 @@
                             <option value="移除">移除</option>
                         </select>
                     </td>
-                </tr>
+                </tr>               
                 }
                 @*<tr>
                     <td>
@@ -280,9 +257,9 @@
         var btn_add = $("#btn_addtable");
         var tbody = $("#tbody");
         var class_fix = [];
-        var class_sup = [];
-        //var ob_post = {};
-        var outputuse;
+        var class_sup = [];       
+        var judgerepeat = [];
+        var outputuse=[];
         //var select_status = tbody.find("select[name='select_status']");Schedule_selectbtn_addtable
         //================基本設定=================
          //================按鈕功能=================
@@ -291,7 +268,27 @@
             //console.log(a)          
             class_fix.length = 0;
             class_sup.length = 0;
-            outputuse = [];
+            outputuse.length = 0;
+            judgerepeat.length = 0;
+            var isrepeat = false;//td:nth-child(4)
+            tbody.find("select[name='select_period']").each(function () {                
+                judgerepeat.push($(this).find(":selected").text() + $(this).parents("tr").children("td:nth-child(4)").find(":selected").text())
+            });
+            for (var i = 0; i < judgerepeat.length; i += 1)
+            {
+                for (var j = i + 1; j < judgerepeat.length; j += 1)
+                {
+                    if (judgerepeat[i] == judgerepeat[j])
+                    {
+                        isrepeat = true;
+                        break; 
+                    }                    
+                }
+                if (isrepeat)
+                {
+                    break;
+                }
+            }
             tbody.find("select[name='select_period']").each(function () {
                 var s = new String($(this).find(":selected").text())
                 if (s.includes("支援")) {
@@ -306,24 +303,12 @@
                             class_fix.push($(this).val());
                         }
                 }
-                //switch ($(this).find(":selected").text())
-                //{
-                //    case "固定班":
-                //        if ($(this).parents("tr").find("select[name='select_status']").find(":selected").text() != "移除")
-                //        {
-                //            class_fix.push($(this).val());
-                //        }
-
-                //        break;
-                //    case "支援班":
-                //        if ($(this).parents("tr").find("select[name='select_status']").find(":selected").text() != "移除") {
-                //            class_sup.push($(this).val());
-                //        }
-                //        break;
-                //}
             })
-            if (class_fix.length > 3 || class_sup.length > 2 || (class_fix.length + class_sup.length) > 5) {
+            if (class_fix.length > 3 || class_sup.length > 2 || (class_fix.length + class_sup.length) > 5 ) {
                 alert("超出可以排定的數量，固定班3班，支援班2班!!")
+            }
+            else if (isrepeat) {
+                alert("有重複時段");
             }
             else {
 
@@ -348,19 +333,30 @@
                 });
             }
             if (outputuse.length != 0) {
-                console.log(window.location.href);
-                $.ajax({
+                //console.log(window.location.href);
+                var usedata = JSON.stringify(outputuse);
+                console.log(usedata);
+                $.post('@Url.Action("Schedule", "Volunteer")', { SM:outputuse}, function (datas) {
+                    alert("新增/修改" + datas);
+                    window.location.href = "/Volunteer/Index";
+                })
+                @*$.ajax({
                     type: "Post",
                     contentType: "application/json",
-                    url:'@Url.Action("Schedule", "Volunteer")',//"/Volunteer/Schedule",
-                    data: JSON.stringify(outputuse),
-                    dataType: "json"
+                    url: '@Url.Action("Schedule", "Volunteer")',//"/Volunteer/Schedule",
+                    data: usedata,
+                    //dataType: "json",
+                    timeout: 10000,//超時時間10秒,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("狀態碼:" + XMLHttpRequest.readyState + "錯誤程式碼:" + XMLHttpRequest.status + textStatus)
+                    }
                 }).done(function (data) {
                     alert("新增/修改" + data);
                     window.location.href = "/Volunteer/Index"
-                    }).fail(function (data) {
-                        alert("新增失敗!!")
-                });             
+                })*@
+                //.fail(function (data) {
+                //       alert("新增失敗!!")
+                //});             
             }
 
         })

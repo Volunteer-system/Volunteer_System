@@ -25,16 +25,23 @@
 }
 @section Home_style{
     <style>
-
-
-        .calendar {
-            border: 1px solid tomato;
-            width: 70%;
+        .screen {
+            width: 100%;
+            margin-top: 70px;
         }
-
+        .calendar {
+            border: 3px dotted lightgray;
+            width: 68%;
+            margin:1%;
+            padding:1%;
+        }
+        .thead{
+            background-color:darkgray;
+            color:white;
+        }
         .actTable {
-            margin-left: 1%;
-            width: 29%
+            margin:1%;
+            width: 28%;
         }
 
         .search_date {
@@ -42,9 +49,6 @@
             text-align: right;
         }
 
-        .screen {
-            margin-top: 5%;
-        }
 
         .btn_c {
             margin-left: 80%
@@ -56,28 +60,32 @@
             width: 100%;
         }
 
-        @@media only screen and (min-width:1200px) {
-            .screen {
-                margin-top: 7%;
+
+
+        @@media only screen and (max-width:767px) {
+            .calendar {
+                border: 3px dotted lightgray;
+                width: 98%;
+                margin: 1%;
+                padding: 1%;
+            }
+
+            .actTable {
+                margin: 1%;
+                width: 98%;
             }
         }
 
-        @@media only screen and (min-width:1024px) and (max-width:1200px) {
+        /* @@media only screen and (max-width:320px) {
             .screen {
-                margin-top: 10%;
+                margin-top: 200px;
             }
         }
-
-        @@media only screen and (min-width:768px) and (max-width:900px) {
-            .screen {
-                margin-top: 12%;
-            }
-        }
-        /*@@media only screen and (min-width:735px) and (max-width:768px) {
+         @@media only screen and (min-width:735px) and (max-width:768px) {
             .screen {
                 margin-top: 15%;
             }
-        }*/
+        }
         @@media only screen and (min-width:720px) and (max-width:735px) {
             .calendar {
                 border: 1px solid tomato;
@@ -88,10 +96,10 @@
                 margin-top: 1%;
                 width: 99%
             }
-            /*.search_date {
+            .search_date {
                 width: 50%;
                 text-align: right;
-            }*/
+            }
             .screen {
                 margin-top: 15%;
             }
@@ -102,11 +110,11 @@
                 margin-top: 40%;
             }
         }
-        /*@@media only screen and (max-width:413px) {
+        @@media only screen and (max-width:413px) {
             .screen {
                 margin-top: 75%;
             }
-        }*/
+        }
         @@media only screen and (min-width:320px) and (max-width:480px) {
             .screen {
                 margin-top: 50%;
@@ -121,15 +129,9 @@
             .btn_c {
                 margin-left: 75%
             }
-        }
+        }*/
     </style>
 }
-@*<br />
-    <br />
-    <br />
-    <br />
-    <br />
-    <br />*@
 <div class="screen">
     <h2>志工首頁</h2>
     @*<marquee>123</marquee>*@
@@ -140,14 +142,14 @@
                     <label>依日期查詢:</label>
                     @Html.DropDownList("year", year, "請選擇", null)年
                     @Html.DropDownList("month", month, "請選擇", null)月
-                    <button class="btn btn-outline-info" id="btn_search">查詢</button>
+                    <button class="btn btn-outline-dark" id="btn_search">查詢</button>
                 </div>
                 <div id="calendar1">
                 </div>
             </div>
             <div class="actTable">
                 <table class="table table-bordered">
-                    <thead>
+                    <thead class="thead">
                         <tr>
                             <th>活動名稱</th>
                             <th>活動日期</th>
@@ -199,12 +201,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script><!--引用jqueryUI-->
-    <link href="http://code.jquery.com/ui/1.12.1/themes/redmond/jquery-ui.css" rel="stylesheet" /><!--引用主題-->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css" rel="stylesheet" /><!--引用主題-->
     <script>
     $(document).ready(function () {
-        var events = [];
-        var schedules = [];  
-        var month = new Date().getMonth()+1;
+        var events = [];    
+        var schedules = [];
+        var init_month = new Date().getFullYear() + "/" + (new Date().getMonth() + 1) + "/1";
+        var select_month;
         var calendar1 = $("#calendar1");
             $.ajax({
                 type: "GET",
@@ -220,21 +223,38 @@
                         color: "#ff7575"
                     });
                 })
-                $.ajax({
-                    type: "Get",
-                    url: "/Volunteer/GetCalendar/?month="+ month
-                }).done(function (datas) {
-                    console.log(month);
-                    })               
-                GenerateCalendar(events);
+                GenerateCalendar(events);  
+                getschedule();
                 }).fail(function () {
                     alert("沒有資料");
-            })
-        calendar1.on("click", "button[class ~= 'fc-next-button'],button[class ~= 'fc-prev-button']", function () {
-            month = calendar1.find("div[class='fc-center']>h2").text().substring(5, 8).replace("月", "");
-            console.log(month)
-            calendar1.fullCalendar("renderEvents", schedules)
+                })
+        calendar1.on("click", "div[class='fc-button-group']", function () {
+            getschedule();
         });
+        function getschedule()
+        {
+            schedules.length = 0;
+            select_month = calendar1.find("div[class='fc-center']>h2").text().substring(0, 8).replace("年", "/").replace("月", "/") + "1";
+                $.ajax({
+                    type: "Get",
+                    url: "/Volunteer/GetCalendar/?month=" + select_month
+                }).done(function (datas) {
+                    $.each(datas, function (i, v) {
+                        schedules.push({
+                            title: "班表:" + v.Service_period_name,
+                            start: moment(v.Worktime).format("YYYY-MM-DD"),
+                            end: moment(v.Worktime).format("YYYY-MM-DD"),
+                            Volunteer_no: v.Volunteer_no,
+                            Service_period_name: v.Service_period_name,
+                            Srevice_group_name: v.Srevice_group_name,
+                            Application_unit_name: v.Application_unit_name,
+                            Worktime: v.Worktime,
+                            color: "#BBFFEE"
+                        });
+                    });
+                    calendar1.fullCalendar("renderEvents", schedules)
+                });
+        }
         //=================================跳到指定年月============================
         $("#btn_search").click(function () {
             if ($("#year").val() != "" && $("#month").val() != "") {
@@ -267,21 +287,18 @@
                     //eventLimit: true,
                    /* eventColor: "#ff7575",*/                                          //事件條的顏色
                     events: events,                                                 //接收事件json格式，設定title顯示字，start起始日,end結束日
-                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件
-                        $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
-                        $("#load_a").load("/Volunteer/Activity_DetailPartial/"+ calEvent.act_no)
-                        //$.getJSON("/Volunteer/GetCalendarJson/" + calEvent.act_no, function (datas) {
-                        //    $.each(datas, function (index, vals) {
-                        //        $("#eventTitle").text(calEvent.title);
-                        //        $("#a_summy").val(vals.Summary);
-                        //        $("#a_startdate").val(vals.Activity_startdate);
-                        //        $("#a_enddate").val(vals.Activity_enddate);//
-                        //        //var ur = $("#a_photo").attr("src");
-                        //        var ur = "/Volunteer/GetImageByID/"+ vals.Activity_Photo_id
-                        //        //console.log(ur);
-                        //        $("#a_photo").attr("src",ur)
-                        //    });
-                        //});
+                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件                       
+                        if (calEvent.act_no != undefined) {
+                            $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
+                            $("#load_a").load("/Volunteer/Activity_DetailPartial/" + calEvent.act_no)
+                        }
+                        else if (calEvent.Service_period_name != undefined)
+                        {
+                            var day = new Date();
+                            day.setTime(calEvent.start);
+                            $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
+                            $("#load_a").load("/Volunteer/GetSchedule_detail_Partial/?Volunteer_no=" + calEvent.Volunteer_no + "&Service_period_name=" + calEvent.Service_period_name + "&Worktime=" + day.toLocaleDateString());
+                        }
                     }
 
                 });
