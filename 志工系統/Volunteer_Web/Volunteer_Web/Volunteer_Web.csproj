@@ -110,13 +110,16 @@
     <Content Include="Css\blog.css" />
     <Content Include="Css\Button.css" />
     <Content Include="Css\layout_use2.css" />
-    <Content Include="Css\Manpower_apply.css" />
+    <Content Include="Css\Login.css" />
+    <Content Include="Css\Menu.css" />
+    <Content Include="Css\UnitLayout.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\292-12-3.jpg" />
     <Content Include="Images\299-06-1.jpg" />
     <Content Include="Images\5-16620-1.jpg" />
     <Content Include="Images\asp-net-mvc.jpg" />
     <Content Include="Images\ASP.NET.png" />
+    <Content Include="Images\background.png" />
     <Content Include="Images\fast-arrow.png" />
     <Content Include="Images\hospital.png" />
     <Content Include="Images\images %281%29.jpg" />
@@ -126,6 +129,7 @@
     <Content Include="Images\JQuery.png" />
     <Content Include="Images\JSon.jpg" />
     <Content Include="Images\LoginUse.jpg" />
+    <Content Include="Images\logo.png" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Noimage.png" />
     <Content Include="Images\shattered.png" />

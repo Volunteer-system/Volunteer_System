@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-5">
                                 <p class="text-dark" style="font-size:14px;margin-bottom:5px;">查詢年份</p>
-                                @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "不篩選", new { @class = "selectpicker", data_live_search = "true",@id= "Apply_date" })
+                                @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "不篩選", new { @class = "selectpicker", data_live_search = "true", required = "true" })
                             </div>
                             <div class="col-md-1">
                                 <input type="submit" value="搜尋" id="submitbutton" class="btn btn-outline-secondary" style="margin-top:25px;" />
@@ -96,8 +96,6 @@
     <script>
         $(document).ready(function () {
             $('a[id = "@ViewBag.Partilview"]').addClass('active');
-
-        
         });
     </script>
 }

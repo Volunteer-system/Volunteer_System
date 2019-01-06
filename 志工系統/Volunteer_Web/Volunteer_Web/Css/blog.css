@@ -114,12 +114,14 @@ h1, h2, h3, h4, h5, h6 {
  * Footer
  */
 .blog-footer {
-  padding: 2.5rem 0;
-  color: #999;
-  text-align: center;
-  background-color: #f9f9f9;
-  border-top: .05rem solid #e5e5e5;
+    background-color: #44B7AA;
+    font-family:·L³n¥¿¶ÂÅé;
+    padding: 2.5rem 0;
+    color: #999;
+    text-align: center;
+    border-top: .05rem solid #e5e5e5;
 }
 .blog-footer p:last-child {
   margin-bottom: 0;
 }
+

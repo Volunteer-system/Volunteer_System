@@ -116,8 +116,8 @@ namespace Volunteer_WPF.Model
                     on n1.Supervisor_ID equals n5.supervision_ID
                     join n6 in dbContext.event_category
                     on n1.event_category_ID equals n6.event_category_ID
-                    join n7 in dbContext.Volunteer
-                    on n1.Volunteer_leader_ID equals n7.Volunteer_no
+                    //join n7 in dbContext.Volunteer
+                    //on n1.Volunteer_leader_ID equals n7.Volunteer_no
                     where ((stage == "") ? true : n4.Stage1 == stage) &&
                           (n4.Stage_type == "異常事件") &&
                           ((category == "") ? true:n6.event_category1 == category) &&
@@ -139,7 +139,7 @@ namespace Volunteer_WPF.Model
                         Volunteer_description = n1.Volunteer_description,
                         Supervisor_description = n1.Supervisor_description,
                         Result = n1.Result,
-                        Volunteer_leader = n7.Chinese_name,
+                        //Volunteer_leader = n7.Chinese_name,
                         Supervisor_heads = n1.Supervisor_heads
                     };
 
@@ -160,7 +160,7 @@ namespace Volunteer_WPF.Model
                 abnormal_Event_Model.Volunteer_description = row.Volunteer_description;
                 abnormal_Event_Model.Supervisor_description = row.Supervisor_description;
                 abnormal_Event_Model.Result = row.Result;
-                abnormal_Event_Model.Volunteer_leader = row.Volunteer_leader;
+                //abnormal_Event_Model.Volunteer_leader = row.Volunteer_leader;
                 abnormal_Event_Model.Supervisor_heads = row.Supervisor_heads;
 
                 abnormal_Event_Models.Add(abnormal_Event_Model);
@@ -209,7 +209,7 @@ namespace Volunteer_WPF.Model
                             Volunteer_description = n1.Volunteer_description,
                             Supervisor_description = n1.Supervisor_description,
                             Result = n1.Result,
-                            Volunteer_leader = n7.Chinese_name,
+                            //Volunteer_leader = n7.Chinese_name,
                             Supervisor_heads = n1.Supervisor_heads
                         };
 
@@ -229,7 +229,7 @@ namespace Volunteer_WPF.Model
                     abnormal_Event_Model.Volunteer_description = row.Volunteer_description;
                     abnormal_Event_Model.Supervisor_description = row.Supervisor_description;
                     abnormal_Event_Model.Result = row.Result;
-                    abnormal_Event_Model.Volunteer_leader = row.Volunteer_leader;
+                    //abnormal_Event_Model.Volunteer_leader = row.Volunteer_leader;
                     abnormal_Event_Model.Supervisor_heads = row.Supervisor_heads;
 
                     abnormal_Event_Models.Add(abnormal_Event_Model);

@@ -1,0 +1,27 @@
+﻿/*頁首樣式*/
+.blog-header {
+    line-height: 1;
+    border-bottom: 3px solid #1CADA9;
+}
+
+.blog-header-logo {
+    width: 200px;
+}
+
+/*頁尾樣式*/
+.blog-footer {
+    background-color: #1CADA9;
+    padding:2em;
+    height: 230px;
+    text-align: center;
+    color: white;
+    /* 設定footer絕對位置在底部 */
+    /*position: absolute;
+    bottom: 0;*/
+    /* 展開footer寬度 */
+    width: 100%;
+}
+
+.footer-copyright{
+    color:white;
+}    

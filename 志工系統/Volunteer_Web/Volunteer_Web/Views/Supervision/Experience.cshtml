@@ -6,10 +6,10 @@
 <div class="row mt-4">
     <div class="col-3">
         <div class="list-group">
-            @Html.ActionLink("新增心得", "Experience_Insert", "Supervision", new { id = "insert" }, new { @class = "list-group-item list-group-item-action list-group-item-secondary" })
+            @Html.ActionLink("新增心得", "Experience_Insert", "Supervision", new { id = "insert" }, new { @class = "home-button" })
             @foreach (var row in Model.Service_groups)
             {
-                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "list-group-item list-group-item-action" })
+                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "home-button" })
             }
         </div>
     </div>

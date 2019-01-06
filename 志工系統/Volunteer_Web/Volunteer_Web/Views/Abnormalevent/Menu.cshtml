@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Volunteer_Web.Models.Stage>
 <style>
     body {
-        background-color: #eee;
+        /*background-color: #eee;*/
     }
 
     .mailbox {
@@ -10,7 +10,8 @@
     }
 
         .mailbox header {
-            background-color: #444;
+            background-color: #1CADA9;
+            /*background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);*/
             text-align: center;
             color: #f5f5f5;
             font-size: 20px;
@@ -32,8 +33,10 @@
         }
 
             .mailbox .list-group-item.active {
-                background-color: #888;
-                border-color: #888;
+                background-color: #1CADA9;
+                /*background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);*/
+                border-color: #1CADA9;
+                opacity: 0.6;
                 color: #f5f5f5;
             }
 
@@ -99,10 +102,10 @@
                 <div class="mailbox">
                     <header>篩選階段</header>
                     <div class="list-group">
-                        <a href="~/Abnormalevent/Index/-1" class="list-group-item list-group-item-action" id="-1">全部階段</a>
+                        <a href="~/Abnormalevent/Index/-1" class="list-group-item list-group-item-action text-center" id="-1">全部階段</a>
                         @foreach (var stage in Model)
                         {
-                            @Html.ActionLink(stage.Stage1, "Index", "Abnormalevent", new { id = stage.Stage_ID }, new { @class = "list-group-item list-group-item-action", @id = stage.Stage_ID })
+                            @Html.ActionLink(stage.Stage1, "Index", "Abnormalevent", new { id = stage.Stage_ID }, new { @class = "list-group-item list-group-item-action text-center", @id = stage.Stage_ID })
                         }
                     </div><!-- End of List Group -->
                 </div><!-- End of Mailbox -->
