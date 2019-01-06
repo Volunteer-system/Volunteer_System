@@ -10,6 +10,7 @@ namespace Volunteer_Web.ViewModel
         public string Chinese_name { get; set; }
         public string English_name { get; set; }
         public string Sex { get; set; }
+        public string Identity_card { get; set; }
         public DateTime Birthday { get; set; }
         public string Sign_up_type { get; set; }
         public DateTime Sign_up_date { get; set; }
@@ -37,8 +38,55 @@ namespace Volunteer_Web.ViewModel
         public string Q7 { get; set; }
         public IEnumerable<string> Q8 { get; set; }
 
+        public bool Q9_training { get; set; }
+        public bool Q10_knowing { get; set; }
+
+        public string Q11_Emergency_Name { get; set; }
+        public string Q12_Emergency_Phone { get; set; }
+        public string Q13_School_Name { get; set; }
+        public string Q14_School_Regulation { get; set; }
+
+
+
         public void SetSign_up_Alldata(Sign_up_session sign_Up_Session, Sign_up_questionnaireVM sign_Up_QuestionnaireVM)
         {
+            Chinese_name = sign_Up_Session.Chinese_name;
+            English_name = sign_Up_Session.English_name;
+            Sex = sign_Up_Session.Sex;
+            Identity_card = sign_Up_Session.Identity_card;
+            Birthday = sign_Up_Session.Birthday;
+            Sign_up_type = sign_Up_Session.Sign_up_type;
+            Sign_up_date = sign_Up_Session.Sign_up_date;
+            Phone = sign_Up_Session.Phone;
+            Mobile = sign_Up_Session.Mobile;
+            Email = sign_Up_Session.Email;
+            Address = sign_Up_Session.Address;
+            Education = sign_Up_Session.Education;
+            Job = sign_Up_Session.Job;
+            Expertises = sign_Up_Session.Expertises;
+
+
+            Q1 = sign_Up_QuestionnaireVM.Q1;
+            Q1else = sign_Up_QuestionnaireVM.Q1else;
+            Q2 = sign_Up_QuestionnaireVM.Q2;
+            Q2else = sign_Up_QuestionnaireVM.Q2else;
+            Q3 = sign_Up_QuestionnaireVM.Q3;
+            Q3doc = sign_Up_QuestionnaireVM.Q3doc;
+            Q4 = sign_Up_QuestionnaireVM.Q4;
+            Q4else = sign_Up_QuestionnaireVM.Q4else;
+            Q5unit = sign_Up_QuestionnaireVM.Q5unit;
+            Q5years = sign_Up_QuestionnaireVM.Q5years;
+            Q5content = sign_Up_QuestionnaireVM.Q5content;
+            Q6jobs = sign_Up_QuestionnaireVM.Q6jobs;
+            Q7 = sign_Up_QuestionnaireVM.Q7;
+            Q8 = sign_Up_QuestionnaireVM.Q8;
+
+        }
+
+
+        public void SetSign_up_Alldata(Sign_up_session sign_Up_Session, Student_questionnaireVM student_QuestionnaireVM)
+        {
+
             Chinese_name = sign_Up_Session.Chinese_name;
             English_name = sign_Up_Session.English_name;
             Sex = sign_Up_Session.Sex;
@@ -53,22 +101,17 @@ namespace Volunteer_Web.ViewModel
             Job = sign_Up_Session.Job;
             Expertises = sign_Up_Session.Expertises;
 
-            Q1 = sign_Up_QuestionnaireVM.Q1;
-            Q1else = sign_Up_QuestionnaireVM.Q1else;
-            Q2 = sign_Up_QuestionnaireVM.Q2;
-            Q2else = sign_Up_QuestionnaireVM.Q2else;
-            Q3 = sign_Up_QuestionnaireVM.Q3;
-            Q3doc = sign_Up_QuestionnaireVM.Q3doc;
-            Q4 = sign_Up_QuestionnaireVM.Q4;
-            Q4else = sign_Up_QuestionnaireVM.Q4else;
-          //  Q5 = sign_Up_QuestionnaireVM.Q5;
-            Q5unit = sign_Up_QuestionnaireVM.Q5unit;
-            Q5years = sign_Up_QuestionnaireVM.Q5years;
-            Q5content = sign_Up_QuestionnaireVM.Q5content;
-           // Q6 = sign_Up_QuestionnaireVM.Q6;
-            Q6jobs = sign_Up_QuestionnaireVM.Q6jobs;
-            Q7 = sign_Up_QuestionnaireVM.Q7;
-            Q8 = sign_Up_QuestionnaireVM.Q8;
+
+
+            Q9_training = student_QuestionnaireVM.training;
+            Q10_knowing = student_QuestionnaireVM.knowing;
+
+            Q11_Emergency_Name = student_QuestionnaireVM.Emergency_Name;
+            Q12_Emergency_Phone = student_QuestionnaireVM.Emergency_Phone;
+            Q13_School_Name= student_QuestionnaireVM.School_Name;
+            Q14_School_Regulation = student_QuestionnaireVM.School_Regulation;
+
         }
+
     }
 }

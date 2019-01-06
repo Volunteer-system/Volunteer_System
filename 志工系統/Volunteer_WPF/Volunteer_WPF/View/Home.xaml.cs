@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Volunteer_WPF.Model;
 
 namespace Volunteer_WPF.View
@@ -20,12 +21,25 @@ namespace Volunteer_WPF.View
     /// </summary>
     public partial class Home : Window
     {
+        private DispatcherTimer dispatcherTimer;
+
         public Home()
         {
             InitializeComponent();
             AddSelectedDates();
             Today();
             AddLabel();
+
+            //計時每五分鐘重新搜尋一次
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += new EventHandler(DispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 10);
+            dispatcherTimer.Start();
+        }
+
+        private void DispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Today();
         }
 
         private void AddSelectedDates()
@@ -48,7 +62,10 @@ namespace Volunteer_WPF.View
 
             //未審核項目label
             var q1 = from n in dbContext.Sign_up
-                     where n.Approval_date == null
+                     join n2 in dbContext.Stages
+                     on n.Stage equals n2.Stage_ID
+                     where n2.Stage1 == "初次申請" &&
+                           n2.Stage_type == "申請階段"
                      select n;
 
             label_Approval.Content = q1.Count();
@@ -94,7 +111,48 @@ namespace Volunteer_WPF.View
             {
                 label_TodayActivity.Foreground = new SolidColorBrush(Colors.White);
             }
+
+            //年度申請申請階段
+            var q3 = from n1 in dbContext.Manpower_apply
+                     join n2 in dbContext.Stages
+                     on n1.Apply_state equals n2.Stage_ID
+                     where n2.Stage1 == "新申請" &&
+                           n2.Stage_type == "人力申請" &&
+                           n1.Apply_type == "年度申請"
+                     select n1;
+
+            label_apply_year.Content = q3.Count();
+            
+            if ((int)(label_apply_year.Content) > 0)
+            {
+                label_apply_year.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                label_apply_year.Foreground = new SolidColorBrush(Colors.White);
+            }
+
+            var q4 = from n1 in dbContext.Manpower_apply
+                     join n2 in dbContext.Stages
+                     on n1.Apply_state equals n2.Stage_ID
+                     where n2.Stage1 == "新申請" &&
+                           n2.Stage_type == "人力申請" &&
+                           n1.Apply_type == "臨時申請"
+                     select n1;
+
+            label_apply_temporary.Content = q4.Count();
+
+            if ((int)(label_apply_temporary.Content) > 0)
+            {
+                label_apply_temporary.Foreground = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                label_apply_temporary.Foreground = new SolidColorBrush(Colors.White);
+            }
         }
+
+
 
         private void AddLabel() //加入行事曆細項(未來7天)
         {
@@ -119,5 +177,6 @@ namespace Volunteer_WPF.View
                     });
             }
         }
+
     }
 }

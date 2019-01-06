@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Volunteer_Web.Models;
+using Volunteer_Web.Models.VolunteerUse;
 using Volunteer_Web.ViewModel;
 
 namespace Volunteer_Web.Controllers
@@ -14,7 +15,15 @@ namespace Volunteer_Web.Controllers
         // GET: Supervision
         public ActionResult Index()
         {
-            return View();
+            ActivityHistoryModel AHM = new ActivityHistoryModel();
+            var activities = AHM.GetActivitydesc();
+            return View(activities);
+        }
+        //取得月曆的顯示
+        public ActionResult GetCalendar(string month = "")
+        {
+            ActivityHistoryModel AHM = new ActivityHistoryModel();
+            return Json(AHM.GetActivity(), JsonRequestBehavior.AllowGet);
         }
         //
         public ActionResult Experience(int id=1)

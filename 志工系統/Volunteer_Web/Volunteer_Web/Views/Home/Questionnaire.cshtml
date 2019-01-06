@@ -16,49 +16,49 @@
             <h4>一、為何想成為志工(可複選)</h4>
             @{
                 if (Model.Q1.ToList().Contains("01回饋社會"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="1回饋社會" id="回饋社會" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="1回饋社會" id="回饋社會">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會">}
             }
             <label class="form-check-label">回饋社會</label>
 
             @{
                 if (Model.Q1.ToList().Contains("02打發時間"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="2打發時間" id="打發時間" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="2打發時間" id="打發時間">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間">}
             }
             <label class="form-check-label">打發時間</label>
 
             @{
                 if (Model.Q1.ToList().Contains("03體驗志願服務工作"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="3體驗志願服務工作" id="體驗志願服務工作" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="3體驗志願服務工作" id="體驗志願服務工作">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作">}
             }
             <label class="form-check-label">體驗志願服務工作</label>
 
             @{
                 if (Model.Q1.ToList().Contains("04交朋友"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="4交朋友" id="交朋友" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="4交朋友" id="交朋友">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友">}
             }
             <label class="form-check-label">交朋友</label>
 
             @{
                 if (Model.Q1.ToList().Contains("05想多了解醫學常識"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="5想多了解醫學常識" id="想多了解醫學常識" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="5想多了解醫學常識" id="想多了解醫學常識">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識">}
             }
             <label class="form-check-label">想多了解醫學常識</label>
 
             @{
                 if (Model.Q1.ToList().Contains("06其他"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="6其他" id="其他_為何想成為志工" checked="checked">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工" checked="checked">}
                 else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="6其他" id="其他_為何想成為志工">}
+                {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工">}
             }
             <label class="form-check-label">其他</label>
             <input type="text" name="Q1else" value="@Model.Q1else" class="form-text border" />
@@ -292,7 +292,7 @@
             <h4>五、您是否曾經或正在其他機構擔任志工?是(續填下方內容),否?</h4>
             <label class="form-check-label">服務的單位為</label>
             <input type="text" name="Q5unit" class="success-text border" value="@Model.Q5unit" />
-            <label class="form-check-label">,</label>
+            <label class="form-check-label"></label>
             <label class="form-check-label">約有幾年服務經驗 </label>
             <input type="text" name="Q5years" class="align-content-around border" value="@Model.Q5years" />
             <label class="form-check-label">工作內容為</label>

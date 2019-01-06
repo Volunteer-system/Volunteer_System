@@ -40,6 +40,19 @@ namespace Volunteer_WPF.View
             AAVM = new Activity_AddAction_ViewModel(activity_name, activity_starttime, WrapPanel_Viewphoto);  //資料綁定的方式!!
             this.DataContext = AAVM;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.tbx_ActName.Text = "Demo活動";
+            this.tbx_ActPlace.Text = "Demo活動地點";
+            this.tbx_ActOrganization.Text = "Demo講師";
+            this.tbx_ActTaker.Text = "Demo承辦人";
+            this.tbx_ActOrganizationPhone.Text = "Demo承辦電話";
+            this.tbx_ActOrganizationEmail.Text = "Demo123456@gmail.com";
+            this.tbx_ActCourseMemberMax.Text = "5";
+            this.tbx_ActCourseStandbyMax.Text = "2";
+            this.tbx_ActSummary.Text = "Demo內容";
+        }
         //public WrapPanel getWrapPanel()
         //{
         //    return this.WrapPanel_Viewphoto;

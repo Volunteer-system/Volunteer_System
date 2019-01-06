@@ -43,7 +43,7 @@
                 </Grid>
                 <Grid Width="100" Height="160">
                     <Label Content="年度申請" Foreground="Gray" FontSize="16" Margin="10,14,17,118"/>
-                    <Label Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
+                    <Label x:Name="label_apply_year" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
                 </Grid>
             </WrapPanel>
         </Button>
@@ -55,7 +55,7 @@
                 </Grid>
                 <Grid Width="100" Height="160">
                     <Label Content="臨時申請" Foreground="Gray" FontSize="16" Margin="10,14,16,118"/>
-                    <Label Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
+                    <Label x:Name="label_apply_temporary" Content="0" Foreground="White" FontSize="90" Margin="15,35,22,21" RenderTransformOrigin="0.479,0.427"/>
                 </Grid>
             </WrapPanel>
         </Button>

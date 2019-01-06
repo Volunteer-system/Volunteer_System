@@ -19,6 +19,71 @@ namespace Volunteer_Web.Models.VolunteerUse
 
         public Nullable<int> Activity_photo_id { get; set; }
 
+        public List<ActivityHistoryModel> GetActivity()
+        {
+            List<ActivityHistoryModel> LAHM = new List<ActivityHistoryModel>();
+            using (VolunteerEntities db = new VolunteerEntities())
+            {
+                var allactivity = from n in db.Activities
+                                  select new
+                                  {
+                                      n.Activity_no,
+                                      n.Activity_name,
+                                      n.Activity_startdate,
+                                      n.Member,
+                                      n.Activity_Photo_id,
+                                      n.Activity_enddate
+                                  };
+                foreach (var row in allactivity)
+                {
+                    LAHM.Add(new ActivityHistoryModel()
+                    {
+                        Activity_no = row.Activity_no,
+                        Activity_name = row.Activity_name,
+                        Activity_startdate = row.Activity_startdate,
+                        Activity_enddate = row.Activity_enddate,
+                        Member = row.Member,
+                        Activity_photo_id = row.Activity_Photo_id
+                    });
+                }
+            }
+
+            return LAHM;
+        }
+
+        public List<ActivityHistoryModel> GetActivitydesc()
+        {
+            List<ActivityHistoryModel> LAHM = new List<ActivityHistoryModel>();
+            using (VolunteerEntities db = new VolunteerEntities())
+            {
+                var allactivity = from n in db.Activities
+                                  orderby n.Activity_startdate descending
+                                  select new
+                                  {
+                                      n.Activity_no,
+                                      n.Activity_name,
+                                      n.Activity_startdate,
+                                      n.Member,
+                                      n.Activity_Photo_id,
+                                      n.Activity_enddate
+                                  };
+                foreach (var row in allactivity)
+                {
+                    LAHM.Add(new ActivityHistoryModel()
+                    {
+                        Activity_no = row.Activity_no,
+                        Activity_name = row.Activity_name,
+                        Activity_startdate = row.Activity_startdate,
+                        Activity_enddate = row.Activity_enddate,
+                        Member = row.Member,
+                        Activity_photo_id = row.Activity_Photo_id
+                    });
+                }
+            }
+
+            return LAHM;
+        }
+
         public List<ActivityHistoryModel> GetHistoryActivity(int id)
         {           
             List<ActivityHistoryModel> LAHM = new List<ActivityHistoryModel>();

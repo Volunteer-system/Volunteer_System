@@ -149,6 +149,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Button>
+                <Button Content="DEMO" HorizontalAlignment="Left" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold" Background="Turquoise" Foreground="White" Margin="269,245.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="106" Height="38" Click="Button_Click"/>
             </Grid>
         </Grid>
     </Viewbox>

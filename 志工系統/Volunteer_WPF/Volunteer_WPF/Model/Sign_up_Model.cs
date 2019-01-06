@@ -49,8 +49,8 @@ namespace Volunteer_WPF.Model
             var q = from n1 in dbContext.Sign_up
                     join n2 in dbContext.Stages
                     on n1.Stage equals n2.Stage_ID
-                    join n3 in dbContext.Volunteer_supervision
-                    on n1.supervision_ID equals n3.supervision_ID                    
+                    //join n3 in dbContext.Volunteer_supervision
+                    //on n1.supervision_ID equals n3.supervision_ID                    
                     where n1.Sign_up_no == Signup_no 
                     select new
                     {
@@ -68,7 +68,7 @@ namespace Volunteer_WPF.Model
                         Personality_scale = n1.Personality_scale.ToString(),
                         Stage = n2.Stage1.ToString(),
                         Approval_date = n1.Approval_date.ToString(),
-                        supervision_Name = n3.supervision_Name.ToString(),
+                        //supervision_Name = n3.supervision_Name.ToString(),
                         
                     };
 
@@ -88,7 +88,7 @@ namespace Volunteer_WPF.Model
                 Personality_scale = row.Personality_scale;
                 Stage = row.Stage;
                 Approval_date = row.Approval_date;
-                supervision_Name = row.supervision_Name;
+                //supervision_Name = row.supervision_Name;
                 
             }            
         }

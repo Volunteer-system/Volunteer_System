@@ -156,5 +156,8 @@
         });
     </script>
     @RenderSection("Home_script", false)
+    @RenderSection("script", false)
+    @Html.Action("ScriptView", "Login")
+    @RenderSection("calendar", false)
 </body>
 </html>

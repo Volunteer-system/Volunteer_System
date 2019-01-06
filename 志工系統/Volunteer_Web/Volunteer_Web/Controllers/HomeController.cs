@@ -62,7 +62,7 @@ namespace Volunteer_Web.Controllers
             switch (id)
             {
                 case 1:
-                    ViewBag.Partilview = "Requirements";
+                    ViewBag.partilview = "Kind_of";
                     break;
                 case 2:
                     ViewBag.Partilview = "basic_info";
@@ -87,7 +87,15 @@ namespace Volunteer_Web.Controllers
 
             return View();
         }
-        //申請須知
+        //新志工首頁、選擇何種志工
+        [HttpGet]
+        public ActionResult Kind_of()
+        {
+            ViewBag.Partilview = "Kind_of";
+            return PartialView();
+        }
+
+        //社會志工申請須知
         public ActionResult Requirements()
         {
             ViewBag.Partilview = "Requirements";
@@ -125,7 +133,8 @@ namespace Volunteer_Web.Controllers
         public ActionResult Demo()
         {
 
-            Session["Sign_up_session"] = new Sign_up_session {
+            Session["Sign_up_session"] = new Sign_up_session
+            {
                 Chinese_name = "李小明",
                 Sex = "Male",
                 Birthday = DateTime.Now.AddYears(-25),
@@ -139,7 +148,8 @@ namespace Volunteer_Web.Controllers
                 Job = "服務業",
                 Expertises = new string[] { "2飛天","3衝浪" }
             };
-            Session["Question"] = new Sign_up_questionnaireVM {
+            Session["Question"] = new Sign_up_questionnaireVM
+            {
                 Q1 = new string[] { "02打發時間", "03體驗志願服務工作" },
                 Q2 = new string[] { "05有認識的人在醫院", "01離家近" },
                 Q3 = new string[] { "05親友介紹", "09醫生介紹" },
@@ -153,18 +163,16 @@ namespace Volunteer_Web.Controllers
                 Q8=new string[] { "03捷運", "02機車" }
 
             };
-            Session["Service_period"] = new Service_period_VM {
+            Session["Service_period"] = new Service_period_VM
+            {
                 wish1 = new int[] {1,5,8,9 },
                 wish2 = new int[] {2 },
                 wish3 = new int[] {7 }
-        };
-            Session["Interview_period"] = new Interview_period_VM {
+            };
+            Session["Interview_period"] = new Interview_period_VM
+            {
                 wish1= new int[] { 1, 5, 8, 9 }
             };
-
-
-
-
 
             return Redirect("/Home/NewVolunteer/2");
         }
@@ -273,19 +281,53 @@ namespace Volunteer_Web.Controllers
 
             return PartialView(sign_Up_Alldata_VM);
         }
+        //檢查身分證
+        [HttpPost]
+        public ActionResult identity_check(string identity)
+        {
+            var q = from peoele in dbContext.Sign_up
+                    where (peoele.Identity_card == identity)
+                    select peoele;
+            var q2 = from people in dbContext.Volunteers
+                     where (people.IDcrad_no == identity)
+                     select people;
 
+            if (q.Count() > 0)
+            {
+                return Content("這個身分證已經辦過申請囉", "text/plain");
+            }
+            if (q2.Count() > 0)
+            {
+                return Content("您已經是志工了", "text/plain");
+            }
+            else
+            {
+                return Content("", "text/plain");
+            }
+
+        }
         //檢查時段
-        public ActionResult Check_period(int [] wish) {
-
+        public ActionResult Check_period(string a)
+        {
             string re = "";
-            var service=Session["Service_perviod"] as Service_period_VM;
-            var interview = Session["Interview_perviod"] as Interview_period_VM;
+            var service = new Service_period_VM();
+            if (Session["Service_period"] != null)
+            {
+                service = Session["Service_period"] as Service_period_VM;
+            }
+
+            var interview = new Interview_period_VM();
+            if (Session["Interview_period"] != null)
+            {
+                interview = Session["Interview_period"] as Interview_period_VM;
+            }
+
             if (service.wish1.Length == 0)
             {
                 re += "服務時間";
-                
+
             }
-            if(interview.wish1.Length==0)
+            if (interview.wish1.Length == 0)
             {
                 re += "," + "可面試時間";
             }
@@ -315,18 +357,18 @@ namespace Volunteer_Web.Controllers
                 sign.Education = sign_Up_Session.Education;
                 sign.Job = sign_Up_Session.Job;
                 sign.Stage = 1;
-                sign.Sign_up_type = "社會青年";
+                sign.Sign_up_type = sign_Up_Session.Sign_up_type; 
             //日期預設
             sign.Sign_up_date = Convert.ToDateTime("1800-01-01 00:00:00");
             sign.Approval_date= Convert.ToDateTime("1800-01-01 00:00:00");
             dbContext.Entry(sign).State = System.Data.Entity.EntityState.Added;
             dbContext.SaveChanges();
-            
-            
+
+
             //找出此新志工的暫時ID
-                int Number= dbContext.Sign_up.Where(p=>p.Chinese_name==sign.Chinese_name).First().Sign_up_no;
-            
-            
+            int Number = dbContext.Sign_up.Where(p => p.Identity_card == sign.Identity_card).First().Sign_up_no;
+
+
             //存專長資料
             foreach (var exp in sign_Up_Session.Expertises)
             {
@@ -508,7 +550,6 @@ namespace Volunteer_Web.Controllers
 
             return Redirect("~/Home/NewVolunteer/7");
         }
-
 
         
         //申請完成

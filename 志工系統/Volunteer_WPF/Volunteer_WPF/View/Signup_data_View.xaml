@@ -9,29 +9,29 @@
     <Grid Margin="1,0,0.6,1.4" VerticalAlignment="Bottom" Height="753">
 
         <Label Content="中文姓名:" HorizontalAlignment="Left" Margin="11,9,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.451,0.922" FontSize="16"/>
-        <Label x:Name="Chinese_name_Label" Content="{Binding Chinese_name}" HorizontalAlignment="Left" Margin="119,9,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Chinese_name_Label" HorizontalAlignment="Left" Margin="119,9,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="英文姓名:" HorizontalAlignment="Left" Margin="11,40,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="English_name_Label" Content="{Binding English_name}" HorizontalAlignment="Left" Margin="119,40,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="English_name_Label" HorizontalAlignment="Left" Margin="119,40,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="性別:" HorizontalAlignment="Left" Margin="11,71,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.695,0.578" FontSize="16"/>
-        <Label x:Name="Sex_Label" Content="{Binding Sex}" HorizontalAlignment="Left" Margin="118,71,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Sex_Label" HorizontalAlignment="Left" Margin="118,71,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="生日:" HorizontalAlignment="Left" Margin="11,102,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.235,-0.242" FontSize="16"/>
-        <Label x:Name="Birthday_Label" Content="{Binding Birthday}" HorizontalAlignment="Left" Margin="119,102,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Birthday_Label" HorizontalAlignment="Left" Margin="119,102,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="申請日期:" HorizontalAlignment="Left" Margin="11,133,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Sign_up_date_Label" Content="{Binding Sign_up_date}" HorizontalAlignment="Left" Margin="119,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.664" FontSize="16"/>
+        <Label x:Name="Sign_up_date_Label" HorizontalAlignment="Left" Margin="119,133,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.835,0.664" FontSize="16"/>
         <Label Content="電話號碼:" HorizontalAlignment="Left" Margin="11,164,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Phone_Label" Content="{Binding Phone}" HorizontalAlignment="Left" Margin="119,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.915,0.664" FontSize="16"/>
+        <Label x:Name="Phone_Label" HorizontalAlignment="Left" Margin="119,164,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.915,0.664" FontSize="16"/>
         <Label Content="手機號碼:" HorizontalAlignment="Left" Margin="11,195,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Mobile_Label" Content="{Binding Mobile}" HorizontalAlignment="Left" Margin="119,195,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Mobile_Label" HorizontalAlignment="Left" Margin="119,195,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="電子郵件:" HorizontalAlignment="Left" Margin="11,226,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Email_Label" Content="{Binding Email}" HorizontalAlignment="Left" Margin="118,226,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Email_Label" HorizontalAlignment="Left" Margin="118,226,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="聯絡地址:" HorizontalAlignment="Left" Margin="11,257,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Address_Label" Content="{Binding Address}" HorizontalAlignment="Left" Margin="119,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.005,0.016" FontSize="16"/>
+        <Label x:Name="Address_Label" HorizontalAlignment="Left" Margin="119,257,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.005,0.016" FontSize="16"/>
         <Label Content="教育程度:" HorizontalAlignment="Left" Margin="11,287,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Education_Label" Content="{Binding Education}" HorizontalAlignment="Left" Margin="119,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.195,0.516" FontSize="16"/>
+        <Label x:Name="Education_Label" HorizontalAlignment="Left" Margin="119,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.195,0.516" FontSize="16"/>
         <Label Content="目前職業:" HorizontalAlignment="Left" Margin="11,318,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Job_Label" Content="{Binding Job}" HorizontalAlignment="Left" Margin="118,318,0,0" VerticalAlignment="Top" FontSize="16"/>
+        <Label x:Name="Job_Label" HorizontalAlignment="Left" Margin="118,318,0,0" VerticalAlignment="Top" FontSize="16"/>
         <Label Content="人格量表結果:" HorizontalAlignment="Left" Margin="11,349,0,0" VerticalAlignment="Top" FontSize="16"/>
-        <Label x:Name="Personality_scale_Label" Content="{Binding Personality_scale}" HorizontalAlignment="Left" Margin="118,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,-0.023" FontSize="16"/>
+        <Label x:Name="Personality_scale_Label" HorizontalAlignment="Left" Margin="118,349,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.575,-0.023" FontSize="16"/>
         <Label Content="服務意願時間:" HorizontalAlignment="Left" Margin="11,384,0,0" VerticalAlignment="Top" RenderTransformOrigin="-1.176,0.188" FontSize="16"/>
         <Label Content="面試意願時間:" HorizontalAlignment="Left" Margin="18,552,0,0" VerticalAlignment="Top" FontSize="16"/>
 

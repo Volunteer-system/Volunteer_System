@@ -108,6 +108,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\util.css" />
     <Content Include="Css\blog.css" />
+    <Content Include="Css\layout_use2.css" />
     <Content Include="Css\Manpower_apply.css" />
     <Content Include="Global.asax" />
     <Content Include="Images\292-12-3.jpg" />
@@ -120,6 +121,7 @@
     <Content Include="Images\images %281%29.jpg" />
     <Content Include="Images\images%282%29.jpg" />
     <Content Include="Images\IMG_6533.JPG" />
+    <Content Include="Images\IMG_8403.JPG" />
     <Content Include="Images\JQuery.png" />
     <Content Include="Images\JSon.jpg" />
     <Content Include="Images\LoginUse.jpg" />
@@ -129,6 +131,9 @@
     <Content Include="Images\下載 %281%29.jpg" />
     <Content Include="Images\志工隊介紹用.jpg" />
     <Content Include="Images\手術室 %283%29.JPG" />
+    <Content Include="Images\投影片1.JPG" />
+    <Content Include="Images\投影片2.JPG" />
+    <Content Include="Images\投影片3.JPG" />
     <Content Include="Images\眼科 %281%29.JPG" />
     <Content Include="Images\門接 %2811%29.JPG" />
     <Content Include="Images\門接 %2815%29.JPG" />
@@ -197,6 +202,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ManpowerApplyController.cs" />
     <Compile Include="Controllers\NeedCheckLogin.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Controllers\SupervisionController.cs" />
     <Compile Include="Controllers\UnitController.cs" />
     <Compile Include="Controllers\VolunteerController.cs" />
@@ -376,6 +382,7 @@
     <Compile Include="ViewModel\Sign_up_Alldata_VM.cs" />
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
     <Compile Include="ViewModel\Sign_up_session.cs" />
+    <Compile Include="ViewModel\Student_questionnaireVM.cs" />
     <Compile Include="ViewModel\Visitor_Activity_VM.cs" />
     <Compile Include="ViewModel\Volunteer_Index_Schedule.cs" />
     <Compile Include="ViewModel\Volunteer_Index_use.cs" />
@@ -457,6 +464,16 @@
     <Content Include="Views\Volunteer\Activity_DetailPartial.cshtml" />
     <Content Include="Views\Volunteer\Activity_NotParticipate.cshtml" />
     <Content Include="Views\Volunteer\Activity_Participate.cshtml" />
+    <Content Include="Views\ManpowerApply\TemporaryInsert.cshtml" />
+    <Content Include="Views\Volunteer\GetSchedule_detail_Partial.cshtml" />
+    <Content Include="Views\Home\Kind_of.cshtml" />
+    <Content Include="Views\Student\Alldata_check.cshtml" />
+    <Content Include="Views\Student\basic_info.cshtml" />
+    <Content Include="Views\Student\NewVolunteer.cshtml" />
+    <Content Include="Views\Student\Questionnaire.cshtml" />
+    <Content Include="Views\Student\Requirements.cshtml" />
+    <Content Include="Views\Student\Requirement_ok.cshtml" />
+    <Content Include="Views\Student\Service_period.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

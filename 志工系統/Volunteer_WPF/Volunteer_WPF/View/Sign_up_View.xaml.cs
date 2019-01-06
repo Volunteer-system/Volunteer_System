@@ -248,7 +248,7 @@ namespace Volunteer_WPF.View
                                 ThreadStart TS = new ThreadStart(
                                             delegate ()
                                             {
-                                                sending_email(q[i].Email, q[i].Chinese_name+q[i].English_name, Issend_delete);//寄送郵件
+                                                sending_email(q[i].Email, q[i].Chinese_name+q[i].English_name, Issend_delete,"0");//寄送郵件
                                                 System.Windows.Forms.Application.DoEvents();
                                             });
                                 send_mail = new Thread(TS);
@@ -318,14 +318,14 @@ namespace Volunteer_WPF.View
         }
 
         //寄送電子郵件的方法1▼
-        private void sending_email(string email,string name, bool whattype)
+        private void sending_email(string email,string name, bool whattype,string account)
         {
             int n = email == null ? 1 : 0;  //判斷郵件地址是否為null
             if (n != 1)
             {
                 if (email.Contains("@"))
                 {
-                    sending(email, whattype);
+                    sending(email, whattype, account, name);
                 }
                 else
                 {
@@ -334,7 +334,7 @@ namespace Volunteer_WPF.View
             }
         }
         //寄送電子郵件的方法2▼
-        private void sending(string email,bool whattype)
+        private void sending(string email,bool whattype,string account,string name)
         {
             SmtpClient SC = new SmtpClient("smtp.gmail.com", 587);   //設定伺服器主機
             SC.Credentials = new System.Net.NetworkCredential("yhkcjo@gmail.com", "y hk4cjo4");  //設定帳密
@@ -342,6 +342,62 @@ namespace Volunteer_WPF.View
             MailMessage MM = new MailMessage();                      //寫信的內容用
             if (whattype)
             {
+                string str = @"
+                               親愛的" + name + "您好，" + @"，
+                               這是您的志工網站，帳號:" + account + "密碼:" + account + @"，
+                               壹、教育訓練及報到事項：
+                               1、 依法規規定需完成教育訓練才能正式值班，務必出席參加，如無法出席
+                               請電洽7728-1285譯葶或以昀。
+                                基礎訓練：107年03月03日（六） 0800-1730 10樓第二教室
+                                特殊訓練：107年03月10日（六）0800-1730 十樓第二教室
+                                  此課程是讓大家熟悉亞東醫院流程及環境，全體新進志工均需前來上課。
+                                志工大會揭幕式：107年3月25日（日）0830-1130 14樓國際會議廳
+                                  介紹志工隊的目前概況，並讓新志工認識幹部，請新進志工務必參與
+
+                                已領有服務紀錄冊者不需上基礎訓練的課程。無法出席參加者，請自行
+                                  上網到「臺北e大」完成課程，課程完成後請列印證書，證書請於3/25
+                                  或值班當天繳交。
+                                網路教學方式：
+                                  請上網搜尋「臺北e大」
+                                  進入網站後登入會員資料(請用真實姓名申請，身分證字號請詳實填寫)
+                                  完成會員登入後進入「選課中心」
+                                  搜尋「志工基礎教育訓練」
+                                  開始上課並填課後題目
+                                  完成12小時的課程後請列印訓練證書，並交給志工室
+
+                               貳、報到/簽到地點： 志工室
+
+                                若已領有志願服務紀錄冊，請繳交紀錄冊封面影本（編號及發給單位需影印
+                                  清楚）；並請繳交1吋大頭照者（有紀錄冊者3張、無紀錄冊者5張），請於
+                                  接到此通知後於教育訓練當天繳交給譯葶或以昀（照片背後請註明全名)
+                                報到當天因故無法來值班時需請假，請告知譯葶或以昀，電話是7728-
+                                  1285；適用評估：107年4月1日至107年5月31日，到班須達八成以上，將由
+                                  運用單位及隊上幹部完成適用評估單，確認可繼續服務始為本院正式志工。
+                                服務時需著志工背心、配戴新志工名牌，至服務單位時需先瀏覽志工留言本
+                                  內的訊息並簽名，每次值班請務必要留意志工留言本中的公告。
+
+                               參、值班注意事項
+                                若您每次到班須開車或騎乘機車來院，請到班後向以昀督導或每日組長領取
+                                  汽車或機車停車優惠券乙張（一次值班可抵4小時停車費），離院時請持臨
+                                  時識別證及優惠券至停管處找工作人員消磁。
+                                值班期間不可進行任何推銷(保險或任何直銷產品)及提供任何治療的偏方，
+                                  也不可干擾醫院作業(如：插隊掛號，安排病床等)以避免不必要的爭議。
+                                  領取志工背心及識別證，簽到及瀏覽留言本訊息
+
+                                  服務後記得簽退 至服務定點報到
+
+                                值班時請除非有緊急事件，否則請不要滑手機或電話聊天。
+                                所有病患及家屬資料均需保密，病患資料不得任意丟棄在垃圾桶中，需交由
+                                  護理人員統一銷毀，且不得公開討論病患狀況。不隨便接受病患贈與或答應
+                                  要求，不得私自給予任何金錢及藥品。
+
+                               亞東醫院歡迎您的加入！
+                               祝福您平安健康！
+
+                                ---------------------------------------
+                               志工督導 馮譯葶(02-77281285)
+                               簡以昀(02-77281281)";
+
                 if (first)//初次審核階段
                 {
                     MM.Subject ="志工審核面試通知";             //信件主旨
@@ -353,7 +409,7 @@ namespace Volunteer_WPF.View
                 else if (interview)//面試階段
                 {
                     MM.Subject = "志工審核通過通知";                             //信件主旨
-                    MM.Body = "審核通過";                                        //信件內容
+                    MM.Body = str;                                        //信件內容
                     MM.IsBodyHtml = false;                                       //內容是否使用Html
                     MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");   //寄件地址，顯示名稱
                     MM.To.Add(email);                                            //設定收件地址
@@ -361,7 +417,7 @@ namespace Volunteer_WPF.View
                 else
                 {
                     MM.Subject = "志工審核通過通知";                             //信件主旨
-                    MM.Body = "審核通過";                                        //信件內容
+                    MM.Body = str;                                        //信件內容
                     MM.IsBodyHtml = false;                                       //內容是否使用Html
                     MM.From = new MailAddress("yhkcjo@gmail.com", "志工督導");   //寄件地址，顯示名稱
                     MM.To.Add(email);
@@ -369,11 +425,19 @@ namespace Volunteer_WPF.View
             }
             else
             {
+                string str = @"親愛的 " + name + " (先生/小姐)您好：" +
+                             @"感謝您參與亞東醫院志工隊第____期的召募面試活動，由於志工缺額有限
+                              ，未能找到符合您的服務時段與組別，爲此深感抱歉，但仍感謝您撥冗前來，
+                              願日後還能有機會與您合作！
+                              祝福您 身體健康 平安順心
+
+                              亞東醫院社工室敬上";
+
                 string body;
                 string subject;
                 if (first || interview)
                 {
-                    body = "志工申請駁回";
+                    body = str;
                     subject = "志工申請駁回通知";
                 }
                 else
@@ -677,22 +741,25 @@ namespace Volunteer_WPF.View
                                     }
                                     volunteer.Address = q[j].Address;
                                     volunteer.Education = q[j].Education;
-                                    volunteer.Lssuing_unit_no = 1;                                    
+                                    volunteer.Lssuing_unit_no = 1;
 
                                     Myentity.Volunteer.Add(volunteer);
-                                }                                
+                                }
                                 // -wlc-
-
-                                ThreadStart TS = new ThreadStart(
+                                else
+                                {
+                                    ThreadStart TS = new ThreadStart(
                                     delegate ()
                                     {
-                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_pass);//寄送郵件
+                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_pass,"0");//寄送郵件
                                         System.Windows.Forms.Application.DoEvents();
                                     });
-                                send_mail = new Thread(TS);
-                                send_mail.IsBackground = true;
-                                send_mail.Start();
-                                break;                             //判斷完一筆後離開
+                                    send_mail = new Thread(TS);
+                                    send_mail.IsBackground = true;
+                                    send_mail.Start();
+                                    break;
+                                    //判斷完一筆後離開
+                                }
                             }
                         }
                     }
@@ -717,7 +784,7 @@ namespace Volunteer_WPF.View
                                 ThreadStart TS = new ThreadStart(
                                     delegate ()
                                     {
-                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_delete);//寄送郵件
+                                        sending_email(q[j].Email, q[i].Chinese_name + q[i].English_name, Issend_delete,"0");//寄送郵件
                                         System.Windows.Forms.Application.DoEvents();
                                     });
                                 send_mail = new Thread(TS);
@@ -739,6 +806,8 @@ namespace Volunteer_WPF.View
                                           select n).ToList();
 
             var Sign_up_Service_period_list = (from n in Myentity.Sign_up_Service_period select n).ToList();
+
+            var account_list = (from n in Myentity.accounts select n).ToList();
 
             var stage_id = (from n in Myentity.Stages where n.Stage1 == "未排班" && n.Stage_type == "排班意願" select n.Stage_ID).First();
 
@@ -778,6 +847,26 @@ namespace Volunteer_WPF.View
 
                     Myentity.Service_period2.Add(service_Period2);
                 }
+
+                var account = account_list.Select(p => p.Account_number).Max().Trim();
+                account _account = new account();
+                _account.Account_number = (int.Parse(account) + 1).ToString();
+                _account.Password = (int.Parse(account) + 1).ToString();
+                _account.User_ID = q.Volunteer_no;
+                _account.Permission = "Volunteer";
+
+                Myentity.accounts.Add(_account);
+
+                ThreadStart TS = new ThreadStart(
+                                    delegate ()
+                                    {
+                                        sending_email(sign_Up.Email, sign_Up.Chinese_name + sign_Up.English_name, Issend_pass, _account.Account_number);//寄送郵件
+                                        System.Windows.Forms.Application.DoEvents();
+                                    });
+                send_mail = new Thread(TS);
+                send_mail.IsBackground = true;
+                send_mail.Start();
+                break;
             }            
 
             this.Myentity.SaveChanges();
