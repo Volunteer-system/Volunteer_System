@@ -27,13 +27,29 @@ namespace Volunteer_Web.Controllers
             int date = DateTime.Now.Year;
             int year = new int();
 
+#region 下拉選單
             var apply_date = (from m in dbContext.Manpower_apply.ToList()  //年份下拉選單         
                               orderby m.Apply_date descending
                               select new {  Apply_date = m.Apply_date.ToString("yyyy") }).Distinct();
 
-            ViewBag.apply_date = new SelectList(apply_date, "Apply_date", "Apply_date");
+            var apply_type = (from m in dbContext.Manpower_apply.ToList()  //類別下拉選單
+                              select new
+                              {
+                                  m.Application_unit_no,
+                                  m.Apply_type
+                              }).Distinct();
 
- 
+            ViewBag.apply_date = new SelectList(apply_date, "Apply_date", "Apply_date");
+            ViewBag.apply_type = new SelectList(apply_type, "Apply_type", "Apply_type");
+
+            #endregion
+
+
+            if (id == 0)
+            {
+                ViewBag.Partilview = -1;
+            }
+
             //用Cookies記錄搜尋狀態,編輯完回到搜尋的頁面
             if (id != 0)
             {
@@ -42,7 +58,7 @@ namespace Volunteer_Web.Controllers
 
                 var q = from m in dbContext.Manpower_apply
                         join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                        where m.Application_unit_no==unit&& m.Apply_state == id
+                        where m.Application_unit_no==unit&& ((id == -1) ? true : m.Apply_state == id)
                         orderby m.Apply_date descending
                         select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                 return View(q);
@@ -57,7 +73,7 @@ namespace Volunteer_Web.Controllers
             {
                 var q = from m in dbContext.Manpower_apply
                         join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                        where m.Application_unit_no == unit && m.Apply_state == id && m.Apply_date.Year == year
+                        where m.Application_unit_no == unit && ((id == -1) ? true:m.Apply_state == id )&& m.Apply_date.Year == year
                         orderby m.Apply_date descending
                         select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                 return View(q);
@@ -73,7 +89,7 @@ namespace Volunteer_Web.Controllers
 
                     var q = from m in dbContext.Manpower_apply
                             join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                            where m.Application_unit_no==unit && s.Stage_ID==stageid&&m.Apply_date.Year==year
+                            where m.Application_unit_no == unit && ((stageid == -1) ? true: s.Stage_ID==stageid)&&m.Apply_date.Year==year
                             orderby m.Apply_date descending
                             select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                     return View(q);
@@ -85,7 +101,7 @@ namespace Volunteer_Web.Controllers
 
                     var q = from m in dbContext.Manpower_apply
                             join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                            where m.Application_unit_no == unit && s.Stage_ID == stageid
+                            where m.Application_unit_no == unit && ((stageid == -1) ? true : s.Stage_ID == stageid)
                             orderby m.Apply_date descending
                             select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                     return View(q);
@@ -236,14 +252,29 @@ namespace Volunteer_Web.Controllers
             return PartialView(dbContext.Stages.Where(s=>s.Stage_type=="人力申請").ToList()); //不會結合主版
         }
 
-        public ActionResult SelectYear(int Apply_date)
+
+
+
+
+        public ActionResult SelectYear(int Apply_date=0,string Apply_type= "") //搜尋
         {
+#region 下拉選單
             var apply_date = (from m in dbContext.Manpower_apply.ToList()  //年份下拉選單
                               orderby m.Apply_date descending
                               select new { Apply_date = m.Apply_date.ToString("yyyy") }).Distinct();
 
+            var apply_type = (from m in dbContext.Manpower_apply.ToList()  //類別下拉選單
+                              select new
+                              {
+                                  m.Application_unit_no,
+                                  m.Apply_type
+                              }).Distinct();
+
             ViewBag.apply_date = new SelectList(apply_date, "Apply_date", "Apply_date");
-            
+            ViewBag.apply_type = new SelectList(apply_type, "Apply_type", "Apply_type");
+            #endregion
+
+
             if (Request.Cookies["Manpowerstage"]["id"] != "0")
             {
                 ViewBag.Partilview = Request.Cookies["Manpowerstage"]["id"];
@@ -251,7 +282,7 @@ namespace Volunteer_Web.Controllers
 
                 var searchYear = from m in dbContext.Manpower_apply
                                  join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                                 where m.Apply_date.Year == Apply_date && m.Apply_state==stage
+                                 where ((Apply_date != 0) ? m.Apply_date.Year == Apply_date:true) && ((stage == -1) ? true : m.Apply_state == stage) && ((Apply_type != "")? m.Apply_type== Apply_type : true)
                                  orderby m.Apply_date descending
                                  select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                 return View("Index", searchYear);
@@ -260,7 +291,7 @@ namespace Volunteer_Web.Controllers
             {
                 var searchYear = from m in dbContext.Manpower_apply  
                                  join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                                 where m.Apply_date.Year == Apply_date
+                                 where ((Apply_date != 0) ? m.Apply_date.Year == Apply_date : true) && ((Apply_type != "") ? m.Apply_type == Apply_type : true)
                                  orderby m.Apply_date descending
                                  select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
                 return View("Index", searchYear);
@@ -298,23 +329,13 @@ namespace Volunteer_Web.Controllers
             }
             return View();
         }
-
-
-        public ActionResult InsertSuccess(int id=1)
-        {
-            var q = from m in dbContext.Manpower_apply
-                    join s in dbContext.Stages on m.Apply_state equals s.Stage_ID
-                    where m.Apply_ID == id
-                    select new Manpower_applyStageVM { manpower_apply = m, stage = s, };
-
-            return View(q.First());
-        }
+        
         
 
 
 
 
-        public ActionResult text()
+        public ActionResult test()
         {
             return View();
         }

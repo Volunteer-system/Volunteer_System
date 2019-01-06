@@ -1,56 +1,127 @@
-﻿<style>
-    button {
-        background-color: #2faf97;
-        background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);
-        width: 250px;
-        color: #fff;
-        border: none;
-        position: relative;
-        height: 60px;
-        font-size: 18px;
-        margin-bottom: 10px;
-        padding: 0 2em;
-        cursor: pointer;
-        transition: 800ms ease all;
-        outline: none;
+﻿
+<link href="~/Css/Button.css" rel="stylesheet" />
+<style>
+
+    tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
     }
 
-        button:hover {
-            background: #fff;
-            color: #2faf97;
-        }
+    user agent stylesheet
+    table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 2px;
+        border-color: grey;
+    }
 
-        button:before, button:after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            height: 2px;
-            width: 0;
-            background-color: #2faf97;
-            background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);
-            transition: 400ms ease all;
-        }
+    user agent stylesheet
+    table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 2px;
+        border-color: grey;
+    }
 
-        button:after {
-            right: inherit;
-            top: inherit;
-            left: 0;
-            bottom: 0;
-        }
-
-        button:hover:before, button:hover:after {
-            width: 100%;
-            transition: 800ms ease all;
-        }
+    user agent stylesheet
+    table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 2px;
+        border-color: grey;
+    }
 </style>
-
 <div class="row">
     <div class="col-3" style="margin-top:100px">
-        <button onclick="location.href='/Abnormalevent/Insert'">異常事件通報</button>
-        <button onclick="location.href='/Abnormalevent/Index'">異常事件查詢</button>
+        <button class="home-button" onclick="location.href='/Abnormalevent/Insert'">異常事件通報</button>
+        <button class="home-button" onclick="location.href='/Abnormalevent/Index'">異常事件查詢</button>
     </div>
-    <div class="col-9" style="margin-top:50px" align="center">
-        <h1>異常事件通報須知</h1>
+
+    <div class="col-9" style="margin-top:100px">
+        <table border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="2" valign="top">
+                        <table border="1" align="center" cellpadding="3" cellspacing="1" bordercolor="#FFFFFF">
+                            <tbody>
+                                <tr>
+                                    <td valign="top" bgcolor="#DFEEB3" class="footer_info"><div align="center">主　　旨</div></td>
+                                    <td width="513" bgcolor="#F5FAE7" class="red">異常事件通報須知</td>
+                                </tr>
+                                <tr>
+                                    <td width="71" valign="top" nowrap="nowrap" bgcolor="#DFEEB3" class="footer_info"><div align="center">執行策略</div></td>
+                                    <td valign="top" bgcolor="#ECF5D1" class="text">
+                                        <ol style="list-style-type:none">
+                                            <li>1.營造異常事件通報文化</li>
+                                            <li>2.落實院內病人安全通報標準作業程序，並對重大異常事件進行根本原因分析</li>
+                                            <li>3.鼓勵參與全國性病人安全通報系統，建立機關間經驗分享以及資訊交流之平台</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td valign="top" bgcolor="#DFEEB3" class="footer_info"><p align="center" class="footer_info">具體作法</p></td>
+                                    <td valign="top" class="text">
+                                        <ol style="list-style-type:none">
+                                            <li>
+                                                1.醫院應建立暢通的管道,鼓勵員工不僅對於已造成嚴重後果的意外事件主動通報,同時對於輕微傷害的意外事件甚至差一點就發生的跡近錯失事件亦能進行通報。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                2.營造非懲罰性通報環境的首要原則,要先屏棄意外事件發生後立即追究個人責任的作法,而是應該著重在檢討是否因流程上的缺失而導致事件發生,尋求改善機會並且避免同樣的事件重複發生。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                3.通報的表單宜力求簡易,內容應注重事實的描述,避免妄自假設或推斷 ,通報之事件要能適時反映至相關部門,通報分析的結果或改善成效宜回饋相關的單位與個人,所有通報事件所牽涉之可辨識資料,應力求保密不可任意洩漏。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                4.醫院宜建立通報後的處理機制與流程, 以達到「有效管理、持續不斷」改善的目標;通報僅是改善的開端,不宜陷於數量統計與數字的迷思。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                5.醫院對重大之異常事件或是警訊事件宜進行根本原因分析,找出系統內潛在失敗因素並進行改善。常見之警訊事件包括 : 手術部位錯誤、給錯藥物、嚴重後果之院內跌倒、輸血錯誤、院內自殺、治療延遲、因約束導致病人嚴重傷害、呼吸器相關之死亡或傷害、重大院內[感染致死等。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                6.根本原因分析成功的要素包括 : 事件真相的調查與還原、有效工作團隊的組成、足夠資訊與充分溝通、正確的流程分析與適當授權。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                7.醫院宜根據分析結果提出改善的行動計畫,包括欲改善之流程或作業、負責執行的單位或人員、限期評核成果、以及評值或測量成效的指標,並持續改善。
+                                                <br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                8.醫院應定期檢視檢驗/檢查報告的時效性,包括檢查/檢驗開立至報告完成的所需時間,以及報告結果出來至照護醫師獲知結果的時間差距,若不理想或出現不正常狀況宜尋求流程改善。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                9.醫院應建立檢驗/檢查之危險值標準 ' 檢驗部門宜就危險值之檢驗結果,及時通知主要臨床照護人員,以避免延遲處置或治療。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                10.對於重大異常值宜通知指定照護人員,以確保資訊能正確、及時送達,避免處置延誤。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                11.醫院可嘗試運用各項資訊科技,有效達成上述的參考作法,並可節省人力之需求、保障病人之安全。<br>
+                                                <br>
+                                            </li>
+                                            <li>
+                                                12.針對醫院高階主管規劃相關專題報告,了解病人安全國內外相關發展現況,以及對醫院經營的重要性。<br>
+                                                <br>
+                                            </li>
+                                            <li>13.醫院可參與台灣病人安全通報系統或其他院際間的資訊交流管道,透過經驗分享與學習,來改善院內病人安全的各種措施,避免重大異常事件的發生。</li>
+                                        </ol>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

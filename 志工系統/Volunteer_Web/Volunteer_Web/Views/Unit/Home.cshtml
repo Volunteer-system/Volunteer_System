@@ -1,0 +1,135 @@
+﻿@*@model IEnumerable<Volunteer_Web.ViewModel.Unit_Schedule>*@
+<head>
+    <title></title>
+    <style type="text/css">
+
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+            table td {
+                border: 1px solid #cad9ea;
+                color: #666;
+                height: 80px;
+            }
+
+            table th {
+                border: 1px solid #cad9ea;
+                color: #666;
+                height: 40px;
+            }
+
+            table thead th {
+                background-color: #CCE8EB;
+                width: 140px;
+            }
+
+            table tr:nth-child(odd) {
+                background: #fff;
+            }
+
+            table tr:nth-child(even) {
+                background: #F5FAFA;
+            }
+    </style>
+</head>
+
+<br />
+<br />
+<br />
+<br />
+
+<h2>@DateTime.Now.Year@ViewBag.unit 志工班表</h2>
+<br />
+<br />
+
+<table class="table table-bordered table-hover tb1">
+    <thead>
+        <tr>
+            <th width="75px"></th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>上午班</td>
+            @foreach (var item in ViewBag.dic)
+            {
+                if (item.Key == "週一下午")
+                {
+                    break;
+                }
+                <td>
+                    @foreach (var name in ViewBag.dic[item.Key])
+                    {
+                        <span>@name </span>
+                    }
+                </td>
+            }
+
+        </tr>
+        <tr>
+            <td>下午班</td>
+            @foreach (var item in ViewBag.dic)
+            {
+                if (item.Key.Contains("上午") || item.Key.Contains("夜間") || item.Key.Contains("支援"))
+                {
+                    continue;
+                }
+                <td>
+                    @foreach (var name in ViewBag.dic[item.Key])
+                    {
+                        <span>@name </span>
+                    }
+                </td>
+            }
+        </tr>
+        <tr>
+            <td>夜間班</td>
+            @foreach (var item in ViewBag.dic)
+            {
+                if (item.Key.Contains("上午") || item.Key.Contains("下午") || item.Key.Contains("支援"))
+                {
+                    continue;
+                }
+
+                <td>
+                    @foreach (var name in ViewBag.dic[item.Key])
+                    {
+                        <span>@name </span>
+                    }
+                </td>
+            }
+        </tr>
+        <tr>
+            <td>支援班</td>
+            @foreach (var item in ViewBag.dic)
+            {
+                if (item.Key.Contains("上午") || item.Key.Contains("下午") || item.Key.Contains("夜間"))
+                {
+                    continue;
+                }
+
+                <td>
+                    @foreach (var name in ViewBag.dic[item.Key])
+                    {
+                        <span>@name </span>
+                    }
+                </td>
+            }
+        </tr>
+
+    </tbody>
+</table>
+<br />
+<br /><br />
+<br /><br />
+

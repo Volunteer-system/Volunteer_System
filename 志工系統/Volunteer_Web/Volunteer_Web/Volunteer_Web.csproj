@@ -108,6 +108,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Content\util.css" />
     <Content Include="Css\blog.css" />
+    <Content Include="Css\Button.css" />
     <Content Include="Css\layout_use2.css" />
     <Content Include="Css\Manpower_apply.css" />
     <Content Include="Global.asax" />
@@ -337,6 +338,7 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnitUse\UnitClass.cs" />
     <Compile Include="Models\Volunteer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -383,6 +385,7 @@
     <Compile Include="ViewModel\Sign_up_questionnaireVM.cs" />
     <Compile Include="ViewModel\Sign_up_session.cs" />
     <Compile Include="ViewModel\Student_questionnaireVM.cs" />
+    <Compile Include="ViewModel\Unit_Schedule.cs" />
     <Compile Include="ViewModel\Visitor_Activity_VM.cs" />
     <Compile Include="ViewModel\Volunteer_Index_Schedule.cs" />
     <Compile Include="ViewModel\Volunteer_Index_use.cs" />
@@ -474,6 +477,7 @@
     <Content Include="Views\Student\Requirements.cshtml" />
     <Content Include="Views\Student\Requirement_ok.cshtml" />
     <Content Include="Views\Student\Service_period.cshtml" />
+    <Content Include="Views\Unit\Home.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -225,6 +225,7 @@ namespace Volunteer_Web.Controllers
                 _abnormal_Event.Volunteer_no = Convert.ToInt32(Request.Form["Volunteer_no"]);
                 _abnormal_Event.Notification_date = DateTime.Now;
                 _abnormal_Event.event_category_ID= Convert.ToInt32(Request.Form["category"]);
+                _abnormal_Event.Supervisor_ID = 1;
 
                 var q = from s in db.Stages
                         where s.Stage1 == "新事件" && s.Stage_type == "異常事件"

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Volunteer_Web.Models;
+using Volunteer_Web.Models.UnitUse;
+using Volunteer_Web.Models.VolunteerUse;
+using Volunteer_Web.ViewModel;
 
 namespace Volunteer_Web.Controllers
 {
@@ -13,10 +16,29 @@ namespace Volunteer_Web.Controllers
         private Repository<Application_unit> applicationRepository = new Repository<Application_unit>();
         private VolunteerEntities db = new VolunteerEntities();
 
+
         public UnitController()
         {
             IsCheck = true;
         }
+
+        public ActionResult Home()
+        {
+            int unit = Convert.ToInt32(Session["UserID"]);
+            int lastyear = DateTime.Now.AddYears(-1).Year;
+
+            Dictionary < string,List<string>> unitdic = UnitClass.GetPeriodNames(unit);
+            ViewBag.dic = unitdic;
+
+            var u = from a in db.Application_unit
+                    where a.Application_unit_no == unit
+                    select a.Application_unit1;
+            ViewBag.unit = u.ToList().First();
+
+
+            return View();
+        }
+
 
         // GET: Unit
         //運用單位基本資料

@@ -61,7 +61,7 @@
                             if (logintype == "運用單位")
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    <a class="dropdown-item" href="#">運用單位首頁</a>
+                                    @Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })

@@ -12,9 +12,44 @@
 
 <style>
     body {
-        background-color: #eee;
+        font-family: 微軟正黑體;
+    }
+
+    .form-control {
+        display: inline;
+    }
+
+    .card-body {
+        background-image: url('../../Images/background.png');
     }
 </style>
+
+<div class="form-group" style="margin-top: 80px;">
+    @using (Html.BeginForm("SelectYear", "ManpowerApply"))
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card acik-renk-form">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="font-weight-light text-dark" style="font-size:14px;margin-bottom:5px;">申請類別</p>
+                                @Html.DropDownList("Apply_type",(SelectList)ViewBag.apply_type,"不篩選",new { @class = "form-control" })
+                            </div>
+                            <div class="col-md-5">
+                                <p class="text-dark" style="font-size:14px;margin-bottom:5px;">查詢年份</p>
+                                @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "不篩選", new { @class = "selectpicker", data_live_search = "true",@id= "Apply_date" })
+                            </div>
+                            <div class="col-md-1">
+                                <input type="submit" value="搜尋" id="submitbutton" class="btn btn-outline-secondary" style="margin-top:25px;" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
 <div class="row">
     <div class="col-3" style=" margin-top:30px">
@@ -23,21 +58,8 @@
             @Html.Action("Menu")
         </div>
     </div>
-    <div class="card mb-5" style="margin-top:70px;margin-left:70px;">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-9">
-                    @*<h2 class="pt-3 pb-4  font-bold font-up deep-purple-text">年度人力申請</h2>*@
-                    @using (Html.BeginForm("SelectYear", "ManpowerApply"))
-                    {
-                        <div class="input-group md-form form-sm form-2 pl-0 form-inline">
-                            <label>查詢年份：</label>
-                            @Html.DropDownList("Apply_date", (SelectList)ViewBag.apply_date, "請選擇", new { @class = "selectpicker", data_live_search = "true", required = "true" })
-                            <input type="submit" value="開始查詢" class="btn btn-info">
-                        </div>
-                    }
-                </div>
-            </div>
+    <div style="margin-top:70px;margin-left:70px;">
+        <div class="row">
             <table class="table table-striped">
                 <thead style="text-align:center;">
                     <tr>
@@ -61,7 +83,7 @@
                             <td>@item.manpower_apply.Reply_number</td>
                             <td>@item.manpower_apply.Apply_type</td>
                             <td>@item.stage.Stage1</td>
-                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-warning btn-sm">詳細資料</a></td>
+                            <td><a href="~/ManpowerApply/Detail/@item.manpower_apply.Apply_ID" class="btn btn-outline-secondary btn-sm">詳細資料</a></td>
                         </tr>
                     }
                 </tbody>
@@ -70,10 +92,12 @@
     </div>
 </div>
 
-    @section Home_script{
-        <script>
+@section Home_script{
+    <script>
         $(document).ready(function () {
             $('a[id = "@ViewBag.Partilview"]').addClass('active');
+
+        
         });
-        </script>
-    }
+    </script>
+}
