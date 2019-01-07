@@ -130,6 +130,7 @@ namespace Volunteer_Web.Controllers
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
             ViewBag.Activity_type_ID = id;
+
             //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
             //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
             return View(vm);
@@ -137,9 +138,11 @@ namespace Volunteer_Web.Controllers
         [HttpPost]
         public ActionResult Activity_Browse_DateFilter(activity_volunteerNo_VM avvm)
         {
+
             DateTime startDate = (DateTime)avvm.Activity_startdate;
             DateTime endDate = (DateTime)avvm.Activity_enddate;
             int activity_typeID = (int)avvm.Activity_type_ID;
+
 
             Activity_Photo_Schedule_typeVM vm = new Activity_Photo_Schedule_typeVM();
             activity_volunteerNo_VM actvm = new activity_volunteerNo_VM();
@@ -149,6 +152,10 @@ namespace Volunteer_Web.Controllers
             ViewBag.userid = Session["UserID"];
             ViewBag.Activity_type_ID = activity_typeID;
 
+            //找出活動類別 放到 ViewBag.acty 
+            var t = vm.acvno_VM.Where(v => v.Activity_type_ID == avvm.Activity_type_ID).Select(a => a.Activity_type1).Distinct().ToList();
+            ViewBag.acty = t[0];
+
             ViewBag.startDate = startDate;
             ViewBag.endDate = endDate;
             ViewBag.ss = false;
@@ -156,7 +163,6 @@ namespace Volunteer_Web.Controllers
             {
                 ViewBag.ss = true;
             }
-
             return View("Activity_Browse", vm);
 
         }
@@ -201,10 +207,9 @@ namespace Volunteer_Web.Controllers
             vm.acvno_VM = actvm.activityByAlreadyParticipated(Convert.ToInt32(Session["UserID"]));
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
-            //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
-            //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
-            //return View(vm);
-            return View("Activity_Browse", vm);
+
+            return View(vm);
+            //return View("Activity_Browse", vm);
         }
 
         public ActionResult Activity_NotParticipate()

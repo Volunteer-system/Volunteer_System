@@ -49,29 +49,47 @@
             .form-group-inline label {
                 margin-right: 5px;
             }
+
+        body {
+            background-color: #eee;
+        }
+
+        .s1 {
+            height: auto;
+            background-image: url('../../Images/shattered.png');
+        }
     </style>
 }
 <br />
 <br />
 
 <div class="container">
-    <div class="row">
-        <div class="offset-2">
-            <form class="form_date">
-                <div class="form-group-inline">
-                    <label>活動區間</label>
-                    <input type="datetime-local" class="form-control-inline" />
-                </div>
-                <div class="form-group-inline">
-                    <label class="mx-1">~</label>
-                    <input type="datetime-local" class="form-control-inline" />
-                </div>
-                <input type="submit" class="btn btn-outline-danger  ml-2" value="查詢" />
-                @*<div class="form-group-inline">
+    <div class="s1">
 
 
-                    </div>*@
-            </form>
+        <div class="row mt-2 pt-2 pb-2">
+            <div class="offset-2 ">
+                <form class="form_date" method="post" action="~/Volunteer/Activity_Browse_DateFilter">
+                    <input hidden name="Activity_type_ID" value="@ViewBag.Activity_type_ID" />
+                    <div class="form-group-inline">
+                        <label>活動區間</label>
+                        <input type="datetime-local" name="Activity_startdate" class="form-control-inline" />
+                    </div>
+                    <div class="form-group-inline">
+                        <label class="mx-1">~</label>
+                        <input type="datetime-local" name="Activity_enddate" class="form-control-inline" />
+                    </div>
+                    <input id="date_search" type="submit" class="btn btn-outline-dark  ml-2" value="查詢" />
+                </form>
+                @if (ViewBag.ss != null)
+                {
+
+                    <p>
+                        你查詢的時間為  @ViewBag.startDate ~
+                        @ViewBag.endDate
+                    </p>
+                }
+            </div>
         </div>
     </div>
 </div>
@@ -80,14 +98,14 @@
 <div class="row mt-3">
     <div class="col-2">
         <div class="list-group">
-            <a href="~/Volunteer/Activity_Participate" class="btn btn-outline-danger">你已參加的活動</a>
-            <a href="~/Volunteer/Activity_NotParticipate" class="btn btn-outline-danger">你未參加的活動</a>
+            <a id="ap1" href="~/Volunteer/Activity_Participate" class="list-group-item list-group-item-action btn-dark ">你已參加的活動</a>
+            <a id="ap2" href="~/Volunteer/Activity_NotParticipate" class="list-group-item list-group-item-action btn-dark">你未參加的活動</a>
+            <br />
             @*<a href="~"></a>*@
             @*@Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })*@
             @foreach (var category in Model.activity_types)
-
             {
-                @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "list-group-item list-group-item-action" })
+                @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "list-group-item list-group-item-action btn-dark ", id = "typeID-" + category.Activity_type_ID });
             }
         </div>
     </div>
@@ -327,6 +345,7 @@
 <!-- Central Modal Medium Success-->
 @section script{
     <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="/Scripts/holder.min.js"></script>
     <script>
         $(document).ready(function () {
             $('a[name="a1"]').click(function () {
@@ -370,7 +389,7 @@
                 $('#model_Place').text($('#m_Place_' + id).text());
                 $('#model_Summary').text($('#m_Summary_' + id).text());
             })
-
+            $('#ap2').addClass('active');
 
         })
     </script>
