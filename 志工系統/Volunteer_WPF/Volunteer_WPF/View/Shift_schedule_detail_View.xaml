@@ -75,6 +75,7 @@
         <Rectangle Grid.Column="1" Grid.Row="1" Fill="White"/>
         <Rectangle Grid.Column="2" Grid.Row="1" Fill="White"/>
         <Rectangle Grid.Column="3" Grid.Row="1" Fill="White"/>
+        <Label x:Name="lab_period_and_time" FontSize="16" Grid.Row="1" Margin="5" Foreground="Black"/>
         <Button Content="確認" x:Name="btn_save" Grid.Column="3" Grid.Row="1" Margin="5.2,5,125.6,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_save_Click"></Button>
         <Button Content="離開" Grid.Column="3" Grid.Row="1" Margin="128.2,5,4.8,5" FontSize="16" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Button_Click"></Button>
     </Grid>

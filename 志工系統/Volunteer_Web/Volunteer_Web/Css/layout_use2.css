@@ -17,7 +17,9 @@
     height: 120px;
     width: 100%;
 }
-
+.blog-header {
+    border-bottom: 3px solid #1cada9 !important;
+}
 .Home_nav {
     all: initial;
     cursor: pointer !important;
@@ -94,10 +96,14 @@
     }
 
 .footer_use_gray {
-    background-color: gray;
+    background-color: #1cada9;
     /*margin: 0 auto;*/
     height: 155px !important;
     text-align: center;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 
     .footer_use_gray ul {
@@ -144,6 +150,54 @@
     }
 #UnitDropDown div{
     margin-bottom:-2px;
+}
+.l_header_slogan {
+    width: 50%;
+    float: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2% 0 0 11%;
+    margin-left: 10%;
+}
+
+.l_header_login {
+    width: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2% 12% 0 0;
+    float: right;
+}
+
+.nav-scroller {
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+    padding: 0 12% 0 12%;
+}
+
+@media only screen and (max-width:1024px) {
+    .l_header_slogan {
+        width: 98%;
+        height: 70px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 0 0 0 4.5%;
+        margin: 0 1% 0 1%;
+    }
+
+    .l_header_login {
+        width: 98%;
+        height: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: -20%;
+        padding-top: 1%;
+    }
 }
 /*下拉選單用*/
 @media only screen and (max-width:768px) {

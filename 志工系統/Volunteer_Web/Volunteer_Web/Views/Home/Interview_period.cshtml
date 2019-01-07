@@ -8,26 +8,30 @@
 <br />
 <style>
 
-    table {
+    #period_table {
         table-layout: fixed;
         word-break: break-word;
         width: 100%;
         /*overflow-wrap:break-word;*/
     }
 
-    th, td {
-        text-align: center;
-        /*width:100%*/
-    }
+        #period_table th, td {
+            text-align: center;
+            /*width:100%*/
+        }
 
-    button {
-        /*width:50%;*/
-        margin: 3px;
-    }
+        #period_table button {
+            /*width:50%;*/
+            margin: 3px;
+        }
 </style>
-<h2 id="Pv_title">面試時間調查</h2>
+
+<div class="btn btn-block fontstyle">
+    <h2 id="Pv_title">面試時間調查</h2>
+    <hr />
+</div>
 <p>請在能夠面試的日期中，填入數字1</p>
-<table class="table table-bordered " >
+<table class="table table-bordered " id="period_table">
     <thead>
         <tr>
             <th></th>
@@ -36,6 +40,8 @@
             <th>星期三</th>
             <th>星期四</th>
             <th>星期五</th>
+            <th>星期六</th>
+            <th>星期日</th>
         </tr>
     </thead>
     <tbody>
@@ -46,7 +52,8 @@
             <td data-service_period_no="7"><p></p></td>
             <td data-service_period_no="10"><p></p></td>
             <td data-service_period_no="13"><p></p></td>
-        
+            <td data-service_period_no="16"><p></p></td>
+            <td data-service_period_no="18"><p></p></td>
         </tr>
         <tr>
             <td>下午</td>
@@ -55,8 +62,18 @@
             <td data-service_period_no="8"><p></p></td>
             <td data-service_period_no="11"><p></p></td>
             <td data-service_period_no="14"><p></p></td>
+            <td data-service_period_no="17"><p></p></td>
+            <td data-service_period_no="19"><p></p></td>
         </tr>
+        <tr>
+            <td>夜間</td>
+            <td data-service_period_no="3"><p></p></td>
+            <td data-service_period_no="6"><p></p></td>
+            <td data-service_period_no="9"><p></p></td>
+            <td data-service_period_no="12"><p></p></td>
+            <td data-service_period_no="15"><p></p></td>
+            <td colspan="2"><button id="btn_edit" class="btn btn-info ">編輯</button><button id="btn_insert_interview" class="btn btn-info ">儲存</button></td>
+        </tr>
+
     </tbody>
 </table>
-<button id="btn_edit" class="btn btn-info ">編輯</button>
-<button id="btn_insert_interview" class="btn btn-info ">儲存</button>

@@ -14,7 +14,16 @@ namespace Volunteer_WPF.View_Model
         public string Chinese_name { get; set; }
         public string Identity_type_name { get; set; }
         public int Order { get; set; }
-    public byte[] Photo { get; set; }
+        public byte[] Photo { get; set; }
+
+        public string SelectService_Periodby_Service_Period_no(int service_period_no)
+        {
+            Service_Period_Model service_Period_Model = new Service_Period_Model();
+            service_Period_Model.SelectService_periodby_Service_period_no(service_period_no);
+
+            string Period_and_Time = service_Period_Model.Service_period + service_Period_Model.Time;
+            return Period_and_Time; 
+        }
 
         public List<Shift_schedule_detail_ViewModel> SelectStay_Volunteer_byService_Period(int application_unit_no, int service_period_no)
         {

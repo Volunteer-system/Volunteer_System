@@ -1,54 +1,55 @@
 ﻿@model Volunteer_Web.Models.account
 <div class="modal fade " id="LoginModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">       
-        <div id="login_m_content" class="modal-content">           
-            <div class="ui-panel login-panel animated bounceInDown">
-                <div class="login-container">
-                    @*<h1>登入</h1>*@
-                    @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
-                    {
-                    <div style="text-align:center;" class="modal-body">
-                        <div class="DisplayError">
-                            <div id="showError" class="alert alert-danger" role="alert"></div>
-                        </div>
-                        <div id="login" >                           
-                            <h1>登入</h1>
-                            @Html.TextBoxFor(m => m.Account_number, new { placeholder = "帳號", autocomplete = "off" })
-                            @*<input type="text" placeholder="帳號" />*@
-                            @Html.TextBoxFor(m => m.Password, new { placeholder = "密碼", type = "password" })
-                            @*<input type="text" placeholder="密碼" />*@
-                            <button type="button" id="btn_login" class="login_button">登入</button>
-                            <button type="button" class="login_button" data-dismiss="modal">取消</button>
-                            <div>
-                                <a id="a_forget" href="#">忘記密碼?</a>
-                            </div>
-                        </div>
-                        <div id="forget" class="swap" >
-                            <h1>找回密碼</h1>
-                            @Html.TextBox("identity", null, new { placeholder = "輸入身分證號碼", autocomplete = "off" })
-                            @Html.TextBox("birthday", null, new { placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off" })
-                            <button type="button" id="btn_edit" class="login_button">送出</button>
-                            <button type="button" class="login_button" data-dismiss="modal">取消</button>
-                            <div>
-                                <a href="#" id="a_login">返回登入</a>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                </div>
+        <div id="login_m_content" class="modal-content"> 
+            <div class="login_use_body">
+                <div class="ui-panel login-panel animated bounceInDown">
+                    <div class="login-container">
+                        @*<h1>登入</h1>*@
 
-                <ul class="bg-bubbles">
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    @*<li></li>
-                    <li></li>*@
-                </ul>
+                        @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login_use_form" }))
+                        {
+                            <div style="text-align:center;" class="modal-body">
+                                <div class="DisplayError">
+                                    <div id="showError" class="alert alert-danger" role="alert"></div>
+                                </div>
+                                <div id="login">
+                                    <h1>登入</h1>
+                                    @Html.TextBoxFor(m => m.Account_number, new { placeholder = "帳號", autocomplete = "off", @class = "login_use_form_input" })
+                                    @*<input type="text" placeholder="帳號" />*@
+                                    @Html.TextBoxFor(m => m.Password, new { placeholder = "密碼", type = "password", @class = "login_use_form_input" })
+                                    @*<input type="text" placeholder="密碼" />*@
+                                    <a id="btn_login" class="btn btn-outline-info login_use_button">登入</a>
+                                    <a class="btn btn-outline-info login_use_button" data-dismiss="modal">取消</a>
+                                    <div>
+                                        <a id="a_forget" href="#">忘記密碼?</a>
+                                    </div>
+                                </div>
+                                <div id="forget" class="swap">
+                                    <h1>找回密碼</h1>
+                                    @Html.TextBox("identity", null, new { placeholder = "輸入身分證號碼", autocomplete = "off", @class = "login_use_form_input" })
+                                    @Html.TextBox("birthday", null, new { placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off", @class = "login_use_form_input" })
+                                    <a id="btn_login" class="btn btn-outline-info login_use_button">登入</a>
+                                    <a class="btn btn-outline-info login_use_button" data-dismiss="modal">取消</a>
+                                    <div>
+                                        <a href="#" id="a_login">返回登入</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <ul class="bg-bubbles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

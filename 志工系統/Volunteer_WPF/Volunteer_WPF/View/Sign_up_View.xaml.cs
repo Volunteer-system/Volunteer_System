@@ -18,6 +18,7 @@ using Volunteer_WPF.Model;
 using System.Threading;
 using OfficeOpenXml;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Volunteer_WPF.View
 {
@@ -731,11 +732,14 @@ namespace Volunteer_WPF.View
                                         volunteer.Identity_type = 1;
                                     }
                                     volunteer.Join_date = q[j].Sign_up_date;
-                                    if (int.TryParse(q[j].Phone, out int phone_no))
+
+                                    string intphone = Regex.Replace(q[j].Phone, "[^0-9]", "");
+                                    if (int.TryParse(intphone, out int phone_no))
                                     {
                                         volunteer.Phone_no = phone_no;
                                     }
-                                    if (int.TryParse(q[j].Mobile, out int mobile_no))
+                                    string intmobile = Regex.Replace(q[j].Mobile, "[^0-9]", "");
+                                    if (int.TryParse(intmobile, out int mobile_no))
                                     {
                                         volunteer.Mobile_no = mobile_no;
                                     }

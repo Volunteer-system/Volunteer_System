@@ -24,6 +24,9 @@
     <!--12/30導覽列動畫、頁尾樣式表-->
     <link href="~/Css/layout_use2.css" rel="stylesheet" />
     <style>
+        .screen {
+            margin-top: 60px;
+        }
 
         .l_header_slogan {
             width: 50%;
@@ -94,62 +97,10 @@
 
             @*<div class="col-1 pt-1">*@
             <div class="l_header_slogan">
-                @*@Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark " })*@
-                @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>*@
                 <a href="~/Home/Index" class="blog-header-logo text-dark"><img src="~/Images/logo.png" /></a>
             </div>
             @*<div class="col-4 d-flex justify-content-end align-items-center">*@
             <div class="l_header_login">
-                @*<a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
-                    </a>*@
-                @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@<!--判斷有無登入者，切換功能-->
-                @*<div class="dropdown">
-                        @{
-                            if (Session["UserName"] == null)
-                            {
-                                <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
-                            }
-                            else
-                            {
-                                <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
-                            }
-                        }
-                        @{
-                            if (logintype == "運用單位")
-                            {
-                                <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    <a class="dropdown-item" href="#">運用單位首頁</a>
-                                    @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })
-                                    <a class="dropdown-item" href="#">考核</a>
-                                    @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                </div>
-                            }
-                            else if (logintype == "志工")
-                            {
-                                <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
-                                    <a class="dropdown-item" href="#">志工權益</a>
-                                    @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                </div>
-                            }
-                            else
-                            {
-                                <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("首頁維護", "Home_maintenance", "Supervision", null, new { @class = "dropdown-item" })
-                                    @Html.ActionLink("績優志工維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
-                                    <a class="dropdown-item" href="#">志工申請維護</a>
-                                    @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                </div>
-                            }
-                        }
-                    </div>*@
                 <ul id="login_bar" style="list-style-type:none;">
                     <li class="nav-item">
                         @{
@@ -241,6 +192,7 @@
             </nav>
         </div>
     </div>
+    <div class="screen"></div>
     <main role="main" class="container body-content py-5">
         <div>
             @RenderBody()

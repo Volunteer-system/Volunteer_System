@@ -133,8 +133,10 @@ namespace Volunteer_WPF.View_Model
 
         public void Compute_Event_month(List<Abnormal_event_analysis_ViewModel> abnormal_Event_Analysis_ViewModels, DateTime startdate, DateTime enddate)
         {
+            int _month = 12*(enddate.Year - startdate.Year) + (enddate.Month - startdate.Month);
+            int month = startdate.Month;
             List<Compute_Eventmonth> compute_Eventmonths = new List<Compute_Eventmonth>();
-            for (int month = startdate.Month; month <= enddate.Month; month++)
+            for (int i = 0; i <= _month; i++)
             {
                 int count = 0;
                 foreach (var row in abnormal_Event_Analysis_ViewModels)
@@ -149,6 +151,15 @@ namespace Volunteer_WPF.View_Model
                 compute_Eventmonth.Month = month;
                 compute_Eventmonth.event_count = count;
                 compute_Eventmonths.Add(compute_Eventmonth);
+
+                if (month == 12)
+                {
+                    month = 1;
+                }
+                else
+                {
+                    month++;
+                }
             }
             Compute_Eventmonths = compute_Eventmonths;
         }

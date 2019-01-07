@@ -8,585 +8,204 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
-        div.vision-news-loop {
-            margin: 10px 0px;
+        div.vision-news-loop{margin:15px 0px;}
+        div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo{
+            -webkit-transform: scale(1.1, 1.1);
+            -moz-transform: scale(1.1, 1.1);
+            -ms-transform: scale(1.1, 1.1);
+            -o-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+        }
+        div.vision-news-loop div.vision-thumbnails img.vision-news-photo,div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo{
+            -webkit-transition: all 0.9s;
+            -moz-transition: all 0.9s;
+            -o-transition: all 0.9s;
+            transition: all 0.9s;
+        }
+        div.vision-news-loop div.mask,div.vision-news-loop:hover div.mask{
+           -webkit-transition: all 0.35s;
+           -moz-transition: all 0.35s;
+           -o-transition: all 0.35s;
+           transition: all 0.35s;
+        }
+        div.vision-news-loop div.mask{position:absolute;top:0px;right:0px;width:50%;height:100%;background-color:rgba(0,0,0,0.77);z-index:2;padding:30px;color:#BBB;}
+        div.vision-news-loop:hover div.mask{width:100%;}
+        span.news-date{color:#3CBBE8;font-size:18px;font-weight:bold;}
+        div.vision-news-loop div.mask h3{color:#FFF;}
+        div.vision-news-loop:hover div.mask h3{color:#3CBBE8;}
+        div.news-more{color:#3CBBE8;margin-top:15px;}
+
+        @@media (min-width:992px) and (max-width:1199px){
+	       div.vision-news-loop div.mask h3{font-size:20px;}
+        }
+        @@media (min-width:768px) and (max-width:991px){
+	       div.vision-news-loop div.mask{padding:15px;}
+	       span.news-date{font-size:14px;}
+	       div.vision-news-loop div.mask h3{font-size:16px;margin-top:5px;}
+        }
+        @@media (max-width: 540px) {
+	       div.vision-news-loop div.mask{padding:15px;}
+	       span.news-date{font-size:14px;}
+	       div.vision-news-loop div.mask h3{font-size:16px;margin-top:5px;}
+	       div.vision-news-loop div.mask{width:100%;}
         }
 
-            div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo {
-                -webkit-transform: scale(1.1, 1.1);
-                -moz-transform: scale(1.1, 1.1);
-                -ms-transform: scale(1.1, 1.1);
-                -o-transform: scale(1.1, 1.1);
-                transform: scale(1.1, 1.1);
-            }
-
-            div.vision-news-loop div.vision-thumbnails img.vision-news-photo, div.vision-news-loop:hover div.vision-thumbnails img.vision-news-photo {
-                -webkit-transition: all 0.9s;
-                -moz-transition: all 0.9s;
-                -o-transition: all 0.9s;
-                transition: all 0.9s;
-            }
-
-            div.vision-news-loop div.mask, div.vision-news-loop:hover div.mask {
-                -webkit-transition: all 0.35s;
-                -moz-transition: all 0.35s;
-                -o-transition: all 0.35s;
-                transition: all 0.35s;
-            }
-
-            div.vision-news-loop div.mask {
-                position: absolute;
-                top: 0px;
-                right: 25px;
-                width: 50%;
-                height: 100%;
-                background-color: rgba(0,0,0,0.77);
-                z-index: 2;
-                padding: 30px;
-                color: #BBB;
-            }
-
-            div.vision-news-loop:hover div.mask {
-                width: 100%;
-            }
-
-        span.news-date {
-            color: #3CBBE8;
-            font-size: 18px;
-            font-weight: bold;
-        }
-
-        div.vision-news-loop div.mask h3 {
-            color: #FFF;
-        }
-
-        div.vision-news-loop:hover div.mask h3 {
-            color: #3CBBE8;
-        }
-
-        div.news-more {
-            color: #3CBBE8;
-            margin-top: 15px;
-        }
-
-        /*輪播用的小圖按鈕使用▼*/
-        .btn_use {
-            display: inline-block;
-            font-weight: 400;
-            /*text-align: center;*/
-            white-space: nowrap;
-            vertical-align: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            border: 1px solid transparent;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: 0.25rem;
-            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;  
-        }
-
-        @@media screen and (prefers-reduced-motion: reduce) {
-            .btn_use {
-                transition: none;
-            }
-        }
-
-        .btn_use:hover, .btn_use:focus {
-            text-decoration: none;
-        }
-
-        .btn_use:focus, .btn_use.focus {
-            outline: 0;
-            box-shadow: 0 0 0 0.5rem rgba(0, 123, 255, 0.25);
-        }
-
-        .btn_use.disabled, .btn_use:disabled {
-            opacity: 0.65;
-        }
-
-        .btn_use:not(:disabled):not(.disabled) {
-            cursor: pointer;
-        }
-        /*輪播用的小圖按鈕使用▲*/
-        /*主頁面使用▼*/
-        .index_layout_main {
-            margin-top: 120px;
-        }
-        /*主頁面使用▲*/
-        /*除大圖頁面使用▼*/
-        .index_layout {
-            margin: 0 auto;
-            text-align: center;
-            width:100%;
-        }
-        /*除大圖頁面使用▲*/
-        /*主版大圖使用▼*/
-
-        .carousel {
-            position: relative;
-            margin:1% !important;
-        }
-        .main_img {
-            /*all:initial;*/
-            /*text-align:center;*/
-            /*display:block;*/
-            width:100%;
-            max-height: 400px !important;
-            /*width: 100%;*/
-            /*padding: 0 0px 0 0px;*/
-        }
-        /*主版大圖使用▲*/
-        /*小圖、影片使用▼*/
-        .small_Video {
-            width: 31%;
-            height: 150px;
-            margin: 1%;
-        }
-        .small_img {
-            width: 19.4%;
-            height: 150px;
-            margin: 0px;
-        }
-        .img-responsive{
-            margin:2% !important;
-        }
-        /*小圖、影片使用▲*/
-        /*Contact訊息欄使用▼*/
-        ._fieldset {
-            /*all:initial;*/
-            width: 98%;
-            margin: 1%;
-            border: 3px solid lightgray;
-        }
-
-        .legend {
-            all: initial;
-            text-align: center;
-            font-size: 30px;
-            font-family: 'Microsoft JhengHei';
-        }
-
-        .ul_contact {
-            width: 48%;
-            margin: 1%;
-            overflow: auto;
-            float: left;
-            list-style-type: none;
-        }
-
-        .li_contact {
-            float: left;
-            font-size: 20px;
-            padding-right: 3px;
-            font-family: 'Microsoft JhengHei';
-        }
-        /*Contact訊息欄使用▲*/
-        /*區塊範圍使用▼*/
-        .index_area {
-            width: 100%;
-            margin-top: 1%;
-            /*text-align: center;*/
-        }
-        /*區塊範圍使用▲*/
-        @@media (min-width:992px) and (max-width:1199px) {
-            div.vision-news-loop div.mask h3 {
-                font-size: 20px;
-            }
-        }
-
-        @@media (min-width:768px) and (max-width:991px) {
-            div.vision-news-loop div.mask {
-                padding: 15px;
-                right: 0px;
-            }
-
-            span.news-date {
-                font-size: 14px;
-            }
-
-            div.vision-news-loop div.mask h3 {
-                font-size: 16px;
-                margin-top: 5px;
-            }
-
-            div.vision-news-loop div.mask {
-                width: 100%;
-            }
-
-            .img-responsive {
-                margin: 0px !important;
-            }
-
-            .main_img {
-                max-height: 300px !important;
-                /*width: 100%;*/
-                /*padding: 0 20px 0 20px;*/
-            }
-
-            .small_Video {
-                width: 30%;
-                height: 150px;
-                margin: 1%;
-            }
-
-            .small_img {
-                width: 19.2%;
-                height: 150px;
-                margin: 0px;
-            }
-
-            .li_contact {
-                float: none;
-                font-size: 20px;
-                padding-right: 3px;
-            }
-        }
-
-        @@media (max-width: 768px) {
-            div.vision-news-loop div.mask {
-                padding: 15px;
-                right:0px;
-            }
-
-            span.news-date {
-                font-size: 14px;
-            }
-
-            div.vision-news-loop div.mask h3 {
-                font-size: 16px;
-                margin-top: 5px;
-            }
-
-            div.vision-news-loop div.mask {
-                width: 100%;
-            }
-
-            .img-responsive {
-                margin: 0px !important;
-            }
-
-            .main_img {
-                max-height: 200px !important;
-            }
-
-            .small_Video {
-                width: 30%;
-                height: 150px;
-                margin: 1%;
-            }
-
-            .small_img {
-                width: 19.2%;
-                height: 150px;
-                margin: 0px;
-            }
-
-            .li_contact {
-                float: none;
-                font-size: 20px;
-                padding-right: 3px;
-            }
-        }
-
-        @@media (max-width: 569px) {
-            div.vision-news-loop div.mask {
-                padding: 15px;
-                right: 0px;
-            }
-            .index_layout_main {
-                margin-top: 100px;
-            }
-
-            .small_Video {
-                width: 98%;
-                height: 150px;
-                margin: 1%;
-            }
-            .small_img {
-                width: 98%;
-                height: 150px;
-                margin: 1%;
-            }
-            .li_contact {
-                float: none;
-                font-size: 12px;
-                padding-right: 3px;
-            }
-
-            @@media (max-width: 321px) {
-                div.vision-news-loop div.mask {
-                    padding: 15px;
-                    right: 0px;
-                }
-                .li_contact {
-                    float: none;
-                    font-size: 10px;
-                }
-            }
-        }
-    </style>
+    </style>    
 }
-<div class="index_layout_main">
-    <div id="myCarousel" class="carousel slide">
-        <!-- 輪播（Carousel）指標 -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-            <li data-target="#myCarousel" data-slide-to="4"></li>
-        </ol>
 
-        <!-- 輪播（Carousel）項目carousel-inner -->
-        <div class="carousel-inner">
-            <!--測試用-->
-            @*<div class="item active">
-                <img class="main_img" src="~/Images/292-12-3.jpg" alt="First side" />
-            </div>
-            <div class="item">
-                <img class="main_img" src="~/Images/299-06-1.jpg" alt="side" />
-            </div>
-            <div class="item">
-                <img class="main_img" src="~/Images/maxresdefault.jpg" alt="side" />
-            </div>
-            <div class="item">
-                <img class="main_img" src="~/Images/maxresdefault.jpg" alt="side" />
-            </div>
-            <div class="item">
-                <img class="main_img" src="~/Images/maxresdefault.jpg" alt="side" />
-            </div>*@
-            @{
-                int count1 = 0;
-                foreach (var row in Model.Indexphotos)
-                {
-                    if (row.Issued && count1 < 5)
-                    {
-                        if (count1 == 0)
-                        {
-                            <div class="item active">
-                                <img class="main_img" src="~/Images/@row.Indexphoto_name" alt="First side">
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="item">
-                                <img class="main_img" src="~/Images/@row.Indexphoto_name" alt=" side">
-                            </div>
-                        }
-                        count1++;
-                    }
 
-                }
-            }
-        </div>
-        <!-- 輪播（Carousel -->
-        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-    <div class="index_layout">
-        <!-- 控制按钮 -->
-        <div class="index_area">
-            @*<div style="text-align:center">*@
-            <!--測試用-->
-            @*<input type="image" src="~/Images/292-12-3.jpg" data-target="#myCarousel" data-slide-to="0" class="btn_use small_img">
-            <input type="image" src="~/Images/299-06-1.jpg" data-target="#myCarousel" data-slide-to="1" class="btn_use small_img">
-            <input type="image" src="~/Images/maxresdefault.jpg" data-target="#myCarousel" data-slide-to="2" class="btn_use small_img">
-            <input type="image" src="~/Images/maxresdefault.jpg" data-target="#myCarousel" data-slide-to="3" class="btn_use small_img">
-            <input type="image" src="~/Images/maxresdefault.jpg" data-target="#myCarousel" data-slide-to="4" class="btn_use small_img">*@
-            @*<input type="image" src="~/Images/志工隊介紹用.jpg" data-target="#myCarousel" data-slide-to="3" class="btn" style="width:20rem;">
-        <input type="image" src="~/Images/志工隊介紹用.jpg" data-target="#myCarousel" data-slide-to="" class="btn" style="width:20rem;">*@
-            @{
-                int count2 = 0;
+<div id="myCarousel" class="carousel slide">
+    <!-- 輪播（Carousel）指標 -->
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+        <li data-target="#myCarousel" data-slide-to="4"></li>
+    </ol>
+
+    <!-- 輪播（Carousel）項目 -->
+    <div class="carousel-inner">
+        @{
+            int count1 = 0;
             foreach (var row in Model.Indexphotos)
             {
-                if (row.Issued && count2 < 5)
+                if (row.Issued && count1 < 5)
                 {
-                        <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn_use small_img" ><!--修改-->
-                    count2++;
+                    if (count1 == 0)
+                    {
+                        <div class="item active">
+                            <img src="~/Images/@row.Indexphoto_name" alt="First side">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="item">
+                            <img src="~/Images/@row.Indexphoto_name" alt=" side">
+                        </div>
+                    }
+                    count1++;
                 }
-            }
-            }
-        </div>
-        <div class="row mb-2">
-            <div class="col-sm-6 vision-news-loop" >
-                <a href="/Home/Activity" target="_top" title="績優志工簡介">
-                    <div class="vision-thumbnails">
-                        <div class="thumbnails-2by1">
-                            @foreach (var row in Model.Experiences)
-                         {
-                            <div class="mask">
-                                <span class="news-date">
-                                    績優志工簡介
-                                </span>
-                                <h3>@row.Experience</h3>
-                     
-                                <div class="news-more"><i class="fa fa-angle-right">@row.Experience_content</i> read more</div>
-                            </div>
-                            <!--src="~/Images/@@row.Experience_photo"-->
-                            <img src="~/Images/images (1).jpg" alt="績優志工簡介" class="img-responsive vision-news-photo" />
-                            }
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="col-sm-6 vision-news-loop">
-                <a href="/Home/Activity" target="_top" title="志工招募">
-                    <div class="vision-thumbnails">
-                        <div class="thumbnails-2by1">
-                            <div class="mask">
-                                <span class="news-date">
-                                    我要成為志工
-                                </span>
-                                <h3>招募辦法</h3>
-                                XXXXXXXXXX
-                                <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
-                            </div>
-                            <img src="~/Images/images (1).jpg" alt="志工招募" class="img-responsive vision-news-photo" />
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <div class="index_area">
-            <iframe class="small_Video" src="https://www.youtube.com/embed/t7WuRwQicRs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe class="small_Video" src="https://www.youtube.com/embed/jndESlYztoM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <iframe class="small_Video" src="https://www.youtube.com/embed/V9hl8PkJc9U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </div>
-
-        <fieldset class="_fieldset">
-            <legend class="legend">Contact</legend>
-            <ul class="ul_contact">
-                <li class="li_contact">主任辦公室:</li>
-                <li class="li_contact">02-77282937</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">明倫身障服務中心:</li>
-                <li class="li_contact">02-77281283</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">癌症資源中心:</li>
-                <li class="li_contact">02-77281709</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">志工室:</li>
-                <li class="li_contact">02-77281285</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">明倫病友家庭服務中心:</li>
-                <li class="li_contact">02-77281278</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">福利諮詢暨輔具租借櫃檯:</li>
-                <li class="li_contact">02-77281277</li>
-            </ul>
-            <ul class="ul_contact">
-                <li class="li_contact">淑宜的幸福小棧:</li>
-                <li class="li_contact">02-77380799</li>
-            </ul>
-
-        </fieldset>
-    </div>
-</div>
-@*<div class="row mb-2">
-        <div class="col-sm-6 vision-news-loop">
-            <a href="/Home/Activity" target="_top" title="績優志工簡介">
-                <div class="vision-thumbnails">
-                    <div class="thumbnails-2by1">
-                        @foreach (var row in Model.Experiences)
-                        {
-                            <div class="mask">
-                                <span class="news-date">
-                                    績優志工簡介
-                                </span>
-                                    <h3>@row.Experience</h3>
-                                    @row.Experience_content
-                                <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
-                            </div>
-                            <img src="~/Images/@row.Experience_photo" alt="績優志工簡介" class="img-responsive vision-news-photo" />
-                        }
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-sm-6 vision-news-loop">
-            <a href="/Home/Activity" target="_top" title="志工招募">
-                <div class="vision-thumbnails">
-                    <div class="thumbnails-2by1">
-                        <div class="mask">
-                            <span class="news-date">
-                                我要成為志工
-                            </span>
-                            <h3>招募辦法</h3>
-                            XXXXXXXXXX
-                            <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
-                        </div>
-                        <img src="~/Images/images (1).jpg" alt="志工招募" class="img-responsive vision-news-photo" />
-                    </div>
-                </div>
-            </a>
-        </div>
-    </div>
-
-    <div class="row m-1">
-        @{
-            int count3 = 0;
-            foreach (var row in Model.Indexvideolinks)
-            {
-                if (row.Issued && count3 < 5)
-                {
-                    <div class="m-4">
-                        <iframe class="embed-responsive-item" src="@row.Videolink" allowfullscreen></iframe>
-                    </div>
-                }
-                count3++;
+                
             }
         }
     </div>
+    <!-- 輪播（Carousel -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
-    <div class="row">
-        <div class="col-md-12 blog-main">
-            <h3 class="pb-3 mb-4 font-italic border-bottom">
-                相關聯絡資訊
-            </h3>
-            <div class="blog-post col-md-3">
-                <h2 class="blog-post-title" style="font-size:large">主任辦公室</h2>
-                <h2 class="blog-post-title" style="font-size:large">明倫身障服務中心</h2>
-                <h2 class="blog-post-title" style="font-size:large">癌症資源中心</h2>
-                <h2 class="blog-post-title" style="font-size:large">志工室</h2>
-                <hr>
+<!-- 控制按钮 -->
+
+<div style="text-align:center">
+        int count2 = 0;
+        foreach (var row in Model.Indexphotos)
+        {
+            if (row.Issued && count2 < 5)
+            {
+                <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn" style="width:18rem;">
+                count2++;
+            }
+        }
+    }
+</div>
+
+<div class="row mb-2">
+    <div class="col-sm-6 vision-news-loop">
+        <a href="/Home/Activity" target="_top" title="績優志工簡介">
+            <div class="vision-thumbnails">
+                <div class="thumbnails-2by1">
+                    @foreach (var row in Model.Experiences)
+                    {
+                        <div class="mask">
+                            <span class="news-date">
+                                績優志工簡介
+                            </span>
+                                <h3>@row.Experience</h3>
+                                @row.Experience_content
+                            <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
+                        </div>
+                        <img src="~/Images/@row.Experience_photo" alt="績優志工簡介" class="img-responsive vision-news-photo" />
+                    }
+                </div>
             </div>
-            <div class="blog-post col-md-3">
-                <h2 class="blog-post-title" style="font-size:large">02-77282937</h2>
-                <h2 class="blog-post-title" style="font-size:large">02-77281283</h2>
-                <h2 class="blog-post-title" style="font-size:large">02-77281709</h2>
-                <h2 class="blog-post-title" style="font-size:large">02-77281285</h2>
-                <hr>
+        </a>
+    </div>
+
+    <div class="col-sm-6 vision-news-loop">
+        <a href="/Home/Activity" target="_top" title="志工招募">
+            <div class="vision-thumbnails">
+                <div class="thumbnails-2by1">
+                    <div class="mask">
+                        <span class="news-date">
+                            我要成為志工
+                        </span>
+                        <h3>招募辦法</h3>
+                        XXXXXXXXXX
+                        <div class="news-more"><i class="fa fa-angle-right"></i> read more</div>
+                    </div>
+                    <img src="~/Images/images (1).jpg" alt="志工招募" class="img-responsive vision-news-photo" />
+                </div>
             </div>
-            <div class="blog-post col-md-4">
-                <h2 class="blog-post-title" style="font-size:large">明倫病友家庭服務中心</h2>
-                <h2 class="blog-post-title" style="font-size:large">福利諮詢暨輔具租借櫃檯</h2>
-                <h2 class="blog-post-title" style="font-size:large">淑宜的幸福小棧</h2>
-            </div>
-            <div class="blog-post col-md-2">
-                <h2 class="blog-post-title" style="font-size:large">02-77281278</h2>
-                <h2 class="blog-post-title" style="font-size:large">02-77281277</h2>
-                <h2 class="blog-post-title" style="font-size:large">02-77380799</h2>
-            </div>
+        </a>
+    </div>
+</div>
+
+<div class="row m-1">
+    @{
+        int count3 = 0;
+        foreach (var row in Model.Indexvideolinks)
+        {
+            if (row.Issued && count3 < 5)
+            {
+                <div class="m-4">
+                    <iframe class="embed-responsive-item" src="@row.Videolink" allowfullscreen></iframe>
+                </div>
+            }
+            count3++;
+        }
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-12 blog-main">
+        <h3 class="pb-3 mb-4 font-italic border-bottom">
+            相關聯絡資訊
+        </h3>
+        <div class="blog-post col-md-3">
+            <h2 class="blog-post-title" style="font-size:large">主任辦公室</h2>
+            <h2 class="blog-post-title" style="font-size:large">明倫身障服務中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">癌症資源中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">志工室</h2>
+            <hr>
         </div>
+        <div class="blog-post col-md-3">
+            <h2 class="blog-post-title" style="font-size:large">02-77282937</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281283</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281709</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281285</h2>
+            <hr>
+        </div>
+        <div class="blog-post col-md-4">
+            <h2 class="blog-post-title" style="font-size:large">明倫病友家庭服務中心</h2>
+            <h2 class="blog-post-title" style="font-size:large">福利諮詢暨輔具租借櫃檯</h2>
+            <h2 class="blog-post-title" style="font-size:large">淑宜的幸福小棧</h2>
+        </div>
+        <div class="blog-post col-md-2">
+            <h2 class="blog-post-title" style="font-size:large">02-77281278</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77281277</h2>
+            <h2 class="blog-post-title" style="font-size:large">02-77380799</h2>
+        </div>
+    </div>
 
-
-    </div>*@
+    
+</div>
 
 
 @section Home_script{

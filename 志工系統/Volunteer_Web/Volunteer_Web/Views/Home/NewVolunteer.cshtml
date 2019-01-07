@@ -55,8 +55,9 @@
         }
     </style>
 }
-
-
+    <br />
+    <br />
+<br />
 <div class="row mt-4">
     <div class="col-lg-3">
         <div class="btn btn-block">
@@ -292,12 +293,14 @@
             var Reg_identity = /^[A-Za-z][12]\d{8}$/;
             if (!Reg_identity.test($('#identity_check').text())) {
                 alert("身份證字號有誤喔")
+                OKinsert += 1;
                 }
             //電話
             var Reg_mobile = /^09[0-9]{2}-[0-9]{6}$/
             var mobile = $('#mobile');
             if (mobile.text() != "無" && !Reg_mobile.test(mobile.text())) {
                 alert("手機有誤喔，請輸入格式 XXXX - XXXXXXX");
+                OKinsert += 1;
             }
 
 

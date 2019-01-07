@@ -39,6 +39,8 @@ namespace Volunteer_WPF.View
             _service_period_no = service_period_no;
 
             Shift_schedule_detail_ViewModel Schedule_Detail_ViewModel = new Shift_schedule_detail_ViewModel();
+            string period_and_time = Schedule_Detail_ViewModel.SelectService_Periodby_Service_Period_no(service_period_no);
+            this.lab_period_and_time.Content = period_and_time;
 
             List<Shift_schedule_detail_ViewModel> Stay_Volunteers = Schedule_Detail_ViewModel.SelectStay_Volunteer_byService_Period(application_unit_no, service_period_no);
             foreach (var row in Stay_Volunteers)

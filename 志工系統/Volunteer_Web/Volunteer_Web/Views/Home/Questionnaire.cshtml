@@ -1,382 +1,347 @@
 ﻿@model Volunteer_Web.ViewModel.Sign_up_questionnaireVM
 @section Home_style{
     <style>
+
         .fontstyle {
             font-size: 20px;
             font-family: 微軟正黑體;
         }
     </style>
-    }
+}
+<div class="btn btn-block fontstyle">
+    <h2>問卷調查</h2>
+    <hr />
+</div>
+<br />
+<form action="~/Home/Questionnaire" method="post">
+    <div id="Q1">
+        <h4>一、為何想成為志工(可複選)</h4>
+        @{
+            if (Model.Q1.ToList().Contains("01回饋社會"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會">}
+        }
+        <label class="form-check-label">回饋社會</label>
+        @{
+            if (Model.Q1.ToList().Contains("02打發時間"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間">}
+        }
+        <label class="form-check-label">打發時間</label>
+        @{
+            if (Model.Q1.ToList().Contains("03體驗志願服務工作"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作">}
+        }
+        <label class="form-check-label">體驗志願服務工作</label>
+        @{
+            if (Model.Q1.ToList().Contains("04交朋友"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友">}
+        }
+        <label class="form-check-label">交朋友</label>
+        @{
+            if (Model.Q1.ToList().Contains("05想多了解醫學常識"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識">}
+        }
+        <label class="form-check-label">想多了解醫學常識</label>
+        @{
+            if (Model.Q1.ToList().Contains("06其他"))
+            {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工">}
+        }
+        <label class="form-check-label">其他</label>
+        <input type="text" name="Q1else" value="@Model.Q1else" class="form-text border" />
+    </div>
+    <hr />
+    <div id="Q2">
+        <h4>二、您為何選擇亞東醫院做志工服務?(可複選)</h4>
+        @{
+            if (Model.Q2.ToList().Contains("01離家近"))
+            {<input class="form-check-input" type="checkbox" value="01離家近" id="離家近" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="01離家近" id="離家近" name="Q2">}
+        }
+        <label class="form-check-label">離家近</label>
+        @{
+            if (Model.Q2.ToList().Contains("02志工隊服務績效良好"))
+            {<input class="form-check-input" type="checkbox" value="02志工隊服務績效良好" id="志工隊服務績效良好" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="02志工隊服務績效良好" id="志工隊服務績效良好" name="Q2">}
+        }
+        <label class="form-check-label">志工隊服務績效良好</label>
+        @{
+            if (Model.Q2.ToList().Contains("03具組織規模"))
+            {<input class="form-check-input" type="checkbox" value="03具組織規模" id="具組織規模" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="03具組織規模" id="具組織規模" name="Q2">}
+        }
+        <label class="form-check-label">具組織規模</label>
+        @{
+            if (Model.Q2.ToList().Contains("04志工福利健全"))
+            {<input class="form-check-input" type="checkbox" value="04志工福利健全" id="志工福利健全" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="04志工福利健全" id="志工福利健全" name="Q2">}
+        }
+        <label class="form-check-label">志工福利健全</label>
+        @{
+            if (Model.Q2.ToList().Contains("05有認識的人在醫院"))
+            {<input class="form-check-input" type="checkbox" value="05有認識的人在醫院" id="有認識的人在醫院" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="05有認識的人在醫院" id="有認識的人在醫院" name="Q2">}
+        }
+        <label class="form-check-label">有認識的人在醫院</label>
+        @{
+            if (Model.Q2.ToList().Contains("06想當志工時恰巧看到志工招募的消息"))
+            {<input class="form-check-input" type="checkbox" value="06想當志工時恰巧看到志工招募的消息" id="想當志工時恰巧看到志工招募的消息" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="06想當志工時恰巧看到志工招募的消息" id="想當志工時恰巧看到志工招募的消息" name="Q2">}
+        }
+        <label class="form-check-label">想當志工時恰巧看到志工招募的消息</label>
 
-    <h2>Questionnaire問券調查</h2>
-    <br />
-    <br />
-    <form action="~/Home/Questionnaire" method="post">
-        <div id="Q1">
-            <h4>一、為何想成為志工(可複選)</h4>
-            @{
-                if (Model.Q1.ToList().Contains("01回饋社會"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="01回饋社會" id="回饋社會">}
-            }
-            <label class="form-check-label">回饋社會</label>
+        @{
+            if (Model.Q2.ToList().Contains("07對醫院有特殊情感"))
+            {<input class="form-check-input" type="checkbox" value="07對醫院有特殊情感" id="對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="07對醫院有特殊情感" id="對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)" name="Q2">}
+        }
+        <label class="form-check-label">對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)</label>
+        @{
+            if (Model.Q2.ToList().Contains("08其他"))
+            {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您為何選擇亞東醫院做志工服務" name="Q2" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您為何選擇亞東醫院做志工服務" name="Q2">}
+        }
+        <label class="form-check-label">其他</label>
+        <input type="text" name="Q2else" value="@Model.Q2else" class="form-text border" />
+    </div>
+    <hr />
+    <div id="Q3">
+        <h4>三、您是由何處得知亞東醫院招募志工的消息?(可複選)</h4>
+        @{
+            if (Model.Q3.ToList().Contains("01報紙"))
+            {<input class="form-check-input" type="checkbox" value="01報紙" id="報紙" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="01報紙" id="報紙" name="Q3">}
+        }
+        <label class="form-check-label">報紙</label>
+        @{
+            if (Model.Q3.ToList().Contains("02紅布條"))
+            {<input class="form-check-input" type="checkbox" value="02紅布條" id="報紙" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="02紅布條" id="報紙" name="Q3">}
+        }
+        <label class="form-check-label">紅布條</label>
+        @{
+            if (Model.Q3.ToList().Contains("03宣傳單"))
+            {<input class="form-check-input" type="checkbox" value="03宣傳單" id="宣傳單" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="03宣傳單" id="宣傳單" name="Q3">}
+        }
+        <label class="form-check-label">宣傳單</label>
+        @{
+            if (Model.Q3.ToList().Contains("04海報"))
+            {<input class="form-check-input" type="checkbox" value="04海報" id="海報" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="04海報" id="海報" name="Q3">}
+        }
+        <label class="form-check-label">海報</label>
+        @{
+            if (Model.Q3.ToList().Contains("05親友介紹"))
+            {<input class="form-check-input" type="checkbox" value="05親友介紹" id="親友介紹" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="05親友介紹" id="親友介紹" name="Q3">}
+        }
+        <label class="form-check-label">親友介紹</label>
+        @{
+            if (Model.Q3.ToList().Contains("06自己來電詢問得知"))
+            {<input class="form-check-input" type="checkbox" value="06自己來電詢問得知" id="自己來電詢問得知" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="06自己來電詢問得知" id="自己來電詢問得知" name="Q3">}
+        }
+        <label class="form-check-label">自己來電詢問得知</label>
+        @{
+            if (Model.Q3.ToList().Contains("07網路"))
+            {<input class="form-check-input" type="checkbox" value="07網路" id="網路" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="07網路" id="網路" name="Q3">}
+        }
+        <label class="form-check-label">網路</label>
+        @{
+            if (Model.Q3.ToList().Contains("08本院志工介紹"))
+            {<input class="form-check-input" type="checkbox" value="08本院志工介紹" id="本院志工介紹" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="08本院志工介紹" id="本院志工介紹" name="Q3">}
+        }
+        <label class="form-check-label">本院志工介紹</label>
+        @{
+            if (Model.Q3.ToList().Contains("09醫生介紹"))
+            {<input class="form-check-input" type="checkbox" value="09醫生介紹" id="醫生介紹" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="09醫生介紹" id="醫生介紹" name="Q3">}
+        }
+        <label class="form-check-label">醫生介紹、科別</label>
+        <input type="text" name="Q3doc" value="@Model.Q3doc" class="form-text border" />
+        <br />
+        @{
+            if (Model.Q3.ToList().Contains("10醫院的電視廣告介紹"))
+            {<input class="form-check-input" type="checkbox" value="10醫院的電視廣告介紹" id="醫院的電視廣告介紹" name="Q3" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="10醫院的電視廣告介紹" id="醫院的電視廣告介紹" name="Q3">}
+        }
+        <label class="form-check-label">醫院的電視廣告介紹</label>
+    </div>
+    <hr />
+    <div id="Q4">
+        <h4>四、您以前與亞東醫院的互動關係為?(可複選)</h4>
+        @{
+            if (Model.Q4.ToList().Contains("01離職員工"))
+            {<input class="form-check-input" type="checkbox" value="01離職員工" id="離職員工" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="01離職員工" id="離職員工" name="Q4">}
+        }
+        <label class="form-check-label">離職員工</label>
+        @{
+            if (Model.Q4.ToList().Contains("02曾任院內志工"))
+            {<input class="form-check-input" type="checkbox" value="02曾任院內志工" id="曾任院內志工" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="02曾任院內志工" id="曾任院內志工" name="Q4">}
+        }
+        <label class="form-check-label">曾任院內志工</label>
+        @{
+            if (Model.Q4.ToList().Contains("03員工眷屬"))
+            {<input class="form-check-input" type="checkbox" value="03員工眷屬" id="員工眷屬" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="03員工眷屬" id="員工眷屬" name="Q4">}
+        }
+        <label class="form-check-label">員工眷屬</label>
+        @{
+            if (Model.Q4.ToList().Contains("04本院病患"))
+            {<input class="form-check-input" type="checkbox" value="04本院病患" id="本院病患" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="04本院病患" id="本院病患" name="Q4">}
+        }
+        <label class="form-check-label">本院病患</label>
+        @{
+            if (Model.Q4.ToList().Contains("05本院病患家屬"))
+            {<input class="form-check-input" type="checkbox" value="05本院病患家屬" id="本院病患家屬" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="05本院病患家屬" id="本院病患家屬" name="Q4">}
+        }
+        <label class="form-check-label">本院病患家屬</label>
+        @{
+            if (Model.Q4.ToList().Contains("06曾參與過本院相關活動"))
+            {<input class="form-check-input" type="checkbox" value="06曾參與過本院相關活動" id="曾參與過本院相關活動" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="06曾參與過本院相關活動" id="曾參與過本院相關活動" name="Q4">}
+        }
+        <label class="form-check-label">曾參與過本院相關活動</label>
+        @{
+            if (Model.Q4.ToList().Contains("07無任何互動經驗"))
+            {<input class="form-check-input" type="checkbox" value="07無任何互動經驗" id="無任何互動經驗" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="07無任何互動經驗" id="無任何互動經驗" name="Q4">}
+        }
+        <label class="form-check-label">無任何互動經驗</label>
+        @{
+            if (Model.Q4.ToList().Contains("08其他"))
+            {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您以前與亞東醫院的互動關係為" name="Q4" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您以前與亞東醫院的互動關係為" name="Q4">}
+        }
+        <label class="form-check-label">其他</label>
+        <input type="text" name="Q4else" value="@Model.Q4else" class="form-text border" />
+    </div>
+    <hr />
+    <div id="Q5">
+        <h4>五、您是否曾經或正在其他機構擔任志工?是(續填下方內容),否?</h4>
+        <label class="form-check-label">服務的單位為</label>
+        <input type="text" name="Q5unit" class="success-text border" value="@Model.Q5unit" />
+        <label class="form-check-label"></label>
+        <label class="form-check-label">約有幾年服務經驗 </label>
+        <input type="text" name="Q5years" class="align-content-around border" value="@Model.Q5years" />
+        <label class="form-check-label">工作內容為</label>
+        <input type="text" name="Q5content" class="form-text border" value="@Model.Q5content" />
 
-            @{
-                if (Model.Q1.ToList().Contains("02打發時間"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="02打發時間" id="打發時間">}
-            }
-            <label class="form-check-label">打發時間</label>
-
-            @{
-                if (Model.Q1.ToList().Contains("03體驗志願服務工作"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="03體驗志願服務工作" id="體驗志願服務工作">}
-            }
-            <label class="form-check-label">體驗志願服務工作</label>
-
-            @{
-                if (Model.Q1.ToList().Contains("04交朋友"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="04交朋友" id="交朋友">}
-            }
-            <label class="form-check-label">交朋友</label>
-
-            @{
-                if (Model.Q1.ToList().Contains("05想多了解醫學常識"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="05想多了解醫學常識" id="想多了解醫學常識">}
-            }
-            <label class="form-check-label">想多了解醫學常識</label>
-
-            @{
-                if (Model.Q1.ToList().Contains("06其他"))
-                {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" name="Q1" value="06其他" id="其他_為何想成為志工">}
-            }
-            <label class="form-check-label">其他</label>
-            <input type="text" name="Q1else" value="@Model.Q1else" class="form-text border" />
-        </div>
-        <hr />
-        <div id="Q2">
-            <h4>二、您為何選擇亞東醫院做志工服務?(可複選)</h4>
-            @{
-                if (Model.Q2.ToList().Contains("01離家近"))
-                {<input class="form-check-input" type="checkbox" value="01離家近" id="離家近" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="01離家近" id="離家近" name="Q2">}
-            }
-            <label class="form-check-label">離家近</label>
-            @{
-                if (Model.Q2.ToList().Contains("02志工隊服務績效良好"))
-                {<input class="form-check-input" type="checkbox" value="02志工隊服務績效良好" id="志工隊服務績效良好" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="02志工隊服務績效良好" id="志工隊服務績效良好" name="Q2">}
-            }
-            <label class="form-check-label">志工隊服務績效良好</label>
-
-            @{
-                if (Model.Q2.ToList().Contains("03具組織規模"))
-                {<input class="form-check-input" type="checkbox" value="03具組織規模" id="具組織規模" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="03具組織規模" id="具組織規模" name="Q2">}
-            }
-            <label class="form-check-label">具組織規模</label>
-
-            @{
-                if (Model.Q2.ToList().Contains("04志工福利健全"))
-                {<input class="form-check-input" type="checkbox" value="04志工福利健全" id="志工福利健全" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="04志工福利健全" id="志工福利健全" name="Q2">}
-            }
-            <label class="form-check-label">志工福利健全</label>
-
-            @{
-                if (Model.Q2.ToList().Contains("05有認識的人在醫院"))
-                {<input class="form-check-input" type="checkbox" value="05有認識的人在醫院" id="有認識的人在醫院" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="05有認識的人在醫院" id="有認識的人在醫院" name="Q2">}
-            }
-            <label class="form-check-label">有認識的人在醫院</label>
-
-            @{
-                if (Model.Q2.ToList().Contains("06想當志工時恰巧看到志工招募的消息"))
-                {<input class="form-check-input" type="checkbox" value="06想當志工時恰巧看到志工招募的消息" id="想當志工時恰巧看到志工招募的消息" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="06想當志工時恰巧看到志工招募的消息" id="想當志工時恰巧看到志工招募的消息" name="Q2">}
-            }
-            <label class="form-check-label">想當志工時恰巧看到志工招募的消息</label>
-
-
-            @{
-                if (Model.Q2.ToList().Contains("07對醫院有特殊情感"))
-                {<input class="form-check-input" type="checkbox" value="07對醫院有特殊情感" id="對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="07對醫院有特殊情感" id="對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)" name="Q2">}
-            }
-            <label class="form-check-label">對醫院有特殊情感(如:曾有良好就醫經驗,想回饋)</label>
-
-            @{
-                if (Model.Q2.ToList().Contains("08其他"))
-                {<input class="form-check-input" type="checkbox"  value="08其他" id="其他_您為何選擇亞東醫院做志工服務" name="Q2" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox"  value="08其他" id="其他_您為何選擇亞東醫院做志工服務" name="Q2">}
-            }
-            <label class="form-check-label">其他</label>
-            <input type="text" name="Q2else" value="@Model.Q2else" class="form-text border"/>
-        </div>
-        <hr />
-        <div id="Q3">
-            <h4>三、您是由何處得知亞東醫院招募志工的消息?(可複選)</h4>
-
-            @{
-                if (Model.Q3.ToList().Contains("01報紙"))
-                {<input class="form-check-input" type="checkbox" value="01報紙" id="報紙" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="01報紙" id="報紙" name="Q3">}
-            }
-            <label class="form-check-label">報紙</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("02紅布條"))
-                {<input class="form-check-input" type="checkbox" value="02紅布條" id="報紙" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="02紅布條" id="報紙" name="Q3">}
-            }
-            <label class="form-check-label">紅布條</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("03宣傳單"))
-                {<input class="form-check-input" type="checkbox" value="03宣傳單" id="宣傳單" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="03宣傳單" id="宣傳單" name="Q3">}
-            }
-            <label class="form-check-label">宣傳單</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("04海報"))
-                {<input class="form-check-input" type="checkbox" value="04海報" id="海報" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="04海報" id="海報" name="Q3">}
-            }
-            <label class="form-check-label">海報</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("05親友介紹"))
-                {<input class="form-check-input" type="checkbox" value="05親友介紹" id="親友介紹" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="05親友介紹" id="親友介紹" name="Q3">}
-            }
-            <label class="form-check-label">親友介紹</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("06自己來電詢問得知"))
-                {<input class="form-check-input" type="checkbox" value="06自己來電詢問得知" id="自己來電詢問得知" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="06自己來電詢問得知" id="自己來電詢問得知" name="Q3">}
-            }
-            <label class="form-check-label">自己來電詢問得知</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("07網路"))
-                {<input class="form-check-input" type="checkbox" value="07網路" id="網路" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="07網路" id="網路" name="Q3">}
-            }
-            <label class="form-check-label">網路</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("08本院志工介紹"))
-                {<input class="form-check-input" type="checkbox" value="08本院志工介紹" id="本院志工介紹" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="08本院志工介紹" id="本院志工介紹" name="Q3">}
-            }
-            <label class="form-check-label">本院志工介紹</label>
-
-            @{
-                if (Model.Q3.ToList().Contains("09醫生介紹"))
-                {<input class="form-check-input" type="checkbox" value="09醫生介紹" id="醫生介紹" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="09醫生介紹" id="醫生介紹" name="Q3">}
-            }
-            <label class="form-check-label">醫生介紹、科別</label>
-
-            <input type="text" name="Q3doc" value="@Model.Q3doc" class="form-text border"/>
-            <br />
-
-            @{
-                if (Model.Q3.ToList().Contains("10醫院的電視廣告介紹"))
-                {<input class="form-check-input" type="checkbox" value="10醫院的電視廣告介紹" id="醫院的電視廣告介紹" name="Q3" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="10醫院的電視廣告介紹" id="醫院的電視廣告介紹" name="Q3">}
-            }
-            <label class="form-check-label">醫院的電視廣告介紹</label>
-        </div>
-        <hr />
-        <div id="Q4">
-            <h4>四、您以前與亞東醫院的互動關係為?(可複選)</h4>
-
-            @{
-                if (Model.Q4.ToList().Contains("01離職員工"))
-                {<input class="form-check-input" type="checkbox" value="01離職員工" id="離職員工" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="01離職員工" id="離職員工" name="Q4">}
-            }
-            <label class="form-check-label">離職員工</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("02曾任院內志工"))
-                {<input class="form-check-input" type="checkbox" value="02曾任院內志工" id="曾任院內志工" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="02曾任院內志工" id="曾任院內志工" name="Q4">}
-            }
-            <label class="form-check-label">曾任院內志工</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("03員工眷屬"))
-                {<input class="form-check-input" type="checkbox" value="03員工眷屬" id="員工眷屬" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="03員工眷屬" id="員工眷屬" name="Q4">}
-            }
-            <label class="form-check-label">員工眷屬</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("04本院病患"))
-                {<input class="form-check-input" type="checkbox" value="04本院病患" id="本院病患" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="04本院病患" id="本院病患" name="Q4">}
-            }
-            <label class="form-check-label">本院病患</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("05本院病患家屬"))
-                {<input class="form-check-input" type="checkbox" value="05本院病患家屬" id="本院病患家屬" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="05本院病患家屬" id="本院病患家屬" name="Q4">}
-            }
-            <label class="form-check-label">本院病患家屬</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("06曾參與過本院相關活動"))
-                {<input class="form-check-input" type="checkbox" value="06曾參與過本院相關活動" id="曾參與過本院相關活動" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="06曾參與過本院相關活動" id="曾參與過本院相關活動" name="Q4">}
-            }
-            <label class="form-check-label">曾參與過本院相關活動</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("07無任何互動經驗"))
-                {<input class="form-check-input" type="checkbox" value="07無任何互動經驗" id="無任何互動經驗" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="07無任何互動經驗" id="無任何互動經驗" name="Q4">}
-            }
-            <label class="form-check-label">無任何互動經驗</label>
-
-            @{
-                if (Model.Q4.ToList().Contains("08其他"))
-                {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您以前與亞東醫院的互動關係為" name="Q4" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="08其他" id="其他_您以前與亞東醫院的互動關係為" name="Q4">}
-            }
-            <label class="form-check-label">其他</label>
-            <input type="text" name="Q4else" value="@Model.Q4else" class="form-text border"/>
-        </div>
-        <hr />
-        <div id="Q5">
-            <h4>五、您是否曾經或正在其他機構擔任志工?是(續填下方內容),否?</h4>
-            <label class="form-check-label">服務的單位為</label>
-            <input type="text" name="Q5unit" class="success-text border" value="@Model.Q5unit" />
-            <label class="form-check-label"></label>
-            <label class="form-check-label">約有幾年服務經驗 </label>
-            <input type="text" name="Q5years" class="align-content-around border" value="@Model.Q5years" />
-            <label class="form-check-label">工作內容為</label>
-            <input type="text" name="Q5content" class="form-text border" value="@Model.Q5content" />
-            
-            <label class="form-check-label">您目前有服務紀錄冊嗎</label>
-            @{
-                if (Model.Q5.ToList().Contains("01其他"))
-                {<input class="form-check-input" type="checkbox" value="01其他" id="是否有紀錄冊" name="Q5" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="01其他" id="是否有紀錄冊" name="Q5">}
-            }有
-        </div>
-        <hr />
-        <div id="Q6">
-            <h4>六、您曾經從事過的工作(非志工職)為? </h4>
-            <input type="text" name="Q6jobs" class="form-text border" value="@Model.Q6jobs"/>
-        </div>
-        <hr />
-        <div id="Q7">
-            <h4>七、您在未來的一年內是否會找/換工作? </h4>
-            <input type="radio" value="01是" id="是否找/換工作" name="Q7" />未來一年會找/換工作
-            <input type="radio" value="02否" id="是否找/換工作" name="Q7" />未來一年不會找/換工作
-        </div>
-        <hr />
-        <div id="Q8">
-            <h4>八、您到醫院的交通工具為?(可複選) </h4>
-
-            @{
-                if (Model.Q8.ToList().Contains("01公車"))
-                {<input class="form-check-input" type="checkbox" value="01公車" id="公車" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="01公車" id="公車" name="Q8">}
-            }
-            <label class="form-check-label">公車</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("02機車"))
-                {<input class="form-check-input" type="checkbox" value="02機車" id="機車" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="02機車" id="機車" name="Q8">}
-            }
-            <label class="form-check-label">機車</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("03捷運"))
-                {<input class="form-check-input" type="checkbox" value="03捷運" id="捷運" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="03捷運" id="捷運" name="Q8">}
-            }
-            <label class="form-check-label">捷運</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("04開車"))
-                {<input class="form-check-input" type="checkbox" value="04開車" id="開車" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="04開車" id="開車" name="Q8">}
-            }
-            <label class="form-check-label">開車</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("05火車"))
-                {<input class="form-check-input" type="checkbox" value="05火車" id="火車" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="05火車" id="火車" name="Q8">}
-            }
-            <label class="form-check-label">火車</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("06腳踏車"))
-                {<input class="form-check-input" type="checkbox" value="06腳踏車" id="腳踏車" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox" value="06腳踏車" id="腳踏車" name="Q8">}
-            }
-            <label class="form-check-label">腳踏車</label>
-
-            @{
-                if (Model.Q8.ToList().Contains("07走路"))
-                {<input class="form-check-input" type="checkbox"  value="07走路" id="走路" name="Q8" checked="checked">}
-                else
-                {<input class="form-check-input" type="checkbox"  value="07走路" id="走路" name="Q8">}
-            }
-            <label class="form-check-label">走路</label>
-        </div>
-        <hr />
-        <button type="submit" class="btn btn-primary">確定並儲存</button>
-    </form>
+        <label class="form-check-label">您目前有服務紀錄冊嗎</label>
+        @{
+            if (Model.Q5.ToList().Contains("01其他"))
+            {<input class="form-check-input" type="checkbox" value="01其他" id="是否有紀錄冊" name="Q5" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="01其他" id="是否有紀錄冊" name="Q5">}
+        }有
+    </div>
+    <hr />
+    <div id="Q6">
+        <h4>六、您曾經從事過的工作(非志工職)為? </h4>
+        <input type="text" name="Q6jobs" class="form-text border" value="@Model.Q6jobs" />
+    </div>
+    <hr />
+    <div id="Q7">
+        <h4>七、您在未來的一年內是否會找/換工作? </h4>
+        <input type="radio" value="01是" id="是否找/換工作" name="Q7" />未來一年會找/換工作
+        <input type="radio" value="02否" id="是否找/換工作" name="Q7" />未來一年不會找/換工作
+    </div>
+    <hr />
+    <div id="Q8">
+        <h4>八、您到醫院的交通工具為?(可複選) </h4>
+        @{
+            if (Model.Q8.ToList().Contains("01公車"))
+            {<input class="form-check-input" type="checkbox" value="01公車" id="公車" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="01公車" id="公車" name="Q8">}
+        }
+        <label class="form-check-label">公車</label>
+        @{
+            if (Model.Q8.ToList().Contains("02機車"))
+            {<input class="form-check-input" type="checkbox" value="02機車" id="機車" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="02機車" id="機車" name="Q8">}
+        }
+        <label class="form-check-label">機車</label>
+        @{
+            if (Model.Q8.ToList().Contains("03捷運"))
+            {<input class="form-check-input" type="checkbox" value="03捷運" id="捷運" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="03捷運" id="捷運" name="Q8">}
+        }
+        <label class="form-check-label">捷運</label>
+        @{
+            if (Model.Q8.ToList().Contains("04開車"))
+            {<input class="form-check-input" type="checkbox" value="04開車" id="開車" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="04開車" id="開車" name="Q8">}
+        }
+        <label class="form-check-label">開車</label>
+        @{
+            if (Model.Q8.ToList().Contains("05火車"))
+            {<input class="form-check-input" type="checkbox" value="05火車" id="火車" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="05火車" id="火車" name="Q8">}
+        }
+        <label class="form-check-label">火車</label>
+        @{
+            if (Model.Q8.ToList().Contains("06腳踏車"))
+            {<input class="form-check-input" type="checkbox" value="06腳踏車" id="腳踏車" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="06腳踏車" id="腳踏車" name="Q8">}
+        }
+        <label class="form-check-label">腳踏車</label>
+        @{
+            if (Model.Q8.ToList().Contains("07走路"))
+            {<input class="form-check-input" type="checkbox" value="07走路" id="走路" name="Q8" checked="checked">}
+            else
+            {<input class="form-check-input" type="checkbox" value="07走路" id="走路" name="Q8">}
+        }
+        <label class="form-check-label">走路</label>
+    </div>
+    <hr />
+    <button type="submit" class="btn btn-info">確定並儲存</button>
+</form>

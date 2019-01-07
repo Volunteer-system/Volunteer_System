@@ -8,6 +8,11 @@
         }
     </style>
 }
+
+    <div class="btn btn-block fontstyle">
+        <h2 id="Pv_title">資料確認</h2>
+        <hr />
+    </div>
 <div class="row" id="check_basic">
     <table class="table table-bordered">
         <tbody>
@@ -33,7 +38,7 @@
                         }
                         else
                         {
-                            <label>@Model.Birthday.Date</label>
+                            <label>@Model.Birthday.ToShortDateString()</label>
                         }
 
 
@@ -167,7 +172,7 @@
                 <td>
                     @{
                         string q5 = "";
-                        if (Model.Q5unit != null && Model.Q5years!=null && Model.Q5content!=null)
+                        if (Model.Q5unit != null && Model.Q5years != null && Model.Q5content != null)
                         {
                             q5 = Model.Q5unit + "," + Model.Q5years + "," + Model.Q5content;
                         }
@@ -194,10 +199,10 @@
                     @{
                         if (Model.Q7 != "")
                         {
-                            
-                    <label id="q7">@Model.Q7.Substring(2)</label>
+
+                            <label id="q7">@Model.Q7.Substring(2)</label>
                         }
-                        
+
                     }
                 </td>
             </tr>

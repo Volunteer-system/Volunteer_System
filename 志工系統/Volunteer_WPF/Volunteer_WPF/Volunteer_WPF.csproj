@@ -197,6 +197,7 @@
     <Compile Include="Model\Service_period2.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\Service_Period_Model.cs" />
     <Compile Include="Model\Service_period_volunteer_Model.cs" />
     <Compile Include="Model\Shift_schedule.cs">
       <DependentUpon>Volunteer.tt</DependentUpon>
