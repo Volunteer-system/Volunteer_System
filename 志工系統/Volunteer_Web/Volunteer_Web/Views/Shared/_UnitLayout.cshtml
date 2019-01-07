@@ -22,6 +22,11 @@
     <!--12/30導覽列動畫、頁尾樣式表-->
 
     <link href="~/Css/layout_use2.css" rel="stylesheet" />
+    <style>
+        .p-1 {
+            margin-bottom: -11px !important;
+        }
+    </style>
     @RenderSection("Home_style", false)
 </head>
 <body>
@@ -76,7 +81,7 @@
                         <li class="nav-item dropdown" id="UnitDropDown">
                         <div>
                             <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">運用單位首頁</a></li>
+                                <li>@Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "dropdown-item" })</li>
                                 <li> @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })</li>
                                 <li>@Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
                                 <li> @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
@@ -98,7 +103,7 @@
             </li>
             <li class="nav-item">
                 <div class="p-1">
-                    <a class="text-muted Home_nav" href="#">運用單位首頁</a>
+                    @Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "dropdown-item" })
                     <canvas class="nav_animate_gray"></canvas>
                 </div>
             </li>
@@ -110,13 +115,14 @@
             </li>
             <li class="nav-item  dropdown" id="UnitDropDown">
                 <div class="p-1">
-                    @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "text-muted Home_nav " })
+                    @*@Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "text-muted Home_nav " })*@
+                    <a href="#" class="text-muted Home_nav">人力需求申請</a>
                     <canvas class="nav_animate_gray"></canvas>
                     <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
-                        <li>@Html.ActionLink("人力需求申請須知", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("年度人力需求申請", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("臨時人力需求申請", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
-                        <li>@Html.ActionLink("申請狀態查詢", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("人力需求申請須知", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("年度人力需求申請", "Insert", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("臨時人力需求申請", "TemporaryInsert", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("申請狀態查詢", "Index", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </div>
             </li>
@@ -125,9 +131,9 @@
                     <a href="#" class="text-muted Home_nav"><span>異常事件通報</span></a>
                     <canvas class="nav_animate_gray"></canvas>
                     <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
-                        <li><a href="#" class="dropdown-item">異常通報須知</a></li>
-                        <li><a href="#" class="dropdown-item">異常通報申請</a></li>
-                        <li><a href="#" class="dropdown-item">異常通報查詢</a></li>
+                        <li>@Html.ActionLink("異常通報須知", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("異常通報申請", "Insert", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("異常通報查詢", "Index", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </div>
             </li>

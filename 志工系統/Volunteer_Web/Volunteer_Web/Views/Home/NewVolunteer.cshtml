@@ -8,25 +8,37 @@
             padding: 0px;
         }
 
-        #social {
+        .social {
             height: 40px;
-            width: 350px;
+            width: 400px;
+            background: linear-gradient(to bottom right,white,#1CADA9);
+        }
+        .student {
+            height: 40px;
+            width: 400px;
+            background: linear-gradient(to bottom left,white,#1CADA9);
         }
 
-        #student {
+        ._after_focus {
             height: 40px;
-            width: 350px;
+            width: 120px;
+            background: #1CADA9;
+        }
+        ._after_notfocus {
+            height: 40px;
+            width: 80px;
+            background: #d9ffff;
         }
 
-        #content{
-            width:auto;
-            
+        #content {
+            width: auto;
         }
 
         #social_label {
-            height:400px;
+            height: 400px;
             margin: auto,auto
         }
+
         .social_img {
             height: 100% !important;
             width: 100% !important;
@@ -41,7 +53,6 @@
             height: 100% !important;
             width: 100% !important;
         }
-
     </style>
 }
 
@@ -49,19 +60,18 @@
 <div class="row mt-4">
     <div class="col-lg-3">
         <div class="btn btn-block">
-            申請步驟
+            
         </div>
         <table class="table table-bordered">
             <thead></thead>
             <tbody id="td1">
-                <tr><td><a href="~/Home/NewVolunteer/1" id="Kind_of" class="btn btn-outline-info btn-block" value="Kind_of">申請須知</a></td></tr>
-                @*<tr><td><a href="~/Home/NewVolunteer/1" class="btn btn-outline-info btn-block" value="Requirements">申請須知</a></td></tr>*@
-                <tr><td><a href="~/Home/NewVolunteer/2" id="basic_info" class="btn btn-outline-info btn-block" value="basic_info">基本資料</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/3" id="Questionnaire" class="btn btn-outline-info btn-block" value="Questionnaire">問券調查</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/4" id="Service_period" class="btn btn-outline-info btn-block" value="Service_period">服務時段調查</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/5" id="Interview_period" class="btn btn-outline-info btn-block" value="Interview_period">可面試時間</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/6" id="Alldata_check" class="btn btn-outline-info btn-block" value="Alldata_check">資料確認</a></td></tr>
-                <tr><td><a href="~/Home/NewVolunteer/7" id="Requirement_ok" class="btn btn-outline-info btn-block" value="Requirement_ok">申請完成</a></td></tr>
+                <tr><td><button id="Kind_of" value="Kind_of" class="home-button" onclick="location.href='/Home/NewVolunteer/1'">申請須知</button></td></tr>
+                <tr><td><button id="basic_info" value="basic_info" class="home-button" onclick="location.href='/Home/NewVolunteer/2'">基本資料</button></td></tr>
+                <tr><td><button id="Questionnaire" value="Questionnaire" class="home-button" onclick="location.href='/Home/NewVolunteer/3'">問券調查</button></td></tr>
+                <tr><td><button id="Service_period" value="Service_period" class="home-button" onclick="location.href='/Home/NewVolunteer/4'">服務時段調查</button></td></tr>
+                <tr><td><button id="Interview_period" value="Interview_period" class="home-button" onclick="location.href='/Home/NewVolunteer/5'">面試時間調查</button></td></tr>
+                <tr><td><button id="Alldata_check" value="Alldata_check" class="home-button" onclick="location.href='/Home/NewVolunteer/6'">資料確認</button></td></tr>
+                <tr><td><button id="Requirement_ok" value="Requirement_ok" class="home-button" onclick="location.href='/Home/NewVolunteer/7'">申請完成</button></td></tr>
             </tbody>
         </table>
     </div>
@@ -76,20 +86,22 @@
 </div>
 @section Home_script{
 
-    <script>
+<script>
 
     $(document).ready(function () {
         //===========================================按下接受條約才可開始申請志工========================================
-        $('a[value = "@ViewBag.Partilview"]').addClass('active');
-
              @{
                  if (Session["Agree"] == null)
                  {
-                 @: $('#td1 a').addClass('list-group-item disabled');
+                 @: $('#td1 button').removeClass('home-button');
+                 @: $('#td1 button').addClass('home-button_not_allow');
+                 @: $('#td1 button').prop('disabled', 'disable');
                  }
                  else
                  {
-                    @: $('#td1 a').removeClass('list-group-item disabled');
+                 @: $('#td1 button').removeClass('home-button_not_allow');
+                 @: $('#td1 button').addClass('home-button');
+                 @: $('#td1 button').removeProp('disabled');
                 }
             }
             //=========================================面試、服務時段=======================================================
@@ -285,7 +297,7 @@
             var Reg_mobile = /^09[0-9]{2}-[0-9]{6}$/
             var mobile = $('#mobile');
             if (mobile.text() != "無" && !Reg_mobile.test(mobile.text())) {
-                alert("電話有誤喔，輸入格式 XXXX - XXXXXXX");
+                alert("手機有誤喔，請輸入格式 XXXX - XXXXXXX");
             }
 
 
@@ -342,74 +354,67 @@
 
 
         //============================選擇志工類型============================
-        var _choose = $('#Kind_of_choose');
-
-
-
-
+       var _choose = $('#Kind_of_choose');
 
         _choose.mouseleave(function () {
             $("*").stop(true);
             $(this).animate({
-                'width': '700px', 'duration': '300'
+                'width': '800px', 'duration': '300'
             });
-            $('#student').animate({ 'width': '350px', 'duration': '300' });
-            $('#social').animate({ 'width': '350px', 'duration': '300' });
+            $('#student').animate({ 'width': '400px', 'duration': '300' }).removeClass('_after_notfocus').removeClass('_after_focus').addClass('student');
+            $('#social').animate({ 'width': '400px', 'duration': '300' }).removeClass('_after_notfocus').removeClass('_after_focus').addClass('social');
             $("#content").width(0).html("");
 
 
 
-            //檢視時圖片回來
+            //離開檢視時圖片回來
             $('#social_td').html('<img class="social_img" src="/Images/images(2).jpg" />');
             $('#student_td').html('<img class="student_img" src="/Images/images (1).jpg" />');
-        }) 
+        })
 
         var soc = $('#social');
         var stu = $('#student');
 
-
+        //移到社會志工上
         soc.mouseover(function () {
             $("*").stop(true);
 
             $("#Kind_of_choose").animate({
                 'width': '800px',
-                'duration': '300'});
-            $('#student').animate({ 'width': '70px', 'duration': '300' });
-            $('#social').animate({ 'width': '130px' }, 300, function () {
+                'duration': '300'
+            });
+            $('#student').animate({ 'width': '80px', 'duration': '300' }).removeClass('_after_focus').addClass('_after_notfocus');
+            $('#social').animate({ 'width': '120px' }, 300, function () {
 
                 $("#content").width('600').load("@Url.Action("Requirements","Home")");
                 $('#content').animate({ 'opacity': '1' }, 1000)
-            });
+            }).removeClass('_after_notfocus').addClass('_after_focus');
 
             //檢視時圖片去掉
-            $('#social_td').html('<div style="background-color:antiquewhite" class="social_img"></div>');
-            $('#student_td').html('<div style="background-color:aqua" class="social_img"></div>');
+            $('#social_td').html('<div style="background-color:#1CADA9" class="social_img"></div>');
+            $('#student_td').html('<div style="background-color:#d9ffff" class="social_img"></div>');
             })
 
-
+     //移到學生志工上
         stu.mouseover( function () {
             $("*").stop(true);
             $("#Kind_of_choose").animate({
                 'width': '800px',
                 'duration': '300'
             });
-            $('#social').animate({ 'width': '70px', 'duration': '300' });
+            $('#social').animate({ 'width': '80px', 'duration': '300' }).removeClass('_after_focus').addClass('_after_notfocus');
 
-          
-            $('#student').animate({ 'width': '130px' }, 300, function () {
+
+            $('#student').animate({ 'width': '120px' }, 300, function () {
                 $("#content").text("");
                $("#content").width('600').load("@Url.Action("Requirements","Student")");
                 $('#content').animate({'opacity':'1'},1000)
-            })
+            }).removeClass('_after_notfocus').addClass('_after_focus')
 
             //檢視時圖片去掉
-            $('#social_td').html('<div style="background-color:antiquewhite" class="social_img"></div>');
-            $('#student_td').html('<div style="background-color:aqua" class="social_img"></div>');
+            $('#social_td').html('<div style="background-color:	#d9ffff" class="social_img"></div>');
+            $('#student_td').html('<div style="background-color:#1CADA9" class="social_img"></div>');
         })
 
-
-
-
-
-    </script>
+</script>
 }

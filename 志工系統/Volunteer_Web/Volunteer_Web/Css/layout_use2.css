@@ -29,6 +29,8 @@
     .Home_nav:hover {
         all: initial;
         text-decoration: none !important;
+        font-family: "Microsoft JhengHei";
+        font-weight: bold;
     }
 .p-1{
     margin-bottom:-3px ;
