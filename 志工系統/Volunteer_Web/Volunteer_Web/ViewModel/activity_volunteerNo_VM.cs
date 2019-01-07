@@ -357,8 +357,8 @@ namespace Volunteer_Web.ViewModel
             {
                 acv.Add(new activity_volunteerNo_VM()        /*acv.Add( new 1個 activity_volunteerNo_VM(){ 裡面 放東西} )*/
                 {
-                    //part = item.part,
-                    // count = item.count,
+                    part = item.part,
+                    count = item.count,
                     Activity_no = item.Activity_no,
                     Activity_name = item.Activity_name,
                     Activity_type_ID = item.Activity_type_ID,
