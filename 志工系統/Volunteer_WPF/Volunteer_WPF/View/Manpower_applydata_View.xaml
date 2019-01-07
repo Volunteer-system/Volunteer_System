@@ -54,7 +54,7 @@
             </Grid>
         </ScrollViewer>
         <ScrollViewer Margin="0,305,-0.4,45.4">
-            <Grid Height="656">
+            <Grid Height="756">
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="50" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,1,0,0"/>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="222" Margin="0,2,0,0"/>
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="50" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,51,0,0"/>
@@ -63,24 +63,24 @@
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="222" Margin="0,102,0,0"/>
                 <Rectangle Fill="White" HorizontalAlignment="Left" Height="50" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,151,0,0"/>
                 <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="48" VerticalAlignment="Top" Width="222" Margin="0,152,0,0"/>
-                <Rectangle Fill="White" HorizontalAlignment="Left" Height="150" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,201,0,0"/>
-                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="221" Margin="1,201,0,0"/>
-                <Rectangle Fill="White" HorizontalAlignment="Left" Height="150" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,351,0,0"/>
-                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="221" Margin="1,351,0,0"/>
-                <Rectangle Fill="White" HorizontalAlignment="Left" Height="150" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="1,501,0,0"/>
-                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="221" Margin="1,501,0,0"/>
+                <Rectangle Fill="White" HorizontalAlignment="Left" Height="200" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,201,0,0"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="221" Margin="1,201,0,0"/>
+                <Rectangle Fill="White" HorizontalAlignment="Left" Height="200" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="0,401,0,0"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="198" VerticalAlignment="Top" Width="221" Margin="1,401,0,0"/>
+                <Rectangle Fill="White" HorizontalAlignment="Left" Height="200" Stroke="LightGray" VerticalAlignment="Top" Width="768" Margin="1,601,0,0"/>
+                <Rectangle Fill="#FFA7E6DA" HorizontalAlignment="Left" Height="148" VerticalAlignment="Top" Width="221" Margin="1,601,0,0"/>
                 <Label Content="志工督導" HorizontalAlignment="Left" Margin="23,11,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
                 <Label Content="社工室主任" HorizontalAlignment="Left" Margin="23,61,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="評估日期" HorizontalAlignment="Left" Margin="23,112,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="核准人數" HorizontalAlignment="Left" Margin="23,161,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="110"/>
                 <Label Content="評估項目" HorizontalAlignment="Left" Margin="23,212,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
-                <Label Content="評估結果" HorizontalAlignment="Left" Margin="23,362,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
-                <Label Content="評估建議" HorizontalAlignment="Left" Margin="23,512,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
+                <Label Content="評估結果" HorizontalAlignment="Left" Margin="23,412,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
+                <Label Content="評估建議" HorizontalAlignment="Left" Margin="23,612,0,0" VerticalAlignment="Top" FontSize="16" Height="30" Width="76"/>
                 <Label x:Name="lab_Supervision"  Content="Label" HorizontalAlignment="Left" Margin="233,11,0,0" VerticalAlignment="Top" Height="30" Width="524" FontSize="16"/>
                 <Label x:Name="lab_Supervision_heads" Content="Label" Margin="233,61,21,0" VerticalAlignment="Top" Height="30" FontSize="16"/>
                 <Label x:Name="lab_Reply_date" Content="Label" HorizontalAlignment="Left" Margin="233,112,0,0" VerticalAlignment="Top" Height="30" Width="524" FontSize="16"/>
                 <TextBox x:Name="txt_Reply_number" HorizontalAlignment="Left" Margin="233,161,0,0" VerticalAlignment="Top" Height="30" Width="524" FontSize="16"/>
-                <DataGrid x:Name="dg_Apply_Assessment" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" Height="130" Margin="231,211,0,0" VerticalAlignment="Top" Width="527">
+                <DataGrid x:Name="dg_Apply_Assessment" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" Height="180" Margin="231,211,0,0" VerticalAlignment="Top" Width="527">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
@@ -91,7 +91,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <DataGrid x:Name="dg_Apply_result" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" Height="130" Margin="231,361,0,0" Grid.Column="1" VerticalAlignment="Top" Width="527">
+                <DataGrid x:Name="dg_Apply_result" FontSize="14" IsReadOnly="True" HorizontalAlignment="Left" Height="180" Margin="231,411,0,0" Grid.Column="1" VerticalAlignment="Top" Width="527">
                     <DataGrid.Columns>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
@@ -102,7 +102,7 @@
                         </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <ScrollViewer HorizontalAlignment="Left" Height="130" Margin="231,511,0,0" VerticalAlignment="Top" Width="527">
+                <ScrollViewer HorizontalAlignment="Left" Height="130" Margin="231,611,0,0" VerticalAlignment="Top" Width="527">
                     <TextBox x:Name="txt_Repply_description" TextWrapping="Wrap" Height="130" Width="527" FontSize="16"/>
                 </ScrollViewer>
             </Grid>

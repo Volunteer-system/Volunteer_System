@@ -2,21 +2,115 @@
 @{
     ViewBag.Title = "Experience";
 }
+<style>
+    body {
+        font-family: 微軟正黑體;
+    }
 
-<div class="row mt-4">
-    <div class="col-3">
+    .stage {
+        min-width: 240px;
+        box-shadow: 0 0 12px rgba(0, 0, 0, 0.07);
+    }
+
+        .stage header {
+            background-color: #1CADA9;
+            /*background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);*/
+            text-align: center;
+            color: #f5f5f5;
+            font-size: 20px;
+            padding: 1rem;
+            border-top-right-radius: 3px;
+            border-top-left-radius: 3px;
+        }
+
+        .stage .list-group-item:first-child {
+            border-radius: 0;
+        }
+
+        .stage .list-group-item {
+            padding: 1.8rem 3rem;
+            font-size: 18px;
+            font-weight: bold;
+            color: #888;
+            line-height: 0px;
+        }
+
+            .stage .list-group-item.active {
+                background-color: #1CADA9;
+                border-color: #1CADA9;
+                opacity: 0.6;
+                color: #f5f5f5;
+            }
+
+                .stage .list-group-item.active span.glyphicon {
+                    color: #f5f5f5;
+                }
+
+                .stage .list-group-item.active span.badge {
+                    background-color: #e79f1c;
+                    color: #f5f5f5;
+                }
+
+            .stage .list-group-item span.glyphicon {
+                width: 40px;
+                color: #444;
+                font-size: 20px;
+                margin-right: 1rem;
+            }
+
+            .stage .list-group-item span.badge {
+                background-color: #888;
+                position: relative;
+                top: 3px;
+            }
+
+        .stage .list-group-toggle {
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            background-color: #fff;
+            display: block;
+            border: 1px solid #ddd;
+            padding: 2rem 3rem;
+            color: #888;
+        }
+
+            .stage .list-group-toggle:hover {
+                text-decoration: none;
+                background-color: #f5f5f5;
+            }
+
+            .stage .list-group-toggle span.caret {
+                margin-left: 6px;
+                position: relative;
+                top: -1px;
+            }
+
+            .stage .list-group-toggle.less-toggle, .mailbox .list-group-toggle.more-toggle {
+                font-size: 16px;
+                font-weight: normal;
+            }
+
+                .stage .list-group-toggle.less-toggle span.caret {
+                    -webkit-transform: rotate(180deg);
+                    transform: rotate(180deg);
+                }
+</style>
+
+<div class="row mt-5">
+    <div class="col-3 stage">
         <div class="list-group">
-            @Html.ActionLink("新增心得", "Experience_Insert", "Supervision", new { id = "insert" }, new { @class = "home-button" })
+            @Html.ActionLink("新增心得", "Experience_Insert", "Supervision", new { id = "insert" }, new { @class = "list-group-item list-group-item-action text-center" })
+            <br />
             @foreach (var row in Model.Service_groups)
             {
-                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "home-button" })
+                @Html.ActionLink(row.Group_name, "Experience", "Supervision", new { id = row.Group_no }, new { @class = "list-group-item list-group-item-action text-center" })
             }
         </div>
     </div>
     <div class="col-9">
         <div class="row">
-            <table class="table table-bordered table-hover table-sm">
-                <thead>
+            <table class="table table-bordered table-hover table-sm table-striped">
+                <thead style="text-align:center">
                     <tr>
                         <th>照片</th>
                         <th>心得標題</th>
@@ -25,7 +119,7 @@
                         <th>發布狀態</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="text-align:center">
                     @foreach (var row in Model.Experiences)
                     {
                     <tr>

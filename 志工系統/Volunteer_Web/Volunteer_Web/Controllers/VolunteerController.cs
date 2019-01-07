@@ -219,10 +219,9 @@ namespace Volunteer_Web.Controllers
             vm.acvno_VM = actvm.activityByNotParticipated(Convert.ToInt32(Session["UserID"]));
             vm.activity_types = db.Activity_type.ToList();
             ViewBag.userid = Session["UserID"];
-            //activity_volunteerNo_VM avvm = new activity_volunteerNo_VM();
-            //ViewBag.actNumOfPeople = avvm.activityNumberOfPeople(1107);
-            //return View(vm);
-            return View("Activity_Browse", vm);
+
+            return View(vm);
+            //return View("Activity_Browse", vm);
 
         }
 
