@@ -31,7 +31,7 @@ namespace Volunteer_Web.ViewModel
         [DisplayName("姓名")]
         public string Chinese_name { get; set; }
         public string English_name { get; set; }
-        [DisplayName("身分證號碼")]
+        [DisplayName("身分證")]
         public string Identity_card { get; set; }
         [DisplayName("性別")]
         public string Sex { get; set; }

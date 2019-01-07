@@ -109,6 +109,7 @@
     <Content Include="Content\util.css" />
     <Content Include="Css\blog.css" />
     <Content Include="Css\Button.css" />
+    <Content Include="Css\Button_not_allow.css" />
     <Content Include="Css\layout_use2.css" />
     <Content Include="Css\Login.css" />
     <Content Include="Css\Menu.css" />

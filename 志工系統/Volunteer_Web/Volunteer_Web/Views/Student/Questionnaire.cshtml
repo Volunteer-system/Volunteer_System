@@ -8,8 +8,10 @@
         }
     </style>
 }
-<h2>Questionnaire問券調查</h2>
-<br />
+<div class="btn btn-block fontstyle">
+    <h2>問卷調查</h2>
+    <hr />
+</div>
 <br />
 <div>請務必詳讀前一頁之實施內容、確認可以配合後再進行資料填寫，若有相關問題請先來電(02)7728-1281詢問簡社工師，謝謝您</div>
 <br />
@@ -19,15 +21,15 @@
         @{
             if (Model.training == true)
             {
-                <input type="radio" name="training" value="true" id="training_yes" class="d-inline"  checked="checked"/><label for="training_yes" class="d-inline">是</label>
+                <input type="radio" name="training" value="true" id="training_yes" class="d-inline" checked="checked" /><label for="training_yes" class="d-inline">是</label>
                 <br />
                 <input type="radio" name="training" value="false" id="training_no" class="d-inline" /><label for="training_no" class="d-inline">否</label>
             }
             else
             {
-                <input type="radio" name="training" value="true" id="training_yes" class="d-inline" /><label for="training_yes" class="d-inline" >是</label>
+                <input type="radio" name="training" value="true" id="training_yes" class="d-inline" /><label for="training_yes" class="d-inline">是</label>
                 <br />
-                <input type="radio" name="training" value="false" id="training_no" class="d-inline"  checked="checked"/><label for="training_no" class="d-inline">否</label>
+                <input type="radio" name="training" value="false" id="training_no" class="d-inline" checked="checked" /><label for="training_no" class="d-inline">否</label>
             }
         }
 
@@ -55,25 +57,25 @@
     <div id="Q3">
         <h4> 三、緊急聯絡人姓名 </h4>
         <br />
-        <input type="text" name="Emergency_Name"  class="form-text border" value="@Model.Emergency_Name"/>
+        <input type="text" name="Emergency_Name" class="form-text border" value="@Model.Emergency_Name" />
     </div>
     <hr />
     <div id="Q4">
         <h4>四、緊急連絡人電話</h4>
         <br />
-        <input type="text" name="Emergency_Phone"  class="form-text border"  value="@Model.Emergency_Phone"/>
+        <input type="text" name="Emergency_Phone" class="form-text border" value="@Model.Emergency_Phone" />
     </div>
     <hr />
     <div id="Q5">
         <h4>五、學校名稱</h4>
         <br />
-        <input type="text" name="School_Name" class="form-text border"  value="@Model.School_Name"/>
+        <input type="text" name="School_Name" class="form-text border" value="@Model.School_Name" />
     </div>
     <hr />
     <div id="Q6">
         <h4>六、學校是否有規定需服務滿幾小時？若有請填寫需服務多少小時，若無則請填No </h4>
         <br />
-        <input type="text" name="School_Regulation" class="form-text border"  value="@Model.School_Regulation"/>
+        <input type="text" name="School_Regulation" class="form-text border" value="@Model.School_Regulation" />
     </div>
-    <button type="submit" class="btn btn-primary">確定並儲存</button>
+    <button type="submit" class="btn btn-info">確定並儲存</button>
 </form>

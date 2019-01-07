@@ -1,5 +1,5 @@
 ﻿body{
-    color: white;
+    /*color: white;*/
     font-family: "微軟正黑體";
 }
 
@@ -10,7 +10,7 @@ body a {
 
 .ui-panel {
     margin: 0 auto;
-    margin-top: 120px;
+    margin-top: 50%;
     width: 500px;
     height: 350px;
     background-color: #2faf97;
@@ -18,7 +18,6 @@ body a {
     color: white;
     box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.3);
     position: absolute;
-    margin-top: -130px;
     margin-left: -190px;
     top: 50%;
     left: 50%;
@@ -26,14 +25,12 @@ body a {
 
 
 body ::-webkit-input-placeholder {
-    /* WebKit browsers */
     font-family: "Source Sans Pro", sans-serif;
     color: white;
     font-weight: 300;
 }
 
 body :-moz-placeholder {
-    /* Mozilla Firefox 4 to 18 */
     font-family: "Source Sans Pro", sans-serif;
     color: white;
     opacity: 1;
@@ -41,7 +38,6 @@ body :-moz-placeholder {
 }
 
 body ::-moz-placeholder {
-    /* Mozilla Firefox 19+ */
     font-family: "Source Sans Pro", sans-serif;
     color: white;
     opacity: 1;
@@ -49,14 +45,13 @@ body ::-moz-placeholder {
 }
 
 body :-ms-input-placeholder {
-    /* Internet Explorer 10+ */
     font-family: "Source Sans Pro", sans-serif;
     color: white;
     font-weight: 300;
 }
 
 
-.container {
+.login-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 80px 0;
@@ -64,7 +59,7 @@ body :-ms-input-placeholder {
     text-align: center;
 }
 
-    .container h1 {
+    .login-container h1 {
         margin-top: -40px;
         font-size: 30px;
         transition-duration: 1s;
@@ -73,7 +68,7 @@ body :-ms-input-placeholder {
 form {
     padding: 20px 0;
     position: relative;
-    z-index: 2;
+    z-index: 2;   
 }
 
     form input {
@@ -101,7 +96,7 @@ form {
         form input:focus {
             background-color: white;
             width: 300px;
-            color: #53e3a6;
+            color: #2faf97;
         }
 
     form button {
@@ -129,7 +124,7 @@ form {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 
     .bg-bubbles li {
@@ -139,38 +134,38 @@ form {
         width: 20px;
         height: 20px;
         background-color: rgba(255, 255, 255, 0.15);
-        bottom: -160px;
-        -webkit-animation: square 25s infinite;
-        animation: square 25s infinite;
-        transition-timing-function: linear;
+        bottom: 0px;
+        -webkit-animation: square 10s infinite;
+        animation: square 10s infinite;
+        transition-timing-function:linear;
     }
 
         .bg-bubbles li:nth-child(1) {
-            left: 10%;
+            left: 5%;
         }
 
         .bg-bubbles li:nth-child(2) {
             left: 20%;
-            width: 60px;
-            height: 60px;
-            -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-            -webkit-animation-duration: 17s;
-            animation-duration: 17s;
+            width: 10px;
+            height: 10px;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-animation-duration: 8s;
+            animation-duration: 8s;
         }
 
         .bg-bubbles li:nth-child(3) {
             left: 25%;
-            -webkit-animation-delay: 4s;
-            animation-delay: 4s;
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
         }
 
         .bg-bubbles li:nth-child(4) {
             left: 40%;
             width: 40px;
             height: 40px;
-            -webkit-animation-duration: 22s;
-            animation-duration: 22s;
+            -webkit-animation-duration: 10s;
+            animation-duration: 10s;
             background-color: rgba(255, 255, 255, 0.25);
         }
 
@@ -179,40 +174,40 @@ form {
         }
 
         .bg-bubbles li:nth-child(6) {
-            left: 70%;
-            width: 100px;
-            height: 100px;
-            -webkit-animation-delay: 3s;
-            animation-delay: 3s;
+            left: 80%;
+            width: 80px;
+            height: 80px;
+            -webkit-animation-delay: 1s;
+            animation-delay: 1s;
             background-color: rgba(255, 255, 255, 0.2);
         }
 
         .bg-bubbles li:nth-child(7) {
             left: 32%;
-            width: 80px;
-            height: 80px;
-            -webkit-animation-delay: 7s;
-            animation-delay: 7s;
+            width: 70px;
+            height: 70px;
+            -webkit-animation-delay: 3s;
+            animation-delay: 3s;
         }
 
         .bg-bubbles li:nth-child(8) {
             left: 55%;
             width: 20px;
             height: 20px;
-            -webkit-animation-delay: 15s;
-            animation-delay: 15s;
-            -webkit-animation-duration: 40s;
-            animation-duration: 40s;
+            -webkit-animation-delay: 6s;
+            animation-delay: 6s;
+            -webkit-animation-duration: 19s;
+            animation-duration: 19s;
         }
 
         .bg-bubbles li:nth-child(9) {
             left: 25%;
             width: 30px;
             height: 30px;
-            -webkit-animation-delay: 2s;
-            animation-delay: 2s;
-            -webkit-animation-duration: 40s;
-            animation-duration: 40s;
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+            -webkit-animation-duration: 19s;
+            animation-duration: 19s;
             background-color: rgba(255, 255, 255, 0.3);
         }
 
@@ -220,8 +215,8 @@ form {
             left: 50%;
             width: 60px;
             height: 60px;
-            -webkit-animation-delay: 11s;
-            animation-delay: 11s;
+            -webkit-animation-delay: 5s;
+            animation-delay: 5s;
         }
 
 
@@ -232,8 +227,8 @@ form {
     }
 
     100% {
-        -webkit-transform: translateY(-700px) rotate(600deg);
-        transform: translateY(-700px) rotate(600deg);
+        -webkit-transform: translateY(-300px) rotate(600deg);
+        transform: translateY(-300px) rotate(600deg);
     }
 }
 
@@ -241,11 +236,21 @@ form {
     0% {
         -webkit-transform: translateY(0);
         transform: translateY(0);
+        opacity:1;
     }
 
     100% {
-        -webkit-transform: translateY(-700px) rotate(600deg);
-        transform: translateY(-700px) rotate(600deg);
+        -webkit-transform: translateY(-300px) rotate(600deg);
+        transform: translateY(-300px) rotate(600deg);
+        opacity: 0;
+    }
+}
+@media only screen and (max-width:768px){
+    .ui-panel {
+        width: 400px;
+        position: fixed;
+        top: 50%;
+        left: 47%;
     }
 }
 

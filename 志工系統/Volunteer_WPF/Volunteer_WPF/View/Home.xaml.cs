@@ -39,7 +39,9 @@ namespace Volunteer_WPF.View
 
         private void DispatcherTimer_Tick(object sender, EventArgs e)
         {
+            AddSelectedDates();
             Today();
+            AddLabel();
         }
 
         private void AddSelectedDates()
@@ -156,6 +158,8 @@ namespace Volunteer_WPF.View
 
         private void AddLabel() //加入行事曆細項(未來7天)
         {
+            this.ActivityPanel.Children.Clear();
+
             VolunteerEntities dbContext = new VolunteerEntities();
 
 

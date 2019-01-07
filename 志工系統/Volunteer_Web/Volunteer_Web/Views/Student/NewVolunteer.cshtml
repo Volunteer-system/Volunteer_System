@@ -36,17 +36,16 @@
 <div class="row mt-4">
     <div class="col-lg-3">
         <div class="btn btn-block">
-            申請步驟
         </div>
         <table class="table table-bordered">
             <thead></thead>
             <tbody id="td1">
-                <tr><td><a href="~/Home/NewVolunteer/1" id="Kind_of" class="btn btn-outline-info btn-block" value="Kind_of">申請須知</a></td></tr>
-                <tr><td><a href="~/Student/NewVolunteer/2" id="basic_info" class="btn btn-outline-info btn-block" value="basic_info">基本資料</a></td></tr>
-                <tr><td><a href="~/Student/NewVolunteer/3" id="Questionnaire" class="btn btn-outline-info btn-block" value="Questionnaire">問券調查</a></td></tr>
-                <tr><td><a href="~/Student/NewVolunteer/4" id="Service_period" class="btn btn-outline-info btn-block" value="Service_period">服務時段調查</a></td></tr>
-                <tr><td><a href="~/Student/NewVolunteer/5" id="Alldata_check" class="btn btn-outline-info btn-block" value="Alldata_check">資料確認</a></td></tr>
-                <tr><td><a href="~/Student/NewVolunteer/6" id="Requirement_ok" class="btn btn-outline-info btn-block" value="Requirement_ok">申請完成</a></td></tr>
+                <tr><td><button id="Kind_of" value="Kind_of" class="home-button" onclick="location.href='/Home/NewVolunteer/1'">申請須知</button></td></tr>
+                <tr><td><button id="basic_info" value="basic_info" class="home-button" onclick="location.href='/Student/NewVolunteer/2'">基本資料</button></td></tr>
+                <tr><td><button id="Questionnaire" value="Questionnaire" class="home-button" onclick="location.href='/Student/NewVolunteer/3'">問券調查</button></td></tr>
+                <tr><td><button id="Service_period" value="Service_period" class="home-button" onclick="location.href='/Student/NewVolunteer/4'">服務時段調查</button></td></tr>
+                <tr><td><button id="Alldata_check" value="Alldata_check" class="home-button" onclick="location.href='/Student/NewVolunteer/5'">資料確認</button></td></tr>
+                <tr><td><button id="Requirement_ok" value="Requirement_ok" class="home-button" onclick="location.href='/Student/NewVolunteer/6'">申請完成</button></td></tr>
             </tbody>
         </table>
     </div>
@@ -65,19 +64,20 @@
 
     $(document).ready(function () {
         //===========================================按下接受條約才可開始申請志工========================================
-        $('a[value = "@ViewBag.Partilview"]').addClass('active');
-
              @{
                  if (Session["Agree"] == null)
                  {
-                 @: $('#td1 a').addClass('list-group-item disabled');
+                 @: $('#td1 button').removeClass('home-button');
+                 @: $('#td1 button').addClass('home-button_not_allow');
+                 @: $('#td1 button').prop('disabled', 'disable');
                  }
                  else
                  {
-                    @: $('#td1 a').removeClass('list-group-item disabled');
+                 @: $('#td1 button').removeClass('home-button_not_allow');
+                 @: $('#td1 button').addClass('home-button');
+                 @: $('#td1 button').removeProp('disabled');
                 }
             }
-
 
 
 

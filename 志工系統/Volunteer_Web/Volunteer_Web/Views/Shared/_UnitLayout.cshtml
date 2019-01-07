@@ -39,86 +39,122 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
                     </a>
                     <!--11271414益修改▼-->
-                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@
-                    <div class="dropdown">
-                        @{ <!--判斷有無登入者，切換功能-->
-                            if (Session["UserName"] == null)
-                            {
-                                <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@<!--判斷有無登入者，切換功能-->
+                    @*<div class="dropdown">
+            @{
+                if (Session["UserName"] == null)
+                {
+                    <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                }
+                else
+                {
+                    <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                }
+            }
+            <div class="dropdown-menu" aria-labelledby="dLabel">
+                <a class="dropdown-item" href="#">運用單位首頁</a>
+                @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })
+                <a class="dropdown-item" href="#">考核</a>
+                @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
+            </div>
+        </div>*@
+                    <ul id="login_bar" style="list-style-type:none;">
+                        <li class="nav-item">
+                            @{
+                                if (Session["UserName"] == null)
+                                {
+                                    <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                                }
                             }
-                            else
-                            {
-                                <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
-                            }
-                        }
-                        <div class="dropdown-menu" aria-labelledby="dLabel">
-                            @Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })
-                            <a class="dropdown-item" href="#">考核</a>
-                            @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                            @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
+                        </li>
+                        <li class="nav-item dropdown" id="UnitDropDown">
+                        <div>
+                            <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">運用單位首頁</a></li>
+                                <li> @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
+                                <li> @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
+                                <li><a class="dropdown-item" href="#">考核</a></li>
+                                <li>@Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })</li>
+                            </ul>
                         </div>
-                    </div>
-                    <!--11271414益修改▲-->
+                    </li>
+                    </ul>
                 </div>
             </div>
-        </header>
-        <div class="nav-scroller ">
-            <nav id="nav_bar" class="nav d-flex justify-content-between ">
+        </header><!--menu nav justify-content-center-->
+        <ul id="nav_bar" class="nav d-flex justify-content-between ">
+            <li class="nav-item">
                 <div class="p-1">
-                    @Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "text-muted Home_nav" })
+                    @Html.ActionLink("回首頁", "Index", "Home", null, new { @class = "text-muted Home_nav" })
                     <canvas class="nav_animate_gray"></canvas>
                 </div>
+            </li>
+            <li class="nav-item">
+                <div class="p-1">
+                    <a class="text-muted Home_nav" href="#">運用單位首頁</a>
+                    <canvas class="nav_animate_gray"></canvas>
+                </div>
+            </li>
+            <li class="nav-item">
                 <div class="p-1">
                     @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "text-muted Home_nav" })
                     <canvas class="nav_animate_gray"></canvas>
                 </div>
+            </li>
+            <li class="nav-item  dropdown" id="UnitDropDown">
                 <div class="p-1">
-                    <label class="text-muted Home_nav">人力需求申請</label>
+                    @Html.ActionLink("人力需求申請", "Index", "ManpowerApply", null, new { @class = "text-muted Home_nav " })
                     <canvas class="nav_animate_gray"></canvas>
-                    <ul name="nav_ul" class="nav_ul">
-                        <li class="nav_li">@Html.ActionLink("人力需求申請須知", "Home", "ManpowerApply", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("年度人力需求申請", "Insert", "ManpowerApply", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("臨時人力需求申請", "TemporaryInsert", "ManpowerApply", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("申請狀態查詢", "Index", "ManpowerApply", null, new { @class = "nav_li_a" })</li>
+                    <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
+                        <li>@Html.ActionLink("人力需求申請須知", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("年度人力需求申請", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("臨時人力需求申請", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("申請狀態查詢", "ManpowerApply", "Home", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </div>
-
+            </li>
+            <li class="nav-item dropdown" id="UnitDropDown">
                 <div class="p-1">
-                    <label class="text-muted Home_nav">異常事件通報</label>
+                    <a href="#" class="text-muted Home_nav"><span>異常事件通報</span></a>
                     <canvas class="nav_animate_gray"></canvas>
-                    <ul name="nav_ul" class="nav_ul">
-                        <li class="nav_li">@Html.ActionLink("異常事件通報須知", "Home", "Abnormalevent", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("異常事件通報", "Insert", "Abnormalevent", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("異常事件查詢", "Index", "Abnormalevent", null, new { @class = "nav_li_a" })</li>
+                    <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
+                        <li><a href="#" class="dropdown-item">異常通報須知</a></li>
+                        <li><a href="#" class="dropdown-item">異常通報申請</a></li>
+                        <li><a href="#" class="dropdown-item">異常通報查詢</a></li>
                     </ul>
                 </div>
-
+            </li>
+            <li class="nav-item">
                 <div class="p-1">
-                    <a class="text-muted Home_nav" href="#">考核</a>
+                    <a href="#" class="text-muted Home_nav">考核</a>
                     <canvas class="nav_animate_gray"></canvas>
                 </div>
-            </nav>
+            </li>
+        </ul>          
         </div>
-    </div>
-    <main role="main" class="container body-content py-5">
-        <div>
-            @RenderBody()
-        </div>
-    </main>
-    <footer class="footer_use_gray">
-        <ul>
-            <li class="footer_main_li">亞東醫院志願服務隊</li>
-            <li class="footer_rest_li">地址：220新北市板橋區南雅南路二段21號</li>
-            <li class="footer_rest_li">意見信箱：swfemh@mail.femh.org.tw</li>
-            <li class="footer_rest_li">電話：(02)8966-7000 / (02)8966-7000</li>
-            <li class="footer_rest_li">傳真：(02)7728-2377</li>
-            <li class="footer_rest_li">&copy;Far Eastern Memorial Hospital.</li>
-        </ul>
-    </footer>
-    @*<footer class="blog-footer">
+        <main role="main" class="container body-content py-5">
+            <div>
+                @RenderBody()
+            </div>
+        </main>
+        <footer class="footer_use_gray">
+            <ul>
+                <li class="footer_main_li">亞東醫院志願服務隊</li>
+                <li class="footer_rest_li">地址：220新北市板橋區南雅南路二段21號</li>
+                <li class="footer_rest_li">意見信箱：swfemh@mail.femh.org.tw</li>
+                <li class="footer_rest_li">電話：(02)8966-7000 / (02)8966-7000</li>
+                <li class="footer_rest_li">傳真：(02)7728-2377</li>
+                <li class="footer_rest_li">&copy;Far Eastern Memorial Hospital.</li>
+            </ul>
+        </footer>
+        @*<footer class="blog-footer">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4">
@@ -146,40 +182,45 @@
                 <p>© Far Eastern Memorial Hospital.</p>
             </div>
         </footer>*@
-    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
         <script src="~/Scripts/bootstrap.min.js"></script>
         <script src="~/Scripts/holder.min.js"></script>*@
-    <script src="~/Scripts/holder.min.js"></script>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    <script>
-        $(document).ready(function () {
-            var nav_bar = $("#nav_bar");
-            Holder.addTheme('thumb', {
-                bg: '#55595c',
-                fg: '#eceeef',
-                text: 'Thumbnail'
-            });
-            /*動畫使用*/
-            nav_bar.find("div").each(function () {
-                $(this).mouseenter(function () {
-                    $(this).find("canvas").stop();
-                    $(this).find("canvas").animate({ "width": $(this).width() + "px" }, 500);
+        <script src="~/Scripts/holder.min.js"></script>
+        <script src="~/Scripts/modernizr-2.8.3.js"></script>
+        <script>
+            $(document).ready(function () {
+                var nav_bar = $("#nav_bar");
+                var login_bar = $("#login_bar")
+                Holder.addTheme('thumb', {
+                    bg: '#55595c',
+                    fg: '#eceeef',
+                    text: 'Thumbnail'
+                });
+                login_bar.mouseenter(function () {
                     $(this).find("ul[name='nav_ul']").show();
                 });
-            });
-            nav_bar.find("div").each(function () {
-                $(this).mouseleave(function () {
-                    $(this).find("canvas").stop();
-                    $(this).find("canvas").animate({ "width": "0px" }, 500);
+                login_bar.mouseleave(function () {
                     $(this).find("ul[name='nav_ul']").hide();
+                });
+                /*動畫使用*/
+                nav_bar.find("div").each(function () {
+                    $(this).mouseenter(function () {
+                        $(this).find("canvas").stop();
+                        $(this).find("canvas").animate({ "width": $(this).width() + "px" }, 500);
+                        $(this).find("ul[name='nav_ul']").show();
+                    });
+                });
+                nav_bar.find("div").each(function () {
+                    $(this).mouseleave(function () {
+                        $(this).find("canvas").stop();
+                        $(this).find("canvas").animate({ "width": "0px" }, 500);
+                        $(this).find("ul[name='nav_ul']").hide();
 
+                    });
                 });
             });
-        });
-    </script>
-    @RenderSection("Home_script", false)
-
-    @Html.Action("ScriptView", "Login")    
-    @RenderSection("calendar", false)
+        </script>
+        @RenderSection("Home_script", false)
+        @Html.Action("ScriptView", "Login")
 </body>
 </html>

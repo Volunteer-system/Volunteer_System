@@ -8,6 +8,11 @@
         }
     </style>
 }
+
+<div class="btn btn-block fontstyle">
+    <h2>資料確認</h2>
+    <hr />
+</div>
 <div class="row" id="check_basic">
     <table class="table table-bordered">
         <tbody>
@@ -99,10 +104,11 @@
                         {
                             q9 = "是";
                         }
-                        else {
+                        else
+                        {
                             q9 = "否";
                         }
-                            <label id="q9">@q9</label>
+                        <label id="q9">@q9</label>
                     }
                 </td>
             </tr>
@@ -144,7 +150,7 @@
                         string q12 = "";
                         if (Model.Q12_Emergency_Phone != null)
                         {
-                            q12 = Model.Q12_Emergency_Phone ;
+                            q12 = Model.Q12_Emergency_Phone;
                             <label id="q12">@q12</label>
                         }
                     }

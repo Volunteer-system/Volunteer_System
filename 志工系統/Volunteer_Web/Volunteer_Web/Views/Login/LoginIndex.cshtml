@@ -1,65 +1,58 @@
 ﻿@model Volunteer_Web.Models.account
-        
 <div class="modal fade " id="LoginModal" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-        <div id="login_m_content" class="modal-content">
-            @*<div class="login100-form-title" style="background-image: url(../Images/LoginUse.jpg);border-radius: 10px;">
-        </div>*@
-            @*<div id="login_m_header" class="modal-header">
-                <img class="login_img" src="~/Images/LoginUse.png" />
-            </div>*@
-            <div>
-                @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login_form" }))
-                {
-                <img class="login_img" src="~/Images/LoginUse.jpg" />
-                    <div id="showError" style="text-align:center;height:40px;" class="alert alert-danger" role="alert"></div>
-                    <div style="text-align:center;" class="modal-body">                       
-                        <div id="login" style="margin:0 auto;">
-                            <label class="login_lab">使用者登入</label>
-                            @*<div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">*@
-                            <div class="login_insert">
-                                @*@Html.LabelFor(m => m.Account_number, new { @class = "login_lab" })*@
-                                @Html.TextBoxFor(m => m.Account_number, new { @class = "login_txt", placeholder = "使用者帳號", autocomplete = "off" })
-                            </div>
-                            @*<div class="wrap-input100 validate-input m-b-18" data-validate="Password is required">*@
-                            <div class="login_insert">
-                                @*@Html.LabelFor(m => m.Password, new { @class = "login_lab" })*@
-                                @Html.TextBoxFor(m => m.Password, new { @class = "login_txt", placeholder = "使用者密碼", type = "password" })
-                            </div>
-                            @*<a href="#" id="a_forget" class="input100" style="color:blue">忘記密碼?</a>*@
+    <div class="modal-dialog">       
+        <div id="login_m_content" class="modal-content">           
+            <div class="ui-panel login-panel animated bounceInDown">
+                <div class="login-container">
+                    @*<h1>登入</h1>*@
+                    @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post))
+                    {
+                    <div style="text-align:center;" class="modal-body">
+                        <div class="DisplayError">
+                            <div id="showError" class="alert alert-danger" role="alert"></div>
+                        </div>
+                        <div id="login" >                           
+                            <h1>登入</h1>
+                            @Html.TextBoxFor(m => m.Account_number, new { placeholder = "帳號", autocomplete = "off" })
+                            @*<input type="text" placeholder="帳號" />*@
+                            @Html.TextBoxFor(m => m.Password, new { placeholder = "密碼", type = "password" })
+                            @*<input type="text" placeholder="密碼" />*@
+                            <button type="button" id="btn_login" class="login_button">登入</button>
+                            <button type="button" class="login_button" data-dismiss="modal">取消</button>
                             <div>
                                 <a id="a_forget" href="#">忘記密碼?</a>
                             </div>
-                            <div class="login_button_div">
-                                <button id="btn_login" class="btn btn-outline-success login_button" type="button">登入</button>
-                                <button type="button" class="btn btn-outline-danger login_button" data-dismiss="modal">取消</button>
-                            </div>
                         </div>
-                        <!--切換忘記帳號-->
-                        <div id="forget" class="swap" style="margin:0 auto">
-                            <label class="login_lab">找回密碼</label>
-                            <div class="login_insert">
-                                @*@Html.Label("identity", "身分證字號:", new { @class = "login_lab" })*@
-                                @Html.TextBox("identity", null, new { @class = "login_txt", placeholder = "輸入身分證號碼", autocomplete = "off" })
-                            </div>
-                            <div class="login_insert">
-                                @*@Html.Label("birthday", "生日:", new { @class = "login_lab" })*@
-                                @Html.TextBox("birthday", null, new { @class = "login_txt", placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off" })
-                            </div>
+                        <div id="forget" class="swap" >
+                            <h1>找回密碼</h1>
+                            @Html.TextBox("identity", null, new { placeholder = "輸入身分證號碼", autocomplete = "off" })
+                            @Html.TextBox("birthday", null, new { placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off" })
+                            <button type="button" id="btn_edit" class="login_button">送出</button>
+                            <button type="button" class="login_button" data-dismiss="modal">取消</button>
                             <div>
                                 <a href="#" id="a_login">返回登入</a>
                             </div>
-                            <div class="login_button_div">
-                                <button id="btn_edit" class="btn btn-outline-success login_button" type="button">送出</button>
-                                <button type="button" class="btn btn-outline-danger login_button " data-dismiss="modal">取消</button>
-                            </div>
                         </div>
                     </div>
-                }
+                    }
+                </div>
+
+                <ul class="bg-bubbles">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    @*<li></li>
+                    <li></li>*@
+                </ul>
             </div>
         </div>
-        </div>
     </div>
+</div>
 <!--/Login/LoginIndex-->
 @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
 @*<script>
@@ -99,4 +92,3 @@
             });
         });
     </script>*@
-

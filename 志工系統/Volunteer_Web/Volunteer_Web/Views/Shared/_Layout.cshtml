@@ -14,12 +14,64 @@
     <!--登入使用▼-->
     <link href="~/Content/main.css" rel="stylesheet" />
     <link href="~/Content/util.css" rel="stylesheet" />
+    <link href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/67239/animate.min.css" rel="stylesheet" />
+    <link href="~/Css/Login.css" rel="stylesheet" />
     <!--登入使用▲-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <!--12/30導覽列動畫、頁尾樣式表-->
     <link href="~/Css/layout_use2.css" rel="stylesheet" />
+    <style>
+        .l_header_slogan {
+            width: 50% ;
+            float: left;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 2% 0 0 11%;
+            margin-left: 10%;
+        }
+
+        .l_header_login {
+            width: 35%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 2% 12% 0 0;
+            float: right;
+        }
+
+        .nav-scroller {
+            position: relative;
+            z-index: 2 ;
+            height: 2.75rem;
+            overflow-y: hidden;
+            padding: 0 12% 0 12%;
+        }
+            @@media only screen and (max-width:1024px) {
+                .l_header_slogan {
+                    width: 98%;
+                    height: 70px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    padding: 0 0 0 4.5%;
+                    margin: 0 1% 0 1%;
+                }
+
+                .l_header_login {
+                    width: 98%;
+                    height: 10px;
+                    display: flex;
+                    justify-content: flex-end;
+                    align-items: center;
+                    margin-right:-20%;
+                    padding-top:1%;
+                    
+                }                
+            }
+    </style>
     @RenderSection("Home_style", false)
 </head>
 <body>
@@ -36,18 +88,22 @@
     <div class="fixed-top " style="background-color:white">
         <header class="Home-header py-2">
             <!--blog-header-->
-            <div class="row flex-nowrap justify-content-between align-items-center">
-                <div class="col-4 pt-1">
-                    @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark " })
+            @*<div class="row flex-nowrap justify-content-between align-items-center">*@
+           
+                @*<div class="col-1 pt-1">*@
+                <div class="l_header_slogan">
+                    @*@Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark " })*@
                     @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>*@
+                    <a href="~/Home/Index" class="blog-header-logo text-dark"><img src="~/Images/logo.png" /></a>
                 </div>
-                <div class="col-4 d-flex justify-content-end align-items-center">
-                    <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
-                    </a>
-                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@
-                    <div class="dropdown">
-                        @{ <!--判斷有無登入者，切換功能-->
+                @*<div class="col-4 d-flex justify-content-end align-items-center">*@
+                <div class="l_header_login">
+                    @*<a class="text-muted" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+        </a>*@
+                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@<!--判斷有無登入者，切換功能-->
+                    @*<div class="dropdown">
+                        @{
                             if (Session["UserName"] == null)
                             {
                                 <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
@@ -61,13 +117,12 @@
                             if (logintype == "運用單位")
                             {
                                 <div class="dropdown-menu" aria-labelledby="dLabel">
-                                    @Html.ActionLink("運用單位首頁", "Home", "Unit", null, new { @class = "dropdown-item" })
+                                    <a class="dropdown-item" href="#">運用單位首頁</a>
                                     @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">考核</a>
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                    @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
                                 </div>
                             }
                             else if (logintype == "志工")
@@ -79,7 +134,6 @@
                                     <a class="dropdown-item" href="#">志工權益</a>
                                     @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                    @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
                                 </div>
                             }
                             else
@@ -90,17 +144,82 @@
                                     @Html.ActionLink("績優志工維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })
                                     <a class="dropdown-item" href="#">志工申請維護</a>
                                     @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                                    @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
                                 </div>
                             }
                         }
+                    </div>*@
+                    <ul id="login_bar" style="list-style-type:none;">
+            <li class="nav-item">
+                @{
+                    if (Session["UserName"] == null)
+                    {
+                        <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-secondary btn-sm btn-outline-secondary " href="#" role="button" id="dropdownMenuLink"  aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                    }
+                }
+            </li>
+            @{
+                if (logintype == "運用單位")
+                {
 
-                    </div>
+                    <li class="nav-item dropdown" id="UnitDropDown">
+                        <div>
+                            <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">運用單位首頁</a></li>
+                                <li> @Html.ActionLink("單位基本資料", "Index", "Unit", null, new { @class = "dropdown-item" })</li>
+                                <li>@Html.ActionLink("人力需求申請", "Home", "ManpowerApply", null, new { @class = "dropdown-item" })</li>
+                                <li> @Html.ActionLink("異常事件通報", "Home", "Abnormalevent", null, new { @class = "dropdown-item" })</li>
+                                <li><a class="dropdown-item" href="#">考核</a></li>
+                                <li>@Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                }
+                else if (logintype == "志工")
+                {
+                    <li class="nav-item dropdown" id="UnitDropDown">
+                        <div>
+                            <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
+                                <li>@Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                <li> @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                <li>  @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                <li> <a class="dropdown-item" href="#">志工權益</a></li>
+                                <li> @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                <li> @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+                else if (logintype == "志工督導")
+                {
+                    <li class="nav-item dropdown" id="UnitDropDown">
+                        <div>
+                            <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
+                                <li> @Html.ActionLink("個人首頁", "Index", "Supervision", null, new { @class = "dropdown-item" })</li>
+                                <li>  @Html.ActionLink("首頁維護", "Home_maintenance", "Supervision", null, new { @class = "dropdown-item" })</li>
+                                <li> @Html.ActionLink("績優志工維護", "Experience", "Supervision", null, new { @class = "dropdown-item" })</li>
+                                <li> <a class="dropdown-item" href="#">志工申請維護</a></li>
+                                <li> @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })</li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+                else
+                { }
+            }
+        </ul>
                 </div>
-            </div>
         </header>
         <div class="nav-scroller ">
             <nav id="nav_bar" class="nav d-flex justify-content-between ">
+                <div class="p-1">
+                    @Html.ActionLink("回首頁", "Index", "Home", null, new { @class = "text-muted Home_nav" })
+                    <canvas class="nav_animate_green"></canvas>
+                </div>
                 <div class="p-1">
                     @Html.ActionLink("志工隊介紹", "Introduction", "Home", null, new { @class = "text-muted Home_nav" })
                     <canvas class="nav_animate_green"></canvas>
@@ -171,10 +290,17 @@
     <script>
         $(document).ready(function () {
             var nav_bar = $("#nav_bar");
+            var login_bar = $("#login_bar")
             Holder.addTheme('thumb', {
                 bg: '#55595c',
                 fg: '#eceeef',
                 text: 'Thumbnail'
+            });
+            login_bar.mouseenter(function () {
+                $(this).find("ul[name='nav_ul']").show();
+            });
+            login_bar.mouseleave(function () {
+                $(this).find("ul[name='nav_ul']").hide();
             });
             /*動畫使用*/
             nav_bar.find("div").each(function () {
@@ -187,9 +313,7 @@
             nav_bar.find("div").each(function () {
                 $(this).mouseleave(function () {
                     $(this).find("canvas").stop();
-                    $(this).find("canvas").animate({ "width": "0px" }, 500);
-                    $(this).find("ul[name='nav_ul']").hide();
-
+                    $(this).find("canvas").animate({ "width": "0px" }, 500);                  
                 });
             });
         });      

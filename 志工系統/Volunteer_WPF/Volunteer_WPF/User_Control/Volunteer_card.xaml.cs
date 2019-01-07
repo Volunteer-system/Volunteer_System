@@ -63,7 +63,8 @@ namespace Volunteer_WPF.User_Control
             bitmap.BeginInit();
             bitmap.DecodePixelHeight = 55;
             bitmap.DecodePixelWidth = 55;
-            bitmap.UriSource = new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\Noimage.png");
+            //bitmap.UriSource = new Uri(@"C:\Users\peter.wu\Documents\GitHub\Volunteer_System\志工系統\Volunteer_WPF\Volunteer_WPF\image\Noimage.png");
+            bitmap.UriSource = new Uri(@"\image\Noimage.png", UriKind.Relative);
             bitmap.EndInit();
 
             this.img_photo.Source = bitmap;           

@@ -74,7 +74,7 @@
                 border-color: #bd2130;
             }
         .screen {
-            margin-top: 70px;            
+            margin-top: 120px;            
         }
         
 
@@ -271,8 +271,8 @@
             outputuse.length = 0;
             judgerepeat.length = 0;
             var isrepeat = false;//td:nth-child(4)
-            tbody.find("select[name='select_period']").each(function () {                
-                judgerepeat.push($(this).find(":selected").text() + $(this).parents("tr").children("td:nth-child(4)").find(":selected").text())
+            tbody.find("tr").each(function () {
+                judgerepeat.push($(this).children("td:nth-child(1)").find(":selected").text() + $(this).children("td:nth-child(2)").find(":selected").text() + $(this).children("td:nth-child(3)").find(":selected").text() + $(this).children("td:nth-child(4)").find(":selected").text());
             });
             for (var i = 0; i < judgerepeat.length; i += 1)
             {

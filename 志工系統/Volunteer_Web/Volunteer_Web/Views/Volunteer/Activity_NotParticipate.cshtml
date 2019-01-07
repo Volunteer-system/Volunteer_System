@@ -4,7 +4,9 @@
     ViewBag.Title = "Activity_NotParticipate";
 }
 @section style{
+
     <style>
+
         .form-control-inline {
             display: inline-block;
             height: calc(2.25rem + 2px);
@@ -50,22 +52,19 @@
                 margin-right: 5px;
             }
 
-        body {
-            background-color: #eee;
-        }
 
         .s1 {
-            height: auto;
-            background-image: url('../../Images/shattered.png');
+            background-image: url('../../Images/background.png');
         }
     </style>
+    <link href="~/Css/Menu.css" rel="stylesheet" />
+
 }
 <br />
 <br />
-
+<br />
 <div class="container">
     <div class="s1">
-
 
         <div class="row mt-2 pt-2 pb-2">
             <div class="offset-2 ">
@@ -79,7 +78,7 @@
                         <label class="mx-1">~</label>
                         <input type="datetime-local" name="Activity_enddate" class="form-control-inline" />
                     </div>
-                    <input id="date_search" type="submit" class="btn btn-outline-dark  ml-2" value="查詢" />
+                    <input id="date_search" type="submit" class="btn btn-outline-secondary ml-2" value="查詢" />
                 </form>
                 @if (ViewBag.ss != null)
                 {
@@ -94,24 +93,24 @@
     </div>
 </div>
 
-
 <div class="row mt-3">
-    <div class="col-2">
-        <div class="list-group">
-            <a id="ap1" href="~/Volunteer/Activity_Participate" class="list-group-item list-group-item-action btn-dark ">你已參加的活動</a>
-            <a id="ap2" href="~/Volunteer/Activity_NotParticipate" class="list-group-item list-group-item-action btn-dark">你未參加的活動</a>
-            <br />
-            @*<a href="~"></a>*@
-            @*@Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })*@
-            @foreach (var category in Model.activity_types)
-            {
-                @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "list-group-item list-group-item-action btn-dark ", id = "typeID-" + category.Activity_type_ID });
-            }
+    <div class="col-3">
+        <div class="menu">
+            <div class="list-group">
+                <a id="ap1" href="~/Volunteer/Activity_Participate" class="menu list-group-item list-group-item-action text-center">你已參加的活動</a>
+                <a id="ap2" href="~/Volunteer/Activity_NotParticipate" class="menu list-group-item list-group-item-action text-center">你未參加的活動</a>
+                <br />
+                @*<a href="~"></a>*@
+                @*@Html.ActionLink("新增活動", "Activity_Create", "Volunteer", new { }, new { @class = "list-group-item list-group-item-action" })*@
+                @foreach (var category in Model.activity_types)
+                {
+                    @Html.ActionLink(category.Activity_type1, "Activity_Browse", "Volunteer", new { id = category.Activity_type_ID }, new { @class = "menu list-group-item list-group-item-action text-center", id = "typeID-" + category.Activity_type_ID });
+                }
+            </div>
         </div>
     </div>
-    <div class="col-10">
+    <div class="col-9">
         <div class="row">
-
             @foreach (var ac in Model.acvno_VM)
             {
 
@@ -191,7 +190,6 @@
 
 
                             }
-
                             @* 重要  <a data-toggle="modal" data-target="#centralModalSuccess" name="a1" data-value="@ac.Activity_no" href="#" class="btn btn-secondary">參加</a>*@
                             <!-- Button trigger modal-->
                             <button id="@ac.Activity_no" value="@ac.Activity_Photo_id" type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#myModal">
@@ -203,7 +201,6 @@
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </div>
@@ -224,10 +221,8 @@
                 <table class="table table-hover">
                     <thead>
                         <tr>
-
                             <th colspan="2"><img id="model_img" class="card-img-top" alt="Card image cap"></th>
                             <th></th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -339,7 +334,6 @@
             </div>
             <!--/.Content-->
         </form>
-
     </div>
 </div>
 <!-- Central Modal Medium Success-->
@@ -369,6 +363,7 @@
                 //var doc = $('#Activity_name_' + id).text();
                 $('.modal-title').text('活動詳細資訊');
 
+
                 var photo_id = $(this).val();
                 $('#model_img').attr("src", "/Volunteer/GetImageBytes/" + photo_id);
 
@@ -389,7 +384,7 @@
                 $('#model_Summary').text($('#m_Summary_' + id).text());
             })
             $('#ap2').addClass('active');
-            
+
         })
     </script>
 }

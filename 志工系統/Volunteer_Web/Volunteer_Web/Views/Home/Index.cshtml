@@ -112,7 +112,7 @@
         /*輪播用的小圖按鈕使用▲*/
         /*主頁面使用▼*/
         .index_layout_main {
-            margin-top: 10px;
+            margin-top: 120px;
         }
         /*主頁面使用▲*/
         /*除大圖頁面使用▼*/
@@ -164,7 +164,8 @@
         .legend {
             all: initial;
             text-align: center;
-            font-size: 20px;
+            font-size: 30px;
+            font-family: 'Microsoft JhengHei';
         }
 
         .ul_contact {
@@ -179,6 +180,7 @@
             float: left;
             font-size: 20px;
             padding-right: 3px;
+            font-family: 'Microsoft JhengHei';
         }
         /*Contact訊息欄使用▲*/
         /*區塊範圍使用▼*/
@@ -408,7 +410,6 @@
                 if (row.Issued && count2 < 5)
                 {
                         <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn_use small_img" ><!--修改-->
-                 <input type="image" src="~/Images/@row.Indexphoto_name" data-target="#myCarousel" data-slide-to="@count2" class="btn" style="width:18rem;">
                     count2++;
                 }
             }
@@ -426,6 +427,7 @@
                                     績優志工簡介
                                 </span>
                                 <h3>@row.Experience</h3>
+                     
                                 <div class="news-more"><i class="fa fa-angle-right">@row.Experience_content</i> read more</div>
                             </div>
                             <!--src="~/Images/@@row.Experience_photo"-->

@@ -2,25 +2,38 @@
 #showError {
     display: none;
 }
+.DisplayError {
+    text-align: center;
+    height: 40px;
+    position: fixed;
+    top: 0px;
+    left: 30%;
+}
 /*登入失敗錯誤訊息用*/
 /*上方導覽列*/
 .Home-header {
-    line-height: 1;
-    border-bottom: 3px solid #009393;
+    line-height: 1px;
+    border-bottom: 3px solid #1cada9;
+    height: 120px;
+    width: 100%;
 }
 
 .Home_nav {
     all: initial;
     cursor: pointer !important;
     text-decoration: none !important;
+    font-family: "Microsoft JhengHei";
+    font-weight: bold;
 }
 
     .Home_nav:hover {
         all: initial;
         text-decoration: none !important;
     }
-
-.nav_li_a {
+.p-1{
+    margin-bottom:-3px ;
+}
+/*.nav_li_a {
     all: initial;
     cursor: pointer !important;
     color: white;
@@ -32,21 +45,21 @@
         cursor: pointer !important;
         color: white;
         margin-bottom: 3px;
-    }
+    }*/
 
 .nav_ul {
-    list-style-type: none;
+    /*list-style-type: none;
     background-color: #6c6c6c;
     position: fixed;
-    text-align: left;
+    text-align: left;*/
     display: none
 }
 
-.nav_li {
+/*.nav_li {
     margin: 5px;
     border-bottom: 1px solid #ce0000;
     height: 30px;
-}
+}*/
 /*上方導覽列*/
 /*動畫條使用*/
 .nav_animate_green {
@@ -65,14 +78,17 @@
 /*動畫條使用*/
 /*頁尾使用*/
 .footer_use {
-    background-color: #009393;
+    background-color: #1cada9;
     /*margin: 0 auto;*/
-    height:175px !important;
+    height: 175px !important;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
     .footer_use ul {
-        list-style-type: none;
+        list-style-type: none;       
     }
 
 .footer_use_gray {
@@ -96,3 +112,69 @@
     font-size: 14px;
 }
 /*頁尾使用*/
+
+/*下拉選單用*/
+#login_navbarMenu {
+    /*left: -47px !important;*/
+    padding: 0;
+    background-color: unset;
+    background-image: none;
+}
+#navbarMenu {
+    left: -47px !important;
+    padding: 0;
+    background-color: unset;
+    background-image: none;
+}
+
+#UnitDropDown li > a {
+    text-align: center;
+    padding: 10px 60px;
+    font-family:微軟正黑體;
+    color: white;
+    opacity: 0.6;
+    background-color: #2faf97;
+    background-image: linear-gradient(45deg, #2faf97 0%, #50bac4 100%);
+}
+
+    #UnitDropDown li > a:hover {
+        opacity: 1;
+    }
+#UnitDropDown div{
+    margin-bottom:-2px;
+}
+/*下拉選單用*/
+@media only screen and (max-width:768px) {
+    .DisplayError {
+        text-align: center;
+        height: 40px;
+        position: fixed;
+        top: 0px;
+        left: 27%;
+    }
+}
+
+
+/*Login Button*/
+
+.btn-login,#dropdownMenuLink {
+    vertical-align: middle;
+    padding: 0 30px;
+    border: #1cada9 solid 1px;
+    line-height: 40px;
+    font-family: "微軟正黑體";
+    font-weight: 300;
+    font-size: 20px;
+    letter-spacing: 1pt;
+    color: rgb(107,95,94);
+    transition: all .3s ease;
+    border-radius: 5px;
+    /*width:200px;*/
+    height:40px;
+    margin-right:150px;
+}
+
+    .btn-login:hover, #dropdownMenuLink:hover {
+        background: #1cada9;
+        color: #fff;
+    }

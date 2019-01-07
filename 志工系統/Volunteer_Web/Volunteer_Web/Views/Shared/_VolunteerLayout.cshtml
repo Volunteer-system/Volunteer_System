@@ -28,46 +28,58 @@
             /*font-size:20px;*/
         }
         .nav{
-            margin:0 0 0 25% !important;
+            margin:0 14% 0 14% !important;
         }
         .v_header_main {
             width: 100%;
-            height: 100px;
+            height: 150px;
         }
 
         .v_header_slogan {
-            width: 70%;
+            width: 60%;
             float: left;
             display: flex;
             justify-content: flex-start;
             align-items: center;
             padding-top: 2rem;
         }
-
+        /*.v_header_slogan a{
+            background-image: url("../../Images/logo.png");
+            background-repeat:no-repeat;
+            width:100%;
+        }*/
         .v_header_login {
             width: 18%;
-            margin: 1%;
+            margin: 1% 15% 1% 1%;
             float: right;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            padding-top: 3rem;
+            padding-top: 2.5rem;
         }
 
         .v_header_text {
-            color: #343a40 !important;
+            /*color: #343a40 !important;*/
             text-decoration: none !important;
             font-family: "Playfair Display", Georgia, "Times New Roman", serif;
-            font-size: 2.25rem !important;        
-            margin: 0 0 0 25% !important;       
+            font-size: 2.25rem !important;
+            margin: 0 0 0 25% !important;
+            /*color: transparent !important;*/
         }
-        @@media only screen and (max-width:1200px) {
-            .nav {
+            .v_header_text img{
+                width:100%;
+            }
+            @@media only screen and (max-width:1200px) {
+                .nav {
                 margin: 0 !important;
             }
             .v_header_text {
                 margin:0 !important;
             }
+                .v_header_login {
+                    margin: 1%;
+
+                }
         }
             @@media only screen and (max-width:767px) {
 
@@ -77,7 +89,7 @@
                     display: flex;
                     justify-content: flex-start;
                     align-items: flex-end;
-                    padding-top: 1rem;
+                    padding-top: 2rem;
                     height: 50px;
                 }
 
@@ -88,8 +100,9 @@
                     display: flex;
                     justify-content: flex-end;
                     align-items: flex-end;
-                    padding-top: 2rem;
+                    padding: 2rem 20px 0 0;
                     height: 50px;
+                    margin-right: 10px;
                 }
             }
 
@@ -103,7 +116,6 @@
                 .v_header_text {
                     font-size: 1.8rem !important;
                 }
-
                 .p-1 a {
                     font-size: 11px;
                 }
@@ -117,92 +129,132 @@
     @*fixed-top*@
     <div class="fixed-top" style="background-color:white">
         @*<div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-            </div>*@
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                </ul>
+            </div>
+        </div>*@
         <header class="blog-header py-2">
             <div class="v_header_main">
                 <div class="v_header_slogan">
-                    @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "v_header_text" })
+                    @*@Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "v_header_text" })*@
+                    <a href="~/Home/Index" class="v_header_text">
+                        <img src="~/Images/logo.png" />
+                    </a>
+
                 </div>
                 <div class="v_header_login">
                     <a class="text-muted" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+                        @*<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>*@
                     </a>
                     <!--11271414益修改▼-->
-                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@
-                    <div class="dropdown">
-                        @{ <!--判斷有無登入者，切換功能-->
-                            if (Session["UserName"] == null)
+                    @*<a class="btn btn-sm btn-outline-secondary" href="#">登入</a>*@<!--判斷有無登入者，切換功能-->
+                    @*<div class="dropdown">
+            @{
+                if (Session["UserName"] == null)
+                {
+                    <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                }
+                else
+                {
+                    <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                }
+            }
+            <div class="dropdown-menu" aria-labelledby="dLabel">
+                @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
+                <a class="dropdown-item" href="#">志工權益</a>
+                @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
+                @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
+            </div>
+        </div>*@
+                    <ul id="login_bar" style="list-style-type:none;">
+                        <li class="nav-item">
+                            @if (Session["UserName"] == null)
                             {
-                                <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
+                            <a id="dropdownMenuLink" class="btn btn-secondary btn-sm btn-outline-secondary" data-toggle="modal" data-target="#LoginModal">登入</a>
                             }
                             else
                             {
-                                <a class="btn btn-secondary btn-sm btn-outline-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
+                            <a class="btn btn-secondary btn-sm btn-outline-secondary" href="#" role="button" id="dropdownMenuLink" aria-haspopup="true" aria-expanded="false" data-target="">@Session["UserType"] @Session["UserName"]</a>
                             }
-                        }
-                        <div class="dropdown-menu" aria-labelledby="dLabel">
-                            @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })
-                            <a class="dropdown-item" href="#">志工權益</a>
-                            @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })
-                            @Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })
-                            @*<a class="dropdown-item" href="~/Login/LogOut">登出</a>*@
-                        </div>
-                    </div>
-                    <!--11271414益修改▲-->
+                        </li>
+                        <li class="nav-item dropdown" id="UnitDropDown">
+                            <div>
+                                <ul id="login_navbarMenu" name="nav_ul" class="dropdown-menu">
+                                    <li>@Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                    <li> <a class="dropdown-item" href="#">志工權益</a></li>
+                                    <li>@Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                                    <li>@Html.ActionLink("登出", "LogOut", "Login", null, new { @class = "dropdown-item" })</li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </div>
             @*<div class="row flex-nowrap justify-content-between align-items-center">
-                    <div class="col-4 pt-1">
-                        @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark" })
-                        @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>
-                    </div>
+                <div class="col-4 pt-1">
+                    @Html.ActionLink("亞東醫院志願服務隊", "Index", "Home", null, new { @class = "blog-header-logo text-dark" })
+                    @*<a class="blog-header-logo text-dark" href="#">亞東醫院志願服務隊</a>
+                </div>
 
-                </div>*@
+            </div>*@
         </header>
-        <div class="nav-scroller ">
-            <nav id="nav_bar" class="nav d-flex justify-content-between ">
+        <ul id="nav_bar" class="nav d-flex justify-content-between ">
+            <li class="nav-item">
+                <div class="p-1">
+                    @Html.ActionLink("回首頁", "Index", "Home", null, new { @class = " text-muted Home_nav" })
+                    <canvas class=" nav_animate_gray"></canvas>
+                </div>
+            </li>
+            <li class="nav-item">
                 <div class="p-1">
                     @Html.ActionLink("個人首頁", "Index", "Volunteer", null, new { @class = " text-muted Home_nav" })
                     <canvas class=" nav_animate_gray"></canvas>
                 </div>
+            </li>
+            <li class="nav-item dropdown" id="UnitDropDown">
                 <div class="p-1">
                     @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "text-muted Home_nav" })
                     <canvas class=" nav_animate_gray"></canvas>
-                    <ul name="nav_ul" class="nav_ul">
-                        <li class="nav_li">@Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "nav_li_a" })</li>
-                        <li class="nav_li">@Html.ActionLink("參與過的活動", "Activity_History", "Volunteer", null, new { @class = "nav_li_a" })</li>
+                    <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
+                        <li>@Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "dropdown-item" })</li>
+                        <li>@Html.ActionLink("參與過的活動", "Activity_History", "Volunteer", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item  dropdown" id="UnitDropDown">
                 <div class="p-1">
                     @Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "text-muted Home_nav" })
                     <canvas class=" nav_animate_gray"></canvas>
-                    <ul name="nav_ul" class="nav_ul">
-                        <li class="nav_li">@Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "nav_li_a" })</li>                      
+                    <ul id="navbarMenu" name="nav_ul" class="dropdown-menu">
+                        <li class="nav_li">@Html.ActionLink("課程與活動", "Activity_Browse", "Volunteer", null, new { @class = "dropdown-item" })</li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item ">
                 <div class="p-1">
                     <a class="text-muted Home_nav" href="#">志工權益</a>
                     <canvas class=" nav_animate_gray"></canvas>
                 </div>
+            </li>
+            <li class="nav-item">
                 <div class="p-1">
                     @Html.ActionLink("排班意願", "Schedule", "Volunteer", null, new { @class = "text-muted Home_nav" })
                     <canvas class=" nav_animate_gray"></canvas>
                 </div>
-            </nav>
-        </div>
+            </li>
+        </ul>
     </div>
     <main role="main" class="container body-content py-5">
         <div>
@@ -262,10 +314,17 @@
     <script>
         $(document).ready(function () {
             var nav_bar = $("#nav_bar");
+            var login_bar = $("#login_bar")
             Holder.addTheme('thumb', {
                 bg: '#55595c',
                 fg: '#eceeef',
                 text: 'Thumbnail'
+            });
+            login_bar.mouseenter(function () {
+                $(this).find("ul[name='nav_ul']").show();
+            });
+            login_bar.mouseleave(function () {
+                $(this).find("ul[name='nav_ul']").hide();
             });
             /*動畫使用*/
             nav_bar.find("div").each(function () {

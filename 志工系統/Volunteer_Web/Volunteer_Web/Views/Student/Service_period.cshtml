@@ -8,24 +8,27 @@
 <style>
 
 
-    table {
+    #period_table {
         table-layout: fixed;
         word-break: break-word;
         width: 100%;
         /*overflow-wrap:break-word;*/
     }
 
-    th, td {
-        text-align: center;
-        /*width:100%*/
-    }
+        #period_table th, td {
+            text-align: center;
+            /*width:100%*/
+        }
 
-    button {
-        /*width:50%;*/
-        margin: 3px;
-    }
+        #period_table button {
+            /*width:50%;*/
+            margin: 3px;
+        }
 </style>
-<h2 id="Pv_title">排班時間調查</h2>
+<div class="btn btn-block fontstyle">
+    <h2>服務時段調查</h2>
+    <hr />
+</div>
 <p>
     請在能夠參與的時段中，填入數字1
     <br />
@@ -39,7 +42,7 @@
 
 
 
-<table class="table table-bordered ">
+<table class="table table-bordered " id="period_table">
     <thead>
         <tr>
             <th></th>
@@ -82,9 +85,5 @@
             <td data-service_period_no="15"><p></p></td>
             <td colspan="2"><button id="btn_edit" class="btn btn-info ">編輯</button><button id="btn_insert_interview" class="btn btn-info ">儲存</button></td>
         </tr>
-
     </tbody>
-
 </table>
-<button id="btn_edit" class="btn btn-info ">編輯</button>
-<button id="btn_insert" class="btn btn-info ">儲存</button>

@@ -27,20 +27,23 @@
     <style>
         .screen {
             width: 100%;
-            margin-top: 70px;
+            margin-top: 120px;
         }
+
         .calendar {
             border: 3px dotted lightgray;
             width: 68%;
-            margin:1%;
-            padding:1%;
+            margin: 1%;
+            padding: 1%;
         }
-        .thead{
-            background-color:darkgray;
-            color:white;
+
+        .thead {
+            background-color: darkgray;
+            color: white;
         }
+
         .actTable {
-            margin:1%;
+            margin: 1%;
             width: 28%;
         }
 
@@ -204,9 +207,9 @@
     <link href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css" rel="stylesheet" /><!--引用主題-->
     <script>
     $(document).ready(function () {
-        var events = [];    
+        var events = [];
         var schedules = [];
-        var init_month = new Date().getFullYear() + "/" + (new Date().getMonth() + 1) + "/1";
+        var init_month = new Date().getFullYear();
         var select_month;
         var calendar1 = $("#calendar1");
             $.ajax({
@@ -223,13 +226,17 @@
                         color: "#ff7575"
                     });
                 })
-                GenerateCalendar(events);  
+                GenerateCalendar(events);
                 getschedule();
                 }).fail(function () {
                     alert("沒有資料");
                 })
         calendar1.on("click", "div[class='fc-button-group']", function () {
-            getschedule();
+            if (calendar1.find("div[class='fc-center']>h2").text().substring(0, 4) == init_month)
+            {
+               getschedule();
+            }
+
         });
         function getschedule()
         {
@@ -241,7 +248,7 @@
                 }).done(function (datas) {
                     $.each(datas, function (i, v) {
                         schedules.push({
-                            title: "班表:" + v.Service_period_name,
+                            title: v.Application_unit_name + ((String)(v.Service_period_name)).toString().substring(3,5),
                             start: moment(v.Worktime).format("YYYY-MM-DD"),
                             end: moment(v.Worktime).format("YYYY-MM-DD"),
                             Volunteer_no: v.Volunteer_no,
@@ -287,7 +294,7 @@
                     //eventLimit: true,
                    /* eventColor: "#ff7575",*/                                          //事件條的顏色
                     events: events,                                                 //接收事件json格式，設定title顯示字，start起始日,end結束日
-                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件                       
+                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件
                         if (calEvent.act_no != undefined) {
                             $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
                             $("#load_a").load("/Volunteer/Activity_DetailPartial/" + calEvent.act_no)
@@ -303,7 +310,7 @@
 
                 });
         }
-        
+
         });
 
     </script>
