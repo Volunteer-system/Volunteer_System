@@ -95,6 +95,8 @@ namespace Volunteer_WPF.View
                 getactivity_detail_view(activity_name, activity_startdate);
 
             }            
+
+
         }
 
         public void getactivity_detail_view(string Activity_name, DateTime startdate)

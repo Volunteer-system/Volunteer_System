@@ -44,9 +44,19 @@
             align-items: flex-end;
             padding: 2% 12% 0 0;
             float: right;
+        }
 
-        }      
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+            padding: 0 12% 0 12%;
+        }
 
+        .top-nav {
+            margin: 0px 288px;
+        }
     </style>
     @RenderSection("Home_style", false)
 </head>
@@ -89,7 +99,7 @@
             </div>
         </header><!--menu nav justify-content-center-->
         <div >
-            <ul id="nav_bar" class="nav d-flex justify-content-between ">
+            <ul id="nav_bar" class="nav d-flex justify-content-between top-nav">
                 <li class="nav-item">
                     <div class="p-1">
                         @Html.ActionLink("回首頁", "Index", "Home", null, new { @class = "text-muted Home_nav" })

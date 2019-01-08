@@ -89,6 +89,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 微軟正黑體;
 }
 
     .footer_use ul {
@@ -127,9 +128,10 @@
     padding: 0;
     background-color: unset;
     background-image: none;
+    width: 250px;
 }
 #navbarMenu {
-    left: -47px !important;
+    left: calc(-55%) !important;
     padding: 0;
     background-color: unset;
     background-image: none;
@@ -138,7 +140,8 @@
 #UnitDropDown li > a {
     text-align: center;
     padding: 10px 60px;
-    font-family:微軟正黑體;
+    font-family: 微軟正黑體;
+    font-size: 16px;
     color: white;
     opacity: 0.6;
     background-color: #2faf97;
@@ -213,21 +216,21 @@
 
 /*Login Button*/
 
-.btn-login,#dropdownMenuLink {
+.btn-login, #dropdownMenuLink {
     vertical-align: middle;
     padding: 0 30px;
     border: #1cada9 solid 1px;
     line-height: 40px;
     font-family: "微軟正黑體";
     font-weight: 300;
-    font-size: 20px;
+    font-size: 18px;
     letter-spacing: 1pt;
     color: rgb(107,95,94);
     transition: all .3s ease;
     border-radius: 5px;
-    /*width:200px;*/
-    height:40px;
-    margin-right:150px;
+    width: 250px;
+    height: 40px;
+    margin-right: 160px;
 }
 
     .btn-login:hover, #dropdownMenuLink:hover {
