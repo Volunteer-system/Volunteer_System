@@ -483,6 +483,7 @@
     <Content Include="Views\Student\Requirement_ok.cshtml" />
     <Content Include="Views\Student\Service_period.cshtml" />
     <Content Include="Views\Unit\Home.cshtml" />
+    <Content Include="Views\Home\Schedule.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
