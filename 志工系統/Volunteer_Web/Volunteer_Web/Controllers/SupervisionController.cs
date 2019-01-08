@@ -26,7 +26,7 @@ namespace Volunteer_Web.Controllers
             return Json(AHM.GetActivity(), JsonRequestBehavior.AllowGet);
         }
         //
-        public ActionResult Experience(int id=1)
+        public ActionResult Experience(int id=0)
         {
             Supervision_Experience_VM supervision_Experience_VM = new Supervision_Experience_VM();
             supervision_Experience_VM.Service_groups = dbContext.Service_group.ToList();

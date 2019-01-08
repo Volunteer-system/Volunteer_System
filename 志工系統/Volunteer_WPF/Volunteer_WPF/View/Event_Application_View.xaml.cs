@@ -91,10 +91,16 @@ namespace Volunteer_WPF.View
                 var q = from a in dbContext.Abnormal_event
                         where a.Abnormal_event_ID == Event_ID
                         select a;
+
+                var q2 = (from n in dbContext.Stages
+                          where n.Stage_type == "異常事件" &&
+                                n.Stage1 == "成案審核"
+                          select n.Stage_ID).First();
+
                 foreach (var a in q)
                 {
                     a.Rejection_Reason = "NULL";
-                    a.Stage = 9;
+                    a.Stage = q2;
                 }
                 dbContext.SaveChanges();
                 this.Close();
@@ -108,8 +114,13 @@ namespace Volunteer_WPF.View
             var q = from a in dbContext.Abnormal_event
                     where a.Abnormal_event_ID == Event_ID
                     select a;
-            
-            if(this.nopass_textbox.Text.Trim()=="")
+
+            var q2 = (from n in dbContext.Stages
+                      where n.Stage_type == "異常事件" &&
+                            n.Stage1 == "駁回"
+                      select n.Stage_ID).First();
+
+            if (this.nopass_textbox.Text.Trim()=="")
             {
                 System.Windows.MessageBox.Show("請填寫駁回原因");
             }
@@ -120,7 +131,7 @@ namespace Volunteer_WPF.View
                     foreach (var a in q)
                     {
                         a.Rejection_Reason = this.nopass_textbox.Text;
-                        a.Stage = 7;
+                        a.Stage = q2;
                     }
                     dbContext.SaveChanges();
                     this.Close();
@@ -153,9 +164,14 @@ namespace Volunteer_WPF.View
                         where a.Abnormal_event_ID == Event_ID
                         select a;
 
+                var q2 = (from n in dbContext.Stages
+                          where n.Stage_type == "異常事件" &&
+                                n.Stage1 == "處理中"
+                          select n.Stage_ID).First();
+
                 foreach (var a in q)
                 {                    
-                    a.Stage = 10;
+                    a.Stage = q2;
                 }
                 dbContext.SaveChanges();
                 this.Close();
