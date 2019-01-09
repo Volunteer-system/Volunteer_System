@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "Interview_period";
+}
+
+<br />
+<br />
+<style>
+
+
+    #period_table {
+        table-layout: fixed;
+        word-break: break-word;
+        width: 100%;
+        /*overflow-wrap:break-word;*/
+    }
+
+        #period_table th, td {
+            text-align: center;
+            /*width:100%*/
+        }
+
+        #period_table button {
+            /*width:50%;*/
+            margin: 3px;
+        }
+</style>
+<div class="btn btn-block fontstyle">
+    <h2>服務時段調查</h2>
+    <hr />
+</div>
+<p>
+    請在能夠參與的時段中，填入數字1
+    <br />
+    ，本次活動由學生志工需本院志工帶領值班，因此僅提供選擇服務"時段"(EX.週一上午/週三下午....等)，服務時間與服務內容將由督導安排。 <br />
+    <br />
+    <br />
+    上午班時段為8:00-12:00中間安排3小時 <br />
+    下午班時段為13:00-17:00中間安排3小時 <br />
+    晚上班時段為18:00-21:00 <br />
+</p>
+
+
+
+<table class="table table-bordered " id="period_table">
+    <thead>
+        <tr>
+            <th></th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>上午</td>
+            <td data-service_period_no="1"><p></p></td>
+            <td data-service_period_no="4"><p></p></td>
+            <td data-service_period_no="7"><p></p></td>
+            <td data-service_period_no="10"><p></p></td>
+            <td data-service_period_no="13"><p></p></td>
+            <td data-service_period_no="16"><p></p></td>
+            <td data-service_period_no="18"><p></p></td>
+        </tr>
+        <tr>
+            <td>下午</td>
+            <td data-service_period_no="2"><p></p></td>
+            <td data-service_period_no="5"><p></p></td>
+            <td data-service_period_no="8"><p></p></td>
+            <td data-service_period_no="11"><p></p></td>
+            <td data-service_period_no="14"><p></p></td>
+            <td data-service_period_no="17"><p></p></td>
+            <td data-service_period_no="19"><p></p></td>
+        </tr>
+        <tr>
+            <td>夜間</td>
+            <td data-service_period_no="3"><p></p></td>
+            <td data-service_period_no="6"><p></p></td>
+            <td data-service_period_no="9"><p></p></td>
+            <td data-service_period_no="12"><p></p></td>
+            <td data-service_period_no="15"><p></p></td>
+            <td colspan="2"><button id="btn_edit" class="btn btn-info ">編輯</button><button id="btn_insert_interview" class="btn btn-info ">儲存</button></td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,129 @@
+﻿@model Volunteer_Web.ViewModel.Sign_up_session
+@section Home_style{
+    <style>
+        .fontstyle {
+            font-size: 20px;
+            font-family: 微軟正黑體;
+        }
+    </style>
+}
+
+    <div class="row blog-main ">
+        <div class="btn btn-block fontstyle">
+            <h2>基本資料</h2>
+            <hr />
+        </div>
+        @using (Html.BeginForm("basic_info", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Chinese_name, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Chinese_name, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Sex, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.RadioButtonFor(p => p.Sex, "Male", new { @class = "radio-inline" }) 男
+                    @Html.RadioButtonFor(p => p.Sex, "Female", new { @class = "radio-inline" }) 女
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Identity_card, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Identity_card, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Birthday, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    <input name="Birthday" type="date" value="@Model.Birthday">
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Sign_up_type, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.RadioButtonFor(p => p.Sign_up_type, "社會志工", new { @class = "radio-inline" }) 社會志工
+                    @Html.RadioButtonFor(p => p.Sign_up_type, "學生志工", new { @class = "radio-inline" }) 學生志工
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Phone, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Mobile, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Mobile, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Email, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Email, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Address, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.EditorFor(p => p.Address, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Education, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.RadioButtonFor(p => p.Education, "無", new { @class = "radio-inline" }) 無
+                    @Html.RadioButtonFor(p => p.Education, "小學", new { @class = "radio-inline" }) 小學
+                    @Html.RadioButtonFor(p => p.Education, "國中", new { @class = "radio-inline" }) 國中
+                    @Html.RadioButtonFor(p => p.Education, "高中", new { @class = "radio-inline" }) 高中
+                    @Html.RadioButtonFor(p => p.Education, "大學", new { @class = "radio-inline" }) 大學
+                    @Html.RadioButtonFor(p => p.Education, "研究所", new { @class = "radio-inline" }) 研究所
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Job, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @Html.RadioButtonFor(p => p.Job, "軍", new { @class = "radio-inline" }) 軍
+                    @Html.RadioButtonFor(p => p.Job, "公", new { @class = "radio-inline" }) 公
+                    @Html.RadioButtonFor(p => p.Job, "教", new { @class = "radio-inline" }) 教
+                    @Html.RadioButtonFor(p => p.Job, "工", new { @class = "radio-inline" }) 工
+                    @Html.RadioButtonFor(p => p.Job, "商", new { @class = "radio-inline" }) 商
+                    @Html.RadioButtonFor(p => p.Job, "農", new { @class = "radio-inline" }) 農
+                    @Html.RadioButtonFor(p => p.Job, "服務業", new { @class = "radio-inline" }) 服務業
+                    @Html.RadioButtonFor(p => p.Job, "自由業", new { @class = "radio-inline" }) 自由業
+                    @Html.RadioButtonFor(p => p.Job, "家庭主婦", new { @class = "radio-inline" }) 家庭主婦
+                    @Html.RadioButtonFor(p => p.Job, "學生", new { @class = "radio-inline" }) 學生
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(p => p.Expertises, new { @class = "col-sm-2 col-form-label" })
+                <div class="col-sm-10">
+                    @foreach (var _Expertise in ViewBag.Expertise)
+                    {
+
+                        if (Model.Expertises.ToList().Contains(_Expertise.Expertise_no + _Expertise.Expertise))
+                        {
+                            <input id="@_Expertise.Expertise_no" name="Expertises" type="checkbox" value="@_Expertise.Expertise_no@_Expertise.Expertise" checked="checked" /> @_Expertise.Expertise
+                        }
+                        else
+                        {
+
+                            <input id="@_Expertise.Expertise_no" name="Expertises" type="checkbox" value="@_Expertise.Expertise_no@_Expertise.Expertise" /> @_Expertise.Expertise
+                        }
+
+                    }
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <a href="~/Home/Demo" class="btn btn-info">Demo</a>
+                    <button id="send_basic_info" type="submit" class="btn btn-info">確定並儲存</button>
+                </div>
+            </div>
+        }
+    </div>
+
+

@@ -1,0 +1,151 @@
+﻿@model IEnumerable<Volunteer_Web.ViewModel.AbnormaleventStageVM>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/css/bootstrap-select.min.css">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.2/js/i18n/defaults-*.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<style>
+
+    .form-control {
+        display: inline;       
+    }
+
+    .card-body {
+        background-image: url('../../Images/background.png');
+    }
+
+    /*tbody {
+        background-color: #acd6ff;
+    }
+
+        tbody tr:nth-child(2n) {
+            background-color: #f0f0f0;
+        }
+
+        tbody tr:nth-child(2n+1) {
+            background-color: #acd6ff
+        }*/
+
+</style>
+
+
+    <div class="form-group" style="margin-top: 80px;">
+        @using (Html.BeginForm("SelectByDate", "Abnormalevent"))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card acik-renk-form">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <p class="font-weight-light text-dark" style="font-size:14px;margin-bottom:5px;">事件種類</p>
+                                    @Html.DropDownList("eventcategory", (SelectList)ViewBag.indexcategory, "不篩選", new { @class = "form-control" })
+                                </div>
+                                <div class="col-md-7">
+                                    <p class="text-dark" style="font-size:14px;margin-bottom:5px;">事件日期</p>
+                                    <input type="date" class="form-control" id="date1" name="date1" value="@ViewBag.date1" />
+                                    <p class="text-dark" style="display:inline;">-</p>
+                                    <input type="date" class="form-control" id="date2" name="date2" value="@ViewBag.date2" />
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="submit" value="搜尋" id="submitbutton" class="btn btn-outline-secondary" style="margin-top:25px;" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="row">
+        <div class="col-3" style=" margin-top:30px">
+            @*<a href="~/Abnormalevent/Insert" class="btn btn-info text-white btn-block">通報事件</a>*@
+            <!--載入 PartialView-->
+            <div>
+                @Html.Action("Menu")
+            </div>
+        </div>
+
+        <div class="col-9" style=" margin-top:30px">
+            <div class="row">
+
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>事件案號</th>
+                            <th>異常事件</th>
+                            <th>當事員工</th>
+                            <th>事件類別</th>
+                            <th>處理階段</th>
+                            <th>通報日期</th>
+                            <th>負責督導</th>
+                            <th>檢視/編輯</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.Abnormal_event_ID)</td>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.Abnormal_event1)</td>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.Volunteer.Chinese_name)</td>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.event_category.event_category1)</td>
+                                <td>@Html.DisplayFor(s => item.stage.Stage1)</td>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.Notification_date)</td>
+                                <td>@Html.DisplayFor(a => item.abnormalevent.Volunteer_supervision.supervision_Name)</td>
+                                <td><a href="~/Abnormalevent/Detail/@item.abnormalevent.Abnormal_event_no" class="btn btn-outline-dark">詳細資料</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    @section Home_script{
+        <script>
+        $(document).ready(function () {
+           $('a[id = "@ViewBag.id"]').addClass('active');
+
+            $('input[id="submitbutton"]').click(function () {
+
+            if ($('input[id="date1"]').val() != "") {
+                $('input[id="date2"]').prop("required", true)
+            }
+            if ($('input[id="date2"]').val() != "") {
+                $('input[id="date1"]').prop("required", true)
+                }
+
+            if (($('input[id="date1"]').val() == "") && ($('input[id="date2"]').val() == "")) {
+                 $('input[id="date1"]').removeAttr("required")
+                $('input[id="date2"]').removeAttr("required")
+                }
+
+            })
+
+            $('input[id="date1"]').change(function () {
+               if ($('input[id="date1"]').val() == "") {
+                    $('input[id="date1"]').removeAttr("value")
+                }
+            })
+            $('input[id="date2"]').change(function () {
+
+                if ($('input[id="date2"]').val() == "") {
+                    $('input[id="date2"]').removeAttr("value")
+                }
+
+            })
+    })
+
+
+        </script>
+    }

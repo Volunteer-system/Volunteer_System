@@ -1,0 +1,521 @@
+﻿@model IEnumerable<Volunteer_Web.Models.VolunteerUse.ScheduleModel>
+@{
+    ViewBag.Title = "Schedule";
+}
+@*@{
+        List<SelectListItem> servicetype = new List<SelectListItem>();
+        servicetype.AddRange(new[]
+                      { new SelectListItem() {Text = "______",Value = "0" },
+    new SelectListItem() {Text = "診區服務類",Value = "1" },
+    new SelectListItem() {Text = "急診服務類",Value = "2" },
+    new SelectListItem() {Text = "檢查服務類",Value = "3" },
+    new SelectListItem() {Text = "福利關懷類",Value = "4" },
+    new SelectListItem() {Text = "癌症服務類",Value = "5" },
+    new SelectListItem() {Text = "婦幼服務類",Value = "6" },
+    new SelectListItem() {Text = "影像服務類",Value = "7" },
+    new SelectListItem() {Text = "綜合服務類",Value = "8" }
+    });
+        List<SelectListItem> service_glup = new List<SelectListItem>();
+        service_glup.AddRange(new[] {
+    new SelectListItem(){Text="組一",Value = "1" },
+    new SelectListItem(){Text="組二",Value = "2" },
+    new SelectListItem(){Text="組三",Value = "3" },
+    new SelectListItem(){Text="組四",Value = "4" }
+    });
+        List<SelectListItem> class_type = new List<SelectListItem>();
+        class_type.AddRange(new[] {
+    new SelectListItem(){Text="固定班",Value = "1" },
+    new SelectListItem(){Text="支援組",Value = "2" }
+    });
+    }*@
+@*<br />
+<br />
+<br />
+<br />
+<br />*@
+@section style{
+    <style>
+
+        table {
+            table-layout: fixed;
+            word-break: break-word;
+            width: 100%;
+            /*overflow-wrap:break-word;*/
+        }
+        thead{
+            background-color:darkgrey;
+            color:white;
+        }
+        select {
+            width: 100%
+        }
+
+        th, td {
+            text-align: center;
+            width:100%
+        }
+
+        .s_btn {
+            width: 100px;
+            margin: 3px;
+        }
+        .d_btn {
+            width: 100px;
+            margin: 3px;
+            border: 1px solid transparent;
+            text-align: center;
+            color: #fff;
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+            .d_btn:hover {
+                color: #fff;
+                background-color: #c82333;
+                border-color: #bd2130;
+            }
+        .screen {
+            margin-top: 120px;            
+        }
+        
+
+        @@media only screen and (max-width:768px) {
+            .d_btn {
+                width: 80px;
+                margin: 3px;
+            }
+        }
+        /*@@media only screen and (max-width:650px) {
+            .screen {
+                margin-top: 15%;
+            }
+
+            .d_btn {
+                width: 60px;
+                margin: 3px;
+            }
+        }*/
+        @@media only screen and (max-width:415px) {
+            .d_btn {
+                /*font-size:12px;*/
+                width: 35px;
+                margin: 3px;
+            }
+        }
+
+
+        @@media only screen and (max-width:320px) {
+            .d_btn {
+                writing-mode:horizontal-tb;
+                font-size:1px;
+                width: 20px;
+                margin: 1px;
+            }
+        }
+    </style>
+}
+@*@Html.DropDownList("CategoryID", (SelectList)@ViewBag.cate, "請選擇")*@
+    <div class="screen">
+        <h2>志願預排</h2>
+        <button id="btn_addtable" class="btn btn-primary s_btn">新增排班列</button>
+        <button id="btn_submit" class="btn btn-info s_btn">確認送出</button>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    @*<th>班別</th>*@
+                    <th>服務組</th>
+                    <th>運用單位</th>
+                    <th>服務時段</th>
+                    <th>排班狀態</th>
+                    <th>編輯欄</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+                @foreach (var s in Model)
+                {
+                <tr>
+                    <td>
+                        <select disabled name="select_group">
+                            <option value="@s.Srevice_group">@s.Srevice_group_name</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select disabled name="select_application">
+                            <option value="@s.Application_unit">@s.Application_unit_name</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select disabled name="select_period">
+                            <option value="@s.Service_period_no">@s.Service_period_name</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select  name="select_status">
+                            <option value="@s.Stage">@s.Stage_name</option>
+                            <option value="移除">移除</option>
+                        </select>
+                    </td>
+                </tr>               
+                }
+                @*<tr>
+                    <td>
+                        <select disabled name='select_class'>
+                            <option value="">固定班</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select disabled name='select_group'>
+                            <option value="">預覽:服務組</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select disabled name='select_application'>
+                            <option value="">預覽:服務類</option>
+                        </select>
+                    </td>
+
+                    <td>
+                        <select disabled name='select_period'>
+                            <option value="">預覽:服務時段</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name='select_status'>
+                            <option value="續留">續留</option>
+                            <option value="移除">移除</option>
+                        </select>
+                    </td>
+                    <td></td>
+                </tr>*@
+                @*<tr>
+                    <td>上午</td>
+                    <td data-service_period_no="1"><p></p></td>
+                    <td data-service_period_no="4"><p></p></td>
+                    <td data-service_period_no="7"><p></p></td>
+                    <td data-service_period_no="10"><p></p></td>
+                    <td data-service_period_no="13"><p></p></td>
+                    <td data-service_period_no="16"><p></p></td>
+                    <td data-service_period_no="18"><p></p></td>
+                </tr>
+                <tr>
+                    <td>下午</td>
+                    <td data-service_period_no="2"><p></p></td>
+                    <td data-service_period_no="5"><p></p></td>
+                    <td data-service_period_no="8"><p></p></td>
+                    <td data-service_period_no="11"><p></p></td>
+                    <td data-service_period_no="14"><p></p></td>
+                    <td data-service_period_no="17"><p></p></td>
+                    <td data-service_period_no="19"><p></p></td>
+                </tr>
+                <tr>
+                    <td>夜間</td>
+                    <td data-service_period_no="3"><p></p></td>
+                    <td data-service_period_no="6"><p></p></td>
+                    <td data-service_period_no="9"><p></p></td>
+                    <td data-service_period_no="12"><p></p></td>
+                    <td data-service_period_no="15"><p></p></td>
+                    <td colspan="2"><button id="btn_edit" class="btn btn-info ">編輯</button><button id="btn_insert" class="btn btn-info ">儲存</button></td>
+                </tr>*@
+                @*<tr>
+                    <td>上午</td>
+                    <td data-service_period_no="1">@Html.DropDownList("select1", WishSelectItem)</td>
+                    <td data-service_period_no="4">@Html.DropDownList("select4", WishSelectItem)</td>
+                    <td data-service_period_no="7">@Html.DropDownList("select7", WishSelectItem)</td>
+                    <td data-service_period_no="10">@Html.DropDownList("select10", WishSelectItem)</td>
+                    <td data-service_period_no="13">@Html.DropDownList("select13", WishSelectItem)</td>
+                    <td data-service_period_no="16">@Html.DropDownList("select16", WishSelectItem)</td>
+                    <td data-service_period_no="18">@Html.DropDownList("select18", WishSelectItem)</td>
+                </tr>
+                <tr>
+                    <td>下午</td>
+                    <td data-service_period_no="2">@Html.DropDownList("select2", WishSelectItem)</td>
+                    <td data-service_period_no="5">@Html.DropDownList("select5", WishSelectItem)</td>
+                    <td data-service_period_no="8">@Html.DropDownList("select8", WishSelectItem)</td>
+                    <td data-service_period_no="11">@Html.DropDownList("select11", WishSelectItem)</td>
+                    <td data-service_period_no="14">@Html.DropDownList("select14", WishSelectItem)</td>
+                    <td data-service_period_no="17">@Html.DropDownList("select17", WishSelectItem)</td>
+                    <td data-service_period_no="19">@Html.DropDownList("select19", WishSelectItem)</td>
+                </tr>
+                <tr>
+                    <td>夜間</td>
+                    <td data-service_period_no="3">@Html.DropDownList("select3", WishSelectItem)</td>
+                    <td data-service_period_no="6">@Html.DropDownList("select6", WishSelectItem)</td>
+                    <td data-service_period_no="9">@Html.DropDownList("select9", WishSelectItem)</td>
+                    <td data-service_period_no="12">@Html.DropDownList("select12", WishSelectItem)</td>
+                    <td data-service_period_no="15">@Html.DropDownList("select15", WishSelectItem)</td>
+                    <td colspan="2"><button id="btn_insert" class="btn btn-success">送出</button></td>
+                </tr>*@
+                
+            </tbody>
+        </table>
+    </div>
+@section script{
+    @*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+    <script>
+
+    $(document).ready(function () {
+        //================基本設定=================
+        var btn_add = $("#btn_addtable");
+        var tbody = $("#tbody");
+        var class_fix = [];
+        var class_sup = [];       
+        var judgerepeat = [];
+        var outputuse=[];
+        //var select_status = tbody.find("select[name='select_status']");Schedule_selectbtn_addtable
+        //================基本設定=================
+         //================按鈕功能=================
+        $("#btn_submit").click(function () {
+            @*var a = @Request.Url.AbsolutePath;*@
+            //console.log(a)          
+            class_fix.length = 0;
+            class_sup.length = 0;
+            outputuse.length = 0;
+            judgerepeat.length = 0;
+            var isrepeat = false;//td:nth-child(4)
+            tbody.find("tr").each(function () {
+                judgerepeat.push($(this).children("td:nth-child(1)").find(":selected").text() + $(this).children("td:nth-child(2)").find(":selected").text() + $(this).children("td:nth-child(3)").find(":selected").text() + $(this).children("td:nth-child(4)").find(":selected").text());
+            });
+            for (var i = 0; i < judgerepeat.length; i += 1)
+            {
+                for (var j = i + 1; j < judgerepeat.length; j += 1)
+                {
+                    if (judgerepeat[i] == judgerepeat[j])
+                    {
+                        isrepeat = true;
+                        break; 
+                    }                    
+                }
+                if (isrepeat)
+                {
+                    break;
+                }
+            }
+            tbody.find("select[name='select_period']").each(function () {
+                var s = new String($(this).find(":selected").text())
+                if (s.includes("支援")) {
+                    if ($(this).parents("tr").find("select[name='select_status']").find(":selected").text() != "移除") {
+                        class_sup.push($(this).val());
+                    }
+                }
+                else
+                {
+                    if ($(this).parents("tr").find("select[name='select_status']").find(":selected").text() != "移除")
+                        {
+                            class_fix.push($(this).val());
+                        }
+                }
+            })
+            if (class_fix.length > 3 || class_sup.length > 2 || (class_fix.length + class_sup.length) > 5 ) {
+                alert("超出可以排定的數量，固定班3班，支援班2班!!")
+            }
+            else if (isrepeat) {
+                alert("有重複時段");
+            }
+            else {
+
+                tbody.find("tr").each(function () {
+                    var ob_post;
+                    if ($(this).children("td:nth-child(4)").find(":selected").val() != "0") {
+                        ob_post = {
+                            "Volunteer_no":@Session["UserID"],
+                            //"class_type": $(this).children("td:nth-child(1)").find(":selected").text(),
+                            "Srevice_group": $(this).children("td:nth-child(1)").find(":selected").val(),
+                            "Application_unit": $(this).children("td:nth-child(2)").find(":selected").val(),
+                            "Service_period_no": $(this).children("td:nth-child(3)").find(":selected").val(),
+                            "GStage": $(this).children("td:nth-child(4)").find(":selected").text()
+                        }
+                        outputuse.push(ob_post);
+                    }
+                    else {
+                        outputuse.length = 0;
+                        alert("有未選擇排班狀態的項目");
+                        return false;//跳出each
+                    }
+                });
+            }
+            if (outputuse.length != 0) {
+                //console.log(window.location.href);
+                var usedata = JSON.stringify(outputuse);
+                console.log(usedata);
+                $.post('@Url.Action("Schedule", "Volunteer")', { SM:outputuse}, function (datas) {
+                    alert("新增/修改" + datas);
+                    window.location.href = "/Volunteer/Index";
+                })
+                @*$.ajax({
+                    type: "Post",
+                    contentType: "application/json",
+                    url: '@Url.Action("Schedule", "Volunteer")',//"/Volunteer/Schedule",
+                    data: usedata,
+                    //dataType: "json",
+                    timeout: 10000,//超時時間10秒,
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert("狀態碼:" + XMLHttpRequest.readyState + "錯誤程式碼:" + XMLHttpRequest.status + textStatus)
+                    }
+                }).done(function (data) {
+                    alert("新增/修改" + data);
+                    window.location.href = "/Volunteer/Index"
+                })*@
+                //.fail(function (data) {
+                //       alert("新增失敗!!")
+                //});             
+            }
+
+        })
+        //=============新增排班欄位===============================================================================================
+        btn_add.click(function () {
+            addtable();
+        });
+        //=============新增排班欄位===============================================================================================
+        //=============刪除排班欄位===============================================================================================
+        tbody.on("click", "button[name='btn_delete']", function () {
+            var tr = $(this).parents("tr");
+            tr.remove();
+        });
+         //=============刪除排班欄位===============================================================================================
+        //=====================判斷排班狀態對應顏色===================================
+        tbody.on("change", "select[name='select_status']", function () {
+            if ($(this).find(":selected").text() == "移除") {
+                $(this).parents("tr").css("background-color", "tomato");
+            }
+            else if ($(this).find(":selected").text() == "新申請") {
+                $(this).parents("tr").css("background-color", "lightgreen");
+            }
+            else {
+                $(this).parents("tr").css("background-color", "white");
+            }
+        });
+        //=====================判斷排班狀態對應顏色===================================
+        //=============新增排班欄位方法==========================================================================================
+        function addtable() {
+            //var select_class = $("<select name='select_class'><option value='固定班'>固定班</option><option value='支援班'>支援班</option></select>")
+            var select_application = $("<select name='select_application'></select>")
+            var select_group = $("<select name='select_group'></select>")
+            var select_period = $("<select name='select_period'></select>")//<option value='移除'>移除</option><option value='0'>_____</option>
+            var select_status = $("<select name='select_status'><option value='新申請'>新申請</option></select>");
+            $.ajax({
+                type: "Get",
+                url: "/Volunteer/Schedule_select/?type=A",
+                dataType: "json"
+            }).done(function (datas1) {
+                $.each(datas1, function (i, v) {
+                    var opt = $("<option value='" + v.Application_unit_no + "'>" + v.Application_unit1 + "</option>");
+                    select_application.append(opt);
+                });
+                $.ajax({
+                    type: "Get",
+                    url: "/Volunteer/Schedule_select/?type=G",
+                    dataType: "json"
+                }).done(function (datas2) {
+                    $.each(datas2, function (i, v) {
+                        var opt = $("<option value='" + v.Group_no + "'>" + v.Group_name + "</option>");
+                        select_group.append(opt);
+                    });
+                    $.ajax({
+                        type: "Get",
+                        url: "/Volunteer/Schedule_select/?type=P",
+                        dataType: "json"
+                    }).done(function (datas3) {
+                        $.each(datas3, function (i, v) {
+                            var opt = $("<option value='" + v.Service_period_no + "'>" + v.Service_period + "</option>");
+                            select_period.append(opt);
+                        });
+                    })
+                })
+
+            })
+            var tr = $("<tr></tr>");
+            //var td_select_class = $("<td></td>").append(select_class);
+            var td_select_application = $("<td></td>").append(select_application);
+            var td_select_group = $("<td></td>").append(select_group);
+            var td_select_period = $("<td></td>").append(select_period);
+            var td_select_status = $("<td></td>").append(select_status);//td_select_class,
+            var td_button = $("<td></td>").append("<button class='d_btn' name='btn_delete'>刪除</button>");
+            tr.append([  td_select_group, td_select_application, td_select_period, td_select_status, td_button]);
+            tbody.append(tr);
+        }
+    })
+    </script>
+    }
+    @*//================================有新增過資料就顯示=================================
+        //$.getJSON("/Volunteer/Getjson", function (datas) {
+        //    $.each(datas, function (index, vals) {
+        //        $("td[data-service_period_no='" + vals.Service_period_no + "']").find(select).val(vals.Wish_order);
+        //    });
+        //});
+        //        $.getJSON("/Volunteer/Getjson", function (datas) {
+        //            $.each(datas, function (index, vals) {
+        //                $("td[data-service_period_no='" + vals.Service_period_no + "']").find(select).text(vals.Wish_order);
+        //    });
+        //});
+        ================================新增/修改志願=======================================*@
+    @*btn_edit.click(function () {
+                switch ($(this).text())
+                {
+                    case "編輯":
+                        $(this).text("完成").removeClass("btn-info").addClass("btn-danger")
+                        select.attr("contenteditable", true).css("border", "1px solid black")
+                        break;
+                    case "完成":
+                        $(this).text("編輯").removeClass("btn-danger").addClass("btn-info")
+                        select.attr("contenteditable", false).css("border", "none")
+                        break;
+                }
+            });
+            select.keyup(function () {
+                if (!re.test($(this).text()))
+                {
+                    alert("請填入1-3");
+                    $(this).text("");
+                }
+            });
+            btn_insert.click(function () {
+                if (btn_edit.text() == "完成") {
+                    alert("請先完成編輯");
+                }
+                else {
+                    var wish1 = [];
+                    var wish2 = [];
+                    var wish3 = [];
+                    $("td").children("p").each(function () {
+                        switch ($(this).text()) {
+                            case "1":
+                                wish1.push($(this).parents("td").data("service_period_no"));
+                                break;
+                            case "2":
+                                wish2.push($(this).parents("td").data("service_period_no"));
+                                break;
+                            case "3":
+                                wish3.push($(this).parents("td").data("service_period_no"));
+                                break;
+                        }
+                    });
+                    if (wish1.length == 0) {
+                        alert("至少要有1個志願1");
+                    }
+                    else if (wish3.length != 0 && wish2.length == 0) {
+                        alert("缺少志願2，不能直接選志願3")
+                    }
+                    else {
+                        var divery = [wish1];
+                        var wishID = [1];
+                        if (wish2.length != 0) {
+                            divery.push(wish2);
+                            wishID.push(2);
+                        }
+                        if (wish3.length != 0) {
+                            divery.push(wish3);
+                            wishID.push(3);
+                        }
+                        $.ajax({
+                            type: "post",
+                            url: "/Volunteer/Schedule",
+                            data: { "id": @ViewBag.UserID, "wishid": wishID, "service_no": divery }
+                        }).done(function (data) {
+                            alert(data);
+                            window.location.href = "/Volunteer/Index"
+                        });
+                    }
+                }
+            });
+        });*@
+
+

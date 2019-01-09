@@ -1,0 +1,346 @@
+﻿@{
+    ViewBag.Title = "NewVolunteer";
+}
+@section Home_style{
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #social {
+            height: 400px;
+            width: 350px;
+        }
+
+        #student {
+            height: 400px;
+            width: 350px;
+        }
+
+        #content {
+            width: auto;
+        }
+
+        #social_label {
+            margin: auto,auto
+        }
+
+        #student_label {
+            margin: auto
+        }
+    </style>
+}
+
+<br />
+<br />
+<br />
+<div class="row mt-4">
+    <div class="col-lg-3">
+        <div class="btn btn-block">
+        </div>
+        <table class="table table-bordered">
+            <thead></thead>
+            <tbody id="td1">
+                <tr><td><button id="Kind_of" value="Kind_of" class="home-button" onclick="location.href='/Home/NewVolunteer/1'">申請須知</button></td></tr>
+                <tr><td><button id="basic_info" value="basic_info" class="home-button" onclick="location.href='/Student/NewVolunteer/2'">基本資料</button></td></tr>
+                <tr><td><button id="Questionnaire" value="Questionnaire" class="home-button" onclick="location.href='/Student/NewVolunteer/3'">問券調查</button></td></tr>
+                <tr><td><button id="Service_period" value="Service_period" class="home-button" onclick="location.href='/Student/NewVolunteer/4'">服務時段調查</button></td></tr>
+                <tr><td><button id="Alldata_check" value="Alldata_check" class="home-button" onclick="location.href='/Student/NewVolunteer/5'">資料確認</button></td></tr>
+                <tr><td><button id="Requirement_ok" value="Requirement_ok" class="home-button" onclick="location.href='/Student/NewVolunteer/6'">申請完成</button></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-9">
+        <div class="card-body">
+            @{
+                string Partilview = ViewBag.Partilview;
+            }
+            @Html.Action(Partilview)
+        </div>
+    </div>
+</div>
+@section Home_script{
+
+    <script>
+
+    $(document).ready(function () {
+        //===========================================按下接受條約才可開始申請志工========================================
+             @{
+                 if (Session["Agree"] == null)
+                 {
+                 @: $('#td1 button').removeClass('home-button');
+                 @: $('#td1 button').addClass('home-button_not_allow');
+                 @: $('#td1 button').prop('disabled', 'disable');
+                 }
+                 else
+                 {
+                 @: $('#td1 button').removeClass('home-button_not_allow');
+                 @: $('#td1 button').addClass('home-button');
+                 @: $('#td1 button').removeProp('disabled');
+                }
+            }
+
+
+
+
+        //========================個人資料驗證==========================================================================
+        $('#send_basic_info').click(function () {
+            var Reg_mobile = /^ $/;
+
+            var Reg_identity = /^[A-Z{1}[0-9]{9}] $/;
+            if (!Reg_identity.test($('#Identity_card').text())) {
+                alert("身分證有誤喔，請輸入一個大寫英文+九個數字")
+            }
+        })
+
+
+
+
+
+        //=========================================面試、服務時段=======================================================
+
+
+
+                  //服務時段自動匯入
+           @{
+               if (ViewBag.Partilview == "Service_period") {
+
+                  var data =TempData["data"] as Volunteer_Web.ViewModel.Service_period_VM;
+
+               foreach (var i in data.wish1)
+                   {
+               @:$("td[data-service_period_no='" + @i + "']").find($("p")).text("1");
+                }
+                   if (data.wish2 != null)
+                   {
+                   foreach (var i in data.wish2)
+                   {
+                   @:$("td[data-service_period_no ='" + @i + "']").find($("p")).text("2");
+                   }
+                   }
+
+                   if (data.wish3 != null)
+                   {
+                       foreach (var i in data.wish3)
+                       {
+               @:$("td[data-service_period_no ='" + @i + "']").find($("p")).text("3");
+                }
+                   }
+               }
+
+}
+
+
+                //面試時段自動匯入
+             @{
+                 if (ViewBag.Partilview == "Interview_period")
+                 {
+
+                     var data = TempData["data"] as Volunteer_Web.ViewModel.Interview_period_VM;
+
+                     foreach (var i in data.wish1)
+                     {
+               @:$("td[data-service_period_no='" + @i + "']").find($("p")).text("1");
+                }
+
+
+    }
+
+}
+        //可面試時段、排班意願時段的檢查
+        var btn_edit = $("#btn_edit");
+        var btn_insert = $("#btn_insert");
+        var btn_insert_interview = $('#btn_insert_interview');
+        var select = $("td>p");
+        var pv_title = $("#Pv_title");
+
+        btn_edit.click(function () {
+            switch ($(this).text()) {
+                case "編輯":
+                    $(this).text("完成").removeClass("btn-info").addClass("btn-danger")
+                    select.attr("contenteditable", true).css("border", "1px solid black")
+                    break;
+                case "完成":
+                    $(this).text("編輯").removeClass("btn-danger").addClass("btn-info")
+                    select.attr("contenteditable", false).css("border", "none")
+                    break;
+            }
+        });
+        //檢查使用者輸入時段志願
+        if (pv_title.text() == "排班時間調查") {
+            var re_interview = /^[1]{1}$/;
+            select.keyup(function () {
+                if (!re_interview.test($(this).text())) {
+                    alert("請依照說明填寫");
+                    $(this).text("");
+                }
+            });
+        }
+        else if (pv_title.text() == "服務時段調查") {
+            var re_service = /^[1-3]{1}$/;
+            select.keyup(function () {
+                if (!re_service.test($(this).text())) {
+                    alert("請依照說明填寫");
+                    $(this).text("");
+                }
+            });
+        }
+
+
+
+
+        //暫存--可服務時間
+        btn_insert.click(function () {
+            if (btn_edit.text() == "完成") {
+                alert("請先完成編輯");
+            }
+            else {
+                var wish_1st = [];
+                var wish_2nd = [];
+                var wish_3rd = [];
+                $("td").children("p").each(function () {
+                    switch ($(this).text()) {
+                        case "1":
+                            wish_1st.push($(this).parents("td").data("service_period_no"));
+                            break;
+                        case "2":
+                            wish_2nd.push($(this).parents("td").data("service_period_no"));
+                            break;
+                        case "3":
+                            wish_3rd.push($(this).parents("td").data("service_period_no"));
+                            break;
+                    }
+                });
+                if (wish_1st.length == 0) {
+                    alert("至少要有1個志願1");
+                }
+                else if (wish_3rd.length != 0 && wish_2nd.length == 0) {
+                    alert("缺少志願2，不能直接選志願3")
+                }
+                else {
+
+                    $.ajax({
+                        type: "post",
+                        url: "/Student/Service_period",
+                        data: { "wish_1st": wish_1st}
+                    }).done(function (data) {
+                        alert(data);
+                    });
+                }
+            }
+        });
+
+        //暫存--可面試時間
+        //btn_insert_interview.click(function () {
+        //    if (btn_edit.text() == "完成") {
+        //        alert("請先完成編輯");
+        //    }
+        //    else {
+        //        var wish_1st = [];
+        //        $("td").children("p").each(function () {
+        //            if ($(this).text() == 1)
+        //                wish_1st.push($(this).parents("td").data("service_period_no"));
+        //        }
+        //        )
+        //        if (wish_1st.length == 0) {
+        //            alert("至少需要有一時段");
+        //        }
+        //        else {
+
+        //            $.ajax({
+        //                type: "post",
+        //                url: "/Home/Interview_period",
+        //                data: { "wish_1st": wish_1st }
+        //            }).done(function (data) {
+        //                alert(data);
+        //            });
+        //        }
+        //    }
+        //});
+
+        //====================================================最終確認畫面的存檔前檢查=============================================
+        var all_basic = $('#check_basic label');
+        var OKinsert = 0;
+
+        $('#Allcheck').click(function () {
+
+            //檢查是否重複申請
+            var identity_check = $('#identity_check');
+            $.ajax({
+                data: { identity: identity_check.text() },
+                type: 'post',
+                url: '/Home/identity_check'
+            }).done(function (data) {
+                if (data != "") {
+                    OKinsert += 1;
+                    alert(data);
+                }
+                })
+
+
+            //檢查個資=========================================================================================
+
+            //身分證
+            var Reg_identity = /^[A-Za-z][12]\d{8}$/;
+            if (!Reg_identity.test($('#identity_check').text())) {
+                alert("身份證字號有誤喔");
+                OKinsert += 1;
+            }
+            //電話
+            var Reg_mobile = /^09[0-9]{2}-[0-9]{6}$/
+            var mobile = $('#mobile');
+            if (mobile.text() != "無" && !Reg_mobile.test(mobile.text())) {
+                alert("電話有誤喔，輸入格式 XXXX - XXXXXXX");
+                OKinsert += 1;
+            }
+
+
+
+               //是否都有填
+            all_basic.each(function () {
+                if ($(this).text() == "") {
+                    var thenull = $(this).parents("tr").children('td:nth-child(1)').text();
+                    alert(thenull + "尚未填寫喔");
+                    OKinsert += 1;
+                }
+
+            })
+
+            //檢查問卷
+            var all_quest = $('#check_quest label');
+            all_quest.each(function () {
+                if ($(this).text() == "") {
+                    var thenull = $(this).parents("tr").children('td:nth-child(1)').text();
+                    alert(thenull + "尚未填寫喔");
+                    OKinsert += 1;
+                }
+
+            })
+
+
+
+
+            //檢查服務時段
+            $.ajax({
+                url: '/Student/Check_period',
+                type: 'get',
+            }).done(function (data) {
+                if (data != "") {
+                    alert(data+":還沒填寫喔");
+                    OKinsert += 1;
+                }
+                else {}
+            });
+
+            //檢查完後可存檔
+            if (OKinsert == 0) {
+                alert("辛苦了，您現在可以申請囉");
+                $("#OKinsert").removeClass('disabled');
+            }
+
+
+        });
+        })
+    </script>
+}00916

@@ -1,0 +1,76 @@
+﻿<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var login = $("#login");
+        var forget = $("#forget");
+        var dropdown = $("#dropdownMenuLink");
+        var a_forget = $("#a_forget");
+        var a_login = $("#a_login");
+        var m_login = $("#LoginModal")
+        dropdown.click(function () {          
+            login.show()
+            forget.hide()
+        });
+        $(document).keydown(function (e) {
+            if (m_login.hasClass("show") && e.which == 13) {
+                fun_login();
+            }
+
+        })
+       
+        //=============================================切換登入=========================================
+        a_forget.click(function () {
+            login.slideUp(500, function () {
+                forget.slideDown(500)
+            });
+        });
+        a_login.click(function () {
+            forget.slideUp(500, function () {
+                login.slideDown(500)
+            });
+        });
+        //=============================================登入=========================================       
+        $("#btn_login").click(function () {
+            fun_login();
+        });
+        function fun_login() {
+            var Account = $("#Account_number");
+            var Pas = $("#Password");
+            $.ajax({
+                type: "Post",
+                url: "/Login/LoginIndex",
+                data: { "Account_number": Account.val(), "Password": Pas.val() },
+                dataType: "json"
+            }).done(function (data) {
+                if (data == "帳號或密碼錯誤，登入失敗!!") {
+                    $("#showError").text(data).slideDown(1000, function () {
+                        window.setTimeout(function () {
+                            $("#showError").fadeOut(1000)
+                        }, 1000)
+                    });
+                }
+                else {
+                    switch (data)
+                    {
+                        case "運用單位":
+                            window.location.href ="/Unit/Index";
+                            break;
+                        case "志工":
+                            window.location.href = "/Volunteer/Index";
+                            //alert(window.location.href)
+                            break;
+                        case "志工督導":
+                            window.location.href = "/Supervision/Index";
+                            break;
+                        default:
+                            window.location.href = "/Home/Index";
+                            break;
+                    }
+                   
+                }
+            })
+        }
+        //Account.val("");
+        //Pas.val("");
+    });
+</script>

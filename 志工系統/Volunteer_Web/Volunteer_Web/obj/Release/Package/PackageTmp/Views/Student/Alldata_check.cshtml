@@ -1,0 +1,192 @@
+﻿@model Volunteer_Web.ViewModel.Sign_up_Alldata_VM
+@section Home_style{
+    <style>
+
+        .fontstyle {
+            font-size: 20px;
+            font-family: 微軟正黑體;
+        }
+    </style>
+}
+
+<div class="btn btn-block fontstyle">
+    <h2>資料確認</h2>
+    <hr />
+</div>
+<div class="row" id="check_basic">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td><label>姓名:</label></td>
+                <td><label>@Model.Chinese_name</label></td>
+            </tr>
+            <tr>
+                <td><label>性別:</label></td>
+                <td><label>@Model.Sex</label></td>
+            </tr>
+            <tr>
+                <td><label>身分證號:</label></td>
+                <td><label id="identity_check">@Model.Identity_card</label></td>
+            </tr>
+            <tr>
+                <td><label>生日:</label></td>
+                <td>
+                    @{
+                        if (Model.Birthday.Year == 1)
+                        {
+                            <label></label>
+                        }
+                        else
+                        {
+                            <label>@Model.Birthday.Date</label>
+                        }
+                    }
+
+                </td>
+            </tr>
+            <tr>
+                <td><label>申請類別:</label></td>
+                <td><label>@Model.Sign_up_type</label></td>
+            </tr>
+            <tr>
+                <td><label>市話:</label></td>
+                <td><label>@Model.Phone</label></td>
+            </tr>
+            <tr>
+                <td><label>手機:</label></td>
+                <td><label id="mobile">@Model.Mobile</label></td>
+            </tr>
+            <tr>
+                <td><label>電子郵件:</label></td>
+                <td><label>@Model.Email</label></td>
+            </tr>
+            <tr>
+                <td><label>地址:</label></td>
+                <td><label>@Model.Address</label></td>
+            </tr>
+            <tr>
+                <td><label>教育程度:</label></td>
+                <td><label>@Model.Education</label></td>
+            </tr>
+            <tr>
+                <td><label>工作類別:</label></td>
+                <td><label>@Model.Job</label></td>
+            </tr>
+            <tr>
+                <td><label>專長:</label></td>
+                <td>
+                    @{
+                        string exp = "";
+                        if (Model.Expertises != null)
+                        {
+                            foreach (var a in @Model.Expertises)
+                            {
+                                exp = exp + a.Substring(1);
+                            }
+                        }
+                        <label id="exp">@exp</label>
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="row" id="div2">
+    <table class="table table-bordered" id="check_quest">
+        <tbody>
+            <tr>
+                <td><label>1.是否能參加教育訓練:</label></td>
+                <td>
+                    @{
+                        string q9;
+                        if (Model.Q9_training == true)
+                        {
+                            q9 = "是";
+                        }
+                        else
+                        {
+                            q9 = "否";
+                        }
+                        <label id="q9">@q9</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><label>2.貴家長是否知悉您將參與亞東醫院學生志工服務學習方案:</label></td>
+                <td>
+                    @{
+                        string q10;
+                        if (Model.Q10_knowing == true)
+                        {
+                            q10 = "是";
+                        }
+                        else
+                        {
+                            q10 = "否";
+                        }
+                        <label id="q10">@q10</label>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><label>3.緊急聯絡人姓名:</label></td>
+                <td>
+                    @{
+                        string q11 = "";
+                        if (Model.Q11_Emergency_Name != null)
+                        {
+                            q11 = Model.Q11_Emergency_Name;
+                            <label id="q11">@q11</label>
+                        }
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td><label>4.緊急連絡人電話?</label></td>
+                <td>
+                    @{
+                        string q12 = "";
+                        if (Model.Q12_Emergency_Phone != null)
+                        {
+                            q12 = Model.Q12_Emergency_Phone;
+                            <label id="q12">@q12</label>
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><label>5.學校名稱?</label></td>
+                <td>
+                    @{
+                        string q13 = "";
+                        if (Model.Q13_School_Name != null)
+                        {
+                            q13 = Model.Q13_School_Name;
+                            <label id="q13">@q13</label>
+                        }
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td><label>6.學校是否有規定需服務滿幾小時？</label></td>
+                <td>
+                    @{
+                        string q14 = "";
+                        if (Model.Q14_School_Regulation != null)
+                        {
+                            q14 = Model.Q14_School_Regulation;
+                            <label id="q14">@q14</label>
+                        }
+                    }
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button id="Allcheck" class="btn btn-info">檢查</button>
+<a href="~/Student/InsertSign_up" class="btn btn-success disabled" id="OKinsert">確定並送出</a>
+
+
+

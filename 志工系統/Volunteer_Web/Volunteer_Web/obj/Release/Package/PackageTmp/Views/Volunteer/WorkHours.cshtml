@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "WorkHours";
+}
+@section style{
+    <style>
+
+        table {
+            table-layout: fixed;
+            word-break: break-word;
+        }
+
+        th, td {
+            text-align: center;
+        }
+    </style>
+}
+@{
+    var y = DateTime.Now.Year;
+    var y1 = DateTime.Now.Year + 1;
+    var y2 = DateTime.Now.Year + 2;
+    List<SelectListItem> sl = new List<SelectListItem>();
+    sl.AddRange(new[] { new SelectListItem() { Text = "=請選擇=", Value = "0" }, new SelectListItem() { Text = y.ToString(), Value = y.ToString() }, new SelectListItem() { Text = y1.ToString(), Value = y1.ToString() }, new SelectListItem() { Text = y2.ToString(), Value = y2.ToString() } });
+}
+<h5> 查詢年分: @Html.DropDownList("select_year", sl)</h5>
+@*<div id="btn">
+        <button class="btn btn-success">@y</button>
+        <button class="btn btn-success">@y1</button>
+        <button class="btn btn-success">@y2</button>
+    </div>*@
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+            @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("排班查詢", "WorkHours", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })
+            @Html.ActionLink("參與過的活動", "Activity_History", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })
+        </div>
+        <div class="col-10">
+            <table class="table table-bordered table-hover ">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>星期一</th>
+                        <th>星期二</th>
+                        <th>星期三</th>
+                        <th>星期四</th>
+                        <th>星期五</th>
+                        <th>星期六</th>
+                        <th>星期日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>上午</td>
+                        <td data-service_period_no="1"></td>
+                        <td data-service_period_no="4"></td>
+                        <td data-service_period_no="7"></td>
+                        <td data-service_period_no="10"></td>
+                        <td data-service_period_no="13"></td>
+                        <td data-service_period_no="16"></td>
+                        <td data-service_period_no="18"></td>
+                    </tr>
+                    <tr>
+                        <td>下午</td>
+                        <td data-service_period_no="2"></td>
+                        <td data-service_period_no="5"></td>
+                        <td data-service_period_no="8"></td>
+                        <td data-service_period_no="11"></td>
+                        <td data-service_period_no="14"></td>
+                        <td data-service_period_no="17"></td>
+                        <td data-service_period_no="19"></td>
+                    </tr>
+                    <tr>
+                        <td>夜間</td>
+                        <td data-service_period_no="3"></td>
+                        <td data-service_period_no="6"></td>
+                        <td data-service_period_no="9"></td>
+                        <td data-service_period_no="12"></td>
+                        <td data-service_period_no="15"></td>
+                        <td colspan="2"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+@section script{
+    <script>
+    $(document).ready(function () {
+        //================================顯示排班表=================================
+        $.getJSON("/Volunteer/WorkHoursJson", { year:@y }, function (datas) {
+            $.each(datas, function (index, vals) {
+                $("td[data-service_period_no='" + vals.Service_period_no + "']").text(vals.Application_unit);
+            });
+        });
+        $("h5>select").change(function () {
+            $("td[data-service_period_no]").text("");
+            var text = $(this).val();
+            if (text != "0") {
+                $.getJSON("/Volunteer/WorkHoursJson", { year: text }, function (datas) {
+                    $.each(datas, function (index, vals) {
+                        $("td[data-service_period_no='" + vals.Service_period_no + "']").text(vals.Application_unit);
+                    });
+                });
+            }
+        });
+    });
+    </script>
+}

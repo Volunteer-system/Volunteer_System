@@ -1,0 +1,81 @@
+﻿@model Volunteer_Web.ViewModel.Student_questionnaireVM
+@section Home_style{
+    <style>
+
+        .fontstyle {
+            font-size: 20px;
+            font-family: 微軟正黑體;
+        }
+    </style>
+}
+<div class="btn btn-block fontstyle">
+    <h2>問卷調查</h2>
+    <hr />
+</div>
+<br />
+<div>請務必詳讀前一頁之實施內容、確認可以配合後再進行資料填寫，若有相關問題請先來電(02)7728-1281詢問簡社工師，謝謝您</div>
+<br />
+<form action="~/Student/Questionnaire" method="post">
+    <div id="Q1">
+        <h4>一、是否能參加 1/21(一)下午 13：30 於本院 14 樓第一教室舉辦之教育訓練 </h4>
+        @{
+            if (Model.training == true)
+            {
+                <input type="radio" name="training" value="true" id="training_yes" class="d-inline" checked="checked" /><label for="training_yes" class="d-inline">是</label>
+                <br />
+                <input type="radio" name="training" value="false" id="training_no" class="d-inline" /><label for="training_no" class="d-inline">否</label>
+            }
+            else
+            {
+                <input type="radio" name="training" value="true" id="training_yes" class="d-inline" /><label for="training_yes" class="d-inline">是</label>
+                <br />
+                <input type="radio" name="training" value="false" id="training_no" class="d-inline" checked="checked" /><label for="training_no" class="d-inline">否</label>
+            }
+        }
+
+    </div>
+    <hr />
+    <div id="Q2">
+        <h4>二、貴家長是否知悉您將參與亞東醫院學生志工服務學習方案 </h4>
+
+        @{
+            if (Model.knowing == true)
+            {
+                <input type="radio" name="knowing" value="true" id="knowing_yes" class="d-inline" checked="checked" /><label for="training_yes" class="d-inline">是</label>
+                <br />
+                <input type="radio" name="knowing" value="false" id="knowing_no" class="d-inline" /><label for="training_no" class="d-inline">否</label>
+            }
+            else
+            {
+                <input type="radio" name="knowing" value="true" id="knowing_no" class="d-inline" /><label for="training_yes" class="d-inline">是</label>
+                <br />
+                <input type="radio" name="knowing" value="false" id="knowing_no" class="d-inline" checked="checked" /><label for="training_no" class="d-inline">否</label>
+            }
+        }
+    </div>
+    <hr />
+    <div id="Q3">
+        <h4> 三、緊急聯絡人姓名 </h4>
+        <br />
+        <input type="text" name="Emergency_Name" class="form-text border" value="@Model.Emergency_Name" />
+    </div>
+    <hr />
+    <div id="Q4">
+        <h4>四、緊急連絡人電話</h4>
+        <br />
+        <input type="text" name="Emergency_Phone" class="form-text border" value="@Model.Emergency_Phone" />
+    </div>
+    <hr />
+    <div id="Q5">
+        <h4>五、學校名稱</h4>
+        <br />
+        <input type="text" name="School_Name" class="form-text border" value="@Model.School_Name" />
+    </div>
+    <hr />
+    <div id="Q6">
+        <h4>六、學校是否有規定需服務滿幾小時？若有請填寫需服務多少小時，若無則請填No </h4>
+        <br />
+        <input type="text" name="School_Regulation" class="form-text border" value="@Model.School_Regulation" />
+    </div>
+    <button type="submit" class="btn btn-info">確定並儲存</button>
+</form>

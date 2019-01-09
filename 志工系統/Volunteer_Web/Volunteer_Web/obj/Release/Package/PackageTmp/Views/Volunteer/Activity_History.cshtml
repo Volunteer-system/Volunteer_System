@@ -1,0 +1,350 @@
+﻿@model IEnumerable<Volunteer_Web.Models.VolunteerUse.ActivityHistoryModel>
+@{
+    ViewBag.Title = "Activity_History";
+}
+
+@section style{
+    <style>
+        /*@@import url("http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,400italic");*/
+        @@import url("//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css");
+
+        /*body {
+            padding: 60px 0px;
+            background-color: rgb(220, 220, 220);
+        }*/
+
+        .event-list {
+            list-style: none;
+            font-family: 'Lato', sans-serif;
+            margin: 0px;
+            padding: 0px;
+        }
+
+            .event-list > li {
+                background-color: rgb(255, 255, 255);
+                box-shadow: 0px 0px 5px rgb(51, 51, 51);
+                box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.7);
+                padding: 0px;
+                margin: 0px 0px 20px;
+            }
+
+                .event-list > li > time {
+                    display: inline-block;
+                    width: 100%;
+                    color: rgb(255, 255, 255);
+                    background-color: rgb(197, 44, 102);
+                    padding: 5px;
+                    text-align: center;
+                    text-transform: uppercase;
+                }
+
+                .event-list > li:nth-child(even) > time {
+                    background-color: rgb(165, 82, 167);
+                }
+                /*.event-list > li > time > span {
+            display: none;
+        }*/
+                .event-list > li > time > .year {
+                    display: block;
+                    font-size: 2.5em;
+                    font-weight: 900;
+                    line-height: 1;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                }
+
+                .event-list > li time > .month {
+                    display: block;
+                    font-size: 2em;
+                    font-weight: 900;
+                    line-height: 1;
+                    margin-top: 10px;
+                }
+
+                .event-list > li > img {
+                    width: 100%;
+                }
+
+                .event-list > li > .info {
+                    padding-top: 5px;
+                    text-align: center;
+                }
+
+                    .event-list > li > .info > .title {
+                        font-size: 17pt;
+                        font-weight: 700;
+                        margin: 0px;
+                    }
+
+                    .event-list > li > .info > .desc {
+                        font-size: 13pt;
+                        font-weight: 300;
+                        margin: 0px;
+                    }
+
+                    .event-list > li > .info > ul,
+                    .event-list > li > .social > ul {
+                        display: table;
+                        list-style: none;
+                        margin: 10px 0px 0px;
+                        padding: 0px;
+                        width: 100%;
+                        text-align: center;
+                    }
+
+                .event-list > li > .social > ul {
+                    margin: 0px;
+                }
+
+                    .event-list > li > .info > ul > li,
+                    .event-list > li > .social > ul > li {
+                        display: table-cell;
+                        /*cursor: pointer;*/
+                        color: rgb(30, 30, 30);
+                        font-size: 11pt;
+                        font-weight: 300;
+                        padding: 3px 0px;
+                    }
+                    /*.event-list > li > .info > ul > li > a {
+            display: block;
+            width: 100%;
+            color: rgb(30, 30, 30);
+            text-decoration: none;
+        }*/
+                    .event-list > li > .social > ul > li {
+                        padding: 0px;
+                    }
+        /*.event-list > li > .social > ul > li > a {
+            padding: 3px 0px;
+        }*/
+        /*.event-list > li > .info > ul > li:hover,
+        .event-list > li > .social > ul > li:hover {
+            color: rgb(30, 30, 30);
+            background-color: rgb(200, 200, 200);
+        }*/
+        /*.facebook a,
+        .twitter a,
+        .google-plus a {
+            display: block;
+            width: 100%;
+            color: rgb(75, 110, 168) !important;
+        }
+        .twitter a {
+            color: rgb(79, 213, 248) !important;
+        }
+        .google-plus a {
+            color: rgb(221, 75, 57) !important;
+        }
+        .facebook:hover a {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(75, 110, 168) !important;
+        }
+        .twitter:hover a {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(79, 213, 248) !important;
+        }
+        .google-plus:hover a {
+            color: rgb(255, 255, 255) !important;
+            background-color: rgb(221, 75, 57) !important;
+        }*/
+
+        @@media (min-width: 768px) {
+            .event-list > li {
+                position: relative;
+                display: block;
+                width: 100%;
+                height: 120px;
+                padding: 0px;
+            }
+
+                .event-list > li > time,
+                .event-list > li > img {
+                    display: inline-block;
+                }
+
+                .event-list > li > time,
+                .event-list > li > img {
+                    width: 120px;
+                    float: left;
+                }
+
+                .event-list > li > .info {
+                    background-color: rgb(245, 245, 245);
+                    overflow: hidden;
+                }
+
+                .event-list > li > time,
+                .event-list > li > img {
+                    width: 120px;
+                    height: 120px;
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+                .event-list > li > .info {
+                    position: relative;
+                    height: 120px;
+                    text-align: left;
+                    padding-right: 40px;
+                }
+
+                    .event-list > li > .info > .title,
+                    .event-list > li > .info > .desc {
+                        padding: 0px 10px;
+                    }
+
+                    .event-list > li > .info > ul {
+                        position: absolute;
+                        left: 0px;
+                        bottom: 0px;
+                    }
+
+                .event-list > li > .social {
+                    position: absolute;
+                    top: 0px;
+                    right: 0px;
+                    display: block;
+                    width: 40px;
+                }
+
+                    .event-list > li > .social > ul {
+                        border-left: 1px solid rgb(230, 230, 230);
+                    }
+
+                        .event-list > li > .social > ul > li {
+                            display: block;
+                            padding: 0px;
+                        }
+
+                            .event-list > li > .social > ul > li > a {
+                                display: block;
+                                width: 40px;
+                                padding: 10px 0px 9px;
+                            }
+        }
+        /*=========================================================================*/
+        td {
+            white-space: nowrap;
+        }
+
+        .nowrap {
+            white-space: pre-wrap;
+        }
+
+        td > img {
+            margin: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        body {
+            overflow-y: scroll;
+        }
+        .screen {
+            margin-top: 120px;
+        }       
+    </style>
+}
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+<!------ Include the above in your HEAD tag ---------->
+@*<br />
+<br />
+<br />
+<br />*@
+    <div class="screen">
+        <h2>參與過的活動</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })
+                    @*@Html.ActionLink("排班查詢", "WorkHours", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })*@
+                    @Html.ActionLink("參與過的活動", "Activity_History", "Volunteer", null, new { @class = "list-group-item list-group-item-action active" })
+                </div>
+                <div class="col-10">
+                    <div class="row">
+                        <!--[ col-xs-12 col-sm-offset-2 col-sm-8 ]-->
+                        <div class="col-xs-12 col-sm-offset-2 col-sm-8" style="margin:0 auto;" >
+                            <ul class="event-list">
+                                @foreach (var h in Model)
+                                {
+                                    <li>
+                                        <time>
+                                            <span class="year">@h.Activity_startdate.Value.Year</span>
+                                            <span class="month">@{@h.Activity_startdate.Value.Month}月</span>
+                                        </time>
+                                        <img src="@Url.Action("GetImageByID", "Volunteer", new { id = h.Activity_photo_id })" />
+                                        <div class="info">
+                                            @*<h2 class="title">@Html.ActionLink(h.Activity_name, "Activity_History", "Volunteer", new { id = h.Activity_no }, new { name = "actnum" })</h2>data-value="@h.Activity_no"<a href="~/Volunteer/Activity_History/@h.Activity_no" name="actnum">@h.Activity_name</a>*@
+                                            <h2 class="title"><a href="#" data-value="@h.Activity_no" name="actnum">@h.Activity_name</a></h2>
+                                            @*<input name="act_no" type="hidden" value="@h.Activity_no"/>*@
+                                            <p class="desc">報名階段:@h.Stage</p>
+                                            <ul>
+                                                <li style="width:33%;"><span class="fa fa-male"></span>活動人數:@h.Member</li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                @*@if (Model.ActivityDetail != null)
+                {*@
+                    @*<div id="d1" class="hidden">123</div>*@
+                    <div class="modal show" id="showModal" tabindex="-1" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content ">
+                                <div class="modal-header login100-form-title">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                   <div id="load_d"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade " id="DetailModal" tabindex="-1" role="dialog" @*style="z-index:10000"*@>
+                        <div class="modal-dialog" @*role="document"*@>
+                            <div class="modal-content">
+                                <div class="modal-header login100-form-title">
+                                    @*<h5 class="modal-title" id="DetailModalLabel"></h5>*@
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body login100-form validate-form">
+                                    <img style="width:100%;" id="showimg" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @*}*@
+                </div>
+        </div>
+    </div>
+<!-- Modal -->
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+@section script{
+    <script>
+        $(document).ready(function () {
+            $("h2>a[name='actnum']").click(function () {
+                $("#load_d").load("/Volunteer/Activity_DetailPartial/" + $(this).data("value"))
+                
+                $(this).attr({ "data-toggle": "modal", "data-target": "#showModal"})
+            });
+            $("#load_d").on("click","td>img",function () {
+                //console.log("OK")
+                $(this).attr({ "data-toggle": "modal", "data-target": "#DetailModal" })
+                $("#showimg").attr("src", $(this).attr("src"))
+            });
+        });
+        $(document).on('hidden.bs.modal', '.modal', function () {
+            $('.modal:visible').length && $(document.body).addClass('modal-open');
+        });
+    </script>
+}

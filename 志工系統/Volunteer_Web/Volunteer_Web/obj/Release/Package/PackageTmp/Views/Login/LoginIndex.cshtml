@@ -1,0 +1,95 @@
+﻿@model Volunteer_Web.Models.account
+<div class="modal fade " id="LoginModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">       
+        <div id="login_m_content" class="modal-content"> 
+            <div class="login_use_body">
+                <div class="ui-panel login-panel animated bounceInDown">
+                    <div class="login-container">
+                        @*<h1>登入</h1>*@
+
+                        @using (Html.BeginForm("LoginIndex", "Login", FormMethod.Post, new { @class = "login_use_form" }))
+                        {
+                            <div style="text-align:center;" class="modal-body">
+                                <div class="DisplayError">
+                                    <div id="showError" class="alert alert-danger" role="alert"></div>
+                                </div>
+                                <div id="login">
+                                    <h1>登入</h1>
+                                    @Html.TextBoxFor(m => m.Account_number, new { placeholder = "帳號", autocomplete = "off", @class = "login_use_form_input" })
+                                    @*<input type="text" placeholder="帳號" />*@
+                                    @Html.TextBoxFor(m => m.Password, new { placeholder = "密碼", type = "password", @class = "login_use_form_input" })
+                                    @*<input type="text" placeholder="密碼" />*@
+                                    <a id="btn_login" class="btn btn-outline-info login_use_button">登入</a>
+                                    <a class="btn btn-outline-info login_use_button" data-dismiss="modal">取消</a>
+                                    <div>
+                                        <a id="a_forget" href="#">忘記密碼?</a>
+                                    </div>
+                                </div>
+                                <div id="forget" class="swap">
+                                    <h1>找回密碼</h1>
+                                    @Html.TextBox("identity", null, new { placeholder = "輸入身分證號碼", autocomplete = "off", @class = "login_use_form_input" })
+                                    @Html.TextBox("birthday", null, new { placeholder = "輸入生日(ex:0001/01/01)", autocomplete = "off", @class = "login_use_form_input" })
+                                    <a id="btn_login" class="btn btn-outline-info login_use_button">登入</a>
+                                    <a class="btn btn-outline-info login_use_button" data-dismiss="modal">取消</a>
+                                    <div>
+                                        <a href="#" id="a_login">返回登入</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <ul class="bg-bubbles">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--/Login/LoginIndex-->
+@*<script src="~/Scripts/jquery-3.3.1.min.js"></script>*@
+@*<script>
+        $(document).ready(function () {
+            $("#btn_login").click(function () {
+                var Account = $("#Account_number");
+                var Pas = $("#Password");
+                $.post("/Login/LoginIndex", { "Account_number": Account.val(), "Password": Pas.val() }, function (data) {
+                    if (data == "帳號或密碼錯誤，登入失敗!!") {
+                        $("#showError").text(data).slideDown(1000, function () {
+                            window.setTimeout(function () {
+                                $("#showError").fadeOut(1000)
+                            }, 1000)
+                        });
+                    }
+                    else {
+                        //switch (data)
+                        //{
+                        //    case "運用單位":
+                        //        window.location.href = "/Unit/Index"
+                        //        break;
+                        //    case "志工督導":
+                        //        window.location.href = "/Home/Index"
+                        //        break;
+                        //    case "志工":
+                        //        window.location.href = "/Volunteer/Index"
+                        //        break;
+                        //    //default:
+                        //    //    window.location.href = "/Home/Index"
+                        //    //    break;
+                        //}
+                        window.location.href = "/Home/Index"
+                    }
+                });
+                Account.val("");
+                Pas.val("");
+            });
+        });
+    </script>*@

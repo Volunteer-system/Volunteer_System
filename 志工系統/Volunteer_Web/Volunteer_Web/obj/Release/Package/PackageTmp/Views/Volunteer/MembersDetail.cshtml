@@ -1,0 +1,376 @@
+﻿@*@model IEnumerable<Volunteer_Web.Models.VolunteerUse.VolunteerModel>*@
+@model Volunteer_Web.Models.VolunteerUse.VolunteerModel
+@{
+    ViewBag.Title = "MembersDetail";
+}
+@section style{
+    <style>
+
+        .prof-page-info {
+            padding: 10px;
+        }
+
+        .prof-img {
+            width: 100%;
+            height: 300px;
+            position: relative;
+            border: 5px solid #666;
+        }
+
+            .prof-img img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                padding: 3px;
+            }
+
+        .img-title {
+            position: absolute;
+            bottom: 0px;
+            background: #666;
+            color: #fff;
+            width: 100%;
+            text-align: center;
+            padding: 5px;
+            border: 1px solid #fff;
+            padding: 5px 5px 5px 5px;
+        }
+
+        .info {
+            padding: 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .prog-page {
+            border: 1px solid #ddd;
+            box-shadow: 1px 1px 5px #ddd;
+            position: relative;
+        }
+
+        .header-info {
+            position: relative;
+            padding-left: 25px;
+            background: #666;
+            color: #fff;
+            padding: 10px;
+        }
+
+        .prof-info .info i {
+            padding: 8px 9px 0px 9px;
+            box-shadow: 1px 1px 5px #ddd;
+            background: #0099ff;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .header-info i {
+            padding-right: 8px;
+            font-size: 25px;
+        }
+
+        .tags-label {
+            background: #0099ff;
+            color: #fff;
+            position: absolute;
+            padding: 7px 6px 7px 5px;
+            box-shadow: 0 8px 17px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            z-index: 1;
+        }
+
+            .tags-label i {
+                color: #fff;
+            }
+
+            .tags-label span {
+                padding: 4px;
+                border: 1px solid #fff;
+                padding: 4px 7px 3px 9px
+            }
+
+        .header-info a {
+            cursor: pointer;
+            float: right;
+            position: absolute;
+        }
+
+        .header-btn-edit {
+            float: right;
+            top: 15px;
+            position: absolute;
+            right: 12px;
+        }
+
+            .header-btn-edit a {
+                background: #2b7dc3;
+                color: #fff;
+                padding: 10px;
+                border-radius: 20px;
+                box-shadow: 1px 1px 5px #eee;
+            }
+
+                .header-btn-edit a i {
+                    color: #fff;
+                    padding-right: 8px;
+                }
+
+        .columns {
+            float: left;
+            width: 100%;
+            padding: 8px;
+        }
+
+        .price {
+            list-style-type: none;
+            border: 1px solid #eee;
+            margin: 0;
+            padding: 0;
+            -webkit-transition: 0.3s;
+            transition: 0.3s;
+        }
+
+            .price:hover {
+                box-shadow: 0 8px 12px 0 rgba(0,0,0,0.2)
+            }
+
+            .price .header {
+                background-color: #666;
+                color: white;
+                font-size: 16px;
+            }
+
+            .price li {
+                border-bottom: 1px solid #eee;
+                padding: 12px;
+                text-align: center;
+            }
+        .screen {
+            margin-top: 120px;
+        }              
+    </style>
+}
+@*<br />
+<br />
+<br />
+<br />
+<br />
+<h2>個人基本資料</h2>*@
+<div class="screen">
+    <div class="container">
+        <div class="row">
+            <div class="col-2">
+                @Html.ActionLink("個人資料", "MembersDetail", "Volunteer", null, new { @class = "list-group-item list-group-item-action active" })
+                @*@Html.ActionLink("排班查詢", "WorkHours", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })*@
+                @Html.ActionLink("參與過的活動", "Activity_History", "Volunteer", null, new { @class = "list-group-item list-group-item-action" })
+            </div>
+            <div class="col-10">
+                @*<a class="btn btn-success">參與過的活動</a>*@
+                @*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+                    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+                    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+                <!------ Include the above in your HEAD tag ---------->
+                @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">*@
+                <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+                <div class="container" style="margin-top:10px;">
+                    <div class="prog-page">
+                        <div class="header-title header-btn">
+                            <div class="header-info">
+                                <h2>@*<i class="fa fa-info-circle"></i>*@@Html.Label("Volunteer_no", "志工個人資料")</h2>
+                            </div>
+                        </div>
+                        <div class="prof-page-info">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="prof-img">
+                                        @*<div class="tags-label">
+                                                <span><i class="fa fa-tags"></i>12</span>
+                                            </div>*@
+                                        <img src="~/Images/299-06-1.jpg" />
+                                        <div class="img-title">
+                                            <h5>@*志工姓名*@ @Html.Label("Chinese_name", Model.Chinese_name)</h5>
+                                            <h5>@Html.Label("English_name", Model.English_name)</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="prof-info">
+                                        <div class="info"><label><i class="fas fa-venus-mars"></i>性別:</label>  <span>@Html.Label("sex", Model.sex)</span></div>
+                                        <div class="info">
+                                            <label><i class="fas fa-birthday-cake"></i>生日:</label><span>
+                                                @if (@Model.birthday != null)
+                                                {
+                                                    @Html.Label("birthday", Model.birthday.Value.ToShortDateString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info"><label><i class="fas fa-id-card"></i>身分證號碼(護照編號):</label>  <span>@Html.Label("IDcrad_no", Model.IDcrad_no)</span></div>
+                                        <div class="info"><label><i class="fas fa-briefcase-medical"></i>病歷號碼:</label>  <span>@Html.Label("Medical_record_no", Model.Medical_record_no)</span></div>
+                                        <div class="info"><label><i class="far fa-user-circle"></i>身分類別:</label>  <span>@Html.Label("Identity_type", Model.Identity_type)</span></div>
+                                        <div class="info"><label><i class="fas fa-calendar-plus"></i>服務年資:</label>  <span>@Html.Label("Seniority", Model.Seniority.ToString())</span></div>
+                                        <div class="info">
+                                            <label><i class="fas fa-user-plus"></i>加入日期:</label>  <span>
+                                                @if (@Model.Join_date != null)
+                                                {
+                                                    @Html.Label("Join_date", Model.Join_date.Value.ToShortDateString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info">
+                                            <label><i class="fas fa-user-minus"></i>離開日期:</label><span>
+                                                @if (@Model.Leave_date != null)
+                                                {
+                                                    @Html.Label("Leave_date", Model.Leave_date.Value.ToShortDateString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info"><label><i class="fas fa-comments"></i>離開原因(因病、工作因素、個人因素、不適任、家庭因素):</label>  <span>@Html.Label("Leave_reason", Model.Leave_reason)</span></div>
+                                        <div class="info">
+                                            <label><i class="fa fa-phone"></i>電話號碼:</label><span>
+                                                @if (@Model.Phone_no != null)
+                                                {
+                                                    @Html.Label("Phone_no", Model.Phone_no.ToString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info">
+                                            <label><i class="fas fa-th"></i>手機號碼:</label><span>
+                                                @if (@Model.Mobile_no != null)
+                                                {
+                                                    @Html.Label("Mobile_no", Model.Mobile_no.ToString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info"><label><i class="fas fa-tshirt"></i>志工背心號碼:</label><span>@Html.Label("Vest_no", Model.Vest_no)</span></div>
+                                        <div class="info">
+                                            <label><i class="fas fa-envelope-open"></i>郵遞區號:</label><span>
+                                                @if (@Model.Postal_code != null)
+                                                {
+                                                    @Html.Label("Postal_code", Model.Postal_code.ToString())
+                                                }
+                                                else
+                                                {
+                                                    <label>無</label>
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info"><label><i class="fas fa-home"></i>地址:</label>  <span>@Html.Label("Address", Model.Address)</span></div>
+                                        <div class="info"><label><i class="fas fa-graduation-cap"></i>學歷:</label><span>@Html.Label("Education", Model.Education)</span></div>
+                                        <div class="info"><label><i class="fas fa-landmark"></i>發證單位:</label>  <span>@Html.Label("Lssuing_unit", Model.Lssuing_unit)</span></div>
+                                        <div class="info"><label><i class="fas fa-book-open"></i>志工服務手冊編號:</label>  <span>@Html.Label("Service_manual_no", Model.Service_manual_no)</span></div>
+                                        <div class="info"><label><i class="fas fa-poll-h"></i>人格量表結果:</label><span>@Html.Label("Personality_scale", Model.Personality_scale)</span></div>
+                                        <div class="info">
+                                            <label><i class="fab fa-etsy"></i>專長:</label>
+                                            <span>
+                                                @{
+                                                    if (ViewBag.expertises != null)
+                                                    {
+                                                        foreach (var e in ViewBag.expertises)
+                                                        {
+                                                            <label name="Expertise">
+                                                                @e.Expertise
+                                                            </label>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>
+                                                            無
+                                                        </label>
+                                                    }
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="info">
+                                            <label><i class="fas fa-building"></i>服務組別:</label>
+                                            <span>
+                                                @{
+                                                    if (ViewBag.group.Group_name != null)
+                                                    {
+                                                        <label>@ViewBag.group.Group_name</label>
+                                                    }
+                                                    else
+                                                    {
+                                                        <label>無</label>
+                                                    }
+                                                }
+                                            </span>
+                                        </div>
+                                        @*<label><i class="fab fa-etsy"></i>幹部經歷:</label>*@
+                                        @*<span><div class="info">*@
+                                        <div class="info columns">
+                                            <label><i class="fab fa-etsy"></i>幹部經歷:</label>
+                                            @if (ViewBag.leaders != null)
+                                            {
+                                                <div class="row">
+                                                    @foreach (var l in ViewBag.leaders)
+                                                    {
+                                                        <div class="col-md-6">
+                                                            <ul class="price">
+                                                                <li class="header"><span style="text-align:left;display:block;">職稱:</span><label name="Position_chinese">@{@l.Position_chinese}(<label name="Position_english">@{@l.Position_english}</label>)</label></li>
+                                                                <li><span style="text-align:left;display:block;">描述:</span><label name="Duties">@l.Duties</label></li>
+                                                                <li>
+                                                                    @if (@l.Takeoffice_date != null)
+                                                                    {
+                                                                        <span style="text-align:left;display:block;">任職日期:</span><label name="Takeoffice_date">@string.Format($"{@l.Takeoffice_date:yyyy/MM/dd}")</label>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span style="text-align:left;display:block;">任職日期:</span><label name=>無</label><br>
+                                                                    }
+                                                                </li>
+                                                                <li>
+                                                                    @if (@l.Resignation_date != null && @l.Takeoffice_date != null)
+                                                                    {
+                                                                        <span style="text-align:left;display:block;">卸任日期:</span><label name="Resignation_date">@string.Format($"{@l.Resignation_date:yyyy/MM/dd}")</label>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span style="text-align:left;display:block;">卸任日期:</span><label name=>無</label><br>
+                                                                    }
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            }
+
+                                            else
+                                            {
+                                                <label>
+                                                    無
+                                                </label>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

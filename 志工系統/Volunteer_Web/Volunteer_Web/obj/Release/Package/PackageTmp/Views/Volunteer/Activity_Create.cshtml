@@ -1,0 +1,221 @@
+﻿@model Volunteer_Web.ViewModel.Act_pho
+
+@{
+
+    ViewBag.Title = "活動新增";
+}
+@section style{
+
+    <style>
+        .thumb {
+            width: 100px;
+        }
+
+        .label {
+            font-family: 'Microsoft JhengHei';
+            font-size: 14px;
+            color: blue;
+            -webkit-text-stroke: 1px;
+        }
+    </style>
+}
+@section script{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("Undertake_phone_id").addEventListener("blur", chkphonenumber);
+            document.getElementById("lecturer_id").addEventListener("blur", chkname);
+        });
+        function chkphonenumber() {
+
+        }
+        function chkname() {
+            var name = document.getElementById("lecturer_id").value;
+            // \uhhhh 比對四位數的十六進位 page.56
+            var re = /^[\u4E00-\u9FFF]{2,}$/;
+            if (name == "") {
+                document.getElementById("labna").innerHTML =
+                    "<img src='../images/error.png' width='50'/>請輸入名字";
+                document.getElementById("labna").style.color = "red";
+                document.getElementById("labna").style.fontSize = "24px";
+
+            }
+            else if (re.test(name)) {
+                document.getElementById("labna").innerHTML =
+                    "<img src='../images/successicon.png'/>輸入格式正確";
+                document.getElementById("labna").style.color = "green";
+                document.getElementById("labna").style.fontSize = "24px"
+            }
+            else {
+                document.getElementById("labna").innerHTML =
+                    "<img src='../images/error.png' width='50'/>請輸入中文名字,並大於2個字";
+                document.getElementById("labna").style.color = "red";
+                document.getElementById("labna").style.fontSize = "24px";
+
+            }
+        }
+    </script>
+
+}
+<h2>活動新增</h2>
+@using (Html.BeginForm("Activity_Create", "Volunteer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Activity_name, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Activity_name, new { htmlAttributes = new { @class = "form-control", placeholder = "活動名稱" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Activity_type_ID, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @{
+                var activity_type = new SelectList(ViewBag.Activity_Type, "Activity_type_ID", "Activity_type1");
+            }
+            @Html.DropDownListFor(p => p.activity.Activity_type_ID, activity_type, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+
+    @*<div class="form-group row">*@
+    @*@Html.LabelFor(p => p.Activity_type_ID, new { @class = "col-sm-2 col-form-label" })*@
+    @*<div class="col-sm-10">*@
+    @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+    @*@Html.EditorFor(p => p.Activity_type_ID, new { htmlAttributes = new { @class = "form-control", placeholder = "活動名稱" } })*@
+    @*</div>*@
+    @*</div>*@
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Group_no, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @{
+                var activity_group_no = new SelectList(ViewBag.Activity_Group, "Group_no", "Group_name");
+            }
+            @Html.DropDownListFor(p => p.activity.Group_no, activity_group_no, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Activity_startdate, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            <div class="form-group">
+                @*<input type="datetime-local" id="Activity_startdate" name="Activity_startdate" class="form-control" />*@
+                @Html.EditorFor(p => p.activity.Activity_startdate, new { htmlAttributes = new { @class = "form-control", placeholder = "承辦單位" ,type="datetime-local"} })
+
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Activity_enddate, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            <div class="form-group">
+                @*<input type="datetime-local" id="Activity_enddate" name="Activity_enddate"  class="form-control" />*@
+                @Html.EditorFor(p => p.activity.Activity_enddate, new { htmlAttributes = new { @class = "form-control", placeholder = "承辦單位", type = "datetime-local" } })
+            </div>
+        </div>
+        
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Undertake_unit, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Undertake_unit, new { htmlAttributes = new { @class = "form-control", placeholder = "承辦單位" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Undertaker, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @{
+                var activity_vs = new SelectList(ViewBag.Activity_VS, "supervision_ID", "supervision_Name");
+            }
+            @Html.DropDownListFor(p => p.activity.Undertaker, activity_vs, "請選擇", new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Undertake_phone, new { @class = "col-sm-2 col-form-label", id = "undertakephone" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Undertake_phone, new { htmlAttributes = new { @class = "form-control", placeholder = "承辦單位電話", id = "Undertake_phone_id" } })
+            <label class="label">1.不可空白，2.必須輸入格式為(xx)xxxxxxxx</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Undertake_email, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Undertake_email, new { htmlAttributes = new { @class = "form-control", placeholder = "承辦單位e-mail" } })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.lecturer, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.lecturer, new { htmlAttributes = new { @class = "form-control", id = "lecturer_id", placeholder = "請輸入講師名稱" } })
+            <label class="label" id="labna"></label>
+            <br />
+            <label class="label">1.不可空白，2.至少2個字以上，3.必須全為中文字</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Member, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Member, new { htmlAttributes = new { @class = "form-control", placeholder = "課程人數" } })
+            <br />
+            <label class="label">1.不可空白，2.必須全為數字</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Spare, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Spare, new { htmlAttributes = new { @class = "form-control", placeholder = "備取人數" } })
+            <br />
+            <label class="label">1.不可空白，2.必須全為數字</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Place, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Place, new { htmlAttributes = new { @class = "form-control", placeholder = "活動地點" } })
+            <br />
+            <label class="label">1.不可空白</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(p => p.activity.Summary, new { @class = "col-sm-2 col-form-label" })
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity.Summary, new { htmlAttributes = new { @class = "form-control", placeholder = "活動簡介" } })
+            <br />
+            <label class="label">1.不可空白，2.必須全為數字</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @*@Html.LabelFor(p => p.activity_photo.Activity_id, new { @class = "col-sm-2 col-form-label" })*@
+        <label class = "col-sm-2 col-form-label">活動編號</label>
+        <div class="col-sm-10">
+            @*@Html.TextBoxFor(p => p.ModelNumber, new { @class = "form-control", placeholder = "model number" })*@
+            @Html.EditorFor(p => p.activity_photo.Activity_id, new { htmlAttributes = new { @class = "form-control", placeholder = "活動編號" } })
+            <br />
+            <label class="label">1.不可空白，2.必須全為數字</label>
+        </div>
+    </div>
+    <div class="form-group row">
+        @*@Html.LabelFor(p => p.activity.Activity_Photo_id, new { @class = "col-sm-2 col-form-label" })*@
+        <label class="col-sm-2 col-form-label">活動照片</label>
+        <div class="col-sm-10">
+            @*  @Html.EditorFor(p => p.activity.Activity_Photo_id, new { htmlAttributes = new { @class = "form-control", placeholder = "" ,type="file"} })*@
+            <text class="form-control"><input type="file" name="photo" id="photo" /></text>
+            <br />
+            <label class="label">1.不可空白，2.必須全為數字</label>
+        </div>
+    </div>
+
+
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">新增</button>
+        </div>
+    </div>
+
+}

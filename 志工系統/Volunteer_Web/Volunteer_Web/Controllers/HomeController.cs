@@ -142,11 +142,11 @@ namespace Volunteer_Web.Controllers
                 Identity_card="A123456789",
                 Phone = "02-12345678",
                 Mobile = "0912345678",
-                Email = "Ming120@gmail.com",
+                Email = "peter790429@gmail.com",
                 Address = "台北市大安區復興南路一段390號",
                 Education = "大學",
                 Job = "服務業",
-                Expertises = new string[] { "2飛天","3衝浪" }
+                Expertises = new string[] { "1英文", "2日文" }
             };
             Session["Question"] = new Sign_up_questionnaireVM
             {

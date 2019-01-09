@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Schedule";
+}
+@{
+    List<SelectListItem> WishSelectItem = new List<SelectListItem>();
+    WishSelectItem.AddRange(new[]
+                          { new SelectListItem() {Text = "______",Value = "0" },
+new SelectListItem() {Text = "1",Value = "1" },
+new SelectListItem() {Text = "2",Value = "2" },
+new SelectListItem() {Text = "3",Value = "3" } });
+
+}
+<br />
+<br />
+<br />
+<br />
+<style>
+    table {
+        table-layout: fixed;
+        word-break: break-word;
+        /*overflow-wrap:break-word;*/
+    }
+
+    th, td {
+        text-align: center;
+    }
+</style>
+<h2>Schedule</h2>
+<table class="table table-bordered table-hover ">
+    <thead>
+        <tr>
+            <th></th>
+            <th>星期一</th>
+            <th>星期二</th>
+            <th>星期三</th>
+            <th>星期四</th>
+            <th>星期五</th>
+            <th>星期六</th>
+            <th>星期日</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>上午</td>
+            <td data-service_period_no="1">@Html.DropDownList("select1", WishSelectItem)</td>
+            <td data-service_period_no="4">@Html.DropDownList("select4", WishSelectItem)</td>
+            <td data-service_period_no="7">@Html.DropDownList("select7", WishSelectItem)</td>
+            <td data-service_period_no="10">@Html.DropDownList("select10", WishSelectItem)</td>
+            <td data-service_period_no="13">@Html.DropDownList("select13", WishSelectItem)</td>
+            <td data-service_period_no="16">@Html.DropDownList("select16", WishSelectItem)</td>
+            <td data-service_period_no="18">@Html.DropDownList("select18", WishSelectItem)</td>
+        </tr>
+        <tr>
+            <td>下午</td>
+            <td data-service_period_no="2">@Html.DropDownList("select2", WishSelectItem)</td>
+            <td data-service_period_no="5">@Html.DropDownList("select5", WishSelectItem)</td>
+            <td data-service_period_no="8">@Html.DropDownList("select8", WishSelectItem)</td>
+            <td data-service_period_no="11">@Html.DropDownList("select11", WishSelectItem)</td>
+            <td data-service_period_no="14">@Html.DropDownList("select14", WishSelectItem)</td>
+            <td data-service_period_no="17">@Html.DropDownList("select17", WishSelectItem)</td>
+            <td data-service_period_no="19">@Html.DropDownList("select19", WishSelectItem)</td>
+        </tr>
+        <tr>
+            <td>夜間</td>
+            <td data-service_period_no="3">@Html.DropDownList("select3", WishSelectItem)</td>
+            <td data-service_period_no="6">@Html.DropDownList("select6", WishSelectItem)</td>
+            <td data-service_period_no="9">@Html.DropDownList("select9", WishSelectItem)</td>
+            <td data-service_period_no="12">@Html.DropDownList("select12", WishSelectItem)</td>
+            <td data-service_period_no="15">@Html.DropDownList("select15", WishSelectItem)</td>
+            <td colspan="2"><button id="btn_insert" class="btn btn-success">送出</button></td>
+        </tr>
+    </tbody>
+</table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script>
+
+    var btn_insert = $("#btn_insert");
+    var select = $("select[id^='select']");
+    $(document).ready(function () {
+        btn_insert.click(function () {
+            var wish1 = [];
+            var wish2 = [];
+            var wish3 = [];
+            $("select").find(":selected").each(function () {
+                switch ($(this).val())
+                {
+                    case "1":
+                        wish1.push($(this).parents("td").data("service_period_no"));
+                        break;
+                    case "2":
+                        wish2.push($(this).parents("td").data("service_period_no"));
+                        break;
+                    case "3":
+                        wish3.push($(this).parents("td").data("service_period_no"));
+                        break;
+                }
+            });
+            if (wish1.length == 0) {
+                alert("至少要有1個志願1");
+            }
+            else
+            {
+                var divery = [wish1, wish2, wish3];
+               // console.log(divery);
+                $.ajax({
+                    type: "post",
+                    url: "/Volunteer/Schedule",
+                    data: { "id": 1, "wishid": [1, 2, 3], "service_no": divery }
+                })
+            }
+            //console.log(wish1);
+            //console.log(wish2);
+            //console.log(wish3);
+        });
+    });
+</script>

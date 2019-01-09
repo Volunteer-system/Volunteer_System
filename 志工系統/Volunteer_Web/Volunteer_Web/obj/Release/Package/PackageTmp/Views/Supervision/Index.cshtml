@@ -1,0 +1,243 @@
+﻿@model IEnumerable<Volunteer_Web.Models.VolunteerUse.ActivityHistoryModel>
+@{
+    ViewBag.Title = "Index";
+}
+@{
+    List<SelectListItem> year = new List<SelectListItem>();
+    for (int i = DateTime.Now.Year + 1; i > DateTime.Now.Year - 5; i -= 1)
+    {
+        year.Add(new SelectListItem()
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+        });
+    }
+    List<SelectListItem> month = new List<SelectListItem>();
+    for (int i = 1; i <= 12; i += 1)
+    {
+        month.Add(new SelectListItem
+        {
+            Text = i.ToString(),
+            Value = i.ToString()
+        });
+    }
+
+}
+@section Home_style{
+    <style>
+        .screen {
+            width: 100%;
+            margin-top: 70px;
+        }
+
+        .calendar {
+            border: 3px dotted lightgray;
+            width: 68%;
+            margin: 1%;
+            padding: 1%;
+        }
+
+        .thead {
+            background-color: darkgray;
+            color: white;
+        }
+
+        .actTable {
+            margin: 1%;
+            width: 28%;
+        }
+
+        .search_date {
+            width: 100%;
+            text-align: right;
+        }
+
+        .btn_c {
+            margin-left: 80%
+        }
+
+        td > img {
+            margin: 3px;
+            width: 100%;
+        }
+
+        @@media only screen and (max-width:767px) {
+            .calendar {
+                border: 3px dotted lightgray;
+                width: 98%;
+                margin: 1%;
+                padding: 1%;
+            }
+
+            .actTable {
+                margin: 1%;
+                width: 98%;
+            }
+        }
+    </style>
+}
+<div class="screen">
+    <div class="container">
+        <div class="row">
+            <div class="calendar">
+                <div class="search_date">
+                    <label>依日期查詢:</label>
+                    @Html.DropDownList("year", year, "請選擇", null)年
+                    @Html.DropDownList("month", month, "請選擇", null)月
+                    <button class="btn btn-outline-dark" id="btn_search">查詢</button>
+                </div>
+                <div id="calendar1">
+                </div>
+            </div>
+            <div class="actTable">
+                <table class="table table-bordered">
+                    <thead class="thead">
+                        <tr>
+                            <th>活動名稱</th>
+                            <th>活動日期</th>
+                            <th>狀態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var a in Model)
+                        {
+                            <tr>
+                                <td>@a.Activity_name</td>
+                                <td>@a.Activity_startdate.Value.ToShortDateString()</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog ">
+            <div class="modal-content ">
+                <div class=" modal-header ">
+                    <h4 class=" modal-title"><span id="eventTitle"></span></h4>
+                    <button type="button" class=" close " data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body ">
+                    <div id="load_a"></div>
+                    <button type="button" class="btn btn-default btn_c" data-dismiss="modal">關閉</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section calendar{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script><!--引用jqueryUI-->
+    <link href="https://code.jquery.com/ui/1.12.1/themes/black-tie/jquery-ui.css" rel="stylesheet" /><!--引用主題-->
+    <script>
+    $(document).ready(function () {
+        var events = [];
+        var schedules = [];
+        var init_month = new Date().getFullYear() + "/" + (new Date().getMonth() + 1) + "/1";
+        var select_month;
+        var calendar1 = $("#calendar1");
+            $.ajax({
+                type: "GET",
+                url: "/Supervision/GetCalendar"
+            }).done(function (datas) {
+                $.each(datas, function (index, value) {
+                    events.push({
+                        title: "活動:" + value.Activity_name,
+                        start: moment(value.Activity_startdate).format("YYYY-MM-DD"),/*value.Activity_startdate,*/
+                        end: moment(value.Activity_enddate).format("YYYY-MM-DD"),   /*value.Activity_enddate,*/
+                        act_no: value.Activity_no,
+                        photo: value.Activity_Photo_id,
+                        color: "#ff7575"
+                    });
+                })
+                GenerateCalendar(events);
+                getschedule();
+                }).fail(function () {
+                    alert("沒有資料");
+                })
+        calendar1.on("click", "div[class='fc-button-group']", function () {
+            //getschedule();
+        });
+        function getschedule()
+        {
+            schedules.length = 0;
+            select_month = calendar1.find("div[class='fc-center']>h2").text().substring(0, 8).replace("年", "/").replace("月", "/") + "1";
+                $.ajax({
+                    type: "Get",
+                    url: "/Volunteer/GetCalendar/?month=" + select_month
+                }).done(function (datas) {
+                    $.each(datas, function (i, v) {
+                        schedules.push({
+                            title: "班表:" + v.Service_period_name,
+                            start: moment(v.Worktime).format("YYYY-MM-DD"),
+                            end: moment(v.Worktime).format("YYYY-MM-DD"),
+                            Volunteer_no: v.Volunteer_no,
+                            Service_period_name: v.Service_period_name,
+                            Srevice_group_name: v.Srevice_group_name,
+                            Application_unit_name: v.Application_unit_name,
+                            Worktime: v.Worktime,
+                            color: "#BBFFEE"
+                        });
+                    });
+                    calendar1.fullCalendar("renderEvents", schedules)
+                });
+        }
+        //=================================跳到指定年月============================
+        $("#btn_search").click(function () {
+            if ($("#year").val() != "" && $("#month").val() != "") {
+                var month = $("#month").val() - 1;
+                var year = $("#year").val();
+                var s = moment([year, month, 1]).format("YYYY-MM-DD");
+                calendar1.fullCalendar("gotoDate", s)
+            }
+        });
+            //==============================================產生月曆▼===============================================
+            function GenerateCalendar(events)
+            {
+                calendar1.fullCalendar("destroy");//清空日曆
+                calendar1.fullCalendar({          //建立日曆
+                    contentHeight: 500, //日曆高度
+                    //defaultDate: new Date(),
+                   themeSystem:"jquery-ui",//套用jquery ui的主題
+
+                    businessHours: true, // 可以產生假日的陰影
+                    //businessHours: [{
+                    //    dow: [6,0]
+                    //}],
+                    editable: false,//不允許拖曳事件
+                    header: { left: "", center: "title", right: "prev,today,next" },//設定上方顯示的內容
+                    buttonText: { today: "今天", prev: "上個月", next: "下個月" },  //設定按鍵的中文
+                    views: {
+                        month: { titleFormat: "YYYY年M月" }                        //設定中間顯示的樣式
+                    },
+                    dayNamesShort: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],//中文化星期顯示
+                    //eventLimit: true,
+                   /* eventColor: "#ff7575",*/                                          //事件條的顏色
+                    events: events,                                                 //接收事件json格式，設定title顯示字，start起始日,end結束日
+                    eventClick: function (calEvent, jsEvent, view) {                //設定日曆事件點選的事件
+                        if (calEvent.act_no != undefined) {
+                            $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
+                            $("#load_a").load("/Volunteer/Activity_DetailPartial/" + calEvent.act_no)
+                        }
+                        else if (calEvent.Service_period_name != undefined)
+                        {
+                            var day = new Date();
+                            day.setTime(calEvent.start);
+                            $(this).attr({ "data-toggle": "modal", "data-target": "#myModal" });
+                            $("#load_a").load("/Volunteer/GetSchedule_detail_Partial/?Volunteer_no=" + calEvent.Volunteer_no + "&Service_period_name=" + calEvent.Service_period_name + "&Worktime=" + day.toLocaleDateString());
+                        }
+                    }
+
+                });
+            }
+
+        });
+
+    </script>
+}
+

@@ -133,14 +133,29 @@
     <Content Include="Images\logo.png" />
     <Content Include="Images\maxresdefault.jpg" />
     <Content Include="Images\Noimage.png" />
+    <Content Include="Images\RWD.png" />
     <Content Include="Images\shattered.png" />
     <Content Include="Images\下載 %281%29.jpg" />
+    <Content Include="Images\大廳-01.jpg" />
+    <Content Include="Images\婦幼服務類.jpg" />
+    <Content Include="Images\影像服務類.jpg" />
     <Content Include="Images\志工隊介紹用.jpg" />
+    <Content Include="Images\急診服務類.jpg" />
     <Content Include="Images\手術室 %283%29.JPG" />
     <Content Include="Images\投影片1.JPG" />
     <Content Include="Images\投影片2.JPG" />
     <Content Include="Images\投影片3.JPG" />
+    <Content Include="Images\檢查服務類.jpg" />
+    <Content Include="Images\癌症服務類.jpg" />
     <Content Include="Images\眼科 %281%29.JPG" />
+    <Content Include="Images\福利關懷類.jpg" />
+    <Content Include="Images\綜合服務類.jpg" />
+    <Content Include="Images\績優志工頒獎-01.jpg" />
+    <Content Include="Images\聖誕節-01.jpg" />
+    <Content Include="Images\衛生局.jpg" />
+    <Content Include="Images\診區服務類.jpg" />
+    <Content Include="Images\郊遊.jpg" />
+    <Content Include="Images\門口接送-01.jpg" />
     <Content Include="Images\門接 %2811%29.JPG" />
     <Content Include="Images\門接 %2815%29.JPG" />
     <Content Include="Models\Volunteer.Context.tt">
@@ -183,6 +198,7 @@
     <Content Include="Models\Volunteer.edmx.diagram">
       <DependentUpon>Volunteer.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

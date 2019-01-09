@@ -1,0 +1,155 @@
+﻿@model Volunteer_Web.ViewModel.Home_maintenanceVM
+@{
+    ViewBag.Title = "Home_maintenance";
+}
+<style>
+    .screen {
+        margin-top: 120px;
+    }
+</style>
+<div class="accordion screen" id="accordionExample">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <div class="mb-0">
+                <button class="btn btn-info col-sm-2" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    首頁照片維護
+                </button>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    新增照片
+                </a>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <form method="post" action="~/Supervision/Insert_Indexphotos" class="form-horizontal" enctype="multipart/form-data">
+                            <input class="btn btn-outline-info col-sm-4" type="file" name="Index_photo">
+                            <button class="btn btn-info" type="submit">新增</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="card-columns">
+                    @foreach (var row in Model.Indexphotos)
+                    {
+                        <div class="card">
+                            <p hidden id="Indexphoto_@row.Indexphoto_no"><p>
+                                <img class="card-img-top" src="~/Images/@row.Indexphoto_name" alt="Card image cap">
+                                <div class="card-body">
+                                    @if (row.Issued)
+                                    {
+                                        @Html.ActionLink("已發布", "Update_Indexphotos", "Supervision", new { id = row.Indexphoto_no }, new { @class = "btn btn-success" })
+                                    }
+                                    else
+                                    {
+                                        if (Model.Indexphoto_number >= 5)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Indexphotos", "Supervision", new { id = row.Indexphoto_no }, new { @class = "btn btn-danger" })
+                                        }
+                                    }
+                                </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-info collapsed col-sm-2" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    績優志工維護
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="card-columns">
+                    @foreach (var row in Model.Experiences)
+                    {
+                        <div class="card">
+                            <p hidden id="Experience_@row.Experience_no"><p>
+                                <img class="card-img-top" src="~/Images/@row.Experience_photo" alt="Card image cap">
+                                <h5 class="card-title">@row.Experience</h5>
+                                <div class="card-body">
+                                    @if (row.Home_issued)
+                                    {
+                                        @Html.ActionLink("已發布至首頁", "Update_Experiences", "Supervision", new { id = row.Experience_no }, new { @class = "btn btn-success" })
+                                    }
+                                    else
+                                    {
+                                        if (Model.Experience_number >= 1)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Experiences", "Supervision", new { id = row.Experience_no }, new { @class = "btn btn-danger" })
+                                        }
+
+                                    }
+                                </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header" id="headingThree">
+            <div class="mb-0">
+                <button class="btn btn-info collapsed col-sm-2" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                    首頁影片維護
+                </button>
+                <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    新增影片
+                </a>
+                <div class="collapse" id="collapseExample1">
+                    <div class="card card-body">
+                        <form method="post" action="~/Supervision/Insert_Indexvideolinks" class="form-horizontal" enctype="multipart/form-data">
+                            <input class="btn btn-outline-info col-sm-4" type="text" name="Index_video">
+                            <button class="btn btn-info" type="submit">新增</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div class="card-body">
+                <div class="card-columns">
+                    @foreach (var row in Model.Indexvideolinks)
+                    {
+                        <div class="card">
+                            <p hidden id="Indexvideolink_@row.Indexvideolink_no"><p>
+                                <iframe class="card-img-top" src="@row.Videolink" allowfullscreen></iframe>
+                                <div class="card-body">
+                                    @if (row.Issued)
+                                    {
+                                        @Html.ActionLink("已發布", "Update_Indexvideolinks", "Supervision", new { id = row.Indexvideolink_no }, new { @class = "btn btn-success" })
+                                    }
+                                    else
+                                    {
+                                        if (Model.Indexvideolink_number >= 3)
+                                        {
+                                            <button style="pointer-events:none" class="btn">未發布</button>
+                                        }
+                                        else
+                                        {
+                                            @Html.ActionLink("未發布", "Update_Indexvideolinks", "Supervision", new { id = row.Indexvideolink_no }, new { @class = "btn btn-danger" })
+                                        }
+
+                                    }
+                                </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

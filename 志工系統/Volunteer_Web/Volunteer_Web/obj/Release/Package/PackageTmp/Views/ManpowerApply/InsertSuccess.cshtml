@@ -1,0 +1,78 @@
+﻿@model Volunteer_Web.ViewModel.Manpower_applyStageVM
+@{
+    ViewBag.Title = "InsertSuccess";
+}
+
+
+<div style="text-align:center;margin-top:50px;">
+    <h1>申請成功</h1>
+</div>
+
+<div class="cotainer" style="margin-top:50px;">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">年度人力申請</div>
+                <div class="card-body">
+                    <form class="form-horizontal" method="post" action="~/ManpowerApply/Detail" role="form">
+                        <div class="form-group row">
+                            <input type="hidden" name="Apply_ID" value="@Model.manpower_apply.Apply_ID">
+                            <label class="col-md-4 text-right" for="Application_unit1">運用單位</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Application_unit.Application_unit1</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-right" for="Apply_date">申請日期</label>
+                            <div class="col-md-8">
+                                <label>@Html.DisplayFor(m => m.manpower_apply.Apply_date)</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-4 text-right" for="Applicant">申請人</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Applicant</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Applicant_phone" class="col-md-4 text-right">電話</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Applicant_phone</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Application_number" class="col-md-4 text-right">需求人數</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Application_number</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Reply_number" class="col-md-4 text-right">核定人數</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Reply_number</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Apply_description" class="col-md-4 text-right">志工工作項目與流程</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Apply_description</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Application_unit_Supervisor" class="col-md-4 text-right">單位主管</label>
+                            <div class="col-md-8">
+                                <label>@Model.manpower_apply.Application_unit_Supervisor</label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="Stage" class="col-md-4 text-right">申請階段</label>
+                            <div class="col-md-8">
+                                <label>@Model.stage.Stage1</label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
