@@ -301,7 +301,11 @@ namespace Volunteer_WPF
 
         private void VolSuperItem_Click(object sender, RoutedEventArgs e)  //志工督導維護按鈕
         {
-            AddTabItem(VolSuperItem.Header.ToString());
+            Volunteer_supervision_View volunteer_Supervision_View = new Volunteer_supervision_View();
+            object content = volunteer_Supervision_View.Content;
+            volunteer_Supervision_View.Content = null;
+
+            AddTabItem(VolSuperItem.Header.ToString(), content);
             CheckList.Add(VolSuperItem.Header.ToString());
             Selected(VolSuperItem.Header.ToString());
         }

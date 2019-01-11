@@ -37,7 +37,7 @@ namespace Volunteer_WPF.Model
                     shift_Schedule.Volunteer_no = row.Volunteer_no;
                     shift_Schedule.Application_unit_no = (int)row.Application_unit;
                     shift_Schedule.Service_period_no = row.Service_period_no;
-                    shift_Schedule.year = DateTime.Now.Year;
+                    shift_Schedule.year = 2018;
                     shift_Schedule.Wish_order = 1;
                     dbContext.Shift_schedule.Add(shift_Schedule);
                 }

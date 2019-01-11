@@ -1,0 +1,45 @@
+﻿<Window x:Class="Volunteer_WPF.View.Volunteer_supervision_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Volunteer_WPF.View"
+        mc:Ignorable="d"
+        Title="Volunteer_supervision_View" Height="615" Width="1020">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="287*"/>
+        </Grid.ColumnDefinitions>
+        <DockPanel x:Name="Dock_Frame" LastChildFill="True" Margin="1,1,0.6,0.6" Grid.ColumnSpan="2" >
+            <StackPanel  DockPanel.Dock="Left"  Width="150"  Margin="1" HorizontalAlignment="Left">
+                <Button x:Name="btn_newsupervision" Content="新增志工督導" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"  Style="{DynamicResource ButtonTemplate}"/>
+                <Label  Content="姓名" FontSize="14"/>
+                <TextBox Name="nametext" Height="30" Margin="5,0,5,10"/>
+                <Button x:Name="btn_select" Content="搜尋" Height="35" Margin="5" FontSize="14" Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray" Click="Btn_select_Click"  Style="{DynamicResource ButtonTemplate}"/>
+            </StackPanel>
+            <Grid Height="584" VerticalAlignment="Top" Width="858">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+                <GridSplitter Height="3" Grid.Row="0" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" BorderBrush="Transparent"/>
+                <DataGrid x:Name="dg_supervision" IsReadOnly="True" Margin="1" CanUserAddRows="False" FontSize="14" >
+                    <DataGrid.Columns>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="編輯" Width="50"  Background="#FFA7E6DA" BorderBrush="{x:Null}" Foreground="Gray"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <ScrollViewer Height="Auto" Grid.Row="1">
+                    <StackPanel x:Name="wondow_show" HorizontalAlignment="Left" Margin="10" Grid.Row="1" VerticalAlignment="Top" />
+                </ScrollViewer>
+            </Grid>
+        </DockPanel>
+        
+    </Grid>
+</Window>
